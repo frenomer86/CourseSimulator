@@ -5,9 +5,7 @@ import { CoursePage } from './pages/Course';
 import { UnitPage } from './pages/Unit';
 import { TopicCheckPage } from './pages/TopicCheck';
 import { LabPage } from './pages/Lab';
-import { AccountPage } from './pages/Account';
-import { SignInPage } from './pages/SignIn';
-import { SignUpPage } from './pages/SignUp';
+import { ProfilePage } from './pages/Profile';
 import { NotFoundPage } from './pages/NotFound';
 
 function Root() {
@@ -34,9 +32,7 @@ export const router = createBrowserRouter([
       { path: 'courses/:slug/units/:unit', element: <UnitPage /> },
       { path: 'courses/:slug/units/:unit/topics/:topic/check', element: <TopicCheckPage /> },
       { path: 'labs/:id', element: <LabPage /> },
-      { path: 'account', element: <AccountPage /> },
-      { path: 'account/sign-in', element: <SignInPage /> },
-      { path: 'account/sign-up', element: <SignUpPage /> },
+      { path: 'profile', element: <ProfilePage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

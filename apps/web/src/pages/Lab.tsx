@@ -55,7 +55,7 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
     setChecking(true);
     const r = await logicChecks.run(lab, circuit);
     setResult(r);
-    recordResult(lab, r, hintsShown, circuit);
+    recordResult(lab, r, hintsShown);
     setChecking(false);
   };
 

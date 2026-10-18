@@ -65,14 +65,7 @@ function CheckSitting({
   const mark = () => {
     const g = gradeCheck(items, answers, passMark);
     setGrade(g);
-    recordCheck(
-      spec.course,
-      spec.unit,
-      spec.topic,
-      g.score,
-      g.passed,
-      items.map((it) => ({ id: it.id, answer: answers[it.id] ?? null, correct: g.items.find((r) => r.id === it.id)?.correct ?? false })),
-    );
+    recordCheck(spec.course, spec.unit, spec.topic, g.score, g.passed);
     window.scrollTo({ top: 0 });
   };
 

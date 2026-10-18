@@ -47,40 +47,23 @@ npm run dev
 Then open http://localhost:5173. `npm test` runs the engine unit tests and `npm run build`
 produces the deployable static site in `apps/web/dist` (a PWA, hostable on any static host).
 
-Without any further setup the app runs in **offline guest mode**: every lab and topic check
-works, and progress is kept in the browser's storage on that device only.
+The app is **self-contained**: there is no server, no account and no API. Every lab, topic
+check and progress record runs and is stored inside the browser, so it keeps working offline
+once loaded.
 
-## Accounts and progress sync (optional)
+## Your progress
 
-Accounts, profiles and cross-device progress use a [Supabase](https://supabase.com) project.
-The app only needs the project URL and the public anon key; access rules live in the
-database as row-level security, so the anon key is safe to ship in the client.
+Results, topic mastery and saved circuits are kept in the browser's storage on that device.
+The profile page (the avatar in the header) holds a name and picture, and lets a learner
+**export** everything as a small JSON file and **import** it on another phone or laptop, or
+after clearing the browser. Imports merge by keeping the best of each value (a passed lab
+stays passed, the higher mastery and score win), so a file can be imported more than once
+without harm. The file format is `ProgressSnapshot` in
+[packages/lab-runtime/src/progress.ts](packages/lab-runtime/src/progress.ts).
 
-1. Create a Supabase project (the free tier is enough for a pilot).
-2. In the SQL editor, run [supabase/migrations/0001_initial.sql](supabase/migrations/0001_initial.sql)
-   once. It creates every table, trigger and policy, including the trigger that makes a
-   profile row when someone signs up.
-3. Under *Authentication → URL configuration*, set the site URL to where the app is served
-   (for development `http://localhost:5173`) and add `<site>/account` to the redirect URLs.
-   Email and password sign-in and magic links are on by default in new projects.
-4. Copy the keys into an env file that Vite reads (never commit it):
-
-```bash
-cp apps/web/.env.example apps/web/.env.local
-```
-
-```
-VITE_SUPABASE_URL=https://<project-ref>.supabase.co
-VITE_SUPABASE_ANON_KEY=<anon public key from Settings → API>
-```
-
-5. Restart `npm run dev` (or rebuild). A **Sign in** button appears in the header.
-
-If either variable is missing the app stays in guest mode and the account pages say so.
-Both modes keep the local store as the source of truth: results and mastery are written on
-the device first, queued, and sent to the account when online (replayed in order after a
-reconnect, with a client attempt id so a retry never duplicates a row). Signing in merges
-what the account already holds by keeping the highest mastery and best score.
+The schema in [supabase/migrations/0001_initial.sql](supabase/migrations/0001_initial.sql)
+and the hosted-platform parts of the product spec are kept as design reference only; the
+app does not use them.
 
 ## Content layout
 
@@ -126,9 +109,9 @@ scripts/build-courses.mjs        Regenerates data/courses.json
 
 Phase 1 in progress. The platform shell (catalogue, course pages, lab workspace, progress,
 offline PWA) and the first flagship simulator, the Digital Logic circuit bench, are built,
-with six graded labs for Digital Logic Design. Phase 1b adds accounts and profiles
-(Supabase), offline-first progress sync, syllabus units with a mastery marker per topic, and
-topic checks, with real checks for the first three units of Digital Logic Design. Next: the
+with six graded labs for Digital Logic Design. Phase 1b adds a local profile with progress
+export and import, syllabus units with a mastery marker per topic, and topic checks, with
+real checks for the first three units of Digital Logic Design. Next: the
 remaining Phase 1 engines (code runner, network simulator, SQL engine, step visualiser,
 maths lab), tutorials, and detailed syllabi for every course.
 
