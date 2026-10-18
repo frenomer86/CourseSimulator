@@ -1,0 +1,125 @@
+{
+  "course": "digital-logic-design",
+  "unit": 2,
+  "topic": 5,
+  "title": "Logic families compared: TTL, CMOS; voltage levels and power",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u2t5-01",
+      "type": "choice",
+      "prompt": "A TTL gate input is left unconnected. How does the gate read it?",
+      "options": ["As a 1 (high).", "As a 0 (low).", "As random noise.", "The gate stops working."],
+      "answer": 0,
+      "explanation": "A floating TTL input is pulled up internally and reads as high. The simulator on the bench shows a floating input as ?, which is kinder but not what real hardware does."
+    },
+    {
+      "id": "u2t5-02",
+      "type": "numeric",
+      "prompt": "In standard 5 V TTL, what is the maximum voltage an input accepts as a **0** (V<sub>IL</sub>)?",
+      "answer": 0.8,
+      "tolerance": 0.01,
+      "unit": "V",
+      "explanation": "TTL: V<sub>IL</sub> = 0.8 V, V<sub>IH</sub> = 2.0 V, V<sub>OL</sub> = 0.4 V, V<sub>OH</sub> = 2.4 V."
+    },
+    {
+      "id": "u2t5-03",
+      "type": "choice",
+      "prompt": "How are the input thresholds of a plain CMOS gate (such as 74HC) set?",
+      "options": [
+        "They scale with the supply voltage, roughly 30% and 70% of V<sub>DD</sub>.",
+        "They are fixed at 0.8 V and 2.0 V whatever the supply.",
+        "They are always exactly 0 V and 5 V.",
+        "They are set by an external resistor."
+      ],
+      "answer": 0,
+      "explanation": "At 5 V that is about 1.5 V and 3.5 V; at 3.3 V about 1.0 V and 2.3 V. This is why mixing families needs care."
+    },
+    {
+      "id": "u2t5-04",
+      "type": "choice",
+      "prompt": "A 3.3 V CMOS output (V<sub>OH</sub> ≈ 3.3 V) drives a 5 V TTL input. Will the TTL gate read a 1 reliably?",
+      "options": [
+        "Yes: 3.3 V is above TTL's V<sub>IH</sub> of 2.0 V.",
+        "No: TTL needs at least 5 V to read a 1.",
+        "No: TTL inputs need a negative voltage for a 1.",
+        "Only if the wire is shorter than 1 cm."
+      ],
+      "answer": 0,
+      "explanation": "TTL's thresholds are low, so a 3.3 V part drives it fine. The other direction is the problem."
+    },
+    {
+      "id": "u2t5-05",
+      "type": "choice",
+      "prompt": "A 5 V TTL output (V<sub>OH</sub> min 2.4 V) drives a 5 V plain CMOS input (V<sub>IH</sub> ≈ 3.5 V). What is the risk?",
+      "options": [
+        "The CMOS gate may not read the high reliably: 2.4 V is in its forbidden zone. Use a pull-up resistor or an HCT part.",
+        "No risk: 2.4 V is a valid high for everything.",
+        "The CMOS gate will be destroyed by 2.4 V.",
+        "The TTL gate will be destroyed."
+      ],
+      "answer": 0,
+      "explanation": "This is the classic TTL-to-CMOS interface problem. 74HCT parts have TTL-level inputs precisely to solve it."
+    },
+    {
+      "id": "u2t5-06",
+      "type": "multi",
+      "prompt": "Which of these are genuine advantages of CMOS over TTL?",
+      "options": [
+        "Very low static power.",
+        "Works over a wide range of supply voltages.",
+        "Inputs draw almost no current, so fan-out is large at low speed.",
+        "Unconnected inputs are harmless."
+      ],
+      "answer": [0, 1, 2],
+      "explanation": "Floating CMOS inputs are the opposite of harmless. Everything else on the list is true."
+    },
+    {
+      "id": "u2t5-07",
+      "type": "choice",
+      "prompt": "Why must unused CMOS inputs be tied to the supply or to ground?",
+      "options": [
+        "A floating input can drift to mid-rail, turning on both transistors: the gate draws heavy current and its output flickers.",
+        "Otherwise the gate reads a permanent 1.",
+        "To make the chip easier to solder.",
+        "So the gate runs faster."
+      ],
+      "answer": 0,
+      "explanation": "Mid-rail inputs defeat the whole point of complementary switching. A chip with floating inputs can get warm and behave randomly."
+    },
+    {
+      "id": "u2t5-08",
+      "type": "choice",
+      "prompt": "What is the difference between a **74HC** and a **74HCT** part?",
+      "options": [
+        "HCT has TTL-compatible input thresholds, so TTL outputs can drive it; HC has CMOS thresholds that scale with the supply.",
+        "HCT is twice as fast as HC.",
+        "HC runs on 5 V only; HCT runs on 3.3 V only.",
+        "HCT parts have more inputs."
+      ],
+      "answer": 0,
+      "explanation": "Both are CMOS inside. The T stands for TTL-compatible inputs."
+    },
+    {
+      "id": "u2t5-09",
+      "type": "numeric",
+      "prompt": "A 74LS gate dissipates about 2 mW. A chip holding 4 such gates dissipates about how much, all the time?",
+      "answer": 8,
+      "unit": "mW",
+      "explanation": "TTL burns power even when idle: 4 × 2 mW = 8 mW. A CMOS 74HC00 at rest uses microwatts."
+    },
+    {
+      "id": "u2t5-10",
+      "type": "choice",
+      "prompt": "Which family's power consumption rises almost in proportion to switching frequency?",
+      "options": [
+        "CMOS, because almost all its power is spent charging capacitance on each transition.",
+        "TTL, because its transistors saturate.",
+        "Both rise equally.",
+        "Neither: power does not depend on frequency."
+      ],
+      "answer": 0,
+      "explanation": "At very high frequencies CMOS can use as much as TTL; at rest it uses almost nothing."
+    }
+  ]
+}

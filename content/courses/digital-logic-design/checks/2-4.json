@@ -1,0 +1,132 @@
+{
+  "course": "digital-logic-design",
+  "unit": 2,
+  "topic": 4,
+  "title": "CMOS implementation of inverters and NAND gates; fan-in, fan-out, propagation delay",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u2t4-01",
+      "type": "choice",
+      "prompt": "In a CMOS inverter the input goes high. What happens?",
+      "options": [
+        "The NMOS turns on and the PMOS turns off, pulling the output low.",
+        "The PMOS turns on and the NMOS turns off, pulling the output high.",
+        "Both transistors turn on and the output floats.",
+        "Both transistors turn off and the output holds its old value."
+      ],
+      "answer": 0,
+      "explanation": "NMOS conducts with a high gate, PMOS with a low gate. Exactly one of them is on at rest, which is what makes CMOS a complementary pair."
+    },
+    {
+      "id": "u2t4-02",
+      "type": "choice",
+      "prompt": "How are the transistors arranged in a 2-input CMOS **NAND** gate?",
+      "options": [
+        "Two NMOS in series to ground (pull-down), two PMOS in parallel to the supply (pull-up).",
+        "Two NMOS in parallel to ground, two PMOS in series to the supply.",
+        "All four transistors in series.",
+        "All four transistors in parallel."
+      ],
+      "answer": 0,
+      "explanation": "The output is pulled low only when both NMOS conduct (both inputs 1). Either input low turns on a PMOS and pulls the output high. Swap series and parallel for NOR."
+    },
+    {
+      "id": "u2t4-03",
+      "type": "choice",
+      "prompt": "Why does a CMOS gate use almost no power while its inputs are steady?",
+      "options": [
+        "Only one of the pull-up or pull-down networks conducts, so there is no path from supply to ground.",
+        "CMOS transistors need no supply voltage.",
+        "The output capacitor stores the energy and returns it.",
+        "The inputs are disconnected when steady."
+      ],
+      "answer": 0,
+      "explanation": "Static current is just leakage. Power is spent when the output switches and the load capacitance is charged or discharged."
+    },
+    {
+      "id": "u2t4-04",
+      "type": "numeric",
+      "prompt": "How many transistors does a 2-input CMOS NAND gate use?",
+      "answer": 4,
+      "unit": "transistors",
+      "explanation": "One NMOS and one PMOS per input: 2 × 2 = 4. An AND gate needs 6, because it is a NAND plus an inverter."
+    },
+    {
+      "id": "u2t4-05",
+      "type": "numeric",
+      "prompt": "How many transistors does a **3-input** CMOS NAND gate use?",
+      "answer": 6,
+      "unit": "transistors",
+      "explanation": "Two transistors per input: 3 × 2 = 6, with three NMOS in series and three PMOS in parallel."
+    },
+    {
+      "id": "u2t4-06",
+      "type": "choice",
+      "prompt": "What is **fan-out**?",
+      "options": [
+        "How many gate inputs one output can drive while still meeting the voltage levels and timing.",
+        "The number of inputs a gate has.",
+        "The number of transistors in a gate.",
+        "The width of the output wire."
+      ],
+      "answer": 0,
+      "explanation": "The number of inputs a gate has is its fan-in. Every extra load adds capacitance, which slows the output."
+    },
+    {
+      "id": "u2t4-07",
+      "type": "choice",
+      "prompt": "What is the **propagation delay** t<sub>pd</sub> of a gate?",
+      "options": [
+        "The time from an input change to the resulting output change, usually measured at the 50% points.",
+        "The time the supply takes to reach its final voltage.",
+        "The time a signal takes to travel along a wire at the speed of light.",
+        "The clock period of the system."
+      ],
+      "answer": 0,
+      "explanation": "Datasheets give it per gate; the longest chain of gates between registers sets the clock period."
+    },
+    {
+      "id": "u2t4-08",
+      "type": "numeric",
+      "prompt": "Each gate has t<sub>pd</sub> = 2 ns. A signal passes through 5 gates in series. What is the worst-case delay of the path?",
+      "answer": 10,
+      "unit": "ns",
+      "explanation": "Delays along a path add: 5 × 2 ns = 10 ns."
+    },
+    {
+      "id": "u2t4-09",
+      "type": "choice",
+      "prompt": "What happens to a CMOS NAND gate's speed as you add more inputs (larger fan-in)?",
+      "options": [
+        "It gets slower: more NMOS transistors in series and more capacitance.",
+        "It gets faster because more transistors share the work.",
+        "Speed does not depend on the number of inputs.",
+        "It gets faster up to 8 inputs, then slower."
+      ],
+      "answer": 0,
+      "explanation": "A series stack of n transistors has roughly n times the resistance. That is why wide functions are built as trees of 2- and 3-input gates."
+    },
+    {
+      "id": "u2t4-10",
+      "type": "choice",
+      "prompt": "Where does the **dynamic** power of a CMOS circuit come from?",
+      "options": [
+        "Charging and discharging the load capacitance every time an output switches: roughly P = C·V²·f.",
+        "Current that flows through the gate while inputs are steady.",
+        "The resistance of the wires.",
+        "Heat from the clock crystal."
+      ],
+      "answer": 0,
+      "explanation": "That formula is why phones lower both voltage and clock frequency to save battery."
+    },
+    {
+      "id": "u2t4-11",
+      "type": "multi",
+      "prompt": "Which changes reduce the dynamic power of a CMOS chip?",
+      "options": ["Lower the supply voltage.", "Lower the clock frequency.", "Use bigger transistors everywhere.", "Drive more loads from every output."],
+      "answer": [0, 1],
+      "explanation": "P = C·V²·f, so lowering V helps most, then f. Bigger transistors and more loads increase C."
+    }
+  ]
+}

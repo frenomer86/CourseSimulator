@@ -1,0 +1,128 @@
+{
+  "course": "digital-logic-design",
+  "unit": 1,
+  "topic": 1,
+  "title": "Why digital: noise margins, the static discipline, voltage levels for 0 and 1",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u1t1-01",
+      "type": "choice",
+      "prompt": "A signal passes through twenty gates in a row and picks up a little noise on every wire. Why does the final output still come out as a clean 0 or 1?",
+      "options": [
+        "Each gate outputs a fresh, full-strength 0 or 1, so noise does not build up from stage to stage.",
+        "Digital wires are shielded, so they cannot pick up noise.",
+        "The last gate has a filter that removes noise.",
+        "Noise only affects analog signals, never digital ones."
+      ],
+      "answer": 0,
+      "explanation": "This is signal restoration. Every gate reads a slightly noisy input and drives its output back to a valid level, so the error does not accumulate."
+    },
+    {
+      "id": "u1t1-02",
+      "type": "choice",
+      "prompt": "Which statement is the **static discipline**?",
+      "options": [
+        "Every gate given valid input levels must produce valid output levels, and the output levels are stricter than the input levels.",
+        "Every gate must use the same supply voltage.",
+        "No gate may change its output while the clock is high.",
+        "Every gate must have exactly two inputs."
+      ],
+      "answer": 0,
+      "explanation": "Stricter output thresholds than input thresholds is what leaves room for noise: the noise margin."
+    },
+    {
+      "id": "u1t1-03",
+      "type": "numeric",
+      "prompt": "A logic family guarantees an output low of at most V<sub>OL</sub> = 0.4 V and accepts an input low of up to V<sub>IL</sub> = 0.8 V. What is the **low noise margin** NM<sub>L</sub>?",
+      "answer": 0.4,
+      "tolerance": 0.01,
+      "unit": "V",
+      "explanation": "NM<sub>L</sub> = V<sub>IL</sub> − V<sub>OL</sub> = 0.8 − 0.4 = 0.4 V."
+    },
+    {
+      "id": "u1t1-04",
+      "type": "numeric",
+      "prompt": "The same family guarantees V<sub>OH</sub> = 2.4 V and requires V<sub>IH</sub> = 2.0 V. What is the **high noise margin** NM<sub>H</sub>?",
+      "answer": 0.4,
+      "tolerance": 0.01,
+      "unit": "V",
+      "explanation": "NM<sub>H</sub> = V<sub>OH</sub> − V<sub>IH</sub> = 2.4 − 2.0 = 0.4 V."
+    },
+    {
+      "id": "u1t1-05",
+      "type": "choice",
+      "prompt": "A 3.3 V CMOS input is sitting at 1.6 V. How will the gate read it?",
+      "options": [
+        "It is in the forbidden zone: neither a valid 0 nor a valid 1, so the output is unpredictable.",
+        "As a 0, because it is below half the supply.",
+        "As a 1, because any voltage above 1 V counts as high.",
+        "As a 0.5, because CMOS inputs are analog."
+      ],
+      "answer": 0,
+      "explanation": "Between V<sub>IL</sub> and V<sub>IH</sub> the gate makes no promise. Real circuits may oscillate, draw extra current, or flip randomly."
+    },
+    {
+      "id": "u1t1-06",
+      "type": "multi",
+      "prompt": "Which of these are real advantages of representing information digitally rather than as a continuous analog voltage?",
+      "options": [
+        "A noisy signal can be restored to a clean value at every gate.",
+        "Copies can be made with no loss at all.",
+        "Values can be stored and retrieved exactly.",
+        "A single wire carries a quantity with infinite precision.",
+        "Digital circuits always use less power than analog ones."
+      ],
+      "answer": [0, 1, 2],
+      "explanation": "Restoration, exact copying and exact storage are the point of the digital abstraction. Precision is limited by the number of bits, and power depends on the design."
+    },
+    {
+      "id": "u1t1-07",
+      "type": "choice",
+      "prompt": "Put the four threshold voltages of a logic family in order from lowest to highest.",
+      "options": [
+        "V<sub>OL</sub> < V<sub>IL</sub> < V<sub>IH</sub> < V<sub>OH</sub>",
+        "V<sub>IL</sub> < V<sub>OL</sub> < V<sub>OH</sub> < V<sub>IH</sub>",
+        "V<sub>OL</sub> < V<sub>OH</sub> < V<sub>IL</sub> < V<sub>IH</sub>",
+        "V<sub>IH</sub> < V<sub>IL</sub> < V<sub>OL</sub> < V<sub>OH</sub>"
+      ],
+      "answer": 0,
+      "explanation": "Outputs are stricter than inputs on both sides: a 0 is driven below V<sub>OL</sub> but accepted up to V<sub>IL</sub>; a 1 is driven above V<sub>OH</sub> but accepted down to V<sub>IH</sub>."
+    },
+    {
+      "id": "u1t1-08",
+      "type": "numeric",
+      "prompt": "In 5 V TTL, V<sub>IL</sub> = 0.8 V and V<sub>IH</sub> = 2.0 V. How wide is the **forbidden zone** for inputs?",
+      "answer": 1.2,
+      "tolerance": 0.01,
+      "unit": "V",
+      "explanation": "The forbidden zone runs from V<sub>IL</sub> to V<sub>IH</sub>: 2.0 − 0.8 = 1.2 V."
+    },
+    {
+      "id": "u1t1-09",
+      "type": "choice",
+      "prompt": "What does a **noise margin** actually measure?",
+      "options": [
+        "How much noise a wire can pick up between one gate's output and the next gate's input while still being read correctly.",
+        "How loud the circuit is when it switches.",
+        "The difference between the supply voltage and ground.",
+        "How many gates one output can drive."
+      ],
+      "answer": 0,
+      "explanation": "The margin is the gap between what a driver guarantees and what a receiver tolerates. Fan-out is a different quantity."
+    },
+    {
+      "id": "u1t1-10",
+      "type": "choice",
+      "prompt": "Which change to a gate design widens **both** noise margins?",
+      "options": [
+        "Drive outputs closer to the supply rails: a lower V<sub>OL</sub> and a higher V<sub>OH</sub>.",
+        "Raise V<sub>IH</sub> and lower V<sub>IL</sub> so inputs are more demanding.",
+        "Lower the supply voltage without changing anything else.",
+        "Add more inputs to the gate."
+      ],
+      "answer": 0,
+      "explanation": "Stronger outputs increase V<sub>IL</sub> − V<sub>OL</sub> and V<sub>OH</sub> − V<sub>IH</sub> at the same time. Making inputs more demanding shrinks the margins."
+    }
+  ]
+}

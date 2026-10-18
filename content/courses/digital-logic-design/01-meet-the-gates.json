@@ -2,6 +2,8 @@
   "id": "digital-logic-design-b1-meet-the-gates",
   "course": "digital-logic-design",
   "topic": "Logic gates and truth tables",
+  "unit": 2,
+  "topicIndex": 3,
   "level": "beginner",
   "engine": "E2",
   "title": "Meet the AND gate",

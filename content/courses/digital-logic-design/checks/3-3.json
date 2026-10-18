@@ -1,0 +1,110 @@
+{
+  "course": "digital-logic-design",
+  "unit": 3,
+  "topic": 3,
+  "title": "Quine-McCluskey tabular method and the covering problem",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u3t3-01",
+      "type": "choice",
+      "prompt": "Why use the Quine-McCluskey method instead of a Karnaugh map?",
+      "options": [
+        "It is a systematic procedure that works for any number of variables, so a program can run it.",
+        "It always gives a shorter answer than a K-map.",
+        "It needs no truth table.",
+        "It is quicker by hand for three variables."
+      ],
+      "answer": 0,
+      "explanation": "K-maps stop being readable beyond five or six variables. Quine-McCluskey is what logic minimisers such as Espresso grew out of."
+    },
+    {
+      "id": "u3t3-02",
+      "type": "choice",
+      "prompt": "What is the **first** step of the method?",
+      "options": [
+        "Write every minterm in binary and group them by how many 1s they contain.",
+        "Draw the prime implicant chart.",
+        "Pick the essential prime implicants.",
+        "Convert the function to product of sums."
+      ],
+      "answer": 0,
+      "explanation": "Only terms in neighbouring groups (differing by one 1) can combine, so the grouping cuts down the comparisons."
+    },
+    {
+      "id": "u3t3-03",
+      "type": "text",
+      "prompt": "Combine the minterms `0101` and `0111`. Write the result with a dash for the eliminated variable.",
+      "pattern": "01[-_x]1",
+      "flags": "i",
+      "placeholder": "e.g. 1-01",
+      "explanation": "They differ only in the third bit, so it is replaced by a dash: `01-1`, which is A'BD."
+    },
+    {
+      "id": "u3t3-04",
+      "type": "choice",
+      "prompt": "Can the minterms `0110` and `1001` be combined?",
+      "options": ["No: they differ in more than one bit.", "Yes: they combine to `----`.", "Yes: they combine to `0-0-`.", "Only if there is a don't care between them."],
+      "answer": 0,
+      "explanation": "Two terms combine only when they differ in exactly one position. These differ in all four."
+    },
+    {
+      "id": "u3t3-05",
+      "type": "choice",
+      "prompt": "A term that could not be combined with any other term in its column becomes what?",
+      "options": ["A prime implicant.", "A don't care.", "A maxterm.", "An essential minterm."],
+      "answer": 0,
+      "explanation": "Terms that are never ticked off are maximal, which is exactly the definition of a prime implicant."
+    },
+    {
+      "id": "u3t3-06",
+      "type": "choice",
+      "prompt": "In the prime implicant chart, how do you spot an **essential** prime implicant?",
+      "options": [
+        "A minterm column with only one mark: the prime implicant in that row is essential.",
+        "The row with the most marks.",
+        "The first row in the chart.",
+        "Any row with a don't care."
+      ],
+      "answer": 0,
+      "explanation": "That minterm has no other cover, so the row must be chosen. Then its columns are removed."
+    },
+    {
+      "id": "u3t3-07",
+      "type": "choice",
+      "prompt": "After removing the essential prime implicants, some minterms are still uncovered. What is this stage called and how is it solved?",
+      "options": [
+        "The covering problem: choose the fewest remaining prime implicants that cover every leftover minterm, by Petrick's method or by branching.",
+        "The merging problem: combine the leftover minterms again.",
+        "The duality problem: convert to product of sums.",
+        "It cannot happen; essential prime implicants always cover everything."
+      ],
+      "answer": 0,
+      "explanation": "Covering is NP-hard in general, which is why big minimisers use heuristics."
+    },
+    {
+      "id": "u3t3-08",
+      "type": "numeric",
+      "prompt": "Minterms 2 (`0010`) and 10 (`1010`) of a 4-variable function combine. How many **literals** does the combined term have?",
+      "answer": 3,
+      "unit": "literals",
+      "explanation": "They differ in the first bit, so the term is `-010` = B'CD', three literals."
+    },
+    {
+      "id": "u3t3-09",
+      "type": "multi",
+      "prompt": "Which pairs of minterms can be combined?",
+      "options": ["`0011` and `0111`", "`1100` and `1101`", "`0101` and `1010`", "`0000` and `0011`"],
+      "answer": [0, 1],
+      "explanation": "The first two pairs differ in one bit. `0101`/`1010` differ in four, `0000`/`0011` in two."
+    },
+    {
+      "id": "u3t3-10",
+      "type": "choice",
+      "prompt": "Which minterms of F(A,B,C,D) does the implicant `-1-0` cover?",
+      "options": ["4, 6, 12, 14", "2, 3, 10, 11", "1, 5, 9, 13", "4, 5, 6, 7"],
+      "answer": 0,
+      "explanation": "B = 1 and D = 0 with A and C free: 0100 (4), 0110 (6), 1100 (12), 1110 (14). The term is BD'."
+    }
+  ]
+}

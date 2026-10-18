@@ -1,0 +1,98 @@
+{
+  "course": "digital-logic-design",
+  "unit": 2,
+  "topic": 2,
+  "title": "Switching functions; truth tables; canonical sum-of-products and product-of-sums",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u2t2-01",
+      "type": "numeric",
+      "prompt": "How many rows does the truth table of a function of **4** variables have?",
+      "answer": 16,
+      "unit": "rows",
+      "explanation": "2⁴ = 16, one row per combination of inputs."
+    },
+    {
+      "id": "u2t2-02",
+      "type": "choice",
+      "prompt": "What is a **minterm**?",
+      "options": [
+        "A product (AND) term that contains every variable exactly once, true for exactly one row of the truth table.",
+        "The smallest term in any expression.",
+        "A sum (OR) term containing every variable once.",
+        "A term with only one variable."
+      ],
+      "answer": 0,
+      "explanation": "Minterm mᵢ is the product true only on row i, with a variable complemented where row i has a 0. The sum (OR) version is a maxterm."
+    },
+    {
+      "id": "u2t2-03",
+      "type": "choice",
+      "prompt": "Write F(A,B,C) = Σm(1, 3, 5) as a canonical sum of products.",
+      "options": ["A'B'C + A'BC + AB'C", "A'B'C' + A'BC' + AB'C'", "ABC + A'BC + AB'C", "A'B'C + ABC' + AB'C"],
+      "answer": 0,
+      "explanation": "Rows 1, 3 and 5 are 001, 011 and 101. Each 0 becomes a complemented variable."
+    },
+    {
+      "id": "u2t2-04",
+      "type": "text",
+      "prompt": "F(A,B,C) = Σm(1, 3, 5). List the **maxterm** indices of F as a product of maxterms ΠM(…), separated by commas, smallest first.",
+      "pattern": "0\\s*,\\s*2\\s*,\\s*4\\s*,\\s*6\\s*,\\s*7",
+      "placeholder": "e.g. 0, 1, 5",
+      "explanation": "The maxterms are the rows where F is 0, which are all the rows not in the minterm list: 0, 2, 4, 6, 7."
+    },
+    {
+      "id": "u2t2-05",
+      "type": "choice",
+      "prompt": "For variables (A, B, C) in that order, which product is minterm **m₆**?",
+      "options": ["A·B·C'", "A'·B·C", "A·B'·C", "A·B·C"],
+      "answer": 0,
+      "explanation": "6 is 110, so A = 1, B = 1, C = 0: ABC'."
+    },
+    {
+      "id": "u2t2-06",
+      "type": "choice",
+      "prompt": "For variables (A, B, C), which sum is maxterm **M₂**?",
+      "options": ["A + B' + C", "A' + B + C'", "A + B + C'", "A' + B' + C"],
+      "answer": 0,
+      "explanation": "2 is 010. A maxterm is 0 only on its row, so the variable is complemented where the row has a 1: A + B' + C."
+    },
+    {
+      "id": "u2t2-07",
+      "type": "numeric",
+      "prompt": "How many **different** Boolean functions of 3 variables exist?",
+      "answer": 256,
+      "explanation": "A truth table has 2³ = 8 rows and each row can be 0 or 1, giving 2⁸ = 256 functions."
+    },
+    {
+      "id": "u2t2-08",
+      "type": "choice",
+      "prompt": "For which input row is the term A'·B·C' true?",
+      "options": ["A = 0, B = 1, C = 0", "A = 1, B = 0, C = 1", "A = 0, B = 0, C = 0", "A = 1, B = 1, C = 0"],
+      "answer": 0,
+      "explanation": "A' needs A = 0, B needs B = 1, C' needs C = 0. That is row 2."
+    },
+    {
+      "id": "u2t2-09",
+      "type": "multi",
+      "prompt": "A function F(A,B,C) is 1 only on rows 2 and 5. Which terms appear in its canonical sum of products?",
+      "options": ["A'·B·C'", "A·B'·C", "A·B·C'", "A'·B'·C"],
+      "answer": [0, 1],
+      "explanation": "Row 2 is 010 → A'BC', row 5 is 101 → AB'C. The other two are rows 6 and 1."
+    },
+    {
+      "id": "u2t2-10",
+      "type": "choice",
+      "prompt": "What is the difference between a **canonical** form and a **standard** form?",
+      "options": [
+        "In canonical form every term contains every variable; in standard form terms may leave variables out.",
+        "Canonical uses OR of ANDs, standard uses AND of ORs.",
+        "Canonical forms are always shorter.",
+        "There is no difference."
+      ],
+      "answer": 0,
+      "explanation": "AB + C is standard SOP; its canonical version expands C to A'B'C + A'BC + AB'C + ABC and merges with AB."
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { LEVEL_LABEL, type LabResult, type LabSpec } from '@cslab/lab-runtime';
 import { createLogicChecks, emptyCircuit, type Circuit, type GateType } from '@cslab/engine-digital-logic';
-import { courseBySlug, labById, nextLab } from '../lib/catalogue';
+import { checkForTopic, courseBySlug, labById, nextLab, unitOf } from '../lib/catalogue';
 import { useProgress } from '../store/progress';
 import { LogicCanvas } from '../components/LogicCanvas';
 import { TruthTablePanel } from '../components/TruthTablePanel';
@@ -55,7 +55,7 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
     setChecking(true);
     const r = await logicChecks.run(lab, circuit);
     setResult(r);
-    recordResult(r, hintsShown);
+    recordResult(lab, r, hintsShown, circuit);
     setChecking(false);
   };
 
@@ -66,6 +66,8 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
   };
 
   const following = useMemo(() => nextLab(lab), [lab]);
+  const unit = course && lab.unit ? unitOf(course, lab.unit) : undefined;
+  const topicCheck = lab.unit && lab.topicIndex ? checkForTopic(lab.course, lab.unit, lab.topicIndex) : undefined;
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-6">
@@ -78,6 +80,14 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
           <Link to={`/courses/${course.slug}`} className="hover:text-ink">
             {course.title}
           </Link>
+        )}
+        {course && unit && (
+          <>
+            <span>/</span>
+            <Link to={`/courses/${course.slug}/units/${unit.number}`} className="hover:text-ink">
+              Unit {unit.number}
+            </Link>
+          </>
         )}
         <span>/</span>
         <span>{LEVEL_LABEL[lab.level]}</span>
@@ -146,10 +156,22 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
             >
               Reset the bench
             </button>
-            {result?.passed && following && (
-              <Link to={`/labs/${following.id}`} className="ml-auto rounded-md border border-high text-high px-4 py-2 font-medium hover:bg-high-soft">
-                Next lab: {following.title}
-              </Link>
+            {result?.passed && (
+              <span className="ml-auto flex flex-wrap gap-2">
+                {topicCheck && (
+                  <Link
+                    to={`/courses/${lab.course}/units/${lab.unit}/topics/${lab.topicIndex}/check`}
+                    className="rounded-md border border-line bg-surface px-4 py-2 font-medium hover:bg-bench"
+                  >
+                    Take the topic check
+                  </Link>
+                )}
+                {following && (
+                  <Link to={`/labs/${following.id}`} className="rounded-md border border-high text-high px-4 py-2 font-medium hover:bg-high-soft">
+                    Next lab: {following.title}
+                  </Link>
+                )}
+              </span>
             )}
           </div>
 

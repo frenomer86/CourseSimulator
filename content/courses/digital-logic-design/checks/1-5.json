@@ -1,0 +1,112 @@
+{
+  "course": "digital-logic-design",
+  "unit": 1,
+  "topic": 5,
+  "title": "Error detection and correction: parity, checksums, Hamming distance and Hamming(7,4)",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u1t5-01",
+      "type": "choice",
+      "prompt": "The 7-bit word `1011001` is to be sent with an **even parity** bit. What is the parity bit?",
+      "options": ["0, because the word already has an even number of 1s (four).", "1, because the word has four 1s.", "1, because even parity always adds a 1.", "0, because the last bit is 1."],
+      "answer": 0,
+      "explanation": "Even parity makes the total count of 1s even. Four is already even, so the parity bit is 0."
+    },
+    {
+      "id": "u1t5-02",
+      "type": "choice",
+      "prompt": "What can a single parity bit do?",
+      "options": [
+        "Detect any odd number of flipped bits; it cannot say which bit, and it misses two flipped bits.",
+        "Detect and correct one flipped bit.",
+        "Detect any number of flipped bits.",
+        "Correct up to two flipped bits."
+      ],
+      "answer": 0,
+      "explanation": "Two flips leave the count of 1s with the same parity, so they slip through. Correction needs more redundancy."
+    },
+    {
+      "id": "u1t5-03",
+      "type": "numeric",
+      "prompt": "What is the **Hamming distance** between `1011010` and `1001011`?",
+      "answer": 2,
+      "explanation": "Compare position by position: the third bit (1 vs 0) and the last bit (0 vs 1) differ, so the distance is 2."
+    },
+    {
+      "id": "u1t5-04",
+      "type": "choice",
+      "prompt": "A code has minimum Hamming distance 3 between any two valid codewords. What can it do?",
+      "options": [
+        "Detect up to 2 errors, or correct 1 error.",
+        "Detect up to 3 errors and correct 3.",
+        "Correct up to 2 errors.",
+        "Detect 1 error only."
+      ],
+      "answer": 0,
+      "explanation": "A code of distance d detects d − 1 errors and corrects ⌊(d − 1)/2⌋. With d = 3 that is 2 and 1."
+    },
+    {
+      "id": "u1t5-05",
+      "type": "numeric",
+      "prompt": "In a Hamming(7,4) codeword, how many of the 7 bits are **data** bits?",
+      "answer": 4,
+      "unit": "bits",
+      "explanation": "(7,4) means 7 bits total, 4 of data, so 3 parity bits. Three parity bits can point to any of 7 positions, or none."
+    },
+    {
+      "id": "u1t5-06",
+      "type": "choice",
+      "prompt": "Numbering positions 1 to 7, where do the parity bits sit in Hamming(7,4)?",
+      "options": ["Positions 1, 2 and 4: the powers of two.", "Positions 5, 6 and 7: the end.", "Positions 1, 2 and 3: the start.", "Positions 2, 4 and 6: the even ones."],
+      "answer": 0,
+      "explanation": "Parity bit at position 2ᵏ covers every position whose binary number has bit k set. That makes the syndrome read out the error position directly."
+    },
+    {
+      "id": "u1t5-07",
+      "type": "choice",
+      "prompt": "A received Hamming(7,4) word gives the syndrome `101` (decimal 5). What does the receiver do?",
+      "options": [
+        "Flip bit 5, because the syndrome is the position of the single wrong bit.",
+        "Discard the word; the syndrome means two errors.",
+        "Nothing; a non-zero syndrome means the word is fine.",
+        "Flip bits 1 and 4."
+      ],
+      "answer": 0,
+      "explanation": "That is the whole trick of Hamming codes: the three parity checks spell out the faulty position in binary. A zero syndrome means no (detectable) error."
+    },
+    {
+      "id": "u1t5-08",
+      "type": "choice",
+      "prompt": "Why is a simple **checksum** (adding all the bytes) weaker than a CRC?",
+      "options": [
+        "Swapped bytes, or two errors that cancel, give the same sum and pass unnoticed.",
+        "Checksums can only be computed on text.",
+        "A checksum needs more bits than a CRC.",
+        "Checksums cannot detect any errors at all."
+      ],
+      "answer": 0,
+      "explanation": "Addition is commutative and errors can cancel. A CRC is polynomial division, which catches all burst errors up to its length."
+    },
+    {
+      "id": "u1t5-09",
+      "type": "multi",
+      "prompt": "Which of these schemes can **correct** an error, not just detect it?",
+      "options": [
+        "Hamming(7,4)",
+        "A single parity bit",
+        "CRC-32 as used in Ethernet",
+        "Sending every bit three times and taking a majority vote"
+      ],
+      "answer": [0, 3],
+      "explanation": "Hamming and triple repetition both have distance 3, enough to correct one error. Parity and CRC detect only; Ethernet simply asks for a resend."
+    },
+    {
+      "id": "u1t5-10",
+      "type": "numeric",
+      "prompt": "What minimum Hamming distance must a code have to **correct** 2 errors in a word?",
+      "answer": 5,
+      "explanation": "Correcting t errors needs d ≥ 2t + 1, so t = 2 needs d = 5."
+    }
+  ]
+}

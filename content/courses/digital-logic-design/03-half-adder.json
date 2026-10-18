@@ -2,6 +2,8 @@
   "id": "digital-logic-design-i1-half-adder",
   "course": "digital-logic-design",
   "topic": "Combinational building blocks",
+  "unit": 4,
+  "topicIndex": 2,
   "level": "intermediate",
   "engine": "E2",
   "title": "Design a half adder",

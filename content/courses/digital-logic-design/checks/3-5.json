@@ -1,0 +1,135 @@
+{
+  "course": "digital-logic-design",
+  "unit": 3,
+  "topic": 5,
+  "title": "Hazards and glitches; hazard-free design",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u3t5-01",
+      "type": "choice",
+      "prompt": "What is a **static-1 hazard**?",
+      "options": [
+        "The output should stay at 1 while one input changes, but it briefly drops to 0.",
+        "The output is stuck at 1 and never changes.",
+        "The output should change from 1 to 0 but takes too long.",
+        "Two outputs are both 1 at the same time."
+      ],
+      "answer": 0,
+      "explanation": "The short unwanted pulse is a glitch. A static-0 hazard is the mirror image: a brief 1 when the output should stay 0."
+    },
+    {
+      "id": "u3t5-02",
+      "type": "choice",
+      "prompt": "What causes a static hazard in a sum-of-products circuit?",
+      "options": [
+        "Different delays along two paths from the same input (for example one through an inverter), so for a moment neither product term is 1.",
+        "Using too many gates.",
+        "A supply voltage that is too low.",
+        "Inputs that change at exactly the same time."
+      ],
+      "answer": 0,
+      "explanation": "When the output hands over from one product term to an adjacent one, the old term can switch off before the new one switches on."
+    },
+    {
+      "id": "u3t5-03",
+      "type": "choice",
+      "prompt": "F = A·B + A'·C glitches when A changes while B = C = 1. How do you make it hazard-free?",
+      "options": [
+        "Add the consensus term B·C, so a product term stays 1 throughout the change.",
+        "Remove the inverter on A.",
+        "Swap B and C.",
+        "Replace the OR gate with an XOR."
+      ],
+      "answer": 0,
+      "explanation": "B·C is logically redundant (the consensus theorem), which is why minimisation removes it. Putting it back is the standard hazard fix."
+    },
+    {
+      "id": "u3t5-04",
+      "type": "choice",
+      "prompt": "How does a static-1 hazard show up on a Karnaugh map?",
+      "options": [
+        "Two adjacent 1-cells that belong to different groups, with no single group covering both.",
+        "A group of 1s that is not a power of two.",
+        "A 1-cell in the corner of the map.",
+        "A don't care next to a 0."
+      ],
+      "answer": 0,
+      "explanation": "Moving between those two cells means one input changes and the output hands over between terms. Add a group that covers both."
+    },
+    {
+      "id": "u3t5-05",
+      "type": "choice",
+      "prompt": "What is a **dynamic hazard**?",
+      "options": [
+        "The output should change once but bounces several times (for example 1 → 0 → 1 → 0) before settling.",
+        "The output changes while the clock is high.",
+        "A hazard that only happens when the chip is hot.",
+        "The output never settles."
+      ],
+      "answer": 0,
+      "explanation": "Dynamic hazards arise in multilevel circuits with three or more paths of different delay. Making every two-level part static-hazard-free removes them."
+    },
+    {
+      "id": "u3t5-06",
+      "type": "multi",
+      "prompt": "Which of these are real ways to stop glitches causing trouble?",
+      "options": [
+        "Cover every pair of adjacent 1s with a common product term.",
+        "Use synchronous design, so outputs are only sampled by a clock edge after they have settled.",
+        "Add extra inverters anywhere in the circuit.",
+        "Use only the fastest gates available."
+      ],
+      "answer": [0, 1],
+      "explanation": "Faster gates still have unequal paths. Extra inverters add delay and can create new hazards."
+    },
+    {
+      "id": "u3t5-07",
+      "type": "choice",
+      "prompt": "Why are glitches dangerous in asynchronous circuits but usually harmless in synchronous ones?",
+      "options": [
+        "A clocked register samples only at the edge, after glitches have died away, as long as the clock period covers the worst-case delay.",
+        "Synchronous circuits have no inverters.",
+        "Asynchronous circuits run at higher voltages.",
+        "Glitches never occur in synchronous circuits."
+      ],
+      "answer": 0,
+      "explanation": "In an asynchronous circuit a glitch on a clock or set/reset line can be taken as a real event. Between clock edges, combinational outputs are allowed to be messy."
+    },
+    {
+      "id": "u3t5-08",
+      "type": "choice",
+      "prompt": "In which kind of implementation does a **static-0** hazard arise?",
+      "options": [
+        "Product-of-sums (OR-AND), when the output should stay 0 during an input change.",
+        "Sum-of-products only.",
+        "Only in circuits with XOR gates.",
+        "Only in sequential circuits."
+      ],
+      "answer": 0,
+      "explanation": "The dual of the SOP case: when the output hands over between adjacent sum terms, both can briefly be 1."
+    },
+    {
+      "id": "u3t5-09",
+      "type": "choice",
+      "prompt": "What is the rule for a hazard-free two-level sum-of-products design?",
+      "options": [
+        "Every pair of adjacent 1s in the map (differing in one input) must be covered by at least one common product term.",
+        "Every 1 must be covered by exactly one product term.",
+        "Use the fewest possible product terms.",
+        "Never use an inverter."
+      ],
+      "answer": 0,
+      "explanation": "Minimal covers sometimes break this rule; hazard-free covers include every prime implicant needed to bridge adjacent 1s."
+    },
+    {
+      "id": "u3t5-10",
+      "type": "numeric",
+      "prompt": "F = A·B + A'·C with B = C = 1. A falls from 1 to 0. The inverter on A has a delay of 1 ns and every AND and OR gate 2 ns. Roughly how long is the glitch on F?",
+      "answer": 1,
+      "tolerance": 0.5,
+      "unit": "ns",
+      "explanation": "A·B drops 2 ns after A falls. A'·C rises 1 ns (inverter) + 2 ns (AND) = 3 ns after. The OR sees neither term high for about 1 ns, and passes that gap on as a 1 ns low pulse."
+    }
+  ]
+}

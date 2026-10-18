@@ -2,6 +2,8 @@
   "id": "digital-logic-design-i2-multiplexer",
   "course": "digital-logic-design",
   "topic": "Combinational building blocks",
+  "unit": 4,
+  "topicIndex": 5,
   "level": "intermediate",
   "engine": "E2",
   "title": "Build a 2-to-1 multiplexer",

@@ -2,6 +2,8 @@
   "id": "digital-logic-design-b2-build-from-palette",
   "course": "digital-logic-design",
   "topic": "Logic gates and truth tables",
+  "unit": 2,
+  "topicIndex": 3,
   "level": "beginner",
   "engine": "E2",
   "title": "Build an OR gate circuit from an empty bench",

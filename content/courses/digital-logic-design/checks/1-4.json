@@ -1,0 +1,126 @@
+{
+  "course": "digital-logic-design",
+  "unit": 1,
+  "topic": 4,
+  "title": "Codes: BCD, Gray code, ASCII and Unicode; unit-distance codes",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u1t4-01",
+      "type": "text",
+      "prompt": "Write the decimal number **59** in BCD (binary-coded decimal).",
+      "pattern": "0101\\s?1001",
+      "placeholder": "e.g. 0001 0010",
+      "explanation": "Each decimal digit gets its own four bits: 5 = 0101, 9 = 1001, so 59 = `0101 1001`."
+    },
+    {
+      "id": "u1t4-02",
+      "type": "choice",
+      "prompt": "Why would a designer choose BCD over plain binary?",
+      "options": [
+        "Each decimal digit sits in its own four bits, so driving a digit display or doing decimal arithmetic needs no conversion.",
+        "BCD uses fewer bits than binary for the same number.",
+        "BCD is faster to add than binary.",
+        "Binary cannot represent numbers above 9."
+      ],
+      "answer": 0,
+      "explanation": "BCD wastes six of the sixteen patterns per digit but makes decimal I/O trivial. Calculators and meters use it."
+    },
+    {
+      "id": "u1t4-03",
+      "type": "multi",
+      "prompt": "Which of these 4-bit groups are **invalid** in BCD?",
+      "options": ["0111", "1010", "1001", "1100", "1111"],
+      "answer": [1, 3, 4],
+      "explanation": "BCD only uses 0000 to 1001 (0 to 9). Anything from 1010 (10) upward is invalid."
+    },
+    {
+      "id": "u1t4-04",
+      "type": "text",
+      "prompt": "Convert the binary number `0110` to **Gray code**.",
+      "pattern": "0101",
+      "placeholder": "4 bits",
+      "explanation": "Keep the top bit, then XOR each pair of neighbours: 0, 0⊕1 = 1, 1⊕1 = 0, 1⊕0 = 1, giving `0101`."
+    },
+    {
+      "id": "u1t4-05",
+      "type": "text",
+      "prompt": "Convert the Gray code `1011` back to **binary**.",
+      "pattern": "1101",
+      "placeholder": "4 bits",
+      "explanation": "Keep the top bit, then XOR each new binary bit with the next Gray bit: 1, 1⊕0 = 1, 1⊕1 = 0, 0⊕1 = 1, giving `1101`."
+    },
+    {
+      "id": "u1t4-06",
+      "type": "choice",
+      "prompt": "What is the defining property of a Gray code?",
+      "options": [
+        "Consecutive values differ in exactly one bit.",
+        "Every value has an even number of 1s.",
+        "It is the same as binary but read right to left.",
+        "It uses only the digits 0 to 9."
+      ],
+      "answer": 0,
+      "explanation": "That is why it is also called a unit-distance code."
+    },
+    {
+      "id": "u1t4-07",
+      "type": "choice",
+      "prompt": "Where is a unit-distance code such as Gray code especially useful?",
+      "options": [
+        "Rotary position encoders, so a reading taken during a transition is off by at most one step instead of wildly wrong.",
+        "Storing text files, so they take less space.",
+        "Adding two numbers quickly.",
+        "Sending email addresses."
+      ],
+      "answer": 0,
+      "explanation": "In binary, going from 0111 to 1000 changes four bits; if they do not change at the same instant you might read 1111. In Gray only one bit moves."
+    },
+    {
+      "id": "u1t4-08",
+      "type": "numeric",
+      "prompt": "What is the ASCII code of the capital letter **A** in decimal?",
+      "answer": 65,
+      "explanation": "A is 65 (0x41). The letters run in order, so B is 66 and so on."
+    },
+    {
+      "id": "u1t4-09",
+      "type": "choice",
+      "prompt": "In ASCII, how does the code for lowercase `a` relate to uppercase `A`?",
+      "options": [
+        "They differ by exactly one bit (bit 5, value 32): `a` is 97 and `A` is 65.",
+        "They are the same code; case is stored separately.",
+        "Lowercase codes are the uppercase codes read backwards.",
+        "They differ by 1: `a` is 66."
+      ],
+      "answer": 0,
+      "explanation": "Clearing bit 5 converts to uppercase, which is why case conversion is a single AND."
+    },
+    {
+      "id": "u1t4-10",
+      "type": "choice",
+      "prompt": "How do Unicode and ASCII relate?",
+      "options": [
+        "Unicode gives a number to every character in every script; its first 128 codes are exactly ASCII.",
+        "They are unrelated encodings for English text.",
+        "Unicode is ASCII compressed to 7 bits.",
+        "ASCII replaced Unicode in modern systems."
+      ],
+      "answer": 0,
+      "explanation": "That compatibility is why plain ASCII text is also valid UTF-8."
+    },
+    {
+      "id": "u1t4-11",
+      "type": "choice",
+      "prompt": "How does **UTF-8** store characters?",
+      "options": [
+        "ASCII characters in one byte, everything else in two to four bytes.",
+        "Every character in exactly two bytes.",
+        "Every character in exactly four bytes.",
+        "Only the Latin alphabet; other scripts are not supported."
+      ],
+      "answer": 0,
+      "explanation": "Variable length keeps English-heavy text small while still reaching every Unicode character, including Twi, Ewe and Hausa letters with diacritics."
+    }
+  ]
+}

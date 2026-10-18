@@ -1,0 +1,94 @@
+{
+  "course": "digital-logic-design",
+  "unit": 2,
+  "topic": 3,
+  "title": "Gate families: AND, OR, NOT, NAND, NOR, XOR, XNOR; universal gates",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u2t3-01",
+      "type": "choice",
+      "prompt": "What does a 2-input **XOR** gate output when both inputs are 1?",
+      "options": ["0", "1", "It depends on the previous output.", "Undefined"],
+      "answer": 0,
+      "explanation": "XOR is 1 only when the inputs differ. 1 and 1 are the same, so the output is 0."
+    },
+    {
+      "id": "u2t3-02",
+      "type": "choice",
+      "prompt": "When is the output of a **NAND** gate 0?",
+      "options": ["Only when every input is 1.", "Only when every input is 0.", "When any input is 1.", "When the inputs differ."],
+      "answer": 0,
+      "explanation": "NAND is NOT AND. AND is 1 only when all inputs are 1, so NAND is 0 only then."
+    },
+    {
+      "id": "u2t3-03",
+      "type": "multi",
+      "prompt": "Which gates are **universal**, meaning any logic function can be built from that one gate type alone?",
+      "options": ["AND", "NAND", "OR", "NOR", "XOR"],
+      "answer": [1, 3],
+      "explanation": "NAND and NOR can each make NOT, AND and OR. AND and OR alone cannot invert; XOR alone cannot make AND."
+    },
+    {
+      "id": "u2t3-04",
+      "type": "choice",
+      "prompt": "How do you make a NOT gate from a single 2-input NAND?",
+      "options": ["Connect both inputs to the same signal.", "Connect one input to 0.", "Leave one input unconnected.", "It cannot be done."],
+      "answer": 0,
+      "explanation": "NAND(A, A) = (A·A)' = A'. Tying an input to 0 would force the output to 1 permanently."
+    },
+    {
+      "id": "u2t3-05",
+      "type": "choice",
+      "prompt": "When is the output of an **XNOR** gate 1?",
+      "options": ["When the inputs are equal.", "When the inputs differ.", "When both inputs are 1 only.", "When at least one input is 0."],
+      "answer": 0,
+      "explanation": "XNOR is the equality detector: 00 → 1, 11 → 1, otherwise 0."
+    },
+    {
+      "id": "u2t3-06",
+      "type": "numeric",
+      "prompt": "In the truth table of a 2-input **NOR** gate, how many rows have an output of 1?",
+      "answer": 1,
+      "unit": "row",
+      "explanation": "NOR is 1 only when every input is 0: the single row 00."
+    },
+    {
+      "id": "u2t3-07",
+      "type": "numeric",
+      "prompt": "What is the minimum number of 2-input NAND gates needed to build a 2-input **AND**?",
+      "answer": 2,
+      "unit": "gates",
+      "explanation": "NAND the inputs, then invert the result with a second NAND whose inputs are tied together."
+    },
+    {
+      "id": "u2t3-08",
+      "type": "choice",
+      "prompt": "How do you build a 2-input **OR** from NAND gates?",
+      "options": [
+        "Invert each input with its own NAND (inputs tied), then NAND the two results. Three gates.",
+        "NAND the inputs, then NAND the result with itself. Two gates.",
+        "Just one NAND with the inputs swapped.",
+        "It cannot be done with NAND only."
+      ],
+      "answer": 0,
+      "explanation": "By De Morgan, A + B = (A'·B')'. Two inverters make A' and B'; the final NAND does the rest."
+    },
+    {
+      "id": "u2t3-09",
+      "type": "choice",
+      "prompt": "When does a **3-input XOR** output 1?",
+      "options": ["When an odd number of inputs are 1.", "When exactly one input is 1.", "When all inputs are 1 only.", "When the inputs are all different."],
+      "answer": 0,
+      "explanation": "XOR chains add modulo 2, so the output is the parity of the inputs: 1 for one or three 1s."
+    },
+    {
+      "id": "u2t3-10",
+      "type": "choice",
+      "prompt": "Which gate outputs 1 when **at least one** input is 1?",
+      "options": ["OR", "AND", "XOR", "NOR"],
+      "answer": 0,
+      "explanation": "AND needs all inputs, XOR needs an odd number, NOR needs none."
+    }
+  ]
+}

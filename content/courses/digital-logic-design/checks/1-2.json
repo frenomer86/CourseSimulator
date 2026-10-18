@@ -1,0 +1,100 @@
+{
+  "course": "digital-logic-design",
+  "unit": 1,
+  "topic": 2,
+  "title": "Binary, octal, hexadecimal; base conversion; fixed-point fractions",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u1t2-01",
+      "type": "numeric",
+      "prompt": "Convert the binary number `101101` to decimal.",
+      "answer": 45,
+      "explanation": "32 + 8 + 4 + 1 = 45."
+    },
+    {
+      "id": "u1t2-02",
+      "type": "text",
+      "prompt": "Write the decimal number **77** in binary.",
+      "pattern": "0*1001101",
+      "placeholder": "e.g. 1010",
+      "explanation": "77 = 64 + 8 + 4 + 1, so 77 = `1001101`."
+    },
+    {
+      "id": "u1t2-03",
+      "type": "text",
+      "prompt": "Write the hexadecimal number `B7` in binary.",
+      "pattern": "0*10110111",
+      "placeholder": "e.g. 1010",
+      "explanation": "Each hex digit is four bits: B = 1011, 7 = 0111, so B7 = `10110111`."
+    },
+    {
+      "id": "u1t2-04",
+      "type": "text",
+      "prompt": "Write the binary number `11111010` in hexadecimal.",
+      "pattern": "(0x)?FA",
+      "flags": "i",
+      "placeholder": "e.g. 3C",
+      "explanation": "Group in fours from the right: 1111 = F, 1010 = A, so the answer is `FA`."
+    },
+    {
+      "id": "u1t2-05",
+      "type": "numeric",
+      "prompt": "Convert the octal number `57` to decimal.",
+      "answer": 47,
+      "explanation": "5 × 8 + 7 = 47."
+    },
+    {
+      "id": "u1t2-06",
+      "type": "text",
+      "prompt": "Write the decimal number **200** in octal.",
+      "pattern": "0*310",
+      "placeholder": "e.g. 17",
+      "explanation": "200 = 3 × 64 + 1 × 8 + 0, so 200 = `310` in octal."
+    },
+    {
+      "id": "u1t2-07",
+      "type": "numeric",
+      "prompt": "What is the binary fraction `0.101` as a decimal number?",
+      "answer": 0.625,
+      "tolerance": 0.001,
+      "explanation": "0.101 = 1/2 + 0/4 + 1/8 = 0.5 + 0.125 = 0.625."
+    },
+    {
+      "id": "u1t2-08",
+      "type": "text",
+      "prompt": "Write the decimal fraction **0.375** in binary.",
+      "pattern": "0?\\.0110*",
+      "placeholder": "e.g. 0.1",
+      "explanation": "0.375 = 1/4 + 1/8, so it is `0.011` in binary. Multiply by 2 repeatedly and read off the integer parts: 0.75 (0), 1.5 (1), 1.0 (1)."
+    },
+    {
+      "id": "u1t2-09",
+      "type": "choice",
+      "prompt": "Why do programmers show binary values in hexadecimal so often?",
+      "options": [
+        "Each hex digit stands for exactly four bits, so converting is just grouping; the number is a quarter of the length.",
+        "Hexadecimal is what the processor uses internally.",
+        "Hexadecimal numbers are always smaller than decimal numbers.",
+        "Hex digits cannot be confused with letters."
+      ],
+      "answer": 0,
+      "explanation": "16 = 2⁴, so each hex digit maps to one group of four bits with no arithmetic."
+    },
+    {
+      "id": "u1t2-10",
+      "type": "numeric",
+      "prompt": "How many bits are needed to represent every whole number from 0 to 999?",
+      "answer": 10,
+      "unit": "bits",
+      "explanation": "2⁹ = 512 is too small, 2¹⁰ = 1024 covers 0 to 1023."
+    },
+    {
+      "id": "u1t2-11",
+      "type": "numeric",
+      "prompt": "What is the largest unsigned value an 8-bit register can hold?",
+      "answer": 255,
+      "explanation": "2⁸ − 1 = 255, which is `11111111` or `FF`."
+    }
+  ]
+}

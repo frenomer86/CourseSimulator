@@ -1,0 +1,117 @@
+{
+  "course": "digital-logic-design",
+  "unit": 3,
+  "topic": 2,
+  "title": "Karnaugh maps for 2 to 5 variables; prime implicants, essential prime implicants, don't cares",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u3t2-01",
+      "type": "choice",
+      "prompt": "Why are the rows and columns of a Karnaugh map labelled 00, 01, 11, 10 rather than 00, 01, 10, 11?",
+      "options": [
+        "It is Gray code: neighbouring cells differ in exactly one variable, so adjacent 1s can be merged.",
+        "It is alphabetical order.",
+        "It makes the map symmetrical.",
+        "It is a historical accident with no meaning."
+      ],
+      "answer": 0,
+      "explanation": "Adjacency on the map means two minterms differ in one literal, so the pair simplifies by A·B + A·B' = A. The edges wrap round for the same reason."
+    },
+    {
+      "id": "u3t2-02",
+      "type": "choice",
+      "prompt": "Which group sizes are allowed when circling 1s on a Karnaugh map?",
+      "options": ["Powers of two: 1, 2, 4, 8, 16 cells.", "Any size.", "Only 2 or 4 cells.", "Odd numbers only."],
+      "answer": 0,
+      "explanation": "Each doubling removes one variable from the term. A group of 3 cannot be written as a single product term."
+    },
+    {
+      "id": "u3t2-03",
+      "type": "choice",
+      "prompt": "F(A,B,C) = Σm(0, 1, 2, 3). What is the minimal expression?",
+      "options": ["A'", "B'·C'", "A' + B", "A'·B'"],
+      "answer": 0,
+      "explanation": "Rows 0 to 3 are every row with A = 0. The whole top row of the map is one group of four, leaving only A'."
+    },
+    {
+      "id": "u3t2-04",
+      "type": "choice",
+      "prompt": "F(A,B,C,D) = Σm(0, 2, 8, 10). What is the minimal expression?",
+      "options": ["B'·D'", "A'·C'", "A·B'·D'", "B' + D'"],
+      "answer": 0,
+      "explanation": "Those four minterms are the four corners of the 4-variable map, which wrap round into one group. They share B = 0 and D = 0."
+    },
+    {
+      "id": "u3t2-05",
+      "type": "choice",
+      "prompt": "What is a **prime implicant**?",
+      "options": [
+        "A group of 1s (and don't cares) that cannot be made any larger while still covering only 1s and don't cares.",
+        "The single largest group on the map.",
+        "Any group that contains a 1.",
+        "A term with only one literal."
+      ],
+      "answer": 0,
+      "explanation": "Prime means maximal. The minimal cover is chosen from among the prime implicants."
+    },
+    {
+      "id": "u3t2-06",
+      "type": "choice",
+      "prompt": "What makes a prime implicant **essential**?",
+      "options": [
+        "It is the only prime implicant that covers some particular minterm.",
+        "It is the biggest group on the map.",
+        "It contains a don't care.",
+        "It touches the edge of the map."
+      ],
+      "answer": 0,
+      "explanation": "Every essential prime implicant must appear in the final expression, because nothing else covers that minterm."
+    },
+    {
+      "id": "u3t2-07",
+      "type": "choice",
+      "prompt": "How are **don't care** cells (marked X) treated?",
+      "options": [
+        "As 1 or 0, whichever makes a group bigger; you never need to cover them.",
+        "Always as 1.",
+        "Always as 0.",
+        "They must each be covered by their own group."
+      ],
+      "answer": 0,
+      "explanation": "Don't cares are input combinations that never occur or whose output nobody uses, such as BCD codes 10 to 15."
+    },
+    {
+      "id": "u3t2-08",
+      "type": "choice",
+      "prompt": "F(A,B,C) = Σm(1, 3, 4, 5, 7). What is the minimal sum of products?",
+      "options": ["C + A·B'", "A'·C + A·B'", "C + A", "A·B' + B·C"],
+      "answer": 0,
+      "explanation": "Minterms 1, 3, 5, 7 are every row with C = 1, a group of four giving C. Minterm 4 (100) pairs with 5 (101) to give AB'."
+    },
+    {
+      "id": "u3t2-09",
+      "type": "numeric",
+      "prompt": "How many cells does a **5-variable** Karnaugh map have?",
+      "answer": 32,
+      "unit": "cells",
+      "explanation": "2⁵ = 32, drawn as two 16-cell maps side by side, one for E = 0 and one for E = 1, with cells also adjacent across the two layers."
+    },
+    {
+      "id": "u3t2-10",
+      "type": "choice",
+      "prompt": "F(A,B,C,D) = Σm(3, 7, 11, 15). What is the minimal expression?",
+      "options": ["C·D", "A·B", "C + D", "B·D"],
+      "answer": 0,
+      "explanation": "3 = 0011, 7 = 0111, 11 = 1011, 15 = 1111: a full column where C = 1 and D = 1."
+    },
+    {
+      "id": "u3t2-11",
+      "type": "numeric",
+      "prompt": "On a 4-variable map, a group of **8** cells gives a term with how many literals?",
+      "answer": 1,
+      "unit": "literal",
+      "explanation": "Each doubling of the group removes one variable: 1 cell = 4 literals, 2 = 3, 4 = 2, 8 = 1, 16 = the constant 1."
+    }
+  ]
+}

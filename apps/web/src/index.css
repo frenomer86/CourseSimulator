@@ -83,6 +83,27 @@ body {
 .prose-lab th,
 .prose-lab td { border: 1px solid var(--color-line); padding: 0.2em 0.6em; text-align: center; }
 
+/* Form controls on account pages. */
+.input {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  background: var(--color-surface);
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  color: var(--color-ink);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--color-high);
+  box-shadow: 0 0 0 2px var(--color-high-soft);
+}
+.input:disabled {
+  background: var(--color-bench);
+  color: var(--color-ink-soft);
+}
+
 /* Signal glow for HIGH wires. */
 .wire-high {
   filter: drop-shadow(0 0 3px rgba(47, 174, 132, 0.8));

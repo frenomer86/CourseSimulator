@@ -1,0 +1,90 @@
+{
+  "course": "digital-logic-design",
+  "unit": 3,
+  "topic": 1,
+  "title": "Algebraic simplification",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u3t1-01",
+      "type": "choice",
+      "prompt": "Simplify A·B + A·B'.",
+      "options": ["A", "B", "A + B", "A·B"],
+      "answer": 0,
+      "explanation": "Factor: A·(B + B') = A·1 = A. Combining two terms that differ in one variable is the step every K-map group performs."
+    },
+    {
+      "id": "u3t1-02",
+      "type": "choice",
+      "prompt": "Simplify A + A'·B.",
+      "options": ["A + B", "A", "B", "A·B"],
+      "answer": 0,
+      "explanation": "A + A'B = (A + A')(A + B) = A + B."
+    },
+    {
+      "id": "u3t1-03",
+      "type": "choice",
+      "prompt": "Simplify (A + B)·(A + C).",
+      "options": ["A + B·C", "A·B + A·C", "A", "B·C"],
+      "answer": 0,
+      "explanation": "Expand: A·A + A·C + A·B + B·C = A(1 + C + B) + BC = A + BC. This is the distributive law of OR over AND."
+    },
+    {
+      "id": "u3t1-04",
+      "type": "choice",
+      "prompt": "Simplify A·B + A'·C + B·C.",
+      "options": ["A·B + A'·C", "A·B + B·C", "A'·C + B·C", "A + C"],
+      "answer": 0,
+      "explanation": "B·C is the consensus term and is redundant: whenever B and C are 1, either A·B or A'·C is already 1."
+    },
+    {
+      "id": "u3t1-05",
+      "type": "text",
+      "prompt": "Simplify A'·B'·C + A'·B·C to two literals. Write the complement with an apostrophe, e.g. `A'B`.",
+      "pattern": "A'\\s*[·*]?\\s*C|C\\s*[·*]?\\s*A'",
+      "flags": "i",
+      "placeholder": "e.g. A'B",
+      "explanation": "Factor out A'C: A'C(B' + B) = A'C. The answer is `A'C`."
+    },
+    {
+      "id": "u3t1-06",
+      "type": "choice",
+      "prompt": "Simplify X + X·Y + X·Z.",
+      "options": ["X", "X·(Y + Z)", "X + Y + Z", "Y + Z"],
+      "answer": 0,
+      "explanation": "Absorption twice: X + XY = X, then X + XZ = X."
+    },
+    {
+      "id": "u3t1-07",
+      "type": "numeric",
+      "prompt": "F = A'·B + A·B + A·B'. After full simplification, how many **literals** does F contain?",
+      "answer": 2,
+      "unit": "literals",
+      "explanation": "A'B + AB = B, then B + AB' = B + A. So F = A + B, two literals."
+    },
+    {
+      "id": "u3t1-08",
+      "type": "choice",
+      "prompt": "Simplify (A + B')' + B.",
+      "options": ["B", "A'·B", "A' + B", "A + B"],
+      "answer": 0,
+      "explanation": "De Morgan: (A + B')' = A'B. Then A'B + B = B by absorption."
+    },
+    {
+      "id": "u3t1-09",
+      "type": "multi",
+      "prompt": "Which expressions are equal to A·B + A'·B'?",
+      "options": ["A XNOR B", "(A ⊕ B)'", "(A + B)·(A' + B')", "A ⊕ B"],
+      "answer": [0, 1],
+      "explanation": "AB + A'B' is 1 when A and B are equal: that is XNOR, the complement of XOR. (A + B)(A' + B') expands to AB' + A'B, which is XOR."
+    },
+    {
+      "id": "u3t1-10",
+      "type": "choice",
+      "prompt": "Simplify A·B·C + A·B·C' + A·B'·C.",
+      "options": ["A·B + A·C", "A·B", "A·C", "A"],
+      "answer": 0,
+      "explanation": "ABC + ABC' = AB. Then AB + AB'C = A(B + B'C) = A(B + C) = AB + AC."
+    }
+  ]
+}

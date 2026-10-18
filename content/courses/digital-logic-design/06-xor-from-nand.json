@@ -2,6 +2,8 @@
   "id": "digital-logic-design-a2-xor-from-nand",
   "course": "digital-logic-design",
   "topic": "Universal gates and multilevel implementation",
+  "unit": 3,
+  "topicIndex": 4,
   "level": "advanced",
   "engine": "E2",
   "title": "Build XOR using only NAND gates",

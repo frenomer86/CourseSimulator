@@ -8,3 +8,4 @@ dev-dist/
 .env.*
 coverage/
 *.tsbuildinfo
+!apps/web/.env.example

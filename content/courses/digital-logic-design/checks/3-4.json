@@ -1,0 +1,114 @@
+{
+  "course": "digital-logic-design",
+  "unit": 3,
+  "topic": 4,
+  "title": "Two-level versus multilevel logic; NAND-only and NOR-only realisations",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u3t4-01",
+      "type": "choice",
+      "prompt": "What is **two-level** logic?",
+      "options": [
+        "A sum of products (AND gates feeding one OR) or a product of sums: every path is two gates long, so it is the fastest form, though gates may be wide.",
+        "A circuit with exactly two gates.",
+        "A circuit that uses two supply voltages.",
+        "Logic with two outputs."
+      ],
+      "answer": 0,
+      "explanation": "Two-level trades gate count and fan-in for speed. Multilevel factoring saves gates at the cost of extra delay."
+    },
+    {
+      "id": "u3t4-02",
+      "type": "choice",
+      "prompt": "How do you convert an AND-OR circuit into a NAND-only circuit?",
+      "options": [
+        "Replace every AND and the final OR by NAND gates; the two inversions on each internal wire cancel.",
+        "Replace only the OR gate by a NAND.",
+        "Add an inverter after every AND gate.",
+        "It cannot be done without XOR gates."
+      ],
+      "answer": 0,
+      "explanation": "An OR with inverted inputs is a NAND (De Morgan). Any literal that feeds the output gate directly must be inverted first."
+    },
+    {
+      "id": "u3t4-03",
+      "type": "choice",
+      "prompt": "A product-of-sums (OR-AND) circuit converts directly into which single-gate-type form?",
+      "options": ["NOR-NOR", "NAND-NAND", "NOR-NAND", "AND-AND"],
+      "answer": 0,
+      "explanation": "Mirror image of the SOP rule: OR-AND becomes NOR-NOR."
+    },
+    {
+      "id": "u3t4-04",
+      "type": "numeric",
+      "prompt": "F = A·B + C·D. How many **2-input NAND** gates does the NAND-only version need?",
+      "answer": 3,
+      "unit": "gates",
+      "explanation": "One NAND for AB, one for CD, and one NAND to combine them: (AB)' NAND (CD)' = AB + CD."
+    },
+    {
+      "id": "u3t4-05",
+      "type": "choice",
+      "prompt": "What does **multilevel** logic trade for what?",
+      "options": [
+        "Fewer gates and literals in exchange for more gate delays along the path.",
+        "More gates in exchange for less delay.",
+        "Fewer inputs in exchange for more outputs.",
+        "Nothing: it is always better than two-level."
+      ],
+      "answer": 0,
+      "explanation": "Factoring shares sub-expressions. Chip designers choose per path, depending on whether that path limits the clock."
+    },
+    {
+      "id": "u3t4-06",
+      "type": "choice",
+      "prompt": "Factor F = A·B + A·C to save a gate.",
+      "options": ["A·(B + C)", "(A + B)·(A + C)", "A + B·C", "A·B·C"],
+      "answer": 0,
+      "explanation": "Two ANDs and an OR become one OR and one AND, with one fewer gate input. The delay is still two levels."
+    },
+    {
+      "id": "u3t4-07",
+      "type": "choice",
+      "prompt": "How do you make a NOT gate from a single 2-input NOR?",
+      "options": ["Tie both inputs to the same signal.", "Tie one input to 1.", "Leave one input floating.", "It cannot be done."],
+      "answer": 0,
+      "explanation": "NOR(A, A) = (A + A)' = A'. Tying an input to 1 would force the output to 0 forever."
+    },
+    {
+      "id": "u3t4-08",
+      "type": "numeric",
+      "prompt": "What is the minimum number of 2-input NAND gates needed to build a 2-input **XOR**?",
+      "answer": 4,
+      "unit": "gates",
+      "explanation": "The classic four-NAND XOR: one NAND of A and B, two NANDs mixing each input with that result, and a final NAND. You build it on the bench in this unit's Advanced lab."
+    },
+    {
+      "id": "u3t4-09",
+      "type": "multi",
+      "prompt": "Which statements are true?",
+      "options": [
+        "Any Boolean function can be built from NAND gates only.",
+        "A NOR-NOR network implements a product-of-sums expression.",
+        "In NAND-NAND form, a single literal that goes straight to the output gate must be inverted first.",
+        "A NAND-NAND network implements a product-of-sums expression."
+      ],
+      "answer": [0, 1, 2],
+      "explanation": "NAND-NAND implements a sum of products; it is NOR-NOR that implements a product of sums."
+    },
+    {
+      "id": "u3t4-10",
+      "type": "choice",
+      "prompt": "Why are NAND gates preferred over AND gates in CMOS design?",
+      "options": [
+        "NAND is the natural CMOS gate (series NMOS, parallel PMOS) with four transistors; an AND is a NAND plus an inverter, so it is bigger and slower.",
+        "AND gates cannot be built in CMOS.",
+        "NAND gates use more power, which keeps them warm.",
+        "NAND gates have more inputs."
+      ],
+      "answer": 0,
+      "explanation": "The same goes for NOR versus OR. Inverting gates come free; non-inverting ones cost an extra stage."
+    }
+  ]
+}

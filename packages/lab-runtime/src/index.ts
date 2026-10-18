@@ -22,7 +22,11 @@ export interface CheckSpec {
 export interface LabSpec<TState = unknown> {
   id: string;
   course: string;
+  /** Human topic name shown under the lab title. */
   topic: string;
+  /** Optional position in the course syllabus: 1-based unit and topic numbers (data/courses.json). */
+  unit?: number;
+  topicIndex?: number;
   level: LabLevel;
   engine: EngineId;
   title: string;
@@ -120,6 +124,8 @@ export const LEVEL_LABEL: Record<LabLevel, string> = {
 export function validateLabSpec(raw: unknown): raw is LabSpec {
   if (!raw || typeof raw !== 'object') return false;
   const s = raw as Record<string, unknown>;
+  if (s.unit !== undefined && !(Number.isInteger(s.unit) && (s.unit as number) >= 1)) return false;
+  if (s.topicIndex !== undefined && !(Number.isInteger(s.topicIndex) && (s.topicIndex as number) >= 1)) return false;
   return (
     typeof s.id === 'string' &&
     typeof s.course === 'string' &&
@@ -130,3 +136,6 @@ export function validateLabSpec(raw: unknown): raw is LabSpec {
     Array.isArray(s.hints)
   );
 }
+
+export * from './progress';
+export * from './topicCheck';

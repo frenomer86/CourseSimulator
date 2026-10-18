@@ -2,6 +2,8 @@
   "id": "digital-logic-design-a1-full-adder",
   "course": "digital-logic-design",
   "topic": "Combinational building blocks",
+  "unit": 4,
+  "topicIndex": 2,
   "level": "advanced",
   "engine": "E2",
   "title": "Design a full adder",

@@ -1,0 +1,120 @@
+{
+  "course": "digital-logic-design",
+  "unit": 1,
+  "topic": 3,
+  "title": "Signed numbers: sign-magnitude, one's and two's complement; overflow detection",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u1t3-01",
+      "type": "text",
+      "prompt": "Write **−37** as an 8-bit two's complement number.",
+      "pattern": "11011011",
+      "placeholder": "8 bits",
+      "explanation": "37 = `00100101`. Invert: `11011010`. Add 1: `11011011`."
+    },
+    {
+      "id": "u1t3-02",
+      "type": "numeric",
+      "prompt": "What decimal value does the 8-bit two's complement number `11110100` represent?",
+      "answer": -12,
+      "explanation": "The top bit is 1, so it is negative. Invert: `00001011` = 11, add 1: 12. So the value is −12."
+    },
+    {
+      "id": "u1t3-03",
+      "type": "choice",
+      "prompt": "What range of values can an 8-bit two's complement number hold?",
+      "options": ["−128 to +127", "−127 to +127", "−255 to +255", "0 to 255"],
+      "answer": 0,
+      "explanation": "There are 256 patterns: 128 negative, zero, and 127 positive. The asymmetry is why −(−128) overflows."
+    },
+    {
+      "id": "u1t3-04",
+      "type": "choice",
+      "prompt": "Why do processors use two's complement rather than sign-magnitude?",
+      "options": [
+        "There is only one zero, and the same adder handles addition and subtraction with no special sign logic.",
+        "It can represent a bigger range in the same number of bits.",
+        "It is easier for humans to read.",
+        "Sign-magnitude cannot represent negative numbers."
+      ],
+      "answer": 0,
+      "explanation": "Sign-magnitude has +0 and −0 and needs separate compare-and-subtract logic. Both represent the same count of values."
+    },
+    {
+      "id": "u1t3-05",
+      "type": "choice",
+      "prompt": "When does **overflow** occur in a two's complement addition?",
+      "options": [
+        "Two operands with the same sign give a result with the opposite sign.",
+        "There is a carry out of the most significant bit.",
+        "One operand is negative and the other positive.",
+        "The result is zero."
+      ],
+      "answer": 0,
+      "explanation": "Adding a positive and a negative number can never overflow. Carry out alone is not the test for signed overflow; the sign rule (or carry-in ≠ carry-out at the top bit) is."
+    },
+    {
+      "id": "u1t3-06",
+      "type": "choice",
+      "prompt": "Add `01111111` + `00000001` as 8-bit two's complement numbers. What happens?",
+      "options": [
+        "The result is `10000000`: an overflow, because +127 + 1 = +128 does not fit.",
+        "The result is `10000000`, which correctly equals +128.",
+        "The result is `00000000` with a carry.",
+        "The adder refuses the operation."
+      ],
+      "answer": 0,
+      "explanation": "Two positives gave a negative pattern (−128). That sign flip is the overflow signal."
+    },
+    {
+      "id": "u1t3-07",
+      "type": "text",
+      "prompt": "Write the **one's complement** of `01011100` (8 bits).",
+      "pattern": "10100011",
+      "placeholder": "8 bits",
+      "explanation": "One's complement just flips every bit: `10100011`."
+    },
+    {
+      "id": "u1t3-08",
+      "type": "choice",
+      "prompt": "In 8-bit **sign-magnitude**, what does `10000101` represent?",
+      "options": ["−5", "−123", "+133", "+5"],
+      "answer": 0,
+      "explanation": "The top bit is the sign (1 = negative) and the remaining seven bits are the magnitude, `0000101` = 5."
+    },
+    {
+      "id": "u1t3-09",
+      "type": "multi",
+      "prompt": "Add the 4-bit numbers `0110` + `0101`. The adder produces `1011`. Which statements are true?",
+      "options": [
+        "As signed two's complement numbers the result overflows.",
+        "A carry comes out of the top bit.",
+        "As unsigned numbers the result 11 is correct."
+      ],
+      "answer": [0, 2],
+      "explanation": "6 + 5 = 11 is fine unsigned, but +11 does not fit in signed 4 bits (max +7), so the signed result reads as −5. No carry leaves the top bit."
+    },
+    {
+      "id": "u1t3-10",
+      "type": "text",
+      "prompt": "**Sign-extend** the 4-bit two's complement number `1011` to 8 bits.",
+      "pattern": "11111011",
+      "placeholder": "8 bits",
+      "explanation": "Copy the sign bit into the new positions: `11111011`. Both patterns mean −5."
+    },
+    {
+      "id": "u1t3-11",
+      "type": "choice",
+      "prompt": "How does a processor compute A − B using only an adder?",
+      "options": [
+        "Add A to the two's complement of B: invert every bit of B and set the carry-in to 1.",
+        "Add A to B and then flip the sign bit of the result.",
+        "Swap A and B and add.",
+        "It cannot; subtraction needs a separate circuit."
+      ],
+      "answer": 0,
+      "explanation": "−B = NOT B + 1, and the +1 comes free from the adder's carry-in. This is the add/subtract unit you build later in the course."
+    }
+  ]
+}

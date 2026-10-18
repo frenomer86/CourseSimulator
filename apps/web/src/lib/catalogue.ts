@@ -1,5 +1,5 @@
-import type { LabSpec } from '@cslab/lab-runtime';
-import { LEVEL_ORDER, validateLabSpec } from '@cslab/lab-runtime';
+import type { LabSpec, TopicCheckSpec } from '@cslab/lab-runtime';
+import { LEVEL_ORDER, validateLabSpec, validateTopicCheckSpec } from '@cslab/lab-runtime';
 import coursesData from '@data/courses.json';
 
 export interface SyllabusUnit {
@@ -64,6 +64,15 @@ export function labsForCourse(slug: string): LabSpec[] {
   return LABS.filter((l) => l.course === slug);
 }
 
+/** Labs attached to a syllabus topic (1-based unit and topic numbers). */
+export function labsForTopic(slug: string, unit: number, topic: number): LabSpec[] {
+  return LABS.filter((l) => l.course === slug && l.unit === unit && l.topicIndex === topic);
+}
+
+export function labsForUnit(slug: string, unit: number): LabSpec[] {
+  return LABS.filter((l) => l.course === slug && l.unit === unit);
+}
+
 export function labById(id: string): LabSpec | undefined {
   return LABS.find((l) => l.id === id);
 }
@@ -72,6 +81,24 @@ export function nextLab(current: LabSpec): LabSpec | undefined {
   const list = labsForCourse(current.course);
   const i = list.findIndex((l) => l.id === current.id);
   return i >= 0 ? list[i + 1] : undefined;
+}
+
+/* Topic checks are JSON files under content/courses/<course-slug>/checks/<unit>-<topic>.json. */
+const checkModules = import.meta.glob('@content/courses/*/checks/*.json', { eager: true, import: 'default' }) as Record<
+  string,
+  unknown
+>;
+
+export const CHECKS: TopicCheckSpec[] = Object.values(checkModules).filter(validateTopicCheckSpec);
+
+export function checkForTopic(slug: string, unit: number, topic: number): TopicCheckSpec | undefined {
+  return CHECKS.find((c) => c.course === slug && c.unit === unit && c.topic === topic);
+}
+
+/** The syllabus unit at a 1-based position, with its number. */
+export function unitOf(course: Course, unit: number): (SyllabusUnit & { number: number }) | undefined {
+  const u = course.syllabus?.[unit - 1];
+  return u ? { ...u, number: unit } : undefined;
 }
 
 export const ENGINE_NAMES: Record<string, string> = {

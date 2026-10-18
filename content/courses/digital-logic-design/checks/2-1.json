@@ -1,0 +1,95 @@
+{
+  "course": "digital-logic-design",
+  "unit": 2,
+  "topic": 1,
+  "title": "Axioms and theorems of Boolean algebra; duality; De Morgan's laws",
+  "draw": 6,
+  "items": [
+    {
+      "id": "u2t1-01",
+      "type": "choice",
+      "prompt": "By De Morgan's law, NOT (A AND B) equals which of these?",
+      "options": ["(NOT A) OR (NOT B)", "(NOT A) AND (NOT B)", "NOT (A OR B)", "A OR B"],
+      "answer": 0,
+      "explanation": "Break the bar and change the operator: (AB)' = A' + B'. Likewise (A + B)' = A'B'."
+    },
+    {
+      "id": "u2t1-02",
+      "type": "choice",
+      "prompt": "What is the **dual** of the identity A + A·B = A?",
+      "options": ["A · (A + B) = A", "A' + A'·B' = A'", "A + A·B = 1", "A · A·B = A"],
+      "answer": 0,
+      "explanation": "Swap every AND with OR and every 0 with 1, leaving the variables alone. Both forms are the absorption theorem."
+    },
+    {
+      "id": "u2t1-03",
+      "type": "choice",
+      "prompt": "Simplify A + A'·B.",
+      "options": ["A + B", "A", "B", "A'·B"],
+      "answer": 0,
+      "explanation": "A + A'B = (A + A')(A + B) = 1 · (A + B) = A + B. Once A is false, the A' no longer matters."
+    },
+    {
+      "id": "u2t1-04",
+      "type": "choice",
+      "prompt": "Which pair states the **complement** axioms?",
+      "options": ["A + A' = 1 and A · A' = 0", "A + A = A and A · A = A", "A + 0 = A and A · 1 = A", "A + 1 = 1 and A · 0 = 0"],
+      "answer": 0,
+      "explanation": "A variable OR its complement is always true; a variable AND its complement is always false. The other pairs are idempotence, identity and null elements."
+    },
+    {
+      "id": "u2t1-05",
+      "type": "choice",
+      "prompt": "The identity A·(B + C) = A·B + A·C is an example of which law?",
+      "options": ["Distributive", "Associative", "Commutative", "Absorption"],
+      "answer": 0,
+      "explanation": "Unusually, Boolean algebra also distributes OR over AND: A + B·C = (A + B)(A + C), which ordinary arithmetic does not."
+    },
+    {
+      "id": "u2t1-06",
+      "type": "choice",
+      "prompt": "Find the complement of the expression (A + B')·C.",
+      "options": ["A'·B + C'", "A'·B'·C'", "(A' + B)·C'", "A + B' + C"],
+      "answer": 0,
+      "explanation": "Apply De Morgan twice: ((A + B')·C)' = (A + B')' + C' = A'·B + C'."
+    },
+    {
+      "id": "u2t1-07",
+      "type": "multi",
+      "prompt": "Which of these are valid Boolean identities?",
+      "options": ["A + 1 = 1", "A · 0 = 0", "A + A = A", "A · A' = A", "A + 0 = 0"],
+      "answer": [0, 1, 2],
+      "explanation": "A·A' is 0, not A, and A + 0 is A, not 0."
+    },
+    {
+      "id": "u2t1-08",
+      "type": "choice",
+      "prompt": "What does the **principle of duality** say?",
+      "options": [
+        "If an identity is valid, then swapping AND with OR and 0 with 1 (leaving variables alone) gives another valid identity.",
+        "Every variable has exactly two values.",
+        "Every expression has exactly two minimal forms.",
+        "NOT NOT A equals A."
+      ],
+      "answer": 0,
+      "explanation": "That is why the axioms come in pairs. Duality is not the same as complementing, which also inverts the variables."
+    },
+    {
+      "id": "u2t1-09",
+      "type": "choice",
+      "prompt": "The **consensus theorem** lets you drop a term. Which expression equals A·B + A'·C + B·C?",
+      "options": ["A·B + A'·C", "A·B + B·C", "A'·C + B·C", "B·C"],
+      "answer": 0,
+      "explanation": "B·C is the consensus of A·B and A'·C: whenever B·C is true, one of the other two terms is already true. (You will add it back on purpose later, to remove hazards.)"
+    },
+    {
+      "id": "u2t1-10",
+      "type": "text",
+      "prompt": "Simplify (A + B)·(A + B') to a single literal.",
+      "pattern": "A",
+      "flags": "i",
+      "placeholder": "e.g. B'",
+      "explanation": "Distribute: A + B·B' = A + 0 = A. The answer is `A`."
+    }
+  ]
+}

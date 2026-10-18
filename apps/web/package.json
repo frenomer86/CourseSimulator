@@ -12,6 +12,7 @@
   "dependencies": {
     "@cslab/engine-digital-logic": "*",
     "@cslab/lab-runtime": "*",
+    "@supabase/supabase-js": "^2.118.0",
     "marked": "^15.0.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
