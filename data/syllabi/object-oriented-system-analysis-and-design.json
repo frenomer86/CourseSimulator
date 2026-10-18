@@ -1,0 +1,114 @@
+{
+  "slug": "object-oriented-system-analysis-and-design",
+  "description": "Taking an information system from a vague business need to a specified, designed and implemented solution, using both structured tools (DFDs, decision tables) and the object-oriented toolkit (use cases, UML, design patterns). Taught to the depth of a leading systems analysis and design course.",
+  "modelledOn": [
+    "Shelly and Rosenblatt, Systems Analysis and Design",
+    "Larman, Applying UML and Patterns",
+    "Dennis, Wixom and Tegarden, Systems Analysis and Design: An Object-Oriented Approach with UML"
+  ],
+  "outcomes": [
+    "Explain the systems development life cycle and the roles of the analyst across its phases.",
+    "Carry out a preliminary investigation and feasibility study and present a recommendation.",
+    "Elicit requirements with interviews, questionnaires, observation, document review and JAD sessions.",
+    "Model a system with data flow diagrams, a data dictionary, process descriptions, decision tables and trees, and with UML use case, class, sequence, activity and state diagrams.",
+    "Evaluate alternatives and design outputs, inputs, databases and architecture.",
+    "Plan implementation: quality assurance, documentation, installation, training, evaluation and operation."
+  ],
+  "units": [
+    {
+      "title": "System analysis fundamentals, the SDLC and the analyst",
+      "weeks": "1-2",
+      "topics": [
+        "Information systems and their components; business and system stakeholders",
+        "The SDLC: planning, analysis, design, implementation, support; waterfall, iterative, spiral, agile and their trade-offs",
+        "Structured, object-oriented and agile analysis compared",
+        "The systems analyst: skills, ethics, role in the organisation",
+        "Modelling tools and CASE tools; the course project organisation (a Ghanaian SME, school or clinic)"
+      ]
+    },
+    {
+      "title": "Systems planning and preliminary investigation",
+      "weeks": "3",
+      "topics": [
+        "Strategic planning, business case, project request and selection",
+        "Preliminary investigation: understanding the problem, scope and constraints, fact-finding, feasibility (operational, technical, economic, schedule)",
+        "Cost-benefit analysis: payback, ROI, NPV",
+        "The preliminary investigation report and presentation"
+      ]
+    },
+    {
+      "title": "Determining requirements",
+      "weeks": "4-5",
+      "topics": [
+        "Functional and non-functional requirements; requirements quality",
+        "Fact-finding: interviews, questionnaires, observation, document review, sampling, research",
+        "Joint application development (JAD) and rapid application development (RAD); prototyping",
+        "Object-oriented development: use cases, actors, use case diagrams and descriptions; user stories",
+        "Agile requirements and the product backlog; requirements documentation and traceability"
+      ]
+    },
+    {
+      "title": "Analysing requirements with structured tools",
+      "weeks": "6-7",
+      "topics": [
+        "Data flow diagrams: context diagram, level 0 and lower levels, balancing, rules",
+        "The data dictionary: data elements, flows, stores, records, processes, entities",
+        "Process descriptions: structured English, decision tables, decision trees",
+        "Logical versus physical models; entity-relationship diagrams for the data",
+        "Worked case: an admissions or billing system from interview notes to DFDs"
+      ]
+    },
+    {
+      "title": "Object-oriented analysis with UML",
+      "weeks": "8",
+      "topics": [
+        "Objects, classes, attributes, methods, messages, encapsulation, inheritance, polymorphism",
+        "Domain modelling and class diagrams: associations, multiplicity, aggregation, generalisation",
+        "Sequence and communication diagrams; activity diagrams; state machine diagrams",
+        "From use cases to classes: CRC cards and responsibility assignment"
+      ]
+    },
+    {
+      "title": "Evaluating alternatives",
+      "weeks": "9",
+      "topics": [
+        "Development strategies: in-house, packaged software, customisation, outsourcing, SaaS",
+        "Hardware and software evaluation; requests for proposal and quotations; benchmarking vendors",
+        "CASE tools and development environments",
+        "Feasibility revisited and the system requirements document; presenting to management"
+      ]
+    },
+    {
+      "title": "Systems design",
+      "weeks": "10-11",
+      "topics": [
+        "Output design: reports, screens, forms, dashboards; input design: forms, validation, controls",
+        "User interface design principles for analysts",
+        "File and database design: normalisation review, data storage, codes, data integrity and security",
+        "Architecture: client-server, web-based, cloud, mobile; processing methods; system design specification",
+        "Object-oriented design: design patterns (Observer, Factory, Strategy), package diagrams, deployment diagrams",
+        "Security and control design"
+      ]
+    },
+    {
+      "title": "Systems implementation",
+      "weeks": "12",
+      "topics": [
+        "Quality assurance: reviews, walkthroughs, inspections; testing levels; test plans",
+        "Documentation: program, system, operations, user",
+        "Installation: direct, parallel, pilot, phased changeover; data conversion; training",
+        "Post-implementation evaluation and the final report"
+      ]
+    },
+    {
+      "title": "Systems operation, support and project close",
+      "weeks": "13",
+      "topics": [
+        "Maintenance types: corrective, adaptive, perfective, preventive; configuration management",
+        "Performance, capacity and system security during operation",
+        "Future trends: low-code, AI-assisted development, continuous delivery",
+        "Project presentation: the complete analysis and design package"
+      ]
+    }
+  ]
+}

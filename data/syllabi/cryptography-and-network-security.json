@@ -1,0 +1,118 @@
+{
+  "slug": "cryptography-and-network-security",
+  "description": "The mathematics and engineering of secrecy and authenticity: classical ciphers and how they break, block and stream ciphers, public-key cryptography, hashes, MACs, signatures, certificates, key management and the protocols such as TLS that secure the Internet. Taught to the depth of a leading applied cryptography course.",
+  "modelledOn": [
+    "Stallings, Cryptography and Network Security: Principles and Practice",
+    "Katz and Lindell, Introduction to Modern Cryptography",
+    "Boneh and Shoup, A Graduate Course in Applied Cryptography (selected chapters)",
+    "Ferguson, Schneier and Kohno, Cryptography Engineering"
+  ],
+  "outcomes": [
+    "Break classical ciphers with frequency analysis and explain why modern ciphers resist such attacks.",
+    "Describe AES and modes of operation, choose a mode correctly, and implement authenticated encryption.",
+    "Explain and implement RSA, Diffie-Hellman and elliptic-curve operations and the number theory behind them.",
+    "Use hash functions, MACs and digital signatures for integrity and authentication and explain their security properties.",
+    "Describe PKI, certificates and the TLS handshake and analyse the security of a protocol.",
+    "Design key management, including generation, distribution, storage and rotation, and recognise common implementation failures."
+  ],
+  "units": [
+    {
+      "title": "Security goals and classical ciphers",
+      "weeks": "1-2",
+      "topics": [
+        "Confidentiality, integrity, authenticity, non-repudiation; threat models and Kerckhoffs's principle",
+        "Caesar, substitution, Vigenere, Playfair, Hill, transposition ciphers; the Enigma",
+        "Cryptanalysis: frequency analysis, Kasiski examination, known- and chosen-plaintext attacks",
+        "The one-time pad and perfect secrecy; why keys must be random and unreused",
+        "Computational security, security parameters and negligible probabilities"
+      ]
+    },
+    {
+      "title": "Number theory for cryptography",
+      "weeks": "3",
+      "topics": [
+        "Modular arithmetic, groups, Euler's totient, Fermat and Euler theorems",
+        "Extended Euclid and modular inverses; fast modular exponentiation",
+        "Primality testing (Miller-Rabin), prime generation, the Chinese remainder theorem",
+        "Discrete logarithms and the hardness assumptions (factoring, DLP, ECDLP)",
+        "Finite fields GF(2^8) as used in AES"
+      ]
+    },
+    {
+      "title": "Symmetric encryption: block ciphers, AES and modes",
+      "weeks": "4-5",
+      "topics": [
+        "Block cipher design: confusion and diffusion, Feistel networks, DES and its weaknesses, 3DES",
+        "AES: SubBytes, ShiftRows, MixColumns, AddRoundKey, key schedule; implementing a round",
+        "Modes of operation: ECB (and the penguin), CBC, CTR, CFB, OFB; padding and padding-oracle attacks",
+        "Authenticated encryption: GCM, ChaCha20-Poly1305; nonce misuse",
+        "Stream ciphers: RC4 history, ChaCha20; pseudo-random generators and CSPRNGs",
+        "Side channels: timing, power, cache; constant-time implementation"
+      ]
+    },
+    {
+      "title": "Public-key cryptography: RSA, Diffie-Hellman, elliptic curves",
+      "weeks": "6-7",
+      "topics": [
+        "The public-key idea; RSA key generation, encryption, decryption and correctness proof",
+        "Attacks on textbook RSA; padding (OAEP); key sizes and factoring records",
+        "Diffie-Hellman key exchange, man-in-the-middle, authenticated key exchange; ElGamal",
+        "Elliptic curves over finite fields, point addition, scalar multiplication, ECDH, Curve25519",
+        "Hybrid encryption and key encapsulation; post-quantum cryptography overview (lattices, Kyber)"
+      ]
+    },
+    {
+      "title": "Hash functions and MACs",
+      "weeks": "8",
+      "topics": [
+        "Properties: preimage, second-preimage and collision resistance; the birthday bound",
+        "MD5 and SHA-1 breaks; SHA-2, SHA-3; Merkle-Damgard and sponge constructions",
+        "Message authentication codes: HMAC, CMAC; MAC-then-encrypt versus encrypt-then-MAC",
+        "Password hashing: salts, bcrypt, scrypt, Argon2; rainbow tables",
+        "Applications: integrity checking, commitments, blockchains, deduplication"
+      ]
+    },
+    {
+      "title": "Digital signatures and PKI",
+      "weeks": "9",
+      "topics": [
+        "RSA signatures (PSS), DSA, ECDSA, EdDSA; hash-then-sign; nonce reuse disasters",
+        "Certificates, X.509, certificate authorities, chains, revocation (CRL, OCSP), Certificate Transparency",
+        "Web of trust versus hierarchical PKI; code signing; Ghana's national PKI and e-signature law",
+        "Certificate pinning and the risks of mis-issued certificates"
+      ]
+    },
+    {
+      "title": "TLS and secure protocols",
+      "weeks": "10-11",
+      "topics": [
+        "TLS 1.2 and 1.3 handshakes, cipher suites, forward secrecy, session resumption, 0-RTT",
+        "Attacks on TLS history: BEAST, POODLE, Heartbleed, downgrade attacks; configuring a server correctly",
+        "SSH, IPsec and VPNs (IKE, WireGuard), Kerberos, S/MIME and PGP, Signal protocol and double ratchet",
+        "DNSSEC and DNS over HTTPS; email authentication (SPF, DKIM, DMARC)",
+        "Analysing a protocol: attacker models, replay, reflection, the Needham-Schroeder lesson"
+      ]
+    },
+    {
+      "title": "Key management",
+      "weeks": "12",
+      "topics": [
+        "Key generation and randomness; entropy sources and failures (Debian OpenSSL, low-entropy devices)",
+        "Key distribution: KDCs, public-key distribution, key agreement; key hierarchies and derivation (HKDF)",
+        "Storage: hardware security modules, TPMs, secure enclaves, key management services; secrets in applications",
+        "Rotation, revocation, escrow, backup; secret sharing (Shamir)",
+        "Cryptographic policy: algorithms and key lengths, NIST and ECRYPT recommendations"
+      ]
+    },
+    {
+      "title": "Applied cryptography and capstone",
+      "weeks": "13",
+      "topics": [
+        "Using cryptographic libraries correctly: libsodium, OpenSSL, Web Crypto; what not to build yourself",
+        "Cryptography in mobile money, banking (EMV, HSMs), messaging and blockchains",
+        "Common implementation mistakes and how to review code for them",
+        "Capstone: a secure messaging or file-sharing tool with authenticated key exchange and authenticated encryption"
+      ]
+    }
+  ]
+}

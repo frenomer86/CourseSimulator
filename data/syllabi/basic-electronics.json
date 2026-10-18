@@ -1,0 +1,109 @@
+{
+  "slug": "basic-electronics",
+  "description": "From the physics of silicon to working amplifier and logic circuits, with every circuit built, measured and simulated rather than only drawn. Taught to the depth of a first-year engineering circuits course, with every circuit simulated and measured.",
+  "modelledOn": [
+    "Sedra and Smith, Microelectronic Circuits",
+    "Agarwal and Lang, Foundations of Analog and Digital Electronic Circuits",
+    "Boylestad and Nashelsky, Electronic Devices and Circuit Theory"
+  ],
+  "outcomes": [
+    "Analyse DC and AC circuits with Kirchhoff's laws, node and mesh analysis, Thevenin and Norton equivalents.",
+    "Explain how carriers move in doped silicon and derive the diode and transistor V-I behaviour from it.",
+    "Design rectifiers, regulators, clippers and clampers and predict their waveforms.",
+    "Bias a BJT amplifier for stable operation and compute its gain, input and output resistance.",
+    "Analyse RLC circuits in the time and frequency domains and read resonance and bandwidth from a plot.",
+    "Classify signals and relate the continuous and discrete views of them to later signal processing courses."
+  ],
+  "units": [
+    {
+      "title": "Circuit fundamentals and lab practice",
+      "weeks": "1-2",
+      "topics": [
+        "Charge, current, voltage, power and energy; passive sign convention",
+        "Resistors, Ohm's law, series and parallel combinations, voltage and current dividers",
+        "Kirchhoff's current and voltage laws; node-voltage and mesh-current analysis",
+        "Superposition, Thevenin and Norton equivalents, maximum power transfer",
+        "Using a breadboard, multimeter, oscilloscope and bench supply; reading a datasheet",
+        "Dependent sources and the ideal operational amplifier as a circuit element"
+      ]
+    },
+    {
+      "title": "Semiconductor physics",
+      "weeks": "3",
+      "topics": [
+        "Energy bands in conductors, insulators and semiconductors; band gap of silicon and germanium",
+        "Intrinsic carriers, electrons and holes; temperature dependence",
+        "Doping: donors and acceptors, n-type and p-type material, majority and minority carriers",
+        "Drift and diffusion currents; mobility and conductivity",
+        "The p-n junction at equilibrium: depletion region, built-in potential"
+      ]
+    },
+    {
+      "title": "Diodes and diode circuits",
+      "weeks": "4-5",
+      "topics": [
+        "Forward and reverse bias; the diode equation and the V-I curve; ideal, constant-drop and piecewise models",
+        "Zener breakdown and avalanche; Zener regulators and line/load regulation",
+        "Half-wave, full-wave centre-tap and bridge rectifiers; ripple and capacitor filters",
+        "Regulated DC supplies: transformer, rectifier, filter, regulator (78xx and LM317)",
+        "Clippers, clampers and voltage multipliers; LED and photodiode circuits",
+        "Reading a diode datasheet: PIV, forward drop, maximum current, recovery time"
+      ]
+    },
+    {
+      "title": "Bipolar junction transistors",
+      "weeks": "6-8",
+      "topics": [
+        "NPN and PNP structure and operation; active, saturation and cut-off regions; alpha and beta",
+        "Common-emitter, common-base and common-collector configurations and their characteristics",
+        "DC load line and Q-point; fixed, emitter and voltage-divider biasing; bias stability and thermal runaway",
+        "Small-signal model (hybrid-pi) and the gain, input and output resistance of a CE amplifier",
+        "The transistor as a switch: driving an LED, a relay and a small DC motor",
+        "Introduction to MOSFETs: enhancement-mode NMOS and PMOS, threshold voltage, regions of operation"
+      ]
+    },
+    {
+      "title": "Operational amplifiers",
+      "weeks": "9",
+      "topics": [
+        "Ideal op-amp rules; inverting, non-inverting, summing and difference amplifiers",
+        "Integrators, differentiators and active filters",
+        "Comparators, Schmitt triggers and simple oscillators",
+        "Real op-amp limits: offset, slew rate, gain-bandwidth product"
+      ]
+    },
+    {
+      "title": "Digital circuits and logic families",
+      "weeks": "10",
+      "topics": [
+        "Voltage levels, noise margins and the transfer characteristic of an inverter",
+        "Diode logic AND and OR gates and why they cannot be cascaded",
+        "RTL, DTL and TTL gate construction; totem-pole output; fan-out and propagation delay",
+        "CMOS inverter, NAND and NOR; static and dynamic power",
+        "Interfacing logic families and level shifting; open-collector and tri-state outputs"
+      ]
+    },
+    {
+      "title": "Capacitors, inductors and RLC circuits",
+      "weeks": "11-12",
+      "topics": [
+        "Capacitor and inductor V-I relations; energy storage; RC and RL transients and time constants",
+        "Sinusoidal steady state: phasors, impedance and admittance",
+        "Series and parallel RLC circuits: resonance frequency, quality factor, bandwidth",
+        "Frequency response and Bode plots; low-pass, high-pass and band-pass filters",
+        "Second-order transients: underdamped, critically damped and overdamped responses"
+      ]
+    },
+    {
+      "title": "Signals",
+      "weeks": "13",
+      "topics": [
+        "Continuous-time and discrete-time signals; sampling as the bridge between them",
+        "Even and odd decomposition; periodic and aperiodic signals",
+        "Energy and power signals; RMS value of common waveforms",
+        "Standard signals: impulse, step, ramp, exponential and sinusoid",
+        "Reading a signal on an oscilloscope: amplitude, period, frequency, phase, DC offset"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "slug": "operating-systems",
+  "description": "How an operating system virtualises the processor and memory, lets programs share safely, stores data persistently and talks to devices, learned by reading, modifying and measuring a real teaching kernel. Taught to the depth of a leading operating systems course.",
+  "modelledOn": [
+    "Arpaci-Dusseau, Operating Systems: Three Easy Pieces",
+    "Silberschatz, Galvin and Gagne, Operating System Concepts",
+    "Tanenbaum and Bos, Modern Operating Systems",
+    "The xv6 teaching operating system and its commentary"
+  ],
+  "outcomes": [
+    "Explain the structure of an operating system, system calls, kernel and user modes, and the boot process.",
+    "Describe process and thread life cycles and implement and evaluate CPU scheduling algorithms.",
+    "Write correct concurrent programs with locks, semaphores, condition variables and monitors, and detect and prevent deadlock.",
+    "Analyse memory management with paging, segmentation, virtual memory and page replacement.",
+    "Explain file system design, disk scheduling, I/O subsystems and device drivers.",
+    "Describe virtual machines, multiprocessor operating systems and the design of mobile operating systems."
+  ],
+  "units": [
+    {
+      "title": "Introduction to operating systems",
+      "weeks": "1-2",
+      "topics": [
+        "What an OS does: abstraction, virtualisation, resource management, protection; history from batch to cloud and mobile",
+        "Kernel and user mode, system calls, traps and interrupts; the boot sequence",
+        "OS structures: monolithic, layered, microkernel, modules, exokernel; Linux, Windows and xv6 compared",
+        "Shell, processes and system programming in C: fork, exec, wait, pipes, signals",
+        "Building and running xv6 in an emulator; reading kernel code"
+      ]
+    },
+    {
+      "title": "Process management",
+      "weeks": "3-4",
+      "topics": [
+        "Processes: states, PCB, context switch, creation and termination; the process tree",
+        "Threads: user and kernel threads, pthreads, thread pools; why threads",
+        "CPU scheduling: FCFS, SJF, SRTF, priority, round robin, multilevel feedback queues; metrics and Gantt charts",
+        "Real-time scheduling (RM, EDF), proportional share and the Linux CFS",
+        "Implementing a scheduler in xv6 and measuring turnaround and response time"
+      ]
+    },
+    {
+      "title": "Concurrency and synchronisation",
+      "weeks": "5-6",
+      "topics": [
+        "Race conditions, critical sections, atomicity; Peterson's algorithm and hardware primitives (test-and-set, compare-and-swap)",
+        "Locks, spinlocks, semaphores, condition variables, monitors; producer-consumer, readers-writers, dining philosophers",
+        "Deadlock: conditions, resource allocation graphs, prevention, avoidance (banker's algorithm), detection and recovery",
+        "Concurrency bugs: atomicity and order violations; lock-free structures in brief",
+        "Inter-process communication: shared memory, message passing, pipes, sockets"
+      ]
+    },
+    {
+      "title": "Memory management",
+      "weeks": "7-8",
+      "topics": [
+        "Address spaces, address binding, logical versus physical addresses; base and bounds",
+        "Contiguous allocation and fragmentation; segmentation; free-space management (first fit, best fit, buddy, slab)",
+        "Paging: page tables, TLBs, multi-level and inverted page tables; address translation worked examples",
+        "Virtual memory: demand paging, page faults, copy-on-write; replacement (FIFO, LRU, clock, optimal); thrashing and the working set",
+        "Memory in xv6: page tables, allocation, implementing lazy allocation"
+      ]
+    },
+    {
+      "title": "File systems",
+      "weeks": "9-10",
+      "topics": [
+        "Files, directories, links, permissions; the file system interface and the VFS layer",
+        "Storage layout: inodes, extents, bitmaps, directories; FAT, ext4, NTFS compared",
+        "Crash consistency: fsck, journaling, copy-on-write (ZFS, Btrfs), log-structured file systems",
+        "Caching, buffering, read-ahead; disk scheduling (FCFS, SSTF, SCAN, C-SCAN); SSDs and flash translation layers",
+        "RAID and reliability; network file systems"
+      ]
+    },
+    {
+      "title": "I/O system",
+      "weeks": "11",
+      "topics": [
+        "I/O hardware: controllers, ports, buses, polling, interrupts, DMA",
+        "The I/O subsystem: device drivers, character and block devices, buffering, spooling",
+        "Writing a simple device driver; interrupt handling in the kernel",
+        "Clocks, timers and power management"
+      ]
+    },
+    {
+      "title": "Protection, security and virtual machines",
+      "weeks": "12",
+      "topics": [
+        "Protection domains, access control lists, capabilities; user authentication and privilege",
+        "OS security: buffer overflows, privilege escalation, sandboxing, address-space randomisation",
+        "Virtual machines: hypervisors (type 1 and 2), trap-and-emulate, paravirtualisation, hardware support, nested page tables",
+        "Containers: namespaces, cgroups, images; VMs versus containers"
+      ]
+    },
+    {
+      "title": "Multiple processor systems and mobile operating systems",
+      "weeks": "13",
+      "topics": [
+        "Multiprocessor scheduling, load balancing, processor affinity, cache coherence effects, NUMA",
+        "Distributed and cluster operating systems in brief",
+        "Mobile operating systems: Android architecture (Linux kernel, ART, Binder, app sandbox), iOS; power management, app life cycle, permissions",
+        "Case study: the Linux kernel and how to contribute; the future of operating systems"
+      ]
+    }
+  ]
+}

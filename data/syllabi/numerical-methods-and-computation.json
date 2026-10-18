@@ -1,0 +1,100 @@
+{
+  "slug": "numerical-methods-and-computation",
+  "description": "Computing with real numbers when exact answers are out of reach: errors, root finding, linear systems, eigenvalues, interpolation, integration and differential equations, each implemented and tested for accuracy and stability. Taught to the depth of a leading introductory numerical analysis course.",
+  "modelledOn": [
+    "Burden and Faires, Numerical Analysis",
+    "Chapra and Canale, Numerical Methods for Engineers",
+    "Heath, Scientific Computing: An Introductory Survey"
+  ],
+  "outcomes": [
+    "Explain floating-point representation and analyse round-off, truncation and propagated error and conditioning.",
+    "Find roots of nonlinear equations with bisection, fixed-point, Newton and secant methods and compare their convergence.",
+    "Solve linear systems with direct and iterative methods and understand pivoting, stability and condition numbers.",
+    "Approximate eigenvalues with the power method and QR iteration.",
+    "Construct interpolating polynomials and splines and fit curves by least squares.",
+    "Compute derivatives and integrals numerically and solve initial value problems with Euler and Runge-Kutta methods, with error control."
+  ],
+  "units": [
+    {
+      "title": "Error analysis and floating point",
+      "weeks": "1-2",
+      "topics": [
+        "Sources of error: modelling, measurement, truncation, round-off",
+        "IEEE 754 floating point: mantissa, exponent, machine epsilon, overflow, underflow, NaN",
+        "Absolute and relative error; significant digits; loss of significance and cancellation",
+        "Propagation of error; conditioning and stability of algorithms",
+        "Taylor series as the basis of numerical methods; order of convergence and big-O",
+        "Setting up Python with NumPy, or MATLAB, and writing reusable numerical routines"
+      ]
+    },
+    {
+      "title": "Nonlinear equations in one variable",
+      "weeks": "3-4",
+      "topics": [
+        "Bisection: bracketing, error bound, number of iterations",
+        "Fixed-point iteration and the contraction condition",
+        "Newton's method: derivation, quadratic convergence, failure cases, multiple roots",
+        "Secant and false-position methods; Muller's method in brief",
+        "Roots of polynomials: Horner's scheme, deflation; stopping criteria and convergence acceleration (Aitken)",
+        "Applications: break-even and interest-rate calculations, projectile range"
+      ]
+    },
+    {
+      "title": "Direct methods for linear systems",
+      "weeks": "5-6",
+      "topics": [
+        "Gaussian elimination with partial and scaled pivoting; operation counts",
+        "LU, Cholesky and LDL decompositions; solving multiple right-hand sides",
+        "Matrix norms, condition number and error bounds; ill-conditioned systems (Hilbert matrix)",
+        "Tridiagonal and banded systems; Thomas algorithm",
+        "Linear least squares via normal equations and QR"
+      ]
+    },
+    {
+      "title": "Iterative methods and eigenvalue approximation",
+      "weeks": "7",
+      "topics": [
+        "Jacobi, Gauss-Seidel and SOR; convergence conditions and diagonal dominance",
+        "Conjugate gradient in brief for large sparse systems",
+        "Power method and inverse power method for dominant and smallest eigenvalues; Rayleigh quotient",
+        "QR algorithm for all eigenvalues; Gershgorin circles",
+        "Applications: PageRank, vibration modes, principal components"
+      ]
+    },
+    {
+      "title": "Interpolation, curve fitting and polynomial approximation",
+      "weeks": "8-9",
+      "topics": [
+        "Lagrange and Newton divided-difference interpolation; error term; Runge's phenomenon",
+        "Hermite interpolation; Chebyshev nodes",
+        "Piecewise interpolation and cubic splines (natural and clamped)",
+        "Least-squares curve fitting: linear, polynomial and linearised exponential models",
+        "Orthogonal polynomials and approximation; Bezier curves for graphics",
+        "Fitting rainfall or sales data and judging the fit"
+      ]
+    },
+    {
+      "title": "Numerical differentiation and integration",
+      "weeks": "10-11",
+      "topics": [
+        "Forward, backward and central difference formulas; error and step-size trade-off; Richardson extrapolation",
+        "Newton-Cotes rules: trapezoidal, Simpson's, higher order; composite rules and error bounds",
+        "Romberg integration; adaptive quadrature",
+        "Gaussian quadrature; improper and multiple integrals",
+        "Applications: area under measured curves, work and energy, probability from densities"
+      ]
+    },
+    {
+      "title": "Initial value problems and ODEs",
+      "weeks": "12-13",
+      "topics": [
+        "Existence and well-posedness; Euler's method and its global error",
+        "Taylor methods; Runge-Kutta methods including classical RK4; adaptive step size (RK45)",
+        "Multistep methods: Adams-Bashforth and Adams-Moulton; predictor-corrector",
+        "Systems of ODEs and higher-order equations; stiffness and implicit methods",
+        "Stability regions; choosing a method",
+        "Project: simulate an epidemic (SIR), a pendulum or a circuit and validate against known solutions"
+      ]
+    }
+  ]
+}

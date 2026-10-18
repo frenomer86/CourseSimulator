@@ -1,0 +1,106 @@
+{
+  "slug": "programming-with-c",
+  "description": "C as the language of the machine: types, pointers, memory, structures, files and the toolchain, taught by writing and debugging real systems-style programs. Taught to the depth of a leading systems programming course.",
+  "modelledOn": [
+    "Kernighan and Ritchie, The C Programming Language",
+    "Bryant and O'Hallaron, Computer Systems: A Programmer's Perspective (C and memory chapters)",
+    "King, C Programming: A Modern Approach"
+  ],
+  "outcomes": [
+    "Write well-structured C programs using the full type system, operators, control flow and functions.",
+    "Use arrays, strings and pointers correctly and explain their representation in memory.",
+    "Allocate and free dynamic memory and build linked structures without leaks or dangling pointers.",
+    "Model data with structures, unions and enumerations and persist it with text and binary files.",
+    "Drive the preprocessor, compiler, linker and debugger, and split a program across multiple files.",
+    "Find memory errors with tools such as a debugger and a sanitizer and reason about undefined behaviour."
+  ],
+  "units": [
+    {
+      "title": "C syntax, types and operators",
+      "weeks": "1-2",
+      "topics": [
+        "A first program; compiling with gcc or clang; the structure of a C program",
+        "Integer, character and floating types; sizes, ranges, signedness, overflow, limits.h",
+        "Constants, variables, declarations, initialisation; const and typedef",
+        "Arithmetic, relational, logical, bitwise and assignment operators; precedence; implicit conversions",
+        "printf and scanf formatting; getchar and putchar"
+      ]
+    },
+    {
+      "title": "Control flow and functions",
+      "weeks": "3-4",
+      "topics": [
+        "if, switch, while, do-while, for; break, continue, goto",
+        "Function definition and declaration, prototypes, header files",
+        "Call by value; scope, storage classes (auto, static, extern, register)",
+        "Recursion and the call stack; stack frames",
+        "Modular design: splitting a program into functions and files"
+      ]
+    },
+    {
+      "title": "Arrays and strings",
+      "weeks": "5",
+      "topics": [
+        "One- and multi-dimensional arrays; initialisation; array bounds and the danger of overrun",
+        "Strings as null-terminated char arrays; string.h functions and writing your own strlen, strcpy, strcmp",
+        "Passing arrays to functions; sizeof pitfalls",
+        "Sorting and searching arrays; a word-count and a Caesar cipher program"
+      ]
+    },
+    {
+      "title": "Pointers and memory",
+      "weeks": "6-8",
+      "topics": [
+        "Addresses, the & and * operators, pointer types, NULL",
+        "Pointer arithmetic and the equivalence of arrays and pointers; pointers to pointers",
+        "Call by reference with pointers; returning multiple values; swap",
+        "The memory map of a process: text, data, BSS, heap, stack",
+        "Dynamic memory: malloc, calloc, realloc, free; leaks, double free, use after free",
+        "Linked lists, stacks and a binary tree with dynamic nodes",
+        "Function pointers and callbacks; qsort"
+      ]
+    },
+    {
+      "title": "Structures, unions and enumerations",
+      "weeks": "9",
+      "topics": [
+        "Defining and using struct; nested structures; arrays of structures; the arrow operator",
+        "Memory layout, padding and alignment",
+        "Unions and tagged unions; bit fields; enum",
+        "Structures as records: a student register and an inventory program"
+      ]
+    },
+    {
+      "title": "File handling",
+      "weeks": "10-11",
+      "topics": [
+        "Streams: stdin, stdout, stderr; fopen, fclose and modes",
+        "Text I/O: fgets, fputs, fprintf, fscanf; line-by-line processing",
+        "Binary I/O: fread, fwrite, fseek, ftell; writing and reading records",
+        "Error handling with errno and perror; checking return values",
+        "Command-line arguments and processing a CSV file of sales data"
+      ]
+    },
+    {
+      "title": "The preprocessor and compilation",
+      "weeks": "12",
+      "topics": [
+        "#include, #define, macros with arguments and their pitfalls, conditional compilation, include guards",
+        "The pipeline: preprocessing, compilation, assembly, linking; object files and libraries",
+        "Makefiles and building multi-file projects; static and shared libraries",
+        "Compiler flags, warnings as errors and optimisation levels"
+      ]
+    },
+    {
+      "title": "Debugging, safety and undefined behaviour",
+      "weeks": "13",
+      "topics": [
+        "gdb: breakpoints, stepping, inspecting memory and the stack",
+        "AddressSanitizer and Valgrind for leaks and invalid accesses",
+        "Undefined behaviour: uninitialised variables, signed overflow, buffer overflow and why it matters for security",
+        "Defensive coding, assertions and unit tests in C",
+        "Project: a small system utility or data manager combining files, structs and pointers"
+      ]
+    }
+  ]
+}

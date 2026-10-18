@@ -1,0 +1,124 @@
+{
+  "slug": "research-methods-in-computer-science",
+  "description": "How computer science research is planned, done, evaluated and communicated, from a question to a defended proposal and a final-year project that can withstand review. Taught to the depth of a graduate research methods seminar, with every stage practised on the student's own project.",
+  "modelledOn": [
+    "Zobel, Writing for Computer Science",
+    "Dawson, Projects in Computing and Information Systems: A Student's Guide",
+    "Creswell and Creswell, Research Design: Qualitative, Quantitative and Mixed Methods Approaches",
+    "ACM Code of Ethics and Professional Conduct"
+  ],
+  "outcomes": [
+    "Distinguish scientific knowledge from opinion and classify research by purpose, method and contribution.",
+    "Find, read, critique and synthesise the literature on a topic and write a structured literature review.",
+    "Formulate research questions and hypotheses and choose an appropriate research design.",
+    "Plan a project with scope, milestones, risks and ethical approval.",
+    "Collect and analyse quantitative and qualitative data with the correct statistics and reporting.",
+    "Write a research proposal and project report and present and defend the work."
+  ],
+  "units": [
+    {
+      "title": "Overview of research and scientific knowledge",
+      "weeks": "1-2",
+      "topics": [
+        "What research is: systematic inquiry, reproducibility, falsifiability; science versus engineering versus design",
+        "Kinds of knowledge and sources of truth; the scientific method and its limits",
+        "Research in computer science: theory, experiments, systems building, empirical software engineering, human studies",
+        "Contributions: new algorithms, tools, evidence, taxonomies; what counts as novelty",
+        "Reading a research paper: structure, claims, evidence, limitations"
+      ]
+    },
+    {
+      "title": "Research as communication",
+      "weeks": "3",
+      "topics": [
+        "Venues: journals, conferences, workshops, preprints; peer review and impact",
+        "Scientific writing: clarity, precision, structure, citing; avoiding plagiarism",
+        "Reference management (Zotero, BibTeX) and citation styles (ACM, IEEE, APA)",
+        "Presenting: talks, posters, demonstrations; writing for non-experts and funders"
+      ]
+    },
+    {
+      "title": "Ethics",
+      "weeks": "4",
+      "topics": [
+        "Research integrity: fabrication, falsification, plagiarism, authorship, conflicts of interest",
+        "Human participants: informed consent, anonymity, data protection (Ghana's Data Protection Act), vulnerable groups",
+        "Ethics review boards and institutional approval; ethics in AI, security and data research",
+        "Responsible use of generative AI in research and writing"
+      ]
+    },
+    {
+      "title": "Types of research projects",
+      "weeks": "5",
+      "topics": [
+        "Basic and applied; exploratory, descriptive, explanatory, evaluative",
+        "Quantitative, qualitative and mixed methods; experiments, surveys, case studies, action research, design science",
+        "Development projects versus research projects; the artefact plus evaluation model",
+        "Choosing a topic: feasibility, interest, supervisor fit, local relevance"
+      ]
+    },
+    {
+      "title": "Literature review and critique",
+      "weeks": "6-7",
+      "topics": [
+        "Searching: databases (ACM DL, IEEE Xplore, Google Scholar, arXiv), keywords, snowballing, inclusion criteria",
+        "Systematic literature reviews and mapping studies; keeping a search log",
+        "Critical appraisal: validity, sample, methods, bias, reproducibility",
+        "Synthesis: themes, gaps, tables of comparison; writing the review, not a list of summaries",
+        "Workshop: reviewing ten papers on the student's topic"
+      ]
+    },
+    {
+      "title": "Research and project planning",
+      "weeks": "8",
+      "topics": [
+        "From topic to research questions, aims, objectives and hypotheses; scope and boundaries",
+        "Work plans, Gantt charts, milestones, deliverables, supervision meetings",
+        "Risk assessment and contingency; resources, tools and data access",
+        "Time management and keeping a research diary"
+      ]
+    },
+    {
+      "title": "Research design and data collection",
+      "weeks": "9",
+      "topics": [
+        "Variables, operationalisation, validity (internal, external, construct) and reliability",
+        "Experimental design: controls, randomisation, between and within subjects, benchmarks for algorithm and system evaluation",
+        "Surveys and questionnaires; interviews and focus groups; observation; sampling strategies",
+        "Measurement in computing: performance metrics, usability metrics (SUS), accuracy metrics",
+        "Pilot studies and pre-registration"
+      ]
+    },
+    {
+      "title": "Data analysis",
+      "weeks": "10-11",
+      "topics": [
+        "Descriptive statistics and visualisation; choosing the right chart",
+        "Inferential statistics: t-tests, ANOVA, chi-square, correlation, regression, non-parametric tests; effect sizes and confidence intervals; p-value pitfalls",
+        "Qualitative analysis: coding, thematic analysis, grounded theory in brief",
+        "Tools: R, Python, SPSS, NVivo; reproducible analysis scripts",
+        "Threats to validity and how to report them honestly"
+      ]
+    },
+    {
+      "title": "Structure of a research proposal",
+      "weeks": "12",
+      "topics": [
+        "Title, abstract, introduction and motivation, problem statement, research questions, objectives",
+        "Literature review, methodology, expected outcomes, timeline, budget, references",
+        "Writing and peer-reviewing proposals in class; responding to feedback",
+        "Proposal defence"
+      ]
+    },
+    {
+      "title": "Structure of a research project report",
+      "weeks": "13",
+      "topics": [
+        "Chapters: introduction, literature review, methodology, design and implementation, results and evaluation, discussion, conclusion and future work",
+        "Appendices, code and data availability, reproducibility packages",
+        "Figures, tables and captions; abstracts and executive summaries",
+        "Final presentation and viva preparation; turning a project into a paper"
+      ]
+    }
+  ]
+}

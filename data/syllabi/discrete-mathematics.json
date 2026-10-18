@@ -1,0 +1,111 @@
+{
+  "slug": "discrete-mathematics",
+  "description": "The mathematics that computer science is written in: logic, proof, sets, relations, counting, number theory and graphs, taught by proving and computing rather than memorising. Taught to the depth of the standard mathematics-for-computer-science course, with every proof technique practised on real problems.",
+  "modelledOn": [
+    "Rosen, Discrete Mathematics and Its Applications",
+    "Lehman, Leighton and Meyer, Mathematics for Computer Science",
+    "Epp, Discrete Mathematics with Applications"
+  ],
+  "outcomes": [
+    "Translate English statements into propositional and predicate logic and check validity with truth tables and inference rules.",
+    "Write correct proofs by direct argument, contrapositive, contradiction, cases and induction, including strong and structural induction.",
+    "Work fluently with sets, functions and relations, and prove properties such as injectivity, equivalence and partial order.",
+    "Count arrangements with permutations, combinations, the pigeonhole principle and inclusion-exclusion, and solve recurrences.",
+    "Apply modular arithmetic, GCD and the Chinese remainder theorem, including to RSA.",
+    "Model problems as graphs and reason about paths, trees, colourings and planarity."
+  ],
+  "units": [
+    {
+      "title": "Propositional and predicate logic",
+      "weeks": "1-2",
+      "topics": [
+        "Propositions, connectives, truth tables, tautologies and contradictions",
+        "Logical equivalence, De Morgan's laws, conditional and biconditional, converse and contrapositive",
+        "Rules of inference: modus ponens, modus tollens, resolution; valid and invalid arguments",
+        "Predicates and quantifiers; nested quantifiers; negating quantified statements",
+        "Normal forms (CNF, DNF) and satisfiability; logic puzzles"
+      ]
+    },
+    {
+      "title": "Proof techniques",
+      "weeks": "3",
+      "topics": [
+        "Axioms, definitions, theorems, lemmas; what a proof is and is not",
+        "Direct proof, proof by contrapositive, proof by contradiction, proof by cases",
+        "Existence and uniqueness proofs; counterexamples",
+        "Common errors: circular reasoning, proving the converse, division by zero",
+        "Proof that the square root of 2 is irrational; infinitude of primes"
+      ]
+    },
+    {
+      "title": "Sets, functions and relations",
+      "weeks": "4-5",
+      "topics": [
+        "Set notation, subsets, power sets, Cartesian products; set operations and identities; Venn diagrams",
+        "Binary operations on sets; closure, associativity, commutativity, identity and inverse",
+        "Functions: domain, codomain, image; injective, surjective, bijective; composition and inverse",
+        "Relations: reflexive, symmetric, antisymmetric, transitive; equivalence relations and partitions",
+        "Partial orders, Hasse diagrams, lattices; closures of relations",
+        "Cardinality: countable and uncountable sets, Cantor's diagonal argument"
+      ]
+    },
+    {
+      "title": "Number systems and number theory",
+      "weeks": "6-7",
+      "topics": [
+        "Integers, rationals, reals; positional number systems and base conversion",
+        "Divisibility, primes, the fundamental theorem of arithmetic",
+        "The division algorithm, Euclid's algorithm, extended Euclid and Bezout's identity",
+        "Modular arithmetic, congruences, inverses mod n; Fermat's little theorem and Euler's theorem",
+        "Chinese remainder theorem; RSA encryption as an application",
+        "Representing integers and floating-point numbers in a computer"
+      ]
+    },
+    {
+      "title": "Sequences, series, induction and recursion",
+      "weeks": "8-9",
+      "topics": [
+        "Sequences and summation notation; arithmetic and geometric series; telescoping sums",
+        "Weak and strong induction; well-ordering principle; common induction mistakes",
+        "Recursive definitions of sequences, sets and functions; structural induction",
+        "Solving linear recurrences: characteristic equations, Fibonacci closed form",
+        "Recursive algorithms and proving them correct; towers of Hanoi, merge sort recurrence",
+        "Asymptotic notation: big-O, big-Omega, big-Theta"
+      ]
+    },
+    {
+      "title": "Counting and combinatorics",
+      "weeks": "10",
+      "topics": [
+        "Sum and product rules; permutations and combinations; binomial theorem and Pascal's triangle",
+        "Pigeonhole principle and its generalisation",
+        "Inclusion-exclusion; derangements",
+        "Counting with repetition; stars and bars; distributing objects into boxes",
+        "Introduction to discrete probability: sample spaces, events, conditional probability"
+      ]
+    },
+    {
+      "title": "Boolean algebra",
+      "weeks": "11",
+      "topics": [
+        "Boolean algebra as a mathematical structure; axioms and duality",
+        "Boolean functions, truth tables, sum-of-products and product-of-sums expressions",
+        "Simplification with identities and Karnaugh maps",
+        "Logic gates and circuits as Boolean expressions; functional completeness of NAND",
+        "Boolean algebra and set algebra as the same lattice"
+      ]
+    },
+    {
+      "title": "Graph theory",
+      "weeks": "12-13",
+      "topics": [
+        "Graphs, digraphs, multigraphs; degree, handshaking lemma; adjacency matrix and list",
+        "Paths, cycles, connectivity, components; Euler circuits and Hamiltonian cycles",
+        "Trees, spanning trees, rooted trees; properties and counting of trees",
+        "Shortest paths with Dijkstra; minimum spanning trees with Kruskal and Prim",
+        "Graph colouring, chromatic number, bipartite graphs and matching",
+        "Planar graphs and Euler's formula; modelling road networks and timetables as graphs"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "slug": "advanced-software-development-with-java",
+  "description": "Building complete Java applications with desktop and web front ends: object-oriented design, abstract classes and interfaces, JavaFX and event handling, servlets and JavaServer Pages, JDBC with MVC, and JavaBeans, ending with a deployed web application on a database. Taught to the depth of a leading enterprise Java development course.",
+  "modelledOn": [
+    "Horstmann, Core Java (Volumes I and II)",
+    "Murach, Murach's Java Servlets and JSP",
+    "Jakarta EE Servlet, JSP and JDBC specifications",
+    "Bloch, Effective Java"
+  ],
+  "outcomes": [
+    "Apply object-oriented principles, abstract classes, interfaces and design patterns to structure a large program.",
+    "Build desktop interfaces with JavaFX, scene graphs, layouts, properties and event handling.",
+    "Write servlets that handle HTTP requests, sessions, cookies and filters.",
+    "Connect to a relational database with JDBC and structure the application as model, view and controller.",
+    "Use JavaBeans, scopes and attributes to share state across a web application.",
+    "Generate dynamic pages with JavaServer Pages, JSTL and expression language, and deploy to a servlet container."
+  ],
+  "units": [
+    {
+      "title": "Classes, objects and OO principles",
+      "weeks": "1-2",
+      "topics": [
+        "Review: classes, constructors, encapsulation, inheritance, polymorphism, static and instance members",
+        "SOLID principles; cohesion and coupling; composition over inheritance",
+        "Generics, collections and streams in application code; Optional and immutability",
+        "Unit testing with JUnit and mocking; Maven project structure and dependencies",
+        "Packaging, modules and documentation"
+      ]
+    },
+    {
+      "title": "Abstract classes and interfaces",
+      "weeks": "3",
+      "topics": [
+        "Abstract classes versus interfaces; default and static methods; functional interfaces and lambdas",
+        "Programming to an interface; dependency injection by hand",
+        "Design patterns: Strategy, Observer, Factory, Builder, Template Method, Singleton, DAO",
+        "Refactoring a monolithic program into layered components"
+      ]
+    },
+    {
+      "title": "JavaFX basics",
+      "weeks": "4-5",
+      "topics": [
+        "JavaFX architecture: Application, Stage, Scene, the scene graph; running with the JavaFX SDK",
+        "Controls: labels, buttons, text fields, lists, tables, dialogs; layouts: HBox, VBox, GridPane, BorderPane",
+        "FXML and Scene Builder; CSS styling of JavaFX; images, charts and media",
+        "Properties and bindings; observable collections",
+        "Building a desktop client for a student records or inventory system"
+      ]
+    },
+    {
+      "title": "Event-driven programming",
+      "weeks": "6",
+      "topics": [
+        "Event sources, handlers, event types; lambdas as handlers; the event dispatch chain",
+        "Mouse, keyboard, action and change events; drag and drop",
+        "Threading in GUIs: the JavaFX application thread, Task and Service for background work",
+        "Animation and timelines; responsiveness"
+      ]
+    },
+    {
+      "title": "Java servlets",
+      "weeks": "7-8",
+      "topics": [
+        "The servlet container (Tomcat or Jetty); the servlet life cycle; HttpServlet and the request/response objects",
+        "Handling GET and POST, parameters, headers, redirects, forwarding; the deployment descriptor and annotations",
+        "Sessions, cookies, URL rewriting; filters and listeners",
+        "Error handling, logging and security basics (input validation, output escaping, HTTPS)",
+        "File uploads and asynchronous servlets in brief"
+      ]
+    },
+    {
+      "title": "SQL, JDBC and MVC",
+      "weeks": "9-10",
+      "topics": [
+        "JDBC drivers, connections, statements, prepared statements, result sets, transactions; connection pooling",
+        "The DAO pattern and a data access layer; mapping rows to objects",
+        "MVC for web applications: controller servlets, model classes, JSP views",
+        "SQL injection and prepared statements; handling concurrency and errors",
+        "Introduction to JPA/Hibernate as the next step"
+      ]
+    },
+    {
+      "title": "JavaBeans, scopes and attributes",
+      "weeks": "11",
+      "topics": [
+        "JavaBean conventions: properties, getters and setters, serialisation",
+        "Request, session, application and page scopes; storing and retrieving attributes",
+        "Passing data between servlets and JSPs; form beans and validation",
+        "Thread safety of shared attributes"
+      ]
+    },
+    {
+      "title": "JavaServer Pages",
+      "weeks": "12",
+      "topics": [
+        "JSP life cycle and translation to servlets; directives, scriptlets (and why to avoid them), declarations",
+        "Expression language and the JSTL core, formatting and SQL tags",
+        "Custom tags and tag files; templating and includes; internationalisation",
+        "Comparison with modern alternatives: Thymeleaf, REST APIs with JSON and a JavaScript front end"
+      ]
+    },
+    {
+      "title": "Project and deployment",
+      "weeks": "13",
+      "topics": [
+        "Assembling a complete web application: authentication, CRUD, reports, MVC, database",
+        "Building a WAR, configuring Tomcat, deploying to a cloud VM; environment configuration",
+        "Testing the web layer; performance and security review",
+        "Project presentation and code review"
+      ]
+    }
+  ]
+}

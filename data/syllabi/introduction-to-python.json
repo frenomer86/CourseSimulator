@@ -1,0 +1,114 @@
+{
+  "slug": "introduction-to-python",
+  "description": "Programming in Python from the first print statement to objects, files, graphics, networked clients and event-driven GUIs, with a working program every week. Taught to the depth of a leading introductory programming course in Python.",
+  "modelledOn": [
+    "Lambert, Fundamentals of Python: First Programs",
+    "Guttag, Introduction to Computation and Programming Using Python",
+    "Severance, Python for Everybody"
+  ],
+  "outcomes": [
+    "Write Python programs that use expressions, control structures and functions correctly and idiomatically.",
+    "Process text, lists, dictionaries and files to solve information-processing tasks.",
+    "Choose and implement simple algorithms and reason about their running time.",
+    "Design classes with attributes, methods, inheritance and special methods.",
+    "Manipulate images and draw graphics programmatically.",
+    "Build a networked client and an event-driven graphical interface."
+  ],
+  "units": [
+    {
+      "title": "Python and programming fundamentals",
+      "weeks": "1-2",
+      "topics": [
+        "The interpreter, the shell and scripts; installing Python and an editor",
+        "Values, types (int, float, str, bool), variables, assignment, expressions and operators",
+        "Input and output; f-strings and formatting",
+        "Modules and the standard library: math, random, time",
+        "Pythonic style: PEP 8, naming, comments and docstrings"
+      ]
+    },
+    {
+      "title": "Control structures and functions",
+      "weeks": "3-4",
+      "topics": [
+        "if, elif, else; Boolean logic and truthiness",
+        "while and for loops; range; break, continue, else on loops",
+        "Defining functions, parameters, default and keyword arguments, return values, scope",
+        "Recursion: factorial, Fibonacci, binary search, drawing a Sierpinski triangle",
+        "Exceptions: try, except, finally, raise; validating user input"
+      ]
+    },
+    {
+      "title": "Strings, text files, lists and dictionaries",
+      "weeks": "5-6",
+      "topics": [
+        "String indexing, slicing, methods, immutability; Unicode and encoding",
+        "Lists: methods, slicing, nested lists, list comprehensions; tuples",
+        "Dictionaries and sets: counting words, lookup tables, grouping",
+        "Reading and writing text files; CSV and JSON; processing a file of exam results or sales records",
+        "Mutability, aliasing and copying"
+      ]
+    },
+    {
+      "title": "Algorithms and information processing",
+      "weeks": "7",
+      "topics": [
+        "Linear and binary search; selection, insertion and merge sort; using sorted with keys",
+        "Counting steps and big-O informally; timing with time and timeit",
+        "Simple data analysis: mean, median, mode, histograms from a data file",
+        "Regular expressions for extracting phone numbers and dates",
+        "Command-line programs with arguments"
+      ]
+    },
+    {
+      "title": "Objects and classes",
+      "weeks": "8-9",
+      "topics": [
+        "Classes, __init__, attributes, methods, self",
+        "Special methods: __str__, __repr__, __eq__, __lt__, operator overloading",
+        "Inheritance, polymorphism, super; composition versus inheritance",
+        "Data structures as classes: a stack, a queue, a linked list, a bank account",
+        "Modules, packages and unit testing with unittest or pytest"
+      ]
+    },
+    {
+      "title": "Graphics and image processing",
+      "weeks": "10",
+      "topics": [
+        "Turtle graphics: coordinates, shapes, recursion for fractals",
+        "Images as grids of pixels; loading and saving images with Pillow",
+        "Grayscale, invert, brightness, blur, edge detection as loops over pixels",
+        "Drawing charts without a library; introduction to matplotlib"
+      ]
+    },
+    {
+      "title": "Networks and client/server programming",
+      "weeks": "11",
+      "topics": [
+        "Sockets: IP addresses, ports, TCP; a simple echo client and server",
+        "HTTP from Python: urllib and requests; fetching a web page and a JSON API",
+        "Parsing HTML and JSON responses; a weather or exchange-rate client",
+        "Building a small chat application; blocking calls and threads"
+      ]
+    },
+    {
+      "title": "Graphical user interfaces",
+      "weeks": "12",
+      "topics": [
+        "tkinter windows, widgets, labels, buttons, entries, text boxes",
+        "Layout managers: pack, grid; frames and canvases",
+        "Model-view separation: keeping logic out of the GUI",
+        "A temperature converter and a to-do list application"
+      ]
+    },
+    {
+      "title": "Events and event-driven programming",
+      "weeks": "13",
+      "topics": [
+        "The event loop; callbacks and command bindings",
+        "Mouse and keyboard events; timers with after",
+        "A simple drawing program and a small game on a canvas",
+        "Project: an event-driven application with files, classes and a GUI"
+      ]
+    }
+  ]
+}

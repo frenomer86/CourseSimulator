@@ -1,0 +1,109 @@
+{
+  "slug": "fundamentals-of-computer-science",
+  "description": "A whole-degree tour of what a computer is, how information is represented and moved, and what computing does to society, so that every later course has a map to hang on. Taught to the depth of a leading introductory computer science survey, with hands-on exercises for every idea.",
+  "modelledOn": [
+    "Brookshear and Brylow, Computer Science: An Overview",
+    "Schneider and Gersting, Invitation to Computer Science",
+    "Petzold, Code: The Hidden Language of Computer Hardware and Software"
+  ],
+  "outcomes": [
+    "Describe the parts of a computer and trace how a program and its data move from storage to processor and back.",
+    "Represent text, numbers, images and sound in binary and estimate storage and bandwidth needs.",
+    "Explain what algorithms, programs, operating systems and compilers are and how they fit together.",
+    "Organise information in files, spreadsheets and relational databases and query it.",
+    "Explain how the Internet and the Web work end to end, from a URL to a rendered page.",
+    "Reason about safety, privacy, ethics and the social impact of computing with Ghanaian and global examples."
+  ],
+  "units": [
+    {
+      "title": "What computing is",
+      "weeks": "1",
+      "topics": [
+        "History of computing: from the abacus and Babbage to the transistor, the microprocessor and the smartphone",
+        "Computational thinking: decomposition, abstraction, patterns, algorithms",
+        "Hardware, software, data and people as the parts of a computing system",
+        "Kinds of computers: embedded, mobile, personal, server, supercomputer, cloud"
+      ]
+    },
+    {
+      "title": "Representing information",
+      "weeks": "2-3",
+      "topics": [
+        "Bits and bytes; binary, hexadecimal; units from kilobyte to petabyte",
+        "Integers and two's complement; floating point and why 0.1 + 0.2 is not 0.3",
+        "Text: ASCII, Unicode and UTF-8; representing Twi and other Ghanaian languages",
+        "Images (pixels, colour depth, compression), sound (sampling, bit depth) and video",
+        "Compression: run-length, Huffman and the difference between lossless and lossy",
+        "Error detection: parity and checksums"
+      ]
+    },
+    {
+      "title": "Inside the computer",
+      "weeks": "4-5",
+      "topics": [
+        "Logic gates and how they add; the processor, registers, clock and the fetch-decode-execute cycle",
+        "Memory hierarchy: registers, cache, RAM, SSD, hard disk, cloud storage",
+        "Input and output devices, buses and ports",
+        "Machine code, assembly, high-level languages, compilers and interpreters",
+        "Operating systems: what they do for programs and users; processes and files"
+      ]
+    },
+    {
+      "title": "Algorithms and programs",
+      "weeks": "6-7",
+      "topics": [
+        "Algorithms as precise procedures; pseudocode and flowcharts",
+        "Sequence, selection and iteration; variables and data types",
+        "Searching and sorting by hand: linear search, binary search, bubble and selection sort",
+        "Why some algorithms are faster: counting steps, growth with input size",
+        "Writing and running short programs in Scratch and Python to see the ideas work",
+        "Software: system software, application software, open source, licences"
+      ]
+    },
+    {
+      "title": "Information management, files and databases",
+      "weeks": "8-9",
+      "topics": [
+        "Data, information and knowledge; data quality and data life cycle",
+        "File systems, folders, file formats, metadata; backup and archiving",
+        "Spreadsheets for data: formulas, sorting, filtering, charts",
+        "Relational databases: tables, keys, relationships; simple SQL SELECT queries",
+        "Database applications: student records, mobile money ledgers, hospital systems",
+        "Big data and data centres: what changes at scale"
+      ]
+    },
+    {
+      "title": "Computer networks, the Internet and the Web",
+      "weeks": "10-11",
+      "topics": [
+        "LANs, WANs, Wi-Fi, mobile data; switches and routers",
+        "IP addresses, DNS, packets and the layered model in plain terms",
+        "What happens when you type a URL: HTTP, HTML, CSS, JavaScript, servers and browsers",
+        "Email, cloud services, content delivery and why pages load slowly on poor links",
+        "Submarine cables and Ghana's connectivity; data costs and digital inclusion",
+        "Building a one-page website"
+      ]
+    },
+    {
+      "title": "Computer safety, security and ethics",
+      "weeks": "12",
+      "topics": [
+        "Threats: malware, phishing, mobile money scams, social engineering",
+        "Passwords, two-factor authentication, encryption and HTTPS in plain terms",
+        "Personal data, privacy and Ghana's Data Protection Act",
+        "Professional ethics and the ACM Code; plagiarism and academic integrity",
+        "Safe and healthy computer use"
+      ]
+    },
+    {
+      "title": "Technology and society",
+      "weeks": "13",
+      "topics": [
+        "Computing in Ghana and Africa: mobile money, agritech, e-government, health informatics",
+        "Automation, AI and the future of work; the digital divide",
+        "Environmental cost of computing: energy, e-waste at Agbogbloshie",
+        "Careers and the map of the computer science degree ahead"
+      ]
+    }
+  ]
+}

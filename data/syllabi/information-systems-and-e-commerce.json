@@ -1,0 +1,115 @@
+{
+  "slug": "information-systems-and-e-commerce",
+  "description": "How organisations run on information systems and sell through electronic channels, with mobile money and African fintech as a first-class case rather than a footnote. Taught to the depth of a leading management information systems and e-commerce course.",
+  "modelledOn": [
+    "Laudon and Laudon, Management Information Systems",
+    "Laudon and Traver, E-commerce: Business, Technology, Society",
+    "Turban, King, Lee, Liang and Turban, Electronic Commerce",
+    "Bank of Ghana payment systems and mobile money guidelines"
+  ],
+  "outcomes": [
+    "Classify information systems by level and function and explain how they support decisions.",
+    "Map a business process and show how an ERP or workflow system automates and integrates it.",
+    "Compare e-commerce business and revenue models and design a payment flow including mobile money.",
+    "Explain how CRM and customer data create value and the privacy duties that come with them.",
+    "Align an information systems strategy with organisational strategy and evaluate it with ROI and total cost of ownership.",
+    "Build and present a small e-commerce prototype with a payment integration in sandbox mode."
+  ],
+  "units": [
+    {
+      "title": "Information systems in organisations",
+      "weeks": "1-2",
+      "topics": [
+        "Data, information, knowledge; systems thinking; input, process, output, feedback",
+        "Types of information systems: TPS, MIS, DSS, EIS, knowledge work and office systems, expert systems",
+        "Functional systems: finance, HR, marketing, operations; cross-functional integration",
+        "Information systems in Ghana: GhIPSS, the national ID, e-government portals, hospital systems",
+        "Hardware, software, data, networks, people and procedures as the components of a system"
+      ]
+    },
+    {
+      "title": "Business processes and ERP",
+      "weeks": "3-4",
+      "topics": [
+        "Business process modelling with flowcharts and BPMN; swimlanes; as-is and to-be",
+        "Order-to-cash and procure-to-pay processes",
+        "Enterprise resource planning: modules, a single database, integration benefits and implementation risks",
+        "Supply chain management systems and the bullwhip effect",
+        "Business process re-engineering and change management; ERP in SMEs with open-source options"
+      ]
+    },
+    {
+      "title": "E-commerce models",
+      "weeks": "5",
+      "topics": [
+        "B2C, B2B, C2C, B2G, m-commerce, social commerce; marketplaces versus own stores",
+        "Revenue models: sales, subscription, advertising, transaction fee, affiliate, freemium",
+        "The e-commerce value chain: catalogue, cart, checkout, fulfilment, returns",
+        "Case studies: Jumia, Tonaton, Hubtel and informal commerce on WhatsApp and Instagram"
+      ]
+    },
+    {
+      "title": "Payments",
+      "weeks": "6",
+      "topics": [
+        "Card payments: issuers, acquirers, networks, authorisation, settlement, chargebacks",
+        "Payment gateways and processors; PCI DSS; tokenisation",
+        "Digital wallets, bank transfers, QR codes, buy-now-pay-later",
+        "Payment security: 3-D Secure, fraud detection, strong customer authentication"
+      ]
+    },
+    {
+      "title": "Mobile money and fintech",
+      "weeks": "7-8",
+      "topics": [
+        "How mobile money works: agents, float, wallets, USSD and apps, interoperability (GhIPSS, MMI)",
+        "M-Pesa, MTN MoMo, Telecel Cash and AirtelTigo Money: history, scale and economics",
+        "Fintech services: lending, savings, insurance, remittances; the e-levy debate",
+        "Regulation: Bank of Ghana payment systems rules, KYC/AML, agent networks",
+        "Integrating a mobile-money API into an application in sandbox mode",
+        "Fraud and consumer protection in mobile money"
+      ]
+    },
+    {
+      "title": "Customer data and CRM",
+      "weeks": "9",
+      "topics": [
+        "Customer relationship management: operational, analytical and collaborative CRM",
+        "Customer lifetime value, segmentation, loyalty programmes, churn",
+        "Digital marketing: SEO, search and social advertising, email, analytics and conversion funnels",
+        "Personal data, consent and Ghana's Data Protection Act applied to customer data"
+      ]
+    },
+    {
+      "title": "Information systems strategy",
+      "weeks": "10-11",
+      "topics": [
+        "Linking IS strategy to business strategy; Porter's five forces and value chain; competitive advantage from IT",
+        "Build versus buy versus subscribe; cloud, SaaS and outsourcing decisions",
+        "IT governance: COBIT and ITIL in brief; roles of CIO and IT steering committees",
+        "Digital transformation and platform strategies; data as an asset",
+        "Information systems planning and portfolio management"
+      ]
+    },
+    {
+      "title": "Evaluation and ROI",
+      "weeks": "12",
+      "topics": [
+        "Costs: capital, operating, hidden; total cost of ownership",
+        "Benefits: tangible and intangible; measuring productivity and the productivity paradox",
+        "ROI, NPV, payback period and break-even for IT investments; a worked business case",
+        "Post-implementation review and benefits realisation"
+      ]
+    },
+    {
+      "title": "E-commerce project",
+      "weeks": "13",
+      "topics": [
+        "Building a small online shop with a catalogue, cart, checkout and sandbox payment",
+        "Security, trust and legal requirements: terms, privacy policy, receipts",
+        "Logistics and fulfilment in Ghana: addressing (GhanaPostGPS), delivery, cash on delivery",
+        "Presenting the business case and a demonstration"
+      ]
+    }
+  ]
+}

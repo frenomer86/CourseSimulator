@@ -1,0 +1,126 @@
+{
+  "slug": "computer-hardware",
+  "description": "Hands-on PC and laptop hardware: what every component does, how to choose, assemble, configure and repair a machine, and how to install and tune the operating system on it. Taught to the depth of the professional hardware technician certification, with every procedure practised on real or virtual machines.",
+  "modelledOn": [
+    "CompTIA A+ Core 1 (220-1101) hardware and networking objectives",
+    "Mueller, Upgrading and Repairing PCs",
+    "Andrews, Dark and West, CompTIA A+ Guide to IT Technical Support"
+  ],
+  "outcomes": [
+    "Identify every component on a motherboard and explain how CPU, chipset, memory and buses connect.",
+    "Choose and install processors, memory, storage, power supplies and expansion cards that are compatible with one another.",
+    "Configure BIOS/UEFI, boot order, secure boot and firmware updates safely.",
+    "Install and configure operating systems, drivers and printers on desktops and laptops.",
+    "Diagnose hardware faults with a repeatable troubleshooting procedure and basic tools.",
+    "Specify a custom build for a stated budget and workload, including power and thermal limits."
+  ],
+  "units": [
+    {
+      "title": "Safety, tools and the anatomy of a PC",
+      "weeks": "1",
+      "topics": [
+        "Electrostatic discharge, mains safety, lifting and handling; the technician toolkit",
+        "Form factors: ATX, micro-ATX, mini-ITX, SFF; case airflow",
+        "Tour of a disassembled desktop: identifying every part and cable",
+        "Documenting a system: inventory, serial numbers, photographs before disassembly"
+      ]
+    },
+    {
+      "title": "Motherboards, processors and memory",
+      "weeks": "2-3",
+      "topics": [
+        "Motherboard layout: sockets, chipset, VRMs, slots, headers, jumpers; reading the manual",
+        "CPU basics for technicians: cores, threads, clock, cache, TDP, integrated graphics; Intel and AMD sockets",
+        "Installing a CPU, thermal paste and coolers; air versus liquid cooling; thermal throttling",
+        "DRAM: DDR4 and DDR5, DIMM and SO-DIMM, channels, ECC, XMP/EXPO profiles; installing and testing RAM",
+        "Buses and interfaces: PCIe lanes and generations, SATA, M.2, USB versions, Thunderbolt"
+      ]
+    },
+    {
+      "title": "Storage devices and power supplies",
+      "weeks": "4",
+      "topics": [
+        "Hard disks, SATA and NVMe SSDs, flash wear, SMART data; RAID 0, 1, 5, 10",
+        "Partitioning (MBR, GPT), file systems (NTFS, FAT32, exFAT, ext4) and cloning a drive",
+        "Power supply ratings, 80 Plus efficiency, rails, connectors, modular supplies; calculating a wattage budget",
+        "Uninterruptible power supplies and surge protection for unstable mains; testing a PSU",
+        "Backup media and external storage"
+      ]
+    },
+    {
+      "title": "Expansion, peripherals and display devices",
+      "weeks": "5-6",
+      "topics": [
+        "Graphics cards: GPU, VRAM, outputs, power and slot requirements; installing and testing",
+        "Sound, network, capture and other expansion cards; USB and wireless peripherals",
+        "Display technologies: LCD (TN, IPS, VA), OLED, refresh rate, resolution, colour depth; projectors",
+        "Video interfaces: HDMI, DisplayPort, DVI, VGA, USB-C alt mode; multi-monitor setup and calibration",
+        "Keyboards, mice, scanners, webcams, barcode and smart-card readers; KVM switches",
+        "Connectors and cables: identifying, testing and replacing them"
+      ]
+    },
+    {
+      "title": "BIOS/UEFI, firmware and boot",
+      "weeks": "7",
+      "topics": [
+        "POST, beep and LED codes; BIOS and UEFI settings, boot order, secure boot, TPM, virtualisation flags",
+        "Firmware updates and recovery; CMOS battery and resetting settings",
+        "Boot process from firmware to bootloader to kernel; UEFI partitions",
+        "Overclocking, fan curves and power limits: what is safe"
+      ]
+    },
+    {
+      "title": "Installing operating systems",
+      "weeks": "8-9",
+      "topics": [
+        "Creating installation media; clean install, upgrade, image deployment",
+        "Installing Windows and a Linux distribution; dual boot and partitioning",
+        "Drivers, Windows Update and package managers; activation and licensing",
+        "Post-install tasks: user accounts, security updates, antivirus, backup, restore points",
+        "Virtual machines as a safe way to practise installations",
+        "Recovery tools: safe mode, recovery environment, bootable rescue media"
+      ]
+    },
+    {
+      "title": "Installing and configuring printers",
+      "weeks": "10",
+      "topics": [
+        "Laser, inkjet, thermal and 3D printer technologies and consumables",
+        "Local, network and wireless printer installation; drivers and print queues",
+        "Sharing a printer, print servers, printing from phones",
+        "Common faults: paper jams, streaks, blank pages, offline printers; preventive maintenance"
+      ]
+    },
+    {
+      "title": "Laptops and mobile devices",
+      "weeks": "11",
+      "topics": [
+        "Laptop anatomy: batteries, chargers, keyboards, displays, hinges, SO-DIMMs, M.2 drives",
+        "Disassembly technique and manufacturer service manuals; replacing a screen, battery and keyboard",
+        "Power management, battery health and charging circuits",
+        "Docking stations, port replicators and wireless cards; phones and tablets basics"
+      ]
+    },
+    {
+      "title": "Custom configurations",
+      "weeks": "12",
+      "topics": [
+        "Matching a build to a workload: office, gaming, CAD, video editing, virtualisation host, small server, thin client",
+        "Compatibility checking: socket, chipset, RAM, PSU, case clearance, PCIe lanes",
+        "Costing a build in cedis from local and online suppliers; import and warranty considerations",
+        "Benchmarking and burn-in testing a new machine"
+      ]
+    },
+    {
+      "title": "Troubleshooting",
+      "weeks": "13",
+      "topics": [
+        "A six-step troubleshooting method: identify, theorise, test, plan, implement, verify and document",
+        "No-power, no-POST, no-display, overheating, random reboots, blue screens, slow performance",
+        "Diagnostic tools: multimeter, POST card, memory test, disk health, stress tests, event logs",
+        "Preventive maintenance in dusty and humid conditions; cleaning and thermal servicing",
+        "Writing a repair report and talking to a non-technical user"
+      ]
+    }
+  ]
+}

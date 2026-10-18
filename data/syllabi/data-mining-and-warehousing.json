@@ -1,0 +1,105 @@
+{
+  "slug": "data-mining-and-warehousing",
+  "description": "Designing data warehouses that answer business questions and mining them for patterns: multidimensional modelling, warehouse implementation, data preprocessing, association analysis, classification and prediction with attention to bias and variance, and clustering, each applied to real datasets. Taught to the depth of a leading data mining course.",
+  "modelledOn": [
+    "Han, Kamber and Pei, Data Mining: Concepts and Techniques",
+    "Tan, Steinbach, Karpatne and Kumar, Introduction to Data Mining",
+    "Kimball and Ross, The Data Warehouse Toolkit",
+    "Witten, Frank, Hall and Pal, Data Mining: Practical Machine Learning Tools and Techniques"
+  ],
+  "outcomes": [
+    "Design a data warehouse with dimensional models and explain its architecture and ETL processes.",
+    "Choose and implement star, snowflake and fact-constellation schemas and OLAP operations.",
+    "Implement a warehouse and connect a data mining architecture to it.",
+    "Clean, integrate, reduce, transform and discretise data for mining.",
+    "Mine frequent itemsets and association rules and evaluate their interestingness.",
+    "Build, evaluate and compare classifiers, predictors and clustering methods, and explain bias and variance."
+  ],
+  "units": [
+    {
+      "title": "Data warehousing and modelling",
+      "weeks": "1-2",
+      "topics": [
+        "Operational systems versus decision support; the data warehouse definition: subject-oriented, integrated, time-variant, non-volatile",
+        "Warehouse architecture: sources, staging, ETL/ELT, the warehouse, data marts, metadata, presentation tools",
+        "Dimensional modelling: facts, measures, grain, dimensions, hierarchies; slowly changing dimensions",
+        "Requirements gathering with business users: a retail chain, a telecom, a university registry"
+      ]
+    },
+    {
+      "title": "Schemas for multidimensional data",
+      "weeks": "3",
+      "topics": [
+        "Data cubes, dimensions and measures; the lattice of cuboids",
+        "Star, snowflake and fact constellation schemas; conformed dimensions; surrogate keys",
+        "OLAP operations: roll-up, drill-down, slice, dice, pivot; ROLAP, MOLAP, HOLAP",
+        "SQL extensions for analytics: GROUP BY CUBE and ROLLUP, window functions, materialised views"
+      ]
+    },
+    {
+      "title": "Warehouse implementation and data mining architecture",
+      "weeks": "4-5",
+      "topics": [
+        "Building the warehouse in PostgreSQL or a cloud warehouse; loading with ETL tools or Python; indexing (bitmap, join indexes); partitioning",
+        "Cube computation and materialisation strategies; query processing and performance",
+        "Metadata and data quality management; warehouse operations and refresh",
+        "The data mining process (KDD, CRISP-DM); architecture: data sources, warehouse server, mining engine, pattern evaluation, GUI",
+        "Tools: Python (pandas, scikit-learn, mlxtend), R, Weka, Orange"
+      ]
+    },
+    {
+      "title": "Data preprocessing",
+      "weeks": "6-7",
+      "topics": [
+        "Data types and statistics; visualising and summarising data; measuring similarity and dissimilarity",
+        "Data cleaning: missing values, noise (binning, regression, outlier detection), inconsistencies",
+        "Data integration: entity identification, redundancy and correlation analysis, conflict resolution",
+        "Data reduction: sampling, dimensionality reduction (PCA, attribute selection), numerosity reduction, compression",
+        "Transformation: normalisation (min-max, z-score), discretisation (binning, entropy-based), concept hierarchies"
+      ]
+    },
+    {
+      "title": "Association analysis",
+      "weeks": "8-9",
+      "topics": [
+        "Market basket analysis; itemsets, support, confidence, lift, conviction",
+        "Apriori: candidate generation, pruning, rule generation; efficiency improvements",
+        "FP-growth and the FP-tree; closed and maximal itemsets",
+        "Multilevel and multidimensional associations; sequential patterns in brief",
+        "Interestingness measures and avoiding misleading rules; mining a supermarket or mobile-money dataset"
+      ]
+    },
+    {
+      "title": "Classification and prediction; bias and variance",
+      "weeks": "10-11",
+      "topics": [
+        "Decision tree induction (ID3, C4.5, CART), attribute selection measures, pruning; rule-based classifiers",
+        "Bayesian classification, k-nearest neighbours, support vector machines, neural networks, ensembles (bagging, boosting, random forests)",
+        "Prediction: linear and nonlinear regression",
+        "Evaluation: holdout, cross-validation, bootstrap; confusion matrix, precision, recall, F1, ROC; comparing classifiers statistically",
+        "Bias and variance: decomposition, learning curves, underfitting and overfitting, model complexity, regularisation",
+        "Class imbalance and cost-sensitive learning"
+      ]
+    },
+    {
+      "title": "Clustering analysis",
+      "weeks": "12",
+      "topics": [
+        "Clustering requirements and types of data; partitioning methods: k-means, k-medoids (PAM, CLARA)",
+        "Hierarchical methods: agglomerative, divisive, BIRCH; density-based: DBSCAN, OPTICS; grid-based: STING",
+        "Model-based clustering (EM); clustering high-dimensional data; constraint-based clustering",
+        "Evaluating clusters: silhouette, cohesion and separation; outlier analysis"
+      ]
+    },
+    {
+      "title": "Applications, trends and capstone",
+      "weeks": "13",
+      "topics": [
+        "Mining text, web, time series and graphs in brief; recommender systems",
+        "Privacy-preserving data mining and the ethics of profiling; the Data Protection Act",
+        "Capstone: build a warehouse for a dataset, run OLAP reports and apply association, classification and clustering with a written interpretation",
+        "Presentation to a non-technical audience"
+      ]
+    }
+  ]
+}

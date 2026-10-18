@@ -1,0 +1,105 @@
+{
+  "slug": "human-computer-interaction",
+  "description": "Designing software that people can actually use: research, prototyping, interaction design, accessibility and evaluation, carried through a full design cycle with real users on real phones. Taught to the depth of a leading human-computer interaction design course.",
+  "modelledOn": [
+    "Norman, The Design of Everyday Things",
+    "Rogers, Sharp and Preece, Interaction Design: Beyond Human-Computer Interaction",
+    "Krug, Don't Make Me Think",
+    "W3C Web Content Accessibility Guidelines"
+  ],
+  "outcomes": [
+    "Apply usability principles and Nielsen's heuristics to critique and improve an interface.",
+    "Plan and run user research with interviews, observation and surveys and synthesise personas and journey maps.",
+    "Produce sketches, wireframes and interactive prototypes at increasing fidelity.",
+    "Choose and apply interaction design patterns for navigation, input, feedback and error handling.",
+    "Design for accessibility and verify against WCAG with assistive technology.",
+    "Run usability tests and controlled studies, analyse the data, and design for low-bandwidth mobile users."
+  ],
+  "units": [
+    {
+      "title": "Foundations and usability principles",
+      "weeks": "1-2",
+      "topics": [
+        "Human-centred design and the design cycle; what usability means (ISO 9241)",
+        "Human capabilities: perception, memory, attention, Fitts's law, Hick's law, Gestalt principles",
+        "Norman's principles: affordances, signifiers, mapping, feedback, conceptual models",
+        "Nielsen's ten heuristics; heuristic evaluation of a Ghanaian banking app",
+        "Ethics in design: dark patterns, consent, inclusion"
+      ]
+    },
+    {
+      "title": "User research and personas",
+      "weeks": "3-4",
+      "topics": [
+        "Needfinding: interviews, contextual inquiry, observation, diary studies, surveys",
+        "Recruiting participants and research ethics; working across languages and literacy levels",
+        "Affinity diagrams and synthesis; personas, scenarios, journey maps, point-of-view statements",
+        "Task analysis and hierarchical task analysis",
+        "Field exercise: researching market traders, students or clinic staff"
+      ]
+    },
+    {
+      "title": "Ideation, prototyping and wireframes",
+      "weeks": "5-6",
+      "topics": [
+        "Brainstorming, sketching, storyboards, crazy eights",
+        "Low-fidelity paper prototypes and Wizard-of-Oz testing",
+        "Wireframes and information architecture; card sorting; navigation structures",
+        "Medium and high-fidelity prototypes in Figma or Penpot; design systems and components",
+        "Choosing fidelity for the question you need answered"
+      ]
+    },
+    {
+      "title": "Interaction design patterns and visual design",
+      "weeks": "7-8",
+      "topics": [
+        "Patterns for navigation, search, forms, lists, onboarding, notifications, empty states and errors",
+        "Direct manipulation, modes, undo, progressive disclosure, defaults",
+        "Visual design: layout and grids, typography, colour, hierarchy, icons; platform guidelines (Material, iOS)",
+        "Microinteractions, animation and feedback; responsiveness and perceived performance",
+        "Designing for voice, USSD and feature phones; multilingual interfaces"
+      ]
+    },
+    {
+      "title": "Accessibility",
+      "weeks": "9",
+      "topics": [
+        "Disability, situational impairment and universal design",
+        "WCAG principles (perceivable, operable, understandable, robust) and success criteria",
+        "Screen readers, keyboard navigation, captions, contrast, text size, motion",
+        "Testing with assistive technology and automated checkers; accessible forms and charts"
+      ]
+    },
+    {
+      "title": "Implementing interfaces",
+      "weeks": "10",
+      "topics": [
+        "Model-view-controller and component architectures; state and events",
+        "Building the prototype for real: web (HTML/CSS/JS or React) or mobile; responsive layout",
+        "Input handling, validation and feedback; offline states",
+        "Instrumenting an interface with analytics"
+      ]
+    },
+    {
+      "title": "Usability evaluation",
+      "weeks": "11-12",
+      "topics": [
+        "Formative versus summative evaluation; think-aloud usability testing; task design and metrics",
+        "Heuristic evaluation and cognitive walkthrough",
+        "Controlled experiments and A/B tests: hypotheses, variables, within and between subjects, basic statistics",
+        "Questionnaires: SUS, NASA-TLX; analysing qualitative data",
+        "Reporting findings and iterating on the design"
+      ]
+    },
+    {
+      "title": "Designing for low-bandwidth and mobile users",
+      "weeks": "13",
+      "topics": [
+        "Constraints: small screens, touch, intermittent 2G/3G, data cost, shared devices, low-end phones",
+        "Performance budgets, offline-first, progressive web apps, lightweight assets",
+        "Lessons from M-Pesa, WhatsApp, Jumia and USSD services",
+        "Final project: a complete design cycle from research to tested prototype"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "slug": "web-application-programming-ii",
+  "description": "Server-side web development with PHP and MySQL: dynamic pages, forms, sessions, a complete CRUD application with validation and injection-proof queries, a user registration system, and deployment to a real host. Taught to the depth of a leading server-side web development course.",
+  "modelledOn": [
+    "Nixon, Learning PHP, MySQL and JavaScript",
+    "OWASP Top Ten and OWASP Cheat Sheet Series",
+    "PHP: The Right Way"
+  ],
+  "outcomes": [
+    "Set up a PHP and MySQL development environment and structure a database-driven project.",
+    "Generate dynamic pages with PHP, control HTTP headers, redirects and sessions.",
+    "Process forms safely with validation, sanitisation and CSRF protection.",
+    "Build complete create, read, update and delete functionality with prepared statements.",
+    "Implement secure user registration, login, password hashing and access control.",
+    "Deploy a PHP application to a hosting server, administer it and harden it."
+  ],
+  "units": [
+    {
+      "title": "Server-side web and project setup",
+      "weeks": "1-2",
+      "topics": [
+        "Request-response revisited: how a server runs code; Apache or Nginx with PHP-FPM; XAMPP or Docker locally",
+        "PHP syntax: variables, types, arrays, strings, control flow, functions, include and require",
+        "Project structure: public folder, templates, configuration, Composer and autoloading",
+        "MySQL setup: creating a database and user, phpMyAdmin or the CLI, importing a schema",
+        "Version control for the project from day one"
+      ]
+    },
+    {
+      "title": "Web pages with PHP",
+      "weeks": "3",
+      "topics": [
+        "Mixing PHP and HTML; templates, layouts and partials; escaping output with htmlspecialchars",
+        "Superglobals: $_GET, $_POST, $_SERVER, $_FILES, $_COOKIE, $_SESSION",
+        "Dates, formatting, string functions; error reporting and debugging",
+        "Building a multi-page site with shared header and navigation"
+      ]
+    },
+    {
+      "title": "Headers and redirects",
+      "weeks": "4",
+      "topics": [
+        "HTTP status codes and headers; header(), content types, caching headers, file downloads",
+        "Redirects after POST (PRG pattern); 404 and error pages",
+        "Cookies: setting, reading, expiry, flags (Secure, HttpOnly, SameSite)",
+        "Sessions: lifecycle, session_start, regeneration, storage; flash messages"
+      ]
+    },
+    {
+      "title": "Forms with PHP and data validation",
+      "weeks": "5-6",
+      "topics": [
+        "GET versus POST; reading form data; sticky forms and re-displaying errors",
+        "Server-side validation: required, length, format (email, Ghana phone numbers), ranges; filter_var",
+        "Sanitisation versus validation; never trusting the client; whitelisting",
+        "File uploads: size and type checks, safe storage, image handling",
+        "CSRF tokens; honeypots and rate limiting for spam"
+      ]
+    },
+    {
+      "title": "PHP and MySQL",
+      "weeks": "7",
+      "topics": [
+        "Connecting with PDO (and mysqli compared); DSNs, error modes, character sets",
+        "Running queries, fetching rows, iterating result sets; transactions",
+        "Designing the schema for the course project (users, posts, products, orders)",
+        "A data access layer: repository functions or classes"
+      ]
+    },
+    {
+      "title": "Preventing SQL injection and other attacks",
+      "weeks": "8",
+      "topics": [
+        "How SQL injection works: demonstrated on a deliberately vulnerable page",
+        "Prepared statements and parameter binding; why escaping is not enough",
+        "Cross-site scripting and output escaping; content security policy in brief",
+        "The OWASP Top Ten applied to a PHP app; security review checklist"
+      ]
+    },
+    {
+      "title": "CRUD",
+      "weeks": "9-10",
+      "topics": [
+        "List, detail, create, edit and delete pages; routing with a front controller",
+        "Pagination, searching, sorting and filtering",
+        "Confirmation dialogs and soft deletes; audit fields",
+        "Model-view-controller organisation of the project; a glimpse of Laravel"
+      ]
+    },
+    {
+      "title": "User registration system",
+      "weeks": "11",
+      "topics": [
+        "Registration, email verification, login, logout, remember me",
+        "Password hashing with password_hash and password_verify; password reset flows",
+        "Authorisation: roles (admin, lecturer, student) and protecting pages",
+        "Brute-force protection, session fixation and hijacking defences"
+      ]
+    },
+    {
+      "title": "Hosting, server administration and security",
+      "weeks": "12-13",
+      "topics": [
+        "Choosing a host: shared hosting, VPS, PaaS; domains and DNS; .gh domains",
+        "Deploying with FTP/SFTP or Git; environment configuration; file permissions",
+        "HTTPS with Let's Encrypt; PHP configuration hardening; disabling dangerous functions; error display off",
+        "Backups of code and database; logs; updates; monitoring uptime",
+        "Project: a complete database-driven application (e-commerce shop, school portal or booking system) deployed and demonstrated"
+      ]
+    }
+  ]
+}

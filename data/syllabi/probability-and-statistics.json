@@ -1,0 +1,105 @@
+{
+  "slug": "probability-and-statistics",
+  "description": "Probability theory and statistics built for computer scientists, with every distribution simulated in R before and after it is derived. Taught to the depth of a full probability course for computer scientists.",
+  "modelledOn": [
+    "Ross, A First Course in Probability",
+    "Bertsekas and Tsitsiklis, Introduction to Probability",
+    "Walpole, Myers, Myers and Ye, Probability and Statistics for Engineers and Scientists"
+  ],
+  "outcomes": [
+    "Compute probabilities of events with counting, conditional probability, independence and Bayes' theorem.",
+    "Work with discrete and continuous random variables, their PMFs, PDFs, CDFs, expectations and variances.",
+    "Recognise and apply the standard distributions, including Bernoulli, binomial, geometric, Poisson, uniform, exponential and normal.",
+    "Use moments and moment generating functions to derive properties and sums of random variables.",
+    "Apply the law of large numbers and central limit theorem and construct confidence intervals and hypothesis tests.",
+    "Simulate random processes in R and use the results to check analytic answers and estimate hard quantities."
+  ],
+  "units": [
+    {
+      "title": "Probability theory",
+      "weeks": "1-2",
+      "topics": [
+        "Sample spaces, events, set operations; axioms of probability",
+        "Counting: permutations, combinations, multinomials; birthday problem and hash collisions",
+        "Conditional probability, multiplication rule, law of total probability",
+        "Bayes' theorem: medical tests, spam filters, malaria rapid tests with false positives",
+        "Independence and conditional independence; reliability of series and parallel systems"
+      ]
+    },
+    {
+      "title": "Random variables",
+      "weeks": "3-4",
+      "topics": [
+        "Discrete random variables, probability mass functions, cumulative distribution functions",
+        "Continuous random variables, probability density functions; the CDF as the bridge",
+        "Expectation, variance, standard deviation; linearity of expectation",
+        "Functions of random variables; expectation of a function",
+        "Indicator variables and counting with expectation (expected number of collisions, fixed points)"
+      ]
+    },
+    {
+      "title": "Special distributions",
+      "weeks": "5-6",
+      "topics": [
+        "Bernoulli, binomial, geometric, negative binomial, hypergeometric",
+        "Poisson distribution and the Poisson process: arrivals at a bank, packets at a router",
+        "Uniform, exponential (memorylessness) and gamma distributions",
+        "Normal distribution: standardisation, tables, the 68-95-99.7 rule; normal approximation to binomial",
+        "Choosing a distribution for a real situation; fitting and checking in R"
+      ]
+    },
+    {
+      "title": "Moments and moment generating functions",
+      "weeks": "7",
+      "topics": [
+        "Moments about the origin and about the mean; skewness and kurtosis",
+        "Moment generating functions: definition, computing moments, uniqueness",
+        "MGFs of the standard distributions; sums of independent random variables",
+        "Characteristic functions and probability generating functions in brief"
+      ]
+    },
+    {
+      "title": "Joint probability distributions",
+      "weeks": "8-9",
+      "topics": [
+        "Joint, marginal and conditional distributions for discrete and continuous pairs",
+        "Independence of random variables; covariance and correlation",
+        "Conditional expectation and the law of iterated expectation",
+        "Sums of random variables, convolution; distribution of the maximum and minimum",
+        "Bivariate normal distribution; transformations of two variables"
+      ]
+    },
+    {
+      "title": "Special probability theorems",
+      "weeks": "10",
+      "topics": [
+        "Markov and Chebyshev inequalities; Chernoff bounds for randomised algorithms",
+        "Weak and strong laws of large numbers",
+        "Central limit theorem: statement, intuition and simulation",
+        "Applications: Monte Carlo estimation, error in polling, load on a server"
+      ]
+    },
+    {
+      "title": "Statistics: estimation and testing",
+      "weeks": "11-12",
+      "topics": [
+        "Descriptive statistics, histograms, boxplots, sample mean and variance",
+        "Point estimation: method of moments, maximum likelihood; bias and consistency",
+        "Confidence intervals for means and proportions; t-distribution",
+        "Hypothesis testing: null and alternative, p-values, type I and II errors, z and t tests, chi-square tests",
+        "Simple linear regression and correlation; A/B testing a web page"
+      ]
+    },
+    {
+      "title": "Computer simulation in R",
+      "weeks": "13",
+      "topics": [
+        "Pseudo-random numbers; sample, runif, rnorm, rbinom and friends; setting seeds",
+        "Simulating games, queues and random walks; estimating probabilities and expectations",
+        "Inverse transform and rejection sampling to generate any distribution",
+        "Bootstrap confidence intervals; visualising sampling distributions",
+        "Project: simulate a mobile-money transaction system or a classroom's exam scores and compare with theory"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "slug": "database-systems-and-design",
+  "description": "Designing relational databases from requirements to normalised schema, and querying them with the full power of SQL, with a working database server from the second week. Taught to the depth of a leading introductory database systems course.",
+  "modelledOn": [
+    "Elmasri and Navathe, Fundamentals of Database Systems",
+    "Silberschatz, Korth and Sudarshan, Database System Concepts",
+    "Garcia-Molina, Ullman and Widom, Database Systems: The Complete Book"
+  ],
+  "outcomes": [
+    "Explain the database approach, the three-schema architecture and the components of a DBMS.",
+    "Model a domain as an entity-relationship diagram and map it to relational tables.",
+    "Apply functional dependencies to normalise a schema to 3NF and BCNF and judge when to denormalise.",
+    "Write SQL queries with filtering, sorting, joins, subqueries, set operators, grouping and window functions.",
+    "Create and manage tables, constraints, indexes, views and transactions with DDL and DCL.",
+    "Install, configure and administer a database server and connect an application to it."
+  ],
+  "units": [
+    {
+      "title": "Database environment and approaches",
+      "weeks": "1",
+      "topics": [
+        "File-based systems and their problems; the database approach; data independence",
+        "Database users and roles; DBMS functions; advantages and costs",
+        "Relational, NoSQL and NewSQL landscape; where each fits",
+        "Example domains used all term: a university registry, a clinic, a mobile-money agent network"
+      ]
+    },
+    {
+      "title": "System concepts and architecture",
+      "weeks": "2",
+      "topics": [
+        "Data models, schemas and instances; the three-schema architecture",
+        "DBMS languages (DDL, DML, DCL) and interfaces; client-server architecture",
+        "Installing and configuring database software: PostgreSQL or MySQL, users, ports, a first database",
+        "Tools: psql or mysql CLI, a graphical client, loading sample data"
+      ]
+    },
+    {
+      "title": "The relational model",
+      "weeks": "3",
+      "topics": [
+        "Relations, attributes, tuples, domains; keys: super, candidate, primary, foreign",
+        "Integrity constraints: entity, referential, domain; NULL semantics",
+        "Relational algebra: select, project, join, union, difference, rename",
+        "Relational calculus in brief and how SQL relates to algebra"
+      ]
+    },
+    {
+      "title": "Entity-Relationship modelling",
+      "weeks": "4-5",
+      "topics": [
+        "Entities, attributes (simple, composite, multivalued, derived), keys",
+        "Relationships, cardinality and participation constraints; weak entities",
+        "Enhanced ER: specialisation, generalisation, categories; UML class diagrams for data",
+        "Mapping ER to relational schemas step by step",
+        "Modelling workshop: from interview notes to an ER diagram for a clinic"
+      ]
+    },
+    {
+      "title": "Functional dependencies and normalisation",
+      "weeks": "6-7",
+      "topics": [
+        "Update, insertion and deletion anomalies; design guidelines",
+        "Functional dependencies, Armstrong's axioms, closure, minimal cover",
+        "1NF, 2NF, 3NF and BCNF with worked decompositions; lossless join and dependency preservation",
+        "Multivalued dependencies and 4NF",
+        "When to denormalise for performance and reporting"
+      ]
+    },
+    {
+      "title": "SQL: SELECT, restricting and sorting",
+      "weeks": "8",
+      "topics": [
+        "SELECT, DISTINCT, column aliases, expressions, string and date functions",
+        "WHERE with comparison, BETWEEN, IN, LIKE, IS NULL, logical operators",
+        "ORDER BY, LIMIT and OFFSET",
+        "Aggregates, GROUP BY and HAVING; CASE expressions"
+      ]
+    },
+    {
+      "title": "Joins, subqueries and set operators",
+      "weeks": "9-10",
+      "topics": [
+        "Inner, left, right and full outer joins; self joins; cross joins; natural joins and USING",
+        "Single-row and multi-row subqueries; correlated subqueries; EXISTS and NOT EXISTS",
+        "Subqueries in FROM and SELECT; common table expressions; recursive queries for hierarchies",
+        "UNION, UNION ALL, INTERSECT, EXCEPT",
+        "Window functions: ROW_NUMBER, RANK, running totals",
+        "Reading an execution plan and adding an index"
+      ]
+    },
+    {
+      "title": "DDL: creating and managing tables",
+      "weeks": "11",
+      "topics": [
+        "CREATE TABLE with data types, PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, NOT NULL, DEFAULT",
+        "ALTER TABLE, DROP, TRUNCATE; sequences and auto-increment",
+        "INSERT, UPDATE, DELETE, MERGE; bulk loading from CSV",
+        "Views, indexes, schemas; GRANT and REVOKE"
+      ]
+    },
+    {
+      "title": "Transactions, storage and administration",
+      "weeks": "12",
+      "topics": [
+        "ACID properties; COMMIT and ROLLBACK; isolation levels and anomalies",
+        "Locks and deadlocks; introduction to recovery and the log",
+        "Storage: pages, heap files, B+ tree and hash indexes",
+        "Backup, restore, users, roles and basic security configuration"
+      ]
+    },
+    {
+      "title": "Databases in applications",
+      "weeks": "13",
+      "topics": [
+        "Connecting from Python or Java; prepared statements and SQL injection",
+        "Stored procedures, functions and triggers",
+        "Project: design, normalise, build and query a database for a real local organisation",
+        "Preview of NoSQL document and key-value stores"
+      ]
+    }
+  ]
+}

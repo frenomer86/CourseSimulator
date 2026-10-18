@@ -1,0 +1,104 @@
+{
+  "slug": "cloud-computing",
+  "description": "What the cloud is made of and how to use it well: its roots in virtualisation and distributed systems, the service and deployment models, architecture layers, security, service selection, economics and the major platforms, with real deployments on free tiers throughout. Taught to the depth of a leading cloud computing course and the foundational cloud certifications.",
+  "modelledOn": [
+    "Buyya, Vecchiola and Selvi, Mastering Cloud Computing",
+    "NIST SP 800-145 The NIST Definition of Cloud Computing and NIST SP 500-292 Cloud Computing Reference Architecture",
+    "AWS Cloud Practitioner, Microsoft Azure Fundamentals (AZ-900) and Google Cloud Digital Leader objectives",
+    "Erl, Mahmood and Puttini, Cloud Computing: Concepts, Technology and Architecture"
+  ],
+  "outcomes": [
+    "Trace the technical roots of cloud computing and explain its essential characteristics.",
+    "Distinguish IaaS, PaaS, SaaS, FaaS and public, private, hybrid and community deployments and choose among them.",
+    "Describe cloud architecture layers and design applications for elasticity, resilience and multitenancy.",
+    "Apply the shared responsibility model and configure identity, network and data security in the cloud.",
+    "Select services using measurable attributes and compare providers on fit and cost.",
+    "Estimate and optimise cloud cost and operate services with monitoring, SLAs and service management practices."
+  ],
+  "units": [
+    {
+      "title": "Roots of cloud computing",
+      "weeks": "1",
+      "topics": [
+        "From mainframes and time-sharing to grids, utility computing, virtualisation and web services",
+        "Enabling technologies: virtualisation (hypervisors, containers), data centres, broadband, SOA and web APIs",
+        "The economics that made it work: scale, automation, pay-as-you-go",
+        "Cloud in Africa: regions in South Africa and Nigeria, latency to Ghana, local providers and data sovereignty"
+      ]
+    },
+    {
+      "title": "Characteristics, service models and deployment models",
+      "weeks": "2-3",
+      "topics": [
+        "Essential characteristics: on-demand self-service, broad network access, resource pooling, rapid elasticity, measured service",
+        "IaaS, PaaS, SaaS, FaaS/serverless, CaaS; the responsibility split at each level",
+        "Public, private, hybrid, community and multi-cloud deployments; edge and fog",
+        "Hands-on: launching a virtual machine, deploying an app to a PaaS, calling a serverless function"
+      ]
+    },
+    {
+      "title": "Architecture layers and methodologies",
+      "weeks": "4-5",
+      "topics": [
+        "Reference architecture: physical, virtualisation, orchestration, platform and application layers",
+        "Compute: VMs, containers, Kubernetes, serverless; storage: object, block, file; databases: managed relational, NoSQL, caches",
+        "Networking: VPCs, subnets, load balancers, CDNs, DNS",
+        "Design methodologies: well-architected pillars, twelve-factor apps, microservices, stateless design, infrastructure as code",
+        "Building a three-tier application on a cloud platform"
+      ]
+    },
+    {
+      "title": "Security in the cloud",
+      "weeks": "6-7",
+      "topics": [
+        "The shared responsibility model; threats specific to cloud (misconfiguration, credential leaks, insecure APIs)",
+        "Identity and access management: users, roles, policies, least privilege, MFA, federation",
+        "Network security: security groups, private subnets, bastions, WAF, DDoS protection",
+        "Data security: encryption at rest and in transit, key management, backups, data residency and the Data Protection Act",
+        "Compliance and assurance: ISO 27017/27018, SOC 2, audits; security monitoring and incident response"
+      ]
+    },
+    {
+      "title": "Service selection and SMI attributes",
+      "weeks": "8",
+      "topics": [
+        "The Service Measurement Index: accountability, agility, assurance, financials, performance, security and privacy, usability",
+        "Defining requirements and weighting attributes; multi-criteria decision making",
+        "Comparing providers and services for a case: a university LMS, a fintech API, a data analytics platform",
+        "Vendor lock-in and portability; open standards and open-source alternatives"
+      ]
+    },
+    {
+      "title": "Cloud economics: provisioning, cost optimisation, multitenancy, monitoring",
+      "weeks": "9-10",
+      "topics": [
+        "Pricing models: on-demand, reserved, spot, serverless; storage and egress costs; free tiers",
+        "Capacity planning and provisioning; autoscaling policies; right-sizing",
+        "Cost optimisation: tagging, budgets, alerts, FinOps practices; a worked estimate in dollars and cedis",
+        "Multitenancy: isolation models, noisy neighbours, SaaS tenancy design",
+        "Monitoring and observability: metrics, logs, traces, dashboards, alerting"
+      ]
+    },
+    {
+      "title": "Google, Azure and AWS platforms",
+      "weeks": "11-12",
+      "topics": [
+        "AWS core services: EC2, S3, RDS, Lambda, VPC, IAM, CloudWatch",
+        "Microsoft Azure: Virtual Machines, Blob Storage, Azure SQL, Functions, Entra ID, Monitor",
+        "Google Cloud: Compute Engine, Cloud Storage, Cloud SQL, Cloud Functions, IAM, Operations",
+        "Mapping equivalent services across providers; CLI and infrastructure as code (Terraform) for each",
+        "Deploying the same application to two providers and comparing"
+      ]
+    },
+    {
+      "title": "Service management",
+      "weeks": "13",
+      "topics": [
+        "Service level agreements, availability targets and credits; reading a provider's SLA",
+        "ITIL-aligned service management in the cloud: change, incident, problem, capacity",
+        "Backup, disaster recovery and multi-region design; business continuity",
+        "Capstone: a documented, secured, cost-estimated cloud deployment with monitoring and an SLA"
+      ]
+    }
+  ]
+}

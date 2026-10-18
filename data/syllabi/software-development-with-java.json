@@ -1,0 +1,114 @@
+{
+  "slug": "software-development-with-java",
+  "description": "Object-oriented software development in Java from language basics through inheritance, exceptions, I/O, collections, threads and networking, building complete programs with tests from the first weeks. Taught to the depth of a leading object-oriented programming course in Java.",
+  "modelledOn": [
+    "Horstmann, Core Java",
+    "Sedgewick and Wayne, Computer Science: An Interdisciplinary Approach",
+    "Bloch, Effective Java"
+  ],
+  "outcomes": [
+    "Write Java programs with correct syntax, types, control flow, methods and arrays, and run them from the command line and an IDE.",
+    "Design classes that use encapsulation, inheritance, polymorphism, interfaces and abstract classes appropriately.",
+    "Handle errors with checked and unchecked exceptions and write robust input and file handling.",
+    "Use the collections framework and generics to model data and choose the right collection.",
+    "Write multithreaded programs with correct synchronisation and use executors.",
+    "Build a networked application with sockets and HTTP and test code with JUnit."
+  ],
+  "units": [
+    {
+      "title": "Introduction to Java and language components",
+      "weeks": "1-2",
+      "topics": [
+        "The JVM, JDK and bytecode; compiling and running; IDE setup; Maven or Gradle basics",
+        "Program structure, main, packages and imports; comments and Javadoc",
+        "Primitive types, variables, literals, operators, casting; String and StringBuilder",
+        "Control flow: if, switch (including switch expressions), while, do, for, enhanced for",
+        "Input with Scanner; formatted output; command-line arguments"
+      ]
+    },
+    {
+      "title": "Methods and arrays",
+      "weeks": "3",
+      "topics": [
+        "Defining methods, parameters, return types, overloading, varargs; pass-by-value semantics",
+        "Static versus instance methods; recursion",
+        "One- and two-dimensional arrays; Arrays utility class; common algorithms on arrays",
+        "Writing unit tests with JUnit from the start"
+      ]
+    },
+    {
+      "title": "Object-oriented programming and encapsulation",
+      "weeks": "4-5",
+      "topics": [
+        "Classes, objects, fields, constructors, this; object references and null",
+        "Encapsulation: private fields, getters and setters, immutability, invariants",
+        "Static fields and methods, constants, enums",
+        "equals, hashCode and toString; records",
+        "Object relationships: association, aggregation, composition; UML class diagrams",
+        "Designing a class from a problem statement: a mobile-money wallet, a student register"
+      ]
+    },
+    {
+      "title": "Inheritance and polymorphism",
+      "weeks": "6-7",
+      "topics": [
+        "extends, super, method overriding, the Object class; protected access",
+        "Polymorphism and dynamic dispatch; casting and instanceof with pattern matching",
+        "Abstract classes and interfaces; default methods; functional interfaces and lambdas",
+        "Composition over inheritance; the Liskov substitution principle",
+        "Design patterns in Java: Strategy, Observer, Factory, Singleton"
+      ]
+    },
+    {
+      "title": "Exceptions",
+      "weeks": "8",
+      "topics": [
+        "The exception hierarchy; checked versus unchecked; try, catch, finally, multi-catch",
+        "throw and throws; custom exception classes; wrapping and chaining",
+        "try-with-resources and AutoCloseable",
+        "Designing error handling: fail fast, validate input, log and recover"
+      ]
+    },
+    {
+      "title": "Input and output",
+      "weeks": "9",
+      "topics": [
+        "Streams and readers: byte versus character streams, buffering",
+        "Reading and writing text and binary files; java.nio.file Files and Paths",
+        "Object serialisation; JSON with a library",
+        "Reading CSV data from a government open-data portal and summarising it"
+      ]
+    },
+    {
+      "title": "Generics and collections",
+      "weeks": "10",
+      "topics": [
+        "Generic classes and methods; bounded types and wildcards",
+        "List, Set, Map, Queue, Deque and their implementations; choosing by complexity",
+        "Iterators, Comparable and Comparator; sorting collections",
+        "Streams API: map, filter, reduce, collectors; Optional"
+      ]
+    },
+    {
+      "title": "Threads and concurrency",
+      "weeks": "11",
+      "topics": [
+        "Thread and Runnable; starting, joining, sleeping; thread lifecycle",
+        "Race conditions, synchronized, volatile, locks; deadlock",
+        "ExecutorService, thread pools, Future and CompletableFuture; concurrent collections",
+        "A producer-consumer example and a parallel file processor"
+      ]
+    },
+    {
+      "title": "Networking and a complete application",
+      "weeks": "12-13",
+      "topics": [
+        "Sockets: a TCP echo server and client; multithreaded server; UDP",
+        "HTTP from Java: HttpClient; calling a REST API and parsing JSON",
+        "URL handling, and a simple HTTP server with com.sun.net.httpserver",
+        "Project: a multi-user application (chat, quiz or inventory) with files, collections, threads, networking and tests",
+        "Packaging as a runnable JAR; documentation and code review"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "slug": "big-data-and-parallel-computing",
+  "description": "Computing on data too large or too slow for one core: shared-memory parallelism with threads and locks, SIMD and GPUs, and distributed data processing with MapReduce, Spark-style dataflow and stream processing, always measuring speed-up, scaling and cost. Taught to the depth of a leading parallel and big-data systems course.",
+  "modelledOn": [
+    "Leskovec, Rajaraman and Ullman, Mining of Massive Datasets",
+    "Zaharia and Chambers, Spark: The Definitive Guide",
+    "Pacheco and Malensek, An Introduction to Parallel Programming",
+    "Kleppmann, Designing Data-Intensive Applications"
+  ],
+  "outcomes": [
+    "Characterise big data problems and choose between scaling up, scaling out and smarter algorithms.",
+    "Write correct multithreaded programs with locks and lock-free techniques and measure speed-up against Amdahl's and Gustafson's laws.",
+    "Explain SIMD and GPU execution models and write a simple data-parallel kernel.",
+    "Design MapReduce jobs over a distributed file system and reason about shuffles, partitioning and fault tolerance.",
+    "Build Spark-style dataflow pipelines with RDDs and DataFrames and tune them.",
+    "Process unbounded streams with windows and exactly-once semantics and estimate the cost of a data platform."
+  ],
+  "units": [
+    {
+      "title": "Characteristics of big data",
+      "weeks": "1",
+      "topics": [
+        "Volume, velocity, variety, veracity, value; where big data comes from (telecoms, mobile money, sensors, the web)",
+        "Why single machines fail: memory, disk and network limits; latency and throughput",
+        "The landscape: Hadoop ecosystem, Spark, cloud data platforms, streaming systems",
+        "Storage formats: CSV, JSON, Avro, Parquet, ORC; compression and columnar layout"
+      ]
+    },
+    {
+      "title": "Parallel computing foundations",
+      "weeks": "2",
+      "topics": [
+        "Flynn's taxonomy; shared memory versus distributed memory; task and data parallelism",
+        "Speed-up, efficiency, Amdahl's law, Gustafson's law, scalability (strong and weak scaling)",
+        "Parallel algorithm design: decomposition, communication, agglomeration, mapping",
+        "Benchmarking methodology and reporting"
+      ]
+    },
+    {
+      "title": "Threads, locks and parallel speed-up",
+      "weeks": "3-4",
+      "topics": [
+        "Threads in C/C++ (pthreads), Java and Python (and the GIL); OpenMP pragmas for loops",
+        "Data races, mutexes, condition variables, barriers, atomics; memory models and visibility",
+        "Deadlock, livelock, contention, false sharing, load imbalance",
+        "Parallel patterns: map, reduce, scan, pipeline, work stealing, fork-join; thread pools",
+        "Lock-free queues and compare-and-swap; measuring speed-up on matrix multiply and word count"
+      ]
+    },
+    {
+      "title": "GPU and SIMD concepts",
+      "weeks": "5",
+      "topics": [
+        "Vector instructions (SSE, AVX, NEON) and auto-vectorisation",
+        "GPU architecture: streaming multiprocessors, warps, memory hierarchy; CUDA and OpenCL programming model",
+        "Writing a vector add and a reduction kernel; occupancy, coalescing, divergence",
+        "GPUs for machine learning and scientific computing; using GPUs through NumPy-like libraries"
+      ]
+    },
+    {
+      "title": "Distributed file systems and MapReduce",
+      "weeks": "6-7",
+      "topics": [
+        "GFS/HDFS design: blocks, replication, name node, fault tolerance",
+        "The MapReduce model: map, shuffle, sort, reduce; combiners and partitioners; the execution framework and stragglers",
+        "Algorithms in MapReduce: word count, inverted index, joins, matrix multiplication, PageRank",
+        "Limitations of MapReduce and the move to in-memory dataflow",
+        "Running jobs on a local cluster or a free cloud tier"
+      ]
+    },
+    {
+      "title": "Spark-style dataflow",
+      "weeks": "8-9",
+      "topics": [
+        "RDDs: transformations, actions, lineage, lazy evaluation, persistence",
+        "DataFrames and Spark SQL; the Catalyst optimiser; joins, aggregations, window functions",
+        "Partitioning, shuffles, broadcast joins, caching; reading the Spark UI; tuning memory and parallelism",
+        "Machine learning at scale with MLlib; graph processing with GraphX or Pregel-style models",
+        "Dask and other dataflow engines compared"
+      ]
+    },
+    {
+      "title": "Stream processing",
+      "weeks": "10-11",
+      "topics": [
+        "Bounded versus unbounded data; event time versus processing time; watermarks",
+        "Messaging backbones: Kafka topics, partitions, consumer groups",
+        "Windows (tumbling, sliding, session), state, exactly-once semantics; Flink and Spark Structured Streaming",
+        "Streaming algorithms: sampling, Bloom filters, count-min sketch, HyperLogLog",
+        "Real-time fraud detection on a mobile-money transaction stream"
+      ]
+    },
+    {
+      "title": "Data platforms, scaling and cost",
+      "weeks": "12",
+      "topics": [
+        "Data lakes, lakehouses and warehouses; orchestration with Airflow; schema evolution",
+        "Scaling strategies: partitioning, replication, autoscaling, spot instances",
+        "Cost models: cloud pricing, storage versus compute, egress; total cost of a pipeline in dollars and cedis",
+        "Performance versus cost trade-offs; when a single big machine with DuckDB or Polars is enough"
+      ]
+    },
+    {
+      "title": "Capstone",
+      "weeks": "13",
+      "topics": [
+        "End-to-end project: ingest, process in batch and streaming, store and query a large public dataset",
+        "Measuring and reporting speed-up, scaling and cost",
+        "Reliability, monitoring and data quality in production pipelines",
+        "Presentation and code review"
+      ]
+    }
+  ]
+}

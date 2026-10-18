@@ -1,0 +1,123 @@
+{
+  "slug": "it-project-management",
+  "description": "Managing IT projects through all ten knowledge areas, from charter to closure, with the quantitative tools of scheduling, cost and risk and the agile practices that modern software teams use. Taught to the depth of the professional project management body of knowledge.",
+  "modelledOn": [
+    "PMI, A Guide to the Project Management Body of Knowledge (PMBOK, 6th and 7th editions)",
+    "Schwalbe, Information Technology Project Management",
+    "Scrum Guide and the Agile Practice Guide"
+  ],
+  "outcomes": [
+    "Explain the project life cycle, process groups and the role of the project manager in an IT organisation.",
+    "Write a project charter, scope statement and work breakdown structure for an IT project.",
+    "Build a network diagram, compute the critical path and PERT estimates, and resource-level a schedule.",
+    "Estimate and control costs with earned value management.",
+    "Plan quality, resources, communications and stakeholder engagement for a project.",
+    "Identify, analyse and respond to risks quantitatively and qualitatively, and apply agile methods where they fit."
+  ],
+  "units": [
+    {
+      "title": "Project management context and processes",
+      "weeks": "1-2",
+      "topics": [
+        "Projects, programmes and portfolios; the triple constraint and beyond",
+        "The project life cycle; process groups: initiating, planning, executing, monitoring and controlling, closing",
+        "Organisational structures, PMO, the project manager's skills; why IT projects fail (Standish, local cases)",
+        "Predictive, iterative, incremental, agile and hybrid approaches",
+        "Project management software: MS Project, OpenProject, Jira"
+      ]
+    },
+    {
+      "title": "Integration management",
+      "weeks": "3",
+      "topics": [
+        "Business case and benefits; the project charter",
+        "The project management plan and subsidiary plans",
+        "Directing and managing work; integrated change control; configuration management",
+        "Closing a project or phase; lessons learned"
+      ]
+    },
+    {
+      "title": "Scope management",
+      "weeks": "4",
+      "topics": [
+        "Collecting requirements: interviews, workshops, prototypes, user stories",
+        "Scope statement; the work breakdown structure and WBS dictionary",
+        "Validating and controlling scope; scope creep and gold plating",
+        "Product backlogs and scope in agile projects"
+      ]
+    },
+    {
+      "title": "Time management: networks, CPM and PERT",
+      "weeks": "5-6",
+      "topics": [
+        "Defining and sequencing activities; dependencies, leads and lags; precedence diagrams",
+        "Estimating durations: analogous, parametric, three-point, bottom-up",
+        "Critical path method: forward and backward pass, float, critical path",
+        "PERT: expected durations, variance, probability of meeting a deadline",
+        "Gantt charts, milestones, baselines; crashing and fast-tracking; resource levelling",
+        "Velocity, sprints and release planning in agile"
+      ]
+    },
+    {
+      "title": "Cost management",
+      "weeks": "7",
+      "topics": [
+        "Cost estimating techniques and accuracy ranges; cost of software (function points, COCOMO in brief)",
+        "Budgeting: cost baseline, contingency and management reserves, cash flow",
+        "Earned value management: PV, EV, AC, CV, SV, CPI, SPI, EAC, ETC, TCPI",
+        "Worked example: a university management system budget in cedis"
+      ]
+    },
+    {
+      "title": "Quality management",
+      "weeks": "8",
+      "topics": [
+        "Quality planning, assurance and control; cost of quality",
+        "Tools: cause-and-effect diagrams, Pareto charts, control charts, checklists, flowcharts",
+        "Software quality: reviews, testing, defect metrics; ISO 9001 and CMMI in brief",
+        "Definition of done and continuous improvement"
+      ]
+    },
+    {
+      "title": "Resource management",
+      "weeks": "9",
+      "topics": [
+        "Resource planning, responsibility assignment matrix (RACI), organisational charts",
+        "Acquiring, developing and managing the team; Tuckman stages, motivation, conflict",
+        "Leadership styles and virtual teams",
+        "Managing physical resources and procurement in brief: contracts, vendors, outsourcing"
+      ]
+    },
+    {
+      "title": "Communications management",
+      "weeks": "10",
+      "topics": [
+        "Communication planning: who needs what, when, how; the communications matrix",
+        "Status reports, dashboards, meetings that work; information distribution",
+        "Communication across cultures and with non-technical sponsors",
+        "Collaboration tools and documentation"
+      ]
+    },
+    {
+      "title": "Risk management",
+      "weeks": "11-12",
+      "topics": [
+        "Risk planning; identification techniques: brainstorming, checklists, SWOT, assumptions analysis",
+        "Qualitative analysis: probability-impact matrix, risk register",
+        "Quantitative analysis: expected monetary value, decision trees, sensitivity, Monte Carlo simulation",
+        "Responses: avoid, mitigate, transfer, accept, exploit; contingency plans; monitoring risks",
+        "Common IT risks: requirements change, technology, vendors, security, power and connectivity"
+      ]
+    },
+    {
+      "title": "Stakeholder management and capstone",
+      "weeks": "13",
+      "topics": [
+        "Identifying stakeholders; power-interest grids; engagement assessment",
+        "Managing expectations, sponsors, users and resistance; change management",
+        "Professional responsibility and ethics in project management",
+        "Capstone: a full project plan (charter, WBS, schedule, budget, risk register, communications plan) for a real IT project"
+      ]
+    }
+  ]
+}

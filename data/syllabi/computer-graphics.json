@@ -1,0 +1,104 @@
+{
+  "slug": "computer-graphics",
+  "description": "From putting a pixel on the screen to rendering lit, shaded 3D scenes in the browser: rasterisation algorithms, transformations, viewing, clipping, visibility, shading and a working WebGL pipeline. Taught to the depth of a leading introductory computer graphics course.",
+  "modelledOn": [
+    "Marschner and Shirley, Fundamentals of Computer Graphics",
+    "Hearn, Baker and Carithers, Computer Graphics with OpenGL",
+    "Cantor and Jones, WebGL Beginner's Guide"
+  ],
+  "outcomes": [
+    "Explain raster and vector representations, colour models and the graphics pipeline.",
+    "Implement line, circle and polygon rasterisation and filling algorithms and anti-aliasing.",
+    "Compose 2D and 3D transformations with homogeneous matrices and quaternions.",
+    "Set up cameras, projections and viewports and clip primitives against the view volume.",
+    "Resolve visibility with z-buffer and related methods and shade surfaces with Phong and physically based models.",
+    "Write WebGL programs with vertex and fragment shaders, buffers, textures and interaction."
+  ],
+  "units": [
+    {
+      "title": "Raster and vector graphics",
+      "weeks": "1-2",
+      "topics": [
+        "Images as pixel grids; frame buffers, resolution, colour depth; displays from CRT to OLED",
+        "Colour: RGB, CMYK, HSV, gamma; colour perception and dithering",
+        "Vector graphics: paths, SVG, Bezier curves; scalable versus raster",
+        "The graphics pipeline overview: modelling, transformation, rasterisation, shading, display",
+        "Drawing pixels on an HTML canvas; image formats and compression (PNG, JPEG)"
+      ]
+    },
+    {
+      "title": "Line, circle and polygon drawing algorithms",
+      "weeks": "3-4",
+      "topics": [
+        "DDA and Bresenham line algorithms; symmetry and integer arithmetic",
+        "Midpoint circle and ellipse algorithms",
+        "Scan-line polygon fill, edge tables, boundary and flood fill",
+        "Anti-aliasing: supersampling, Wu's algorithm, coverage",
+        "Thick lines, line styles and character rasterisation"
+      ]
+    },
+    {
+      "title": "2D transformations",
+      "weeks": "5",
+      "topics": [
+        "Translation, rotation, scaling, shear, reflection as matrices; homogeneous coordinates",
+        "Composition and order; rotation about an arbitrary point",
+        "Window-to-viewport mapping; coordinate systems",
+        "Hierarchical modelling: a 2D articulated figure"
+      ]
+    },
+    {
+      "title": "3D transformations and modelling",
+      "weeks": "6",
+      "topics": [
+        "3D homogeneous transforms; rotation about arbitrary axes; Euler angles, gimbal lock, quaternions",
+        "Scene graphs and model-view hierarchies",
+        "Representing surfaces: polygon meshes, normals, indexed triangles; parametric surfaces and subdivision in brief",
+        "Loading and displaying an OBJ model"
+      ]
+    },
+    {
+      "title": "Viewing and projection",
+      "weeks": "7",
+      "topics": [
+        "Camera model: eye, look-at, up; the view matrix",
+        "Orthographic and perspective projection matrices; field of view, near and far planes",
+        "Normalised device coordinates and the viewport transform",
+        "Depth precision and the perspective divide"
+      ]
+    },
+    {
+      "title": "Clipping and hidden surfaces",
+      "weeks": "8-9",
+      "topics": [
+        "Cohen-Sutherland and Liang-Barsky line clipping; Sutherland-Hodgman polygon clipping; clipping in homogeneous space",
+        "Back-face culling",
+        "Z-buffer algorithm; painter's algorithm; BSP trees; scan-line visibility",
+        "Ray casting as an alternative; bounding volumes and spatial subdivision"
+      ]
+    },
+    {
+      "title": "Shading and lighting",
+      "weeks": "10-11",
+      "topics": [
+        "Light sources: ambient, directional, point, spot; attenuation",
+        "Lambertian diffuse, Phong and Blinn-Phong specular; material properties",
+        "Flat, Gouraud and Phong shading; vertex normals",
+        "Texture mapping, mipmaps, bump and normal mapping; environment maps",
+        "Shadows (shadow maps), global illumination and ray tracing in brief; physically based rendering overview"
+      ]
+    },
+    {
+      "title": "Introduction to WebGL",
+      "weeks": "12-13",
+      "topics": [
+        "WebGL context, buffers, attributes, uniforms; GLSL vertex and fragment shaders",
+        "Drawing triangles, applying matrices with a maths library, animation with requestAnimationFrame",
+        "Lighting and texturing in shaders; loading textures and models",
+        "Mouse and keyboard interaction: orbit camera, picking",
+        "Performance on low-end phones; three.js as a higher-level alternative",
+        "Project: an interactive 3D scene such as a model of a Ghanaian landmark or a data visualisation"
+      ]
+    }
+  ]
+}

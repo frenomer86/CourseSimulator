@@ -1,0 +1,125 @@
+{
+  "slug": "systems-administration-ii",
+  "description": "Linux system administration from installation to a hardened, monitored server: the shell and file system, scripting, users and permissions, backups, networking and remote access, package management, web and DNS services, security and performance. Taught to the depth of the professional Linux administration certifications and the standard text on the practice of system administration.",
+  "modelledOn": [
+    "Nemeth, Snyder, Hein, Whaley and Mackin, UNIX and Linux System Administration Handbook",
+    "Linux Professional Institute LPIC-1 and Red Hat RHCSA objectives",
+    "Limoncelli, Hogan and Chalup, The Practice of System and Network Administration",
+    "Shotts, The Linux Command Line"
+  ],
+  "outcomes": [
+    "Install Linux with a planned partition layout, including dual boot, and manage the boot process and services.",
+    "Work fluently in the shell with files, directories, text editors and the standard text-processing tools.",
+    "Write shell scripts that automate administrative tasks safely.",
+    "Administer users, groups, permissions and ACLs and design a backup and recovery scheme.",
+    "Configure networking, SSH remote administration, package installation, an Apache web server and a DNS server.",
+    "Secure, troubleshoot and tune a Linux server and document its configuration."
+  ],
+  "units": [
+    {
+      "title": "System administration concepts",
+      "weeks": "1",
+      "topics": [
+        "The role of the system administrator; services, users, change, documentation, ethics",
+        "Linux history and distributions (openSUSE, Debian/Ubuntu, Red Hat family); the kernel, GNU userland, init systems",
+        "Virtual lab setup; snapshots as a safety net",
+        "Getting help: man, info, --help, documentation and communities"
+      ]
+    },
+    {
+      "title": "Linux installation, partitioning and dual boot",
+      "weeks": "2",
+      "topics": [
+        "Planning: hardware, partitions (/, /home, /var, swap), file systems (ext4, XFS, Btrfs), LVM",
+        "Installing openSUSE and a second distribution; YaST; dual boot with Windows and GRUB",
+        "The boot process: firmware, GRUB, kernel, systemd targets; rescue mode",
+        "Post-install: updates, time zone, locale, hostname, basic security"
+      ]
+    },
+    {
+      "title": "Files, directories and the shell",
+      "weeks": "3-4",
+      "topics": [
+        "The file system hierarchy standard; absolute and relative paths; hidden files; links",
+        "Core commands: ls, cd, cp, mv, rm, mkdir, find, locate, du, df, tar, gzip, mount",
+        "The shell: redirection, pipes, globbing, quoting, variables, history, aliases; job control",
+        "Text processing: cat, less, head, tail, grep, sort, uniq, cut, tr, wc, sed, awk; regular expressions",
+        "Text editors: vim and nano; configuring the editor"
+      ]
+    },
+    {
+      "title": "Shell scripts",
+      "weeks": "5-6",
+      "topics": [
+        "Bash scripting: shebang, variables, arguments, exit codes, conditionals, loops, functions",
+        "Input and output, here documents, command substitution, arithmetic",
+        "Error handling, set -euo pipefail, logging, cron and systemd timers for scheduling",
+        "Scripts for user creation, log rotation, backups and health checks; ShellCheck",
+        "Python as an administration language in brief"
+      ]
+    },
+    {
+      "title": "Users and groups, permissions and ACLs",
+      "weeks": "7",
+      "topics": [
+        "/etc/passwd, /etc/shadow, /etc/group; useradd, usermod, passwd, chage; password policies",
+        "Ownership and mode bits; chmod, chown, umask; setuid, setgid, sticky bit",
+        "sudo configuration and least privilege",
+        "POSIX ACLs with getfacl and setfacl; extended attributes; disk quotas"
+      ]
+    },
+    {
+      "title": "Backup and recovery",
+      "weeks": "8",
+      "topics": [
+        "Backup strategy: full, incremental, differential; 3-2-1 rule; retention; testing restores",
+        "Tools: tar, rsync, dd, snapshots with LVM and Btrfs, restic or borg",
+        "Recovering deleted files, broken boot loaders and forgotten root passwords",
+        "Disaster recovery planning for a small organisation with unreliable power"
+      ]
+    },
+    {
+      "title": "Network communications and remote administration",
+      "weeks": "9",
+      "topics": [
+        "Network configuration: ip, NetworkManager, static and DHCP addressing, /etc/hosts, resolv.conf",
+        "Diagnostics: ping, traceroute, ss, dig, tcpdump, nmap",
+        "SSH: server configuration, key-based login, agent, tunnels, scp and sftp; disabling password login",
+        "Remote management at scale: parallel SSH, Ansible in brief",
+        "Firewall with firewalld or nftables; NAT and port forwarding"
+      ]
+    },
+    {
+      "title": "Installing software packages",
+      "weeks": "10",
+      "topics": [
+        "Package managers: zypper and RPM, apt and dpkg; repositories, signing, dependencies",
+        "Building from source: configure, make, make install; checkinstall",
+        "Containers and Flatpak/Snap as alternative delivery; language package managers (pip, npm)",
+        "Keeping systems patched; unattended upgrades; vulnerability tracking"
+      ]
+    },
+    {
+      "title": "Apache web server and DNS",
+      "weeks": "11-12",
+      "topics": [
+        "Apache installation, configuration files, virtual hosts, directories, modules, logs; serving PHP",
+        "HTTPS with Let's Encrypt; redirects and basic authentication; Nginx as a comparison",
+        "BIND DNS server: forward and reverse zones, records, caching and forwarding, zone transfers",
+        "Testing DNS with dig and nslookup; common misconfigurations",
+        "Other services in brief: NFS and Samba file sharing, mail, databases"
+      ]
+    },
+    {
+      "title": "Security, troubleshooting and performance tuning",
+      "weeks": "13",
+      "topics": [
+        "Hardening: minimal services, SSH, firewall, updates, fail2ban, AppArmor or SELinux, auditing and logs",
+        "Troubleshooting method: logs (journalctl, /var/log), dmesg, strace, resource checks",
+        "Performance: top, htop, vmstat, iostat, sar; CPU, memory, disk and network bottlenecks; tuning sysctl and services",
+        "Monitoring with Nagios, Zabbix or Prometheus; documentation and runbooks",
+        "Capstone: build, secure and document a complete departmental server"
+      ]
+    }
+  ]
+}

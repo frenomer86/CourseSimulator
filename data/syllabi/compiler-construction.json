@@ -1,0 +1,111 @@
+{
+  "slug": "compiler-construction",
+  "description": "Building a working compiler for a small language, phase by phase: lexing, parsing, syntax trees, semantic analysis, intermediate code, optimisation and code generation for a real or virtual machine. Taught to the depth of a leading compilers course.",
+  "modelledOn": [
+    "Aho, Lam, Sethi and Ullman, Compilers: Principles, Techniques, and Tools",
+    "Appel, Modern Compiler Implementation in Java/C/ML",
+    "Cooper and Torczon, Engineering a Compiler",
+    "Nystrom, Crafting Interpreters"
+  ],
+  "outcomes": [
+    "Specify tokens with regular expressions and build a lexer by hand and with a generator.",
+    "Write grammars, eliminate ambiguity and left recursion, and build recursive-descent, LL(1) and LR parsers.",
+    "Construct abstract syntax trees and perform semantic analysis with symbol tables and type checking.",
+    "Translate to intermediate representations such as three-address code and SSA.",
+    "Apply local and global optimisations driven by dataflow analysis.",
+    "Generate code with instruction selection, register allocation and runtime support, and test the compiler end to end."
+  ],
+  "units": [
+    {
+      "title": "Overview of compilation",
+      "weeks": "1",
+      "topics": [
+        "Compilers, interpreters, JIT compilers and transpilers; the phases and their data structures",
+        "The source language for the course (a small C-like or Pascal-like language) and the target (RISC-V, x86 or a VM)",
+        "Bootstrapping, cross-compilation, the toolchain (assembler, linker, loader)",
+        "Project setup: test suite, driver, error reporting conventions"
+      ]
+    },
+    {
+      "title": "Lexical analysis",
+      "weeks": "2-3",
+      "topics": [
+        "Tokens, lexemes, patterns; keywords, identifiers, literals, comments, whitespace",
+        "Regular expressions to NFA (Thompson), NFA to DFA (subset construction), DFA minimisation",
+        "Hand-written scanners versus generators (lex/flex, ANTLR); longest match and lookahead",
+        "Error recovery in the lexer; Unicode and source positions for error messages"
+      ]
+    },
+    {
+      "title": "Parsing: top-down",
+      "weeks": "4-5",
+      "topics": [
+        "Context-free grammars, derivations, parse trees, ambiguity; precedence and associativity in grammars",
+        "Eliminating left recursion and left factoring; FIRST and FOLLOW sets",
+        "Recursive-descent parsing; predictive LL(1) table-driven parsing",
+        "Error recovery: panic mode, synchronising tokens; good error messages",
+        "Pratt parsing for expressions"
+      ]
+    },
+    {
+      "title": "Parsing: bottom-up",
+      "weeks": "6-7",
+      "topics": [
+        "Shift-reduce parsing, handles, conflicts",
+        "LR(0) items and automaton, SLR, LR(1), LALR(1) table construction",
+        "Parser generators (yacc/bison, ANTLR); resolving conflicts with precedence declarations",
+        "Comparing LL and LR; generalised and PEG parsing in brief"
+      ]
+    },
+    {
+      "title": "Abstract syntax trees",
+      "weeks": "8",
+      "topics": [
+        "Concrete versus abstract syntax; designing AST node classes",
+        "Building the AST during parsing; semantic actions and syntax-directed translation",
+        "Tree traversal with the visitor pattern; pretty printing and AST dumps for debugging",
+        "Attribute grammars: synthesised and inherited attributes"
+      ]
+    },
+    {
+      "title": "Semantic analysis and symbol tables",
+      "weeks": "9",
+      "topics": [
+        "Scopes, declarations, name resolution; symbol table design with nested scopes",
+        "Type systems: type expressions, equivalence, coercion, overloading; type checking expressions, statements and functions",
+        "Semantic checks: declared before use, break inside loop, return paths, constant expressions",
+        "Type inference in brief; error reporting and recovery"
+      ]
+    },
+    {
+      "title": "Intermediate code and runtime environments",
+      "weeks": "10",
+      "topics": [
+        "Three-address code, quadruples, control-flow graphs; translating expressions, control flow (short-circuit booleans), arrays and records",
+        "Static single assignment form and its construction",
+        "Runtime organisation: activation records, calling conventions, stack frames, parameter passing, nested functions",
+        "Heap management and garbage collection basics; exceptions"
+      ]
+    },
+    {
+      "title": "Optimisation",
+      "weeks": "11-12",
+      "topics": [
+        "Local optimisations: constant folding, algebraic simplification, common subexpression elimination, copy propagation, dead code",
+        "Dataflow analysis: reaching definitions, live variables, available expressions; the iterative framework",
+        "Global optimisations: global CSE, loop-invariant code motion, strength reduction, induction variables",
+        "Peephole optimisation; inlining; introduction to LLVM passes"
+      ]
+    },
+    {
+      "title": "Code generation",
+      "weeks": "13",
+      "topics": [
+        "Instruction selection: tree pattern matching, simple macro expansion",
+        "Register allocation: liveness, interference graphs, graph colouring, spilling; linear scan",
+        "Instruction scheduling and target-specific details; generating assembly and linking with a runtime",
+        "End-to-end: compiling and running test programs; performance comparison against a reference compiler"
+      ]
+    }
+  ]
+}

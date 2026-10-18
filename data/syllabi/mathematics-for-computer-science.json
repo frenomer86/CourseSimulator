@@ -1,0 +1,105 @@
+{
+  "slug": "mathematics-for-computer-science",
+  "description": "Precalculus, geometry and linear algebra with the computer in hand: functions, limits, vectors and matrices computed and plotted in R and MATLAB as they are learned. Taught to the depth of a first-year linear algebra and precalculus sequence for engineers.",
+  "modelledOn": [
+    "Strang, Introduction to Linear Algebra",
+    "Lay, Linear Algebra and Its Applications",
+    "Stewart, Redlin and Watson, Precalculus"
+  ],
+  "outcomes": [
+    "Decompose rational expressions into partial fractions and use them in integration and transforms.",
+    "Evaluate limits and test continuity algebraically and numerically.",
+    "Model growth, decay and scaling with exponential and logarithmic functions and solve the resulting equations.",
+    "Solve problems in coordinate geometry and trigonometry that arise in graphics and navigation.",
+    "Compute with vectors and matrices: dot and cross products, systems of equations, determinants, inverses, eigenvalues.",
+    "Use R and MATLAB to compute, plot and check every technique in the course."
+  ],
+  "units": [
+    {
+      "title": "Algebra review and partial fractions",
+      "weeks": "1-2",
+      "topics": [
+        "Polynomials, factoring, polynomial division, the remainder and factor theorems",
+        "Rational expressions and proper versus improper fractions",
+        "Partial fractions: distinct linear, repeated linear and irreducible quadratic factors",
+        "Applications: summing series, inverse Laplace transforms preview, integrating rational functions",
+        "Getting started with R and MATLAB: variables, vectors, plotting"
+      ]
+    },
+    {
+      "title": "Functions, limits and continuity",
+      "weeks": "3-4",
+      "topics": [
+        "Functions, domain and range, composition and inverses; graphs of standard functions",
+        "Limits from tables and graphs; limit laws; limits at infinity and asymptotes",
+        "Continuity and the intermediate value theorem; piecewise functions",
+        "Numerical estimation of limits in software; floating-point pitfalls",
+        "Sequences and convergence"
+      ]
+    },
+    {
+      "title": "Exponential and logarithmic functions",
+      "weeks": "5",
+      "topics": [
+        "Exponential growth and decay; the number e; compound interest and mobile-money savings",
+        "Logarithms, change of base, laws of logarithms; solving exponential and logarithmic equations",
+        "Log scales: decibels, pH, Richter, and plotting algorithm running times",
+        "Why log n appears in computer science: binary search, tree height, bits needed"
+      ]
+    },
+    {
+      "title": "Geometry and trigonometry",
+      "weeks": "6-7",
+      "topics": [
+        "Coordinate geometry: distance, midpoint, lines, circles, parabolas, ellipses",
+        "Trigonometric functions, the unit circle, identities, inverse trigonometric functions",
+        "Solving triangles: sine and cosine rules; bearings and surveying problems",
+        "Polar coordinates and parametric curves",
+        "Geometry for graphics: angles between lines, reflection, rotation, areas of polygons"
+      ]
+    },
+    {
+      "title": "Vectors",
+      "weeks": "8-9",
+      "topics": [
+        "Vectors in 2D and 3D: magnitude, direction, unit vectors, components",
+        "Addition, scalar multiplication, linear combinations, span and linear independence",
+        "Dot product, angle between vectors, projections; cross product and areas",
+        "Lines and planes in space; distance from a point to a plane",
+        "Applications: forces, velocities, computer graphics, cosine similarity of documents"
+      ]
+    },
+    {
+      "title": "Matrices and systems of linear equations",
+      "weeks": "10-11",
+      "topics": [
+        "Matrix notation, addition, multiplication, transpose; special matrices",
+        "Systems of linear equations; Gaussian and Gauss-Jordan elimination; row echelon form; rank",
+        "Determinants: cofactor expansion, properties, Cramer's rule",
+        "Inverse of a matrix; solving AX = B; LU decomposition preview",
+        "Matrices as transformations: rotation, scaling, shear; composition of transformations",
+        "Markov chains and PageRank as matrix problems"
+      ]
+    },
+    {
+      "title": "Eigenvalues and eigenvectors",
+      "weeks": "12",
+      "topics": [
+        "Characteristic polynomial, eigenvalues and eigenvectors of 2x2 and 3x3 matrices",
+        "Diagonalisation and powers of a matrix",
+        "Applications: population models, vibration, principal component analysis preview",
+        "Numerical computation of eigenvalues in R and MATLAB"
+      ]
+    },
+    {
+      "title": "Applications in R and MATLAB",
+      "weeks": "13",
+      "topics": [
+        "Matrix operations, solving systems, determinants, inverses and eigen-decomposition in both tools",
+        "Plotting functions, curves, vectors and transformations",
+        "Fitting a line to data by least squares as a matrix problem",
+        "A capstone: image transformation or a simple recommendation using vector similarity"
+      ]
+    }
+  ]
+}

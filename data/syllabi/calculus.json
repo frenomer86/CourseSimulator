@@ -1,0 +1,96 @@
+{
+  "slug": "calculus",
+  "description": "Single-variable and introductory multivariable calculus with differential equations, taught with R and MATLAB alongside the pen so that every technique is also computed and plotted. Taught to the depth of a full first-year calculus sequence.",
+  "modelledOn": [
+    "Stewart, Calculus: Early Transcendentals",
+    "Strang, Calculus",
+    "Thomas, Calculus"
+  ],
+  "outcomes": [
+    "Compute limits and derivatives of algebraic, trigonometric, exponential and logarithmic functions and apply them to rates, optimisation and curve sketching.",
+    "Evaluate definite and indefinite integrals by substitution, parts, partial fractions and trigonometric methods, and apply them to area, volume and average value.",
+    "Approximate integrals numerically with the trapezoidal and Simpson rules and bound the error.",
+    "Differentiate functions of several variables, find gradients, and locate and classify extrema.",
+    "Set up and evaluate double and triple integrals for areas, volumes and masses.",
+    "Solve first-order differential equations analytically and numerically and model growth, decay and cooling."
+  ],
+  "units": [
+    {
+      "title": "Functions, limits and continuity",
+      "weeks": "1-2",
+      "topics": [
+        "Review of functions, graphs, polynomials, rational, trigonometric, exponential and logarithmic functions",
+        "Limits: intuition, one-sided limits, limit laws, squeeze theorem; limits at infinity",
+        "Continuity, types of discontinuity, intermediate value theorem",
+        "Plotting functions and estimating limits in R and MATLAB"
+      ]
+    },
+    {
+      "title": "Differential calculus",
+      "weeks": "3-5",
+      "topics": [
+        "Derivative as a limit, as slope and as rate of change; differentiability",
+        "Rules: power, product, quotient, chain; implicit and logarithmic differentiation",
+        "Derivatives of trigonometric, inverse trigonometric, exponential and logarithmic functions",
+        "Applications: related rates, linear approximation, l'Hopital's rule",
+        "Mean value theorem; increasing and decreasing functions; concavity and curve sketching",
+        "Optimisation: maximising profit for a market stall, minimising material for a tank",
+        "Newton's method and symbolic differentiation in software"
+      ]
+    },
+    {
+      "title": "Integral calculus",
+      "weeks": "6-8",
+      "topics": [
+        "Antiderivatives and the indefinite integral; Riemann sums and the definite integral",
+        "Fundamental theorem of calculus",
+        "Substitution, integration by parts, trigonometric integrals and substitutions",
+        "Partial fractions and integration of rational functions",
+        "Improper integrals",
+        "Applications: area between curves, volumes of revolution, arc length, average value, work"
+      ]
+    },
+    {
+      "title": "Approximate integration",
+      "weeks": "9",
+      "topics": [
+        "Midpoint, trapezoidal and Simpson's rules",
+        "Error bounds and choosing the number of subintervals",
+        "Implementing the rules in R and MATLAB and comparing with built-in integrators",
+        "Taylor and Maclaurin series; using series to approximate integrals"
+      ]
+    },
+    {
+      "title": "Partial differentiation",
+      "weeks": "10",
+      "topics": [
+        "Functions of two and three variables; level curves and surfaces",
+        "Partial derivatives, higher-order partials, Clairaut's theorem",
+        "Tangent planes, differentials and the chain rule for several variables",
+        "Gradient and directional derivatives",
+        "Local extrema, second-derivative test, Lagrange multipliers"
+      ]
+    },
+    {
+      "title": "Multiple integrals and volumes",
+      "weeks": "11",
+      "topics": [
+        "Double integrals over rectangles and general regions; changing the order of integration",
+        "Double integrals in polar coordinates",
+        "Triple integrals; cylindrical and spherical coordinates",
+        "Applications: volume, mass, centre of mass, surface area"
+      ]
+    },
+    {
+      "title": "First-order differential equations",
+      "weeks": "12-13",
+      "topics": [
+        "Modelling with differential equations; direction fields",
+        "Separable and linear first-order equations; integrating factors; exact equations",
+        "Applications: population growth and logistic models, radioactive decay, Newton's law of cooling, mixing problems, RC circuits",
+        "Euler's method and Runge-Kutta in R and MATLAB; comparing numeric and exact solutions",
+        "A glimpse of second-order equations and oscillation"
+      ]
+    }
+  ]
+}

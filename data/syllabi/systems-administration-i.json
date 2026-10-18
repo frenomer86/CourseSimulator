@@ -1,0 +1,115 @@
+{
+  "slug": "systems-administration-i",
+  "description": "Running a Windows Server domain: installation, Active Directory design, accounts, file and print services, Group Policy, DNS and the monitoring that keeps it healthy, all practised on virtual machines. Taught to the depth of the professional Windows Server administration certification.",
+  "modelledOn": [
+    "Microsoft AZ-800 / AZ-801 Administering Windows Server Hybrid Core Infrastructure",
+    "Limoncelli, Hogan and Chalup, The Practice of System and Network Administration",
+    "Microsoft Learn Windows Server and Active Directory documentation"
+  ],
+  "outcomes": [
+    "Install and configure Windows Server (Desktop Experience and Server Core) in a virtual lab.",
+    "Design and deploy an Active Directory forest with sites, OUs and a security model that fits an organisation.",
+    "Manage users, groups, computers and service accounts at scale with the GUI and PowerShell.",
+    "Provide file and print services with NTFS and share permissions, quotas, DFS and shadow copies.",
+    "Apply Group Policy to configure and secure desktops and servers and troubleshoot its application.",
+    "Configure DNS and DHCP for a domain, add server roles, and monitor, back up and recover servers."
+  ],
+  "units": [
+    {
+      "title": "Windows Server introduction and installation",
+      "weeks": "1-2",
+      "topics": [
+        "Roles of a server; Windows Server editions, licensing, Desktop Experience versus Server Core",
+        "Building a virtual lab: Hyper-V or VirtualBox, networks, snapshots",
+        "Installation, initial configuration, naming, static addressing, activation, updates",
+        "Server Manager, Windows Admin Center and PowerShell as the three management surfaces",
+        "Storage: disks, volumes, Storage Spaces, ReFS versus NTFS"
+      ]
+    },
+    {
+      "title": "Active Directory introduction and design",
+      "weeks": "3-4",
+      "topics": [
+        "Directory services and LDAP; forests, domains, trees, trusts; the global catalogue",
+        "Domain controllers, FSMO roles, replication and sites",
+        "Organisational units and delegation; naming standards",
+        "Designing AD for a university: faculties, departments, labs, staff and students",
+        "Promoting a domain controller and joining computers to the domain"
+      ]
+    },
+    {
+      "title": "Active Directory security",
+      "weeks": "5",
+      "topics": [
+        "Authentication with Kerberos and NTLM; the authentication process",
+        "Security principals, SIDs, access tokens, ACLs",
+        "Privileged accounts, tiered administration, protected users, least privilege",
+        "Password policies, fine-grained password policies, account lockout, MFA options",
+        "Auditing logons and changes"
+      ]
+    },
+    {
+      "title": "Account management",
+      "weeks": "6",
+      "topics": [
+        "User accounts, templates, attributes, profiles and home folders",
+        "Group types and scopes (domain local, global, universal); AGDLP nesting",
+        "Computer accounts, service accounts, managed service accounts",
+        "Bulk creation from a CSV with PowerShell; disabling and offboarding"
+      ]
+    },
+    {
+      "title": "File and print services",
+      "weeks": "7-8",
+      "topics": [
+        "Shared folders, SMB, share and NTFS permissions and how they combine; access-based enumeration",
+        "File Server Resource Manager: quotas, file screens, reports",
+        "DFS namespaces and replication; shadow copies and previous versions",
+        "Print server role, printer deployment via Group Policy, drivers and queues",
+        "Offline files and folder redirection"
+      ]
+    },
+    {
+      "title": "Group Policy",
+      "weeks": "9-10",
+      "topics": [
+        "GPO structure, linking, inheritance, enforcement, blocking, filtering by security group and WMI",
+        "Administrative templates, security settings, preferences, software deployment, scripts",
+        "Common policies: password, lockout, desktop restrictions, drive mapping, Windows Update",
+        "Processing order, loopback, slow links; gpupdate, gpresult and the Resultant Set of Policy",
+        "Central store and version control of GPOs"
+      ]
+    },
+    {
+      "title": "Windows networking and DNS for Active Directory",
+      "weeks": "11",
+      "topics": [
+        "TCP/IP configuration, network profiles, Windows Firewall with Advanced Security",
+        "DHCP server role: scopes, options, reservations, failover",
+        "DNS server role: zones, records, AD-integrated zones, forwarders, root hints, scavenging",
+        "SRV records and how clients find domain controllers; troubleshooting with nslookup, dcdiag, repadmin",
+        "IPv6 on Windows networks"
+      ]
+    },
+    {
+      "title": "Additional AD server roles",
+      "weeks": "12",
+      "topics": [
+        "Certificate Services (AD CS): enterprise CA, templates, auto-enrolment",
+        "Federation Services and Entra ID (Azure AD) hybrid identity in brief",
+        "Remote Desktop Services and Web Application Proxy",
+        "Windows Server Update Services and Windows Deployment Services"
+      ]
+    },
+    {
+      "title": "Server management and monitoring",
+      "weeks": "13",
+      "topics": [
+        "Event Viewer, Performance Monitor, Resource Monitor, Task Scheduler",
+        "Windows Server Backup and Active Directory recovery (authoritative and non-authoritative)",
+        "PowerShell remoting and scripting routine tasks; Desired State Configuration in brief",
+        "Documentation, change control and disaster recovery planning for a small institution"
+      ]
+    }
+  ]
+}

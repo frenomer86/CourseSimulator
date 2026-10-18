@@ -33,14 +33,20 @@ models") makes the simulator a natural teaching tool, not a replacement for the 
 
 ## 3. Design principles (non-negotiable)
 
-1. **Compute in the browser.** Python, JavaScript, SQL, PHP, R, circuits, networks and
-   OS models all run client-side (WebAssembly / JS). The server stores accounts and
-   progress only. This keeps hosting cost near zero and makes labs work offline.
+1. **Everything is online, nothing is installed.** The whole platform, simulators
+   included, is a hosted website. A student opens the address in any browser and the
+   simulation runs inside that page. Python, JavaScript, SQL, PHP, R, circuits, networks
+   and OS models execute in the browser (WebAssembly / JS) delivered from our servers;
+   heavier runtimes such as C++ and Java compilation fall back to an online code-runner
+   service we host. The backend stores accounts, progress, community and competition data.
+   This keeps hosting cost low and lets a page keep working during a dropped connection.
 2. **Mobile first, low data.** Every simulator must be usable on a 360px-wide screen.
    Heavy runtimes (Pyodide, webR) are downloaded once, cached by a service worker,
    and the UI warns before any download above 5 MB. A "Lite mode" hides animations.
-3. **Offline capable.** Installable Progressive Web App. A whole course can be
-   downloaded as an offline pack in a campus lab and used at home.
+3. **Resilient to dropped connections.** The site is a Progressive Web App: once a page
+   has loaded, a lab keeps working if the connection drops, and results sync when it
+   returns. This is a convenience for unreliable networks, not a separate offline
+   product; the platform lives at one online address.
 4. **Content-driven, engine-shared.** A small number of simulation *engines* power
    many *labs*. Labs are data (JSON + Markdown), not code, so lecturers can add labs.
 5. **Honest simulation.** Where the real tool is a CLI (Linux, Cisco IOS, SQL, git),
@@ -240,8 +246,13 @@ This folder lives under *THESIS*, so the platform doubles as a research instrume
    outcomes) modelled on the corresponding courses at leading universities (MIT, Stanford,
    Berkeley, CMU and similar), stored in `data/syllabi/<slug>.json`. Digital Logic Design
    is the first; the rest follow.
-4. **Hosted web application.** Static PWA build on a CDN host, with a small backend added
-   for accounts and progress sync in a later phase.
+4. **Hosted web application with a backend database.** Static PWA on a CDN host plus a
+   Supabase project (Postgres, Auth, Realtime, Storage). Users are learners, institution
+   students, lecturers and admins. The platform adds topic checks after every topic,
+   tutorials, progress tracking, groups with chat, presence and resource sharing, a
+   forum, direct messages, and general and group competitions with scores, contribution
+   breakdowns and awards. Full detail in [03-PRODUCT-SPEC.md](03-PRODUCT-SPEC.md); design
+   borrowed from leading platforms is analysed in [04-DESIGN-RESEARCH.md](04-DESIGN-RESEARCH.md).
 
 ## 11. Decisions still open
 

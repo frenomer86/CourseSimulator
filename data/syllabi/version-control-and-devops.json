@@ -1,0 +1,124 @@
+{
+  "slug": "version-control-and-devops",
+  "description": "The toolchain that turns code into running software: Git from first commit to rebase, pull-request workflows, continuous integration, containers, automated testing and deployment, and the monitoring that tells you when to roll back. Taught to the depth of industry DevOps practice.",
+  "modelledOn": [
+    "Chacon and Straub, Pro Git",
+    "Kim, Humble, Debois and Willis, The DevOps Handbook",
+    "Beyer, Jones, Petoff and Murphy, Site Reliability Engineering",
+    "DORA State of DevOps research"
+  ],
+  "outcomes": [
+    "Use Git fluently: commits, branches, merges, rebases, tags, stashes and history rewriting, and explain the object model behind them.",
+    "Collaborate through remote repositories with pull requests, code review and a branching strategy.",
+    "Resolve merge conflicts and recover from mistakes with reflog, revert and reset.",
+    "Build a continuous integration pipeline that lints, tests and packages a project on every push.",
+    "Containerise an application with Docker and compose multi-service environments.",
+    "Deploy automatically to a host, monitor it with logs and metrics, and roll back safely."
+  ],
+  "units": [
+    {
+      "title": "Why version control and the Git model",
+      "weeks": "1",
+      "topics": [
+        "The problem: copies of copies, lost work, who changed what; centralised versus distributed VCS",
+        "Git's object model: blobs, trees, commits, refs; the working tree, index and repository",
+        "Installing Git, configuring identity, the command line and a GUI client",
+        "Shell basics needed for the course: paths, pipes, environment variables"
+      ]
+    },
+    {
+      "title": "Git basics: commit, branch, merge",
+      "weeks": "2-3",
+      "topics": [
+        "init, status, add, commit; good commit messages; .gitignore",
+        "log, diff, show; inspecting history; blame",
+        "Branches as pointers; checkout and switch; fast-forward and three-way merges",
+        "Tags, stash, amend; undoing with restore, revert and reset (soft, mixed, hard)",
+        "Rebase versus merge; interactive rebase to clean history; reflog as the safety net"
+      ]
+    },
+    {
+      "title": "Remote repositories and pull requests",
+      "weeks": "4",
+      "topics": [
+        "clone, fetch, pull, push; remotes and tracking branches; SSH keys and tokens",
+        "GitHub and GitLab: issues, pull or merge requests, reviews, protected branches",
+        "Forking workflow for open source; feature-branch and trunk-based development; GitFlow compared",
+        "Code review practice: small changes, checklists, constructive comments",
+        "Semantic versioning and releases"
+      ]
+    },
+    {
+      "title": "Resolving conflicts and collaboration failures",
+      "weeks": "5",
+      "topics": [
+        "How conflicts arise; reading conflict markers; resolving in the editor and with a merge tool",
+        "Conflicts during rebase and cherry-pick; rerere",
+        "Recovering lost commits, fixing a bad merge, splitting and squashing commits",
+        "Team exercise: four people, one repository, deliberate conflicts"
+      ]
+    },
+    {
+      "title": "Automated testing",
+      "weeks": "6",
+      "topics": [
+        "Unit, integration and end-to-end tests; the testing pyramid; test runners for Python, JavaScript and Java",
+        "Linting and formatting as automated checks; pre-commit hooks",
+        "Code coverage and its limits; flaky tests",
+        "Test-driven development in a small kata"
+      ]
+    },
+    {
+      "title": "Continuous integration pipelines",
+      "weeks": "7-8",
+      "topics": [
+        "CI principles: every push builds and tests; fast feedback; the build must stay green",
+        "GitHub Actions: workflows, jobs, steps, matrices, caching, secrets; GitLab CI compared",
+        "Pipeline stages: lint, test, build, package, publish artefacts",
+        "Status checks on pull requests; badges; notifications",
+        "Reproducible builds and dependency pinning; software supply-chain basics"
+      ]
+    },
+    {
+      "title": "Containers",
+      "weeks": "9-10",
+      "topics": [
+        "Why containers: environment drift; images versus containers; namespaces and cgroups in brief",
+        "Docker: Dockerfile, layers, build, run, volumes, networks, environment variables",
+        "Multi-stage builds and small images; registries and tagging",
+        "Docker Compose for an app with a database and a cache",
+        "Introduction to Kubernetes: pods, deployments, services; when it is overkill"
+      ]
+    },
+    {
+      "title": "Automated deployment",
+      "weeks": "11",
+      "topics": [
+        "Environments: development, staging, production; configuration and secrets management",
+        "Deploying a web app to a VPS, a PaaS and a static host from CI; infrastructure as code with Terraform or Ansible in brief",
+        "Deployment strategies: rolling, blue-green, canary; database migrations",
+        "Continuous delivery versus continuous deployment; release gates and approvals"
+      ]
+    },
+    {
+      "title": "Monitoring and rollback",
+      "weeks": "12",
+      "topics": [
+        "Logs, metrics and traces; structured logging; Prometheus and Grafana or a hosted equivalent",
+        "Health checks, uptime monitoring, alerting and on-call basics",
+        "Service level indicators and objectives; error budgets",
+        "Rolling back a bad release: image tags, reverting commits, feature flags; blameless post-mortems"
+      ]
+    },
+    {
+      "title": "DevOps culture and capstone",
+      "weeks": "13",
+      "topics": [
+        "The DORA metrics: deployment frequency, lead time, change failure rate, time to restore",
+        "DevSecOps: dependency scanning, secret scanning, container scanning in the pipeline",
+        "Capstone: take a small application from repository to monitored deployment with a full pipeline",
+        "Working with low bandwidth: shallow clones, partial clones, caching, offline-first workflows"
+      ]
+    }
+  ]
+}

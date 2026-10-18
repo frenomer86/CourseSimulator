@@ -1,0 +1,123 @@
+{
+  "slug": "internet-of-things",
+  "description": "Connecting the physical world to the Internet: sensing and actuation, IoT communication protocols, sensor networks and machine-to-machine systems, interoperability, Arduino and Raspberry Pi programming, software-defined networking, data handling and cloud, fog and sensor-cloud computing, and the application domains from smart cities to agriculture and health. Taught to the depth of a leading Internet of Things course.",
+  "modelledOn": [
+    "Bahga and Madisetti, Internet of Things: A Hands-On Approach",
+    "Buyya and Dastjerdi, Internet of Things: Principles and Paradigms",
+    "Hanes, Salgueiro, Grossetete, Barton and Henry, IoT Fundamentals: Networking Technologies, Protocols, and Use Cases",
+    "Raj and Raman, The Internet of Things: Enabling Technologies, Platforms, and Use Cases"
+  ],
+  "outcomes": [
+    "Describe the IoT architecture from sensing and actuation through networking to applications.",
+    "Select and use IoT protocols such as MQTT, CoAP, HTTP, Zigbee, BLE, LoRaWAN and cellular IoT.",
+    "Design wireless sensor networks and machine-to-machine systems and address interoperability.",
+    "Program Arduino and Raspberry Pi devices with sensors and actuators and connect them to a cloud service.",
+    "Explain software-defined networking, fog and sensor-cloud computing in IoT deployments.",
+    "Build and evaluate an end-to-end IoT application in a domain such as agriculture, health or smart cities, with attention to security and privacy."
+  ],
+  "units": [
+    {
+      "title": "IoT, sensing, actuation and networking basics",
+      "weeks": "1-2",
+      "topics": [
+        "Definition and history of the IoT; things, gateways, platforms, applications; reference architectures (ITU-T, IoT-A)",
+        "Sensors (temperature, humidity, light, motion, gas, GPS) and actuators (relays, motors, valves); signal conditioning and ADC",
+        "Networking basics for IoT: IP, addressing, IPv6 and 6LoWPAN, constrained devices and networks",
+        "Characteristics: scale, heterogeneity, constrained resources, intermittent connectivity, data volume",
+        "Lab kit: Arduino, ESP32, Raspberry Pi, sensors; simulators (Wokwi, Tinkercad)"
+      ]
+    },
+    {
+      "title": "Communication protocols",
+      "weeks": "3-4",
+      "topics": [
+        "Physical and link layers: IEEE 802.15.4, Zigbee, Thread, Bluetooth Low Energy, Wi-Fi, LoRa/LoRaWAN, Sigfox, NB-IoT and LTE-M, RFID and NFC",
+        "Network and transport: 6LoWPAN, RPL, UDP versus TCP for IoT",
+        "Application protocols: MQTT (publish-subscribe, QoS, retained messages), CoAP, HTTP/REST, AMQP, WebSockets",
+        "Choosing a protocol for range, power, data rate and cost; running an MQTT broker and clients",
+        "Security in protocols: DTLS, TLS, device authentication"
+      ]
+    },
+    {
+      "title": "Sensor networks and machine-to-machine",
+      "weeks": "5",
+      "topics": [
+        "Wireless sensor networks: topologies, routing, clustering, energy-aware design, localisation and time synchronisation",
+        "Machine-to-machine communication; oneM2M and ETSI M2M architecture",
+        "Edge devices, gateways and protocol translation",
+        "Reliability and fault tolerance in sensor networks"
+      ]
+    },
+    {
+      "title": "Interoperability",
+      "weeks": "6",
+      "topics": [
+        "Levels of interoperability: device, network, syntactic, semantic, platform",
+        "Standards and data models: IPSO, OMA LwM2M, W3C Web of Things, Matter",
+        "Data formats: JSON, CBOR, SenML; ontologies (SSN/SOSA)",
+        "Integrating devices from different vendors through a gateway"
+      ]
+    },
+    {
+      "title": "Arduino programming with sensors and actuators",
+      "weeks": "7-8",
+      "topics": [
+        "Arduino and ESP32 programming model: setup and loop, digital and analog I/O, PWM, interrupts, timers",
+        "Reading sensors over analog, I2C and SPI; driving actuators and displays",
+        "Wi-Fi connectivity and sending telemetry over MQTT and HTTP; over-the-air updates",
+        "Power management and battery and solar operation",
+        "Mini-project: a soil-moisture monitor that publishes readings"
+      ]
+    },
+    {
+      "title": "Python and Raspberry Pi",
+      "weeks": "9",
+      "topics": [
+        "Raspberry Pi setup, Linux basics, GPIO with Python (gpiozero, RPi.GPIO), camera and USB devices",
+        "Raspberry Pi as a gateway: MQTT broker, local database, dashboard (Node-RED, Grafana)",
+        "Edge processing: filtering, aggregation, simple machine learning on the Pi",
+        "Remote access and device management"
+      ]
+    },
+    {
+      "title": "SDN for IoT",
+      "weeks": "10",
+      "topics": [
+        "Software-defined networking: control and data plane separation, OpenFlow, controllers",
+        "SDN benefits for IoT: traffic management, security policies, mobility, scalability",
+        "Network function virtualisation; SDN in wireless sensor networks and 5G",
+        "Simulating an SDN-managed IoT network with Mininet"
+      ]
+    },
+    {
+      "title": "Data handling, analytics and cloud",
+      "weeks": "11",
+      "topics": [
+        "IoT data characteristics; ingestion, time-series databases, storage and retention",
+        "Cloud IoT platforms: AWS IoT Core, Azure IoT Hub, Google Cloud IoT, ThingsBoard, open-source alternatives",
+        "Device registration, provisioning, digital twins, rules engines, alerts",
+        "Analytics and visualisation: dashboards, anomaly detection, predictive maintenance; machine learning at the edge"
+      ]
+    },
+    {
+      "title": "Sensor-cloud and fog computing",
+      "weeks": "12",
+      "topics": [
+        "Sensor-cloud architecture: virtual sensors, sensors as a service",
+        "Fog and edge computing: motivation (latency, bandwidth, privacy), architecture, placement of computation",
+        "Offloading and orchestration between device, fog and cloud",
+        "Designing a fog layer for a campus or farm deployment with intermittent Internet"
+      ]
+    },
+    {
+      "title": "Applications and case studies",
+      "weeks": "13",
+      "topics": [
+        "Smart cities (traffic, lighting, waste), smart homes, connected vehicles, smart grid and prepaid metering, industrial IoT and Industry 4.0",
+        "Case studies: precision agriculture and irrigation in Ghana, healthcare and remote patient monitoring, activity and fall monitoring",
+        "Security, privacy and safety of IoT systems: botnets (Mirai), device hardening, data protection",
+        "Capstone: an end-to-end IoT system from sensor to cloud dashboard, with a cost and power budget"
+      ]
+    }
+  ]
+}

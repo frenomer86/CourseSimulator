@@ -1,0 +1,105 @@
+{
+  "slug": "embedded-systems",
+  "description": "Programming microcontrollers close to the metal: GPIO, timers, interrupts, analog input, serial buses and a small real-time scheduler, with power budgets that matter for solar-powered field devices. Taught to the depth of a leading introductory embedded systems course.",
+  "modelledOn": [
+    "Lee and Seshia, Introduction to Embedded Systems: A Cyber-Physical Systems Approach",
+    "Valvano, Embedded Systems: Introduction to ARM Cortex-M Microcontrollers",
+    "White, Making Embedded Systems"
+  ],
+  "outcomes": [
+    "Read a microcontroller datasheet and reference manual and configure peripherals through memory-mapped registers.",
+    "Write bare-metal C for GPIO, timers, PWM, interrupts and ADC on an ARM Cortex-M or AVR board.",
+    "Design interrupt-driven and polled drivers and reason about latency and shared-data hazards.",
+    "Communicate with sensors and other devices over UART, I2C and SPI and decode the traffic on a logic analyser.",
+    "Implement a cooperative scheduler and a simple pre-emptive RTOS task set and analyse schedulability.",
+    "Estimate and reduce energy consumption with sleep modes, clock gating and duty cycling."
+  ],
+  "units": [
+    {
+      "title": "Embedded systems and microcontroller architecture",
+      "weeks": "1-2",
+      "topics": [
+        "What makes a system embedded: constraints on cost, power, size, timing and reliability",
+        "Microcontroller anatomy: core, flash, SRAM, peripherals, buses, clock tree, reset",
+        "ARM Cortex-M and AVR compared; the memory map and memory-mapped registers",
+        "Toolchain: cross-compiler, linker script, startup code, flashing, debugging with a probe; simulators",
+        "Reading a datasheet and reference manual; writing the first blink in bare-metal C"
+      ]
+    },
+    {
+      "title": "GPIO, timers and PWM",
+      "weeks": "3-4",
+      "topics": [
+        "GPIO configuration: modes, pull-ups, drive strength, speed; reading buttons and debouncing",
+        "Driving LEDs, relays, seven-segment displays, keypads, character LCDs",
+        "Timer peripherals: prescalers, counters, compare and capture, overflow",
+        "Measuring time, generating delays and periodic events without blocking",
+        "PWM for LED dimming, servo control and DC motor speed with an H-bridge"
+      ]
+    },
+    {
+      "title": "Interrupts",
+      "weeks": "5",
+      "topics": [
+        "Interrupt controller (NVIC), vector table, priorities, nesting, latency",
+        "Writing interrupt service routines; volatile, atomicity and critical sections",
+        "External interrupts, timer interrupts, software interrupts",
+        "Foreground-background design; deferring work from an ISR",
+        "Watchdog timers and fault handlers"
+      ]
+    },
+    {
+      "title": "ADC, DAC and sensors",
+      "weeks": "6-7",
+      "topics": [
+        "ADC principles: resolution, sampling rate, reference voltage, quantisation; successive approximation",
+        "Reading analog sensors: temperature, light, soil moisture, potentiometers; voltage dividers and conditioning",
+        "Oversampling, filtering and calibration in software",
+        "DAC and PWM-based analog output; driving a speaker",
+        "Digital sensors with pulse outputs: ultrasonic distance, DHT humidity"
+      ]
+    },
+    {
+      "title": "Serial communication: UART, I2C, SPI",
+      "weeks": "8-9",
+      "topics": [
+        "UART: framing, baud rate, parity; printf over serial; a command-line interface",
+        "I2C: addressing, start/stop, ACK, clock stretching; reading an accelerometer or RTC",
+        "SPI: modes, chip select, full duplex; driving a display or SD card",
+        "Decoding each bus with a logic analyser; common wiring faults",
+        "Other links: CAN, USB and wireless modules (Bluetooth, LoRa, GSM) in brief"
+      ]
+    },
+    {
+      "title": "Real-time scheduling basics",
+      "weeks": "10-11",
+      "topics": [
+        "Timing requirements: hard and soft real time, deadlines, jitter",
+        "Super-loop and cooperative schedulers; state machines for concurrent behaviour",
+        "Pre-emptive multitasking: tasks, context switch, stacks; a tiny RTOS (FreeRTOS)",
+        "Rate-monotonic and earliest-deadline-first scheduling; utilisation bounds; priority inversion and inheritance",
+        "Inter-task communication: queues, semaphores, mutexes"
+      ]
+    },
+    {
+      "title": "Low-power design",
+      "weeks": "12",
+      "topics": [
+        "Where energy goes: active, sleep, peripherals, radios; measuring current",
+        "Sleep modes, wake-up sources, clock scaling, peripheral gating",
+        "Duty cycling and event-driven design; battery and solar budgeting for a field sensor",
+        "Energy-aware firmware design for devices in rural Ghana"
+      ]
+    },
+    {
+      "title": "Embedded software engineering and project",
+      "weeks": "13",
+      "topics": [
+        "Driver layering, hardware abstraction, configuration, code organisation",
+        "Testing embedded code: unit tests on the host, hardware-in-the-loop, logging",
+        "Robustness: brown-out, EMI, input validation, firmware update",
+        "Project: a complete device such as a weather station, irrigation controller or prepaid meter prototype"
+      ]
+    }
+  ]
+}

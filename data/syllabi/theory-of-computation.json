@@ -1,0 +1,107 @@
+{
+  "slug": "theory-of-computation",
+  "description": "What machines can compute, what they cannot, and what they cannot compute quickly: automata, grammars, Turing machines, decidability and complexity, with every machine built and run in the simulator. Taught to the depth of the standard automata and complexity course.",
+  "modelledOn": [
+    "Sipser, Introduction to the Theory of Computation",
+    "Hopcroft, Motwani and Ullman, Introduction to Automata Theory, Languages, and Computation",
+    "Lewis and Papadimitriou, Elements of the Theory of Computation"
+  ],
+  "outcomes": [
+    "Define languages formally and construct DFAs, NFAs and regular expressions for them and convert between the three.",
+    "Prove languages non-regular with the pumping lemma and minimise automata.",
+    "Write context-free grammars and pushdown automata and reason about ambiguity and normal forms.",
+    "Design Turing machines and explain the Church-Turing thesis and the variants of the model.",
+    "Prove problems undecidable by reduction from the halting problem.",
+    "Define P, NP, NP-completeness and reductions and classify problems accordingly."
+  ],
+  "units": [
+    {
+      "title": "Alphabets, strings and languages",
+      "weeks": "1",
+      "topics": [
+        "Alphabets, strings, concatenation, powers, Kleene star; languages as sets of strings",
+        "Operations on languages: union, concatenation, star, complement",
+        "Proof techniques review: induction, contradiction, diagonalisation, pigeonhole",
+        "The Chomsky hierarchy as the map of the course"
+      ]
+    },
+    {
+      "title": "Finite automata",
+      "weeks": "2-3",
+      "topics": [
+        "Deterministic finite automata: formal definition, transition function, acceptance; designing DFAs",
+        "Nondeterministic finite automata and epsilon-transitions; the subset construction",
+        "Closure properties of regular languages; product construction",
+        "DFA minimisation and the Myhill-Nerode theorem",
+        "Applications: lexical analysers, protocol and vending-machine controllers, pattern matching"
+      ]
+    },
+    {
+      "title": "Regular expressions and the limits of regularity",
+      "weeks": "4-5",
+      "topics": [
+        "Regular expressions: syntax, semantics, algebraic laws",
+        "Equivalence of regular expressions and finite automata: Thompson's construction and state elimination",
+        "The pumping lemma for regular languages and non-regularity proofs",
+        "Decision problems for regular languages: emptiness, membership, equivalence",
+        "Regular expressions in practice: grep, validation of phone numbers and Ghana Card IDs"
+      ]
+    },
+    {
+      "title": "Context-free grammars",
+      "weeks": "6-7",
+      "topics": [
+        "Grammars, derivations, parse trees, leftmost and rightmost derivations; ambiguity",
+        "Designing grammars for balanced brackets, arithmetic expressions, palindromes",
+        "Chomsky normal form and Greibach normal form; eliminating useless symbols, epsilon and unit productions",
+        "The CYK membership algorithm",
+        "Pumping lemma for context-free languages; closure and non-closure properties"
+      ]
+    },
+    {
+      "title": "Pushdown automata",
+      "weeks": "8",
+      "topics": [
+        "Pushdown automata: definition, acceptance by final state and by empty stack",
+        "Equivalence of PDAs and context-free grammars",
+        "Deterministic PDAs and deterministic context-free languages; parsing preview",
+        "Decision problems for CFLs"
+      ]
+    },
+    {
+      "title": "Turing machines",
+      "weeks": "9-10",
+      "topics": [
+        "The Turing machine: definition, configurations, acceptance, recognisers versus deciders",
+        "Designing machines for arithmetic and string problems; programming conventions",
+        "Variants: multi-tape, nondeterministic, enumerators and their equivalence",
+        "The Church-Turing thesis; other models: lambda calculus, random access machines, counter machines",
+        "Universal Turing machines and the idea of a stored program",
+        "Context-sensitive languages and linear bounded automata in brief"
+      ]
+    },
+    {
+      "title": "Decidability and the halting problem",
+      "weeks": "11",
+      "topics": [
+        "Decidable problems for automata and grammars",
+        "Countability, diagonalisation and the existence of unrecognisable languages",
+        "The halting problem is undecidable; recognisable but not decidable; co-recognisability",
+        "Reductions: proving undecidability of emptiness, equivalence, Rice's theorem",
+        "Post correspondence problem; undecidable questions about software (virus detection, program equivalence)"
+      ]
+    },
+    {
+      "title": "Complexity classes P and NP",
+      "weeks": "12-13",
+      "topics": [
+        "Time complexity of Turing machines; the class P and polynomial-time algorithms",
+        "The class NP: verifiers and nondeterministic machines; examples: SAT, clique, Hamiltonian path, subset sum",
+        "Polynomial-time reductions; NP-completeness and the Cook-Levin theorem",
+        "NP-complete problems and reductions among them; coNP; the P versus NP question",
+        "Dealing with hardness: approximation, heuristics, parameterised algorithms; space complexity and PSPACE in brief",
+        "Why this matters: cryptography, scheduling, timetabling at a university"
+      ]
+    }
+  ]
+}

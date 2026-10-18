@@ -1,0 +1,123 @@
+{
+  "slug": "mobile-application-development",
+  "description": "Building production-quality mobile applications: the history and characteristics of mobile frameworks, the Android framework and application models, mobile UI design, local data, cloud integration, networking and hardware, enterprise requirements, testing, and publishing to the store, with a complete app shipped by the end. Taught to the depth of a leading mobile development course.",
+  "modelledOn": [
+    "Android Developers documentation and the Modern Android Development guides",
+    "Phillips, Stewart, Marsicano and Gardner, Android Programming: The Big Nerd Ranch Guide",
+    "Google Material Design guidelines",
+    "Apple Human Interface Guidelines and Flutter documentation for cross-platform comparison"
+  ],
+  "outcomes": [
+    "Compare native, cross-platform and web approaches to mobile development and choose for a given product.",
+    "Build Android apps with activities, fragments, navigation, lifecycle-aware components and Jetpack libraries.",
+    "Design mobile interfaces that follow platform guidelines and work on small, slow and offline devices.",
+    "Store data locally with preferences, files and a database and synchronise with cloud services.",
+    "Use networking, sensors, location, camera and background work correctly and efficiently.",
+    "Meet enterprise requirements for performance, scalability, modifiability, availability and security, test the app, and publish and maintain it."
+  ],
+  "units": [
+    {
+      "title": "Characteristics and history of mobile application frameworks",
+      "weeks": "1",
+      "topics": [
+        "From J2ME and Symbian to iOS and Android; the app store model",
+        "Constraints: battery, memory, screen, touch, connectivity, interruptions, fragmentation",
+        "Native (Kotlin/Android, Swift/iOS), cross-platform (Flutter, React Native, Kotlin Multiplatform), progressive web apps; trade-offs",
+        "Mobile in Ghana: Android dominance, low-end devices, data cost, USSD and SMS fallbacks"
+      ]
+    },
+    {
+      "title": "Android framework overview",
+      "weeks": "2-3",
+      "topics": [
+        "Android architecture: Linux kernel, ART, framework, apps; the SDK, Android Studio, emulators and real devices",
+        "Kotlin essentials for Android: null safety, lambdas, coroutines",
+        "Project structure, Gradle, the manifest, resources and configuration qualifiers",
+        "Activities and their lifecycle; intents and intent filters; permissions model",
+        "Debugging, logging and the profiler"
+      ]
+    },
+    {
+      "title": "Application models",
+      "weeks": "4",
+      "topics": [
+        "Components: activities, services, broadcast receivers, content providers; tasks and the back stack",
+        "Architecture: MVVM with ViewModel and LiveData/StateFlow; repository pattern; dependency injection (Hilt)",
+        "Fragments and the Navigation component; single-activity apps",
+        "Process lifecycle, configuration changes and saving state"
+      ]
+    },
+    {
+      "title": "User-interface design for mobile",
+      "weeks": "5-6",
+      "topics": [
+        "Layouts: ConstraintLayout and Jetpack Compose; lists with RecyclerView and LazyColumn",
+        "Material Design: components, theming, typography, dark mode; adaptive layouts for phones and tablets",
+        "Input, gestures, animation, accessibility (TalkBack, content descriptions, touch targets)",
+        "Localisation (Twi, Ga, Ewe, French), right-to-left support, offline and error states",
+        "Designing for low-end devices and slow networks"
+      ]
+    },
+    {
+      "title": "Managing application data",
+      "weeks": "7",
+      "topics": [
+        "SharedPreferences and DataStore; internal and external storage; scoped storage",
+        "SQLite with Room: entities, DAOs, migrations, queries as Flows",
+        "Content providers and sharing data between apps",
+        "Caching strategies and offline-first design"
+      ]
+    },
+    {
+      "title": "Integrating cloud services",
+      "weeks": "8",
+      "topics": [
+        "Firebase or Supabase: authentication, realtime database or Postgres, storage, push notifications, analytics, crash reporting",
+        "Synchronisation and conflict resolution; background sync with WorkManager",
+        "Payments: mobile money APIs and in-app billing",
+        "Backend-as-a-service versus a custom REST or GraphQL API"
+      ]
+    },
+    {
+      "title": "Networking, OS and hardware integration",
+      "weeks": "9",
+      "topics": [
+        "HTTP with Retrofit/OkHttp or Ktor; JSON parsing; handling slow and failing networks; image loading",
+        "Coroutines and threading; services, foreground services and WorkManager; notifications",
+        "Location and maps, camera and media, sensors, Bluetooth and NFC; runtime permissions",
+        "Battery and data efficiency; Doze and app standby"
+      ]
+    },
+    {
+      "title": "Enterprise requirements",
+      "weeks": "10",
+      "topics": [
+        "Performance: startup time, jank, memory leaks, profiling tools, baseline profiles",
+        "Scalability and modifiability: modular architecture, feature modules, clean architecture, API versioning",
+        "Availability: offline operation, retry and backoff, graceful degradation",
+        "Security: secure storage (Keystore), certificate pinning, obfuscation, OWASP Mobile Top Ten, data protection compliance"
+      ]
+    },
+    {
+      "title": "Testing",
+      "weeks": "11",
+      "topics": [
+        "Unit tests with JUnit and mocking; testing ViewModels and repositories; coroutine tests",
+        "Instrumented and UI tests with Espresso and Compose testing; screenshot tests",
+        "Test pyramid for mobile; device farms and emulator matrices; CI for Android",
+        "Beta testing with internal and closed tracks; collecting feedback"
+      ]
+    },
+    {
+      "title": "Publishing, deployment and maintenance",
+      "weeks": "12-13",
+      "topics": [
+        "App signing, Play Console, store listing, content ratings, privacy policy and data safety forms; iOS App Store comparison",
+        "Release management: versioning, staged rollouts, feature flags, in-app updates",
+        "Monitoring crashes, ANRs, performance and reviews; analytics and A/B tests",
+        "Maintenance: dependency updates, OS version migrations, deprecations",
+        "Capstone: a complete app for a local need (market prices, clinic appointments, transport) published to a test track"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "slug": "web-application-programming-i",
+  "description": "Building web pages that work on every device and every connection: semantic HTML, modern CSS layout, responsive design, media and the JavaScript that brings pages to life. Taught to the depth of a leading front-end web development course.",
+  "modelledOn": [
+    "MDN Web Docs learning pathway",
+    "Duckett, HTML and CSS: Design and Build Websites",
+    "Duckett, JavaScript and jQuery: Interactive Front-End Web Development",
+    "W3C Web Content Accessibility Guidelines"
+  ],
+  "outcomes": [
+    "Write valid, semantic, accessible HTML documents with correct structure, lists, tables, links, images and forms.",
+    "Style pages with CSS selectors, the box model, flexbox and grid, and organise stylesheets maintainably.",
+    "Build layouts that adapt to phones, tablets and desktops and remain fast on slow connections.",
+    "Embed and control audio, video and canvas content.",
+    "Write JavaScript that manipulates the DOM, handles events and validates forms.",
+    "Debug and test pages with browser developer tools and publish them to a web host."
+  ],
+  "units": [
+    {
+      "title": "How the Web works and HTML building blocks",
+      "weeks": "1-2",
+      "topics": [
+        "Clients, servers, HTTP requests and responses, URLs, browsers and rendering",
+        "HTML document structure: doctype, head, body, metadata, character encoding",
+        "Elements, attributes, nesting; headings, paragraphs, emphasis, line breaks, comments",
+        "Document sections: header, nav, main, article, section, aside, footer; why semantics matter",
+        "Validation and developer tools; writing a first multi-page site"
+      ]
+    },
+    {
+      "title": "Lists and tables",
+      "weeks": "3",
+      "topics": [
+        "Ordered, unordered and description lists; nested lists for menus",
+        "Tables: rows, cells, headers, caption, thead/tbody/tfoot, rowspan and colspan",
+        "Accessible tables with scope and headers; when not to use a table",
+        "Tabular data from a Ghanaian school timetable or a market price list"
+      ]
+    },
+    {
+      "title": "Links and images",
+      "weeks": "4",
+      "topics": [
+        "Anchors, absolute and relative URLs, fragments, mailto and tel links; link states",
+        "Images: formats (JPEG, PNG, GIF, SVG, WebP), alt text, dimensions, figure and figcaption",
+        "Responsive images with srcset and picture; image optimisation for low bandwidth",
+        "Icons, favicons and image maps"
+      ]
+    },
+    {
+      "title": "Forms",
+      "weeks": "5",
+      "topics": [
+        "form, input types (text, email, number, date, password, checkbox, radio, file), select, textarea, button",
+        "Labels, fieldsets, placeholders and accessibility",
+        "HTML5 validation attributes: required, pattern, min, max",
+        "GET versus POST and what happens when a form is submitted"
+      ]
+    },
+    {
+      "title": "Cascading Style Sheets",
+      "weeks": "6-8",
+      "topics": [
+        "Inline, internal and external CSS; selectors (type, class, id, attribute, pseudo-class, pseudo-element); specificity and the cascade",
+        "Colour, typography, web fonts, units (px, em, rem, %, vw)",
+        "The box model: margin, border, padding, content; box-sizing; display and visibility",
+        "Positioning: static, relative, absolute, fixed, sticky; z-index; floats",
+        "Flexbox and CSS grid for page layout; alignment and spacing",
+        "Transitions, transforms and simple animations; CSS variables; organising stylesheets"
+      ]
+    },
+    {
+      "title": "Responsive HTML",
+      "weeks": "9",
+      "topics": [
+        "Viewport meta tag; fluid layouts; mobile-first design",
+        "Media queries for width, orientation and dark mode",
+        "Responsive navigation, images and tables",
+        "Performance on 2G/3G: minimising requests, compression, lazy loading; testing with throttling",
+        "Accessibility basics: contrast, keyboard navigation, ARIA landmarks"
+      ]
+    },
+    {
+      "title": "HTML media",
+      "weeks": "10",
+      "topics": [
+        "audio and video elements, sources, formats, controls, captions with track",
+        "Embedding maps, YouTube and other iframes safely",
+        "SVG inline graphics and the canvas element",
+        "Considerations for data cost and autoplay"
+      ]
+    },
+    {
+      "title": "JavaScript basics",
+      "weeks": "11-13",
+      "topics": [
+        "Adding scripts; variables (let, const), types, operators, strings, arrays, objects",
+        "Functions, arrow functions, conditionals and loops; the console and debugging",
+        "The DOM: selecting elements, changing content and styles, creating and removing nodes",
+        "Events: click, input, submit, keyboard; event listeners and the event object",
+        "Form validation and dynamic forms; local storage",
+        "Fetching JSON from an API and rendering it; introduction to promises",
+        "Project: a responsive multi-page site with an interactive feature, published to a static host"
+      ]
+    }
+  ]
+}

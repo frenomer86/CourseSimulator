@@ -1,0 +1,114 @@
+{
+  "slug": "legal-and-ethical-issues-in-computing",
+  "description": "The law and ethics that govern computing professionals and the systems they build: IT law, e-commerce, cybercrime, intellectual property, contracts, privacy and Internet governance, data protection regimes compared across Ghana, Europe, the Americas and Southern Africa, the effects of computing on work and wealth, and professional ethics. Taught to the depth of a leading computer ethics and cyberlaw course.",
+  "modelledOn": [
+    "Quinn, Ethics for the Information Age",
+    "Baase and Henry, A Gift of Fire: Social, Legal, and Ethical Issues for Computing Technology",
+    "Lloyd, Information Technology Law",
+    "ACM Code of Ethics and Professional Conduct; IEEE Code of Ethics"
+  ],
+  "outcomes": [
+    "Explain the sources and structure of IT law in Ghana and how it interacts with international law.",
+    "Identify the legal requirements of e-commerce, electronic contracts, electronic signatures and consumer protection.",
+    "Classify ICT crimes and explain the relevant offences, investigation powers and penalties.",
+    "Apply intellectual property law to software, data, content and trademarks, including licensing and open source.",
+    "Compare data protection regimes (Ghana's Act 843, GDPR, CCPA, PIPEDA, POPIA) and design compliant data handling.",
+    "Analyse ethical dilemmas in computing with established ethical theories and professional codes."
+  ],
+  "units": [
+    {
+      "title": "Introduction to IT law",
+      "weeks": "1",
+      "topics": [
+        "Sources of law in Ghana: the Constitution, statutes, common law, customary law; courts and jurisdiction",
+        "Why the Internet challenges law: territoriality, anonymity, speed, intermediaries",
+        "Key Ghanaian statutes: Electronic Transactions Act 2008 (Act 772), Data Protection Act 2012 (Act 843), Cybersecurity Act 2020 (Act 1038), Electronic Communications Act 2008",
+        "Regulators: NCA, Data Protection Commission, Cyber Security Authority, NITA"
+      ]
+    },
+    {
+      "title": "E-commerce legal issues",
+      "weeks": "2-3",
+      "topics": [
+        "Electronic contracts: offer, acceptance, click-wrap and browse-wrap, timing, mistakes, automated agents",
+        "Electronic signatures and records; certification authorities; evidential weight",
+        "Consumer protection online: disclosure, cooling-off, unfair terms, dispute resolution; payment regulation and mobile money rules",
+        "Online marketplaces and intermediary liability; advertising and spam; taxation of digital services (the e-levy debate)"
+      ]
+    },
+    {
+      "title": "ICT crime",
+      "weeks": "4-5",
+      "topics": [
+        "Categories: unauthorised access, data interference, system interference, misuse of devices, computer-related fraud and forgery, identity theft, child sexual abuse material, cyberstalking, hate speech",
+        "Ghana's Cybersecurity Act and the Electronic Transactions Act offences; the Budapest Convention and the Malabo Convention",
+        "Investigation powers, interception, digital evidence and admissibility; international cooperation",
+        "Case studies: sakawa and romance fraud, SIM-box fraud, mobile-money fraud, ransomware",
+        "Cybersecurity obligations on organisations and critical information infrastructure"
+      ]
+    },
+    {
+      "title": "Intellectual property",
+      "weeks": "6-7",
+      "topics": [
+        "Copyright: subsistence, ownership, duration, infringement, fair use and fair dealing; software and databases as works; Ghana's Copyright Act 2005",
+        "Patents and software patents; trade secrets and confidentiality; trademarks and domain names (UDRP)",
+        "Licensing: proprietary EULAs, open-source licences (GPL, BSD, Apache) and their obligations; Creative Commons",
+        "Digital rights management, piracy, and enforcement; ARIPO and international treaties (Berne, TRIPS)",
+        "Ownership of code written by employees, contractors and students; AI-generated works"
+      ]
+    },
+    {
+      "title": "IT contracts",
+      "weeks": "8",
+      "topics": [
+        "Software development, licensing, SaaS and cloud contracts; outsourcing and service level agreements",
+        "Key clauses: scope, acceptance, warranties, liability caps, indemnities, IP ownership, termination, dispute resolution",
+        "Agile contracts and change control; escrow; government procurement of IT in Ghana",
+        "Reading and negotiating a real contract"
+      ]
+    },
+    {
+      "title": "Information privacy and Internet governance",
+      "weeks": "9",
+      "topics": [
+        "Privacy as a right: constitutional and international foundations; surveillance, profiling, facial recognition",
+        "Internet governance: ICANN, IETF, ITU, multistakeholder model; net neutrality; Internet shutdowns and content regulation in Africa",
+        "Freedom of expression online, defamation, platform liability and content moderation",
+        "Lawful interception, data retention and the balance with security"
+      ]
+    },
+    {
+      "title": "Data protection and freedom of information",
+      "weeks": "10-11",
+      "topics": [
+        "Ghana's Data Protection Act 843: principles, data controllers and processors, registration, data subject rights, the Commission, enforcement",
+        "GDPR: lawful bases, consent, rights, DPOs, DPIAs, breach notification, international transfers, fines",
+        "CCPA/CPRA, PIPEDA and POPIA compared: scope, rights, enforcement; the African Union data policy framework",
+        "Freedom of information: Ghana's Right to Information Act 2019 and access to public records",
+        "Designing a compliant system: privacy by design, data minimisation, retention, security, breach response; writing a privacy notice"
+      ]
+    },
+    {
+      "title": "Work and wealth",
+      "weeks": "12",
+      "topics": [
+        "Automation, AI and employment; the gig economy and platform work; telework",
+        "The digital divide within Ghana and globally; digital inclusion and accessibility obligations",
+        "Wealth concentration, big tech and competition law; data as an asset",
+        "Environmental effects: energy, e-waste, and responsible disposal"
+      ]
+    },
+    {
+      "title": "Professional ethics and social issues",
+      "weeks": "13",
+      "topics": [
+        "Ethical theories: utilitarianism, deontology, virtue ethics, social contract; applying them to cases",
+        "Professional codes: ACM, IEEE, BCS; whistleblowing, conflicts of interest, competence, honesty",
+        "Ethics of AI and algorithms: bias, transparency, accountability, autonomous systems",
+        "Case analyses: Therac-25, Volkswagen emissions, Cambridge Analytica, a Ghanaian data breach",
+        "Capstone: a policy brief or ethical analysis presented and defended"
+      ]
+    }
+  ]
+}

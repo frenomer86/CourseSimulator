@@ -1,0 +1,125 @@
+{
+  "slug": "machine-learning",
+  "description": "Learning from data with the mathematics made explicit: regression, classification, trees and ensembles, neural networks trained by backpropagation, unsupervised learning, rigorous evaluation, feature engineering and the ethics of deployed models, with every algorithm implemented from scratch before using a library. Taught to the depth of a leading machine learning course.",
+  "modelledOn": [
+    "Bishop, Pattern Recognition and Machine Learning",
+    "Hastie, Tibshirani and Friedman, The Elements of Statistical Learning",
+    "Murphy, Probabilistic Machine Learning: An Introduction",
+    "Goodfellow, Bengio and Courville, Deep Learning (introductory chapters)"
+  ],
+  "outcomes": [
+    "Formulate supervised and unsupervised learning problems and derive and implement the core algorithms with gradient descent.",
+    "Fit and regularise linear and logistic regression models and interpret their coefficients.",
+    "Train decision trees, random forests and gradient-boosted ensembles and explain why ensembles work.",
+    "Implement a neural network with backpropagation and train it with modern optimisers and regularisation.",
+    "Evaluate models with appropriate metrics, cross-validation and learning curves and diagnose bias and variance.",
+    "Engineer features for tabular, text and image data and assess fairness, bias and privacy before deployment."
+  ],
+  "units": [
+    {
+      "title": "Supervised and unsupervised learning",
+      "weeks": "1",
+      "topics": [
+        "What learning from data means; supervised, unsupervised, semi-supervised and reinforcement settings",
+        "Hypothesis spaces, loss functions, empirical risk minimisation; generalisation",
+        "Linear algebra, probability and calculus refresher as used in the course",
+        "Tooling: NumPy, pandas, scikit-learn, PyTorch; notebooks and experiment tracking"
+      ]
+    },
+    {
+      "title": "Linear regression",
+      "weeks": "2",
+      "topics": [
+        "Least squares: closed form and gradient descent; batch, stochastic and mini-batch",
+        "Feature scaling, polynomial features, basis functions",
+        "Ridge and lasso regularisation; the bias-variance trade-off",
+        "Probabilistic view: maximum likelihood with Gaussian noise; Bayesian regression in brief",
+        "Predicting crop yield or house prices in Accra from tabular data"
+      ]
+    },
+    {
+      "title": "Logistic regression and linear classifiers",
+      "weeks": "3",
+      "topics": [
+        "Logistic regression: sigmoid, cross-entropy loss, gradient, decision boundaries; multiclass with softmax",
+        "Generative versus discriminative: naive Bayes and Gaussian discriminant analysis",
+        "Support vector machines: margins, hinge loss, kernels",
+        "k-nearest neighbours and the curse of dimensionality"
+      ]
+    },
+    {
+      "title": "Model evaluation, overfitting and model selection",
+      "weeks": "4-5",
+      "topics": [
+        "Train, validation and test splits; k-fold and stratified cross-validation; data leakage",
+        "Metrics: accuracy, precision, recall, F1, ROC and PR curves, AUC, log loss, RMSE, MAE; imbalanced classes",
+        "Bias and variance; learning curves; underfitting and overfitting diagnosis",
+        "Hyperparameter search: grid, random, Bayesian; nested cross-validation",
+        "Statistical significance of model comparisons; reporting results honestly"
+      ]
+    },
+    {
+      "title": "Decision trees and ensembles",
+      "weeks": "6-7",
+      "topics": [
+        "Decision trees: entropy, information gain, Gini, CART, pruning, handling continuous and missing values",
+        "Bagging and random forests; out-of-bag error; feature importance",
+        "Boosting: AdaBoost, gradient boosting, XGBoost and LightGBM; stacking",
+        "Why ensembles reduce variance; interpretability with SHAP and partial dependence"
+      ]
+    },
+    {
+      "title": "Neural networks and backpropagation",
+      "weeks": "8-9",
+      "topics": [
+        "Perceptron to multilayer perceptron; activation functions; universal approximation",
+        "Backpropagation derived and implemented with NumPy; computational graphs and automatic differentiation",
+        "Optimisation: SGD with momentum, Adam, learning-rate schedules; initialisation; batch normalisation",
+        "Regularisation: weight decay, dropout, early stopping, data augmentation",
+        "Convolutional networks for images and recurrent networks and transformers for sequences, in brief; transfer learning",
+        "Training a classifier for cassava leaf disease images"
+      ]
+    },
+    {
+      "title": "Unsupervised learning",
+      "weeks": "10",
+      "topics": [
+        "k-means, Gaussian mixture models and the EM algorithm; hierarchical and density-based clustering",
+        "Dimensionality reduction: PCA derived from variance maximisation and SVD; t-SNE and UMAP for visualisation",
+        "Anomaly detection; autoencoders in brief",
+        "Recommender systems: collaborative filtering and matrix factorisation"
+      ]
+    },
+    {
+      "title": "Feature engineering and the ML pipeline",
+      "weeks": "11",
+      "topics": [
+        "Encoding categorical variables, scaling, binning, interactions, date features, handling missing data",
+        "Text features: bag of words, TF-IDF, word embeddings; image features and pretrained encoders",
+        "Feature selection: filter, wrapper, embedded methods",
+        "Pipelines, reproducibility, model versioning and deployment basics (serving a model behind an API)"
+      ]
+    },
+    {
+      "title": "Learning theory and advanced topics",
+      "weeks": "12",
+      "topics": [
+        "PAC learning, VC dimension and generalisation bounds in brief",
+        "Online learning, active learning, semi-supervised learning",
+        "Reinforcement learning overview: bandits, Q-learning, policy gradients",
+        "Large language models and foundation models: what they are and how to use them responsibly"
+      ]
+    },
+    {
+      "title": "Ethics and bias in machine learning",
+      "weeks": "13",
+      "topics": [
+        "Sources of bias: data, labels, proxies, feedback loops; fairness definitions and their incompatibility",
+        "Explainability and accountability; model cards and datasheets",
+        "Privacy: differential privacy and federated learning in brief; data protection law",
+        "Case studies: credit scoring, facial recognition, predictive policing; deploying ML responsibly in Ghana",
+        "Capstone: a complete project with a model card and fairness audit"
+      ]
+    }
+  ]
+}

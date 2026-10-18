@@ -1,0 +1,113 @@
+{
+  "slug": "data-science",
+  "description": "The full data science workflow on real datasets: collecting and cleaning data, warehousing and business intelligence, visualisation, machine learning for clustering, dimensionality reduction, association rules, regression and classification, big data tools, and the ethics and storytelling that make results usable. Taught to the depth of a leading introductory data science course.",
+  "modelledOn": [
+    "Adhikari, DeNero and Wagner, Computational and Inferential Thinking: The Foundations of Data Science",
+    "VanderPlas, Python Data Science Handbook",
+    "Wickham, Cetinkaya-Rundel and Grolemund, R for Data Science",
+    "Provost and Fawcett, Data Science for Business"
+  ],
+  "outcomes": [
+    "Describe the data science life cycle and plan a project from question to deployed insight.",
+    "Use Python and R to load, clean, transform, blend and summarise data from files, databases, APIs and the web.",
+    "Design a simple data warehouse and build business intelligence dashboards.",
+    "Create honest, effective visualisations and communicate findings as a data story.",
+    "Apply clustering, PCA, association rules, regression and classification with proper validation.",
+    "Process data at scale with distributed tools and handle privacy and ethics responsibly."
+  ],
+  "units": [
+    {
+      "title": "Introduction to data science and the project life cycle",
+      "weeks": "1-2",
+      "topics": [
+        "What data science is: statistics, computing and domain knowledge; roles in a data team",
+        "The life cycle: question, acquire, clean, explore, model, evaluate, communicate, deploy, monitor (CRISP-DM)",
+        "Data types and sources: structured, semi-structured, unstructured; open data from the Ghana Statistical Service and the World Bank",
+        "Framing business and research questions; defining success metrics",
+        "Reproducible work: notebooks, scripts, version control, environments"
+      ]
+    },
+    {
+      "title": "R and Python for data",
+      "weeks": "3-4",
+      "topics": [
+        "Python: NumPy arrays, pandas DataFrames, indexing, grouping, merging, reshaping",
+        "R: vectors, data frames, the tidyverse (dplyr, tidyr, ggplot2)",
+        "Reading and writing CSV, Excel, JSON, SQL; dates and times; text and regular expressions",
+        "Exploratory data analysis: summaries, distributions, outliers, missing data",
+        "Choosing between R and Python and moving between them"
+      ]
+    },
+    {
+      "title": "Data collection and blending",
+      "weeks": "5",
+      "topics": [
+        "Collecting data: surveys, sensors, logs, APIs, web scraping (ethically and legally)",
+        "Data cleaning: types, duplicates, inconsistent categories, missing values and imputation, outliers",
+        "Blending sources: joins, entity resolution, fuzzy matching, unit and currency harmonisation",
+        "Data quality assessment and documentation (data dictionaries, provenance)"
+      ]
+    },
+    {
+      "title": "Business intelligence and data warehousing",
+      "weeks": "6",
+      "topics": [
+        "OLTP versus OLAP; the data warehouse and data marts; ETL and ELT pipelines",
+        "Dimensional modelling: facts, dimensions, star and snowflake schemas",
+        "OLAP operations: slice, dice, roll-up, drill-down; SQL for analytics (window functions, CUBE)",
+        "Dashboards with Power BI, Tableau, Metabase or Superset; KPIs for a retail chain or a hospital"
+      ]
+    },
+    {
+      "title": "Data visualisation",
+      "weeks": "7",
+      "topics": [
+        "Principles: encoding, chart choice, colour, scales, small multiples, avoiding deception",
+        "matplotlib, seaborn, plotly and ggplot2; maps and geospatial plots of Ghana's regions",
+        "Interactive dashboards and notebooks",
+        "Critiquing charts from the press and government reports"
+      ]
+    },
+    {
+      "title": "Machine learning: regression and classification",
+      "weeks": "8-9",
+      "topics": [
+        "Supervised learning setup; train/validation/test splits; cross-validation; overfitting and regularisation",
+        "Linear and polynomial regression; logistic regression; k-nearest neighbours; decision trees and random forests; gradient boosting",
+        "Evaluation: RMSE, R-squared, accuracy, precision, recall, F1, ROC-AUC, confusion matrices, class imbalance",
+        "Feature engineering, encoding, scaling, pipelines in scikit-learn and tidymodels",
+        "Case: predicting loan default, crop yield or student dropout"
+      ]
+    },
+    {
+      "title": "Machine learning: clustering, PCA and association rules",
+      "weeks": "10",
+      "topics": [
+        "k-means, hierarchical and DBSCAN clustering; choosing k; interpreting clusters (customer segmentation)",
+        "Principal component analysis: variance, loadings, visualisation of high-dimensional data; t-SNE and UMAP in brief",
+        "Association rules: support, confidence, lift, Apriori and FP-growth; market basket analysis",
+        "Anomaly detection basics"
+      ]
+    },
+    {
+      "title": "Big data analytics",
+      "weeks": "11",
+      "topics": [
+        "The Vs of big data; when a laptop is not enough",
+        "Distributed storage and compute: HDFS, MapReduce, Spark DataFrames and MLlib; cloud data warehouses",
+        "Streaming analytics and real-time dashboards",
+        "Working with big data on a small budget: sampling, columnar formats (Parquet), DuckDB"
+      ]
+    },
+    {
+      "title": "Ethics, privacy and storytelling with data",
+      "weeks": "12-13",
+      "topics": [
+        "Privacy, consent, anonymisation and re-identification; Ghana's Data Protection Act and GDPR",
+        "Bias in data and models; fairness metrics; algorithmic accountability; responsible AI",
+        "Storytelling: narrative structure, audience, executive summaries, presenting uncertainty",
+        "Capstone: an end-to-end project on a local dataset with a dashboard, model and written story"
+      ]
+    }
+  ]
+}

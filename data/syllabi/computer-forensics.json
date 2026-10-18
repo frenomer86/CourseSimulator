@@ -1,0 +1,115 @@
+{
+  "slug": "computer-forensics",
+  "description": "Investigating computer crime by the book: identifying, acquiring, preserving, analysing and presenting digital evidence from disks, memory, mobile devices and networks in a way that survives a courtroom. Taught to the depth of a leading digital forensics course and the professional examiner certifications.",
+  "modelledOn": [
+    "Nelson, Phillips and Steuart, Guide to Computer Forensics and Investigations",
+    "Casey, Digital Evidence and Computer Crime",
+    "NIST SP 800-86 Guide to Integrating Forensic Techniques into Incident Response",
+    "SANS GIAC Certified Forensic Examiner (GCFE) objectives"
+  ],
+  "outcomes": [
+    "Explain the forensic process and the legal framework for digital evidence in Ghana and internationally.",
+    "Acquire forensically sound images of disks, memory and mobile devices and verify them with hashes.",
+    "Analyse file systems, deleted data, metadata, logs and artefacts of Windows, Linux and Android.",
+    "Recover and interpret evidence from email, web, network captures and cloud services.",
+    "Build a case file with a chain of custody and write an expert report.",
+    "Describe the responsibilities and liabilities of an investigator and testify as an expert witness."
+  ],
+  "units": [
+    {
+      "title": "Introduction to computer forensics",
+      "weeks": "1",
+      "topics": [
+        "Digital forensics as a discipline: history, branches (computer, network, mobile, memory, cloud), and its relation to incident response",
+        "The forensic process: identification, preservation, collection, examination, analysis, presentation",
+        "Locard's exchange principle in the digital world; the examiner's mindset",
+        "Setting up a forensic workstation and lab with open-source tools (Autopsy, Sleuth Kit, FTK Imager, Volatility, Wireshark)"
+      ]
+    },
+    {
+      "title": "Computer crimes and criminals",
+      "weeks": "2",
+      "topics": [
+        "Categories of computer crime: fraud, sakawa and romance scams, mobile-money fraud, intrusion, malware, harassment, child abuse material, intellectual property theft",
+        "Offender profiles and motives; insider threats",
+        "Ghana's Cybersecurity Act 2020 and Electronic Transactions Act 2008; the Budapest Convention; cross-border cooperation",
+        "Roles: law enforcement (Cyber Security Authority, CID), corporate investigators, private examiners"
+      ]
+    },
+    {
+      "title": "Forensic technologies and tools",
+      "weeks": "3",
+      "topics": [
+        "Write blockers, imaging hardware, Faraday bags, evidence storage",
+        "Commercial and open-source suites; validating tools; NIST tool testing",
+        "Hashing (MD5, SHA-256) and why it proves integrity; hash sets and known-file filtering",
+        "Virtual machines and sandboxes for safe examination"
+      ]
+    },
+    {
+      "title": "Computer hardware and software in forensics",
+      "weeks": "4-5",
+      "topics": [
+        "Storage media: HDD geometry, SSDs and TRIM, flash, optical, RAID; where data hides (slack space, unallocated space, HPA/DCO)",
+        "Boot process, BIOS/UEFI, partitions (MBR, GPT)",
+        "File systems: FAT, NTFS (MFT, ADS, journal), ext4, APFS; timestamps and their interpretation",
+        "Operating system artefacts: registry, event logs, prefetch, LNK files, shellbags, user profiles",
+        "Encryption and anti-forensics: BitLocker, VeraCrypt, wiping, steganography"
+      ]
+    },
+    {
+      "title": "Collecting and preserving digital evidence",
+      "weeks": "6-7",
+      "topics": [
+        "First response: securing the scene, photographing, documenting, deciding on live versus dead acquisition",
+        "Volatile data collection: RAM imaging, running processes, network connections; order of volatility",
+        "Disk imaging: bit-for-bit copies, E01 and raw formats, verification; imaging phones and cloud accounts",
+        "Chain of custody forms, evidence bags, labelling, storage; legal authority and warrants",
+        "Handling evidence from mobile money, social media and messaging apps"
+      ]
+    },
+    {
+      "title": "Preserving and recovering digital evidence",
+      "weeks": "8-9",
+      "topics": [
+        "File carving by signatures; recovering deleted files from FAT and NTFS; recycle bin analysis",
+        "Timeline analysis with the Sleuth Kit and Plaso; super-timelines",
+        "Memory forensics with Volatility: processes, injected code, passwords, network artefacts",
+        "Email forensics: headers, spoofing, PST/MBOX analysis; web browser artefacts: history, cache, cookies",
+        "Mobile forensics: Android and iOS logical and physical acquisition, SQLite databases, app data",
+        "Network forensics: packet captures, flow records, log correlation; cloud and IoT evidence"
+      ]
+    },
+    {
+      "title": "Building a cybercrime case",
+      "weeks": "10-11",
+      "topics": [
+        "Case planning: hypotheses, scope, evidence sources, legal constraints",
+        "Keyword and pattern searching, data reduction, filtering known files, linking artefacts to users and times",
+        "Attribution: user accounts, device identifiers, IP addresses, geolocation and their limits",
+        "Writing the forensic report: findings, methodology, reproducibility, exhibits",
+        "Case exercise: a fraud investigation from seized laptop to report"
+      ]
+    },
+    {
+      "title": "Investigator responsibilities and liabilities",
+      "weeks": "12",
+      "topics": [
+        "Admissibility of digital evidence: authenticity, integrity, relevance, hearsay; Ghana's Evidence Act and electronic evidence provisions",
+        "Expert witness duties, testimony, cross-examination; courtroom presentation of technical material",
+        "Privacy, proportionality and data protection during investigations; handling illegal material",
+        "Professional ethics and codes (ISFCE, ACPO principles); liabilities for negligence, contamination and disclosure"
+      ]
+    },
+    {
+      "title": "Corporate investigations and incident response",
+      "weeks": "13",
+      "topics": [
+        "Investigations inside organisations: policy, HR, legal and IT cooperation; acceptable use policies",
+        "Incident response life cycle and where forensics fits; preserving evidence during containment",
+        "E-discovery and litigation holds",
+        "Capstone: full investigation of a prepared disk image with report and mock testimony"
+      ]
+    }
+  ]
+}

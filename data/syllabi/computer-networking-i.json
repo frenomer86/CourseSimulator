@@ -1,0 +1,124 @@
+{
+  "slug": "computer-networking-i",
+  "description": "How networks are built and why they work: the layered models, IPv4 addressing and subnetting, the devices and cabling of a LAN, and the first steps in managing and securing one. Taught to the depth of a leading introductory networking course and the first half of the industry routing-and-switching certification.",
+  "modelledOn": [
+    "Kurose and Ross, Computer Networking: A Top-Down Approach",
+    "Cisco CCNA 200-301 network fundamentals and access objectives",
+    "Tanenbaum and Wetherall, Computer Networks"
+  ],
+  "outcomes": [
+    "Explain the OSI and TCP/IP models and place every common protocol and device at its layer.",
+    "Design IPv4 addressing plans with classless subnetting and VLSM and verify them by hand and with tools.",
+    "Build, cable and configure a small wired and wireless LAN with switches, a router and DHCP.",
+    "Explain how Ethernet, ARP, IP, TCP, UDP, DNS and HTTP cooperate to deliver a web page.",
+    "Detect and correct transmission errors with parity, CRC and checksums.",
+    "Monitor a network with ping, traceroute, Wireshark and SNMP and apply basic security controls."
+  ],
+  "units": [
+    {
+      "title": "Introduction to networking",
+      "weeks": "1",
+      "topics": [
+        "What a network is; hosts, links, switches, routers; LAN, MAN, WAN, PAN; topologies",
+        "Circuit switching versus packet switching; delay, loss, throughput, bandwidth-delay product",
+        "The Internet as a network of networks: ISPs, IXPs (including GIX in Accra), submarine cables",
+        "Network performance measurement with ping and iperf"
+      ]
+    },
+    {
+      "title": "OSI and TCP/IP models and protocols",
+      "weeks": "2-3",
+      "topics": [
+        "The seven OSI layers and the four TCP/IP layers; encapsulation and headers",
+        "Protocols, services and interfaces; the end-to-end principle",
+        "Application layer: HTTP, DNS, SMTP, FTP, SSH; sockets",
+        "Transport layer: TCP connection setup, reliability, flow and congestion control; UDP",
+        "Network layer: IP forwarding, routers and routing tables; ICMP",
+        "Following one HTTP request through every layer in Wireshark"
+      ]
+    },
+    {
+      "title": "IPv4 addressing and subnetting",
+      "weeks": "4-5",
+      "topics": [
+        "Binary and dotted decimal; classful history; private and public addresses; special addresses",
+        "Subnet masks, CIDR notation, network and broadcast addresses, usable hosts",
+        "Fixed-length and variable-length subnetting (VLSM); designing a plan for a campus",
+        "Supernetting and route summarisation",
+        "IPv6: address format, types, SLAAC, dual stack",
+        "ARP, DHCP and how a host gets on the network"
+      ]
+    },
+    {
+      "title": "Data link layer and Ethernet",
+      "weeks": "6",
+      "topics": [
+        "Framing, MAC addresses, Ethernet frame format",
+        "Shared media and CSMA/CD; full duplex; hubs versus switches",
+        "Switch learning, forwarding and flooding; the MAC table; spanning tree in brief",
+        "Link-layer tools: ipconfig, arp, switch show commands"
+      ]
+    },
+    {
+      "title": "Error detection and correction",
+      "weeks": "7",
+      "topics": [
+        "Bit errors and burst errors; Hamming distance",
+        "Parity, two-dimensional parity, Internet checksum",
+        "Cyclic redundancy check: polynomial division and hardware implementation",
+        "Forward error correction with Hamming codes; ARQ: stop-and-wait, go-back-N, selective repeat"
+      ]
+    },
+    {
+      "title": "Components and devices",
+      "weeks": "8",
+      "topics": [
+        "NICs, repeaters, hubs, bridges, switches (managed and unmanaged), routers, access points, firewalls",
+        "Layer-3 switches, modems, ONTs and the devices in a Ghanaian home or office connection",
+        "Reading device specifications: ports, speeds, PoE, throughput",
+        "Network diagrams and documentation"
+      ]
+    },
+    {
+      "title": "Cabling, wiring and wireless",
+      "weeks": "9-10",
+      "topics": [
+        "Twisted pair categories (Cat5e, Cat6, Cat6a), T568A/B, straight-through and crossover; crimping and testing",
+        "Fibre optics: single-mode and multi-mode, connectors, attenuation; coaxial",
+        "Structured cabling: patch panels, racks, labelling, cable management",
+        "Wi-Fi standards (802.11 a/b/g/n/ac/ax), channels, interference, site survey, mesh",
+        "Wireless security: WPA2, WPA3, enterprise authentication"
+      ]
+    },
+    {
+      "title": "Installation and configuration",
+      "weeks": "11",
+      "topics": [
+        "Configuring a switch and a router from the CLI: hostnames, interfaces, IP addresses, default gateway",
+        "Setting up DHCP and DNS forwarding on a small router; static addressing for servers and printers",
+        "Configuring a wireless access point; guest networks",
+        "Connectivity testing: ping, traceroute, nslookup, netstat; a fault-finding procedure"
+      ]
+    },
+    {
+      "title": "Network management",
+      "weeks": "12",
+      "topics": [
+        "Monitoring: SNMP, syslog, NetFlow; interface counters and utilisation graphs",
+        "Packet capture and analysis with Wireshark",
+        "Change management, backups of configurations, documentation, IP address management",
+        "Troubleshooting methodology layer by layer"
+      ]
+    },
+    {
+      "title": "Network security",
+      "weeks": "13",
+      "topics": [
+        "Threats: sniffing, spoofing, man-in-the-middle, denial of service, rogue DHCP",
+        "Access control: passwords, SSH instead of Telnet, port security, MAC filtering",
+        "Firewalls, NAT as a side effect, basic packet filtering",
+        "Security policies for a school or small business network"
+      ]
+    }
+  ]
+}

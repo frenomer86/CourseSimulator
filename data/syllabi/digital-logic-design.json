@@ -1,11 +1,10 @@
 {
   "slug": "digital-logic-design",
-  "description": "From transistors and gates to a working processor datapath. Modelled on the depth of MIT 6.004 (Computation Structures), Berkeley EECS 151 (Digital Design) and the Nand2Tetris hardware track, grounded in the HTU course outline.",
+  "description": "From transistors and gates to a working processor datapath. Every circuit is built, minimised, timed and tested in the browser lab until a small datapath runs.",
   "modelledOn": [
-    "MIT 6.004 Computation Structures",
-    "UC Berkeley EECS 151 Introduction to Digital Design and Integrated Circuits",
-    "Nand2Tetris: Building a Modern Computer from First Principles (hardware part)",
-    "Mano and Ciletti, Digital Design"
+    "Mano and Ciletti, Digital Design",
+    "Harris and Harris, Digital Design and Computer Architecture",
+    "Nand2Tetris: Building a Modern Computer from First Principles (hardware part)"
   ],
   "outcomes": [
     "Convert between number systems and codes, and reason about overflow and signed arithmetic.",

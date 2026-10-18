@@ -1,0 +1,116 @@
+{
+  "slug": "computer-organization-and-architecture",
+  "description": "How a processor, its memory hierarchy and its I/O system are organised and why they perform as they do: instruction sets, datapaths, pipelining, caches, virtual memory, superscalar and multicore design, with a simulated processor built and measured along the way. Taught to the depth of a leading computer architecture course.",
+  "modelledOn": [
+    "Stallings, Computer Organization and Architecture",
+    "Patterson and Hennessy, Computer Organization and Design",
+    "Hennessy and Patterson, Computer Architecture: A Quantitative Approach (selected chapters)"
+  ],
+  "outcomes": [
+    "Measure and reason about performance with execution time, CPI, Amdahl's law and benchmarks.",
+    "Describe an instruction set architecture and trace instructions through a single-cycle and a multi-cycle datapath.",
+    "Design a pipelined processor and handle structural, data and control hazards with forwarding, stalls and branch prediction.",
+    "Analyse cache and virtual memory behaviour and compute hit rates, miss penalties and address translations.",
+    "Explain hardwired and microprogrammed control and superscalar, out-of-order and multicore execution.",
+    "Describe I/O organisation, interrupts, DMA and the interconnection structure of a modern system."
+  ],
+  "units": [
+    {
+      "title": "Computer evolution and performance",
+      "weeks": "1",
+      "topics": [
+        "Generations of computers; Moore's law, Dennard scaling and the end of frequency scaling",
+        "Performance metrics: execution time, throughput, clock rate, CPI, MIPS and their traps",
+        "Amdahl's law; benchmarks (SPEC) and performance comparison",
+        "Power, energy and cooling as design constraints; mobile versus server design points"
+      ]
+    },
+    {
+      "title": "Top-level view of function and interconnection",
+      "weeks": "2",
+      "topics": [
+        "Von Neumann architecture; the instruction cycle with interrupts",
+        "Buses: address, data, control; arbitration, timing, hierarchies",
+        "Point-to-point interconnects: QPI, PCIe, on-chip networks",
+        "Program execution traced at the register-transfer level"
+      ]
+    },
+    {
+      "title": "Instruction sets",
+      "weeks": "3-4",
+      "topics": [
+        "Machine instruction characteristics, operand types, data types, operations",
+        "Addressing modes and instruction formats; fixed versus variable length",
+        "RISC-V (or MIPS) as the running example: registers, loads and stores, arithmetic, branches, procedure calls, the stack",
+        "x86 and ARM compared; CISC versus RISC and the RISC argument",
+        "Translating C to assembly to machine code; the compiler, assembler, linker and loader",
+        "Floating point: IEEE 754 arithmetic in hardware"
+      ]
+    },
+    {
+      "title": "Processor structure and function: the datapath",
+      "weeks": "5-6",
+      "topics": [
+        "Register organisation, user-visible and control registers, flags",
+        "Building a single-cycle datapath: instruction fetch, register file, ALU, data memory, control signals",
+        "Multi-cycle datapath and finite-state control",
+        "Control unit operation: micro-operations, hardwired control design",
+        "Microprogrammed control: control memory, microinstruction formats, sequencing, horizontal versus vertical",
+        "Implementing the datapath in a simulator and tracing a program"
+      ]
+    },
+    {
+      "title": "Pipelining",
+      "weeks": "7-8",
+      "topics": [
+        "The five-stage pipeline; speedup and its limits; pipeline registers",
+        "Structural hazards; data hazards and forwarding; load-use stalls",
+        "Control hazards: stalling, delayed branches, static and dynamic branch prediction (BHT, BTB, two-bit predictors)",
+        "Exceptions and interrupts in a pipeline; precise exceptions",
+        "Deeper pipelines and their costs"
+      ]
+    },
+    {
+      "title": "Instruction-level parallelism, superscalar and RISC",
+      "weeks": "9",
+      "topics": [
+        "RISC characteristics revisited: register windows, compiler scheduling, large register files",
+        "Superscalar execution: multiple issue, instruction window, dependencies (true, anti, output)",
+        "Out-of-order execution: register renaming, Tomasulo's algorithm, reorder buffer, speculation",
+        "VLIW and the limits of ILP; Spectre-style side channels as a consequence of speculation"
+      ]
+    },
+    {
+      "title": "Cache memory and the memory hierarchy",
+      "weeks": "10-11",
+      "topics": [
+        "Locality and the memory hierarchy; SRAM versus DRAM; memory organisation and interleaving",
+        "Cache mapping: direct, set-associative, fully associative; block size, replacement policies, write policies",
+        "Multi-level caches; average memory access time; the three Cs of misses; cache-aware programming (matrix multiply)",
+        "Virtual memory: pages, page tables, TLBs, page faults; address translation worked examples; protection",
+        "Cache coherence in multiprocessors: snooping and MESI"
+      ]
+    },
+    {
+      "title": "Input/output",
+      "weeks": "12",
+      "topics": [
+        "I/O modules, programmed I/O, interrupt-driven I/O, direct memory access",
+        "I/O channels and processors; buses and interfaces: USB, PCIe, SATA, NVMe",
+        "Storage: magnetic disks, SSDs, RAID levels; reliability and availability",
+        "Interrupt handling and the operating system's view of devices"
+      ]
+    },
+    {
+      "title": "Parallel processing and multicore computers",
+      "weeks": "13",
+      "topics": [
+        "Flynn's taxonomy; SIMD and vector units; GPUs as throughput processors",
+        "Symmetric multiprocessors, NUMA, clusters; cache coherence and memory consistency",
+        "Multithreading: fine-grained, coarse-grained, simultaneous (hyper-threading)",
+        "Multicore organisation: shared caches, interconnects, heterogeneous cores (big.LITTLE in phones)",
+        "Parallel speed-up, Amdahl again, and writing a parallel program that scales"
+      ]
+    }
+  ]
+}

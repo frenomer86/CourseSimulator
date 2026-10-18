@@ -1,0 +1,115 @@
+{
+  "slug": "distributed-systems",
+  "description": "Why systems built from many unreliable machines are hard and how they are made to work: communication, time and ordering, replication and consistency, consensus with Paxos and Raft, fault tolerance and distributed storage, with the key algorithms implemented and tested under injected failures. Taught to the depth of a leading distributed systems course.",
+  "modelledOn": [
+    "Kleppmann, Designing Data-Intensive Applications",
+    "van Steen and Tanenbaum, Distributed Systems",
+    "Ongaro and Ousterhout, In Search of an Understandable Consensus Algorithm (Raft)",
+    "Lamport, Time, Clocks, and the Ordering of Events in a Distributed System"
+  ],
+  "outcomes": [
+    "Compare client-server, peer-to-peer and other architectures and explain the fallacies of distributed computing.",
+    "Build services with RPC and message queues and handle partial failure, retries and idempotency.",
+    "Reason about time with logical and vector clocks and order events across machines.",
+    "Explain replication strategies and consistency models and choose one for a given application.",
+    "Implement a Raft-based replicated log and explain Paxos and the FLP and CAP results.",
+    "Design fault-tolerant, scalable storage with partitioning, replication and transactions."
+  ],
+  "units": [
+    {
+      "title": "Introduction and architectures",
+      "weeks": "1-2",
+      "topics": [
+        "What a distributed system is; goals: scalability, availability, fault tolerance, transparency",
+        "The fallacies of distributed computing; partial failure; latency numbers every programmer should know",
+        "Client-server, multi-tier, peer-to-peer (structured and unstructured), microservices, serverless",
+        "Case studies: a mobile-money platform, a content delivery network, a university portal under load",
+        "Lab environment: running a cluster of processes or containers locally and injecting failures"
+      ]
+    },
+    {
+      "title": "Communication: RPC and messaging",
+      "weeks": "3-4",
+      "topics": [
+        "Sockets review; request-reply protocols; marshalling and interface definition languages",
+        "Remote procedure calls: stubs, semantics (at-most-once, at-least-once, exactly-once myths), failures; gRPC and REST",
+        "Message-oriented middleware: queues, publish-subscribe, Kafka and RabbitMQ; delivery guarantees",
+        "Idempotency, retries, timeouts, backoff, circuit breakers",
+        "Group communication and multicast; gossip protocols"
+      ]
+    },
+    {
+      "title": "Time, clocks and ordering",
+      "weeks": "5",
+      "topics": [
+        "Physical clocks, drift, NTP and PTP; why wall clocks cannot order events",
+        "Lamport logical clocks and the happens-before relation; vector clocks and causality",
+        "Global snapshots (Chandy-Lamport) and distributed debugging",
+        "Hybrid logical clocks and TrueTime in Spanner"
+      ]
+    },
+    {
+      "title": "Coordination and naming",
+      "weeks": "6",
+      "topics": [
+        "Mutual exclusion: centralised, token ring, Ricart-Agrawala; leader election (bully, ring)",
+        "Distributed locks and coordination services: ZooKeeper, etcd; leases and fencing tokens",
+        "Naming and discovery: DNS, service registries, consistent hashing, distributed hash tables (Chord)",
+        "Membership and failure detection: heartbeats, phi-accrual, SWIM"
+      ]
+    },
+    {
+      "title": "Replication and consistency",
+      "weeks": "7-8",
+      "topics": [
+        "Why replicate; primary-backup, chain replication, multi-leader, leaderless (Dynamo-style quorums)",
+        "Consistency models: linearizability, sequential consistency, causal consistency, eventual consistency; read-your-writes and monotonic reads",
+        "The CAP theorem and PACELC; what partition tolerance really means",
+        "Conflict handling: last-writer-wins, version vectors, CRDTs; collaborative editing",
+        "Caching and invalidation; CDNs"
+      ]
+    },
+    {
+      "title": "Consensus: Paxos and Raft",
+      "weeks": "9-10",
+      "topics": [
+        "The consensus problem; the FLP impossibility result and what it means in practice",
+        "Paxos: proposers, acceptors, learners; the two phases; Multi-Paxos",
+        "Raft: leader election, log replication, safety, membership changes, snapshots",
+        "Implementing Raft and testing it with partitions, crashes and message loss",
+        "State machine replication; Byzantine fault tolerance (PBFT) and its use in blockchains"
+      ]
+    },
+    {
+      "title": "Fault tolerance and transactions",
+      "weeks": "11",
+      "topics": [
+        "Failure models: crash, omission, timing, Byzantine; redundancy and recovery",
+        "Reliable group communication and virtual synchrony",
+        "Distributed transactions: two-phase commit, three-phase commit, blocking; sagas and compensation",
+        "Checkpointing, logging and recovery; designing for graceful degradation"
+      ]
+    },
+    {
+      "title": "Distributed storage and file systems",
+      "weeks": "12",
+      "topics": [
+        "Distributed file systems: NFS, GFS/HDFS design and trade-offs",
+        "Key-value stores and wide-column stores: Dynamo, Cassandra, Bigtable; LSM trees",
+        "Partitioning (sharding), rebalancing, secondary indexes; replication across data centres",
+        "Spanner and globally consistent databases; NewSQL",
+        "Object storage and blob stores"
+      ]
+    },
+    {
+      "title": "Building and operating distributed systems",
+      "weeks": "13",
+      "topics": [
+        "Observability: distributed tracing, metrics, logs; debugging across machines",
+        "Load balancing, autoscaling, back-pressure, rate limiting",
+        "Security in distributed systems: authentication between services, TLS everywhere, zero trust",
+        "Capstone: a fault-tolerant replicated key-value store with a client library and chaos tests"
+      ]
+    }
+  ]
+}

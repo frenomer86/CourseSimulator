@@ -1,0 +1,108 @@
+{
+  "slug": "programming-with-cpp",
+  "description": "Modern C++ from the first program to classes, templates and the standard library, with attention to the memory model that makes C++ both fast and dangerous. Taught to the depth of a leading programming abstractions course in C++.",
+  "modelledOn": [
+    "Stroustrup, Programming: Principles and Practice Using C++",
+    "Roberts, Programming Abstractions in C++",
+    "The C++ Core Guidelines"
+  ],
+  "outcomes": [
+    "Write, compile and run C++ programs that use the standard namespace, I/O streams and clear structure.",
+    "Use variables, constants, expressions, statements and all control-flow constructs correctly.",
+    "Design functions with value, reference and pointer parameters, overloading and default arguments.",
+    "Use arrays, C-strings, std::string and std::vector and explain their memory layout.",
+    "Manage memory with pointers, new and delete, and smart pointers, avoiding leaks and dangling pointers.",
+    "Design classes with constructors, destructors, encapsulation, operator overloading and inheritance."
+  ],
+  "units": [
+    {
+      "title": "Creating a program",
+      "weeks": "1",
+      "topics": [
+        "The C++ toolchain: editor, compiler (g++ or clang++), linker, running; compiler flags and warnings",
+        "Structure of a program: main, headers, the std namespace, using declarations",
+        "Comments and documentation; code style",
+        "cout, cin, cerr; iostream manipulators"
+      ]
+    },
+    {
+      "title": "Variables and constants",
+      "weeks": "2",
+      "topics": [
+        "Fundamental types: int, long, char, bool, float, double; sizes and ranges; auto",
+        "Declaration, initialisation (including brace initialisation) and assignment",
+        "const and constexpr; literals and enumerations; scoped enums",
+        "Type conversion: implicit, static_cast; narrowing"
+      ]
+    },
+    {
+      "title": "Expressions and statements",
+      "weeks": "3",
+      "topics": [
+        "Arithmetic, relational, logical, bitwise and assignment operators; precedence and associativity",
+        "Integer division, overflow and floating-point precision",
+        "Compound statements, blocks and scope; lvalues and rvalues in brief",
+        "std::string and basic string operations; stringstream"
+      ]
+    },
+    {
+      "title": "Program flow",
+      "weeks": "4-5",
+      "topics": [
+        "if, else, switch; the conditional operator",
+        "while, do-while, for and range-based for; break and continue",
+        "Nested loops and loop invariants; common patterns: counters, accumulators, sentinels",
+        "Reading until end of file; input validation and error recovery",
+        "Debugging with a debugger and assertions"
+      ]
+    },
+    {
+      "title": "Functions",
+      "weeks": "6-7",
+      "topics": [
+        "Declaration, definition, prototypes, header and source files, multiple-file programs",
+        "Pass by value, by reference, by const reference; return values; inline",
+        "Overloading, default arguments, scope and lifetime, static locals",
+        "Recursion: factorial, Fibonacci, binary search, permutations, Tower of Hanoi",
+        "Function templates; lambda expressions",
+        "The call stack and stack overflow"
+      ]
+    },
+    {
+      "title": "Arrays",
+      "weeks": "8",
+      "topics": [
+        "Built-in arrays, initialisation, bounds and undefined behaviour; std::array",
+        "Multidimensional arrays; passing arrays to functions",
+        "std::vector: push_back, size, iteration, iterators; searching and sorting with <algorithm>",
+        "C-strings and char arrays versus std::string",
+        "Simple algorithms: linear and binary search, selection and insertion sort"
+      ]
+    },
+    {
+      "title": "Pointers",
+      "weeks": "9-10",
+      "topics": [
+        "Addresses, pointer declaration, dereferencing, nullptr; pointers and arrays; pointer arithmetic",
+        "Dynamic memory: new, delete, new[], delete[]; leaks and dangling pointers",
+        "References versus pointers; pointers as function parameters",
+        "Linked list and dynamic array built by hand",
+        "Smart pointers: unique_ptr and shared_ptr; RAII as the C++ way",
+        "Memory errors and tools: AddressSanitizer and Valgrind"
+      ]
+    },
+    {
+      "title": "Classes",
+      "weeks": "11-13",
+      "topics": [
+        "Class definition, public and private, member functions, this; separating interface and implementation",
+        "Constructors, default and parameterised; destructors; initialiser lists; copy constructor and assignment; the rule of three/five",
+        "Operator overloading: arithmetic, comparison, stream insertion",
+        "Static members, friend functions, const member functions",
+        "Inheritance, virtual functions, abstract classes and polymorphism",
+        "Class templates and the standard containers (vector, map, set) and iterators",
+        "Project: a bank, library or inventory system built from classes with persistent file storage"
+      ]
+    }
+  ]
+}

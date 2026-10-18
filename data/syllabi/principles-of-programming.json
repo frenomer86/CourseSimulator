@@ -1,0 +1,124 @@
+{
+  "slug": "principles-of-programming",
+  "description": "First contact with programming: thinking in algorithms, writing them as pseudocode and flowcharts, then as real code with variables, control flow, functions and a first look at objects. Taught to the depth of a leading first programming course, with a working program every week.",
+  "modelledOn": [
+    "Zelle, Python Programming: An Introduction to Computer Science",
+    "Guttag, Introduction to Computation and Programming",
+    "Roberts, The Art and Science of Java"
+  ],
+  "outcomes": [
+    "Explain how source code becomes a running program and the roles of compilers, interpreters and linkers.",
+    "Design an algorithm for a stated problem and express it as pseudocode and a flowchart before coding.",
+    "Write programs that use variables, expressions, selection and loops correctly, and trace them by hand.",
+    "Decompose a program into functions with clear parameters and return values.",
+    "Explain objects, classes, attributes and methods and use simple objects in a program.",
+    "Find and fix syntax, runtime and logic errors with a systematic debugging method and tests."
+  ],
+  "units": [
+    {
+      "title": "Programs, languages and translators",
+      "weeks": "1",
+      "topics": [
+        "What a program is; machine code, low-level and high-level languages; why there are many languages",
+        "Compilers, interpreters, assemblers and linkers; the edit-run-debug loop",
+        "Setting up an editor and running a first program; printing and reading input",
+        "Programming vocabulary: source, syntax, semantics, statement, expression, bug"
+      ]
+    },
+    {
+      "title": "Algorithms, pseudocode and flowcharts",
+      "weeks": "2-3",
+      "topics": [
+        "Properties of an algorithm: finite, definite, effective; inputs and outputs",
+        "Pseudocode conventions; flowchart symbols for process, decision, loop, input/output",
+        "Tracing an algorithm with a trace table",
+        "Everyday algorithms: making change in cedis, computing a GPA, finding the largest of three numbers",
+        "From flowchart to code and back"
+      ]
+    },
+    {
+      "title": "Data: character set, constants, types, variables",
+      "weeks": "4",
+      "topics": [
+        "Character set, identifiers, keywords and naming rules",
+        "Literals and constants; integer, floating-point, character, string and boolean types",
+        "Variables, declaration, assignment and memory as named boxes",
+        "Type conversion and casting; integer division and rounding surprises",
+        "Input, output and formatting numbers and strings"
+      ]
+    },
+    {
+      "title": "Operators and expressions",
+      "weeks": "5",
+      "topics": [
+        "Arithmetic, relational, logical, assignment and increment operators",
+        "Precedence and associativity; evaluating expressions by hand",
+        "Boolean expressions and short-circuit evaluation",
+        "Common expression errors: off-by-one, mixing types, confusing = and =="
+      ]
+    },
+    {
+      "title": "Selection",
+      "weeks": "6",
+      "topics": [
+        "if, if-else, else-if ladders and nested ifs",
+        "switch statements and when to prefer them",
+        "Designing conditions: grade bands, tax brackets, leap years",
+        "Testing every branch; boundary values"
+      ]
+    },
+    {
+      "title": "Iteration",
+      "weeks": "7-8",
+      "topics": [
+        "while, do-while and for loops; loop variable, condition, update",
+        "Counting, summing, averaging and finding maxima in a loop",
+        "Sentinel-controlled and flag-controlled loops; break and continue",
+        "Nested loops: multiplication tables, patterns, simple matrices",
+        "Infinite loops and termination; choosing the right loop"
+      ]
+    },
+    {
+      "title": "Functions and program structure",
+      "weeks": "9-10",
+      "topics": [
+        "Defining and calling functions; parameters, arguments, return values",
+        "Scope and lifetime of variables; local and global",
+        "Decomposition and stepwise refinement; top-down design",
+        "Library functions: maths, strings, random numbers",
+        "Introduction to recursion: factorial and Fibonacci"
+      ]
+    },
+    {
+      "title": "Collections and strings",
+      "weeks": "11",
+      "topics": [
+        "Arrays and lists: indexing, traversal, searching, finding min and max",
+        "Strings as sequences of characters; common string operations",
+        "Reading and writing a simple text file",
+        "Simple sorting by hand: bubble sort and selection sort"
+      ]
+    },
+    {
+      "title": "Basic object-oriented concepts",
+      "weeks": "12",
+      "topics": [
+        "Objects as data plus behaviour; classes as blueprints",
+        "Attributes and methods; creating and using objects",
+        "Encapsulation and why it matters; a Student or BankAccount class",
+        "Objects already met: strings, lists, files"
+      ]
+    },
+    {
+      "title": "Identifying and fixing errors",
+      "weeks": "13",
+      "topics": [
+        "Syntax, runtime and logic errors and how each shows itself",
+        "Reading error messages and stack traces",
+        "Debugging strategy: reproduce, isolate, hypothesise, test; print statements and a debugger",
+        "Writing test cases before and after fixing; defensive input checking",
+        "Code style, comments and documentation"
+      ]
+    }
+  ]
+}

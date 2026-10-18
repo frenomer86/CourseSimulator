@@ -1,0 +1,115 @@
+{
+  "slug": "data-communications",
+  "description": "The physical and link layers in depth: how bits become signals, survive noise and bandwidth limits, share a medium, and arrive without error. Taught to the depth of a leading digital communication systems course.",
+  "modelledOn": [
+    "Forouzan, Data Communications and Networking",
+    "Stallings, Data and Computer Communications",
+    "Proakis and Salehi, Fundamentals of Communication Systems"
+  ],
+  "outcomes": [
+    "Describe signals in time and frequency, compute bandwidth, and apply the Nyquist and Shannon limits to a channel.",
+    "Explain and simulate line codes and analog and digital modulation schemes and their trade-offs.",
+    "Design multiplexing schemes (FDM, TDM, WDM, CDM) for a given set of channels.",
+    "Compute and implement error detection and correction codes and evaluate their power.",
+    "Analyse flow-control protocols and compare circuit, packet and message switching.",
+    "Choose a transmission medium for a link given distance, bandwidth, cost and environment."
+  ],
+  "units": [
+    {
+      "title": "Data communication fundamentals",
+      "weeks": "1",
+      "topics": [
+        "Components of a communication system: source, transmitter, channel, receiver, destination",
+        "Simplex, half-duplex, full-duplex; serial and parallel; synchronous and asynchronous",
+        "Protocols and standards bodies: ITU-T, IEEE, IETF, ISO",
+        "Where this course sits: physical and data-link layers of the OSI model"
+      ]
+    },
+    {
+      "title": "Signals, bandwidth and noise",
+      "weeks": "2-3",
+      "topics": [
+        "Analog and digital signals; periodic signals; amplitude, frequency, phase, wavelength",
+        "Time and frequency domains; Fourier series and the spectrum of a square wave; composite signals",
+        "Bandwidth of a signal and of a channel; baseband and passband",
+        "Transmission impairments: attenuation, distortion, noise (thermal, crosstalk, impulse); decibels and SNR",
+        "Nyquist bit rate and Shannon capacity; computing the capacity of a telephone line and a Wi-Fi channel",
+        "Throughput, latency, jitter and bandwidth-delay product"
+      ]
+    },
+    {
+      "title": "Analog and digital transmission",
+      "weeks": "4",
+      "topics": [
+        "Digital-to-digital, analog-to-digital, digital-to-analog and analog-to-analog conversion as a map",
+        "Sampling theorem, quantisation, PCM and delta modulation; voice at 64 kbit/s",
+        "Transmission modes: parallel, serial asynchronous, serial synchronous, isochronous",
+        "Baud rate versus bit rate; signal element versus data element"
+      ]
+    },
+    {
+      "title": "Line coding and modulation",
+      "weeks": "5-6",
+      "topics": [
+        "Line coding requirements: DC balance, clock recovery, bandwidth; NRZ, NRZ-I, Manchester, differential Manchester, AMI, 4B/5B, 8B/10B",
+        "Block coding and scrambling",
+        "Digital-to-analog modulation: ASK, FSK, PSK, QPSK, QAM; constellation diagrams; bits per symbol",
+        "Analog modulation: AM, FM, PM and radio broadcasting",
+        "Simulating modulation and demodulation in software and observing the effect of noise"
+      ]
+    },
+    {
+      "title": "Multiplexing and spreading",
+      "weeks": "7",
+      "topics": [
+        "Frequency-division multiplexing; guard bands; radio and cable TV",
+        "Wavelength-division multiplexing in fibre",
+        "Time-division multiplexing: synchronous and statistical; T1/E1 framing",
+        "Code-division multiplexing and orthogonal codes",
+        "Spread spectrum: frequency hopping and direct sequence"
+      ]
+    },
+    {
+      "title": "Transmission media",
+      "weeks": "8",
+      "topics": [
+        "Guided media: twisted pair, coaxial, optical fibre; construction, bandwidth, attenuation, cost",
+        "Unguided media: radio, microwave, satellite, infrared; propagation modes and antennas",
+        "Comparing media for a rural school link: fibre, point-to-point wireless, satellite, 4G",
+        "Connectors and interfaces: RS-232, USB, RJ-45, SC/LC fibre"
+      ]
+    },
+    {
+      "title": "Error detection and correction",
+      "weeks": "9-10",
+      "topics": [
+        "Types of errors; redundancy; Hamming distance and the detection and correction bounds",
+        "Simple and two-dimensional parity; checksums and the Internet checksum",
+        "Cyclic codes and CRC: generator polynomials, division in hardware with shift registers, standard CRCs",
+        "Hamming codes and burst-error handling with interleaving",
+        "Introduction to convolutional and Reed-Solomon codes as used in mobile and storage"
+      ]
+    },
+    {
+      "title": "Data link control and flow control",
+      "weeks": "11-12",
+      "topics": [
+        "Framing: character count, byte stuffing, bit stuffing",
+        "Flow control: stop-and-wait, sliding window; efficiency and link utilisation",
+        "Error control with ARQ: stop-and-wait ARQ, go-back-N, selective repeat; sequence numbers",
+        "HDLC and PPP frame formats",
+        "Media access: ALOHA, CSMA, CSMA/CD, CSMA/CA; token passing; channelisation"
+      ]
+    },
+    {
+      "title": "Switching",
+      "weeks": "13",
+      "topics": [
+        "Circuit switching: space and time division switches; the telephone network",
+        "Packet switching: datagram and virtual circuit; store-and-forward delay",
+        "Message switching; comparison of delay, setup and reliability",
+        "Structure of a switch and a router; from switching to networking"
+      ]
+    }
+  ]
+}

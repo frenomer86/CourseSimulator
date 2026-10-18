@@ -1,0 +1,100 @@
+{
+  "slug": "assembly-language-and-microprocessors",
+  "description": "Programming a processor in its own language: registers, instruction encoding, addressing modes, the stack, interrupts and the bus that connects the CPU to memory and devices. Taught to the depth of a leading machine-level programming and computer organisation course.",
+  "modelledOn": [
+    "Patterson and Hennessy, Computer Organization and Design (RISC-V edition)",
+    "Bryant and O'Hallaron, Computer Systems: A Programmer's Perspective (machine-level chapters)",
+    "Mazidi, Causey and Naimi, The x86 PC: Assembly Language, Design and Interfacing"
+  ],
+  "outcomes": [
+    "Describe the register set, buses, flags and instruction cycle of a microprocessor and the role of each pin and signal.",
+    "Decode and encode instructions and choose the right addressing mode for a data access.",
+    "Write assembly programs with arithmetic, logic, branching, loops and subroutines that follow a calling convention.",
+    "Use the stack for calls, locals and interrupts, and write an interrupt service routine.",
+    "Interface memory and I/O devices to a processor with address decoding and polling or interrupts.",
+    "Assemble, link, trace and debug programs, and relate compiled C to the assembly it produces."
+  ],
+  "units": [
+    {
+      "title": "Microprocessor architecture and registers",
+      "weeks": "1-2",
+      "topics": [
+        "Von Neumann and Harvard architectures; CPU, memory and I/O on address, data and control buses",
+        "Inside the CPU: ALU, general-purpose and special registers, program counter, stack pointer, flags",
+        "The fetch-decode-execute cycle; clock, machine cycles and timing diagrams",
+        "Case processors: the 8086/x86 family, ARM Cortex-M and RISC-V compared; choosing one for the labs",
+        "Running programs in a simulator or on a real board; the assembler and debugger toolchain"
+      ]
+    },
+    {
+      "title": "Instruction formats and addressing modes",
+      "weeks": "3-4",
+      "topics": [
+        "Instruction fields: opcode, operands, immediates; fixed and variable length encodings",
+        "Machine code by hand: encoding and decoding a few instructions",
+        "Addressing modes: immediate, register, direct, indirect, indexed, base-plus-offset, PC-relative",
+        "Data in memory: endianness, alignment, segments or flat memory",
+        "Accessing arrays and structures with addressing modes"
+      ]
+    },
+    {
+      "title": "Data movement, arithmetic and logic instructions",
+      "weeks": "5-6",
+      "topics": [
+        "MOV, loads and stores; constants and labels; data directives",
+        "ADD, SUB, ADC, SBB, INC, DEC, NEG; multi-word arithmetic with the carry flag",
+        "MUL, IMUL, DIV, IDIV and their quirks; signed versus unsigned",
+        "AND, OR, XOR, NOT, TEST; shifts and rotates; masking and bit manipulation",
+        "Flags after each instruction; comparing and setting",
+        "BCD and ASCII arithmetic; converting numbers to printable strings"
+      ]
+    },
+    {
+      "title": "Branching, loops and subroutines",
+      "weeks": "7-8",
+      "topics": [
+        "Unconditional and conditional jumps; translating if-else and switch",
+        "Loops: counted, while and do-while patterns; loop instructions",
+        "CALL and RET; passing arguments in registers and on the stack; return values",
+        "Calling conventions: caller- and callee-saved registers, stack frames, recursion",
+        "String and block instructions; writing strlen, strcpy and a bubble sort in assembly",
+        "Reading compiler output: how C becomes assembly"
+      ]
+    },
+    {
+      "title": "Stack and interrupts",
+      "weeks": "9-10",
+      "topics": [
+        "Stack organisation, PUSH and POP, stack overflow and underflow",
+        "Local variables and the frame pointer",
+        "Interrupt types: hardware, software, exceptions; the interrupt vector table",
+        "Interrupt sequence: saving state, the service routine, returning; priorities and nesting",
+        "Writing an interrupt handler for a timer or key press",
+        "System calls on Linux or DOS: writing to the console and exiting"
+      ]
+    },
+    {
+      "title": "Memory and I/O interfacing",
+      "weeks": "11-12",
+      "topics": [
+        "Memory map and address decoding with gates and decoders; RAM and ROM chips on the bus",
+        "Memory-mapped versus port-mapped I/O; IN and OUT",
+        "Parallel I/O with the 8255 or a GPIO port; LEDs, switches, seven-segment displays",
+        "Serial I/O with a UART; timers and counters",
+        "Polling versus interrupts; DMA in brief",
+        "Bus timing and wait states"
+      ]
+    },
+    {
+      "title": "Assembling, linking and debugging",
+      "weeks": "13",
+      "topics": [
+        "Two-pass assembly, symbol tables, object files, relocation and linking",
+        "Macros, conditional assembly and include files",
+        "Mixing C and assembly: inline assembly and calling assembly from C",
+        "Debugging: breakpoints, single-stepping, watching registers and memory, disassembly",
+        "Project: a complete program such as a calculator, a traffic-light controller or a text game on the simulator"
+      ]
+    }
+  ]
+}

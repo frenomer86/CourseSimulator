@@ -1,0 +1,124 @@
+{
+  "slug": "computer-networking-ii",
+  "description": "Routing, switching and the services that make a campus or enterprise network run: VLANs, access lists, DNS and DHCP, WAN links, NAT and quality of service, all configured and tested in the simulator. Taught to the depth of the industry routing-and-switching certification and a leading networking course.",
+  "modelledOn": [
+    "Cisco CCNA 200-301 routing, switching and services objectives",
+    "Kurose and Ross, Computer Networking: A Top-Down Approach",
+    "Odom, CCNA 200-301 Official Cert Guide"
+  ],
+  "outcomes": [
+    "Configure static and dynamic routing (RIP, OSPF, basic BGP) and read routing tables and protocol state.",
+    "Design and configure VLANs, trunks, inter-VLAN routing and spanning tree on switched networks.",
+    "Write standard and extended access control lists to enforce a stated security policy.",
+    "Deploy DNS and DHCP services and troubleshoot name and address assignment faults.",
+    "Explain WAN technologies and configure PPP, Frame Relay and NAT on a border router.",
+    "Measure bandwidth, response time and reliability and apply QoS to protect voice and critical traffic."
+  ],
+  "units": [
+    {
+      "title": "Routing fundamentals",
+      "weeks": "1-2",
+      "topics": [
+        "Router architecture: interfaces, forwarding, the routing table, longest-prefix match",
+        "Static routes, default routes, administrative distance and metrics",
+        "Distance-vector routing: Bellman-Ford, RIP, count-to-infinity, split horizon",
+        "Link-state routing: Dijkstra, OSPF areas, LSAs, neighbour adjacency",
+        "Path-vector routing and BGP: autonomous systems, policies, how Ghana's ISPs peer",
+        "Configuring and verifying RIP and OSPF in Packet Tracer or GNS3"
+      ]
+    },
+    {
+      "title": "Switching",
+      "weeks": "3",
+      "topics": [
+        "Switch operation review; store-and-forward versus cut-through; MAC table ageing",
+        "Spanning Tree Protocol: root bridge, port roles, convergence; Rapid STP",
+        "EtherChannel and link aggregation",
+        "Switch security: port security, DHCP snooping, dynamic ARP inspection"
+      ]
+    },
+    {
+      "title": "VLANs",
+      "weeks": "4-5",
+      "topics": [
+        "Why VLANs: broadcast domains, segmentation, security",
+        "Creating VLANs, assigning access ports, 802.1Q trunking and the native VLAN",
+        "Inter-VLAN routing: router-on-a-stick and layer-3 switches",
+        "VLAN design for a university: staff, students, labs, management, voice",
+        "Troubleshooting VLAN and trunk mismatches"
+      ]
+    },
+    {
+      "title": "Access control lists",
+      "weeks": "6",
+      "topics": [
+        "ACL logic: top-down matching, implicit deny, wildcard masks",
+        "Standard and extended numbered and named ACLs; placement rules",
+        "Applying ACLs to interfaces and to VTY lines; logging",
+        "Writing ACLs for a policy: block social media in labs, allow only web and DNS from guests",
+        "IPv6 ACLs in brief"
+      ]
+    },
+    {
+      "title": "DNS and DHCP",
+      "weeks": "7",
+      "topics": [
+        "DNS hierarchy, resolvers, authoritative servers, record types (A, AAAA, CNAME, MX, NS, PTR, TXT), TTL and caching",
+        "Setting up a DNS server; split-horizon and internal zones; DNS over HTTPS in brief",
+        "DHCP discover-offer-request-acknowledge; pools, leases, reservations, options; DHCP relay",
+        "Troubleshooting name resolution and address assignment with dig, nslookup and packet capture"
+      ]
+    },
+    {
+      "title": "Basic WAN concepts",
+      "weeks": "8",
+      "topics": [
+        "WAN versus LAN; leased lines, circuit and packet-switched services, MPLS, Metro Ethernet, broadband, satellite, cellular",
+        "Serial links, DCE/DTE, clocking, CSU/DSU; HDLC",
+        "VPNs over the Internet: site-to-site and remote-access, IPsec and WireGuard in brief",
+        "WAN options for connecting branches across Ghana and their costs"
+      ]
+    },
+    {
+      "title": "Point-to-Point Protocol",
+      "weeks": "9",
+      "topics": [
+        "PPP frame, LCP and NCP phases; options negotiation",
+        "Authentication with PAP and CHAP",
+        "Configuring and verifying PPP on serial links; PPPoE for broadband",
+        "Multilink PPP and compression"
+      ]
+    },
+    {
+      "title": "Frame Relay",
+      "weeks": "10",
+      "topics": [
+        "Virtual circuits, DLCIs, LMI, Inverse ARP; hub-and-spoke topologies",
+        "Committed information rate, bursting, FECN/BECN and discard eligibility",
+        "Configuring Frame Relay point-to-point and multipoint subinterfaces; split-horizon issues",
+        "Legacy status of Frame Relay and what replaced it (MPLS, Metro Ethernet)"
+      ]
+    },
+    {
+      "title": "Network Address Translation",
+      "weeks": "11",
+      "topics": [
+        "Private addressing and the reasons for NAT; inside and outside, local and global addresses",
+        "Static NAT, dynamic NAT, PAT (overload); configuring and verifying translations",
+        "Port forwarding for hosting a server behind NAT; NAT traversal problems for VoIP and peer-to-peer",
+        "Carrier-grade NAT and IPv6 as the long-term fix"
+      ]
+    },
+    {
+      "title": "Bandwidth, response time, reliability and QoS",
+      "weeks": "12-13",
+      "topics": [
+        "Measuring bandwidth, latency, jitter and packet loss; iperf, ping, SNMP graphs; SLAs",
+        "Redundancy and reliability: HSRP/VRRP, link redundancy, MTBF and availability calculations",
+        "QoS models: best effort, IntServ, DiffServ; classification, marking (DSCP), queuing, policing, shaping",
+        "Configuring QoS for VoIP and video on a congested link",
+        "Capacity planning and a network design project for a campus with a WAN link to a branch"
+      ]
+    }
+  ]
+}

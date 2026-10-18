@@ -1,0 +1,122 @@
+{
+  "slug": "artificial-intelligence",
+  "description": "The classical core of artificial intelligence: search, constraint satisfaction, adversarial games, logic and inference, decision theory, Markov decision processes, and the entry points to machine learning, neural networks and bio-inspired methods, each implemented and run on real problems. Taught to the depth of the standard introductory AI course.",
+  "modelledOn": [
+    "Russell and Norvig, Artificial Intelligence: A Modern Approach",
+    "Poole and Mackworth, Artificial Intelligence: Foundations of Computational Agents",
+    "Sutton and Barto, Reinforcement Learning: An Introduction (introductory chapters)"
+  ],
+  "outcomes": [
+    "Formulate problems as state spaces and solve them with uninformed and informed search, including A* with admissible heuristics.",
+    "Model and solve constraint satisfaction problems with backtracking, propagation and local search.",
+    "Play adversarial games with minimax, alpha-beta pruning and expectimax.",
+    "Represent knowledge in propositional and first-order logic and perform inference by resolution and chaining.",
+    "Make decisions under uncertainty with Bayesian networks, utility theory and Markov decision processes.",
+    "Train simple classifiers, perceptrons and neural networks and apply genetic algorithms and swarm methods."
+  ],
+  "units": [
+    {
+      "title": "Introduction to AI and intelligent agents",
+      "weeks": "1",
+      "topics": [
+        "What AI is: history from Turing to deep learning and large language models; the Turing test and its critics",
+        "Agents, environments, rationality; PEAS descriptions; agent types",
+        "AI in Africa: crop disease detection, language technology for Twi and Hausa, mobile-money fraud detection",
+        "Setting up Python with NumPy and a search/game framework"
+      ]
+    },
+    {
+      "title": "Search and planning",
+      "weeks": "2-4",
+      "topics": [
+        "Problem formulation: states, actions, transition model, goal test, path cost; 8-puzzle, route finding in Accra",
+        "Uninformed search: BFS, DFS, uniform cost, depth-limited, iterative deepening, bidirectional; completeness and complexity",
+        "Informed search: greedy best-first, A*, admissible and consistent heuristics, heuristic design, IDA*",
+        "Local search: hill climbing, simulated annealing, beam search; continuous spaces",
+        "Classical planning: STRIPS representation, forward and backward state-space planning, planning graphs",
+        "Searching with nondeterminism and partial observability in brief"
+      ]
+    },
+    {
+      "title": "Constraint satisfaction problems",
+      "weeks": "5",
+      "topics": [
+        "Variables, domains, constraints; map colouring, timetabling, sudoku, N-queens",
+        "Backtracking search with variable and value ordering (MRV, degree, least constraining value)",
+        "Inference: forward checking, arc consistency (AC-3), constraint propagation",
+        "Local search for CSPs (min-conflicts); problem structure and tree decomposition"
+      ]
+    },
+    {
+      "title": "Game trees and tree-structured computation",
+      "weeks": "6",
+      "topics": [
+        "Games as search: minimax, optimal play, evaluation functions and cut-offs",
+        "Alpha-beta pruning and move ordering; transposition tables",
+        "Stochastic games and expectimax; Monte Carlo tree search",
+        "Building an Oware or tic-tac-toe player and measuring its strength"
+      ]
+    },
+    {
+      "title": "Propositional and first-order logic, inference",
+      "weeks": "7-8",
+      "topics": [
+        "Knowledge-based agents; propositional logic: syntax, semantics, entailment, model checking",
+        "Inference: resolution, conjunctive normal form, forward and backward chaining with Horn clauses; SAT solvers (DPLL, WalkSAT)",
+        "First-order logic: syntax, semantics, quantifiers, knowledge engineering",
+        "Inference in first-order logic: unification, forward and backward chaining, resolution; Prolog",
+        "Knowledge representation: ontologies, semantic networks, frames, the open-world problem"
+      ]
+    },
+    {
+      "title": "Uncertainty and decision theory",
+      "weeks": "9",
+      "topics": [
+        "Probability review; Bayes' rule and naive Bayes",
+        "Bayesian networks: representation, conditional independence, exact inference by enumeration and variable elimination, sampling",
+        "Utility theory, expected utility, decision networks, value of information",
+        "A medical diagnosis or crop advisory decision network"
+      ]
+    },
+    {
+      "title": "Markov decision processes and reinforcement learning",
+      "weeks": "10",
+      "topics": [
+        "MDPs: states, actions, rewards, discounting, policies; Bellman equations",
+        "Value iteration and policy iteration",
+        "Reinforcement learning: passive and active, temporal-difference learning, Q-learning, exploration versus exploitation",
+        "Grid-world and a simple inventory-control agent"
+      ]
+    },
+    {
+      "title": "Introduction to machine learning",
+      "weeks": "11",
+      "topics": [
+        "Supervised, unsupervised and reinforcement learning; training, validation, test sets; overfitting",
+        "Concept learning: hypothesis spaces, version spaces, decision trees (ID3, information gain)",
+        "k-nearest neighbours, linear and logistic regression, naive Bayes; evaluation metrics",
+        "Clustering with k-means"
+      ]
+    },
+    {
+      "title": "Artificial neural networks",
+      "weeks": "12",
+      "topics": [
+        "The perceptron and its learning rule; linear separability",
+        "Multilayer networks, activation functions, backpropagation, gradient descent",
+        "Training a small network on handwritten digits; introduction to convolutional networks",
+        "Where deep learning and large language models fit; limits and risks"
+      ]
+    },
+    {
+      "title": "Bio-inspired algorithms and AI ethics",
+      "weeks": "13",
+      "topics": [
+        "Genetic algorithms: representation, selection, crossover, mutation; solving a timetabling problem",
+        "Swarm intelligence: ant colony optimisation, particle swarm optimisation",
+        "Artificial immune systems and cellular automata in brief",
+        "Ethics and society: bias, fairness, explainability, safety, jobs, AI policy in Ghana and the AU"
+      ]
+    }
+  ]
+}

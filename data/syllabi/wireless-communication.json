@@ -1,0 +1,115 @@
+{
+  "slug": "wireless-communication",
+  "description": "The physics and engineering of mobile radio: from the generations of cellular standards through channel models, cellular design, digital modulation and coding in fading channels, multiple antennas and OFDM, and multiple access, with every link simulated and its error rate measured. Taught to the depth of a leading wireless communications course.",
+  "modelledOn": [
+    "Goldsmith, Wireless Communications",
+    "Rappaport, Wireless Communications: Principles and Practice",
+    "Tse and Viswanath, Fundamentals of Wireless Communication",
+    "Molisch, Wireless Communications"
+  ],
+  "outcomes": [
+    "Trace the evolution from 1G to 5G and explain the architecture and key technologies of each generation.",
+    "Model path loss, shadowing and multipath fading and classify channels as narrowband or wideband, slow or fast.",
+    "Design a cellular layout with frequency reuse and compute signal-to-interference ratio, capacity and trunking performance.",
+    "Derive error probabilities for digital modulation in AWGN and fading channels and simulate them.",
+    "Explain channel coding, diversity, MIMO and OFDM and quantify their gains.",
+    "Compare TDMA, FDMA, CDMA and OFDMA and simulate a complete wireless link in MATLAB or Python."
+  ],
+  "units": [
+    {
+      "title": "Wireless communication systems and standards",
+      "weeks": "1-2",
+      "topics": [
+        "History: from Marconi to 5G; 1G AMPS, 2G GSM and IS-95, 2.5G GPRS/EDGE, 3G UMTS/CDMA2000, 4G LTE, 5G NR and what 6G research targets",
+        "Cellular network architecture: mobiles, base stations, core network, handover, roaming, SIM and authentication",
+        "Spectrum: allocation, licensing, Ghana's NCA bands, unlicensed bands (Wi-Fi, Bluetooth, LoRa)",
+        "Other wireless systems: satellite, WLAN, WPAN, microwave links; coverage in rural Ghana",
+        "Simulation environment: MATLAB or Python with NumPy and SciPy"
+      ]
+    },
+    {
+      "title": "Modulation schemes and the radio link",
+      "weeks": "3",
+      "topics": [
+        "Analog modulation review: AM, FM; the transmitter and receiver chain; mixers, filters, amplifiers",
+        "Digital modulation overview: ASK, FSK, PSK, QAM; bandwidth efficiency and power efficiency",
+        "Pulse shaping, intersymbol interference, raised-cosine filters, eye diagrams",
+        "Link budget: transmit power, antenna gain, path loss, noise figure, receiver sensitivity"
+      ]
+    },
+    {
+      "title": "Statistical channel models: narrowband and wideband fading",
+      "weeks": "4-5",
+      "topics": [
+        "Large-scale propagation: free space, two-ray, log-distance path loss, empirical models (Okumura-Hata, COST 231); log-normal shadowing",
+        "Small-scale multipath: delay spread, coherence bandwidth, Doppler spread, coherence time",
+        "Narrowband fading: Rayleigh and Rician distributions; level crossing rate and fade duration",
+        "Wideband channels: tapped delay line models, power delay profile, frequency-selective fading",
+        "Classifying channels: flat versus frequency selective, slow versus fast; simulating Rayleigh fading (Jakes model)"
+      ]
+    },
+    {
+      "title": "Cellular concepts and system design",
+      "weeks": "6-7",
+      "topics": [
+        "The cellular concept: cells, clusters, frequency reuse, reuse distance and the cluster size",
+        "Co-channel and adjacent-channel interference; signal-to-interference ratio versus cluster size",
+        "Capacity: channels per cell, spectral efficiency; improving capacity with sectoring, cell splitting, microcells",
+        "Handover strategies, power control, mobility management",
+        "Designing a cellular layout for a Ghanaian town with given traffic and coverage targets"
+      ]
+    },
+    {
+      "title": "Quality of service and trunking",
+      "weeks": "8",
+      "topics": [
+        "Traffic theory: Erlangs, offered load, grade of service",
+        "Erlang B and Erlang C formulas; blocked-calls-cleared versus queued systems; trunking efficiency",
+        "QoS parameters for voice, data and video; delay, jitter, loss; scheduling in LTE",
+        "Dimensioning a cell's channels for a target blocking probability"
+      ]
+    },
+    {
+      "title": "Digital modulation and detection in AWGN; error probabilities",
+      "weeks": "9-10",
+      "topics": [
+        "Signal space representation; matched filter and correlation receivers; maximum likelihood detection",
+        "Error probabilities in AWGN for BPSK, QPSK, M-PSK, M-QAM, FSK; the Q-function and union bound",
+        "Performance in fading: average BER in Rayleigh fading and the diversity order; outage probability",
+        "Synchronisation and channel estimation in brief",
+        "Monte Carlo BER simulation and comparison with theory"
+      ]
+    },
+    {
+      "title": "Coding for wireless channels",
+      "weeks": "11",
+      "topics": [
+        "Channel capacity (Shannon) for AWGN and fading channels; coding gain",
+        "Block codes (Hamming, Reed-Solomon), convolutional codes and Viterbi decoding; interleaving against bursts",
+        "Turbo codes, LDPC and polar codes as used in 3G, 4G and 5G",
+        "Hybrid ARQ and adaptive modulation and coding"
+      ]
+    },
+    {
+      "title": "Multiple antenna systems: diversity, MIMO, OFDM",
+      "weeks": "12",
+      "topics": [
+        "Diversity: time, frequency, space; selection, equal-gain and maximal-ratio combining",
+        "MIMO: spatial multiplexing, capacity scaling, space-time codes (Alamouti), beamforming, massive MIMO in 5G",
+        "OFDM: orthogonal subcarriers, IFFT/FFT implementation, cyclic prefix, PAPR; OFDM in Wi-Fi, LTE and 5G",
+        "Simulating an OFDM link over a frequency-selective channel"
+      ]
+    },
+    {
+      "title": "Multiple access: TDMA, FDMA, CDMA and beyond",
+      "weeks": "13",
+      "topics": [
+        "FDMA, TDMA and their use in 1G and GSM; frame structures",
+        "CDMA: spreading codes, processing gain, near-far problem and power control, RAKE receiver; IS-95 and UMTS",
+        "OFDMA and SC-FDMA in LTE; NOMA and random access (ALOHA, CSMA) for Wi-Fi and IoT",
+        "Capacity comparison of multiple access schemes",
+        "Capstone: a MATLAB-style end-to-end simulation of a cellular link with fading, coding, modulation and multiple access"
+      ]
+    }
+  ]
+}

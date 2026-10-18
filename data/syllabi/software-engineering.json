@@ -1,0 +1,123 @@
+{
+  "slug": "software-engineering",
+  "description": "Engineering software that works, scales and can be maintained: processes, requirements, modelling, architecture and design, user interfaces, verification, testing, maintenance and the management of teams, all exercised in a term-long team project. Taught to the depth of a leading software engineering course.",
+  "modelledOn": [
+    "Sommerville, Software Engineering",
+    "Pressman and Maxim, Software Engineering: A Practitioner's Approach",
+    "Fox and Patterson, Engineering Software as a Service: An Agile Approach Using Cloud Computing",
+    "IEEE SWEBOK Guide to the Software Engineering Body of Knowledge"
+  ],
+  "outcomes": [
+    "Compare software process models and choose and tailor one for a given project.",
+    "Elicit, specify, validate and manage requirements with user stories and formal specifications.",
+    "Model systems with UML and design them with sound architecture and design principles and patterns.",
+    "Design user interfaces that follow established principles and are evaluated with users.",
+    "Verify and validate software with reviews, static analysis and tests at unit, integration and system level.",
+    "Plan maintenance and evolution and manage a software team with agile practices and measurable progress."
+  ],
+  "units": [
+    {
+      "title": "Software engineering and process models",
+      "weeks": "1-2",
+      "topics": [
+        "What software engineering is; the cost of failure (Therac-25, Ariane 5, local e-government projects)",
+        "Software processes: waterfall, incremental, spiral, RUP; agile methods: XP, Scrum, Kanban; DevOps",
+        "Process activities: specification, development, validation, evolution",
+        "Choosing and tailoring a process; process improvement and CMMI in brief",
+        "Project team formation and tooling: Git, issue tracker, CI"
+      ]
+    },
+    {
+      "title": "Software requirements",
+      "weeks": "3-4",
+      "topics": [
+        "Functional and non-functional requirements; quality attributes",
+        "Elicitation: interviews, observation, workshops, prototypes, scenarios; stakeholders",
+        "User stories, acceptance criteria, use cases; the software requirements specification",
+        "Requirements validation, prioritisation (MoSCoW), traceability and change management",
+        "Formal specification in brief: pre- and post-conditions, invariants"
+      ]
+    },
+    {
+      "title": "System models with UML",
+      "weeks": "5",
+      "topics": [
+        "Context, interaction, structural and behavioural models",
+        "Use case, activity, sequence, class, state machine, component and deployment diagrams",
+        "Model-driven engineering in brief; keeping models and code consistent",
+        "Modelling the team project"
+      ]
+    },
+    {
+      "title": "Architectural design",
+      "weeks": "6",
+      "topics": [
+        "Architecture and its influence on quality attributes; architectural views",
+        "Patterns: layered, client-server, MVC, pipe-and-filter, repository, microservices, event-driven",
+        "Application architectures: transaction processing, information systems, language processing",
+        "Documenting architecture; architectural decision records"
+      ]
+    },
+    {
+      "title": "Design and implementation",
+      "weeks": "7-8",
+      "topics": [
+        "Object-oriented design process; design principles: SOLID, cohesion and coupling, information hiding",
+        "Design patterns: Observer, Strategy, Factory, Adapter, Facade, Command, Singleton and when not to use them",
+        "Implementation issues: reuse, configuration management, host-target development, open source and licensing",
+        "Code quality: style, reviews, refactoring, technical debt, static analysis",
+        "APIs, interfaces and contracts; defensive programming and error handling"
+      ]
+    },
+    {
+      "title": "User interface design principles",
+      "weeks": "9",
+      "topics": [
+        "User-centred design; usability principles and heuristics; consistency, feedback, error recovery",
+        "Interaction styles; information presentation; colour and accessibility",
+        "Prototyping and evaluating the team project's interface with users",
+        "Internationalisation and designing for low-end devices"
+      ]
+    },
+    {
+      "title": "Verification and validation",
+      "weeks": "10",
+      "topics": [
+        "Verification versus validation; the V-model; inspections and reviews",
+        "Static analysis, linters, type checkers, model checking in brief",
+        "Test planning; test-driven development; code coverage and its limits",
+        "Formal methods and when they are worth it; safety-critical systems"
+      ]
+    },
+    {
+      "title": "Software testing",
+      "weeks": "11",
+      "topics": [
+        "Unit testing with a framework; mocks and stubs; property-based testing",
+        "Black-box techniques: equivalence partitioning, boundary values, decision tables; white-box: statement, branch, path coverage",
+        "Integration, system, acceptance, regression, performance, security and usability testing",
+        "Test automation in CI; test documentation and defect tracking"
+      ]
+    },
+    {
+      "title": "Software maintenance and evolution",
+      "weeks": "12",
+      "topics": [
+        "Lehman's laws; types of maintenance; the cost of change",
+        "Legacy systems: assessment, reengineering, migration, strangler pattern",
+        "Refactoring, continuous evolution, release management and versioning",
+        "Software metrics for maintainability and quality"
+      ]
+    },
+    {
+      "title": "Project and team management",
+      "weeks": "13",
+      "topics": [
+        "Risk management, estimation (story points, COCOMO in brief), scheduling, tracking velocity and burndown",
+        "Teamwork: roles, communication, motivation, conflict; distributed and remote teams",
+        "Quality management and standards (ISO 9001, ISO/IEC 25010); configuration management",
+        "Professional ethics and the ACM/IEEE code; project presentation and retrospective"
+      ]
+    }
+  ]
+}

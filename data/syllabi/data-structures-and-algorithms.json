@@ -1,0 +1,110 @@
+{
+  "slug": "data-structures-and-algorithms",
+  "description": "The classic data structures and algorithm design techniques, each analysed for correctness and running time and implemented in C++ with tests. Taught to the depth of a leading algorithms course.",
+  "modelledOn": [
+    "Cormen, Leiserson, Rivest and Stein, Introduction to Algorithms",
+    "Sedgewick and Wayne, Algorithms",
+    "Kleinberg and Tardos, Algorithm Design",
+    "Weiss, Data Structures and Algorithm Analysis in C++"
+  ],
+  "outcomes": [
+    "Specify abstract data types and implement them in C++ with clear interfaces, invariants and tests.",
+    "Analyse the time and space complexity of iterative and recursive algorithms, including amortised analysis.",
+    "Implement and choose among lists, stacks, queues, hash tables, balanced trees, heaps and graphs.",
+    "Implement and compare sorting and searching algorithms and justify their bounds.",
+    "Apply greedy, divide-and-conquer, dynamic programming, randomised and backtracking techniques to new problems.",
+    "Solve graph problems with BFS, DFS, shortest paths, minimum spanning trees and topological sort."
+  ],
+  "units": [
+    {
+      "title": "Data structures, abstract data types and analysis of algorithms",
+      "weeks": "1-2",
+      "topics": [
+        "Abstract data types versus implementations; interfaces, invariants and encapsulation in C++ classes and templates",
+        "Models of computation; counting operations; best, worst and average case",
+        "Asymptotic notation: O, Omega, Theta; growth rates and limits",
+        "Analysing loops and nested loops; recurrences and the master theorem",
+        "Amortised analysis: dynamic arrays and the aggregate and accounting methods",
+        "Measuring running time experimentally and comparing with theory"
+      ]
+    },
+    {
+      "title": "Lists, stacks and queues",
+      "weeks": "3",
+      "topics": [
+        "Array lists and dynamic resizing; singly, doubly and circular linked lists; iterators",
+        "Stacks: array and linked implementations; expression evaluation, balanced brackets, undo",
+        "Queues and deques; circular buffers; priority queue as an ADT",
+        "The C++ STL: vector, list, deque, stack, queue and their complexity guarantees"
+      ]
+    },
+    {
+      "title": "Recursion",
+      "weeks": "4",
+      "topics": [
+        "Recursive thinking and the call stack; base cases and progress",
+        "Recursion versus iteration; tail recursion; memoisation",
+        "Classic problems: permutations, subsets, Tower of Hanoi, flood fill, binary search",
+        "Proving recursive algorithms correct by induction"
+      ]
+    },
+    {
+      "title": "Sorting",
+      "weeks": "5-6",
+      "topics": [
+        "Insertion, selection and bubble sort; stability and in-place sorting",
+        "Merge sort and quicksort: analysis, pivot choice, randomised quicksort",
+        "Heaps and heapsort; the binary heap as a priority queue",
+        "Lower bound for comparison sorting; counting sort, radix sort, bucket sort",
+        "Choosing a sort: std::sort, introsort and when each algorithm wins"
+      ]
+    },
+    {
+      "title": "Searching and hashing",
+      "weeks": "7",
+      "topics": [
+        "Linear and binary search; interpolation search; order statistics and quickselect",
+        "Hash functions, uniform hashing, universal hashing",
+        "Collision resolution: chaining, open addressing (linear, quadratic, double hashing); load factor and rehashing",
+        "Hash tables in practice: unordered_map, string hashing, Bloom filters",
+        "Applications: dictionaries, counting, deduplication, caching"
+      ]
+    },
+    {
+      "title": "Trees",
+      "weeks": "8-9",
+      "topics": [
+        "Tree terminology; binary trees and traversals (preorder, inorder, postorder, level order)",
+        "Binary search trees: search, insert, delete; expected height",
+        "Balanced trees: AVL rotations; red-black trees; 2-3 trees and B-trees for disks",
+        "Tries and suffix trees for strings; Huffman coding trees",
+        "Augmented trees: order statistics, interval trees; segment trees and Fenwick trees",
+        "std::map and std::set and their guarantees"
+      ]
+    },
+    {
+      "title": "Graphs",
+      "weeks": "10-11",
+      "topics": [
+        "Graph representations: adjacency matrix and list; weighted and directed graphs",
+        "Breadth-first and depth-first search; connected components; cycle detection",
+        "Topological sort and DAGs; strongly connected components",
+        "Shortest paths: Dijkstra with a heap, Bellman-Ford, Floyd-Warshall; the tro-tro route problem",
+        "Minimum spanning trees: Kruskal with union-find, Prim",
+        "Network flow in brief: Ford-Fulkerson and bipartite matching"
+      ]
+    },
+    {
+      "title": "Design techniques",
+      "weeks": "12-13",
+      "topics": [
+        "Greedy: activity selection, fractional knapsack, Huffman, interval scheduling; proving greedy choices",
+        "Divide-and-conquer: closest pair, Karatsuba multiplication, Strassen in brief",
+        "Dynamic programming: 0/1 knapsack, longest common subsequence, edit distance, matrix chain, coin change in cedis",
+        "Randomised algorithms: randomised quicksort, hashing, Monte Carlo and Las Vegas",
+        "Backtracking and branch-and-bound: N-queens, sudoku, subset sum",
+        "Introduction to NP-completeness and what to do when no fast algorithm is known"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "slug": "blockchain-and-distributed-ledgers",
+  "description": "Blockchains built up from their parts: hashes and Merkle trees, blocks and chains, consensus by proof of work and proof of stake, keys, wallets and transactions, smart contracts, and a clear-eyed look at real use cases, limits and regulation, with a small blockchain implemented and a contract deployed to a test network. Taught to the depth of a leading blockchain technologies course.",
+  "modelledOn": [
+    "Narayanan, Bonneau, Felten, Miller and Goldfeder, Bitcoin and Cryptocurrency Technologies",
+    "Antonopoulos, Mastering Bitcoin",
+    "Antonopoulos and Wood, Mastering Ethereum",
+    "Nakamoto, Bitcoin: A Peer-to-Peer Electronic Cash System"
+  ],
+  "outcomes": [
+    "Explain and implement the cryptographic building blocks of a blockchain: hashes, Merkle trees, digital signatures.",
+    "Describe how blocks, chains, forks and confirmations give tamper-evidence and how a longest-chain rule resolves conflicts.",
+    "Compare proof of work, proof of stake and permissioned consensus and analyse their security and energy assumptions.",
+    "Create keys and wallets, construct and verify transactions, and explain the UTXO and account models.",
+    "Write, test and deploy a smart contract and identify common vulnerabilities.",
+    "Evaluate blockchain proposals for land registry, supply chain and payments against simpler alternatives, and summarise the regulatory position."
+  ],
+  "units": [
+    {
+      "title": "Hashing and Merkle trees",
+      "weeks": "1-2",
+      "topics": [
+        "Cryptographic hash properties; SHA-256 and Keccak; hash pointers and tamper-evident lists",
+        "Merkle trees: construction, proofs of inclusion, light clients",
+        "Digital signatures with ECDSA and secp256k1; public keys as identities",
+        "Commitments and puzzles; implementing hashes, Merkle proofs and signatures in code"
+      ]
+    },
+    {
+      "title": "Blocks, chains and immutability",
+      "weeks": "3-4",
+      "topics": [
+        "Block structure: header, previous hash, Merkle root, nonce, timestamp, difficulty",
+        "Chaining, forks, orphan blocks, confirmations; why rewriting history is expensive",
+        "Peer-to-peer networking: gossip, block and transaction propagation, nodes and miners",
+        "Building a minimal blockchain in Python or JavaScript and attacking it",
+        "Distributed ledgers versus databases: what immutability does and does not give you"
+      ]
+    },
+    {
+      "title": "Proof of work and proof of stake",
+      "weeks": "5-6",
+      "topics": [
+        "The double-spend problem and Byzantine agreement among strangers; the Nakamoto consensus",
+        "Proof of work: mining, difficulty adjustment, hash rate, pools, 51 percent attacks, selfish mining, energy consumption",
+        "Proof of stake: validators, staking, slashing, finality (Casper, Tendermint); nothing-at-stake and long-range attacks",
+        "Permissioned consensus: PBFT, Raft-based ledgers (Hyperledger Fabric)",
+        "Comparing security, decentralisation, throughput and energy; the scalability trilemma"
+      ]
+    },
+    {
+      "title": "Wallets, keys and transactions",
+      "weeks": "7",
+      "topics": [
+        "Key generation, addresses, hierarchical deterministic wallets, seed phrases, custody and loss",
+        "Transactions: inputs and outputs (UTXO model), scripts, fees, mempool; the account model in Ethereum",
+        "Constructing, signing and verifying a transaction by hand; multisignature and time locks",
+        "Exchanges, stablecoins, and how cedis move into and out of crypto; the risks of custodial services"
+      ]
+    },
+    {
+      "title": "Smart contracts",
+      "weeks": "8-10",
+      "topics": [
+        "Ethereum: the EVM, gas, accounts, state; Solidity basics: types, functions, events, modifiers",
+        "Writing, testing (Hardhat or Foundry) and deploying a contract to a test network; interacting from a web page",
+        "Token standards (ERC-20, ERC-721) and decentralised applications; oracles",
+        "Vulnerabilities: reentrancy (The DAO), integer issues, access control, front-running; auditing and formal verification in brief",
+        "Layer-2 scaling: payment channels, rollups; cross-chain bridges"
+      ]
+    },
+    {
+      "title": "Use cases: land registry, supply chain, payments",
+      "weeks": "11-12",
+      "topics": [
+        "Land registry: Ghana's land title problems, the Bitland pilot, what a ledger can and cannot fix (garbage in, legal recognition)",
+        "Supply chain provenance: cocoa and pharmaceuticals; the oracle problem; IBM Food Trust lessons",
+        "Payments and remittances: cross-border transfers, stablecoins, central bank digital currencies (e-Cedi), mobile money comparison",
+        "Identity, voting, academic credentials and other proposals; a decision framework: do you need a blockchain?",
+        "Enterprise ledgers: Hyperledger Fabric and permissioned deployments"
+      ]
+    },
+    {
+      "title": "Limitations and regulation",
+      "weeks": "13",
+      "topics": [
+        "Limits: throughput, latency, energy, privacy on public ledgers, key loss, upgradeability, governance",
+        "Scams, fraud and consumer harm; AML/KYC and the travel rule",
+        "Regulation: Bank of Ghana and SEC positions, the e-Cedi, international approaches (MiCA, FATF)",
+        "Capstone: a complete decentralised application with a report on whether a blockchain was the right choice"
+      ]
+    }
+  ]
+}

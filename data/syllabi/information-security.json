@@ -1,0 +1,124 @@
+{
+  "slug": "information-security",
+  "description": "Defending information and systems end to end: threats and malware, password attacks, applied cryptography, authentication, intrusion detection, firewalls and honeypots, ethical hacking and network attacks, and the management side of standards, audits and disaster recovery. Taught to the depth of a leading computer security course and the professional security certifications.",
+  "modelledOn": [
+    "Whitman and Mattord, Principles of Information Security",
+    "Anderson, Security Engineering",
+    "Pfleeger, Pfleeger and Margulies, Security in Computing",
+    "ISO/IEC 27001 and 27002, NIST Cybersecurity Framework, CompTIA Security+ objectives"
+  ],
+  "outcomes": [
+    "Explain the CIA triad and extended security properties and classify threats, vulnerabilities and controls.",
+    "Analyse how malware, backdoors and password attacks work and defend against them.",
+    "Apply cryptography and authentication mechanisms correctly in systems.",
+    "Deploy and tune intrusion detection, firewalls and honeypots and read their output.",
+    "Carry out authorised reconnaissance, scanning and exploitation in a lab and write a penetration test report.",
+    "Manage information security with policies, risk assessment, standards, audits and business continuity planning."
+  ],
+  "units": [
+    {
+      "title": "Information security fundamentals",
+      "weeks": "1",
+      "topics": [
+        "The CIA triad; authenticity, accountability, non-repudiation; the security versus usability trade-off",
+        "Assets, threats, vulnerabilities, risks, controls; attack surfaces and threat modelling (STRIDE)",
+        "Security principles: least privilege, defence in depth, fail-safe defaults, separation of duties",
+        "The security landscape in Ghana: mobile-money fraud, sakawa, ransomware against institutions, the Cyber Security Authority"
+      ]
+    },
+    {
+      "title": "Addressing threats: backdoors, viruses, worms and malware",
+      "weeks": "2-3",
+      "topics": [
+        "Malware taxonomy: viruses, worms, trojans, backdoors, rootkits, ransomware, spyware, botnets; famous cases (Morris worm, Stuxnet, WannaCry)",
+        "Infection vectors: phishing, drive-by downloads, removable media, supply chain; social engineering",
+        "How antivirus and endpoint detection work: signatures, heuristics, behaviour, sandboxing; evasion",
+        "Safe malware analysis in an isolated lab: static and dynamic basics",
+        "Software vulnerabilities: buffer overflows, injection, race conditions; CVE and CVSS; patch management"
+      ]
+    },
+    {
+      "title": "Password cracking and authentication",
+      "weeks": "4-5",
+      "topics": [
+        "Password storage: hashing, salting, slow hashes; what happens in a breach",
+        "Attacks: brute force, dictionary, rainbow tables, credential stuffing, spraying; John the Ripper and hashcat in the lab",
+        "Password policies that work; password managers; passphrases",
+        "Authentication factors; OTP, TOTP, SMS and its weaknesses, hardware keys, FIDO2/WebAuthn, biometrics",
+        "Single sign-on, OAuth 2.0 and OpenID Connect, Kerberos; session management",
+        "Access control models: DAC, MAC, RBAC, ABAC"
+      ]
+    },
+    {
+      "title": "Cryptography in practice",
+      "weeks": "6",
+      "topics": [
+        "Symmetric and asymmetric encryption, hashes, MACs and signatures as tools",
+        "TLS, VPNs, disk and file encryption, encrypted messaging; certificates and PKI",
+        "Common misuse: ECB, hard-coded keys, weak randomness, home-made crypto",
+        "Steganography and watermarking in brief"
+      ]
+    },
+    {
+      "title": "Intrusion detection systems",
+      "weeks": "7",
+      "topics": [
+        "Host and network IDS/IPS; signature-based versus anomaly-based detection; false positives and negatives",
+        "Snort and Suricata rules; Zeek; OSSEC/Wazuh",
+        "Log management and SIEM; correlation and alerting",
+        "Deploying an IDS in the lab and detecting a scan and an exploit"
+      ]
+    },
+    {
+      "title": "Firewalls and honeypots",
+      "weeks": "8",
+      "topics": [
+        "Firewall types: packet filtering, stateful, application-layer, next-generation; architectures (DMZ, screened subnet)",
+        "Writing rules: iptables/nftables, pfSense; web application firewalls",
+        "Honeypots and honeynets: low and high interaction, deception, legal issues",
+        "Network segmentation and zero-trust architecture"
+      ]
+    },
+    {
+      "title": "Introduction to ethical hacking",
+      "weeks": "9-10",
+      "topics": [
+        "Legal and ethical framework: authorisation, scope, rules of engagement, Ghana's Cybersecurity Act",
+        "The penetration testing methodology: reconnaissance (OSINT), scanning (nmap), enumeration, vulnerability assessment (OpenVAS, Nessus), exploitation (Metasploit), post-exploitation, reporting",
+        "Web application testing with OWASP Top Ten: injection, broken authentication, XSS, IDOR; Burp Suite and OWASP ZAP",
+        "Wireless and social engineering assessments",
+        "Writing a penetration test report and remediation plan"
+      ]
+    },
+    {
+      "title": "Network attacks and defences",
+      "weeks": "11",
+      "topics": [
+        "Sniffing, ARP spoofing, DNS spoofing, man-in-the-middle, session hijacking",
+        "Denial of service and DDoS: SYN floods, amplification; mitigation",
+        "Wireless attacks: WEP/WPA cracking, evil twins; securing Wi-Fi",
+        "Hardening hosts and networks; secure configuration baselines (CIS Benchmarks)"
+      ]
+    },
+    {
+      "title": "Management of information security",
+      "weeks": "12",
+      "topics": [
+        "Security governance; roles (CISO), policies, standards, procedures, guidelines; security awareness training",
+        "Risk management: identification, assessment (qualitative and quantitative, ALE), treatment",
+        "Legal and regulatory: Data Protection Act 843, Cybersecurity Act 2020, PCI DSS, GDPR for international customers",
+        "Incident response planning and the incident life cycle"
+      ]
+    },
+    {
+      "title": "Security management models, standards, audits and disaster recovery",
+      "weeks": "13",
+      "topics": [
+        "Models: ISO/IEC 27001 ISMS and 27002 controls, NIST CSF and SP 800-53, COBIT; the Bell-LaPadula and Biba models",
+        "Security audits and compliance; vulnerability management programmes; security metrics",
+        "Business continuity and disaster recovery: BIA, RTO/RPO, backup strategies, hot/warm/cold sites, testing the plan",
+        "Capstone: a security assessment and ISMS plan for a small organisation"
+      ]
+    }
+  ]
+}
