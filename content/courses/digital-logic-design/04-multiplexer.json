@@ -1,0 +1,26 @@
+{
+  "id": "digital-logic-design-i2-multiplexer",
+  "course": "digital-logic-design",
+  "topic": "Combinational building blocks",
+  "level": "intermediate",
+  "engine": "E2",
+  "title": "Build a 2-to-1 multiplexer",
+  "estimatedMinutes": 20,
+  "instructions": "## The problem\n\nA multiplexer is a switch controlled by a signal. A **2-to-1 mux** has two data inputs **A** and **B**, a select input **S**, and one output **Y**:\n\n- When **S = 0**, Y copies **A**.\n- When **S = 1**, Y copies **B**.\n\nAs a Boolean expression: `Y = (A AND NOT S) OR (B AND S)`.\n\n## Do this\n\n1. Place three switches. Relabel the third one **S** if the bench did not (select it and edit the Label box).\n2. Build the expression with AND, OR and NOT gates. Three gates and one inverter is the standard answer.\n3. Test all eight rows in the live truth table, then press **Check my circuit**.\n\n## Why it matters\n\nMultiplexers route data inside every processor: choosing which register feeds the ALU, or which result is written back.",
+  "config": {
+    "palette": ["INPUT", "OUTPUT", "AND", "OR", "NOT", "NAND", "NOR", "XOR"],
+    "inputLabels": ["A", "B", "S"],
+    "outputLabels": ["Y"]
+  },
+  "hints": [
+    "You need the inverse of S. Place a NOT gate and feed S into it.",
+    "Two AND gates: one takes A and NOT S, the other takes B and S.",
+    "An OR gate combines the two AND outputs into Y."
+  ],
+  "checks": [
+    { "type": "logic.allConnected", "label": "Every pin is wired" },
+    { "type": "logic.truthTable", "label": "Y follows A when S is 0 and B when S is 1", "inputs": ["A", "B", "S"], "outputs": { "Y": "(A & !S) | (B & S)" } },
+    { "type": "logic.maxGates", "label": "Uses at most four gates", "max": 4 }
+  ],
+  "realityNote": "A 74157 chip packs four 2-to-1 muxes with a shared select line and an enable input. Enable lines let you switch a whole block off; we have not modelled them here."
+}

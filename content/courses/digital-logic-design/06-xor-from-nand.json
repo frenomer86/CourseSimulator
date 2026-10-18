@@ -1,0 +1,27 @@
+{
+  "id": "digital-logic-design-a2-xor-from-nand",
+  "course": "digital-logic-design",
+  "topic": "Universal gates and multilevel implementation",
+  "level": "advanced",
+  "engine": "E2",
+  "title": "Build XOR using only NAND gates",
+  "estimatedMinutes": 25,
+  "instructions": "## The problem\n\nNAND is a **universal gate**: any Boolean function can be built from NAND alone. Factories exploit this by producing one gate type in huge volume.\n\nBuild a circuit where **Y = A XOR B** using **only NAND gates**. The palette offers nothing else.\n\n## Do this\n\n1. Place switches A and B and lamp Y.\n2. Build XOR from NANDs. It can be done in **four** gates.\n3. Press **Check my circuit**.\n\n## Think\n\n- `NOT X` is `X NAND X`.\n- `A AND B` is `NOT (A NAND B)`.\n- `A OR B` is `(NOT A) NAND (NOT B)`.\n- XOR is `(A AND NOT B) OR (NOT A AND B)`. Translating this directly gives more than four gates. Can you share a term?",
+  "config": {
+    "palette": ["INPUT", "OUTPUT", "NAND"],
+    "inputLabels": ["A", "B"],
+    "outputLabels": ["Y"]
+  },
+  "hints": [
+    "Let M = A NAND B. Both inputs can use M.",
+    "Compute A NAND M and B NAND M.",
+    "Y = (A NAND M) NAND (B NAND M). Four gates in total."
+  ],
+  "checks": [
+    { "type": "logic.allowedGates", "label": "Only NAND gates are used", "gates": ["NAND"] },
+    { "type": "logic.allConnected", "label": "Every pin is wired" },
+    { "type": "logic.truthTable", "label": "Y equals A XOR B", "inputs": ["A", "B"], "outputs": { "Y": "A ^ B" } },
+    { "type": "logic.maxGates", "label": "Uses at most four NAND gates", "max": 4 }
+  ],
+  "realityNote": "The four-NAND XOR has a longest path of three gate delays. On a 74LS00 each gate adds roughly 10 ns, so this XOR settles about 30 ns after an input changes."
+}

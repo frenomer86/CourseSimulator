@@ -1,0 +1,206 @@
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { LEVEL_LABEL, type LabResult, type LabSpec } from '@cslab/lab-runtime';
+import { createLogicChecks, emptyCircuit, type Circuit, type GateType } from '@cslab/engine-digital-logic';
+import { courseBySlug, labById, nextLab } from '../lib/catalogue';
+import { useProgress } from '../store/progress';
+import { LogicCanvas } from '../components/LogicCanvas';
+import { TruthTablePanel } from '../components/TruthTablePanel';
+import { Markdown } from '../components/Markdown';
+import { NotFoundPage } from './NotFound';
+
+const logicChecks = createLogicChecks();
+
+export function LabPage() {
+  const { id = '' } = useParams();
+  const lab = labById(id);
+  if (!lab) return <NotFoundPage />;
+  if (lab.engine !== 'E2') {
+    return (
+      <div className="mx-auto max-w-6xl px-4 py-16">
+        <h1 className="text-2xl font-semibold">{lab.title}</h1>
+        <p className="mt-2 text-ink-soft">This lab needs a simulator that is not built yet.</p>
+      </div>
+    );
+  }
+  return <LogicLab key={lab.id} lab={lab as LabSpec<Circuit>} />;
+}
+
+function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
+  const course = courseBySlug(lab.course);
+  const saved = useProgress((s) => s.workspaces[lab.id]) as Circuit | undefined;
+  const progress = useProgress((s) => s.labs[lab.id]);
+  const { recordResult, saveWorkspace, clearWorkspace } = useProgress();
+
+  const [circuit, setCircuit] = useState<Circuit>(() => saved ?? lab.initialState ?? emptyCircuit());
+  const [result, setResult] = useState<LabResult | null>(null);
+  const [hintsShown, setHintsShown] = useState(0);
+  const [checking, setChecking] = useState(false);
+
+  const palette = (lab.config?.palette as GateType[] | undefined) ?? ['INPUT', 'OUTPUT', 'AND', 'OR', 'NOT', 'NAND', 'NOR', 'XOR', 'XNOR'];
+  const inputLabels = lab.config?.inputLabels as string[] | undefined;
+  const outputLabels = lab.config?.outputLabels as string[] | undefined;
+
+  useEffect(() => {
+    const t = setTimeout(() => saveWorkspace(lab.id, circuit), 400);
+    return () => clearTimeout(t);
+  }, [circuit, lab.id, saveWorkspace]);
+
+  const onChange = useCallback((c: Circuit) => {
+    setCircuit(c);
+    setResult(null);
+  }, []);
+
+  const check = async () => {
+    setChecking(true);
+    const r = await logicChecks.run(lab, circuit);
+    setResult(r);
+    recordResult(r, hintsShown);
+    setChecking(false);
+  };
+
+  const resetBench = () => {
+    clearWorkspace(lab.id);
+    setCircuit(lab.initialState ?? emptyCircuit());
+    setResult(null);
+  };
+
+  const following = useMemo(() => nextLab(lab), [lab]);
+
+  return (
+    <div className="mx-auto max-w-[1400px] px-4 py-6">
+      <nav className="text-sm text-ink-soft flex flex-wrap items-center gap-x-2">
+        <Link to="/#courses" className="hover:text-ink">
+          Courses
+        </Link>
+        <span>/</span>
+        {course && (
+          <Link to={`/courses/${course.slug}`} className="hover:text-ink">
+            {course.title}
+          </Link>
+        )}
+        <span>/</span>
+        <span>{LEVEL_LABEL[lab.level]}</span>
+      </nav>
+      <div className="mt-1 flex flex-wrap items-baseline justify-between gap-3">
+        <h1 className="text-2xl font-semibold tracking-tight">{lab.title}</h1>
+        <span className="text-sm text-ink-soft">
+          {lab.topic}, about {lab.estimatedMinutes} min
+          {progress?.passed && <span className="ml-3 text-high font-medium">Completed</span>}
+        </span>
+      </div>
+
+      <div className="mt-5 grid gap-5 lg:grid-cols-[320px_minmax(0,1fr)_300px]">
+        {/* Instructions */}
+        <aside className="order-1 lg:order-none">
+          <details open className="rounded-lg border border-line bg-surface lg:open">
+            <summary className="cursor-pointer px-4 py-3 font-medium lg:pointer-events-none">Instructions</summary>
+            <div className="px-4 pb-4 -mt-1">
+              <Markdown source={lab.instructions} className="text-[15px]" />
+              {lab.hints.length > 0 && (
+                <div className="mt-4 border-t border-line pt-3">
+                  {lab.hints.slice(0, hintsShown).map((h, i) => (
+                    <p key={i} className="text-sm rounded-md bg-gold-soft border border-gold/40 px-3 py-2 mb-2 leading-relaxed">
+                      <span className="font-medium">Hint {i + 1}.</span> {h}
+                    </p>
+                  ))}
+                  {hintsShown < lab.hints.length ? (
+                    <button
+                      type="button"
+                      onClick={() => setHintsShown((n) => n + 1)}
+                      className="text-sm text-ink-soft underline underline-offset-2 hover:text-ink"
+                    >
+                      {hintsShown === 0 ? 'Show a hint' : 'Show another hint'} ({lab.hints.length - hintsShown} left)
+                    </button>
+                  ) : (
+                    <span className="text-sm text-ink-faint">No more hints.</span>
+                  )}
+                </div>
+              )}
+            </div>
+          </details>
+        </aside>
+
+        {/* Bench */}
+        <section className="order-0 lg:order-none min-w-0">
+          <LogicCanvas
+            circuit={circuit}
+            onChange={onChange}
+            palette={palette}
+            inputLabels={inputLabels}
+            outputLabels={outputLabels}
+          />
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={check}
+              disabled={checking}
+              className="rounded-md bg-high px-4 py-2 text-white font-medium hover:bg-[#0c5a46] disabled:opacity-60"
+            >
+              Check my circuit
+            </button>
+            <button
+              type="button"
+              onClick={resetBench}
+              className="rounded-md border border-line bg-surface px-4 py-2 font-medium hover:bg-bench"
+            >
+              Reset the bench
+            </button>
+            {result?.passed && following && (
+              <Link to={`/labs/${following.id}`} className="ml-auto rounded-md border border-high text-high px-4 py-2 font-medium hover:bg-high-soft">
+                Next lab: {following.title}
+              </Link>
+            )}
+          </div>
+
+          {result && (
+            <div
+              className={`mt-3 rounded-lg border p-4 ${
+                result.passed ? 'border-high bg-high-soft' : 'border-fault/40 bg-fault-soft'
+              }`}
+              role="status"
+            >
+              <p className="font-medium">
+                {result.passed
+                  ? 'Correct. Every check passed.'
+                  : `${result.checks.filter((c) => c.passed).length} of ${result.checks.length} checks passed.`}
+              </p>
+              <ul className="mt-2 space-y-1.5 text-sm">
+                {result.checks.map((c, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className={`font-mono shrink-0 ${c.passed ? 'text-high' : 'text-fault'}`}>{c.passed ? '✓' : '✗'}</span>
+                    <span>
+                      <span className="font-medium">{c.label}.</span> {c.message}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              {result.passed && lab.realityNote && (
+                <p className="mt-3 text-sm text-ink-soft border-t border-high/30 pt-3">
+                  <span className="font-medium text-ink">On real hardware:</span> {lab.realityNote}
+                </p>
+              )}
+            </div>
+          )}
+        </section>
+
+        {/* Truth table and checks */}
+        <aside className="order-2 lg:order-none space-y-4">
+          <div className="rounded-lg border border-line bg-surface p-4">
+            <h2 className="font-medium">Truth table</h2>
+            <p className="text-xs text-ink-soft mt-0.5 mb-3">Computed live from your circuit.</p>
+            <TruthTablePanel circuit={circuit} />
+          </div>
+          <div className="rounded-lg border border-line bg-surface p-4">
+            <h2 className="font-medium">What will be checked</h2>
+            <ul className="mt-2 space-y-1.5 text-sm text-ink-soft list-disc pl-4">
+              {lab.checks.map((c, i) => (
+                <li key={i}>{c.label}</li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,26 @@
+{
+  "id": "digital-logic-design-a1-full-adder",
+  "course": "digital-logic-design",
+  "topic": "Combinational building blocks",
+  "level": "advanced",
+  "engine": "E2",
+  "title": "Design a full adder",
+  "estimatedMinutes": 25,
+  "instructions": "## The problem\n\nA full adder adds three bits: **A**, **B** and a carry-in **Cin**. It outputs the sum bit **S** and carry-out **Cout**.\n\n- `S = A XOR B XOR Cin`\n- `Cout = (A AND B) OR (Cin AND (A XOR B))`\n\nChain eight of these and you have the adder inside an 8-bit CPU.\n\n## Do this\n\n1. Place switches A, B and Cin, and lamps S and Cout.\n2. Build the circuit. The classic design is two half adders plus an OR gate: **five gates**.\n3. Verify all eight rows, then press **Check my circuit**.\n\n## Stretch\n\nCan you reuse the single `A XOR B` result for both S and Cout? Sharing a sub-expression is how designers cut gate count and delay.",
+  "config": {
+    "palette": ["INPUT", "OUTPUT", "AND", "OR", "NOT", "NAND", "NOR", "XOR", "XNOR"],
+    "inputLabels": ["A", "B", "Cin"],
+    "outputLabels": ["S", "Cout"]
+  },
+  "hints": [
+    "Start with a half adder on A and B. Call its sum P and its carry G in your head.",
+    "S is P XOR Cin.",
+    "Cout is G OR (P AND Cin). Feed the first XOR's output into both the second XOR and an AND gate."
+  ],
+  "checks": [
+    { "type": "logic.allConnected", "label": "Every pin is wired" },
+    { "type": "logic.truthTable", "label": "S and Cout are correct for all eight inputs", "inputs": ["A", "B", "Cin"], "outputs": { "S": "A ^ B ^ Cin", "Cout": "(A & B) | (Cin & (A ^ B))" } },
+    { "type": "logic.maxGates", "label": "Uses at most five gates", "max": 5 }
+  ],
+  "realityNote": "In a ripple-carry adder each stage waits for the previous carry, so a 32-bit add takes 32 carry delays. Real CPUs use carry-lookahead logic to compute carries in parallel."
+}

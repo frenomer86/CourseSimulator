@@ -1,0 +1,89 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* The bench: a cool grey work surface, white instrument panels, dark ink. */
+  --color-bench: #eef1f4;
+  --color-bench-deep: #e2e7ec;
+  --color-surface: #ffffff;
+  --color-ink: #15202b;
+  --color-ink-soft: #52606f;
+  --color-ink-faint: #8a94a3;
+  --color-line: #d5dbe3;
+
+  /* Signals: logic HIGH is green, LOW is slate, an unknown is gold, a fault is red. */
+  --color-high: #0f6e56;
+  --color-high-bright: #2fae84;
+  --color-low: #8a94a3;
+  --color-gold: #e8b04b;
+  --color-gold-deep: #b9822a;
+  --color-fault: #c8402f;
+  --color-fault-soft: #fbe9e6;
+  --color-high-soft: #e3f3ed;
+  --color-gold-soft: #fbf1dc;
+}
+
+html {
+  background: var(--color-bench);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-high);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Prose for lab instructions and syllabi. */
+.prose-lab h1,
+.prose-lab h2,
+.prose-lab h3 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 1.25em 0 0.5em;
+}
+.prose-lab h1 { font-size: 1.25rem; }
+.prose-lab h2 { font-size: 1.1rem; }
+.prose-lab h3 { font-size: 1rem; }
+.prose-lab p,
+.prose-lab li { line-height: 1.55; }
+.prose-lab p { margin: 0.6em 0; }
+.prose-lab ul,
+.prose-lab ol { padding-left: 1.3em; margin: 0.6em 0; }
+.prose-lab ol { list-style: decimal; }
+.prose-lab ul { list-style: disc; }
+.prose-lab li { margin: 0.25em 0; }
+.prose-lab code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-bench);
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  padding: 0 0.3em;
+}
+.prose-lab strong { font-weight: 600; }
+.prose-lab table { border-collapse: collapse; margin: 0.75em 0; font-family: var(--font-mono); font-size: 0.85rem; }
+.prose-lab th,
+.prose-lab td { border: 1px solid var(--color-line); padding: 0.2em 0.6em; text-align: center; }
+
+/* Signal glow for HIGH wires. */
+.wire-high {
+  filter: drop-shadow(0 0 3px rgba(47, 174, 132, 0.8));
+}

@@ -1,0 +1,108 @@
+{
+  "slug": "digital-logic-design",
+  "description": "From transistors and gates to a working processor datapath. Modelled on the depth of MIT 6.004 (Computation Structures), Berkeley EECS 151 (Digital Design) and the Nand2Tetris hardware track, grounded in the HTU course outline.",
+  "modelledOn": [
+    "MIT 6.004 Computation Structures",
+    "UC Berkeley EECS 151 Introduction to Digital Design and Integrated Circuits",
+    "Nand2Tetris: Building a Modern Computer from First Principles (hardware part)",
+    "Mano and Ciletti, Digital Design"
+  ],
+  "outcomes": [
+    "Convert between number systems and codes, and reason about overflow and signed arithmetic.",
+    "Specify, minimise and implement any combinational function with gates, muxes or ROM/PLA.",
+    "Analyse and design synchronous sequential circuits with flip-flops and finite state machines.",
+    "Reason about timing: propagation delay, setup and hold, clock period and glitches.",
+    "Build arithmetic units, registers and memories, and compose them into a simple datapath."
+  ],
+  "units": [
+    {
+      "title": "Digital abstraction and number representation",
+      "weeks": "1-2",
+      "topics": [
+        "Why digital: noise margins, the static discipline, voltage levels for 0 and 1",
+        "Binary, octal, hexadecimal; base conversion; fixed-point fractions",
+        "Signed numbers: sign-magnitude, one's and two's complement; overflow detection",
+        "Codes: BCD, Gray code, ASCII and Unicode; unit-distance codes",
+        "Error detection and correction: parity, checksums, Hamming distance and Hamming(7,4)"
+      ]
+    },
+    {
+      "title": "Boolean algebra and logic gates",
+      "weeks": "3",
+      "topics": [
+        "Axioms and theorems of Boolean algebra; duality; De Morgan's laws",
+        "Switching functions; truth tables; canonical sum-of-products and product-of-sums",
+        "Gate families: AND, OR, NOT, NAND, NOR, XOR, XNOR; universal gates",
+        "CMOS implementation of inverters and NAND gates; fan-in, fan-out, propagation delay",
+        "Logic families compared: TTL, CMOS; voltage levels and power"
+      ]
+    },
+    {
+      "title": "Minimisation and multilevel implementation",
+      "weeks": "4-5",
+      "topics": [
+        "Algebraic simplification",
+        "Karnaugh maps for 2 to 5 variables; prime implicants, essential prime implicants, don't cares",
+        "Quine-McCluskey tabular method and the covering problem",
+        "Two-level versus multilevel logic; NAND-only and NOR-only realisations",
+        "Hazards and glitches; hazard-free design"
+      ]
+    },
+    {
+      "title": "Combinational building blocks",
+      "weeks": "6-7",
+      "topics": [
+        "Design procedure: specification, truth table, minimisation, implementation, verification",
+        "Half and full adders, ripple-carry adders, carry-lookahead and carry-select adders",
+        "Subtractors and two's-complement add/subtract units; comparators",
+        "Multipliers: array multiplier and shift-and-add",
+        "Multiplexers, demultiplexers, encoders, priority encoders, decoders, code converters",
+        "Implementing functions with multiplexers and decoders; tri-state buffers and buses"
+      ]
+    },
+    {
+      "title": "Latches, flip-flops and timing",
+      "weeks": "8-9",
+      "topics": [
+        "The bistable element; SR latch; gated D latch",
+        "Edge-triggered D flip-flop; master-slave construction; JK and T flip-flops",
+        "Characteristic and excitation tables; converting one flip-flop type to another",
+        "Timing: setup time, hold time, clock-to-Q, minimum clock period, metastability",
+        "Asynchronous inputs, synchronisers and debouncing"
+      ]
+    },
+    {
+      "title": "Sequential circuits and finite state machines",
+      "weeks": "10-11",
+      "topics": [
+        "Registers, shift registers (SISO, SIPO, PISO, PIPO), ring and Johnson counters",
+        "Synchronous and asynchronous (ripple) counters; up/down and modulo-N counters",
+        "Moore and Mealy machines; state diagrams and state tables",
+        "FSM design procedure: state assignment, next-state logic, output logic",
+        "State reduction and equivalent states; one-hot encoding",
+        "Worked designs: sequence detector, vending machine, traffic-light controller"
+      ]
+    },
+    {
+      "title": "Memory and programmable logic",
+      "weeks": "12",
+      "topics": [
+        "Memory organisation: address, data, word size; read and write cycles",
+        "ROM, PROM, EPROM, EEPROM, flash; SRAM and DRAM cells; refresh",
+        "Implementing combinational logic with ROM",
+        "PLA, PAL and the idea of programmable interconnect; introduction to FPGAs",
+        "Register files and simple RAM built from flip-flops"
+      ]
+    },
+    {
+      "title": "From logic to a datapath",
+      "weeks": "13",
+      "topics": [
+        "Arithmetic logic unit: operation select, flags (zero, carry, overflow, negative)",
+        "Register transfer notation and control signals",
+        "A minimal datapath: registers, ALU, memory, program counter",
+        "Instruction execution as a sequence of register transfers (bridge to Computer Organisation and Architecture)"
+      ]
+    }
+  ]
+}

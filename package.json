@@ -1,0 +1,21 @@
+{
+  "name": "cs-virtual-lab",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Browser-based virtual laboratory for the BTech Computer Science curriculum",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @cslab/web",
+    "build": "npm run build -w @cslab/web",
+    "preview": "npm run preview -w @cslab/web",
+    "test": "vitest run",
+    "typecheck": "npm run typecheck -w @cslab/web"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vitest": "^3.0.0"
+  }
+}

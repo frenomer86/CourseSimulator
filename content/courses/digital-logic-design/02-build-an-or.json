@@ -1,0 +1,26 @@
+{
+  "id": "digital-logic-design-b2-build-from-palette",
+  "course": "digital-logic-design",
+  "topic": "Logic gates and truth tables",
+  "level": "beginner",
+  "engine": "E2",
+  "title": "Build an OR gate circuit from an empty bench",
+  "estimatedMinutes": 10,
+  "instructions": "## Goal\n\nBuild a circuit where lamp **Y** lights when **A or B** (or both) is 1.\n\n## Do this\n\n1. Press `+ switch` twice. The bench labels them A and B for you.\n2. Press `+ OR`.\n3. Press `+ lamp`. It is labelled Y.\n4. Wire A to the OR gate's top input, B to the bottom input, and the OR gate's output to Y.\n5. Toggle the switches until you have seen all four rows of the truth table.\n6. Press **Check my circuit**.\n\n## Notice\n\nThe OR gate shows the symbol `≥1`, the IEC way of saying \"at least one input is 1\".",
+  "config": {
+    "palette": ["INPUT", "OUTPUT", "AND", "OR", "NOT"],
+    "inputLabels": ["A", "B"],
+    "outputLabels": ["Y"]
+  },
+  "hints": [
+    "You need exactly two switches, one OR gate and one lamp.",
+    "A gate with a gold outline still has an input pin without a wire.",
+    "If a lamp shows ?, trace backwards: something feeding it is not connected."
+  ],
+  "checks": [
+    { "type": "logic.minGates", "label": "At least one gate is placed", "min": 1 },
+    { "type": "logic.allConnected", "label": "Every pin is wired" },
+    { "type": "logic.truthTable", "label": "Y equals A OR B for every input", "inputs": ["A", "B"], "outputs": { "Y": "A | B" } }
+  ],
+  "realityNote": "On a breadboard you would also connect each chip's Vcc and GND pins and use a current-limiting resistor before the LED."
+}

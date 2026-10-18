@@ -1,0 +1,26 @@
+{
+  "id": "digital-logic-design-i1-half-adder",
+  "course": "digital-logic-design",
+  "topic": "Combinational building blocks",
+  "level": "intermediate",
+  "engine": "E2",
+  "title": "Design a half adder",
+  "estimatedMinutes": 15,
+  "instructions": "## The problem\n\nA half adder adds two one-bit numbers **A** and **B**. It has two outputs:\n\n- **S** (sum): the low bit of A + B\n- **C** (carry): the high bit of A + B\n\n| A | B | A + B | C | S |\n|---|---|-------|---|---|\n| 0 | 0 | 0 | 0 | 0 |\n| 0 | 1 | 1 | 0 | 1 |\n| 1 | 0 | 1 | 0 | 1 |\n| 1 | 1 | 2 (binary 10) | 1 | 0 |\n\n## Do this\n\n1. Work out which gate gives the S column and which gives the C column.\n2. Build it with two switches (A, B) and two lamps (S, C). Use `+ lamp` twice; the second lamp is labelled C automatically.\n3. Check that the live truth table matches the one above, then press **Check my circuit**.\n\nYou may use any gates, but the target is **two gates**.",
+  "config": {
+    "palette": ["INPUT", "OUTPUT", "AND", "OR", "NOT", "XOR"],
+    "inputLabels": ["A", "B"],
+    "outputLabels": ["S", "C"]
+  },
+  "hints": [
+    "Compare the S column with the truth tables of OR and XOR. Which one differs only in the last row?",
+    "C is 1 only when both inputs are 1.",
+    "One switch can feed two gates. Press its output pin twice, once for each wire."
+  ],
+  "checks": [
+    { "type": "logic.allConnected", "label": "Every pin is wired" },
+    { "type": "logic.truthTable", "label": "S is the sum bit and C is the carry bit", "inputs": ["A", "B"], "outputs": { "S": "A ^ B", "C": "A & B" } },
+    { "type": "logic.maxGates", "label": "Uses at most two gates", "max": 2 }
+  ],
+  "realityNote": "In a CPU the half adder is the first cell of an adder chain; the carry you built here feeds the next bit's full adder, which is the next lab."
+}

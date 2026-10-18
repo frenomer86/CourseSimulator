@@ -1,0 +1,3582 @@
+
+
+===== PAGE 1 =====
+HO TECHNICAL UNIVERSITY
+FACULTY OF APPLIED SCIENCES AND TECHNOLOGY
+DEPARTMENT OF COMPUTER SCIENCE 
+ACCREDITATION OF NEW PROGRAMME
+BACHELOR OF TECHNOLOGY 
+IN
+COMPUTER SCIENCE
+RE-SUBMITTED TO
+GHANA TERTIARY EDUCATION COMMISSION (GTEC)
+MARCH, 2022
+
+===== PAGE 2 =====
+1. Name of Institution 
+Ho Technical University
+2. Programme Title
+Computer Science
+3. Level of Programme
+Bachelor of Technology (BTech)
+4. Name of the Mentoring Institution to which programme is affiliated
+Not Applicable 
+5. Proof of programme affiliation to the Mentoring Institution
+Not Applicable 
+6. Support:
+The Departmental Committee of the Department of Computer Science approved the introduction
+of the BTech Computer Science (BTCS) programme. The programme was approved by the
+Faculty  Board  of  the  Faculty  of  Applied  Sciences  and  Technology  and  was  subsequently
+approved by the Academic Board of the University.  Ghana Tertiary Education Commission
+(GTEC) has also approved the mounting of the BTech Computer Science programme.
+7. Background Information
+7.1 Aim of the Programme 
+The Bachelor of Technology (BTech) in Computer Science aims at providing students with a
+thorough grounding in both the theoretical and practical aspects of Computer Science, necessary
+for successful career progression in the continually developing digital world.
+7.2 Objectives of the Programme
+The objectives of the programme are to produce graduates that will be to: 
+1. critically  identify,  analyze  and  provide  solutions  to  real-world  problems  using
+innovation and creativity through advanced techniques and tools in different areas of
+computing. 
+2. demonstrate proficiency in programming languages, operating systems and computer
+architecture.
+3. modify established models, techniques, algorithms, data structures, etc. to efficiently
+solve new problems.
+BTech. Computer Science (HTU) Page 1
+
+===== PAGE 3 =====
+4. design, implement and evaluate computer-based systems and applications to meet the
+desired needs using modern tools and methodologies.
+5. identify the social and ethical issues relating to computer science enabling them to be
+professionals in the industry.
+7.3 Industry Demand
+Computers play an ever-increasing role in the lives of people. The increased use of ICT in
+every aspect of our lives ensures the continued relevance of this area of speciality. Furthermore,
+companies  that  design  computer  systems  require  professionals  that  possess  software
+development skills to complement traditional hardware skills.  Additionally, in line with the
+government’s digital inclusion agenda that seeks to develop a robust framework to support the
+digitalisation of the economy in a manner that captures and benefit every citizen, the BT ech in
+Computer Science programme has been developed to produce graduates with the necessary
+hardware and software skills as well as analytical prowess. Graduates from this programme are
+ideally placed to pursue their specialisation in Computer Science, which has wide applicability
+both nationally and internationally, within many indigenous technological companies and the
+multinational sectors. More, with the exponential development of ICT technologies worldwide,
+graduates will be at the forefront of people being employed in these areas.
+8. Students’ Admission, Progression and Graduation
+8.1  Entry Requirements
+I. Senior Secondary School Certificate Examination (SSSCE)
+Grade D  or better in three (3) Core  Subjects (English Language, Mathematics, and
+Integrated Science) and three (3) Elective Subjects including Elective Mathematics, and
+an aggregate not exceeding 24.
+II. West Africa Senior School Certificate Examination (WASSCE)
+Grade C6 or better in three (3) Core Subjects (English Language, Mathematics, and
+Integrated Science) and three (3) Elective Subjects including Elective Mathematics, and
+an aggregate not exceeding 36.
+BTech. Computer Science (HTU) Page 2
+
+===== PAGE 4 =====
+III. Certificates from Technical Institutions
+Certificate II holders (must obtain passes in English Language, Mathematics, Integrated
+Science plus any three (3) related courses. Applicants will be admitted to the First Year
+of the programme.
+IV. General Certificate of Education (GCE) Advanced Level
+Passes in three (3) subjects (at least, one of the passes should be Grade D or better). Also,
+the applicant must have had credit passes (Grade 6) in five (5) GCE Ordinary Level
+subjects including English Language and Mathematics.
+V.  Mature Student’s Entry
+The applicant must:
+a) Be at least 25 years old
+b) Show proof of age with a birth certificate or any legitimate documentary proof of
+birth date which is at least 3 years old at the time of application.
+c) Pass mature Student’s Entrance Examinations conducted by the University in English
+Language, Mathematics and an Aptitude Test.
+          VI.  Foreign Qualification
+All foreign qualifications shall be referred to the Ghana Tertiary Education Commission
+(GTEC) for determination of equivalences and eligibility for admission to the institution. 
+         VII.  Higher National Diploma (HND) Qualifications
+Minimum  of  Second-Class Lower Division in  the  Higher  National Diploma  (HND)
+Certificate in Computer Science would be admitted into Third Year (Level 300) of the
+programme. However, applicants with Pass in HND Computer Science may be admitted
+to Level 200 of the programme after passing an interview.
+Other  HND/Diploma qualifications in  the  area  of  Computer  Science  assessed to be
+equivalent to HND Computer Science may be admitted to the either Level 200 or Level
+300 based on the courses covered.
+VIII. Professional and Other Entry Qualifications
+All professional certificates and any other qualifications beyond the ones specified above
+shall  be  referred  to  the  Ghana  Tertiary  Education  Commission  (GTEC)  for  the
+establishment of their equivalences, to determine their eligibility for admission to the
+University. 
+BTech. Computer Science (HTU) Page 3
+
+===== PAGE 5 =====
+8.2  Progression Requirements 
+i. A student shall be deemed to have failed a course if he/she obtains a numerical
+equivalent grade zero (0) or below the 50% mark. 
+ii. A student referred in a course(s) shall take a re-sit examination(s).
+iii. A student shall have only two chances at re-sit examination(s) in any course(s)
+failed. 
+iv. Where a student takes re-sit examinations his/her total credits earned for the
+determination of GPA shall be increased by the credits assigned to the course(s).
+v. A student who obtains pass grades in his entire course in a semester but does not
+obtain a CGPA of at least 1.50 shall be deemed to have failed the programme. 
+vi. A student shall be allowed to proceed to take the course(s) in the subsequent
+semester on probation to redeem himself/herself by bringing the CGPA to at least
+1.50.
+vii. A student whose semestral GPA falls below 1.0 shall be withdrawn from the
+programme. 
+8.3  Graduation Requirements 
+To be considered for the award of Degree, a candidate must obtain:
+i. The minimum entry requirements for the programme of study.
+ii. Followed an approved programme of study in the  University.
+iii. Completed and passed all required courses.
+iv. Taken courses to earn a minimum of 139 credit hours. 
+v. Obtained a Final Cumulative Grade Point Average (FCGPA) of at least 1.50 in
+each of the eight semesters. 
+vi. Obtained a Grade Point Average (GPA) of at least 1.50 in each of the eight
+semesters. 
+vii. The classification of the award of Degree shall be determined by the FCGPA and
+determined  as  captured  in  the  table  for  regular  and  CBT  programmes
+respectively.
+BTech. Computer Science (HTU) Page 4
+
+===== PAGE 6 =====
+Table 8.1: Classification for Regular Programmes
+Final Cumulative Grade
+Point Average (FCGPA)
+Performance
+Description
+Class or Division
+3.75 - 4.00 Excellent/Distinction 1st Class
+3.35 - 3.74 Very Good 2nd Class Upper
+2.51 – 3.34 Good 2nd Class Lower
+2.01 – 2.50 Fairly Good Third Class
+1.00 – 2.00 Satisfactory Pass
+Below 1.50 Unsatisfactory Fail
+Table 8.2: Grading system
+Note: *Although this is a failing grade, it may still be accepted as a fulfilling prerequisite
+for other courses.
+ 
+9. Employment
+A graduate from this programme could be employed by organizations or institutions as:
+A Software Developer, Database Administrator, Systems Analyst, Software Engineer, Systems
+programmer, Multimedia  Programmer, Systems Developer,  Web  Designer,  Web  Developer,
+BTech. Computer Science (HTU) Page 5
+Grade Marks (%) Grade Points
+A 80 - 100 4.0
+B+ 75 - 79 3.5
+B 70 - 74 3.0
+C+ 65 - 69 2.5
+C 60 - 64 2.0
+D+ 55 - 59 1.5
+D 50 - 54 1.0
+*E 45 - 49 0.5
+F 0 - 44 0.0
+
+===== PAGE 7 =====
+User Interface Designer, Embedded Systems Application Programmer, Scientific Applications
+Programmer, Artificial Intelligence Programmer, Network Engineer /Administrator, etc.
+10. Consultations
+The Department invited consultants from the Institute of ICT Professionals Ghana (IIPGH),
+AirtelTigo  and  Csquared  (an  Offshoot  of  Google)  to  review  the  Curriculum.  The  review
+workshop was held in September 2021 between the departmental committee and the consultants
+to discuss inputs made by the industry experts. 
+The  Department  had  also signed a  Memorandum  of  Understanding  (MOUs)  with  three  IT
+companies,  namely,  Hacklab  Foundation  (Accra),  CoSystems  GH  (Accra)  and  LM
+Communications (Ho) to develop industrial and educational cooperation. Professionals from
+these  companies  were  also  consulted  to  provide  contributions  that  were  factored  in  the
+curriculum. 
+11. Components of the Programme
+a. Core Courses
+All but three courses in the department are core.
+ Mandatory Courses
+There are ten (10) mandatory courses listed for the Department as below:
+ Table 11.1: Institutional Mandatory Courses
+S/N COURSE CODE COURSE TITLE Credit (C)
+1 HOTU 100 African Studies 2
+2 HOTU 101 Communication Skills I 2
+3 HOTU 102 Communication Skills II 2
+4 HOTU 104 Computer Applications 2
+5 HOTU 105 Basic French I 2
+6 HOTU 106 Basic French II 2
+7 HOTU 305 Entrepreneurship & Innovation 2
+8 HOTU 396 Industrial Attachment 16
+9 HOTU 402 Business Development 3
+10 HOTU 498 Project Work 6
+BTech. Computer Science (HTU) Page 6
+
+===== PAGE 8 =====
+b. Elective Courses
+There are six (6) elective courses in the final semester.
+   Table 11.2: Elective Courses
+S/N COURSE CODE COURSE TITLE Credit (C)
+1 BCSC 409 Data Science 3
+2 BCSC 411 Wireless Communication 3
+3 BCSC 413 Advanced Software Development with Java 3
+4 BCSC 406 Data Mining and Warehousing 3
+5 BCSC 408 Internet of Things 3
+6 BCSC 410 Mobile Application Development 3
+c.  Research Component/Project Work
+Students  in  the  programme  will  be  required  to  design  and  develop  software/hardware
+artefacts as a partial requirement for graduation. The programme has been structured to
+equip students with practical research skills to enable them to undertake supervised project
+work (individually and in groups).
+d. Practical training, industrial attachment, internship, clinical experience, etc.
+The Department has signed MOUs with organizations such as  CoSystems Gh, Hacklab
+Foundation and LM Communications  to offer practical training to  students and staff.  In
+alignment with the industry laison policy, students shall go on industrial attachment for the
+third year second semester of the programme. This industrial attachment will be supervised
+by  staff of the Department and the students will be expected to keep a daily log of all
+workplace activities and write reports on the completion of the attachment period. During
+the supervision, academic staff of the Department will visit the organizations to interact
+with industry supervisors, assess the performance  of the students based on the stated
+learning objectives and write a report on his/her observations. This assessment contributes
+to the cumulative grade point average of the student. During the internship programme, the
+students are expected to utilize industry opportunities to:
+BTech. Computer Science (HTU) Page 7
+
+===== PAGE 9 =====
+ Gain experience and exposure in the industry
+ Identify and develop career interests
+ Develop appropriate workplace attitude and
+ Acquire appropriate practical skills in the industry
+e.  Semester-by Semester Structure/Schedule of Course 
+Table 11.3: Semester-by-Semester Courses of Programme
+LEVEL 100: SEMESTER 1
+S/N CODE COURSE TITLE T P C
+1 BCSC 101 Principles of Programming 2 2 3
+2 BCSC 103 Discrete Mathematics 3 0 3
+3 BCSC 105 Basic Electronics 2 2 3
+4 BCSC 107 Fundamentals of Computer Science 2 0 2
+5 HOTU 100 African Studies 2 0 2
+6 HOTU 101 Communication Skills I 2 0 2
+7 HOTU 105 Basic French I 2 0 2
+TOTAL 15 4 17
+LEVEL 100: SEMESTER 2
+8 BCSC 102 Introduction to Python 1 4 3
+9 BCSC 104 Mathematics for Computer Science 3 0 3
+10 BCSC 106 Computer Hardware 1 4 3
+11 BCSC 108 Probability and Statistics 3 0 3
+12 HOTU 102 Communication Skills II 2 0 2
+13 HOTU 104 Computer Applications 1 2 2
+14 HOTU 106 Basic French II 2 0 2
+TOTAL 12 10 18
+LEVEL 200: SEMESTER 1
+15 BCSC 201 Computer Networking I 1 4 3
+16 BCSC 203 Database Systems and Design 2 2 3
+17 BCSC 205 Digital Logic Design 2 2 3
+18 BCSC 207 Programming With C++ 1 4 3
+BTech. Computer Science (HTU) Page 8
+
+===== PAGE 10 =====
+19 BCSC 209 Web Application Programming I 1 4 3
+20 BCSC 211 Calculus 2 2 3
+TOTAL 9 18 18
+LEVEL 200: SEMESTER 2
+21 BCSC 202 Data Structures and Algorithms 2 2 3
+22 BCSC 204 Numerical Methods and Computation 3 0 3
+23 BCSC 206 Computer Networking II 2 2 3
+24 BCSC 208 Web Application Programming II 2 2 3
+25 BCSC 210 Systems Administration I 2 2 3
+26 BCSC 212 Software Development with Java 1 4 3
+TOTAL 12 12 18
+LEVEL 300: SEMESTER 1
+27 BCSC 301 Software Engineering 2 2 3
+28 BCSC 303 IT Project Management 2 2 3
+29 BCSC 305 Systems Administration II 1 4 3
+30 BCSC 307 Object-Oriented System Analysis and Design 1 4 3
+31 BCSC 309 Research Methods in Computer Science 2 2 3
+32 BCSC 311 Computer Organization and Architecture 3 0 3
+TOTAL 11 14 18
+LEVEL 300: SEMESTER 2
+33 HOTU 396 Industrial Attachment/Internship 0 48 16
+TOTAL 0 48 16
+LEVEL 400: SEMESTER 1
+34 BCSC 401 Information Security 2 2 3
+35 BCSC 403 Computer Forensics 3 0 3
+36 BCSC 405 Operating Systems 3 0 3
+37 BCSC 407 Artificial Intelligence 1 4 3
+38 HOTU 401 Entrepreneurship & Innovation 1 2 2
+BCSC 409
+Electives
+Data Science 2
+2 3
+BTech. Computer Science (HTU) Page 9
+
+===== PAGE 11 =====
+39 BCSC 411
+BCSC 413
+Wireless Communication
+Advanced Software Development with Java
+TOTAL 10 10 17
+LEVEL 400: SEMESTER 2
+40 BCSC 402 Legal and Ethical Issues in Computing 3 0 3
+41 BCSC 404 Cloud Computing 2 2 3
+42 HOTU 402 Business Development 1 2 2
+43 HOTU 498 Project Work 6
+44
+BCSC 406
+BCSC 408
+BCSC 410
+Electives
+Data Mining and Warehousing
+Internet of Things 
+Mobile Application Development
+2 2 3
+TOTAL 8 6 14
+GRAND TOTAL 139
+12. Course Description
+LEVEL 100 - SEMESTER 1
+BCSC 101: PRINCIPLES OF PROGRAMMING
+Course Description
+This  course  is designed  to  be  an  introduction  to  the  fundamentals  of  computer  programming.
+Students will be introduced to programming techniques for designing, writing and debugging simple
+computer  programs.  It  will  enable  students  to  get  a  solid  grasp  of  the  basic  mechanics  of
+programming leading to the subsequent acquisition of stronger programming skills. 
+Course Objectives
+After successful completion of this course, students will acquire the knowledge and skill to:
+1. explain programming concepts and terminologies.
+2. describe the distinguishing characteristics between the imperative and procedural 
+programming language.
+3. design algorithms and flowcharts to solve problems.
+BTech. Computer Science (HTU) Page 10
+
+===== PAGE 12 =====
+4. choose an appropriate programming solution for a given task.
+5. demonstrate basic programming skills to write simple programs.
+Course   Outline  
+ Introduction to programming Concepts and Terminologies: Low-level Languages (LLL),
+High-Level Language (HLL), the role of a program to perform a task, Translators, etc.
+ Programming tools and techniques: algorithms, pseudo-code, flowcharts, etc.
+ Elements of programming language: Character set, constants, data types, variables, variable
+declaration, operators, expressions.
+ Program Flow Control: If statement, If…Else statement, Switch statement, while loop, Do…
+while loop, for loop, etc.
+ Basic concepts of object-oriented programming.
+ Basics of identifying and fixing errors.
+Mode of Delivery
+Face-to-Face sessions, Workshops, Seminars and Lab sessions.
+Reading Material
+Bell, A. (2019).  Computer programming: fundamentals for absolute beginners.  ISBN-13:  978-
+1075569982
+Busbee, K. L., & Braunschweig, D. (2018).  Programming fundamentals: a modular structured
+approach (2nd Edition) ISBN-13  :  978-9888407491
+Malik, D. S. (2018). C++ Programming: program design including data structures (8th Edition).
+Cengage Learning.
+Raynal, M. (2012).  Concurrent programming: algorithms, principles, and foundations.  Springer
+Science & Business Media.
+Gries, D. (2012). The science of programming. Springer Science & Business Media.
+BCSC 103: DISCRETE MATHEMATICS
+Course Description
+Discrete mathematics is an aspect of mathematics devoted to logical reasoning and mathematical
+deductions. It is characterized by mathematics involving countable sets. It serves as the bedrock for
+computer programming.  Discrete mathematics deals with  the  study of mathematical structures.
+Topics include set theory and binary operations, number systems, functions and relations, sequence
+and series, induction and recursion, graph theory, logic, and Boolean algebra. 
+BTech. Computer Science (HTU) Page 11
+
+===== PAGE 13 =====
+Course Objectives
+At the end of the course, students should be able to:
+1. explain and prove basic concepts in set theory; 
+2. demonstrate knowledge in functions and their properties;
+3. demonstrate knowledge and application in sequence and series;
+4. apply mathematical induction and recursion to prove functions, sequence and series;
+5. apply graph theory to operations research problems; and
+6. evaluate and demonstrate knowledge in logics.
+Course Outline
+ Set Theory & Binary Operations
+ Number Systems
+ Functions and Relations
+ Sequence and Series
+ Induction and Recursion
+ Graph Theory
+ Logic
+ Boolean Algebra
+Mode of Delivery
+The  mode  of  delivery  for  this  course  will  be  lectures,  class  discussions,  homework  and
+presentations.
+Reading Material
+Rossen, K. H. (2019). Discrete mathematics and its applications (8th Edition). McGraw-Hill. 
+Anderson,  J.  A.,  &  Lewis,  J.  L.  (2004).  Discrete  mathematics  with  combinatorics. Pearson  
+Education.
+Laywine, C. F., & Mullen, G. L. (1998). Discrete mathematics using latin squares. John Wiley &
+Sons.
+Schmidt, G., & Strohlein, T. (1993).  Relations and graphs: discrete mathematics for computer  
+scientists. Springer Science Business Media 
+Sharma, J. K. (2017). Discrete mathematics. Laxmi Publications Pvt. Ltd.
+Lewis,  H.  &  Zax,  R.  (2019).  Essential  discrete  mathematics  for  computer  science.  Princeton
+University Press.
+BTech. Computer Science (HTU) Page 12
+
+===== PAGE 14 =====
+Johnsonbough, R. (2017). Discrete mathematics (8th Edition). Pearson.
+BCSC 105: BASIC ELECTRONICS
+Course Description
+This  course  introduces  students  to  semiconductor  physics,  diodes  and  their  applications,  basic
+transistors,  RLC  circuits  as  well  as  basic  digital  electronics.  This  course  also  explains  the
+understanding  of  the  signals  in  the  time  domain  and  frequency  domain.  Students  are  able  to
+understand various types of signals.
+Course Objectives
+Upon completion of this course, the student will be able to:
+1. identify and describe the operation of semiconductor materials and devices used in analog 
+circuits and some typical applications;
+2. explain the operational principles and models of bipolar junction transistors (BJT);
+3. classify various types of signals;
+4. describe basic digital logic gates and digital logic families;
+5. analyse basic RLC circuits.
+Course Outline
+ Introduction  to  Semiconductor  Physics:  Energy  bands  and  charge  carriers  in
+semiconductors: energy bands - metals- semiconductors and insulators direct and indirect
+semiconductors charge-carriers in semiconductors: electrons and holes-intrinsic and extrinsic
+material: n-material and p-material-carrier concentration.
+ Diode  theory  and  applications: Basic  idea  about  forward  bias,  reverse  bias  and  VI
+characteristics, ideal diode, second and third approximation, surface mount diodes, Zener
+diode, Testing of diode with multi-meter, half wave rectifier, full-wave rectifier, bridge
+rectifier,  RC  and  LC  filters,  Design  of  un-regulated  and  regulated  DC  power  supplies,
+Clipping  circuit,  Clamping  circuit,  voltage  multiplier  circuit,  Reading  datasheet  of
+semiconductor diodes.
+ Transistors: BJT operation, BJT voltages and currents, CE, CB and CC characteristics, DC
+load line and bias point, base bias, emitter feedback bias, collector feedback bias, voltage
+divider bias, Thermal stability, biasing BJT switching circuits, transistor power dissipation
+and  switching  time,  Testing  of  bipolar  junction  transistor  with  multi-meter,  Reading
+datasheet of BJT.
+BTech. Computer Science (HTU) Page 13
+
+===== PAGE 15 =====
+ Digital Circuits: Basic gates AND, OR, NOT, NAND, NOR, EX-OR, EX-NOR, Building
+AND, OR Gate with diodes, Digital logic families RTL, DTL, TTL, CMOS, Comparison of
+logic families
+ RLC circuits: resistors, inductors and capacitors connected in series, parallel.
+ Signals: continuous  and  discrete-time  signal-  Even  signal,  Odd  signal,  Periodic  signal,
+Aperiodic signal, Power, and Energy signal.
+Mode of Delivery
+Face-to-face sessions, Workshops, Seminars and Laboratory work on individual assignments under
+the supervision of Lab Technicians.
+Reading Material 
+Kothari, D. P., & Nagarath, I. J. (2020). Basic electrical and electronics engineering  (2nd ed.). Mc
+Graw Hill
+Floyd, T. L., Buchla, D. M., & Wetterling, S. (2017).  Laboratory exercise manual for electronic
+devices (9th ed.). Pearson Education Inc.
+Streetman,  G.,  &  Banerjee,  S.  K.  (2016).  Solid-state  electronic  devices (7th  ed.).   Pearson
+Education, Inc.
+Salivahanan, S., & Kumar, N. S. (2015).  Electronic devices  and circuits  (2nd ed.). McGraw Hill
+Education.
+Gibilisco, S. (2011). Teach yourself electricity and electronics. McGraw-Hill Education.
+BCSC 107: FUNDAMENTALS OF COMPUTER SCIENCE
+Course Description
+This course introduces students to the fundamental concepts in computing. It takes students through
+Computer hardware and software; Data processing and Information needs through an organization.
+Historical development and social implications in information technology form an integral part of
+the course. This course will also broaden students' understanding of the Internet and the Web and
+how they can effectively use the resources available on the internet and the web. Legal and ethical
+issues were also considered. 
+Course Objectives
+At the end of the course students should be able to:
+BTech. Computer Science (HTU) Page 14
+
+===== PAGE 16 =====
+1. identify how a computer system works and how hardware and software components work to
+execute  instructions,  run  applications,  and  manage  information  as  components  of
+information systems;
+2. distinguish between the various types of files and how the computer organizes its files 
+3. explain how computers impact the way individuals interact with their world;
+4. explain why Information is so important today and how they are transforming organizations
+and their management;
+5. identify types of computer networks and locate useful resources on the internet;
+6. protect and maintain computer systems.
+Course Outline
+• Overview of the computer
+• Information management
+• Files and Databases 
+• Computer Networks, Internet and the World Wide Web
+• Technology and Society
+• Computer Safety and Ethics
+Reading Material
+Morrison, C., Wells, D., & Ruffolo, L. (2015). Computer literacy BASICS: a comprehensive guide
+to IC3. Cengage Learning.
+O’Leary, T. J., & O’Leary, L. L. (2012). Computing essentials. McGraw-Hill Education.
+Parsons, J. J. (2017). New perspectives computer concepts. Cengage Learning. 
+Williams, B. K., & Sawyer, S. C. (2010).  Using information technology (9th edition). McGraw-Hill
+Education.
+Williams, B. K., & Sawyer, S. C. (2015).  Using information technology: a practical introduction to
+computers and communications (11th edition). McGraw-Hill Education.
+HOTU 100: AFRICAN STUDIES
+ Course Description
+This course introduces students to the field of African Studies including Africa’s histories, peoples
+and cultures. The course is split into two parts namely the political aspect and socio-cultural aspect.
+BTech. Computer Science (HTU) Page 15
+
+===== PAGE 17 =====
+Course Objectives
+At the end of this course, students will be able to understand the role of Africa in world affairs from
+three perspectives – the Rise of Africa, Africa’s Cultural Heritage and Africa in the Modern World.
+Specifically, the course aims to: 
+1. give general focus on how Africa’s past has shaped its present political and socio-economic
+conditions. 
+2. provide  students  with  the  opportunity  to  acquaint  themselves  with  the  African  cultural
+heritage and a holistic view of the contemporary African scene.
+Course Outline
+Unit I:  The Political Section
+The political section comprises the colonial rule in Africa, nationalism in Africa, party systems
+and military rule in Africa, good governance, the problem of nationhood and national unity,
+regional integration and the quest for unity, the debt problems in Africa and dependency in
+Africa. 
+Unit II: The Socio-Cultural Section
+The socio-cultural section is made up of  the African cultural heritage such as socio-cultural
+values,  political  organization-traditional  politics  and  government  in  Africa,  the  cultural
+framework of economic activity, cultural change and continuity. The course also covers issues on
+Africa’s  position  in  the  modern  world  such  as  post-independence  economic  development,
+population and development in Africa and women and development.
+Mode of Delivery
+The modes of delivery are lectures and class discussions. 
+Reading Material
+Amegashie-Viglo,  S.  (2010).  Political  economy  of  colonial  and  post-colonial  Africa. Juku
+Publication.
+Amenumey, D. E. K. (2011). Ghana: a concise history from pre-colonial times to the 20th century.
+Woeli Publication Services.
+Asante, R. (2008). AFST 220 Africa in the modern world. IAE Press.
+Dzobo, N. K., & Amegashie-Viglo, S. (2004). The triple heritage of contemporary Africa. Studio 
+Cat Publications.
+Gadzekpo, S. K. (2002). History of Ghana since pre-history. Excellent Publishing and Printing.
+BTech. Computer Science (HTU) Page 16
+
+===== PAGE 18 =====
+Ohadike, P. (1998).   Development in Africa: regional institute of population studies. University of 
+Ghana.
+Opoku, K. A. (1988).  African traditional religion: an enduring heritage. IAS.       
+Oquaye, M. (2004). Politics in Ghana, 1982- 1992: Rawlings’s revolution and populist democracy.
+Tornado Publications.
+HOTU 101: COMMUNICATION SKILLS I
+Course Description
+The course is designed to equip students with the skills of transmitting their ideas in writing well-
+structured  academic  essays,  and  to  cope  with  the  communicative  situations  they  may  find
+themselves in. The students are also expected to cultivate the habit of active and critical reading,
+analyzing and synthesizing ideas using the skills they acquire to enable them to succeed in the
+academic discourse community.
+Course Objectives
+At the end of the course, students should be able to:
+1. write basic grammatical sentences in academic essays;
+2. read and identify the main ideas in a text;
+3. make academic presentations in class;
+4. make references to materials and cite sources appropriately;
+5. write meaningful paragraphs and essays; and 
+6. coordinating the controlling idea with other ideas effectively. 
+Course Outline
+ Reading Skills and Comprehension: Scanning and Skimming; Close Reading (reading for
+both exact meaning & implied meaning); Intensive Reading; Extensive Reading; Reading to
+Build  Vocabulary;  SQ3R  Method  of  Reading;  Developing  Faster  Reading  (Developing
+Speed;  Looking  at  Vocalization,  Sub-vocalization,  &  pointing;  Avoiding  Regression,
+Fixation or Fixity Gaze. 
+ Note Taking /Note Making:  Value of taking/making notes ;  Taking notes during lectures ;
+methods  of  making  notes  from  lecture  notes/documents/journals/books ;  using  both
+diagrammatic, & abbreviated forms in taking or making notes un-diagrammatic forms.
+BTech. Computer Science (HTU) Page 17
+
+===== PAGE 19 =====
+ The Parts of Speech:  Identification; The noun ;  The pronoun ;  The verb ;  Adjective;  The
+adverb;  The preposition ;  The conjunction ;  The interjection ;  The same word as different
+parts of speech
+ Agreement/Concord: Subject-Verb Agreements; Agreement of singular subjects and singular
+verbs;  Agreement  of  plural  subjects  and  plural  verbs;  Compound  subjects;  Intervening
+phrases;  Indefinite  pronouns  as  subjects;  Other  problems  in  Subject-Verb  Agreement;
+Agreement of pronouns and antecedents
+ The Parts of a Sentence:  Subject; Verbs; Objects (direct & indirect); Complement (object &
+subject complements); Adjunct
+ Types of Sentences :   Structural types: simple, compound, complex, compound-complex ;
+Functional types: declaratives, interrogatives, commands, exclamations
+ Punctuation: Uses of Full Stop, Comma, Question Marks, Semi-Colon, Colon, Single &
+Double Quotation Marks, Hyphen, Apostrophe, Dash, Ellipsis, Brackets, etc.
+ Misrelated  Constructions  or  Dangling  Modifiers: What  is  a  misrelated  construction;
+Common causes of misrelated constructions; Exceptions. 
+Mode of Delivery
+Lectures, Group assignments/work, and Presentations.
+Reading Material
+Nduom, S. K., & Agyare, M. O. (2007).  English grammar for senior high school . Approacher’s
+Series Ghana.
+Börjars, K., & Burridge, K. (2019). Introducing english grammar. Routledge.
+Leech, G., & Svartvik, J. (2013). A communicative grammar of English. Routledge.
+Fontaine, L. (2012).  Analysing English grammar: a systemic functional introduction . Cambridge
+University Press.
+Newton, J. M., & Nation, I. S. P. (2020). Teaching ESL/EFL listening and speaking. Routledge.
+HOTU 105: BASIC FRENCH I
+Course Description
+This course is the first part of the study of the basic French language. The course is intended to help
+students take their first steps towards mastering the French language. Each unit is designed to
+introduce students to basic French vocabulary and to teach essential French grammatical structure. 
+BTech. Computer Science (HTU) Page 18
+
+===== PAGE 20 =====
+Course Objective
+The objective of the course is to build the capacity of students to read, understand and speak the
+French language. 
+Course Outline
+The contents of the course include;
+ French alphabets, 
+ French numerals, 
+ skill building in the French language, 
+ functional French relating to business transactions, hospitality, family, sports, pets, hobbies,
+etc.
+Mode of Delivery
+The modes of delivery are lecture, class discussions and role play.
+Reading Material
+Cholet, I. & Robert, J. M. (2007). Prećis de conjugaison. CLE.
+Gallier, T. (2008). On y va.  CLE.     
+Girandet, S., & Cridlig, J. M. (2000). CLE.
+Odame, K., & Agyeman, T. (2010). A new practical french course 1. Kwadwoan Publishers.
+Odame, K., & Agyeman, T. (2010). A new practical french course 2. Kwadwoan Publishers.
+Youssef, A. M.  et  al (2008). On y va. CLE. 
+LEVEL 100 - SEMESTER 2
+BCSC 102: INTRODUCTION TO PYTHON
+Course Description
+Python is a popular, general-purpose, multi-paradigm, open-source, scripting language. It is suited
+for interactive work and quick prototyping while being powerful enough to write large applications.
+This  course  covers  data  types,  control  flow,  object-oriented  programming,  and  graphical  user
+interface-driven applications. The course also discusses in-depth data and information processing
+techniques. Students will solve problems, explore real-world software development challenges, and
+create practical and contemporary applications.
+BTech. Computer Science (HTU) Page 19
+
+===== PAGE 21 =====
+Course Objectives
+Upon completion of this course, the student will be able to:
+1. identify/characterize/define a problem
+2. design a program to solve the problem
+3. create executable code
+4. read most Python code
+5. use Python interactively
+6. execute Python script
+Course Outline 
+ Python and Programming Fundamentals
+ Control Structures
+ Strings, Text Files, Lists, and Dictionaries
+ Algorithms and Information Processing
+ Objects and Classes
+ Graphics and Image Processing 
+ Networks and Client/Server Programming
+ Graphic User Interfaces (GUI)
+ Events and Event-driven Programming
+Mode of Delivery
+Face-to-Face sessions, Practical Lab sessions and Course Project works.
+Reading Material 
+Guttag, J. V. (2021). Introduction to computation and programming using python: with application
+to understanding data (Third Edition). MIT Press.
+Lambert, K. (2017). Fundamentals of python: first programs (2nd Edition). Cengage Learning.
+Lubanovic, B. (2019).  Introducing python: modern computing in simple packages  (2nd Edition) .
+O'Reilly Media.
+Mueller, J. P. (2018). Beginning programming with python for dummies. John Wiley & Sons.
+Gowrishankar, S. & Veena, A. (2019). Introduction to python programming. CRC Press.
+BTech. Computer Science (HTU) Page 20
+
+===== PAGE 22 =====
+BCSC 104: MATHEMATICS FOR COMPUTER SCIENCE
+Course Description
+This course introduces further mathematical concepts used in Computing Science and advanced
+mathematics for computing. Topics include partial fractions, limits and continuity of functions,
+exponential  and  logarithmic functions  (including the natural  logarithm), geometry,  vectors and
+matrices. Applications of these shall be done in R and/or MATLAB. 
+Course Objectives
+On completion of this course, students should be able to:
+1. solve problems associated with partial fraction;
+2. demonstrate knowledge in limits and continuity of functions;
+3. graph logarithmic functions and their properties; 
+4. use geometrical coordinate systems to represent linear transformations;
+5. solve problems associated with vectors;
+6. solve problems associated with matrices.
+Course Content
+ Partial Fractions
+ Limits and Continuity of functions
+ Exponential & Logarithmic Functions
+ Geometry 
+ Vectors
+ Matrices 
+Mode of Delivery
+Lecturing, Assignments and exercises, Individual and group presentations
+Reading Material
+Thompson Rivers University. (2017). Mathematics for computing science, (custom publication for
+Thompson Rivers University).  Nelson Education Ltd.
+Bellman, R., Esogbue, A. O., & Nabeshima, I. (2014).  Mathematical aspects of scheduling and
+applications: modern applied mathematics and computer science. Elsevier.
+Ben-Ari, M. (2012). Mathematical logic for computer science. Springer Science & Business Media.
+Axler, S. (2015). Linear algebra done right (Vol. 2). New York: Springer.
+BTech. Computer Science (HTU) Page 21
+
+===== PAGE 23 =====
+Gallier, J. (2011). Geometric methods and applications: for computer science and engineering  (Vol.
+38). Springer Science & Business Media.
+BCSC 106: COMPUTER HARDWARE
+Course Description
+This course is designed to prepare students to service and maintain modern personal computers and
+peripherals. Students will learn to troubleshoot and diagnose problems, as well as perform routine
+maintenance on PCs. They will learn to install and replace the major hardware components of the
+system, maintain and repair those components.
+Course Objectives
+By the end of this course, students should be able to;
+1. configure and apply BIOS settings
+2. install and configure storage devices and use appropriate media
+3. install an appropriate power supply based
+4. install and configure expansion cards
+5. identify connector types and associated cables
+6. install and configure various peripheral devices
+7. install and configure laptop hardware and components
+8. install an operating system
+9. install and configure printers.
+Course Outline
+ Motherboards, Processors and Memory; 
+ Storage Devices and Power Supplies, 
+ Peripherals and Expansion; 
+ Display Devices; 
+ Custom Configurations; 
+ Understanding Laptops; 
+ Installing operating systems
+ Installing and Configuring Printers.
+Mode of Delivery
+Face-to-Face sessions, Workshops, Seminars and Lab sessions.
+BTech. Computer Science (HTU) Page 22
+
+===== PAGE 24 =====
+Reading Material 
+Docter, Q., Dulaney, E., & Skandier, T. (2012). CompTIA A+ complete study guide (2nd Ed.). John
+Wiley & Sons, Inc.
+Mano, M., & Kime, C. (2010). Logic and computer design fundamentals (4th Edition). Prentice-Hall
+International. 
+Norton, P., & Clark, S. H. (2007). Inside the PC. Sams Publishing.
+Englander, I., & Wong, W. (2021). The architecture of computer hardware, systems software, and
+networking: an information technology approach. John Wiley & Sons.
+Schneidewind, N. F. (2012).  Computer,  network,  software,  and  hardware  engineering  with
+applications. John Wiley & Sons.
+BCSC 108: PROBABILITY AND STATISTICS 
+Course Description
+This course seeks to introduce students to probability models used to describe random phenomena,
+the methodology needed for random variables and their distribution. Random variables are essential
+to the modeling of most random phenomena and have applications in the field of IT. Computer
+simulation is used as an aid to understanding the behavior of probabilistic and statistical models in
+the study of these models.
+Course Objectives
+By the end of the course, students should be able to: 
+1. use appropriate statistical terms to describe data;
+2. use appropriate statistical methods to collect, organize, analyse and display relevant data;
+3. apply the basic concepts of probability theory to solve practical probability problems;
+4. develop tools of probability theory for applications in statistical inference and computer
+science; 
+5. have introductory knowledge in computer simulation in R and its applications to probability. 
+Course Outline
+ Introduction to Probability Theory
+ Random Variables
+ Important special distributions, applications and main properties
+ Moments and Moment Generating Functions
+BTech. Computer Science (HTU) Page 23
+
+===== PAGE 25 =====
+ Special Probability Theorems
+ Joint Probability Distributions
+ Computer simulation in R and its applications in probability
+Mode of Delivery
+The mode of instruction for this course will be a combination of lectures, laboratory work and
+seminar presentations.
+Reading Materials 
+Mendenhal, W., Beaver, R. T., & Beaver, B. M. (2013). Introduction to probability and statistics .
+Cengage Learning. 
+Hwei, H. (2011).  Schaum’s outline of Probability, random variables and random pro cesses (4 th
+Edition).  McGraw-Hill Education.
+Ofosu, J. B., & Hesse, C. A. (2011).  Introduction to probability and probability distributions .
+Excellent Publishing and Printing. 
+Ramachandran, K. M., & Tsokos, C. P. (2009). Mathematical statistics with applications . Elsevier
+Academic Press.
+Spiegel, R. M., Schiller, J. J., & Srinivasan, R. A. (2009). Probability and statistics. McGraw-Hill.
+Sheldon, R. (2020).  Introduction to Probability and Statistics for Engineers and Scientists  (6th
+edition). Academic Press.
+HOTU 102: COMMUNICATIVE SKILLS II
+Course Description
+This course builds upon the knowledge acquired in Communication Skills I (COS 110). It focuses
+on documentation, development of listening and speaking skills to develop professionals who can
+effectively apply communication theories and best practices to meet their academic and corporate
+communication needs.
+Course Objectives
+At the end of this course, students will be able to:
+1. summarize documents/texts
+2. write reports
+3. document information in official reports
+4. do oral presentations
+BTech. Computer Science (HTU) Page 24
+
+===== PAGE 26 =====
+Course Outline
+1. Paragraph Development
+i.  Characteristics of a good paragraph
+ii. The Controlling idea.
+iii. The Topic sentence
+iv. Major/minor support sentences
+v. Features of a good paragraph
+2. Essay development /Organization
+i. Choosing the type(narrative, descriptive, expository, argumentative)
+ii. Writing the outline for the essay
+iii. The Introduction
+iv. The Body
+v. The Conclusion
+3. Summary Writing
+i. Definition of summary
+ii. Summarizing:  the phrase/ clause/sentences/paragraphs
+4. Report Writing
+i. Know the different types( formal & informal)
+ii. Know the structure of the formal Report & informal Reports.
+5. Documentation
+i. Know how to incorporate sources into writing
+ii. How to cite sources used 
+iii. Know the different types of references/bibliographical types
+Mode of Delivery
+The mode of delivery for this course will be Face-to-Face lectures, class discussions, homework,
+seminars, presentations, role play
+Reading Material 
+Nduom, S. K., & Agyare, M. O. (2007). English grammar for senior high school. Approacher’s 
+Series Ghana LTD.
+Sekyi-Baidoo, Y. (2000). Learning and communicating. WILAS Press LTD.
+Börjars, K., & Burridge, K. (2019). Introducing english grammar. Routledge.
+BTech. Computer Science (HTU) Page 25
+
+===== PAGE 27 =====
+Leech, G., & Svartvik, J. (2013). A communicative grammar of English. Routledge.
+Fontaine, L. (2012).  Analysing English grammar: a systemic functional introduction . Cambridge
+University Press.
+Newton, J. M., & Nation, I. S. P. (2020). Teaching ESL/EFL listening and speaking. Routledge.
+HOTU 104: COMPUTER APPLICATIONS
+Course Description
+The  course  is  to  help  students  acquire  computer-related  skills  and  to  effectively  use  popular
+application packages such as Microsoft Word, Microsoft Excel and Microsoft PowerPoint in their
+field of study.
+Course Objectives 
+At the end of the course students should be able to: 
+1. work effectively with a range of current, standard, Office Productivity software applications.
+2. evaluate, select and use office productivity software appropriate to a given situation.
+3. apply learning and assessment principles in the design, development, and presentation of
+material produced by office productivity application.
+4. adapt and adjust to new software releases.
+5. use the advanced functionality of the office productivity applications.
+Course Outline
+ Microsoft Windows Management 
+ Getting Started with Word Essentials
+ Editing and Formatting Documents
+ Working with Tables
+ Getting Started with Excel Essentials
+ Organizing and Enhancing Worksheets
+ Creating Formulas and Charting Data
+ Getting Started with PowerPoint Essentials
+ Enhancing Presentations with Multimedia Effects.
+Mode of Delivery
+Face-to-Face Sessions, Lab Sessions, Group Assignments, Presentations.
+Reading Materials 
+BTech. Computer Science (HTU) Page 26
+
+===== PAGE 28 =====
+Nordell, R. (2017). Microsoft office 2016: in practice.  McGraw-Hill Education.
+Morrison, C., Wells, D., & Ruffolo, L. (2015 ). Computer literacy BASICS: a comprehensive guide 
+to IC3. Cengage Learning.
+Poatsy, M. A., & Mulbery, K. (2016). Exploring Microsoft office 2016 (Vol. 1.). Pearson Education.
+Weverka, P. (2019). Office 2019 all-in-one for dummies. John Wiley & Sons.
+Rajaraman, V., & Adabala, N. (2014). Fundamentals of computers. PHI Learning Pvt. Ltd.
+HOTU 106: BASIC FRENCH II
+Course Description
+This course is the second part of the study of the basic French language. The course is intended to
+help students build their basic proficiency in the French language. Each unit is designed to introduce
+students to basic French vocabulary and to teach essential French grammatical structure. 
+Course Objectives 
+The objective of the course is to continue to build the capacity of students to read, understand and
+speak the French language. 
+Course Outline
+The contents of the course include;
+ functional French relating to tour guiding, 
+ banking, transportation, 
+ insurance, 
+ religion, etc.
+Mode of Delivery
+The modes of delivery are lecture, class discussions and role play.
+Reading Materials   
+Heminway, A. (2018). Complete French All-in-One (2nd Edition). Mc-Graw-Hill.
+Abbadie, C. et al (2003). L’ expression française ẻcrite et orale. PUF.
+Boulares, M. & Frerot, J.-L. (2000). Grammaire progressive du francais. CLE. 
+Delatour, Y. et al (2004). Nouvelle grammaire du français. Hachette.
+Leroy-Miquel, P. (2001). Vocabulaire progressif du français. CLE.
+Riegel, M. et al (2009). Grammaire mẻthodique du français. PUF.
+BTech. Computer Science (HTU) Page 27
+
+===== PAGE 29 =====
+LEVEL 200 - SEMESTER 1
+BCSC 201: COMPUTER NETWORKING I
+Course Description
+This course provides an in-depth discussion on computer networks. It provides an overview of
+interfaces that interconnect hardware and software components; describes the procedures and rules
+involved in the communication process and most importantly the software which controls computer
+communication. Concepts on different network technologies, distributed computing, and security
+issues are also covered. It will equally equip students with the knowledge of how data is represented
+on networks.
+Course Objectives
+At the end of the course students should be able to:
+1. explain the basic principle that helps the computer to function as a networking device and be
+acquainted with the different Network Models;
+2. identify the effects of using different networking topologies;
+3. describe how data packet is handled over computer networks and how the data is sent and
+received;
+4. identify with various hardware and software that can help protect the network; and
+5. demonstrate  a  good  working  knowledge  of  communication  technology  (network
+components, transmission links, link control, protocols, network topologies, error detection
+and correction).
+Course Outline
+ Introduction to Networking; 
+ OSI and TCP/IP Models and Network Protocols; 
+ IPv4 Addressing and Subnetting; 
+ Components and Devices; 
+ Installation and Configuration; 
+ Cabling and Wiring; Wireless; 
+ Network Management; 
+ Network Security.
+Reading Materials 
+BTech. Computer Science (HTU) Page 28
+
+===== PAGE 30 =====
+Frouzan, B. A. (2013). Data communications and networking (5th Edition). McGraw-Hill
+Meyers, M. (2012). CompTIA network + exam guide (5th Edition). McGraw Hill. 
+Dulaney, E., & Harwood, M. (2012).  CompTIA Network+ N10-005 Authorized Exam Cram  (4th
+Ed.). Pearson.
+White, C. M. (2011).  Data Communication and computer networks: a business users approach.
+Cengage Learning.
+Dulaney, E. (2021). CompTIA network+ N10-008 exam cram (7th Ed.). Pearson.
+Comer, D. E. (2018). The Internet book: everything you need to know about computer networking
+and how the Internet works. Chapman and Hall/CRC.
+BCSC 203: DATABASE SYSTEMS AND DESIGN
+Course Description
+This course seeks to explain the rudiments of data and information and illustrates how issues of the
+real world can be represented using the conceptual, logical, or physical model with its own rules and
+principles.  This  hands-on  course  provides  students  with  comprehensive  skills  for  DBMS
+administration and SQL language. Students will learn how to use both object browser and SQL
+statements  to  design  databases  and  tables,  write  queries  against  single  and  multiple  tables,
+manipulate data in tables, create database objects, and query data. 
+Course Objectives
+By the end of the semester students should be able to:
+1. clarify the fundamentals of database and exhibit the relationship that exists among related
+objects
+2. explain the structures of a database
+3. design database schemas and Entity-Relationship models
+4. implement and manage a database system
+5. manipulate databases with SQL commands
+6. create reports of sorted and restricted data
+Course Outline
+ Overview of Database Environment - Basic concepts, Definitions, Database approaches 
+ Database System Concepts and Architecture
+ Entity-Relationship (ER) Model
+BTech. Computer Science (HTU) Page 29
+
+===== PAGE 31 =====
+ Functional Dependencies, Normalization and the theory of normal forms
+ Installing and Configuring Database Software
+ Retrieving Data Using the SQL SELECT Statement
+ Restricting and Sorting Data
+ Displaying Data from Multiple Tables Using Joins
+ Using Subqueries to Solve Queries 
+ Using the Set Operators
+ Using DDL Statements to Create and Manage Tables
+Mode of Delivery
+Face-to-Face sessions, Lab sessions, Course Project works and Group Presentations.
+Reading Materials 
+Malcher, M.,  &  Darl  Kuhn,  D.,  (2019)  Pro oracle  database  18c administration:  manage  and
+safeguard your organization’s data. Apress..
+Brumm, B. (2019).  Beginning oracle SQL for oracle database 18c: From novice to professional .
+Apres.
+Elmasrin, R., & Navathe, S. B. (2016).  Fundamentals of database systems  (7th Ed.). Addison-
+Wesley.
+Bryla, B., & Freeman, R. G. (2017).  Oracle database 12c release 2 new features.  McGraw-Hill
+Education.
+Foster, E. C., & Godbole, S. (2016). Database systems: a pragmatic approach. New York: Apress.
+BCSC 205: DIGITAL LOGIC DESIGN
+Course Description 
+This course provides in-depth knowledge of logic design techniques of digital circuits, which is the 
+basis for the design of any digital circuit. The scope covers number representation, digital codes, 
+Boolean algebra, combinatorial logic design, sequential logic design, and programmable logic 
+devices.
+Course Objectives
+At the end of the course, students should be able to:
+ demonstrate knowledge of basic techniques used for the design of digital circuits and 
+fundamental concepts used in the design of digital systems.
+ identify and convert between different forms of number representations in digital electronics;
+ design and implement simple logical operations using combinational logic circuits;
+ design and implement sequential logic circuits;
+ implement synchronous state machines using flip-flops; and 
+ demonstrate knowledge about memory devices.
+BTech. Computer Science (HTU) Page 30
+
+===== PAGE 32 =====
+Course Outline
+ Number System and Boolean Algebra: Number Systems, Base Conversion Methods, 
+Complements of Numbers, Codes- Binary Codes, Binary Coded Decimal Code and its 
+Properties, Unit Distance Codes, Error Detecting and Correcting Codes. Digital Logic Gates 
+(AND, NAND, OR, NOR, EX-OR, EX-NOR), Properties of XOR Gates, Universal Gates, 
+Basic Theorems and Properties, Switching Functions, Canonical and Standard Form.
+ Minimization Techniques: Introduction, The minimization with theorems, The Karnaugh 
+Map Method, Three, Four and Five variable K- Maps, Prime and Essential Implications, 
+Don’t Care Map Entries, Using the Maps for Simplifying, Quine-McCluskey Method, 
+Multilevel NAND/NOR realizations.
+ Combinational Circuits: Design Procedure – Half Adder, Full Adder, Half Subtractor, Full 
+Subtractor, Parallel Binary Adder, Parallel binary subtractor, Binary Multiplier, 
+Multiplexers/DeMultiplexers, decoder, Encoder, Code Converters, Magnitude Comparator. 
+The binary cell, The S-R-Latch Flip-Flop, D-Latch Flip-Flop, “Clocked T” Flip-Flop, 
+“Clocked J-K” Flip-Flop, Design of a Clocked Flip-Flop, Timing and Triggering 
+Consideration.
+ Sequential Circuits: Introduction, Basic Architectural Distinctions between Combinational 
+and Sequential circuits, Latches, Flip-Flops, SR, JK, D, T and Master-slave, characteristic 
+Tables and equations, Conversion from one type of Flip-Flop to another, Counters - Design 
+of Single-Mode Counter, Ripple Counter, Ring Counter, Shift Register, Ring counter using 
+Shift Register
+ Memory Devices: Classification of memories – ROM: ROM organization, PROM, EPROM, 
+EEPROM, RAM: RAM organization, Write operation, Read operation, Static RAM, 
+Programmable Logic Devices: Programmable Logic Array (PLA), Programmable Array  
+Logic, Implementation of Combinational Logic circuits using ROM, PLA, PAL.
+Mode of Delivery
+Face-to-Face sessions, Workshops, Seminars and Laboratory work on individual 
+assignments under the supervision of Lab Technicians.
+Reading Material 
+Shah, U. S., & Sable, N. (2020). Digital electronics and logic design (2nd ed.). Tech-Neo 
+Publication LLP.
+Axelevitch, A. (2018). Digital electronic circuits – the comprehensive view (3rd ed.). World 
+Scientific Publishing Company. 
+Mano, M. M. (2016). Digital logic and computer design (5th ed.). Pearson Education, Inc.
+Floyd, T. L. (2015). Digital fundamentals (11th ed.). Pearson Education, Inc.
+Stonham, T. J. (2017). Digital Logic Techniques: Principles and practice (3rd ed.). Routledge.
+BCSC 207: PROGRAMMING WITH C++
+Course Description
+The course introduces the student to object-oriented programming (C++) through a study of the
+concepts of program specification and design, algorithm development and coding and testing using a
+modern software development environment. Students will learn how to write programs in C++. 
+BTech. Computer Science (HTU) Page 31
+
+===== PAGE 33 =====
+Course Objectives
+By the end of this course, students should be able to:
+1. use the basic programming constructs and concepts of C++.
+2. manipulate various C++ data types, such as arrays, strings, and pointers.
+3. isolate and fix common errors in C++ programs.
+4. apply object-oriented approaches to software problems in C++.
+5. write small-scale C++ programs using the above skills.
+Course   Outline  
+ The process of creating the program; 
+ Using the standard namespace; 
+ Commenting your programs; 
+ Working with variables and constants; 
+ Creating expressions and statements; 
+ Program flow; 
+ Functions; 
+ Arrays; 
+ Pointers; 
+ Classes.
+Mode of Delivery
+Face-to-Face sessions, Lab sessions, Workshops, Seminars and Course Project works.
+Reading Materials 
+Gaddis,  T.  (2019).  Starting  out  with  C++:  from  control  structures  through  objects (9th  Ed.).
+Pearson Education Limited.
+Deitel, P. J.,  & Deitel, H.M. (2016). C++: how to program (10th  Edition). Pearson.
+Farrell, J. (2008). Object-oriented programming using C++ (4th Edition). Cengage Learning.
+Stroustrup, B. (2014). Programming: principles and practice using C++. Pearson Education.
+Cukic, I. (2018). Functional programming in C++. Simon and Schuster.
+BTech. Computer Science (HTU) Page 32
+
+===== PAGE 34 =====
+BCSC 209: WEB APPLICATION PROGRAMMING I
+Course Description
+This course is designed to equip students with fundamental skills in web development using HTML,
+a key technology for building Web pages. It focuses on using HTML Tags to create Web content
+and design forms to capture input data. The course further introduces students to Cascading Style
+Sheets (CSS) and JavaScript that makes Web pages dynamic.
+Course Objectives
+On completing the course, students should be able to:
+1. explain the basic principles of website operation;
+2. use HTML, CSS and related tools for website design;
+3. design dynamic Web pages using JavaScript;
+4. design a simple website;
+5. employ emerging technology to satisfy challenges or opportunities faced by organizations or
+individuals.
+Course Outline
+ Understanding the HTML Building Blocks 
+ Sections of an HTML Document
+ HTML Lists & Tables
+ HTML Links and Images
+ HTML Forms
+ Cascading Style Sheets 
+ HTML Responsive
+ HTML Media
+ JavaScript Basics
+Mode of Delivery
+The mode of delivery includes laboratory works and tutorial sessions where students are required to
+use HTML, CSS and Javascript concepts in designing web pages. 
+Reading Materials 
+BTech. Computer Science (HTU) Page 33
+
+===== PAGE 35 =====
+Murphy, C., Clark, R., Studholme, O., & Manian, D. (2012). Beginning HTML5 and CSS3: the web
+           evolved. Apress.
+Duckett, J. (2011).  Beginning web programming with HTML, XHTML, and CSS  (2 nd Edition).
+Wiley Publishing Inc.
+Shelly, G. B., & Woods, D. M. (2012). HTML5 AND CSS (7th Edition). Course Technology.
+Vadnik, S., & Gosselin, D.  (2014).  JAVASCRIPT:  the  web  warrior  (6th Edition.).  Course
+Technology.
+Sebesta, W. R. (2014). Programming the world wide web (8th Edition). Pearson Education, Inc. 
+Collins, M. J. (2017).  Pro HTML5 with CSS, JAVASCRIPT, and multimedia: complete website
+development and best practices. Apress.
+BCSC 211: CALCULUS
+Course Description
+This course introduces further mathematical concepts used in Computing Science. It covers topics in
+differential and integral calculus, the approximate integral, partial differentiation, m ultiple integrals
+and application to the determination of volume and first-order  differential equations with its applications.
+Applications shall be done in R and/or MATLAB. 
+Course Objectives
+On completion of this course, students should be able to:
+1. apply differential calculus to determining equation of lines, centre of curvature as well 
+maximum and minimum turning points;
+2. apply integral calculus to determining volume of solids of revolution, centre of gravity of 
+solids, as well as lengths of curves;
+3. evaluate approximate integrals and compare manual results to software outputs;
+4. perform partial differentials and apply to rate of change and change of variables;
+5. perform multiple integrals and apply to determining volumes;
+6. demonstrate knowledge in 1st order differential equations and its application to rate of decay.
+Course Content
+ Differential Calculus
+ Integral Calculus
+ Approximate Integration 
+BTech. Computer Science (HTU) Page 34
+
+===== PAGE 36 =====
+ Partial Differentiation 
+ Multiple Integrals and Application to Determination of Volume
+ First Order Differential Equations & Applications
+Mode of Delivery
+Lecturing, Assignments and exercises, Individual and group presentations
+Reading Material
+Ayimah, J. C., Krampa, E. K., & Akuamoah, S. W. (2022). Foundational mathematics for tertiary
+students. B P International. DOI: 10.9734/bpi/mono/978-93-5547-337-0.
+Thompson Rivers University. (2017). Mathematics for computing science, (custom publication for
+Thompson Rivers University).  Nelson Education Ltd. 
+Stewart, J., Clegg, D. K., & Watson, S. (2020). Calculus: early transcendentals (9th Ed.). Cengage 
+Learning.
+Washington, A. J. & Evans, R. (2017). Basic technical mathematics with calculus (11th Ed.). 
+Pearson.
+Stroud, K. A. (2013). Engineering mathematics (7th Ed.). Red Globe Press.
+Mikusinski, J. (2014). Operational calculus. Elsevier.
+Clarke, F. (2013). Functional analysis, calculus of variations and optimal control (Vol. 264, p. 591).
+London: Springer.
+LEVEL 200 - SEMESTER 2
+BTech. Computer Science (HTU) Page 35
+
+===== PAGE 37 =====
+BCSC 202: DATA STRUCTURES AND ALGORITHMS
+Course Description
+This course expands students’ programming skills and provides an understanding of the principles of
+data abstraction, algorithm design, and the analysis of algorithms that are fundamental to computer
+science. It introduces students to data structures and concepts of Abstract Data Types (ADTs).
+Algorithms will be implemented using c++ programming language. 
+Course   Objectives   
+By the end of the course, students should be able to:
+1. explain the concepts of data structures and abstract data types; 
+2. explain  the  purpose  and  mathematical  background  of  algorithm  analysis  as  well  as  its
+application to determine the run time and memory usage of algorithms;
+3. demonstrate an understand numerous algorithm design techniques including greedy, divide-
+and-conquer, dynamic programming, randomized algorithms, and backtracking;  
+4. use and implement a range of basic generic collection types such as linked lists, stacks,
+queues in c++ programming language;
+5. write recursive methods.
+Course Outline
+ Introduction to Data Structures and Abstract Data Types; 
+ Analysis of Algorithms; 
+ List; 
+ Stacks & Queues; 
+ Recursion; 
+ Searching and Hashing; 
+ Trees; 
+ Graphs
+Mode of Delivery
+Face-to-Face sessions, Workshops, Seminars, and Lab sessions.
+Reading Materials 
+Malik, D. S. (2018). C++ programming: Program design including data structures (8th Edition).
+Cengage Learning.
+BTech. Computer Science (HTU) Page 36
+
+===== PAGE 38 =====
+Mehlhorn, K.,  & Sanders, P. (2008).  Algorithms and data structures: the basic toolbox. Springer
+Verlag.
+Drozdek, A. (2012). Data structures and algorithms in C++ (4th Edition). Cengage Learning.
+Weiss, M. A. (2014). Data Structures and algorithms analysis in C++ (4th Edition). Pearson.
+Adamson, I. T. (2012). Data structures and algorithms: a first course . Springer Science & Business
+Media.
+BCSC 204: NUMERICAL METHODS AND COMPUTATION
+Course Description
+The  main  objective  of  this  course  is  to  provide  students  with  an  introduction  to  the  field  of
+numerical analysis. Treatment of numerical methods including numerical integration, numerical
+solution of equations and systems of equations, approximation of functions, numerical solution of
+differential equations, applications and computer implementation of numerical methods. Aside from
+developing competency in the topics and emphases listed above, the course aims to: further develop
+and apply problem-solving skills through the introduction of numerical methods; provide a ground
+for applying knowledge acquired in previous mathematics courses; and allow students to develop
+and present an independent project.
+Course Objectives
+At the end of the course students should be able to: 
+1. write mathematical solutions and their interpretation clearly and concisely.
+2. locate and use the information to numerically solve problems.
+3. analyze a practical problem and identify the mathematical basis of the problem.
+4. demonstrate the ability to think critically by developing and implementing algorithms for 
+solving application problems
+5. demonstrate the ability to study the solution of a differential equation and develop a practical
+interpretation of the numerical results.
+Course Outline
+ Introduction to numerical computation, review of ideas from calculus
+ Mathematical preliminaries and error analysis
+ Solution of nonlinear equations, introduction to programming and algorithms
+ Solutions of equations of one variable
+BTech. Computer Science (HTU) Page 37
+
+===== PAGE 39 =====
+ Solution of linear systems, approximation of eigenvalues
+ Interpolation, curve fitting and polynomial approximation
+ Numerical integration and differentiation
+ Numerical solution of initial value problems
+ Direct methods for solving linear systems
+ Numerical solution of ordinary differential equations
+Reading Materials
+Burden, R. L., Faires, J. D., & Burden, A. M (2015). Numerical analysis (10th Edition). Cengage 
+Learning.
+Gerald, C. F., & Wheatley, P. O. ( 2004). Applied numerical analysis (7th edition). Addison Wesley 
+Publishing Company.
+Epperson, J. F. (2013). An introduction to numerical methods and analysis (2nd edition). Wiley.
+Björck, Å. (2015). Numerical methods in matrix computations (Vol. 59). Berlin: Springer.
+Hamming, R. (2012). Numerical methods for scientists and engineers. Courier Corporation.
+BCSC 206: COMPUTER NETWORKING II
+Course Description
+This  course  builds  on  Computer  Networking  I  and  is  designed  to  improve  the  students’
+understanding of computer networking. It provides end-to-end networking solutions that students
+can  use  to build an  efficient, unified  information  infrastructure  of their  own  or to connect  to
+someone else’s. It focuses on Routing techniques, WANs, VLANs, Access List and Services.
+Course Objectives
+At the end of the course, students should be able to:
+1. install,  configure,  and  operate  simple-routed  LAN,  routed  WAN  and  switched  LAN
+networks
+2. identify and configure IP, Frame Relay, VLANs, Ethernet, and Access Lists
+3. optimize WAN through Internet-access solutions that reduce bandwidth and WAN costs
+4. install and/or configure a network to increase bandwidth, quicken network response times,
+and improve reliability and quality of service.
+Course Outline
+ Routing and Switching
+BTech. Computer Science (HTU) Page 38
+
+===== PAGE 40 =====
+ VLAN
+ Access – Lists
+ DNS and DHCP
+ Basic WAN Concepts
+ Point to Point Protocol
+ Frame Relay
+ Network Address Translation.
+Mode of Delivery
+Face-to-Face lectures, demonstrations, simulations, workshops, lab sessions.
+Reading Materials 
+Gupta, P. C. (2014). Data communications and computer networks (2nd Ed.). Prentice-Hall
+Forouzan,  B.  (2013).  Data  communications  and  networking (5th  Ed.).  McGraw-Hill  Higher
+Education.
+Stallings, W. (2011). Data and computer communications (9th Ed.). Pearson Education, Inc.
+White, C. M. (2014).  Data communication and computer networks: A business users  (8th Ed.) .
+Cengage Learning.
+Gebali, F. (2015). Analysis of computer networks. Cham: Springer International Publishing.
+BCSC 208: WEB APPLICATION PROGRAMMING II
+Course Description
+This  course  provides  an  overview  of  what  is  required  to  build  a  Web  site,  including  server
+administration, security, user interactivity and database integration. It covers both the technical
+aspects of database website construction and the related topics of good design and management of
+web-based database systems. The stateless web (HTML, CSS and JavaScript) can only do so much
+without a dynamic language such as PHP to add the ability to interact with the web server. Students
+will learn how to make pages dynamic based upon user interaction, interacting with HTML forms
+and store and retrieve information from local data sources which include a database. During the
+course, students will walk through the development of a complete content management system Web
+application.  They  will  receive  clear,  step-by-step,  instructions  demonstrating  how  to  create  a
+complete Web site capable of dynamically displaying data from a MySQL database.
+BTech. Computer Science (HTU) Page 39
+
+===== PAGE 41 =====
+Course Objectives
+On completing the course, students should be able to:
+1. explain the basic principles of database website operation;
+2. explain  the  processes  involved  in  building  a  Web  site:  hosting,  server  administration,
+security, user interactivity and database integration;
+3. apply the various web programming languages for developing of a website;
+4. design and develop interactive, client-side, executable web applications;
+5. create web sites and applications using popular PHP frameworks; and
+6. use a server-side scripting language, PHP.
+Course Outline
+ Start a Database-Driven Project
+ Build Web Pages with PHP
+ Headers and Redirects
+ Build Forms with PHP
+ Use PHP to Access MySQL
+ CRUD with PHP
+ Validate Data with PHP
+ Prevent SQL Injection
+ Building a User registration System
+Mode of Delivery
+Face-to-Face sessions, Practical Lab sessions, Course Project works and Group Presentations.
+Reading Materials 
+Suehring, S., & Valade, J. (2013). PHP, MySQL, JavaScript & HTML5 all-in-one for dummies. John
+Wiley & Sons Inc.
+Pitt, C. (2021). Pro PHP 8 MVC: Model View Controller Architecture Driven Application 
+Development. Apress.
+West, A. W., & Prettyman, S. (2018). Practical PHP 7, MySQL 8, and MariaDB website databases:
+A simplified approach to developing database-driven websites (2nd ed.). Apress.
+Parisi, T. (2014). Programming 3D Applications with HTML5 and WebGL: 3D Animation and 
+Visualization for Web Pages. " O'Reilly Media, Inc.".
+BTech. Computer Science (HTU) Page 40
+
+===== PAGE 42 =====
+Tatroe, K., & MacIntyre, P. (2020). Programming PHP: Creating Dynamic Web Pages. O'Reilly 
+Media.
+BCSC 210: SYSTEMS ADMINISTRATION I
+Course Description
+This course is designed to help teach students the knowledge and skills to configure and administer
+a distributed system environment with a specific focus on the Windows Active Directory domain.
+The course will help assess students’ skills and maximize their performance in the following areas:
+Installation, deployment, and management of Windows Server. The course is also designed to cover
+the  configuration  of  pre-installation  and  post-installation  system  settings,  Windows  security
+features, network connectivity, applications included with Windows Server. 
+Course Objective
+At the end of the course, students should be able to:
+1. explain the principles, practices and goals of system administration; 
+2. explain system components, the advantages of Windows-like OS, major networking models,
+network addressing and naming systems, network services;
+3. identify the features of the Windows Server Operating System;
+4. plan and perform a clean installation;
+5. configure both hardware devices and software for compatibility;
+6. configure networking including sharing resources;
+7. monitor and configure of system performance; and
+8. manage, ensure effective system performance as well as  user satisfaction.
+Course Outline
+ Introducing Windows Server
+ Installing Windows Server 
+ Introducing Active Directory 
+ Active Directory Design and Security Concepts 
+ Account Management 
+ Windows File and Print Services
+ Configuring Group Policy 
+ Introduction to Windows Networking 
+BTech. Computer Science (HTU) Page 41
+
+===== PAGE 43 =====
+ Configuring DNS for Active Directory 
+ Introduction to Additional Active Directory Server Roles 
+ Server Management and Monitoring
+Mode of Delivery
+Face-to-Face sessions, Demonstrations, Presentations and Practical Lab sessions.
+Reading Materials
+Krause, J. (2019). Mastering windows server 2019 (2nd Edition). Packt Publishing Ltd.
+Kralicek, E. (2016). The accidental sysadmin handbook: a primer for early level IT professionals.
+Apress.
+Modi, R. (2017). DevOps with windows server 2016.  Packt Publishing Ltd.
+Savill, J. (2016). Mastering windows server 2016 hyper-V. John Wiley & Sons Inc.
+Thomas, O. (2017). Windows server 2016 inside out. Microsoft Press.
+BCSC 212: SOFTWARE DEVELOPMENT WITH JAVA
+Course Description
+This course teaches students how to develop Java applications. It introduces students to Object-
+oriented programming concepts, teaches them the fundamentals of the Java language and syntax;
+introduces them to the major class libraries in Java, and prepares them to begin the development of
+business applications in Java. Topics covered include the Java programming language syntax, OO
+programming  using  Java,  exception  handling,  file  input/output,  threads,  collection  classes,  and
+networking. Students will develop and test Java applications.
+Course Objectives
+At the end of the course students should be able to:
+1. explain  the  fundamentals  of  programming  such  as  variables,  conditional  and  iterative
+execution, methods, etc.
+2. use Object-Oriented paradigm in Java programs.
+3. compile and run a Java application.
+4. use exceptions to handle run time errors.
+5. select the proper I/O class among those provided by the JDK.
+Course Outline
+ Introduction to Java; 
+BTech. Computer Science (HTU) Page 42
+
+===== PAGE 44 =====
+ Language Components; 
+ Object-Oriented Programming; 
+ Methods; 
+ Arrays; 
+ Encapsulation; 
+ Inheritance & Polymorphism;
+ Exceptions; 
+ Input and Output in Java.
+Mode of Delivery
+Face-to-Face sessions, Workshops, Seminars and Lab sessions.
+Reading Materials 
+Deitel, P., & Harvey, D. (2017). Java: how to program early objects (11th Edition). Pearson.
+Gaddis, T. (2016). Starting out with Java: early objects (6th Edition). Pearson.
+Hubbard, J. R. (2004). Programming with Java (2nd edition). McGraw-Hill Education.
+Li, L. (2012). Java: data structures and programming. Springer Science & Business Media.
+Schildt, H., & Coward, D. (2014). Java: the complete reference (p. 1312). McGraw-Hill Education.
+LEVEL 300 - SEMESTER 1
+BCSC 301: SOFTWARE ENGINEERING
+Course Description
+The course aims at helping students build up an understanding of how to develop a software system
+from scratch by guiding them through the development process and giving them the fundamental
+principles of system development with object-oriented technology using UML. The course will
+initiate  students  to  the  different  software  process  models,  project  management,  and  software
+requirements engineering process.
+Course Objectives
+At the end of the course students should be able to: 
+1. explain project management, software process models and the ability to select the suitable
+model to use in software development.
+2. explain  requirements  engineering  process  and  distinguish  between  different  types  of
+requirements.
+BTech. Computer Science (HTU) Page 43
+
+===== PAGE 45 =====
+3. analyze,  design  and  develop  the  system  models  using  an  object-oriented  methodology
+(UML) for software development.
+4. prepare the software requirements specification document for a software project.
+5. develop team management skills.
+Course Outline 
+ Introduction to software engineering; 
+ Software engineering process; 
+ Software requirements; 
+ Systems Models; 
+ Software design and implementation; 
+ User interface design principles; 
+ Verification and validation; 
+ Software testing; 
+ Software maintenance.
+Mode of Delivery
+Face-to-Face sessions, Lab sessions, Workshops, Seminars and Group Presentations.
+Reading Materials 
+Sommerville, I. (2016). Software engineering (10th Edition). Pearson.
+Wiegers, K. E., & Beatty, J. (2013). Software requirements (3rd Edition). Microsoft Press.
+Larman, C. (2004). Applying UML and patterns (3rd Edition). Prentice-Hall.
+Agarwal, B. B., Tayal, S. P., & Gupta, M. (2010).  Software engineering and testing . Jones &
+Bartlett Learning.
+Rajlich, V. (2011). Software engineering: The current practice. CRC Press.
+BCSC 303: IT PROJECT MANAGEMENT
+Course Description
+This course is an approach to IT project management and quality assurance. This course addresses
+project management in the context of IT projects, including software projects. Using the framework
+of the project life cycle, the course covers various aspects about (i) project initiation, (ii) project
+planning and scheduling, (iii) project monitoring and control, and (iv) project termination. For
+BTech. Computer Science (HTU) Page 44
+
+===== PAGE 46 =====
+planning and scheduling of projects, the use of project networks and estimation of time and cost are
+covered in detail. 
+Course Objectives
+At the end of the course, students should be able to:
+1. explain  the  growing  need  for  better  project  management,  especially  for  information
+technology projects
+2. describe  project  management  and  discuss  key  elements  of  the  project  management
+framework,  including  project  stakeholders,  the  project  management  knowledge  areas,
+common tools and techniques, and project success
+3. analyze why stakeholder management and top management commitment are critical for a
+project’s success
+4. apply an overall framework for project integration management as it relates to the other PM
+knowledge areas and the project life cycle
+Course Outline
+ Introduction to Project Management
+ Project Management Context
+ Project Management Processes
+ Project Integration Management
+ Project Scope Management
+ Project Time Management
+ Project Cost Management
+ Project Quality Management
+ Project Resource Management
+ Project Communications Management
+ Project Risk Management
+ Project Stakeholder Management
+Mode of Delivery
+Face-to-Face sessions, Workshops, Seminars, Project Works and Group Presentations.
+Reading Materials 
+Schwalbe, K. (2019). Information technology project management (9th ed.). Cengage Learning.
+Duncan, W. R (2004). A guide to the project management body of knowledge (5th Ed.). PMI. 
+BTech. Computer Science (HTU) Page 45
+
+===== PAGE 47 =====
+Project Management Institute (2017). PMBOK guide (6th edition). PMI.
+Kerzner, H. (2018). Project management best practices: Achieving global excellence . John Wiley &
+Sons.
+Wysocki, R. K. (2011).  Effective project management: traditional, agile, extreme . John Wiley &
+Sons.
+Schwalbe, K. (2015). Information technology project management. Cengage Learning.
+BCSC 305: SYSTEMS ADMINISTRATION II
+Course Description
+This course explores the practical elements of Linux System Administration. Topics include: file
+management system, user management, file systems and access permissions, connectivity, security,
+troubleshooting, archiving, backing up, directory services, remote administration, access control
+lists, etc. Lessons will be enhanced using hands-on exercises. 
+Course Objective  s  
+At the end of this course, students will be able to:
+1. analyze fundamentals of the Linux operating system, including installation, configuration,
+administration, file management, and security.
+2. install the Linux Operating Systems and manage user accounts.
+3. assess system security and perform backups.
+4. troubleshoot system configuration problems.
+5. tune system performance.
+6. utilize scripting languages for task automation.             
+Course Content 
+ Introduction to System Administration concepts
+ Introduction to Linux Operating Systems
+ Linux Installation (OpenSUSE), Hard Disk Partition Details & Dual Boot Installation
+ Managing Files and Directories
+ Creating and Editing Files with Text Editors
+ Creating Shell Scripts and Displaying File Contents
+ Managing Data: Backup and Recovery Processes
+ Managing Users and Groups
+BTech. Computer Science (HTU) Page 46
+
+===== PAGE 48 =====
+ Network Communications
+ Installing Software Packages
+ Apache Web Server & Domain Name System
+Mode of Delivery
+Face-to-Face sessions, Workshops, Seminars and Lab sessions.
+Reading Material 
+Basta, A., Finamore, D., Basta, N., & Palladino, S. (2012).  Linux operations and administration .
+Course Technology/Cengage Learning
+Adelstein, T., & Lubanovic, B. (2007). Linux system administration. O’Reilly Media.
+Frisch, Æ. (2009). Essential system administration (3rd ed). O’Reilly Media.
+Sobell, M. G. (2010). Practical guide to ubuntu linux (4th ed.). Prentice Hall.
+Nemeth, E., Snyder, G., Hein, T. R., & Whaley, B. (2010). Unix and linux system administration
+handbook. (4th ed). Prentice Hall.
+BCSC 307: OBJECT-ORIENTED SYSTEM ANALYSIS AND DESIGN
+Course Description
+ This  course  introduces  established  and  evolving  methodologies  for  the  analysis,  design,  and
+development of an information system. Emphasis is placed on system characteristics, managing
+projects,  prototyping,  CASE/OOM  tools,  and  systems  development  life  cycle  phases.  Upon
+completion, students should be able to analyze a problem and design an appropriate solution using a
+combination of tools and techniques.
+Course Objective  s  
+Upon completion of this course, students should be able to: 
+1. identify necessary skills to handle complexity in software design;
+2. carry out an analysis of current systems;
+3. define and describe the phases of the system development life cycle;
+4. have knowledge of expected benefits from systems projects;
+5. describe  and  understand  the  processes  and  interactions  of  systems  analysts  with  users,
+management, and other information systems professionals;
+6. develop data flow diagrams and decision tables;
+BTech. Computer Science (HTU) Page 47
+
+===== PAGE 49 =====
+7. perform a feasibility study;
+8. evaluate systems development alternatives;
+9. solve realistic systems analysis problems;
+10. determine methods for evaluating the effectiveness and efficiency of a system;
+11. perform physical, logical designs;
+12. perform testing, implementation, maintenance, and documentation.
+Course Outline
+I. Introduction 
+ System Analysis Fundamentals,
+ Information requirements analysis,
+ Information system components,
+ Types of information systems,
+ System development life cycles,
+ The systems analyst.
+II. Systems planning 
+ Systems requests, 
+ Objectives, 
+ Preliminary investigation.
+III. Determining requirements 
+ Interviews, 
+ Other fact-finding techniques,
+ Recording facts, 
+ JAD and RAD, 
+ Object-oriented systems development. 
+IV. Analyzing requirements 
+ Data flow diagrams, 
+ Data dictionary, 
+ Process description. 
+V. Evaluating alternatives 
+ Software alternatives, 
+ Evaluating software packages,, 
+BTech. Computer Science (HTU) Page 48
+
+===== PAGE 50 =====
+ Hardware alternatives, 
+ CASE tools. 
+VI. Systems design 
+ Output design, 
+ Input design, 
+ File and database design, 
+ System architecture. 
+VII. Systems implementation 
+ Quality assurance, 
+ Application development,
+ Documentation, 
+ Management approval, 
+ Installation, 
+ Evaluation, 
+ System operation,
+ Software engineering and implementation.
+Reading Materials
+Kendall, K. E., & Kendall, J. E. (2020). Systems analysis and design (10th  ed.). Pearson.
+Dennis, A., Wixom, B. H., & Tegarden, D. (2015). Systems analysis and design: An object-oriented
+approach with UML (5th edition). Wiley.
+Satzinger, J. W., Jackson, R. B., & Burd, S. D. (2015). System analysis and design in a changing
+world (7th edition). Course Technology.
+Dennis, A., Wixom, B., & Tegarden, D. (2015). Systems analysis and design: An object-oriented
+approach with UML. John wiley & sons.
+Satzinger, J. W., Jackson, R. B., & Burd, S. D. (2015). Systems analysis and design in a changing
+world. Cengage learning.
+BTech. Computer Science (HTU) Page 49
+
+===== PAGE 51 =====
+BCSC 309: RESEARCH METHODS IN COMPUTER SCIENCE
+Course Description
+Review and critique of research literature, use of Information Technology infrastructure and library
+resources for computer science research, and introduction to the concepts of research design and
+data analysis
+Course Objectives
+By the end of this course, students should be able to:
+1. use research vocabulary and practices correctly;
+2. formulate research problem;
+3. evaluate different research work;
+4. apply an appropriate research methodology for a given research work;
+5. be proficient in critically reading and evaluating Information Technology research.
+Course Outline
+ Overview of Research, 
+ Scientific Knowledge,
+ Research as Communication,
+ Ethics,
+ Research/Project Planning, 
+ Types of Research Projects,
+ Conventional Structure of a Research Proposal,
+ Structure of a Research Project.
+Mode of Delivery
+Face-to-Face sessions, Workshops, Seminars and Lab sessions.
+Reading Materials
+Kendall, K. E., & Kendall, J.  E. (2020). Systems Analysis and Design (10th  Edition). Pearson.
+Kumar, R. (2018). Research methodology: A step-by-step guide for beginners. Sage.
+Flick, U. (2015). Introducing research methodology: A beginner's guide to doing a research project.
+Chawla, D., & Sodhi, N. (2011).  Research methodology: Concepts and cases.  Vikas Publishing
+House.
+Richey, R. C., & Klein, J. D. (2014). Design and development research: Methods, strategies, and
+issues. Routledge.
+BTech. Computer Science (HTU) Page 50
+
+===== PAGE 52 =====
+BCSC 311: COMPUTER ORGANIZATION AND ARCHITECTURE
+Course Description
+This course introduces the principles of computer organization and the basic architecture concepts.
+The course emphasizes performance and costs analysis, instruction set design, pipelining, memory
+technology, memory hierarchy, virtual memory management, and I/O systems.
+Course Objectives
+At the end of this course students should be able to: 
+1. discuss the merits and demerits in computer performance measurements.
+2. explain the impact of instruction set architecture on cost-performance of computer design. 
+3. identify ways to incorporate long latency operations in pipeline design. 
+4. identify ways to exploit instruction-level parallelism for high-performance processor design.
+5. explain dynamic scheduling methods and their adaptation to contemporary microprocessor
+design. 
+6. explain  the  impact  of  branch  scheduling  techniques  and  their  impact  on  processor
+performance. 
+7. identify alternatives in cache design and their impacts on cost/performance 
+8. explain  contemporary  microprocessor  designs  and  identify  various  design  techniques
+employed. 
+9. explain the design process of a computer and critical elements in each step.  
+10. explain memory hierarchy and its impact on computer cost/performance. 
+11. discuss current events in the microprocessor R&D and industry 
+Course Outline 
+ Introduction; 
+ Computer Evolution and Performance; 
+ A Top-Level View of Computer Function and Interconnection; 
+ Cache Memory; 
+ Instruction Sets; 
+ Processor Structure and Function; 
+ Reduced Instruction Set Computers (RISCs); 
+ Instruction-Level Parallelism and Superscalar Processors; 
+ Control Unit Operation; 
+BTech. Computer Science (HTU) Page 51
+
+===== PAGE 53 =====
+ Microprogrammed Control; 
+ Parallel Processing; 
+ Multicore Computers.
+Mode of Delivery
+The mode of delivery for this course will be Face-to-Face lectures, class discussions, homework,
+seminars, presentations, role play
+Reading Materials 
+Stallings, W. (2019). Computer organization and architecture (11th Edition). Pearson.
+Rajasekaran, S. (2014). Multicore computing: algorithms, architectures, and applications.  
+Chapman & Hall/CRC.
+Patterson, D. A., & Hennessy, J. L. (2017). Computer organization and design: The 
+hardware/software interface (5th Edition). Morgan Kaufmann.
+Null, L., & Lobur, J. (2014). Essentials of Computer Organization and Architecture. Jones & 
+Bartlett Publishers.
+Clements, A. (2013). Computer organization & architecture: themes and variations. Cengage 
+Learning.
+LEVEL 300 - SEMESTER 2
+HOTU 396: INDUSTRIAL ATTACHMENT
+Course Description
+This course is designed to enable students develop and acquire critical skills required to practice as
+financial data analyst, and to be able to take up jobs as actuaries. Ultimately, it affords students the
+opportunity to have industrial practice of theories learnt in class. 
+Course Objectives
+At the end of the industrial attachment, students would have:
+1. acquired computer application skills used for financial and statistical data analysis;
+2. identified problems or gaps in mathematics and statistical models used in solving real 
+life financial problems;
+3. collected data (actual or simulated) on (2) above for analysis, and for building new 
+models.
+BTech. Computer Science (HTU) Page 52
+
+===== PAGE 54 =====
+Course Content
+The scope of skill acquisition by students includes statistical and financial computing tools as well
+as mathematics, statistics and financial modeling techniques. Students are at liberty to choose area(s)
+that they wish to study and report on. Eventually, studies undertaken during industrial attachment
+would help students in writing final dissertations.    
+Mode of Delivery
+1. Practical engagement of students in the industry;
+2. Visit industry and supervision by instructional supervisors;
+3. Oral and written presentation of the report developed from the industry. 
+LEVEL 400 - SEMESTER 1
+BCSC 401: INFORMATION SECURITY
+Course Description
+This course provides knowledge of the basic information security goals of availability, integrity,
+accuracy,  and  confidentiality.  Students  will  learn  the  fundamental  vocabulary  and  terminology
+specific to the field of information security. Students will be introduced to the basic principles of
+data  protection,  regulatory  and  compliance  requirements  for  organizations.  Students  will  be
+introduced  to  the  importance  of  appropriate  planning  and  administrative  controls  and
+countermeasures  in  information  security.  Fundamental  concepts  in  network  security,  hardware,
+software,  and  data  including  physical  security,  backup  procedures,  firewalls,  encryption,  and
+protection from malware and ransomware. The course instead looks at security from a managerial
+perspective with regards to design, implementation, maintenance, and disaster recovery. 
+Course Objectives
+At the end of the course, it is expected that students will be able to: 
+1.explain the fundamentals in managing information security systems and personnel 
+2.identify the relationship between security and management 
+3.explain information security laws and security
+4.plan for disaster recovery and conduct security audits 
+5.critique and assess the strengths and weaknesses of general information security models, 
+including the CIA triad 
+6.assess the role of strategy and policy in determining the success of information security 
+BTech. Computer Science (HTU) Page 53
+
+===== PAGE 55 =====
+7.critique the current legal and regulatory environment as it applies to information security; 
+8.identify and contrast the most common security standards and associated catalogues of security
+controls 
+Course Outline
+ Information Security Fundamentals; 
+ Addressing Threats; 
+ Backdoors, Virus, and Worms; 
+ Password Cracking; 
+ Cryptography; 
+ Authentication; 
+ Intrusion Detection Systems; 
+ Firewalls and Honeypots; 
+ Introduction to Ethical Hacking; 
+ Network Attacks; 
+ Introduction to Management of Information Security; 
+ Security Management Models; 
+Mode of Delivery
+Face-to-Face sessions, Workshops, Seminars and Lab sessions.
+Reading Materials 
+Whitman, M. E., & Mattord, H. J. (2018). Management of information security (6th edition). 
+Cengage Learning.
+Stallings, W. & Brown, L. (2012). Computer security: principles and practice (4th edition). Pearson 
+Education Limited. 
+Rhodes-Ousley, M. (2013). Information security: the complete reference (2nd edition). McGraw-Hill 
+Osborne Media. 
+Whitman, M. E., & Mattord, H. J. (2017). Principles of information security (6th edition). Cengage 
+Learning. 
+Stamp, M. (2011). Information security: principles and practice. John Wiley & Sons.
+BTech. Computer Science (HTU) Page 54
+
+===== PAGE 56 =====
+BCSC 403: COMPUTER FORENSICS
+Course Description
+This course will provide a foundation in the field of Computer Forensics. Students will learn
+different aspects of computer and cybercrime and ways in which to uncover, protect, exploit, and
+document  digital  evidence.  This  course  will  incorporate  collaborative  and  action-learning
+experiences  wherever  appropriate.  The  student  will  learn  how  to  obtain  and  analyze  digital
+information for possible use as evidence in civil, criminal or administrative cases.
+Course Objectives
+At the end of the course, students should be able to: 
+1. acquire the knowledge and techniques to computer forensics practices and evidence analysis
+2. employ the various forensic investigation approaches and tools necessary to start a computer 
+forensics investigation
+3. gain increasing knowledge and understanding in cyber security and ethical hacking.
+4. correctly define and cite appropriate instances for the application of computer forensics 
+5. explain the responsibilities and liabilities of a computer forensic investigator
+Course Outline
+ Introduction to Computer Forensics; 
+ Forensics Technologies; 
+ Computer Crimes and Criminals; 
+ Collecting and Preserving Digital Evidence; 
+ Building a Cybercrime Case; 
+ Computer Hardware; 
+ Computer Software; 
+ Preserving and Recovering Digital Evidence.
+Mode of Delivery
+Face-to-Face Sessions; Workshops; Seminars and Lab sessions.
+Reading Materials 
+Nelson, B., Phillips, A., &  Steuart, C. (2015). Guide to computer forensics and Investigations.  (6th
+Edition). Cengage Learning.
+Bunting, S.  (2012).  EnCase computer forensics-the official EnCE:   EnCase certified examiner
+study guide. (3rd Edition). Sybex.
+BTech. Computer Science (HTU) Page 55
+
+===== PAGE 57 =====
+Altheide, C., & Carvey, H. (2011).  Digital forensics with open source tools.  Elsevier Science;
+Syngress.
+Maras, M. H. (2015). Computer forensics. Jones and Bartlett Learning.
+Cowen, D., Gorgal, R., Shaw, J. W., & Widup, S. (2013). Computer forensics: InfoSec pro guide .
+McGraw-Hill.
+BCSC 405: OPERATING SYSTEMS 
+Course Description
+This course describes the fundamental concepts behind operating systems. Students will learn about
+processes  and  process  management,  concurrency  and  synchronization,  memory  management
+schemes, file systems, virtual machines and multiple processor systems. Students are introduced to
+the architecture of Mobile Operating Systems.
+Course Objectives
+At the end of this course, students should be able to:
+1. explain the basic components of a computer operating system, and the interactions among
+the various components. 
+2. explain process concurrency and synchronization.
+3. describe the computer processes and threads.
+4. discuss the concept of data input/output, storage and file management.
+5. determine the interfaces between OS and other components (hardware and applications) of a
+computer system.
+Course Outline
+ Introduction to Operating Systems; 
+ Memory Management; 
+ Process Management; 
+ File Systems; 
+ I/O System; 
+ Virtual Machines; 
+ Multiple Processor Systems; 
+ Mobile Operating Systems.
+BTech. Computer Science (HTU) Page 56
+
+===== PAGE 58 =====
+Mode of Delivery
+The mode of delivery for this course will be Face-to-Face lectures, class discussions, homework,
+seminars, presentations, role play.
+Reading Materials 
+Abraham S. A., Galvin, P. B. & Gagne, G. (2018). Operating system concepts (10th Edition).  John
+Wiley.
+Tanenbaum, A. S., & Bos, H. (2015). Modern operating systems (4th Edition). Pearson Education.
+Garrido, J. M., Schlesinger, R., & Hoganson, K. (2011). Principles of modern operating systems (2nd
+Edition).  Jones & Bartlett Learning.
+Arpaci-Dusseau, R. H., & Arpaci-Dusseau, A. C. (2018).  Operating systems: Three easy pieces .
+Arpaci-Dusseau Books LLC.
+Anderson, T., & Dahlin, M. (2014). Operating Systems: Principles and Practice, volume 1: Kernel
+and Processes. Recursive books.
+BCSC 407: ARTIFICIAL INTELLIGENCE
+Course Description  
+Artificial intelligence (AI) is a rich field spanning formal systems for representing and processing
+symbolic information, computational models of human cognition, and a range of techniques for
+learning, planning and reasoning under uncertainty. In this course, students will gain an appreciation
+of what “artificial intelligence” means, and how it can be usefully applied to real-world problems.
+Through an in-depth treatment of knowledge representation via propositional and first-order logic,
+students  will  understand  how  expert  knowledge  can be  fed  into  and  be processed  by modern
+computers. In addition, students will acquire skills in using planning algorithms to find solutions to
+optimization problems.
+Course Objectives
+At the end of the course, students will be able to:
+1. define the meaning of “artificial intelligence”.
+2. recognize the characteristics of AI that make it useful to real-world problems.
+3. explain the strengths and limitations of various state-space search algorithms, and choose the
+appropriate algorithm for a problem.
+4. formulate and solve problems in the framework of constraint programming.
+BTech. Computer Science (HTU) Page 57
+
+===== PAGE 59 =====
+5. represent domain knowledge in propositional and first-order logic.
+6. use logical inference algorithms to reason with domain knowledge.
+7. formulate and solve optimization challenges as planning problems.
+Course Outline
+ Introduction to Artificial Intelligence; 
+ Search and Planning; 
+ Constraint Satisfaction Problems; 
+ Game Trees and Tree-Structured Computation; 
+ Decision Theory; 
+ Markov Decision Processes; 
+ Introduction to Machine Learning;
+ Artificial Neural Networks (ANNs), and their application to the concept learning problem; 
+Bio-Inspired Algorithms.
+Mode of Delivery
+The mode of delivery for this course will be Face-to-Face lectures, class discussions, homework,
+seminars, presentations, role play.
+Reading Materials 
+Kopec, D. & Lucci, S. (2016).   Artificial intelligence in the 21 st century  (2nd edition). Mercury
+Learning & Information.
+Murphy, K. P. (2012).  Machine learning: a probabilistic perspective.  MIT Press.
+Russell, S. J., & Norvig, P. (2016).  Artificial intelligence: a modern approach (3rd Edition). Pearson
+Education.
+Warwick, K. (2013). Artificial intelligence: the basics. Routledge.
+Ginsberg, M. (2012). Essentials of artificial intelligence. Newnes.
+BCSC 409: DATA SCIENCE
+Course Description
+This course provides an overview of Data Science, covering a broad selection of key challenges and
+methodologies for working with big data. Topics to be covered include data collection, integration,
+management, modeling, analysis, visualization, prediction and informed decision making, as well as
+data security and data privacy. This introductory course is integrative across the core disciplines of
+BTech. Computer Science (HTU) Page 58
+
+===== PAGE 60 =====
+Data Science, including  databases,  data  warehousing,  statistics,  data  mining,  data  visualization,
+high-performance computing, cloud computing, and business intelligence. Professional skills, such
+as communication, presentation, and storytelling with data, will be fostered. Students will acquire a
+working knowledge of data science through hands-on projects and case studies in a variety of
+business, engineering, social sciences, or life sciences domains. Issues of ethics, leadership,and
+teamwork are highlighted.
+Course Objectives
+Upon successful completion of this course, the student will be able to:
+1. write programs in R/Python
+2. distinguish problems solvable with data science and able to attack those problems from a 
+statistical perspective 
+3. collect, Manipulate, Blend Data from Different Data Sources 
+4. visualize Data and Perform Exploratory Data Analysis 
+5. explain Data Science Project Lifecycle  
+6. create Data Products for Business Applications 
+7. explain the basics of Unsupervised Machine Learning Techniques 
+8. distinguish basics of Supervised Regression Techniques and basics of Supervised 
+Classification Techniques 
+Course Outline
+ Introduction to Data Science 
+ Introduction to R/Python 
+ Data Collection and Data Blending 
+ Business Intelligence and Data Warehousing
+ Data Science Project Life Cycle
+ Data Visualization
+ Introduction to Machine Learning (Clustering and Principal Component Analysis, 
+Association Rules, Regression and Classification)
+ Big Data Analytics 
+Mode of Delivery
+The mode of delivery will be Face-to-Face lectures, Case Study discussions, seminars, 
+presentations.
+BTech. Computer Science (HTU) Page 59
+
+===== PAGE 61 =====
+Reading Materials 
+Grus, J. (2019). Data science from scratch: first principles with python (2nd edition). O'Reilly Media.
+EMC  Education  Services  (2015). Data  science  and  big  data  analytics:  discovering,  analyzing,
+visualizing and presenting data. John Wiley & Sons.
+O'Neil, C., & Schutt, R. (2013).  Doing data science: straight talk from the frontline .  O'Reilly
+Media.
+Saltz, J. S., & Stanton, J. M. (2017). An introduction to data science. Sage Publications, Inc.
+Gutierrez, D. D. (2015). Machine learning and data science: an introduction to statistical learning
+methods with R. Technics Publications.
+BCSC 411: WIRELESS COMMUNICATION
+Course Description
+This course covers the fundamentals of wireless mobile communications systems with a focus on
+the physical layer: the wireless channel and its characteristics, how different digital communication
+systems perform in the wireless environment, what techniques can be used to mitigate the effects of
+the wireless channel and improve performance, and how multiple users can share the channel to
+communicate with a single base station. The course shall introduce students to concepts like OFDM,
+Receive Diversity, and Multiple-Input Multiple-Output Antenna Systems. Special emphasis would
+be laid on advanced 3G and 4G technologies. Students will be introduced to software such as
+MATLAB.
+Course Objectives
+Upon the completion of the course, the student should be able to;
+1. distinguish the major cellular communication standards (1G/2G/3G systems).
+2. characterize the tradeoffs among frequency reuse, signal-to-interference ratio, capacity, and 
+spectral efficiency.
+3. characterize large-scale path loss and shadowing.
+4. illustrate small-scale fading in terms of Doppler spectrum, coherence time, power delay 
+profile, and coherence bandwidth.
+5. examine the error probabilities for common modulation schemes.
+6. analyze the performance of trunked radio systems.
+BTech. Computer Science (HTU) Page 60
+
+===== PAGE 62 =====
+7. define different types of diversity and how they improve performance for mobile radio 
+channels.
+8. describe simple equalization schemes.
+9. characterize TDMA, FDMA and CDMA.
+Course Outline 
+ Introduction to wireless communication systems; 
+ Modulation schemes;
+ Statistical channel models, narrowband fading, wideband fading; 
+ Cellular concepts and system design; 
+ Quality of Service;
+ Review of digital modulation and detection and its performance in AWGN channels; 
+ Coding for wireless channels; 
+ Multiple antenna systems; 
+Mode of Delivery
+The mode of delivery for this course will be Face-to-Face lectures, class discussions, homework,
+seminars, presentations, role play.
+Reading Materials 
+Tripathi, N., & Reed, J. H. (2014). Cellular communications: a comprehensive and practical guide .
+Wiley-IEEE Press.
+Du, K., &  Swamy, M. N. S. (2010).  Wireless communication systems: From RF subsystems to 4G
+enabling technologies. Cambridge University Press.
+Goldsmith, A. (2005). Wireless communications. Cambridge University Press.
+ Molisch, A. F.(2010). Wireless communications (2nd  Edition). Wiley – IEEE.
+Molisch, A. F. (2012). Wireless communications. John Wiley & Sons.
+Liu, R. (2010). Securing wireless communications at the physical layer  (Vol. 7). W. Trappe (Ed.).
+New York: Springer.
+BCSC 413: ADV ANCED SOFTWARE DEVELOPMENT WITH JA V A 
+Course Description
+In this course, students will be expected to write relatively complex programs by the end of the
+course using Java and realize the difference in programming using the various types of high-level
+BTech. Computer Science (HTU) Page 61
+
+===== PAGE 63 =====
+languages.  The  first  part  of  the  course  focuses  on  objected-oriented  software  development
+approaches  and  Graphical  User  Interface  Programming.  In  the  second  part,  students  will  gain
+experience in developing web applications with Java servlets and JSP, including database usage.
+This course will prepare students for a career in Java programming or software development.
+Course Objectives
+At the end of the course students should be able to: 
+1. develop Object-Oriented Programs.
+2. develop event-driven Java applications
+3. write simple to fairly complex java GUI applications
+4. explain web application architectures (e.g. MVC)
+5. design interface for web applications
+6. explain server-side components (e.g. Java servlets, Java Server Pages)
+7. manipulate a relational database from within a Java program.
+8. develop Java web application
+Course Outline 
+ Classes and Objects
+ Object-Oriented Principles
+ Abstract Classes and Interfaces
+ JavaFX Basics
+ Event-Driven Programming
+ Introduction to Java Servlets
+ SQL, JDBC, MVC, and Java Servlets
+ JavaBeans, scopes, and attributes
+ JavaServer Pages (JSP)
+Mode of Delivery
+The mode of delivery for this course will be Face-to-Face lectures, class discussions, homework,
+seminars, presentations, role play.
+Reading Materials 
+Liang, Y. D. (2017). Introduction to Java programming. Pearson Education.
+Savitch, W., & Mock, K. (2015). Absolute Java (6th edition). Pearson.
+BTech. Computer Science (HTU) Page 62
+
+===== PAGE 64 =====
+Wu, C. T. (2010). An Introduction to object-oriented programming wissth Java. McGraw-Hill.
+Jendrock, E., Evans, I., Gollapudi, D., Haase, K., & Srivathsa, C. (2014). The Java EE 7 Tutorial:
+Volume 1. Addison-Wesley Professional.
+Bai, Y. (2011). Practical Database Programming with Java. John Wiley & Sons.
+HOTU 401: ENTREPRENEURSHIP & INNOV ATION
+Course Description
+The  entrepreneurship  development  course  introduces  the  many  aspects  required  to  create  a
+successful  new  venture  to  students  and  gives  them  a  feel  of  what  is  involved  with  being
+entrepreneurial. It covers the life cycle of a start-up company from the points of view of inventors,
+engineers or investors including issues of planning, creativity, dealing with legal and tax issues,
+financial issues at different stages, and sources of technical and financial support. 
+Course Objectives
+The main objectives of the course are to:
+1. create entrepreneurial awareness and motivation among students.
+2. equip students with the knowledge and skills to identify and evaluate business opportunities
+and gather resources to take advantage of business opportunities.
+3. equip students with the knowledge and the skills needed in running a successful business.
+4. develop products for marketing. 
+5. prepare and implement business plans. 
+Course Outline 
+1. Stimulating Entrepreneurship
+ Introduction to the concept of entrepreneurship.
+ Define the entrepreneurial process.
+ Explain the entrepreneurial decision process.
+ Discuss the need and the role of entrepreneurship in economic development.
+ Discuss the basic skills required by entrepreneurs.
+ Explain the personal competencies of an entrepreneur.
+2.  Exploration
+ Explain aspects of the entrepreneurial process.
+ Discuss various sources of new business ideas.
+ Discuss some methods for generating new business ideas.
+ Discuss business opportunity indicators.
+BTech. Computer Science (HTU) Page 63
+
+===== PAGE 65 =====
+ Explain some methods of evaluating business opportunities.
+ Explain some methods of protecting business ideas.
+ Explain some aspects of product planning and development.
+ Describe some methods of conducting market/business research.
+3. Business Planning and Plan Preparation
+ Introduction to Business Planning.
+ The Importance of Business Plan Preparation.
+ Write the Business Description Section of a business plan including:
+Business Concept;
+-Industry analysis
+-Mission statement
+-Business goals
+-Project objectives
+-Value proposition
+Products and Services.
+  Do Market Analysis and Write a Marketing Plan.
+ Write a financial plan and Prepare Financial Budgets including
+-Start-up budget
+-Sales Forecast
+-Income and expenses statement
+-Balance sheet
+-Cash flow statement
+-Personal Financial Statements.
+4. Resource Generation and Mobilization 
+ Discuss  some  common  money  sources  for  starting  and  expansion  of  businesses  (Self-
+Funding, Trade Credit, hire purchase (HP), Bank Loan, Equity Investments ,  Sponsorship,
+Leasing or Hire)
+  Discuss some means of Creative Cost Cutting.
+  Discuss how to Meet Financial Backers.
+5. Management Skills
+ Introduction to some marketing and selling techniques.
+ Explain some methods of record keeping.
+BTech. Computer Science (HTU) Page 64
+
+===== PAGE 66 =====
+ Discuss Product costing.
+ Discuss product Pricing.
+ Explain sales revenue, cost of manufacturing, expenses, gross profit, EBIT (Earning Before
+Interest and Tax payment) and net profit.
+ Discuss some health and safety issues.
+ Discuss the ethics and social responsibilities of entrepreneurs. 
+6. Enterprise Building Skills
+ Discuss the basic steps in setting up a business including:
+- Assessing if a new business idea would work.
+- Assessing if a budding entrepreneur has what it takes to run a specific business.
+  Explain some necessary things to do to lay the foundation of a new business.
+7. Frustration and Stress Management
+ Discuss the major sources of frustration and stress when setting up a business.
+ Explain stress management.
+ Discuss some available supports to entrepreneurs.
+ Discuss the role of mentors and family. 
+8. Growth, Expansion and Revitalization
+ Discuss the basic types of Start - up ventures.
+ Explain some methods for venture creation and expansion.
+9. Personal Finance
+ Define Personal finance:
+ Discuss component of Personal Finance
+ Discuss various types of accounts (Checking and Savings Accounts):
+ Discuss Various types of Loans
+ Discuss Investments in Stocks, Bonds, or Other Financial Instruments: 
+ Discuss retirement plans
+ Discuss Financial Planning
+ Explain Personal Financial Statements
+Mode of Delivery 
+The course will be delivered by thought lectures and project assignments.
+Reading Materials 
+Hisrich, R., Peters, M., & Shepherd, D. (2016). Entrepreneurship (10th edition). McGraw-Hill.
+Adams, R. J., Spinelli, S., & Timmon, J. (2016). New venture creation: Entrepreneurship for the
+21st century (10th Edition). McGraw-Hill Education.
+Adjimah, H. (2012). Step  by  step  guides  to  setting  up  your  business:  Entrepreneurship
+development. Excel Publications.
+BTech. Computer Science (HTU) Page 65
+
+===== PAGE 67 =====
+Malerba, F. (Ed.). (2010). Knowledge intensive entrepreneurship and innovation systems: Evidence
+from Europe (Vol. 48). Routledge.
+Mayer,  H.  (2011).  Entrepreneurship  and  innovation  in  second  tier  regions. Edward  Elgar
+Publishing.
+LEVEL 400 - SEMESTER 2
+BCSC 402: LEGAL AND ETHICAL ISSUES IN COMPUTING
+Course Description
+The course is designed to provide fundamental knowledge and understanding of the principles,
+nature and development of legal aspects of information technology and telecommunications. In
+addition, it aims at encouraging students to consider legal initiatives within the Ghanaian legal
+jurisdiction and supporting students in developing a range of generic transferable legal skills which
+can be used in a wide range of settings.
+Course Objectives
+At the end of this course, students should be able to:
+1. explain issues relating to IT Law and its implications
+2. explain the laws that govern the use of the internet
+3. explain the implications of ICT crime 
+4. explain intellectual property and copyright issues.
+5. identify and describe common ethical concepts and theories
+6. apply  ethical  concepts  and  an  analytical  process  to  common  dilemmas  found  in  the
+information technology field
+Course Outline
+ Introduction to IT Law; 
+ E-Commerce-Legal issues; 
+ Information Communication Technology Crime; 
+ Intellectual Property Issues; 
+ Information technology contracts; 
+ Information Privacy and Internet governance
+ Data protection and freedom of information
+BTech. Computer Science (HTU) Page 66
+
+===== PAGE 68 =====
+ Review  of  Selected  Data  Protection  Regulations:  Act  843  (Data Protection  Act  2012),
+GDPR, CCPA, PIPEDA, POPIA.
+ Work and Wealth
+ Professional Ethics and social issues of ICT information and communications technology
+Mode of Delivery
+The mode of delivery for this course will be Face-to-Face lectures, class discussions, homework,
+seminars, presentations, role play
+Reading Materials 
+Baase, S. (2013). A gift of fire – Social, legal and ethical issues for computing technology  (4th Ed.).
+London, UK: Pearson.
+Bissonette, A. M. (2009).  Cyber law:  Maximizing safety and minimizing risk in classroom.  Sage
+Publications.
+Trout, B. J. (2007). Cyber law: a legal arsenal for online business. World Audience.
+Bainbridge, D. (2007). Introduction to information technology law (6th Edition). Longman.
+Simon, J., Barry, B., & Penny, D. (2008).  Ethical, legal and professional issues in computing.
+Thomson.
+BCSC 404: CLOUD COMPUTING
+Course Description
+Cloud Computing has emerged in recent years as a new paradigm for hosting and delivering services
+over the Internet. This course is designed to introduce the concepts of Cloud Computing as a new
+computing paradigm. The students will have an opportunity to explore Cloud Computing's various
+terminology, principles and applications. The course will expose students to different views of
+understanding Cloud Computing such as theoretical, technical and commercial aspects. A variety of
+real case studies and existing in-market cloud-based tools will be identified and studied to provide
+students with a close overview of Cloud Computing applications.
+Course Objectives
+At the end of the course, students should be able to: 
+1. demonstrate knowledge in the fundamentals and essentials of Cloud Computing. 
+2. develop skills for Cloud Computing management so that they can start using and adopting
+Cloud Computing services and tools in their real-life scenarios.
+BTech. Computer Science (HTU) Page 67
+
+===== PAGE 69 =====
+3. use  some  important  cloud  computing  driven  commercial  systems  such  as  GoogleApps,
+Microsoft Azure and Amazon Web Services and other business's cloud applications.
+Course Outline
+ Introduction to Cloud Computing, the roots of Cloud Computing.
+ Cloud Computing Deployment models, Cloud service models (IaaS, PaaS, SaaS).
+ Characteristics of Cloud Computing 
+ Cloud Computing Architecture layers and Methodologies.
+ Security in Cloud Computing.
+ Cloud-based service selection, SMI (business key attributes).
+ Cloud Economics: Resource Provisioning in Cloud Computing and cost optimization and
+Multitenancy in Cloud Computing, Monitoring in Cloud Computing.
+ Cloud Computing applications: Google, Azure platform, Amazon Web Services. 
+ Service Management in Cloud Computing
+Mode of Delivery
+Face-to-Face sessions, Seminars, and Group Presentations
+Reading Materials 
+Rafaels, R. (2018).  Cloud computing: 2018  (2nd Edition.). CreateSpace  Independent Publishing
+Platform.
+Antonopoulos, N., & Gillam, L. (2017). Cloud computing: principles, systems and applications (2nd
+Edition). Springer.
+Buyya, R., Broberg, J., & Goscinski, A. M. (2011). Cloud computing: principles and paradigms .
+Wiley.
+Wang, L., Ranjan, R., Chen, J., & Benatallah, B. (2011). Cloud computing: methodology, systems
+and applications. CRC Press.
+Baun, C., Kunze, M., Nimis, J., & Tai, S. (2011). Cloud computing: Web-based dynamic IT services
+(Vol. 100). Heidelberg: Springer.
+HOTU 402: BUSINESS DEVELOPMENT
+Course Description
+The  entrepreneurship  development  course  introduces  the  many  aspects  required  to  create  a
+successful  new  venture  to  students  and  gives  them  a  feel  of  what  is  involved  with  being
+BTech. Computer Science (HTU) Page 68
+
+===== PAGE 70 =====
+entrepreneurial. It covers the life cycle of a start-up company from the points of view of inventors,
+engineers or investors including issues of planning, creativity, dealing with legal and tax issues,
+financial issues at different stages, and sources of technical and financial support. 
+Course Objectives
+At the end of the course, students are expected to:
+1. become entrepreneurially aware and motivated to start their businesses;
+2. be equipped with the knowledge and skills to identify and evaluate business opportunities
+and gather resources to take advantage of business opportunities;
+3. acquire knowledge and the skills needed to run a successful business; and
+4. develop products for marketing, and as well as be able to prepare and implement their
+business plans. 
+Course Outline
+Management Skills
+ Introduction to some marketing and selling techniques.
+ Explain some methods of record keeping.
+ Discuss Product costing.
+ Discuss product Pricing.
+Enterprise Building Skills
+ Discuss the basic steps in setting up a business including:
+ Explain some necessary things to do to lay the foundation of a new business.
+Frustration and Stress Management
+ Discuss the major sources of frustration and stress when setting up a business.
+ Explain stress management.
+ Discuss some available supports to entrepreneurs.
+ Discuss the role of mentors and family. 
+Growth, Expansion and Revitalization
+ Discuss the basic types of Start-up ventures.
+ Explain some methods for venture creation and expansion.
+Personal Finance
+ Define Personal finance:
+BTech. Computer Science (HTU) Page 69
+
+===== PAGE 71 =====
+ Discuss component of Personal Finance
+ Discuss various types of accounts (Checking and Savings Accounts):
+ Discuss Various types of Loans
+ Discuss Investments in Stocks, Bonds, or Other Financial Instruments: 
+Mode of Delivery
+Lectures, Group assignments/ work, Presentations.
+Reading Materials
+Hisrich, R., Peters, M., & Shepherd, D. (2016). Entrepreneurship (10th edition). McGraw-Hill. 
+Adjimah, H. (2012). Step by step guides to setting up your business: entrepreneurship development
+I. Excel Publications. 
+Rath, T., & Conchie, B. (2008). Strengths-based leadership: great leaders, teams, and why people
+follow. Gallup Press.
+Adams, R. J., Spinelli, S. & Timmon, J. (2016). New venture creation: entrepreneurship for the 21 st
+century (10th Edition). McGraw-Hill Education.
+Chaffey, D., & White, G. (2011). Business information management. London, UK.
+HOTU 498: PROJECT WORK
+Course Description
+This course aims at assisting students to undertake a supervised project work. Students are expected
+to submit their final project report under the supervision of faculty member. The project report
+would include feasibility study, project planning, requirement specification. testing and evaluation,
+documentation and reporting. Students would also engage in Project defense.
+Course Objectives
+At the end of the project, students are expected to:
+1. generate a feasibility report
+2. develop a project plan
+3. generate requirement specification document
+4. design conceptual model
+5. develop a system
+6. generate a project report that includes system documentation and user manual
+7. defend their project work 
+BTech. Computer Science (HTU) Page 70
+
+===== PAGE 72 =====
+Mode of Delivery
+Face-to-Face sessions, Workshops, Lab sessions, and Presentations.
+BCSC 406: DATA MINING AND WAREHOUSING
+Course Description
+This course is an introduction to data mining and motivating challenges, types of data, measures of
+similarity and distance, data exploration and warehousing, supervised learning, bias and variance.
+Classification techniques and their evaluation. Clustering, Association and sequence rule mining.
+The course aims to provide students with viable alternatives for managers rather than replacing
+judgment with an optimized solution. It also aims to enable students to acquire an understanding of
+the  basic  concepts  and  skills  associated  with  decision-making  and  the  modelling  of  business
+decisions using data.
+Course Objectives
+At the end of the course students should be able to: 
+1. understand the principles of Data warehousing and Data Mining.
+2. be familiar with the Data warehouse architecture and its Implementation
+3. know the Architecture of a Data Mining system
+4. understand the various Data preprocessing Methods
+5. perform classification and prediction of data
+Course Outline
+ Data Warehousing and modeling
+ Schemas for multidimensional Data models 
+ Data warehouse implementation and Data mining
+ Association Analysis
+ Classification
+ Clustering Analysis
+Mode of Delivery
+Lectures, Group assignments/ work, Presentations.
+Reading Materials
+Bhatia, P. (2019). Data mining and data warehousing: principles and practical techniques. 
+Cambridge University Press. 
+BTech. Computer Science (HTU) Page 71
+
+===== PAGE 73 =====
+Gupta, G. K. (2014). Introduction to data mining with case studies. PHI Learning Pvt. Ltd.
+Han, J., Pei, J., & Kamber, M. (2011). Data mining: concepts and techniques. Elsevier.
+Fernandez, G. (2010). Data mining using SAS applications. CRC press.
+Ponniah, P. (2011). Data warehousing fundamentals for IT professionals. John Wiley & Sons.
+BCSC 408: INTERNET OF THINGS
+Course Description
+The Internet is evolving to connect people to physical things and also physical things to other
+physical things all in real-time. It’s becoming the Internet of Things (IoT). The course enables
+students to understand the basics of the Internet of things and protocols. It introduces some of the
+application  areas  where  the  Internet  of  Things  can  be  applied.  Students  will  learn  about  the
+middleware for the Internet of Things. To understand the concepts of the Web of Things.
+Course Objectives
+At the end of the course students should be able to: 
+1. describe what IoT is and how it works today
+2. identify the factors that contributed to the emergence of IoT
+3. design and program IoT devices
+4. use real IoT protocols for communication
+5. secure the elements of an IoT device
+6. design an IoT device to work with a Cloud Computing infrastructure.
+7. transfer IoT data to the cloud and in between cloud providers
+8. define the infrastructure for supporting IoT deployments
+Course Outline
+ Introduction to IoT, Sensing, Actuation, Basics of Networking
+ Basics of Networking, Communication Protocols
+ Communication Protocols, Sensor Networks
+ Sensor Networks, Machine-to-Machine Communications
+ Interoperability in IoT, Introduction to Arduino Programming, Integration of Sensors and 
+Actuators with Arduino
+ Introduction to Python programming, Introduction to Raspberry Pi, Implementation of IoT 
+with Raspberry Pi
+ Introduction to SDN, SDN for IoT
+BTech. Computer Science (HTU) Page 72
+
+===== PAGE 74 =====
+ Data Handling and Analytics, Cloud Computing
+ Sensor-Cloud
+ Fog Computing, Smart Cities and Smart Homes
+ Connected Vehicles, Smart Grid, Industrial IoT
+ Case Study: Agriculture, Healthcare, Activity Monitoring
+Mode of Delivery
+Lectures, Group assignments/ work, Presentations.
+Reading Materials
+Arshdeep, B., & Madisetti, V. (2015). Internet of things: a hands-on approach. Universities Press 
+(India) Private Limited.
+Zhou, H. (2012). The Internet of Things in the Cloud. A middleware persperpective. CRC Press. 
+Ucklemann, D. et al ( 2011). Architecting the internet of things. Springer-Verlag Berlin Heidelberg.
+Hersent, O., Boswarthick, D. & Omar, E. (2012). The Internet of Things: Key applications and 
+protocols. Wiley.
+McEwen, A., & Cassimally, H. (2012). Designing the Internet of Things. Wiley. 
+BCSC 410: MOBILE APPLICATION DEVELOPMENT
+Course Description
+This course involves a careful examination of mobile device programming. Emphases are on 
+developing applications that run on the Android platform. Students will learn skills for creating and 
+deploying Android applications, with particular emphasis on software engineering topics including 
+software architecture, software process, usability, and deployment.
+Course Objectives
+Upon completion of this course the student would be able to:
+1. identify technology and business trends impacting mobile applications
+2. program in an event-based model used in application development for mobile devices
+3. design and develop mobile applications using an application development framework
+Course Outline
+ Introduction; 
+ Characteristics of mobile applications; 
+ History of mobile application frameworks; 
+BTech. Computer Science (HTU) Page 73
+
+===== PAGE 75 =====
+ Overview of the Android framework; 
+ Application models of mobile application frameworks; 
+ User-interface design for mobile applications; 
+ Managing application data; 
+ Integrating with cloud services; 
+ Integrating networking, the OS and hardware into mobile applications; 
+ Addressing  enterprise  requirements  in  mobile  applications:  performance,  scalability,
+modifiability, availability and security; 
+ Testing methodologies for mobile applications; 
+ Publishing, deployment, maintenance, and management.
+Mode of Delivery
+Face-to-Face sessions, Workshops, Seminars, Lab sessions and Course Project works.
+Reading Materials 
+Engelsma, J., & Dulimarta, H. (2021).  Mastering mobile application development  (2nd Edition).
+Leanpub book.
+Fling, B. (2009). Mobile design and development. O'Reilly Media.
+Ramnath, R., Crawfis, R. & Sivilotti, P. (2011) Android SDK 3 for Dummies. Wiley.
+Firtman, M. (2013). Programming the mobile web (2nd edition). O'Reilly Media.
+McWherter, J., & Gowell, S. (2012). Professional mobile application development . John Wiley &
+Sons.
+13. Assessment of Students’ Performance and Achievements 
+a. Regulations on Students Assessment 
+The assessment of students shall cover the following areas. 
+ Course  Assignments: They  shall  include  class exercises,  tests,  quizzes,  homework,
+course papers (essays), practical exercises and student projects. The assignments shall
+carry 20% of the overall marks for the course. There shall be at least one assignment for
+a course.
+ Mid-Semester Examinations: This accounts for 20% of the overall marks of the course.
+It will be conducted by the course instructor/lecturer about mid-way through the semester
+but mainly at his/her convenience using the regular period(s) on the teaching timetable. 
+BTech. Computer Science (HTU) Page 74
+
+===== PAGE 76 =====
+ End-of-Semester Examinations: The last three weeks of the semester will be devoted to
+the end-of-semester examinations. There shall be examinations on each course and this
+shall account for the remaining 60% of the marks of the course.
+A student is supposed to make a pass mark of 50% or above to be considered as having passed a
+particular course.  A student had to make a cumulative Grade Point Average CGPA of 1.5
+or better to be qualified for the award of certificate.  Each student is also required to undergo a
+compulsory 16 weeks supervised Industrial Attachment and to present a report for assessment at
+the end of the sixth semester. A student is required to make minimum cumulative credit hours  of
+one hundred and thirty-nine (139) for the direct four year programme or sixty-eight (68) for the
+top-up programme. A student may exceed the cumulative credit hours only where he/she failed a
+course or some courses and has to be re-examined in them, normally referred to as a RESIT
+examination. These information can be found in the students’ Handbook.
+b. Mode of Certification 
+Ho Technical University
+BTech. Computer Science (HTU) Page 75
+
+===== PAGE 77 =====
+14. Staffing
+Name of Department: Computer Science 
+Name of Programme: BTech Computer Science
+Name and Qualification of Head of Department: John Coker Ayimah (PhD.)
+Table 14.1: Staff Details
+Staff 
+Category
+Name of staff M
+/F
+Status Rank Qualification (Stating from Highest indicating title 
+of programme. Institution of award, year of award
+and place)
+Area of 
+specialization
+Courses taught Credit 
+hours / 
+Work 
+Load
+Teach.
+Exp.
+Teaching
+staff
+Dr. John
+Coker
+Ayimah
+M FullTime SeniorLecturer
+- PhD(Statistics), UG-Legon, 2018, Accra-Ghana;
+- MSc (Statistics), UCC, 2008, Cape Coast-Ghana;
+-  BSc (Mathematics), KNUST, 2001,   Kumasi-
+Ghana.
+Statistics and 
+Computing
+Discrete Mathematics,
+Calculus, Probability 
+and Statistics;
+Mathematics for 
+Computer Science, 
+Numerical Methods and 
+Computation
+15 15 yrs
+Dr. Edward
+K. Ayimey M FullTime SeniorLecturer
+- PhD (Management)/Open University of the 
+Netherlands/2021/ Netherlands
+- MBA (Marketing)/UG/2009/Legon;
+- BCom /UCC/1995/Cape Coast; 
+- Dip in Education/ UCC/1990/Cape   Coast.
+Management Legal and Ethical Issues in Computing 3 21 yrs 
+Dr. Ametefe
+Normanyo M FullTime SeniorLecturer - PhD (Economics)/ UCC/2017/Cape Coast;- MPhil (Economics)/UCC/2002/Cape Coast;- BA (Economics and Statistics)/UG/1991/ Legon. Economics Entrepreneurship & Innovation I and II 4 16 yrs
+Dr. Peter
+Agbodza M FullTime SeniorLecturer - PhD (African Studies)/UG/ 2010/Legon;-    BEd (English)/ UEW/1999/Winneba. African Studies African Studies 2
+Dr. Baidenger
+Agyekum
+Twumasi
+M FullTime SeniorLecturer
+- PhD (Electronic Science and Technolog)/UESTC/
+2020/China
+- MEng. (Telecommunication Management)/HAN/
+2011/Netherland
+- HND (Electrical/Electronic Engineering)/HTU/
+- 2004/Ghana
+Electronic 
+Science and 
+Technology- 
+Microwave 
+Engineering, 
+Antennas and 
+Propagation, 
+Circuits and 
+Systems
+Basic Electronics;
+Digital Logic Design
+6 16 yrs
+Dr. Martin M Full Lecturer - PhD (Information System)/University of Fort Cloud Information System 6 10 yrs 
+BTech. Computer Science (HTU) Page 76
+
+===== PAGE 78 =====
+Adane time Harare/2017/South Africa
+- MEd (Information Technology)/UCC/
+2009/Cape Coast
+-    BSc. (Chemistry)/UCC/2003/Cape Coast
+Computing in 
+Education, 
+Informatics  
+Computer forensics
+Dr. Collins
+Nunyonameh M FullTime Lecturer
+- PhD (Interdisciplinary Ecology)/ University of 
+Florida/ 2014/Florida-USA;
+- MA (International Studies)/ Morgan State 
+University/ 2006/Baltimore-USA;
+- BSc (Tourism)/ UCC/2003/Cape Coast.
+Research 
+Methods 
+Interdisciplinar
+y Ecology
+Research Methods in 
+Computer Science
+3
+Dr. Appiah
+Benjamin
+M Full 
+time 
+Lecturer - PhD(Software Engineering)/UESTC/2021/China,
+- MSc (Computer Science and 
+Technology)/UESTC/2015/China,
+- BEd (Computer Science)/UCC/2010/
+     Cape Coast
+Computer 
+Security 
+Operating 
+Systems
+Administration
+Artificial 
+Intelligence 
+Networking 
+Software Engineering,  
+Fundamentals of 
+Computer Science
+6
+Lily Bensah F
+Full 
+Time Lecturer
+- MPhil (Information Technology)/KNUST/2014/
+Kumasi;
+- BSc (Computer Science & Statistics)/UG/2007/
+Legon.
+Data Structures
+Programming
+Information 
+Systems
+Artificial Intelligence, 
+Data Structures & 
+Algorithm 6
+Noble Arden
+Kuadey*
+M Full 
+Time
+(Core)
+Lecturer - MSc Engineering (Information Systems) /Norwegian
+University of Science & Technology/ 
+2010/Trondheim-Norway;
+- BSc (Computer Science)/UCC/2007/
+Cape Coast.
+Information 
+Systems 
+Programming Using C+
++, 
+3
+Carlos
+Ankora* M FullTime Lecturer
+- MEng (Information & Communication 
+Engineering)/HunanUniversity/2012/Changsha-
+China
+- BSc (Information Technology)/UCC/2007/Cape 
+Coast
+Database 
+Systems
+Web 
+Programming
+Information 
+Systems
+Database  Systems  and
+Design, Web Application
+Development 6
+Adolph
+Sedem Yaw
+Adu*
+M Full
+Time 
+Lecturer - MSc (Information Technology)/KNUST/2015/
+Kumasi;
+- BEd (Computer Science)/UCC/2011/
+     Cape Coast.
+Human 
+Computer 
+Interaction
+Operating 
+Systems 
+Administration
+System Administration I
+and II, 
+6
+BTech. Computer Science (HTU) Page 77
+
+===== PAGE 79 =====
+Kafui
+Agbevanu* M FullTime Lecturer
+- MPhil (Computational Nuclear Science & 
+Engineering)/UG/2015/Legon;
+- BSc (Computer Science and Physics)/UG/1999/
+      Legon.
+Computational 
+Sciences
+Digital 
+Electronics and 
+Hardware
+Computer Hardware,
+Computer Applications
+5
+Fati Tahiru* F FullTime Lecturer
+- MPhil (Information Technology)/KNUST/2014/
+      Kumasi;
+- BSc (Information Technology)/UCC/2007/Cape 
+Coast.
+Project 
+Management 
+Web
+Applications
+IT Project Management,
+Web Concepts &
+Technology 6
+Yvonne
+Nutakor* F FullTime Assist.Lecturer - MPhil (Linguistics)/ UG/2014/Legon;- BA (English & Ghanaian Language)/UCC/2007/     Cape Coast. English  andLinguistics Communication  Skills  Iand II 4
+Akwasi
+Asiedu M FullTime Asst. Lecturer
+- MSc (Information Technology)/KNUST/2014/
+      Kumasi;
+- BSc (Computer Science)/Garden City University 
+College/2011/Kumasi
+- BA Arts (Econs/Geog)/KNUST/2005/ Kumasi
+Software 
+Development
+Information
+Systems
+Introduction  to  Python,
+Human Computer
+Interaction 6
+Victor
+Worlanyo
+Gbedawo
+M FullTime Asst. Lecturer
+- MSc. (Information Technology)/KNUST/2017/
+      Kumasi
+- BSc. (Computer Science)/UDS/2011/Navrongo
+Information
+Technology
+Data Communication
+and Networks I & II 6
+Laurene Adjei F FullTime Asst.Lecturer - MPhil. (Computer Science)/UG/2018/ Legon- BA. (Computer Science)/UG/2014/ Legon ComputerScience Wireless Communication,Cloud Computing 6
+Lazarus
+Kwao * M FullTime Asst.Lecturer
+- MPhil. (Information Technology)/KNUST/2018/
+     Kumasi
+- MSc. (Health Informatics)/UG/2010/Legon Accra
+- BSc. (Computer Science)/All Nations/2007/
+      Koforidua
+Information
+Technology
+Object-Oriented  System
+Analysis and Design
+3
+Daniel
+Commey * M FullTime Asst.Lecturer
+- MPhil (Computer Engineering)/KNUST/
+     2019/Kumasi
+- BSc (Computer Engineering)/KNUST/
+     2015/Kumasi
+Computer
+Engineering,
+Computer Organization 
+and Architecture, Mobile
+Application 
+Development
+6
+Anthony
+Kingsley
+Sackey
+M FullTime Asst.Lecturer - MSc. (Information Technology)/KNUST/2019/     Kumasi- BSc. (Computer Science)/UCC/2011/Cape Coast InformationTechnology Computer Security, Advanced Software Development with Java 6
+Iven Aabaah M Full Asst. - MSc. (Computer Science)/KNUST/2019/Kumasi Computer Operating Systems, 6
+BTech. Computer Science (HTU) Page 78
+
+===== PAGE 80 =====
+Time Lecturer - BSc. (Computer Science)/KNUST/2015/Kumasi Science Internet of Things
+Kissi
+Frimpong M FullTime Asst.Lecturer - MSc. (Computer Science)/KNUST/2019/Kumasi- BSc. (Computer Science)/VVU/ 2017/ Oyibi-Accra ComputerScience Software Engineering, Computer Security 6
+Jacqueline
+Asor Kumi F FullTime Asst.Lecturer - MPhil. (Computer Science)/UG/2020/ Legon- BSc. (Computer Science)/ UG/2017/ Legon ComputerScience Data mining and warehousing, Data Science 6
+Isaac Osei M FullTime Asst.Lecturer - MSc. (Computer Science)/KNUST/2021/Kumasi- BSc. (Computer Science)/KNUST/2013/Kumasi ComputerScience Software Engineering, Computer Security 6
+Technicians: Work.
+Prince
+Nyarkou M FullTime
+Senior
+Compute
+r. Tech.
+- BSc (Information Technology)/Radford University 
+College/2014/Accra.
+System 
+Administration
+Website
+Development
+10 yrs
+Administr
+ative staff
+Rejoice
+Kwami
+F Full
+Time
+Senior 
+Admin. 
+Assist.
+- BA (Corporate Secretary & Management)/UCC
+/2015/Cape Coast
+Admin.
+Assistant
+12 yrs
+Joan Ahlidzi F FullTime
+Senior 
+Admin.
+Assist.
+HND (Secretaryship & Management Studies)/HTU/
+2017/Ho Secretaryship
+*Pursuing PhD Programme
+BTech. Computer Science (HTU) Page 79
+
+===== PAGE 81 =====
+b. Staff Development Plan 
+i. Technical Assistance: 
+The development of staff is high on the priority of the University. As indicated in the
+Human Resource Development Plan of the Institution, staff members continue to benefit
+from several training programmes both in the country and outside. Academic staff is
+supported in their teaching and research capabilities; faculty members in the department
+have  benefited  from  capacity-building  initiatives  and  programmes  of  the  University.
+Currently, three years of teaching is the minimum number of years for staff to qualify for
+further studies in Ghana or outside the country. 
+ii. Overseas Training: 
+The  University has also made provision for overseas training for staff who wish to go for
+further studies outside the country.   Five lecturers from the Department are currently
+enrolled on PhD programmes outside the country which are relevant to the programmes
+offered in the Department.
+iii. Local Training: 
+The staff of the Department are supported to attain higher qualifications within the country.
+Currently, three staff of the Department are pursuing PhD programmes within the country.
+The Faculty and Department organize seminars and workshops where experts are invited to
+take members through training in specific areas. 
+iv. Mentoring:
+Newly recruited staff are assigned to senior colleagues in the Department for
+mentoring.  Staff are equally encouraged to seek mentorship on their own either
+within  the  University  or  from  sister  universities  both  within  and  outside  the
+country.
+v. Funding plan for the execution of the above staff development programme. 
+Allocation for staff development initiative is about 30% of Internally Generated Funds
+while other funding sources such as GETFund , and other partnership arrangements with
+universities are also accessed.
+vi. Acquisition of Special Skills
+The Department also organizes workshops and seminars to enable staff to acquire
+BTech. Computer Science (HTU) Page 80
+NB: See Appendix A for Staff Publications 
+
+===== PAGE 82 =====
+special skills required for delivering on the University’s mandate. The teaching
+staff of the University have undergone a 5-day workshop in competency-based
+training and have been presented with certificates to that effect. This is an example
+of workshops and seminars the University organizes to enable staff to acquire
+special skills.
+vii. Staff Development Plan
+Table 14.2: Staff Development Schedule for Academic Staff
+S/N Name Current
+Qualification
+Proposed Staff
+Development
+Duration
+(Years)
+1 Noble Arden Kuadey * MSc PhD 3
+2 Makafui Nyamadi * MBA PhD 4
+3 Carlos Ankora * Meng PhD 3
+4 Kwame Simpe Ofori * MSc PhD 4
+5 Lily Bensah MPhil PhD 4
+6 Adolph Sedem Adu* MSc PhD 4
+7 Kafui Tsoeke Agbevanu* MPhil PhD 4
+8 Fati Tahiru* MPhil PhD 4
+9 Daniel Commey* MPhil PhD 4
+10 Laurene Adjei MPhil PhD 4
+11 Victor  Worlanyo
+Gbedawo
+MSc PhD 4
+12 Lazarus Kwao* MPhil PhD 4
+13 Anthony Kingsley Sackey MSc PhD 4
+14 Iven Aabaah MSc PhD 4
+15 Akwasi Asiedu MSc PhD 4
+16 Jacqueline Asor Kumi MPhil PhD 4
+17 Bill Kissi Frimpong MSc PhD 4
+18 Isaac Osei MSc PhD 4
+*Pursuing PhD programme
+BTech. Computer Science (HTU) Page 81
+
+===== PAGE 83 =====
+        Table 14.3:  Staff Development Schedule for Technicians and Administrative Staff
+S/N Name Staff Category Current
+Qualification
+Proposed  Staff
+Development
+Duration
+(Years)
+1 Prince Nyarkou Senior Computer 
+Technician
+BSc MSc 2
+2 Rejoice Kwami Senior Administrative
+Assistant
+BA MPhil 2
+3 Joan Asiwome 
+A. Ahlidzi
+Administrative 
+Assistant
+HND MPhil 2
+15. Student Enrolment
+           Table 15.1:Projected Student Enrolments for the Next Four (4) Years
+Academic Year Year 1 Year 2 Year 3 Year 4
+Male 40 44 49 54
+Female 15 17 19 21
+Total 55 61 68 75
+16. Resources:
+a. Physical Resources 
+Table 16.1: Classroom Facilities 
+S/N Classrooms Students Capacity
+1 Asogli Complex 2110 Students
+2 Afadjato Block 200 Students
+3 Old Library 200 Students
+4 Faculty of Art and Design Block 100 Students
+5 Fashion Block 150 Students
+6 Seminar Room 60 Students
+BTech. Computer Science (HTU) Page 82
+
+===== PAGE 84 =====
+7 Engineering Block 150 Students
+       Table 16.2: Computer Laboratory Facilities
+S/N Computer Labs Students Capacity 
+1 Octagon Main Lab 50
+2 Octagon Wing Lab (BYOD) 30
+3 Octagon Digital Lab (BYOD) 80
+4 Accountancy Lab 50
+5 Management Studies Lab 30
+6 Statistics Lab 20
+* BYOD – Bring Your Own Device
+Provisions for Physically Challenged
+Access to the use of some facilities such as classrooms and laboratories are provided with special
+walkways for the physically challenged to have easy access.
+Safety Facilities
+University Clinic
+The University has a Clinic that serves the University Community. The Clinic has the following
+facilities:
+ 1 Doctor; 
+ Resident Health Nurses;
+ Seven (7) Beds;
+ Storeroom;
+ Dispensary (Pharmacy).
+Police Post
+The University is host to a police post that augments the institutions' internal security unit to
+maintain law and order in the University community and its immediate environs.
+Fire Extinguishers
+The University has put in place 132 fire extinguishers allocated at vantage points (floors) of all
+buildings and blocks in the Institution which is regularly maintained for use in case of emergency. 
+BTech. Computer Science (HTU) Page 83
+
+===== PAGE 85 =====
+b.  Sources of Information 
+Library
+The University has a well-equipped library which would be used by students in the BTech Computer
+Science Program and also a computer center with an internet facility for both teaching staff and
+students. The Library features the following:
+a. Seating Capacity of 1500 students
+b. E-Library Learning Facility
+c. Binding and Repairs Section
+d. Photocopy Section
+e. Online facilities e.g. CARLIGH
+f. Reading Room
+Additionally, the Computer Science Department has a well-equipped Digital Centre with internet
+connectivity which is used by students for research. There is also a reading room that the students
+make good use of to read and share ideas. 
+17. Student Learning Outcomes
+Upon  completion  of  the  four-year  programme  of  study,  graduates  are  expected  to  possess
+knowledge of practice, requisite skills, applied theories and methods, widely used in the Computer
+Science industry. 
+Graduates of the programme should be able to:
+i. design electronic circuits and develop software to run them;
+ii. build and validate simulation models;
+iii. develop software systems such as web and mobile applications;
+iv. provide ICT system support services;
+v. configure computer networks, manage data communication services and implement security
+controls; and 
+vi. install and maintain computer hardware and software.
+BTech. Computer Science (HTU) Page 84
+
+===== PAGE 86 =====
+18. Sources of Funding for the Programme
+Existing material resources and equipment available at the Department of Computer Science as well
+as  the  University  will  be  used  for  the  proposed  programme.  Regarding  human  resources,  the
+Department  does not  expect  considerable cost  implications given  that  existing  lecturers in the
+Department and those within the University would be relied upon to teach the respective courses.
+The Department will rely on the government of Ghana subvention, GET-Fund, Internally Generated
+Funds (IGF) by the University and the Department to support the programme.
+Table 18.1: Cost Implication for the First Five Years (Ghana Cedis)
+Income Year 1 Year 2 Year 3 Year 4 Year 5
+Number of students 61 68 75 82 90
+Fee per unit per year 1,903.00 2,093.30 2,302.63 2,532.89 1,730.00
+Total Income (Student) 116,083.00 142,344.40 172,697.25 207,696.98 155,700.00
+Teaching Staff 11 14 17 20 23
+Personnel Emoluments 36,830.38 40,513.41 44,564.76 49,021.23 33,482.16
+Sub - Total 405,134.18 567,187.74 757,600.92 980,424.61 770,089.68
+Supporting Staff 5 5 7 10 10
+Personnel Emoluments 18,249.85 18,249.85 18,249.85 18,249.85 18,249.85
+Sub  -Total  (Support.
+Staff)  91,249.25 91,249.25 127,748.95 182,498.50 182,498.50
+Sub  Total  Personnel
+Cost 496,383.43 658,436.99 885,349.87 1,162,923.11 952,588.18
+Operations 
+General  office  expenses,
+phone,  mailings,  data
+services,  memberships,
+travel conference fees etc
+Equipment and Materials 72,297.00 74,032.13 75,808.90 77,628.31 70,615.00
+Estimated  Total
+Expenditure 568,680.43 732,469.12 960,158.77 1,240,551.42 1,023,203.18
+BTech. Computer Science (HTU) Page 85
+
+===== PAGE 87 =====
+19. Linkages
+The Department has collaborated with several organizations to offer industrial training to students
+and  staff.  These  organizations  include  CoSystems  Gh,  Hacklab  Foundation  and  LM
+Communications.
+The University is in collaboration with Rhine-Waal University of Applied Sciences in Germany for
+a  staff capacity-building programme. The  partnership  is under  the  DIES-Exchange  programme
+funded by the German Academic Exchange Service (DAAD).
+The University has collaborated with Commission for Technical and Vocational Education and
+Training (CTVET) for TVET training for the development of skills and manpower of graduates.
+Currently, the University is in talks with the  Delegation of German Industries and Commerce
+(DGIC)  for  the  supply of learning equipment  and laboratories  and  training of personnel,  both
+students and staff on the use of this equipment and the laboratories. 
+IBM and Ho Technical University have signed a Memorandum of Understanding to foster world-
+class cooperative programmes that will contribute to the development of an advanced educational
+and training environment in Ghana, utilizing leading-edge, advanced computing technologies. 
+The University has signed a Memorandum of Understanding with the Institute of ICT Professional
+Ghana (IIPGH) to foster capacity building and networking opportunities with industry experts for
+both students and staff of the department.
+Ho Technical University is also in collaboration with Huawei to form a Network Academy to
+provide authorized training to the students.
+BTech. Computer Science (HTU) Page 86
+
+===== PAGE 88 =====
+APPENDIX A
+Staff Publications
+Adam, D. R., Ofori, K. S. , Oko,e A. F., & Boateng, H.(2018). Effects of structural and bonding-
+based attachment on brand loyalty. African Journal of Economic and Management Studies, 
+9(3), 305-318. https://doi.org/10.1108/AJEMS-10-2017-0252
+Adanu, M., & Ahiave, E. (2016). The development of nickel titanium thermal actuation smart coil 
+spring: International Journal of Material Science and Technology, 5, 2249-3077.
+Adu, A. S. Y., Agbenorto, D. M ., & Quaye, S. B. (2017). E-government adoption in developing 
+economies:  A  G2B  e-government  perspective.  International  Journal  of  Computer  
+Applications (0975-8887), 176(4), 7-11.
+Adu, A. S. Y ., Frimpong, T., Hayfron-Acquah, J. B., & Panford, J. K. (2015). Cloud computing 
+framework for e-health in Ghana: Adoption issues and strategies – A case study of Ghana 
+health service. International Journal of Computer Applications (0975-8887), 118(17), 13-17.
+Adzido, R. Y. N. P.,  Ahiave, E. K. ,   Kamasah,V. Y., Akoto, V., & Dorkpah, O. K. (2016).  
+Assessing financial openness and access to credit facilities:   The case of banks in Ho,  
+Ghana: International Journal  of  Academic  Research  in  Accounting,  Finance  and  
+Management Sciences, 6(3), 47–57. E-ISSN: 2225-8329, P-ISSN: 2308-0337.
+Adzido, R. Y. N. P., Dzogbede, O. E,  Ahiave, E . K., & Dorkpah, O .K. (2016).  Assessment of  
+family income on academic performance of tertiary students: The case of Ho Polytechnic, 
+Ghana.  International  Journal  of  Academic  Research  in  Accounting,  Finance  and  
+Management Sciences, 6(3), 154–169. E-ISSN: 2225-8329, P-ISSN: 2308-0337.
+Adzido, R. Y. N. P., Dzogbede, O. E., Dorkpah, O. K., &  Ahiave, E. K . (2016).  Effects of  
+accounting concepts’ application on the firm’s performance.  International Journal of  
+Recent Advances in Multidisciplinary Research, 03(06), 1538-1543, ISSN: 2350-0743.
+Agbesi S., Tahiru, F. (2020) Application Of Blockchain Technology In Land Adminstration In  
+Ghana in Cross-industry use of Blockchain Technology and Opportunities for the Future.  
+IGI GLOBAL. DOI: 10.4018/978-1-7998-3632-2
+BTech. Computer Science (HTU) Page 87
+
+===== PAGE 89 =====
+Akuamoah, W. S., Mahama, F.,  Kuadey, N., & Ankorah, C.  (2016).  Mathematical model of  
+knowledge management system in an organization.  Global Journal of Management and  
+Business Research: Administration and Management, 16(5), 13-20.
+Amoako, G. K., Neequaye, E. K., Kutu-Adu, S. G., Caesar, L. D., &  Ofori, K. S.  (2019).  
+Relationship  marketing  and  customer  satisfaction  in  the  Ghanaian  hospitality  industry.  
+Journal of Hospitality and Tourism Insights.
+Ampong, G.O.A., Abubakari, A. Mohammed M., Appaw-Agbola, E., Addae, J.A., & Ofori, K.S., 
+(2020), Exploring customer loyalty following service recovery: Evidence from the Ghanaian 
+Hotel Industry. Journal of Hospitality and Tourism Insights.
+Ankora, C., Mahama, F., Kuadey, N., & Bensah, L. (2016). Predictors of customer satisfaction 
+and loyalty in the mobile communication industry in Ho Municipality, Ghana,  British  
+Journal of Applied  Science  &  Technology  (BJAST),  18(4),  1-10,  Article  
+no.BJAST.30426
+Aseda Mensah, George Oppong Appiagyei Ampong,  Adolph Sedem Yaw Adu , John Agyekum  
+Addae, Osaretin Kayode Omoregie, Kwame Simpe Ofori (2018). Examining Self-Disclosure
+on Social Networking Sites: A Flow Theory and Privacy Perspective. Behavioral Sciences,  .
+8 (58) June, 2018. Pages 1-27.
+ Asiedu, M., Anyigba H., Ofori K.S., Addae J.A., & Ampong G.O.A (2020) Factors influencing
+innovation performance in higher education institutions. The Learning Organization.27(4), 365-
+378 
+Boateng, H., Ampong, G.O.A., Adam, D.R.,  Ofori, K.S.,  Hinson, R. (2020). The relationship
+between  social  interactions,  trust,  business  network,  external  knowledge  access,  and
+performance:  A  study  of  SMEs  in  Ghana"  VINE:  Journal  of  Information  and  Knowledge
+Management Systems. 
+Boateng, H., Kosiba, J., Adam, D., Ofori, K.S., & Okoe, A. (2020), Examining brand loyalty from
+an attachment theory perspective. Marketing Intelligence & Planning. 38(4), 479-494 
+Boateng, H., Visnupriyan, R.,  Ofori, K.S.,  & Hinson, R. (2020), Examining the link between
+Social  capital,  Knowledge  Quality,  SMEs  Innovativeness  and  Performance ,  Business
+Information Review. 37(4), 167-175 
+Bormann, F. K. A., Asimah, V. K., & Ahiave, E. (2016). Sources and availability of information for
+tourist: A study of Ghana. Merit Research Journals, 4(1), 2350-2358.
+BTech. Computer Science (HTU) Page 88
+
+===== PAGE 90 =====
+Carlos Ankora, Francois Mahama, Noble Kuadey, Lily Bensah (2019). Predictors of Customers
+Satisfaction and Loyalty in the Mobile Communication Industry in Ho Municipality, Ghana. In
+K.G. Sheela (Ed). Emerging Issues in Science and Technology Vol.1 Hoogly, West Bengal,
+India. Book Publisher International ISBN-13(15):978-93-89562-66-8 (Print), ISBN-13(15):978-
+93-89562-67-5 (eBook)
+Commey, D., Klogo, S., Griffith, & Gadze, D., James. (2020). Performance comparison of 3DES, 
+AES, blowfish and RSA for dataset classification and encryption in cloud data storage. 
+International Journal of Computer Applications, 177(40), 17–22. 
+https://doi.org/10.5120/ijca2020919897
+Dorkpah, O. K., Adzido, R. Y. N. P.,  Ahiave, E. K., & Dzogbede, O. E. (2016). Effect of working 
+capital management practices on a firm’s performance: The case of El-Shadai financial  
+services, Ada-Ghana. International Journal of Commerce and Management Research, 2(6), 
+60-69.  
+Edumadze, J. K., Kuadey, N. A. & Mensah, S.K (2019). Students’ Perception of Mobile Learning at
+University of Cape Coast, Ghana. The Online Journal of Distance Education and e-Learning,
+7(3), 226-235. ISSN 2147-6454
+Fahiru, F., & Agbesi, S. (2019). Driver and Barriers of ICT Adoption in Revenue Collection in 
+Ghana: A Case of Accra Metropolitan Assembly. 30th European Regional ITS Conference, 
+Helsinki 2019, International Telecommunications Society (ITS). Helsinki.
+Fianu, E., Ofori, K. S ., Boateng, R., & Ampong, G. O. A. (2019, June). The Interplay Between 
+Privacy, Trust and Self-disclosure on Social Networking Sites. In International Working  
+Conference on Transfer and Diffusion of IT (pp. 382-401). Springer, Cham.
+Francois Mahama, Carlos Ankora,  Noble Kuadey ,  Lily Bensah (2020) . Energy Integration to  
+ensure Effective Generation Supply and Distribution in Ghana Corporation Perspective. In 
+L.G. Rodino (Ed). Theory and Applications of Mathematical Science Vol.1 (pp.96-107).  
+Hoogly, West Bengal, India. Book Publisher International ISBN-13(15):978-93-89562-12-5 
+(Print), ISBN-13(15):978-93-89562-13-2 (eBook)
+Gyamfi, N. K., Bensah, L. E., Nyamadi, M. , & Aggrey, R. (2016). Instrument and technology for 
+computer forensic: Research in Ghana.  International Journal of Computer Networking,  
+Wireless and Mobile Communications (IJCNWMC), 6(5), 33-40.
+Gyamfi, N. K., Nyamadi, M., Appiah, P., Katsriku, F., & Abdulai, J. D. (2016). A brief survey of 
+BTech. Computer Science (HTU) Page 89
+
+===== PAGE 91 =====
+mobile  forensics  analysis  on  social  networking  application.  International  Journal  of  
+Computer Engineering & Technology (IJCET), 7(4), 81 - 86, ISSN Print: 0976 – 6367; ISSN
+Online: 0976 – 6375.
+Gyamfi, N. K., Nyamadi, M., Bensah, L. E., Aggrey, R., Katsriku, F., & Abdulai, D. (2016). Free 
+and open source software: Educational framework for Ghana.  International Journal of  
+Computer Science Engineering, and Information Technology Research (IJCSEITR), 6(5),  
+21-28.
+Kuadey, N. (2010). Mobile collaborative learning systems, design, implementation and evaluation 
+of MCLS prototype.  LAP LAMBERT Academic  Publishing AG & Co.KG, Dudweiler  
+Landstr.99, 66123 Saarbrϋcken, German.ISBN-10: 3843373159.
+Kulor, F., Markus, D. E., Apprey, M. W.,  Agbevanu, K. T ., & Gasper, G. (2021). Design and  
+implementation of a microcontroller-based printed circuit scrolling message notification  
+board. IOP Conference Series: Materials Science and Engineering, 1088(1), 012057. https:
+// doi.org/10.1088/1757-899X/1088/1/012057
+Kulor, F., Markus, E. D., Apprey, M. W., Agbevanu, K. T., & Gasper, G. K. (2020, September 14-
+15).Design and implementation of a microcontroller based printed circuit scrolling message 
+notification board, [Conference presentation]. CoECET 2020, Cameron Highlands, Pahang 
+Darul Makmur, Malaysia. https://edas.info/showPaper.php?m=1570655255 
+Mahama, F., Akuamoah, W. S.,  Kuadey, N ., & Yemidi, S. (2016). Determining the road traffic  
+severity  in  a  developing  city:  A  case  study  at  Sekondi-Takoradi.  British  Journal  of
+Mathematics & Computer Science (BJMCS), 13(4), 1-12.
+Mahama, F., Ankora, C., Kuadey, N., & Bensah, L. (2016). Energy integration to ensure effective 
+generation supply and distribution in Ghana corporation perspective. Journal of Scientific 
+Research and Reports (JSRR), 12(6): 1-10. 
+Mensah, A., Ampong, G. O. A., Adu, A. S. Y. , Addae, J. A., Omoregie, O. K., &  Ofori, K. S.  
+(2018). Examining self-disclosure on social networking sites: A flow theory and privacy  
+perspective. doi: 10.20944/preprints201803.0251.v1.
+Noble Arden Kuadey, Lily Bensah, Carlos Ankora, Francois Mahama, Victor Kwaku Agbesi , 
+Newman  Kpogo  Newman  (2020).  Adoption  of  Mobile  Technology  Application  at  a  
+Technical University in Ghana. International Journal of Computer Applications. 175(31):7-
+13
+BTech. Computer Science (HTU) Page 90
+
+===== PAGE 92 =====
+Nyamadi,  M. &  Tsibolane,  P.  (2020).  Exploring  the  Problematic  Consumption  of  Digital  
+Platforms During  COVID-19  Pandemic  Among  University  Students  in  Africa.  In  a  
+Handbook of Digital Innovations, Business and Society in Africa (Accepted). Springer
+Nyamadi, M. (2015). Computer literacy. Vol. Ho, Ghana: MaxVin Publishers. ISBN  978-9988-2-
+1378-8.
+Nyamadi, M. (2020). Technology Addictions, Model Development, Measurement, and Effect on 
+Performance from a Developing Country Context: A Viewpoint for Future Research. In  
+Handbook of Research on Managing Information Systems in Developing Economies (pp. 
+471-479). IGI Global.
+Nyamadi, M., & Boateng, R. (2018). Theorizing Technology Addictions: Model Development,  
+Measurement and Effects on Productivity.
+Nyamadi,  M.,  Boateng,  R.,  &  Asamenu,  I.  (2020,  January).  Smartphone  Addictions:  A  
+Review of Themes, Theories and Future Research Directions. In Proceedings of the 53rd  
+Hawaii International Conference on System Sciences.
+Ofori, K. S ., Boakye, K., & Narteh, B. (2018). Factors influencing consumer loyalty towards 3G 
+mobile  data  service  providers:  evidence  from  Ghana.  Total  Quality  Management  &  
+Business Excellence, 29(5-6), 580-598.
+Ofori, K. S., Fianu, E., Kayodey, O., Afotey, O. N., & Oduro, G. F. (2014). Predicting credit default
+among micro borrowers in Ghana. Research Journal of Finance and Accounting.  5(12), 96–
+105. 
+Ofori, K. S., Larbi-Siaw, O., & Addae, J. A. (2015). Antecedents of customer switching intention in
+the Ghanaian telecommunications industry, 1, 1–14. http://doi.org/10.5267/j.ac.2015.11.006.
+Ofori, K. S.,  Larbi-Siaw, O., Fianu, E., Gladjah, R. E., & Yeboah-Boateng, O. E. (2015). Factors
+influencing the continuance use of mobile social media : The effect of privacy concerns.
+Journal of Cyber Security, 4, 207–226.
+Omoregie, O. K., Addae, J. A., Coffie, S., Ampong, G. O. A., &  Ofori, K. S.  (2019). Factors  
+influencing  consumer  loyalty:  evidence  from  the  Ghanaian  retail  banking  industry.  
+International Journal of Bank Marketing.
+Tahiru,  F.(2021)  AI  in  Education:  A  Systematic  Literature  Review.  Journal  of  Cases  on
+Information Technology (JCIT), 23(1), 1-20. 
+BTech. Computer Science (HTU) Page 91
+
+===== PAGE 93 =====
+Tahiru, F., Tei Asare, B., Asante, G., & Agbesi, S. (2020). Internet Access and Cost and Its Impact 
+on Citizens Engagement on E-Government Services (December 14, 2020). 
+Twumasi, B. A., Dzah, C., Kuadey, N., Akpari, E., & Buah, P. A. (2019, September). Design of a 
+Miniaturized  Indented  T  Monopole  Antenna  for  WLAN  Applications.  In 2019  IEEE  
+AFRICON (pp. 1-4). IEEE., doi: 10.1109/AFRICON46755.2019.9133876.
+BTech. Computer Science (HTU) Page 92
+
+===== PAGE 94 =====
+APPENDIX B
+MOUs Signed by the Department
+BTech. Computer Science (HTU) Page 93
+
+===== PAGE 95 =====
+BTech. Computer Science (HTU) Page 94
+
+===== PAGE 96 =====
+BTech. Computer Science (HTU) Page 95
+
+===== PAGE 97 =====
+BTech. Computer Science (HTU) Page 96
+
+===== PAGE 98 =====
+BTech. Computer Science (HTU) Page 97
+
+===== PAGE 99 =====
+BTech. Computer Science (HTU) Page 98
+
+===== PAGE 100 =====
+BTech. Computer Science (HTU) Page 99
+
+===== PAGE 101 =====
+BTech. Computer Science (HTU) Page 100
+
+===== PAGE 102 =====
+BTech. Computer Science (HTU) Page 101
+
+===== PAGE 103 =====
+BTech. Computer Science (HTU) Page 102
+
+===== PAGE 104 =====
+BTech. Computer Science (HTU) Page 103
+
+===== PAGE 105 =====
+BTech. Computer Science (HTU) Page 104
+
+===== PAGE 106 =====
+BTech. Computer Science (HTU) Page 105
+
+===== PAGE 107 =====
+BTech. Computer Science (HTU) Page 106
+
+===== PAGE 108 =====
+BTech. Computer Science (HTU) Page 107
+
+===== PAGE 109 =====
+BTech. Computer Science (HTU) Page 108
+
+===== PAGE 110 =====
+BTech. Computer Science (HTU) Page 109
+
+===== PAGE 111 =====
+BTech. Computer Science (HTU) Page 110
+
+===== PAGE 112 =====
+BTech. Computer Science (HTU) Page 111
+
+===== PAGE 113 =====
+BTech. Computer Science (HTU) Page 112
+
+===== PAGE 114 =====
+BTech. Computer Science (HTU) Page 113
+
+===== PAGE 115 =====
+BTech. Computer Science (HTU) Page 114
+
+===== PAGE 116 =====
+APPENDIX C 
+PEER AND PROFESSIONAL REVIEW OF CURRICULA
+BTech. Computer Science (HTU) Page 115
+
+===== PAGE 117 =====
+TECHNICAL UNIVERSITY
+RESPONSES TO DEFICIENCIES IDENTIFIED BY GHANA TERTIARY EDUCATION COMMISSION PANEL:
+ACCREDITATION OF BTECH COMPUTER SCIENCE
+S/N Deficiencies 
+Identified
+Suggested Remedies Response/ Action from institution Page No.
+1 Review the 
+objectives of the 
+programme
+As a technical University, the 
+programme objective need to reflect its 
+practical aspects
+The main objectives of the programme have been reconstructed
+to reflect its practical aspects.
+Pages 
+1 & 2
+2 Curriculum: some 
+course descriptions
+include course 
+contents and 
+objectives to the 
+programme.
+Revise each of the suggested course 
+objectives to reflect course offering.
+All course objectives have been revised. Page 
+10 - 74
+Pay attention to typographical errors. All typographical errors have been rectified. Pages 
+10 - 74
+Revise course content and provide rich 
+topics or current topics that reflect current 
+issues.
+Data Visualization has been replaced with BCSC 406 - Data 
+Mining and Warehousing since it would be covered under 
+BCSC 409 - Data Science
+Pages 9 -
+10, 58-59, 
+& 71 - 72
+BCSC 103 revise content to reflect 
+material that will be taught under Calculus
+1
+BCSC 103 (now BCSC 104 – Mathematics for Computer 
+Science) has been revised to focus on Algebra, Vectors and 
+Matrices. 
+Pages 21 
+BCSC 107 merge the course content with  
+BCSC 110
+BCSC 107 course outline has been revised to exclude 
+overlapping concepts in BCSC110. BCSC110 is now 
+BCSC106 – Computer Hardware.
+Pages 
+17 & 22
+HOTU 104 delete 'science' from the 
+course name
+HOTU 104 is now Computer Applications. Pages 6, 8,
+& 26
+BCSC 207 OOP using C++.Change this 
+course to Programming with C++
+BCSC 207 OOP using C++ is now BCSC 207 - Programming
+With C++.
+Pages 
+8 & 32
+BCSC 211 Data Structures and 
+Algorithms should be moved to the second
+semester.
+BCSC 202 - Data Structures and Algorithms has been be 
+moved to the Second Semester.
+Pages 
+9 & 36
+BCSC 405 Numerical and Computation 
+should be taught much earlier probably in 
+first semester of second year.
+BCSC 204 - Numerical Methods and Computation has been
+moved to the second semester of Level 200.
+Pages 
+9 & 37-38
+Consider teaching BCSC 409 Artificial BCSC 407 - Artificial Intelligence is now a Core Course and Page 9
+BTech. Computer Science (HTU) Page 116
+
+===== PAGE 118 =====
+Intelligence as a core course and BCSC 
+407 Introduction to Data Science as an 
+elective course.
+BCSC 409 - Data Science is now an Elective Course.
+BCSC 105 Basic Electronics, the content 
+of this course should focus on basic 
+electronic design such as RLC circuits, 
+signals, transistors, diodes and also some 
+fundamentals of digital electronics. 
+Reading list with references to analog 
+electronics should be removed.
+BCSC 105 - Basic Electronics, the course content has been 
+revised to include: basic electronic design such as RLC 
+circuits, signals, transistors, diodes and some fundamentals of 
+digital electronics. 
+Reading list with references to analog electronics has been 
+removed.
+Page 
+13 - 14
+Page 14
+BCSC 102 consider renaming this course 
+as Introduction to Python or Programming
+with Python which will then serve as a 
+foundation for the Data Science program 
+later on.
+BCSC 102 has been renamed as Introduction to Python. Pages 8 & 
+19-20
+BCSC 106 Digital Electronics, consider 
+renaming this course as Digital Logic 
+since there is a course on Basic 
+Electronics, the course content should then
+be revised to focus on digital logic design 
+process. The course should then be moved
+to second semester of level 200.
+BCSC106 has been renamed as Digital Logic Design (BCSC 
+205) and moved to the First Semester of Level 200.
+Pages 
+8 & 30-31
+BCSC 104 Discrete Mathematics, revise 
+content to remove material that has been 
+in BCSC 103.
+Course content has been revised to remove the overlapping 
+concepts in BCSC104 (now BCSC103). BCSC 103 – Discrete
+Mathematics has been moved to First Semester of Level 100.
+Pages 
+8 & 11-12
+BCSC 106 Digital Electronics, revise to 
+remove any overlaps with BCSC 311
+BCSC106 (now BCSC205) has been renamed Digital Logic 
+Design and content has been revised to remove overlaps with 
+BCSC 311. BCSC 205 – Digital Logic Design has been 
+moved to First Semester of Level 200.
+Page 
+8 & 30 - 
+31
+BCSC 201 Data Communications and 
+Networks 1, Remove Data 
+BCSC 201- Data Communications and Networks I has been 
+renamed as BCSC 201 – Computer Networking I.
+Pages 
+8 & 28
+BTech. Computer Science (HTU) Page 117
+
+===== PAGE 119 =====
+Communication from course title as the 
+course content doesn't cover that.
+BCSC 203 Database Systems and Design, 
+revise course content to emphasize design 
+using standard principles
+The course content has been revised to emphasize design using
+standard principles, e.g. Entity Relationships Modelling, etc.
+Pages 
+29 - 30
+BCSC 211 Data Structures and 
+Algorithms, revise course content to make 
+reference to use of Big O notation.
+BCSC 211 Data Structures and Algorithms is now BCSC 202 
+Data Structures and Algorithms. Course content has been 
+revised to include analyses of algorithms which makes 
+reference to the big O notation.
+Pages 
+9 & 36
+BCSC WEB Application Programming 
+revise content to include more modern 
+web technology tools.
+BCSC 208 – Web Application Programming II, the course 
+content has been revised.
+Page 
+8 & 39 - 
+40
+BCSC 401 Information Security and Data 
+Protection, revise content to remove 
+overlap with BCSC 402.
+BCSC 401 – Information Security and Data Protection course 
+content has been revised to exclude overlapping concepts in 
+BCSC 402. BCSC 401 – Information Security and Data 
+Protection is now BCSC 401 – Information Security. 
+However, the Data Protection content has been moved to 
+BCSC 402 – Legal and Ethical Issues in Computing.
+Pages 
+9-10, 53-
+54 & 66-
+67
+BCSC 411 Wireless Communication, 
+revise course content to include topics on 
+modulation schemes, cellular systems 
+design and quality of service.
+BCSC 411 – Wireless Communication course content has been
+revised to include: modulation schemes, cellular systems 
+design and quality of services, etc.
+Pages 
+60 - 61
+HOTU 498 should be Project and not 
+Project II
+HOTU 498 – Project II has been changed to Project Work. Pages 6, 
+10, & 70
+3
+Library stock: Lack
+of physical current 
+volumes and 
+journals in the 
+library to augment 
+the electronic 
+resources
+Procure two or three current volumes for 
+each of the courses in the programme.
+The library stock should be updated with 
+current information.
+The University is taking steps to procure current volumes for 
+each course in the programme. 
+4 Recommended Revise reading lists with more current Reading lists have been revised to include most current ones. Pages 
+BTech. Computer Science (HTU) Page 118
+
+===== PAGE 120 =====
+reading lists for 
+courses are 
+outdated
+books and journal articles to match the 
+subject delivery.
+10 - 74
+5 Inconsistency in referencing style
+Decide which referencing style is used 
+by the University and ensure consistency 
+throughout the references for the 
+recommended reading materials.
+Referencing styles changed to APA 7th generation. Pages
+10 - 74
+Make sure you provide at least five recent 
+references either books or journal articles 
+under each course.
+At least five current reading materials have been provided 
+under each course.
+Pages 
+10 - 74
+6
+Lack of electronic 
+workshop to take 
+care of that aspect 
+of the programme
+It is strongly recommended that the 
+University takes steps to establish an 
+electronics workshop for some practical 
+aspects of some courses such as Digital 
+Electronics, Basic Electronics, and 
+Internet of Things.
+The University is taking steps to establish an electronics 
+workshop for the teaching of the practical aspects of the 
+programme in the Department. However, the Department is 
+currently using the Electronic Laboratory of the Department of 
+Electrical/Electronic Engineering to aid teaching and learning.
+7
+Admission 
+requirement for 
+this programme 
+need rethinking
+Since the programme is not intended to be
+engineering oriented then the requirement 
+for physics or electronics is not needed. 
+We propose that this requirement is 
+omitted.
+Physics and Electronics have been removed from the 
+SSSCE/WASSCE qualification
+Page 2
+An introductory letter from employer 
+should not be a requirement for matured 
+applicants who have proof of age 
+documents. 
+An introductory letter from employer requirement has been 
+removed.
+Page 3
+Document must indicate what level of 
+holders other HND/Diploma qualification
+s will be admitted to.
+Other HND/Diploma qualifications in the area of Computer 
+Science assessed to be equivalent to HND Computer Science 
+may be admitted to the either Level 200 or Level 300 based on 
+the courses covered.
+Page 3
+BTech. Computer Science (HTU) Page 119
+
+===== PAGE 121 =====
+8
+Peer and 
+Professional 
+Assessment of 
+course content, 
+through inherent in
+the processes, but it
+is not documented
+Develop a policy to strengthen and guide 
+activities of Peer and Professional 
+Assessment of course content showing 
+minutes, reports, and attendance as proof.
+The Peer and Professional Review of Course Content is in 
+practice and documented in the draft Quality Assurance Policy
+Appendix 
+C
+9
+Scattered 
+individual policy 
+documents
+Individual policy documents should be put
+together as one document for ease of 
+reference
+All policy documents have been put together into a single 
+document.
+10
+Expired fire 
+extinguishers
+Renew certificate for all fire alarm 
+systems on campus extinguishers,
+Smoke detectors, fire alarms etc)
+Certificate of all fire alarm systems on campus have been 
+renewed.
+11
+New programme 
+document
+Revise programme document according to
+suggested remedies and submit same to 
+the Commission for verification
+Done Entire 
+Document
+BTech. Computer Science (HTU) Page 120
