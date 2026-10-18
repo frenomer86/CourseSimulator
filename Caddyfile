@@ -1,0 +1,6 @@
+# Reverse proxy in front of the app. With a real domain Caddy fetches and renews the TLS
+# certificate itself. For a bare IP during setup, set DOMAIN=http://<your-ip> to skip TLS.
+{$DOMAIN} {
+	encode gzip zstd
+	reverse_proxy app:8787
+}

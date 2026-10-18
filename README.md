@@ -44,26 +44,67 @@ npm install
 npm run dev
 ```
 
-Then open http://localhost:5173. `npm test` runs the engine unit tests and `npm run build`
-produces the deployable static site in `apps/web/dist` (a PWA, hostable on any static host).
+Then open http://localhost:5173. Every simulation runs in the browser, so this alone is
+enough to work through labs and topic checks; progress is kept on the device.
 
-The app is **self-contained**: there is no server, no account and no API. Every lab, topic
-check and progress record runs and is stored inside the browser, so it keeps working offline
-once loaded.
+To use accounts in development, also start the API in a second terminal:
 
-## Your progress
+```bash
+npm run dev:api
+```
 
-Results, topic mastery and saved circuits are kept in the browser's storage on that device.
-The profile page (the avatar in the header) holds a name and picture, and lets a learner
-**export** everything as a small JSON file and **import** it on another phone or laptop, or
-after clearing the browser. Imports merge by keeping the best of each value (a passed lab
-stays passed, the higher mastery and score win), so a file can be imported more than once
-without harm. The file format is `ProgressSnapshot` in
-[packages/lab-runtime/src/progress.ts](packages/lab-runtime/src/progress.ts).
+It listens on http://localhost:8787 with an **embedded Postgres** (PGlite, stored under
+`apps/api/.data`), so nothing needs installing. The web dev server proxies `/api` to it.
+If the API is not running, the app simply works as a guest.
 
-The schema in [supabase/migrations/0001_initial.sql](supabase/migrations/0001_initial.sql)
-and the hosted-platform parts of the product spec are kept as design reference only; the
-app does not use them.
+`npm test` runs the engine, content and API tests (the API tests use an in-memory
+Postgres). `npm run typecheck` and `npm run build` cover both the web app and the API.
+
+## Accounts and progress
+
+- **On the device first.** Results, topic mastery and saved circuits are written to the
+  browser's storage before anything else, so labs work offline and without an account.
+- **Account sync.** With an account (email and password), every result also goes into a
+  queue that the app sends to the API when online, in order, in batches. Each item carries a
+  client attempt id, so a batch sent twice never duplicates a row. Signing in on another
+  device pulls the account's records and merges them with what is on the device by keeping
+  the best of each value: a passed lab stays passed, the higher mastery and score win.
+- **Progress file.** The profile page can also export everything as a small JSON file and
+  import it elsewhere, with the same merge. Useful with no account or no connection. The
+  format is `ProgressSnapshot` in [packages/lab-runtime/src/progress.ts](packages/lab-runtime/src/progress.ts).
+- **Privacy.** The API stores an email, a scrypt password hash, a display name, a username
+  and the learning records above. Learners can delete their account from the profile page.
+
+The API is [apps/api](apps/api): Fastify, `pg` in production, PGlite in development and
+tests, migrations in [apps/api/migrations](apps/api/migrations), and the routes in
+`apps/api/src/app.ts` (`/api/auth/*`, `/api/me`, `/api/me/profile`, `/api/me/progress`,
+`/api/me/progress/sync`). The older Supabase schema under `supabase/` is kept as design
+reference only.
+
+## Deploying to a VPS (Hostinger or any Ubuntu server)
+
+One `docker compose` stack runs Postgres, the app (API plus the built web app on the same
+origin) and Caddy, which handles HTTPS automatically for a domain.
+
+1. On the VPS, install Docker: `curl -fsSL https://get.docker.com | sh`.
+2. Clone this repository and create the server env file:
+
+```bash
+git clone <your repository url> cs-virtual-lab && cd cs-virtual-lab && cp .env.example .env
+```
+
+3. Edit `.env`: set a long random `POSTGRES_PASSWORD`, and set `DOMAIN` to your domain
+   (point its DNS A record at the VPS first). With only an IP for now, use
+   `DOMAIN=http://<ip>` so Caddy serves plain HTTP.
+4. Start everything:
+
+```bash
+docker compose up -d --build
+```
+
+The app runs the database migrations itself on start. Open `https://<your domain>`; the
+API answers at `/api/health`. To update, `git pull` and run the same command again.
+Back up with `docker compose exec db pg_dump -U cslab cslab > backup.sql`.
 
 ## Content layout
 
@@ -98,7 +139,8 @@ The backend is a Supabase project (see `supabase/migrations`). GitHub Actions
 
 ```
 apps/web                         React + TypeScript + Vite PWA (Tailwind v4)
-packages/lab-runtime             Lab spec types and the check runner (engine-agnostic)
+apps/api                         Accounts and progress sync API (Fastify, Postgres; PGlite in development)
+packages/lab-runtime             Lab spec types, check runner, topic-check grading, mastery rules and the progress format
 packages/engine-digital-logic    Digital logic engine: circuit model, evaluation, truth tables, checks, tests
 content/courses/<course-slug>/   Lab specs (JSON with Markdown instructions), one file per lab
 data/                            Course catalogue, source curriculum, detailed syllabi
@@ -109,7 +151,8 @@ scripts/build-courses.mjs        Regenerates data/courses.json
 
 Phase 1 in progress. The platform shell (catalogue, course pages, lab workspace, progress,
 offline PWA) and the first flagship simulator, the Digital Logic circuit bench, are built,
-with six graded labs for Digital Logic Design. Phase 1b adds a local profile with progress
+with six graded labs for Digital Logic Design. Phase 1b adds accounts with an API of our
+own (self-hosted, Docker Compose), offline-first progress sync, a profile page with progress
 export and import, syllabus units with a mastery marker per topic, and topic checks, with
 real checks for the first three units of Digital Logic Design. Next: the
 remaining Phase 1 engines (code runner, network simulator, SQL engine, step visualiser,

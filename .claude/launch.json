@@ -24,6 +24,17 @@
         "--strictPort"
       ],
       "port": 5174
+    },
+    {
+      "name": "api",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "-w",
+        "@cslab/api"
+      ],
+      "port": 8787
     }
   ]
 }

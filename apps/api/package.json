@@ -1,0 +1,27 @@
+{
+  "name": "@cslab/api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Accounts and progress sync for CS Virtual Lab. Postgres in production, embedded Postgres (PGlite) for development and tests.",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.10",
+    "@fastify/cors": "^11.3.1",
+    "@fastify/static": "^10.1.6",
+    "fastify": "^5.12.7",
+    "pg": "^8.23.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.6.3"
+  }
+}

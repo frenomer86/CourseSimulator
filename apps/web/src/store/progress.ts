@@ -1,9 +1,11 @@
 /**
- * Local progress: everything the learner has done, kept in this browser.
+ * Local progress: the source of truth on this device.
  *
- * The app is self-contained, so this store is the only record. Learners can export it as a
- * file from the profile page and import it on another device; imports merge by keeping the
- * best of each value (see mergeProgress in @cslab/lab-runtime).
+ * Every result is written here first, synchronously, so labs and checks work offline and
+ * without an account. Each write also appends to `queue`; the sync layer (lib/sync.ts) sends
+ * the queue to the account when the learner is signed in and online, and merges what the
+ * account holds by keeping the best of each value (mergeProgress in @cslab/lab-runtime).
+ * The same merge serves the export/import file on the profile page.
  */
 
 import { create } from 'zustand';
@@ -12,6 +14,7 @@ import {
   deriveMastery,
   maxMastery,
   mergeProgress,
+  parseTopicKey,
   topicKey,
   type CheckProgress,
   type LabLevel,
@@ -23,37 +26,59 @@ import {
   type TopicProgress,
 } from '@cslab/lab-runtime';
 import { LABS } from '../lib/catalogue';
+import { newClientId, type SyncItem } from '../lib/api';
 
 export type { LabProgress, TopicProgress, CheckProgress };
+
+const MAX_QUEUE = 1000;
 
 export interface ProgressState extends ProgressRecords {
   /** Saved simulator state per lab so learners can resume. */
   workspaces: Record<string, unknown>;
+  /** Writes not yet confirmed by the account. Kept for guests too, so signing up later uploads them. */
+  queue: SyncItem[];
 
   recordResult: (lab: LabSpec, result: LabResult, hintsUsed: number) => void;
   recordCheck: (course: string, unit: number, topic: number, score: number, passed: boolean) => void;
   saveWorkspace: (labId: string, state: unknown) => void;
   clearWorkspace: (labId: string) => void;
-  /** Merges records from an exported file, keeping the best of each value. */
+  /** Merges records from the account or an exported file, keeping the best of each value. */
   importRecords: (records: ProgressRecords) => void;
+  /** Removes queue items the account has accepted. */
+  dequeue: (ids: string[]) => void;
+  /** Queues every known topic state, so a merge never leaves the account behind the device. */
+  enqueueAllTopics: () => void;
   reset: () => void;
 }
 
-const EMPTY: ProgressRecords & { workspaces: Record<string, unknown> } = { labs: {}, topics: {}, checks: {}, workspaces: {} };
+const EMPTY = { labs: {}, topics: {}, checks: {}, workspaces: {}, queue: [] as SyncItem[] };
+
+function pushQueue(queue: SyncItem[], item: SyncItem): SyncItem[] {
+  let next = item.kind === 'topic_progress' ? queue.filter((q) => !(q.kind === 'topic_progress' && q.id === item.id)) : queue;
+  next = [...next, item];
+  if (next.length > MAX_QUEUE) next = next.slice(next.length - MAX_QUEUE);
+  return next;
+}
 
 function raiseTopic(
-  topics: Record<string, TopicProgress>,
-  key: string,
+  state: { topics: Record<string, TopicProgress>; queue: SyncItem[] },
+  course: string,
+  unit: number,
+  topic: number,
   mastery: Mastery,
   bestCheckScore: number | undefined,
   at: string,
-): Record<string, TopicProgress> {
-  const prev = topics[key];
+): { topics: Record<string, TopicProgress>; queue: SyncItem[] } {
+  const key = topicKey(course, unit, topic);
+  const prev = state.topics[key];
   const nextMastery = maxMastery(prev?.mastery, mastery);
   const best = Math.max(prev?.bestCheckScore ?? 0, bestCheckScore ?? 0);
   const score = best > 0 ? best : undefined;
-  if (prev && prev.mastery === nextMastery && (prev.bestCheckScore ?? 0) === (score ?? 0)) return topics;
-  return { ...topics, [key]: { mastery: nextMastery, bestCheckScore: score, updatedAt: at } };
+  if (prev && prev.mastery === nextMastery && (prev.bestCheckScore ?? 0) === (score ?? 0)) return state;
+  return {
+    topics: { ...state.topics, [key]: { mastery: nextMastery, bestCheckScore: score, updatedAt: at } },
+    queue: pushQueue(state.queue, { kind: 'topic_progress', id: key, at, course, unit, topic, mastery: nextMastery, bestCheckScore: score }),
+  };
 }
 
 export const useProgress = create<ProgressState>()(
@@ -75,6 +100,18 @@ export const useProgress = create<ProgressState>()(
               completedAt: prev?.completedAt ?? (result.passed ? result.completedAt : undefined),
             },
           };
+          let queue = pushQueue(s.queue, {
+            kind: 'lab_result',
+            id: newClientId(),
+            at: result.completedAt,
+            labId: lab.id,
+            course: lab.course,
+            level: lab.level,
+            passed: result.passed,
+            score: result.score,
+            hintsUsed,
+            checks: result.checks.map((c) => ({ label: c.label, passed: c.passed })),
+          });
           let topics = s.topics;
           if (lab.unit && lab.topicIndex) {
             const key = topicKey(lab.course, lab.unit, lab.topicIndex);
@@ -85,9 +122,9 @@ export const useProgress = create<ProgressState>()(
               checkPassed: check?.passed,
               bestCheckScore: check?.bestScore,
             });
-            topics = raiseTopic(topics, key, mastery, undefined, result.completedAt);
+            ({ topics, queue } = raiseTopic({ topics, queue }, lab.course, lab.unit, lab.topicIndex, mastery, undefined, result.completedAt));
           }
-          return { labs, topics };
+          return { labs, topics, queue };
         }),
 
       recordCheck: (course, unit, topic, score, passed) =>
@@ -102,13 +139,15 @@ export const useProgress = create<ProgressState>()(
             lastAttemptAt: at,
           };
           const checks = { ...s.checks, [key]: entry };
+          const queue = pushQueue(s.queue, { kind: 'check_attempt', id: newClientId(), at, course, unit, topic, score, passed });
           const mastery = deriveMastery({
             attempted: true,
             checkPassed: entry.passed,
             bestCheckScore: entry.bestScore,
             passedLevels: labsPassedOnTopic(s.labs, course, unit, topic),
           });
-          return { checks, topics: raiseTopic(s.topics, key, mastery, entry.bestScore, at) };
+          const raised = raiseTopic({ topics: s.topics, queue }, course, unit, topic, mastery, entry.bestScore, at);
+          return { checks, topics: raised.topics, queue: raised.queue };
         }),
 
       saveWorkspace: (labId, state) => set((s) => ({ workspaces: { ...s.workspaces, [labId]: state } })),
@@ -121,18 +160,49 @@ export const useProgress = create<ProgressState>()(
 
       importRecords: (records) => set((s) => mergeProgress(s, records)),
 
+      dequeue: (ids) =>
+        set((s) => {
+          const gone = new Set(ids);
+          return { queue: s.queue.filter((q) => !gone.has(q.id)) };
+        }),
+
+      enqueueAllTopics: () =>
+        set((s) => {
+          let queue = s.queue;
+          for (const [key, t] of Object.entries(s.topics)) {
+            const parsed = parseTopicKey(key);
+            if (!parsed || t.mastery === 'not_started') continue;
+            queue = pushQueue(queue, {
+              kind: 'topic_progress',
+              id: key,
+              at: t.updatedAt,
+              course: parsed.course,
+              unit: parsed.unit,
+              topic: parsed.topic,
+              mastery: t.mastery,
+              bestCheckScore: t.bestCheckScore,
+            });
+          }
+          return { queue };
+        }),
+
       reset: () => set({ ...EMPTY }),
     }),
     {
       name: 'cslab-progress-v1',
-      version: 3,
+      version: 4,
       migrate: (persisted, version) => {
         const p = (persisted ?? {}) as Partial<ProgressState>;
         if (version < 2) return { ...EMPTY, labs: p.labs ?? {}, workspaces: p.workspaces ?? {} } as ProgressState;
-        // Version 2 carried a sync queue and an owner id; both are gone.
-        return { labs: p.labs ?? {}, topics: p.topics ?? {}, checks: p.checks ?? {}, workspaces: p.workspaces ?? {} } as ProgressState;
+        return {
+          labs: p.labs ?? {},
+          topics: p.topics ?? {},
+          checks: p.checks ?? {},
+          workspaces: p.workspaces ?? {},
+          queue: Array.isArray(p.queue) ? p.queue : [],
+        } as ProgressState;
       },
-      partialize: (s) => ({ labs: s.labs, topics: s.topics, checks: s.checks, workspaces: s.workspaces }) as ProgressState,
+      partialize: (s) => ({ labs: s.labs, topics: s.topics, checks: s.checks, workspaces: s.workspaces, queue: s.queue }) as ProgressState,
     },
   ),
 );

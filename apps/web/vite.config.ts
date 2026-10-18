@@ -34,5 +34,7 @@ export default defineConfig({
   },
   server: {
     fs: { allow: ['../..'] },
+    // The API runs separately in development (npm run dev:api); production serves both from one origin.
+    proxy: { '/api': { target: 'http://localhost:8787', changeOrigin: false } },
   },
 });

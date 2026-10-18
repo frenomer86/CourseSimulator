@@ -1,0 +1,13 @@
+node_modules
+**/node_modules
+**/dist
+**/dev-dist
+**/.data
+.git
+.github
+.claude
+docs
+supabase
+*.log
+.env
+.env.*
