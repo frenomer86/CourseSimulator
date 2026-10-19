@@ -139,3 +139,5 @@ export function validateLabSpec(raw: unknown): raw is LabSpec {
 
 export * from './progress';
 export * from './topicCheck';
+export * from './xapiProfile';
+export * from './analytics';

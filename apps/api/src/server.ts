@@ -7,6 +7,8 @@
  *   DATA_DIR      folder for the embedded database (development), default ./.data/pglite
  *   WEB_DIST      path to apps/web/dist to serve the app; absent in development (Vite serves it)
  *   CORS_ORIGIN   comma-separated origins allowed to call the API cross-origin (rarely needed)
+ *   RESEARCH_SALT secret that derives research ids from user ids for learning analytics.
+ *                 Required in production (DATABASE_URL set); never change it once data exists.
  */
 
 import { existsSync } from 'node:fs';
@@ -21,9 +23,15 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const port = Number(process.env.PORT ?? 8787);
 const dataDir = process.env.DATA_DIR ?? path.resolve(here, '../.data/pglite');
 
+const researchSalt = process.env.RESEARCH_SALT;
+if (process.env.DATABASE_URL && (!researchSalt || researchSalt.length < 32)) {
+  console.error('RESEARCH_SALT must be a long random secret (32+ characters) in production. See .env.example.');
+  process.exit(1);
+}
+
 const db = await openDb({ databaseUrl: process.env.DATABASE_URL, dataDir });
 const applied = await migrate(db);
-const app = await buildApp({ db, corsOrigin: process.env.CORS_ORIGIN, logger: true });
+const app = await buildApp({ db, corsOrigin: process.env.CORS_ORIGIN, logger: true, researchSalt });
 
 const webDist = process.env.WEB_DIST ? path.resolve(process.env.WEB_DIST) : undefined;
 if (webDist && existsSync(path.join(webDist, 'index.html'))) {

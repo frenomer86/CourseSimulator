@@ -103,10 +103,7 @@ export function HomePage() {
                         to={`/courses/${c.slug}`}
                         className="flex items-center justify-between gap-3 py-2.5 hover:bg-surface -mx-2 px-2 rounded"
                       >
-                        <span className="flex items-baseline gap-3 min-w-0">
-                          <span className="font-mono text-xs text-ink-faint w-8 shrink-0">Y{c.year}</span>
-                          <span className="truncate">{c.title}</span>
-                        </span>
+                        <span className="truncate">{c.title}</span>
                         {labs.length > 0 ? (
                           <span className="font-mono text-xs shrink-0 flex items-center gap-1.5">
                             <span className={passed === labs.length ? 'text-high' : 'text-ink-soft'}>

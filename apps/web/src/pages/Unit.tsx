@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { LEVEL_LABEL, MASTERY_LABEL, masteryRank, topicKey } from '@cslab/lab-runtime';
 import { checkForTopic, courseBySlug, labsForTopic, unitOf } from '../lib/catalogue';
 import { topicMastery, useProgress } from '../store/progress';
+import { track } from '../lib/telemetry';
 import { MasteryDot, MasteryLegend } from '../components/Mastery';
 import { NotFoundPage } from './NotFound';
 
@@ -13,6 +15,9 @@ export function UnitPage() {
   const labs = useProgress((s) => s.labs);
   const topics = useProgress((s) => s.topics);
   const checks = useProgress((s) => s.checks);
+  useEffect(() => {
+    if (course && u) track('viewed', { type: 'unit', id: `${course.slug}:${n}`, course: course.slug, unit: n });
+  }, [course, u, n]);
   if (!course || !u) return <NotFoundPage />;
   const state = { labs, topics, checks };
   const total = course.syllabus?.length ?? 0;

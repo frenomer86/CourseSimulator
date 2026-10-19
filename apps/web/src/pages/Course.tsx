@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { LEVEL_LABEL, LEVEL_ORDER, masteryRank, type LabLevel } from '@cslab/lab-runtime';
 import { AREAS, checkForTopic, courseBySlug, ENGINE_NAMES, labsForCourse, labsForUnit } from '../lib/catalogue';
 import { topicMastery, useProgress } from '../store/progress';
+import { track } from '../lib/telemetry';
 import { MasteryDot, MasteryLegend } from '../components/Mastery';
 import { NotFoundPage } from './NotFound';
 
@@ -17,6 +19,9 @@ export function CoursePage() {
   const progress = useProgress((s) => s.labs);
   const topics = useProgress((s) => s.topics);
   const checks = useProgress((s) => s.checks);
+  useEffect(() => {
+    if (course) track('viewed', { type: 'course', id: course.slug, course: course.slug });
+  }, [course]);
   if (!course) return <NotFoundPage />;
   const labs = labsForCourse(course.slug);
   const state = { labs: progress, topics, checks };
@@ -38,12 +43,7 @@ export function CoursePage() {
         <span>{AREAS[course.area]}</span>
       </nav>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight">{course.title}</h1>
-      <p className="mt-2 text-ink-soft flex flex-wrap gap-x-4 gap-y-1 text-sm">
-        <span>
-          Year {course.year}, semester {course.semester}
-        </span>
-        <span>{course.engines.map((e) => ENGINE_NAMES[e] ?? e).join(', ')}</span>
-      </p>
+      <p className="mt-2 text-ink-soft text-sm">{course.engines.map((e) => ENGINE_NAMES[e] ?? e).join(', ')}</p>
       {course.description && <p className="mt-4 max-w-[70ch] leading-relaxed">{course.description}</p>}
 
       {units.length > 0 ? (

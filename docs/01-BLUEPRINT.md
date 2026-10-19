@@ -129,8 +129,8 @@ packages/lab-runtime     Lab spec loader, check runner, progress events
 packages/ui              Shared components (workspace layout, console, hint panel)
 content/courses/<code>/  Lab specs (JSON) + instructions (Markdown) per course
 content/curriculum.json  Generated from data/curriculum.json
-services/api             Node (Fastify) + Prisma + Postgres, or Supabase to start
-services/runner          Optional Piston deployment for server-side C++/Java
+apps/api                 Node (Fastify) + Postgres; PGlite in development and tests
+services/runner          Optional Piston deployment for server-side C++/Java (later)
 ```
 
 ### 6.2 Lab specification (data, not code)
@@ -163,8 +163,8 @@ services/runner          Optional Piston deployment for server-side C++/Java
 | Canvas | Konva / plain Canvas 2D for engines; React Flow for diagrams; D3 for charts | Performance on low-end devices |
 | Code editor | CodeMirror 6 (default), Monaco (desktop opt-in) | CodeMirror is far lighter and works on phones |
 | Runtimes | Pyodide, webR, sql.js, php-wasm, avr8js, v86 (advanced only), xterm.js | All run in the browser |
-| Backend | Supabase (Postgres + Auth + Storage) for the pilot; Fastify + Prisma later if needed | Zero-ops, free tier covers a department pilot |
-| Hosting | Cloudflare Pages / Vercel (static + edge), Cloudflare R2 for WASM runtimes | Free or cheap, global CDN with African edge nodes |
+| Backend | Node + Fastify API with Postgres 16 (apps/api); PGlite in development and tests | We own the data; standard tools; one process serves API and web |
+| Hosting | One VPS (Hostinger) with docker compose: Postgres, app, Caddy for HTTPS | No third-party platform; predictable cost; simple backups |
 | Testing | Vitest (engines), Playwright (labs end to end) | Engines must be provably correct |
 | CI | GitHub Actions | Free for open source |
 
@@ -173,7 +173,7 @@ services/runner          Optional Piston deployment for server-side C++/Java
 ### Phase 0 — Foundations (weeks 1–3)
 - Monorepo, design system, PWA shell, course catalogue from `curriculum.json`.
 - Lab runtime + lab spec + check runner. One toy engine to prove the loop.
-- Auth and progress sync (Supabase).
+- Auth and progress sync through our own API.
 
 ### Phase 1 — Flagship MVP: Level 100 and early 200 (months 1–4)
 Deliver the engines with the widest reach first, each with at least 6 labs (2 per level):
@@ -246,9 +246,10 @@ This folder lives under *THESIS*, so the platform doubles as a research instrume
    outcomes) modelled on the corresponding courses at leading universities (MIT, Stanford,
    Berkeley, CMU and similar), stored in `data/syllabi/<slug>.json`. Digital Logic Design
    is the first; the rest follow.
-4. **Hosted web application with a backend database.** Static PWA on a CDN host plus a
-   Supabase project (Postgres, Auth, Realtime, Storage). Users are learners, institution
-   students, lecturers and admins. The platform adds topic checks after every topic,
+4. **Hosted web application with our own backend.** The web app, a Node API and a
+   Postgres database run together on a VPS (Hostinger) under docker compose, with no
+   third-party platform service. Users are learners, institution students, lecturers and
+   admins. The platform adds topic checks after every topic,
    tutorials, progress tracking, groups with chat, presence and resource sharing, a
    forum, direct messages, and general and group competitions with scores, contribution
    breakdowns and awards. Full detail in [03-PRODUCT-SPEC.md](03-PRODUCT-SPEC.md); design
@@ -257,7 +258,6 @@ This folder lives under *THESIS*, so the platform doubles as a research instrume
 ## 11. Decisions still open
 
 1. Product name and domain.
-2. Supabase (fast start) versus self-hosted API (more control).
-3. Whether to embed Falstad CircuitJS (GPL, mature) or build the analog engine.
-4. Server-side code runner from day one, or browser-only until Phase 2.
-5. Pilot course(s) for the thesis study.
+2. Whether to embed Falstad CircuitJS (GPL, mature) or build the analog engine.
+3. Server-side code runner from day one, or browser-only until Phase 2.
+4. Pilot course(s) for the thesis study.

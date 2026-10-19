@@ -8,6 +8,7 @@ import { signOutAndClear, useSyncStatus } from '../lib/sync';
 import type { AgeBand } from '../lib/api';
 import { Avatar } from '../components/Avatar';
 import { Field, Notice } from '../components/Form';
+import { ResearchCard } from '../components/ResearchCard';
 
 const AGE_BANDS: Array<{ value: AgeBand; label: string }> = [
   { value: 'undisclosed', label: 'Prefer not to say' },
@@ -154,6 +155,7 @@ export function ProfilePage() {
       )}
 
       <AccountCard onMessage={setMessage} />
+      <ResearchCard />
 
       <form onSubmit={save} className="mt-6 rounded-lg border border-line bg-surface p-5 space-y-4">
         <h2 className="font-medium text-lg">About you</h2>

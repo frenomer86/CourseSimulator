@@ -102,7 +102,7 @@ export class ApiError extends Error {
 export const NETWORK_MESSAGE = 'We could not reach the server. Check your connection and try again.';
 
 interface Options {
-  method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
+  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   body?: unknown;
   auth?: boolean;
   timeoutMs?: number;

@@ -11,6 +11,7 @@ import {
 } from '@cslab/lab-runtime';
 import { checkForTopic, courseBySlug, unitOf } from '../lib/catalogue';
 import { useProgress } from '../store/progress';
+import { secondsSince, track } from '../lib/telemetry';
 import { InlineMarkdown, Markdown } from '../components/Markdown';
 import { NotFoundPage } from './NotFound';
 
@@ -66,6 +67,16 @@ function CheckSitting({
     const g = gradeCheck(items, answers, passMark);
     setGrade(g);
     recordCheck(spec.course, spec.unit, spec.topic, g.score, g.passed);
+    const place = { course: spec.course, unit: spec.unit, topic: spec.topic };
+    for (const r of g.items) track('answered', { type: 'check-item', id: r.id, ...place }, { correct: r.correct });
+    track(g.passed ? 'passed' : 'failed', { type: 'check', id: `${spec.course}:${spec.unit}:${spec.topic}`, ...place }, {
+      score: g.score,
+      correct: g.correct,
+      total: g.total,
+      passMark,
+      attempt: (previous?.attempts ?? 0) + 1,
+      durationS: secondsSince(seed),
+    });
     window.scrollTo({ top: 0 });
   };
 

@@ -9,6 +9,8 @@ import { z } from 'zod';
 import { iso, num, type Db, type Queryable } from './db.js';
 import { hashPassword, hashToken, makeRateLimiter, newSessionToken, SESSION_DAYS, usernameFromEmail, verifyPassword } from './auth.js';
 import { levelFromXp, XP, type AgeBand, type Mastery, type Profile, type ProgressRecords, type User } from './types.js';
+import { HttpError } from './errors.js';
+import { purgeOnAccountDelete, registerAnalytics } from './analytics.js';
 
 declare module 'fastify' {
   interface FastifyRequest {
@@ -22,17 +24,11 @@ export interface AppOptions {
   /** Allowed browser origin for cross-origin use. Omit when the API serves the web app itself. */
   corsOrigin?: string;
   logger?: boolean;
+  /** Secret that derives research ids from user ids (learning analytics). Kept outside the database. */
+  researchSalt?: string;
 }
 
-class HttpError extends Error {
-  constructor(
-    public status: number,
-    public code: string,
-    message: string,
-  ) {
-    super(message);
-  }
-}
+export { HttpError };
 
 const MASTERY: Mastery[] = ['not_started', 'attempted', 'proficient', 'mastered'];
 
@@ -254,7 +250,13 @@ async function applyItem(q: Queryable, userId: string, item: SyncItem): Promise<
 
 export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
   const { db } = opts;
-  const app = Fastify({ logger: opts.logger ?? false, bodyLimit: 2 * 1024 * 1024, trustProxy: true });
+  const researchSalt = opts.researchSalt ?? 'development-only-salt';
+  const app = Fastify({
+    // Operational logs: method, URL, status and timing per request; never bodies, and no auth headers.
+    logger: opts.logger ? { redact: { paths: ['req.headers.authorization', 'req.headers.cookie'], censor: '[redacted]' } } : false,
+    bodyLimit: 2 * 1024 * 1024,
+    trustProxy: true,
+  });
   if (opts.corsOrigin) await app.register(cors, { origin: opts.corsOrigin.split(',').map((s) => s.trim()) });
 
   const authLimit = makeRateLimiter(20, 10 * 60 * 1000);
@@ -381,9 +383,14 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     const body = deleteBody.parse(req.body);
     const r = await db.query<{ password_hash: string }>('select password_hash from users where id = $1', [req.userId]);
     if (!r.rows[0] || !(await verifyPassword(body.password, r.rows[0].password_hash))) throw new HttpError(401, 'invalid_credentials', 'That password is not right.');
-    await db.query('delete from users where id = $1', [req.userId]);
+    await db.transaction(async (tx) => {
+      await purgeOnAccountDelete(tx, researchSalt, req.userId!);
+      await tx.query('delete from users where id = $1', [req.userId]);
+    });
     return reply.status(204).send();
   });
+
+  registerAnalytics(app, { db, researchSalt, requireAuth });
 
   app.get('/api/*', async () => {
     throw new HttpError(404, 'not_found', 'No such API route.');

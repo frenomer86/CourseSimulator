@@ -8,6 +8,8 @@ import { LabPage } from './pages/Lab';
 import { ProfilePage } from './pages/Profile';
 import { SignInPage } from './pages/SignIn';
 import { SignUpPage } from './pages/SignUp';
+import { ResearchNoticePage } from './pages/ResearchNotice';
+import { YourDataPage } from './pages/YourData';
 import { NotFoundPage } from './pages/NotFound';
 
 function Root() {
@@ -37,6 +39,8 @@ export const router = createBrowserRouter([
       { path: 'profile', element: <ProfilePage /> },
       { path: 'sign-in', element: <SignInPage /> },
       { path: 'sign-up', element: <SignUpPage /> },
+      { path: 'research-data', element: <ResearchNoticePage /> },
+      { path: 'profile/data', element: <YourDataPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

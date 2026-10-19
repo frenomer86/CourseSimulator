@@ -23,6 +23,13 @@ services:
     environment:
       DATABASE_URL: postgres://cslab:${POSTGRES_PASSWORD}@db:5432/cslab
       PORT: 8787
+      RESEARCH_SALT: ${RESEARCH_SALT:?Set RESEARCH_SALT in .env}
+    # Operational logs: method, path, status and timing only; rotated so they expire in weeks, not years.
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '5'
     depends_on:
       db:
         condition: service_healthy

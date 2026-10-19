@@ -3,6 +3,8 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/auth';
 import { useProgress } from '../store/progress';
 import { useProfile } from '../store/profile';
+import { NOTICE_VERSION } from '../lib/consent';
+import { NO_CONSENT, setConsent } from '../lib/research';
 import { Field, Notice } from '../components/Form';
 
 export function SignUpPage() {
@@ -17,6 +19,7 @@ export function SignUpPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [agree, setAgree] = useState(false);
+  const [research, setResearch] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,6 +35,10 @@ export function SignUpPage() {
     setBusy(true);
     setError(null);
     const res = await signUp(email, password, displayName.trim());
+    if (!res.error && research) {
+      // A separate, optional choice: research use of learning events only. More purposes live on the profile page.
+      await setConsent({ noticeVersion: NOTICE_VERSION, ...NO_CONSENT, researchEvents: true }).catch(() => {});
+    }
     setBusy(false);
     if (res.error) setError(res.error);
     else navigate('/profile', { replace: true });
@@ -70,6 +77,19 @@ export function SignUpPage() {
           <span>
             I agree that CS Virtual Lab stores my email, display name and learning progress on its own server so I can use my account.
             Nothing is sold or shared, and I can delete my account from my profile page.
+          </span>
+        </label>
+        <label className="flex items-start gap-2.5 text-sm leading-snug rounded-md border border-line bg-bench p-3">
+          <input type="checkbox" checked={research} onChange={(e) => setResearch(e.target.checked)} className="mt-0.5 accent-[var(--color-high)]" />
+          <span>
+            <span className="font-medium">Optional: let my learning activity be used for research</span>{' '}
+            <span className="text-ink-soft">
+              into how students learn computing. Kept under a research code, never your name, email or anything you type. Off by default; change
+              it any time on your profile page, where you can also choose further purposes.
+            </span>{' '}
+            <Link to="/research-data" className="text-high underline underline-offset-2">
+              What this means
+            </Link>
           </span>
         </label>
         {error && <Notice tone="error">{error}</Notice>}

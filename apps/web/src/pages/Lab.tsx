@@ -1,15 +1,20 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { LEVEL_LABEL, type LabResult, type LabSpec } from '@cslab/lab-runtime';
+import { LEVEL_LABEL, type EventObject, type LabResult, type LabSpec } from '@cslab/lab-runtime';
 import { createLogicChecks, emptyCircuit, type Circuit, type GateType } from '@cslab/engine-digital-logic';
 import { checkForTopic, courseBySlug, labById, nextLab, unitOf } from '../lib/catalogue';
 import { useProgress } from '../store/progress';
+import { secondsSince, track } from '../lib/telemetry';
 import { LogicCanvas } from '../components/LogicCanvas';
 import { TruthTablePanel } from '../components/TruthTablePanel';
 import { Markdown } from '../components/Markdown';
 import { NotFoundPage } from './NotFound';
 
 const logicChecks = createLogicChecks();
+
+function labObject(lab: LabSpec<unknown>): EventObject {
+  return { type: 'lab', id: lab.id, course: lab.course, unit: lab.unit, topic: lab.topicIndex, labId: lab.id, labLevel: lab.level };
+}
 
 export function LabPage() {
   const { id = '' } = useParams();
@@ -51,15 +56,37 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
     setResult(null);
   }, []);
 
+  const openedAt = useRef(Date.now());
+  const opened = useRef(false);
+  useEffect(() => {
+    if (opened.current) return;
+    opened.current = true;
+    track('launched', labObject(lab));
+  }, [lab]);
+
   const check = async () => {
     setChecking(true);
     const r = await logicChecks.run(lab, circuit);
     setResult(r);
     recordResult(lab, r, hintsShown);
+    const outcome = {
+      passed: r.passed,
+      score: Math.round(r.score * 10000) / 100,
+      checksPassed: r.checks.filter((c) => c.passed).length,
+      checksTotal: r.checks.length,
+      failedChecks: r.checks.filter((c) => !c.passed).map((c) => c.type),
+      hintsUsed: hintsShown,
+      attempt: (progress?.attempts ?? 0) + 1,
+      durationS: secondsSince(openedAt.current),
+    };
+    track('submitted', labObject(lab), outcome);
+    track(r.passed ? 'passed' : 'failed', labObject(lab), outcome);
+    track('saved', { ...labObject(lab), type: 'lab-artefact' }, { artefact: circuit, gates: circuit.nodes.length, wires: circuit.wires.length }, { reason: r.passed ? 'pass' : 'submit' });
     setChecking(false);
   };
 
   const resetBench = () => {
+    track('interacted', labObject(lab), undefined, { action: 'reset' });
     clearWorkspace(lab.id);
     setCircuit(lab.initialState ?? emptyCircuit());
     setResult(null);
@@ -117,7 +144,10 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
                   {hintsShown < lab.hints.length ? (
                     <button
                       type="button"
-                      onClick={() => setHintsShown((n) => n + 1)}
+                      onClick={() => {
+                        track('asked-for-hint', labObject(lab), { hintIndex: hintsShown + 1, hintsTotal: lab.hints.length });
+                        setHintsShown((n) => n + 1);
+                      }}
                       className="text-sm text-ink-soft underline underline-offset-2 hover:text-ink"
                     >
                       {hintsShown === 0 ? 'Show a hint' : 'Show another hint'} ({lab.hints.length - hintsShown} left)

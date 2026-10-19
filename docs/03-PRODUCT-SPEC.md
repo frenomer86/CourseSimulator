@@ -143,29 +143,32 @@ and lives in the database with the same shape.
   cannot post links for 24 hours.
 - Presence and leaderboards show display names only; a user can opt out of public boards.
 
-## 9. Architecture
+## 9. Architecture (decided 18 October 2026: our own API and database, self-hosted)
 
 ```
-PWA (React) ──── Supabase JS ────┐
-  offline queue                  │
-  simulators (WASM/JS)           ▼
-                     Supabase project (one region)
-                     ├── Postgres  (schema in supabase/migrations)
-                     ├── Auth      (email + password, magic link, Google; institution SSO later)
-                     ├── Realtime  (presence per group, chat broadcast, live boards)
-                     ├── Storage   (resource files, avatars; signed URLs)
-                     └── Edge Functions (contest scoring, league rollover, digests)
-Static host (Cloudflare Pages / Vercel) serves the PWA and the content bundle.
+Browser: PWA (React)  ── /api (same origin) ──┐
+  offline-first sync queue                    │
+  simulators (WASM/JS)                        ▼
+                      One VPS (Hostinger), docker compose:
+                      ├── caddy     HTTPS, serves the built web app and proxies /api
+                      ├── app       Node + Fastify API (apps/api): sessions, profiles,
+                      │             progress sync; later groups, chat, forum, competitions
+                      └── db        Postgres 16 (schema in apps/api/migrations)
 ```
 
-- **Why Supabase first**: Postgres with row-level security gives one place for all data
-  and access rules; Realtime presence and broadcast cover "who is online" and chat with
-  no extra servers; the free tier covers a departmental pilot; everything is standard
-  Postgres, so self-hosting later is a migration of config, not code.
-- **Access control** is row-level security in the database, not application code, so the
-  rules in [supabase/migrations](../supabase/migrations) are the single source of truth.
-- **Leaderboards**: a `competition_scores` table maintained by triggers on submissions;
-  the client polls every 15 seconds during a live contest. No Redis at this scale.
+- **Why our own stack**: no third-party platform service, no external keys, and the
+  university or the project team owns the data. Everything is standard Node and Postgres,
+  so it runs on any Ubuntu server.
+- **Authentication**: email and password with scrypt hashing and opaque session tokens
+  stored as hashes. Magic links and institution sign-on can be added to the same API.
+- **Realtime** (phase 2): the API adds WebSocket rooms per group for chat and presence;
+  live scoreboards poll every 15 seconds. No Redis at this scale; a single Node process
+  holds presence in memory, with a Postgres fallback if we ever run more than one.
+- **Access control** lives in the API's route handlers, with the rules written out in
+  [docs/reference/community-and-competition-schema.sql](reference/community-and-competition-schema.sql)
+  as the specification to port, phase by phase, into `apps/api/migrations`.
+- **Files** (resources, avatars) are stored on the VPS disk behind the API with size and
+  quota checks; object storage can replace the disk later without changing the API.
 - **Offline**: the local store remains the source of truth for the simulator state; the
   account holds results and mastery.
 
@@ -181,8 +184,10 @@ Competition: `competitions`, `competition_problems`, `competition_participants`,
 `competition_teams`, `competition_team_members`, `competition_submissions`,
 `competition_scores`, `awards`, `leagues`, `league_members`, `contest_ratings`.
 
-The full schema with constraints and policies is in
-[supabase/migrations/0001_initial.sql](../supabase/migrations/0001_initial.sql).
+The live schema is in [apps/api/migrations](../apps/api/migrations). The full
+community and competition schema, with constraints, scoring triggers and the access rules
+each API route must enforce, is in
+[docs/reference/community-and-competition-schema.sql](reference/community-and-competition-schema.sql).
 
 ## 11. Delivery plan (revised)
 
