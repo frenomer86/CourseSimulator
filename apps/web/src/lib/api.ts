@@ -27,6 +27,7 @@ export function setToken(token: string | null): void {
 }
 
 export type AgeBand = 'under_18' | '18_plus' | 'undisclosed';
+export type PlatformRole = 'learner' | 'facilitator' | 'moderator' | 'admin';
 
 export interface User {
   id: string;
@@ -42,9 +43,13 @@ export interface Profile {
   showOnBoards: boolean;
   xp: number;
   level: number;
+  /** Learner by default; a facilitator (teacher, lecturer, tutor) is self-declared until verified. */
+  platformRole: PlatformRole;
+  facilitatorVerified: boolean;
+  bio: string | null;
 }
 
-export type ProfilePatch = Partial<Pick<Profile, 'username' | 'displayName' | 'avatarUrl' | 'ageBand' | 'showOnBoards'>>;
+export type ProfilePatch = Partial<Pick<Profile, 'username' | 'displayName' | 'avatarUrl' | 'ageBand' | 'showOnBoards' | 'bio'>>;
 
 export interface LabResultItem {
   kind: 'lab_result';

@@ -1,0 +1,111 @@
+{
+  "slug": "electronic-health-records",
+  "description": "Designing, using and implementing electronic health records: what a patient record holds, clinical workflows and documentation, data models from relational schemas to openEHR archetypes, clinical decision support, usability and clinician burden, privacy, consent and access control, and implementation in low-resource clinics. Taught through case-based simulations of an outpatient clinic and district hospital, where students configure, use and critique a working record system built in the browser.",
+  "modelledOn": [
+    "Shortliffe and Cimino, Biomedical Informatics: Computer Applications in Health Care and Biomedicine",
+    "Hoyt and Hersh, Health Informatics: Practical Guide",
+    "ISO 13606 and openEHR, Electronic Health Record Communication and Reference Model",
+    "ISO 18308, Requirements for an Electronic Health Record Architecture"
+  ],
+  "outcomes": [
+    "Describe the content and structure of an electronic health record and distinguish EHRs, EMRs, personal health records and registries.",
+    "Analyse clinical workflows and design structured and unstructured documentation that supports care, reporting and billing.",
+    "Design data models for patient records with relational schemas, entity-attribute-value models and openEHR archetypes and templates.",
+    "Build rule-based clinical decision support and evaluate alerts for accuracy, relevance and alert fatigue.",
+    "Evaluate EHR usability with heuristic and task-based methods and propose changes that reduce clinician burden.",
+    "Plan the implementation of a record system in a low-resource clinic, including privacy, access control, infrastructure, training and evaluation."
+  ],
+  "units": [
+    {
+      "title": "What an electronic health record holds",
+      "weeks": "1",
+      "topics": [
+        "The purposes of a medical record: care, communication, continuity, legal record, billing, research",
+        "EHR, EMR, personal health record and registry distinguished; the longitudinal record",
+        "Record content: demographics, problem list, allergies, medications, encounters, vital signs, laboratory results, imaging, notes",
+        "From paper folders to electronic records: the problem-oriented medical record and SOAP notes",
+        "The patient folder in a Ghanaian outpatient department and what is lost between visits"
+      ]
+    },
+    {
+      "title": "Clinical workflows and documentation",
+      "weeks": "2-3",
+      "topics": [
+        "Mapping clinical workflows: outpatient visits, admissions, ward rounds, maternity, laboratory and pharmacy",
+        "Structured versus free-text documentation; templates, forms and smart phrases",
+        "Computerised provider order entry and results management; closing the loop on orders",
+        "Medication management: prescribing, dispensing, administration records",
+        "Documentation for insurance: diagnosis coding and NHIS claims generated from the record",
+        "Copy-paste, note bloat and documentation quality"
+      ]
+    },
+    {
+      "title": "Data models for patient records",
+      "weeks": "4-5",
+      "topics": [
+        "Relational schemas for patients, encounters, observations and orders; normalisation and its limits",
+        "Entity-attribute-value models for sparse clinical data; querying them efficiently",
+        "openEHR: the two-level model, reference model, archetypes and templates; ISO 13606",
+        "Concept-based models in OpenMRS: concepts, observations and forms",
+        "Representing time, versions, amendments and provenance in a legal record",
+        "Coding record data with SNOMED CT, ICD and LOINC; exporting to FHIR"
+      ]
+    },
+    {
+      "title": "Clinical decision support",
+      "weeks": "6-7",
+      "topics": [
+        "Kinds of decision support: alerts, reminders, order sets, dose calculators, guidelines, dashboards",
+        "Rule-based systems and the knowledge base; Arden syntax and CDS Hooks in outline",
+        "Implementing guidelines: WHO IMCI for childhood illness, malaria test-and-treat, antenatal care schedules",
+        "Drug interaction and allergy checking; dose checking for children",
+        "Evaluating decision support: sensitivity, override rates, alert fatigue; the five rights of CDS",
+        "Machine learning for prediction in the record: promise, bias and validation"
+      ]
+    },
+    {
+      "title": "Usability and clinician burden",
+      "weeks": "8",
+      "topics": [
+        "Usability principles applied to clinical software; cognitive load and interruption",
+        "Heuristic evaluation and task-based usability testing with clinicians; the System Usability Scale",
+        "Clinician burnout, time spent on documentation and the click burden",
+        "Usability-related patient safety incidents and how design prevents them"
+      ]
+    },
+    {
+      "title": "Privacy, consent and access control",
+      "weeks": "9-10",
+      "topics": [
+        "Confidentiality, privacy and security; patient rights to access and correct their record",
+        "Ghana's Data Protection Act 843: lawful processing, sensitive health data, data subject rights, the Data Protection Commission",
+        "Access control models: role-based and attribute-based; break-the-glass emergency access",
+        "Consent models: opt-in, opt-out, granular consent; sensitive records such as HIV and mental health",
+        "Audit trails, monitoring and responding to breaches; encryption at rest and in transit",
+        "Secondary use for research and reporting: de-identification and its limits"
+      ]
+    },
+    {
+      "title": "Implementing records in low-resource clinics",
+      "weeks": "11-12",
+      "topics": [
+        "Choosing a system: open-source versus commercial; OpenMRS, Bahmni and national systems such as Lightwave e-Health",
+        "Infrastructure: intermittent power and connectivity, offline-first design, solar power, device choice, local servers versus cloud",
+        "Data migration from paper registers, backup and disaster recovery",
+        "Change management: training, super-users, champions, workflow redesign, parallel running",
+        "Monitoring adoption and evaluating impact on care quality and efficiency",
+        "Case studies of EHR rollouts in Ghana, Rwanda, Kenya and Malawi"
+      ]
+    },
+    {
+      "title": "Project",
+      "weeks": "13",
+      "topics": [
+        "Specifying requirements for a chosen clinic and its workflows",
+        "Configuring forms, decision rules and access roles in a simulated record system",
+        "Usability testing with realistic clinical scenarios",
+        "Project: an implementation plan and working prototype record for a rural health centre"
+      ]
+    }
+  ]
+}

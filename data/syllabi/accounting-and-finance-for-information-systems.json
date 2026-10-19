@@ -1,0 +1,121 @@
+{
+  "slug": "accounting-and-finance-for-information-systems",
+  "description": "The accounting and finance that information systems professionals must understand to build and audit business software: double-entry bookkeeping, financial statements and their analysis, costing and budgeting, investment appraisal, accounting information systems, payroll and tax basics, and the controls that prevent and detect fraud. Every transaction is posted in a simulated ledger in the browser, traced through to the statements, and then implemented as data structures and controls in a small accounting system.",
+  "modelledOn": [
+    "Wood and Sangster, Frank Wood's Business Accounting",
+    "Romney and Steinbart, Accounting Information Systems",
+    "Drury, Management and Cost Accounting",
+    "IFRS Foundation, IFRS for SMEs Accounting Standard"
+  ],
+  "outcomes": [
+    "Record business transactions by double-entry bookkeeping through journals, ledgers and a trial balance, including period-end adjustments.",
+    "Prepare and interpret an income statement, statement of financial position and statement of cash flows, and analyse them with ratios.",
+    "Calculate product and service costs, prepare budgets and analyse variances to support management decisions.",
+    "Appraise IT and business investments using payback, accounting rate of return, net present value and internal rate of return.",
+    "Design the data model, transaction cycles and internal controls of an accounting information system.",
+    "Calculate payroll and basic tax obligations and identify control weaknesses that allow fraud."
+  ],
+  "units": [
+    {
+      "title": "Accounting and the business",
+      "weeks": "1",
+      "topics": [
+        "Why accounting matters to IS professionals; financial versus management accounting",
+        "Users of accounting information; the accounting equation: assets, liabilities and equity",
+        "Accounting concepts: accruals, going concern, consistency, prudence and materiality",
+        "The regulatory framework: IFRS, IFRS for SMEs and the Institute of Chartered Accountants, Ghana",
+        "Forms of business: sole traders, partnerships, companies, cooperatives and susu groups"
+      ]
+    },
+    {
+      "title": "Double-entry bookkeeping",
+      "weeks": "2-3",
+      "topics": [
+        "Debits and credits; the chart of accounts and account types",
+        "Books of prime entry: sales, purchases, cash book and general journal; posting to the ledger",
+        "Balancing accounts and the trial balance; errors the trial balance does and does not reveal",
+        "Period-end adjustments: accruals, prepayments, depreciation, inventory and bad debts",
+        "Bank reconciliation, including mobile money wallet and agent float accounts",
+        "Bookkeeping for a market trader in Kumasi from sales notebook to ledger"
+      ]
+    },
+    {
+      "title": "Financial statements",
+      "weeks": "4-5",
+      "topics": [
+        "The income statement: revenue recognition, cost of sales, gross and net profit",
+        "The statement of financial position: current and non-current assets and liabilities; equity",
+        "The statement of cash flows by the direct and indirect methods; profit versus cash",
+        "Ratio analysis: profitability, liquidity, efficiency and gearing ratios; limitations of ratios",
+        "Reading the published annual report of a listed company on the Ghana Stock Exchange"
+      ]
+    },
+    {
+      "title": "Costing",
+      "weeks": "6",
+      "topics": [
+        "Cost classification: direct and indirect, fixed and variable, product and period costs",
+        "Absorption costing and overhead allocation; activity-based costing",
+        "Marginal costing, contribution and cost-volume-profit analysis; break-even charts",
+        "Relevant costing for decisions: make or buy, pricing and limiting factors",
+        "Costing a bag of processed shea butter for a women's cooperative"
+      ]
+    },
+    {
+      "title": "Budgeting and performance",
+      "weeks": "7",
+      "topics": [
+        "The budgeting process: sales, production, cash and master budgets",
+        "Fixed and flexible budgets; variance analysis for materials, labour and overheads",
+        "Cash flow forecasting for small businesses and seasonal trades",
+        "Budgeting for an IT department: capital and operating expenditure; total cost of ownership"
+      ]
+    },
+    {
+      "title": "Investment appraisal",
+      "weeks": "8-9",
+      "topics": [
+        "The time value of money: compounding, discounting and annuities",
+        "Payback and accounting rate of return",
+        "Net present value and internal rate of return; conflicts between them; profitability index",
+        "Inflation, high interest rates, risk and sensitivity analysis in investment decisions",
+        "Sources of finance: equity, loans, leases, microfinance and mobile lending",
+        "Appraising a solar power and server investment for a rural clinic"
+      ]
+    },
+    {
+      "title": "Accounting information systems",
+      "weeks": "10-11",
+      "topics": [
+        "Transaction processing cycles: revenue, expenditure, production, payroll and financing",
+        "Data modelling for accounting: the REA model and relational design of ledgers and journals",
+        "Implementing double entry in software: balanced transactions, immutability, reversal entries and rounding",
+        "Documentation: data flow diagrams, flowcharts and business process diagrams for AIS",
+        "Accounting packages, ERP finance modules and cloud accounting for SMEs; e-invoicing",
+        "Integrating mobile money payments and bank feeds"
+      ]
+    },
+    {
+      "title": "Payroll and tax basics",
+      "weeks": "12",
+      "topics": [
+        "Payroll calculation: gross pay, allowances, overtime and net pay",
+        "Statutory deductions in Ghana: PAYE income tax bands and SSNIT pension tiers",
+        "Value added tax and related levies; withholding tax; filing with the Ghana Revenue Authority",
+        "Payroll systems, payslips and posting payroll to the general ledger",
+        "Corporate tax principles and tax compliance for small businesses"
+      ]
+    },
+    {
+      "title": "Financial controls and fraud",
+      "weeks": "13",
+      "topics": [
+        "Internal control frameworks: the COSO components of control",
+        "Segregation of duties, authorisation, reconciliation and physical controls; application controls in software",
+        "The fraud triangle; common frauds: ghost employees, fictitious suppliers, skimming and lapping",
+        "Audit trails, continuous auditing, Benford's law and data analytics for fraud detection",
+        "Capstone: building and auditing a small double-entry accounting system for a susu group"
+      ]
+    }
+  ]
+}

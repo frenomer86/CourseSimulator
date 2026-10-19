@@ -1,0 +1,120 @@
+{
+  "slug": "control-systems",
+  "description": "Analysis and design of feedback control systems: modelling physical systems, transfer functions and block diagrams, transient and steady-state response, stability, root locus, Bode and Nyquist methods, PID tuning, state-space design and digital control. Every plant and controller is simulated in the browser, so students tune a controller and immediately see its step response, root locus and frequency response move.",
+  "modelledOn": [
+    "Nise, Control Systems Engineering",
+    "Ogata, Modern Control Engineering",
+    "Franklin, Powell and Emami-Naeini, Feedback Control of Dynamic Systems",
+    "Dorf and Bishop, Modern Control Systems"
+  ],
+  "outcomes": [
+    "Model electrical, mechanical and electromechanical systems as differential equations, transfer functions and state-space equations.",
+    "Reduce block diagrams and signal-flow graphs and determine transient response, steady-state error and stability.",
+    "Design compensators with the root locus and with Bode and Nyquist frequency-response methods to meet time- and frequency-domain specifications.",
+    "Design and tune PID controllers and explain integral windup, derivative filtering and practical tuning rules.",
+    "Design state-feedback controllers and observers, and implement controllers digitally with appropriate sampling."
+  ],
+  "units": [
+    {
+      "title": "Introduction to feedback control",
+      "weeks": "1",
+      "topics": [
+        "Open-loop and closed-loop control; the benefits and costs of feedback",
+        "The control design process: specifications, model, design, simulation, implementation",
+        "Laplace transform review for control",
+        "Examples: water-tank level, room temperature, and a hydroelectric generator speed governor holding grid frequency at 50 Hz"
+      ]
+    },
+    {
+      "title": "Modelling dynamic systems",
+      "weeks": "2-3",
+      "topics": [
+        "Electrical networks and operational amplifier circuits",
+        "Mechanical translational and rotational systems; gears and inertia reflection",
+        "Electromechanical systems: the armature-controlled DC motor",
+        "Thermal and fluid systems; electrical analogies",
+        "Linearisation of non-linear systems about an operating point",
+        "Identifying model parameters from measured step responses"
+      ]
+    },
+    {
+      "title": "Transfer functions and block diagrams",
+      "weeks": "4",
+      "topics": [
+        "Transfer functions, poles and zeros; from differential equations to transfer functions",
+        "Block diagram algebra and reduction",
+        "Signal-flow graphs and Mason's gain formula",
+        "Effects of feedback: sensitivity to parameter variation, disturbance rejection, noise"
+      ]
+    },
+    {
+      "title": "Time response, stability and steady-state error",
+      "weeks": "5-6",
+      "topics": [
+        "First-order response and the time constant",
+        "Second-order response: damping ratio, natural frequency, rise time, peak time, percentage overshoot, settling time",
+        "Higher-order systems and dominant poles; effect of zeros",
+        "Routh-Hurwitz stability criterion, including special cases",
+        "Steady-state error, system type and static error constants",
+        "Specifying performance for a solar-powered irrigation pump"
+      ]
+    },
+    {
+      "title": "Root locus",
+      "weeks": "7-8",
+      "topics": [
+        "The root locus: angle and magnitude conditions",
+        "Sketching rules: asymptotes, breakaway and break-in points, imaginary-axis crossings, angles of departure",
+        "Gain selection to meet transient specifications",
+        "Lead, lag and lead-lag compensator design on the root locus",
+        "Root contours and parameter sensitivity"
+      ]
+    },
+    {
+      "title": "Frequency response: Bode and Nyquist",
+      "weeks": "9-10",
+      "topics": [
+        "Frequency response and asymptotic Bode magnitude and phase plots",
+        "The Nyquist plot and the Nyquist stability criterion",
+        "Gain and phase margins; relation to transient response",
+        "Closed-loop frequency response and bandwidth; Nichols chart in brief",
+        "Lead, lag and lead-lag design in the frequency domain",
+        "Effect of time delay on stability, as in remote or networked control"
+      ]
+    },
+    {
+      "title": "PID controller design and tuning",
+      "weeks": "11",
+      "topics": [
+        "Proportional, integral and derivative actions and their effect on response",
+        "Practical PID: integral windup and anti-windup, derivative filtering, set-point weighting, bumpless transfer",
+        "Tuning methods: Ziegler-Nichols, Cohen-Coon and IMC-based tuning",
+        "Cascade and feedforward control",
+        "Tuning a DC motor speed loop and a battery charge controller on the simulator"
+      ]
+    },
+    {
+      "title": "State-space models",
+      "weeks": "12-13",
+      "topics": [
+        "State variables; converting between transfer functions and state-space forms",
+        "Solution of the state equation and the state-transition matrix",
+        "Controllability and observability",
+        "State feedback and pole placement; Ackermann's formula",
+        "Full-order observer design and the separation principle",
+        "The linear quadratic regulator in brief"
+      ]
+    },
+    {
+      "title": "Digital control",
+      "weeks": "14",
+      "topics": [
+        "Sampled-data systems and the zero-order hold; z-domain transfer functions",
+        "Discretising controllers: forward, backward and Tustin approximations",
+        "Stability in the z-plane and the Jury test",
+        "Implementing a digital PID on a microcontroller: sampling-rate choice, quantisation and computational delay",
+        "Grid frequency control and load shedding as a large-scale control problem"
+      ]
+    }
+  ]
+}

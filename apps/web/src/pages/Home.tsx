@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Circuit } from '@cslab/engine-digital-logic';
-import { COURSES, coursesByArea, labsForCourse } from '../lib/catalogue';
+import { COURSES, coursesByArea, labsForCourse, PROGRAMMES } from '../lib/catalogue';
 import { useProgress } from '../store/progress';
 import { LogicCanvas } from '../components/LogicCanvas';
 
@@ -37,15 +37,15 @@ export function HomePage() {
         <div className="mx-auto max-w-6xl px-4 py-10 lg:py-16 grid gap-10 lg:grid-cols-[1.1fr_1fr] items-center">
           <div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight">
-              Every practical in your Computer Science degree, in your browser.
+              Every practical in your computing degree, in your browser.
             </h1>
             <p className="mt-5 text-lg text-ink-soft max-w-[52ch] leading-relaxed">
-              Wire circuits, subnet networks, query databases and run code with no lab kit, no server and no
-              installation. Built for students across Africa who learn on a phone or a shared laptop.
+              Wire circuits, subnet networks, query databases, align genomes and train models with no lab kit, no server
+              and no installation. Built for students across Africa who learn on a phone or a shared laptop.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#courses" className="rounded-md bg-high px-5 py-2.5 text-white font-medium hover:bg-[#0c5a46]">
-                Browse the courses
+              <a href="#programmes" className="rounded-md bg-high px-5 py-2.5 text-white font-medium hover:bg-[#0c5a46]">
+                Choose your programme
               </a>
               <Link
                 to="/courses/digital-logic-design"
@@ -54,7 +54,11 @@ export function HomePage() {
                 Start with Digital Logic
               </Link>
             </div>
-            <dl className="mt-8 grid grid-cols-3 gap-4 max-w-md text-sm">
+            <dl className="mt-8 grid grid-cols-4 gap-4 max-w-lg text-sm">
+              <div>
+                <dt className="text-ink-soft">Programmes</dt>
+                <dd className="text-2xl font-semibold font-mono">{PROGRAMMES.length}</dd>
+              </div>
               <div>
                 <dt className="text-ink-soft">Courses</dt>
                 <dd className="text-2xl font-semibold font-mono">{COURSES.length}</dd>
@@ -80,12 +84,14 @@ export function HomePage() {
         </div>
       </section>
 
+      <ProgrammesSection />
+
       <section id="courses" className="mx-auto max-w-6xl px-4 py-10">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <h2 className="text-2xl font-semibold">Courses</h2>
           <p className="text-sm text-ink-soft max-w-[60ch]">
-            Organised by area. The year is the suggested place in a four-year degree. Courses without labs yet show
-            their syllabus so you know what is coming.
+            Every course across all programmes, organised by area. Courses without labs yet show their syllabus so you
+            know what is coming.
           </p>
         </div>
 
@@ -129,5 +135,55 @@ export function HomePage() {
         </div>
       </section>
     </div>
+  );
+}
+
+function ProgrammesSection() {
+  const labs = useProgress((s) => s.labs);
+  const asked = PROGRAMMES.filter((p) => !p.recommended);
+  const more = PROGRAMMES.filter((p) => p.recommended);
+  return (
+    <section id="programmes" className="mx-auto max-w-6xl px-4 pt-10">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <h2 className="text-2xl font-semibold">Programmes</h2>
+        <p className="text-sm text-ink-soft max-w-[60ch]">
+          Pick the degree you are studying or want to explore. Each programme is a path through the courses; many courses are
+          shared, so your progress counts everywhere.
+        </p>
+      </div>
+      <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {asked.map((p) => (
+          <ProgrammeCard key={p.slug} slug={p.slug} labs={labs} />
+        ))}
+      </ul>
+      {more.length > 0 && (
+        <>
+          <h3 className="mt-8 font-semibold">More programmes</h3>
+          <ul className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {more.map((p) => (
+              <ProgrammeCard key={p.slug} slug={p.slug} labs={labs} />
+            ))}
+          </ul>
+        </>
+      )}
+    </section>
+  );
+}
+
+function ProgrammeCard({ slug, labs }: { slug: string; labs: Record<string, { passed: boolean } | undefined> }) {
+  const p = PROGRAMMES.find((x) => x.slug === slug)!;
+  const programmeLabs = p.courses.flatMap((c) => labsForCourse(c));
+  const passed = programmeLabs.filter((l) => labs[l.id]?.passed).length;
+  return (
+    <li>
+      <Link to={`/programmes/${p.slug}`} className="block h-full rounded-lg border border-line bg-surface p-4 hover:border-ink-faint">
+        <h4 className="font-semibold leading-snug">{p.title}</h4>
+        <p className="mt-1 text-sm text-ink-soft line-clamp-3">{p.description}</p>
+        <p className="mt-3 text-xs text-ink-faint font-mono">
+          {p.courses.length} courses · {programmeLabs.length} labs
+          {passed > 0 && <span className="text-high"> · {passed} passed</span>}
+        </p>
+      </Link>
+    </li>
   );
 }

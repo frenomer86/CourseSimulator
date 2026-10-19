@@ -1,0 +1,114 @@
+{
+  "slug": "reinforcement-learning",
+  "description": "Learning to act from reward: agents and environments, multi-armed bandits, Markov decision processes, dynamic programming, Monte Carlo and temporal-difference methods, Q-learning, policy gradients and deep reinforcement learning. Every algorithm is derived, implemented and watched learning in simulated grid worlds and control environments in the browser, taught to the depth of a strong final-year reinforcement learning course.",
+  "modelledOn": [
+    "Sutton and Barto, Reinforcement Learning: An Introduction",
+    "Szepesvári, Algorithms for Reinforcement Learning",
+    "Bertsekas, Reinforcement Learning and Optimal Control",
+    "Lattimore and Szepesvári, Bandit Algorithms"
+  ],
+  "outcomes": [
+    "Formulate sequential decision problems as bandits or Markov decision processes with suitable states, actions and rewards.",
+    "Derive the Bellman equations and solve known MDPs with policy evaluation, policy iteration and value iteration.",
+    "Implement Monte Carlo, temporal-difference and Q-learning methods and analyse their bias, variance and convergence.",
+    "Apply function approximation and policy gradient methods, including actor-critic algorithms, to large and continuous problems.",
+    "Train and debug deep reinforcement learning agents and evaluate them with reproducible experiments.",
+    "Assess the risks of reward misspecification and unsafe exploration when applying reinforcement learning to real systems."
+  ],
+  "units": [
+    {
+      "title": "Agents, environments and rewards",
+      "weeks": "1",
+      "topics": [
+        "The reinforcement learning problem: agent, environment, state, action, reward, return; how it differs from supervised learning",
+        "Episodic and continuing tasks; discounting; the reward hypothesis and reward design",
+        "Environments as code: the Gymnasium interface, grid worlds, cart-pole, mountain car",
+        "Examples: game playing, robotics, recommender systems, irrigation scheduling and traffic signal control"
+      ]
+    },
+    {
+      "title": "Multi-armed bandits",
+      "weeks": "2",
+      "topics": [
+        "The exploration-exploitation dilemma; action-value estimates and incremental updates",
+        "Epsilon-greedy, optimistic initial values, upper confidence bound and Thompson sampling",
+        "Regret and its bounds; non-stationary bandits and constant step sizes",
+        "Contextual bandits: choosing which SMS reminder or promotion to send a mobile money customer"
+      ]
+    },
+    {
+      "title": "Markov decision processes",
+      "weeks": "3",
+      "topics": [
+        "The Markov property; transition dynamics and reward functions; finite MDPs",
+        "Policies, state-value and action-value functions",
+        "The Bellman expectation and optimality equations derived; optimal policies",
+        "Partially observable problems and belief states in brief"
+      ]
+    },
+    {
+      "title": "Dynamic programming",
+      "weeks": "4",
+      "topics": [
+        "Iterative policy evaluation; the contraction mapping argument for convergence",
+        "The policy improvement theorem; policy iteration",
+        "Value iteration; asynchronous and generalised policy iteration",
+        "The curse of dimensionality and why model-free methods are needed; an inventory MDP for a community pharmacy"
+      ]
+    },
+    {
+      "title": "Monte Carlo and temporal-difference learning",
+      "weeks": "5-6",
+      "topics": [
+        "Monte Carlo prediction: first-visit and every-visit; Monte Carlo control with exploring starts",
+        "On-policy and off-policy learning; ordinary and weighted importance sampling",
+        "TD(0) prediction and bootstrapping; the bias-variance trade-off between Monte Carlo and TD",
+        "n-step methods, eligibility traces and TD(lambda)",
+        "SARSA and expected SARSA for on-policy control; the cliff-walking comparison"
+      ]
+    },
+    {
+      "title": "Q-learning and function approximation",
+      "weeks": "7-8",
+      "topics": [
+        "Q-learning as off-policy TD control; convergence conditions; maximisation bias and double Q-learning",
+        "Model-based planning: Dyna-Q, prioritised sweeping, Monte Carlo tree search in brief",
+        "Value function approximation: linear features, tile coding, semi-gradient methods",
+        "The deadly triad of function approximation, bootstrapping and off-policy learning; divergence examples",
+        "Least-squares TD and fitted Q iteration"
+      ]
+    },
+    {
+      "title": "Policy gradient methods",
+      "weeks": "9-10",
+      "topics": [
+        "Parameterised policies: softmax and Gaussian; the policy gradient theorem derived",
+        "REINFORCE; baselines and variance reduction",
+        "Actor-critic methods; advantage estimation and generalised advantage estimation",
+        "Trust regions and proximal policy optimisation; natural gradients in brief",
+        "Continuous control: deterministic policy gradients, DDPG, TD3 and soft actor-critic"
+      ]
+    },
+    {
+      "title": "Deep reinforcement learning",
+      "weeks": "11-12",
+      "topics": [
+        "Deep Q-networks: experience replay, target networks, learning from pixels",
+        "DQN improvements: double DQN, duelling networks, prioritised replay, distributional methods",
+        "Engineering deep RL: hyperparameters, seeds, reward scaling, debugging learning curves, reproducibility",
+        "Exploration in hard problems: intrinsic motivation, curiosity and count-based bonuses",
+        "Offline reinforcement learning from logged data; reinforcement learning from human feedback for language models"
+      ]
+    },
+    {
+      "title": "Reinforcement learning in the real world",
+      "weeks": "13",
+      "topics": [
+        "Multi-agent reinforcement learning and self-play in brief",
+        "Reward misspecification, reward hacking and safe exploration",
+        "Simulation-to-reality transfer; recognising when reinforcement learning is the wrong tool",
+        "Capstone: an agent for a simulated problem such as microgrid battery scheduling or traffic lights at an Accra junction, with an experiment report"
+      ]
+    }
+  ]
+}

@@ -24,9 +24,21 @@ export interface Course {
   syllabus?: SyllabusUnit[];
 }
 
+/** A programme of study: an ordered list of courses. A course can belong to several programmes. */
+export interface Programme {
+  slug: string;
+  title: string;
+  description: string;
+  outcomes: string[];
+  /** Programmes the platform added beyond the ones first asked for. */
+  recommended: boolean;
+  courses: string[];
+}
+
 interface CatalogueFile {
   areas: Record<string, string>;
   years: Record<string, string>;
+  programmes: Programme[];
   courses: Course[];
 }
 
@@ -38,6 +50,17 @@ export const COURSES: Course[] = catalogue.courses;
 
 export function courseBySlug(slug: string): Course | undefined {
   return COURSES.find((c) => c.slug === slug);
+}
+
+export const PROGRAMMES: Programme[] = catalogue.programmes;
+
+export function programmeBySlug(slug: string): Programme | undefined {
+  return PROGRAMMES.find((p) => p.slug === slug);
+}
+
+/** The programmes that include a course, in catalogue order. */
+export function programmesForCourse(slug: string): Programme[] {
+  return PROGRAMMES.filter((p) => p.courses.includes(slug));
 }
 
 export function coursesByArea(): Array<{ area: string; name: string; courses: Course[] }> {

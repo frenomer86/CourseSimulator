@@ -9,6 +9,9 @@ import { LogicCanvas } from '../components/LogicCanvas';
 import { TruthTablePanel } from '../components/TruthTablePanel';
 import { Markdown } from '../components/Markdown';
 import { NotFoundPage } from './NotFound';
+import { ContestBanner, useContestEntry } from '../components/Contest';
+import { SolutionShare } from '../components/SolutionShare';
+import { QuestionsAbout } from './Forum';
 
 const logicChecks = createLogicChecks();
 
@@ -82,6 +85,7 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
     track('submitted', labObject(lab), outcome);
     track(r.passed ? 'passed' : 'failed', labObject(lab), outcome);
     track('saved', { ...labObject(lab), type: 'lab-artefact' }, { artefact: circuit, gates: circuit.nodes.length, wires: circuit.wires.length }, { reason: r.passed ? 'pass' : 'submit' });
+    void contest.submit(r.passed, hintsShown);
     setChecking(false);
   };
 
@@ -92,6 +96,7 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
     setResult(null);
   };
 
+  const contest = useContestEntry('lab', lab.id, lab.course);
   const following = useMemo(() => nextLab(lab), [lab]);
   const unit = course && lab.unit ? unitOf(course, lab.unit) : undefined;
   const topicCheck = lab.unit && lab.topicIndex ? checkForTopic(lab.course, lab.unit, lab.topicIndex) : undefined;
@@ -126,6 +131,8 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
           {progress?.passed && <span className="ml-3 text-high font-medium">Completed</span>}
         </span>
       </div>
+
+      <ContestBanner entry={contest} />
 
       <div className="mt-5 grid gap-5 lg:grid-cols-[320px_minmax(0,1fr)_300px]">
         {/* Instructions */}
@@ -251,6 +258,18 @@ function LogicLab({ lab }: { lab: LabSpec<Circuit> }) {
               ))}
             </ul>
           </div>
+          <QuestionsAbout labId={lab.id} title="Questions about this lab" />
+          {contest.active.length === 0 && (
+            <SolutionShare
+              lab={lab}
+              passed={!!progress?.passed}
+              artefact={circuit}
+              onOpen={(payload) => {
+                setCircuit(payload as Circuit);
+                setResult(null);
+              }}
+            />
+          )}
         </aside>
       </div>
     </div>

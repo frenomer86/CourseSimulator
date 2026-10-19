@@ -1,0 +1,123 @@
+{
+  "slug": "regulatory-technology-and-compliance",
+  "description": "How financial institutions meet their legal obligations and how technology automates the work: why financial regulation exists, know your customer and anti-money laundering, data protection law, reporting to regulators, automated compliance monitoring, regulatory sandboxes and risk management frameworks, with the Bank of Ghana and other African regulators as the running cases. Students build compliance tools in the browser, including a KYC onboarding flow, a transaction monitoring engine and a machine-readable regulatory return, and test them against simulated customers and transactions.",
+  "modelledOn": [
+    "FATF Recommendations on combating money laundering and the financing of terrorism",
+    "Basel Committee on Banking Supervision, Basel III framework",
+    "ISO 31000 Risk Management and the COSO Enterprise Risk Management framework",
+    "Certified Anti-Money Laundering Specialist (CAMS) body of knowledge"
+  ],
+  "outcomes": [
+    "Explain why financial regulation exists, the roles of central banks and other regulators, and the main regulatory objectives.",
+    "Design know-your-customer and customer due diligence processes that follow a risk-based approach.",
+    "Build anti-money laundering controls, including sanctions screening and transaction monitoring, and evaluate their accuracy.",
+    "Apply data protection law to the design of financial systems and the handling of personal data.",
+    "Automate regulatory reporting and compliance monitoring and explain the use of SupTech by regulators.",
+    "Apply risk management frameworks and assess innovations through a regulatory sandbox."
+  ],
+  "units": [
+    {
+      "title": "Financial regulation and why it exists",
+      "weeks": "1-2",
+      "topics": [
+        "Market failures that justify regulation: information asymmetry, systemic risk, contagion and consumer harm",
+        "Objectives of regulation: financial stability, consumer protection, market integrity and financial inclusion",
+        "Regulators and their mandates: the Bank of Ghana, the Securities and Exchange Commission, the National Insurance Commission; central banks across Africa",
+        "Prudential regulation: capital adequacy, liquidity and the Basel accords; conduct regulation",
+        "Lessons from crises: the 2008 global crisis and Ghana's 2017 to 2019 banking sector clean-up",
+        "What RegTech and SupTech are: automating compliance for firms and supervision for regulators"
+      ]
+    },
+    {
+      "title": "Know your customer",
+      "weeks": "3",
+      "topics": [
+        "Customer due diligence: identification, verification, beneficial ownership and the purpose of the relationship",
+        "Risk-based approach: simplified, standard and enhanced due diligence; politically exposed persons",
+        "Digital identity and e-KYC: the Ghana Card and the national identification system, biometric and document verification, liveness checks",
+        "Tiered KYC for mobile money and financial inclusion; balancing access and risk",
+        "Building a KYC onboarding flow with identity checks and a customer risk score"
+      ]
+    },
+    {
+      "title": "Anti-money laundering and countering terrorist financing",
+      "weeks": "4-5",
+      "topics": [
+        "Money laundering stages (placement, layering, integration) and terrorist financing; typologies in mobile money and trade",
+        "The FATF Recommendations, mutual evaluations and grey listing; Ghana's AML/CFT law and the Financial Intelligence Centre",
+        "Sanctions screening: sanctions lists, fuzzy name matching, transliteration and managing false positives",
+        "Suspicious transaction reports, cash transaction reports and record keeping",
+        "Correspondent banking, de-risking and its effect on remittances to Africa",
+        "Crypto-assets and virtual asset service providers; the travel rule"
+      ]
+    },
+    {
+      "title": "Data protection law",
+      "weeks": "6-7",
+      "topics": [
+        "Principles of data protection: lawfulness, purpose limitation, minimisation, accuracy, storage limitation, security and accountability",
+        "Ghana's Data Protection Act 2012 (Act 843) and the Data Protection Commission; registration of data controllers",
+        "Comparing the EU GDPR, Kenya's Data Protection Act, Nigeria's Data Protection Act and the African Union Malabo Convention",
+        "Data subject rights, consent, cross-border data transfers and data localisation rules",
+        "Privacy by design: data protection impact assessments, pseudonymisation, encryption and retention schedules",
+        "Breach notification and the tension between data protection and KYC record-keeping obligations"
+      ]
+    },
+    {
+      "title": "Reporting to regulators",
+      "weeks": "8",
+      "topics": [
+        "Prudential returns: capital, liquidity, large exposures and asset quality; reporting calendars",
+        "Electronic reporting systems such as the Bank of Ghana's Online Regulatory and Analytical Surveillance Software",
+        "Data standards for reporting: XBRL, data dictionaries and granular data collection",
+        "Machine-readable and machine-executable regulation; regulation as code",
+        "Data quality, lineage and reconciliation between source systems and returns",
+        "Generating and validating a regulatory return from a simulated loan book"
+      ]
+    },
+    {
+      "title": "Automated compliance monitoring",
+      "weeks": "9-10",
+      "topics": [
+        "Transaction monitoring: rule-based scenarios, thresholds, structuring and velocity rules",
+        "Machine learning for anomaly detection and alert scoring; network analysis of money flows",
+        "Measuring a monitoring system: precision, recall, false positive rates and alert backlogs",
+        "Explainability, model governance and audit trails for automated decisions",
+        "Case management workflows and evidence for investigators",
+        "Building a transaction monitoring engine and tuning it against simulated mobile money fraud and laundering"
+      ]
+    },
+    {
+      "title": "Regulatory sandboxes",
+      "weeks": "11",
+      "topics": [
+        "Why sandboxes exist: testing innovation under supervision with limits on customers and exposure",
+        "Sandbox design: eligibility, testing parameters, safeguards, exit criteria and reporting",
+        "The Bank of Ghana regulatory and innovation sandbox and sandboxes in Kenya, Nigeria, Rwanda and Sierra Leone",
+        "Innovation hubs, test-and-learn approaches and cross-border sandbox networks",
+        "Preparing a sandbox application for a fintech product"
+      ]
+    },
+    {
+      "title": "Risk management frameworks",
+      "weeks": "12",
+      "topics": [
+        "Enterprise risk management with ISO 31000 and COSO: risk identification, assessment, treatment and monitoring",
+        "Risk categories: credit, market, liquidity, operational, compliance and reputational risk",
+        "The three lines model, risk appetite statements, key risk indicators and risk registers",
+        "Operational and cyber risk: the Bank of Ghana Cyber and Information Security Directive, business continuity",
+        "Third-party and outsourcing risk, including cloud providers and agent networks"
+      ]
+    },
+    {
+      "title": "Governance, ethics and capstone",
+      "weeks": "13",
+      "topics": [
+        "Compliance governance: the compliance officer, board oversight, internal audit and whistleblowing",
+        "Ethics and culture: conflicts of interest, fair treatment of customers and responsible use of data",
+        "Choosing and integrating RegTech vendors; build versus buy",
+        "Capstone: a compliance platform for a mobile money provider covering KYC, monitoring, reporting and a risk register"
+      ]
+    }
+  ]
+}

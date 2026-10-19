@@ -14,6 +14,7 @@ import { useProgress } from '../store/progress';
 import { secondsSince, track } from '../lib/telemetry';
 import { InlineMarkdown, Markdown } from '../components/Markdown';
 import { NotFoundPage } from './NotFound';
+import { ContestBanner, useContestEntry } from '../components/Contest';
 
 export function TopicCheckPage() {
   const { slug = '', unit = '', topic = '' } = useParams();
@@ -55,6 +56,7 @@ function CheckSitting({
   const recordCheck = useProgress((s) => s.recordCheck);
   const previous = useProgress((s) => s.checks[topicKey(spec.course, spec.unit, spec.topic)]);
   const passMark = spec.passMark ?? DEFAULT_PASS_MARK;
+  const contest = useContestEntry('check', `${spec.course}:${spec.unit}:${spec.topic}`, spec.course);
 
   const unanswered = items.filter((it) => {
     const a = answers[it.id];
@@ -77,6 +79,7 @@ function CheckSitting({
       attempt: (previous?.attempts ?? 0) + 1,
       durationS: secondsSince(seed),
     });
+    void contest.submit(g.passed, 0);
     window.scrollTo({ top: 0 });
   };
 
@@ -115,6 +118,7 @@ function CheckSitting({
         retake it as often as you like and the questions change.
         {previous && ` Your best so far is ${Math.round(previous.bestScore)}%.`}
       </p>
+      <ContestBanner entry={contest} />
 
       {grade && (
         <div

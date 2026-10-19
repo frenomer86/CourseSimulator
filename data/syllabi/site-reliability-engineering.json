@@ -1,0 +1,105 @@
+{
+  "slug": "site-reliability-engineering",
+  "description": "Running production services reliably at scale: reliability goals expressed as service level indicators, objectives and error budgets, monitoring and alerting, incident response and blameless postmortems, capacity planning, load balancing and failover, and automation that removes toil. Practised through simulated outages, on-call rotations and failover drills in browser-based consoles and terminals, taught to the depth of a strong final-year reliability engineering course.",
+  "modelledOn": [
+    "Beyer, Jones, Petoff and Murphy, Site Reliability Engineering: How Google Runs Production Systems",
+    "Beyer, Murphy, Rensin, Kawahara and Thorne, The Site Reliability Workbook",
+    "Nygard, Release It! Design and Deploy Production-Ready Software",
+    "Allspaw, The Art of Capacity Planning"
+  ],
+  "outcomes": [
+    "Define service level indicators and objectives that reflect user experience and manage releases with error budgets.",
+    "Design monitoring and alerting that pages humans only for urgent, actionable, user-visible problems.",
+    "Lead and take part in incident response using clear roles, communication and mitigation-first practices.",
+    "Write blameless postmortems that identify contributing factors and drive lasting improvements.",
+    "Forecast demand, plan capacity and design load balancing, redundancy and failover for target availability.",
+    "Measure and reduce toil through automation, safe release engineering and controlled chaos experiments."
+  ],
+  "units": [
+    {
+      "title": "Reliability goals and error budgets",
+      "weeks": "1-2",
+      "topics": [
+        "What SRE is: software engineering applied to operations; how it relates to DevOps and traditional operations",
+        "Availability, latency, durability and correctness; the cost of each additional nine",
+        "Service level indicators, objectives and agreements; choosing SLIs from user journeys",
+        "Error budgets and error budget policies; balancing feature velocity against reliability",
+        "SLOs for a mobile money transfer service and a national exam results portal on release day"
+      ]
+    },
+    {
+      "title": "Monitoring and alerting",
+      "weeks": "3-4",
+      "topics": [
+        "White-box and black-box monitoring; the four golden signals; the USE and RED methods",
+        "Metrics, logs and traces; time series, labels and cardinality; Prometheus and Grafana",
+        "Alerting on symptoms not causes; burn-rate alerts on SLOs; reducing alert fatigue",
+        "Synthetic probes and real user monitoring; monitoring from networks in different African countries",
+        "Dashboards that answer questions; runbooks linked from every alert"
+      ]
+    },
+    {
+      "title": "Incident response",
+      "weeks": "5-6",
+      "topics": [
+        "On-call: rotations, handovers, escalation policies, sustainable load and compensation",
+        "Incident command: incident commander, operations lead, communications lead, scribe",
+        "Mitigate first: rollbacks, feature flags, traffic draining, graceful degradation",
+        "Communication during incidents: status pages, stakeholder updates, customer messages",
+        "Simulated incidents: a database failover, a bad deploy and an upstream payment provider outage"
+      ]
+    },
+    {
+      "title": "Postmortems",
+      "weeks": "7",
+      "topics": [
+        "Blameless culture and why blame hides information",
+        "Writing a postmortem: timeline, impact, detection, response, contributing factors, action items",
+        "Analysis techniques: five whys and its limits, causal diagrams, systems thinking about complex failures",
+        "Tracking action items to completion; learning from public postmortems of major outages"
+      ]
+    },
+    {
+      "title": "Capacity planning",
+      "weeks": "8-9",
+      "topics": [
+        "Demand forecasting: organic growth, seasonality, events such as month-end salaries and festive seasons",
+        "Load testing and finding the saturation point; queueing theory basics and Little's law",
+        "Headroom, N+1 and N+2 redundancy; provisioning lead times for cloud and on-premises hardware",
+        "Autoscaling policies and their failure modes; cost as a capacity constraint",
+        "Planning around unreliable power and connectivity: generators, UPS, multiple internet providers"
+      ]
+    },
+    {
+      "title": "Load balancing and failover",
+      "weeks": "10-11",
+      "topics": [
+        "Layer 4 and layer 7 load balancing; algorithms: round robin, least connections, consistent hashing",
+        "Health checks, connection draining, overload protection, load shedding and rate limiting",
+        "Resilience patterns: timeouts, retries with jitter, circuit breakers, bulkheads; cascading failures",
+        "DNS and global load balancing; active-active and active-passive multi-region designs",
+        "Database replication and failover; recovery time and recovery point objectives; disaster recovery drills"
+      ]
+    },
+    {
+      "title": "Automation and toil reduction",
+      "weeks": "12",
+      "topics": [
+        "Defining and measuring toil; the toil budget",
+        "Automation maturity: from runbooks to scripts to self-healing systems; when not to automate",
+        "Release engineering: CI/CD, canary releases, progressive delivery, automated rollback",
+        "Configuration as code and infrastructure as code as reliability tools"
+      ]
+    },
+    {
+      "title": "Reliability practice and capstone",
+      "weeks": "13",
+      "topics": [
+        "Chaos engineering: hypotheses, blast radius, game days",
+        "Production readiness reviews and launch checklists",
+        "Organising SRE: embedded, centralised and consulting models; reliability in small teams",
+        "Capstone: define SLOs, build monitoring, run an incident drill and write the postmortem for a simulated service"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "slug": "mobile-and-cellular-networks",
+  "description": "How mobile networks are built and run end to end: cellular concepts and spectrum, the GSM, UMTS, LTE and 5G architectures and their protocols, mobility management and roaming, and the SMS, USSD and data services that carry mobile money and everyday traffic. Every procedure, from attach and handover to a USSD session, is traced message by message in a network simulator, and a network is planned for real coverage and traffic targets.",
+  "modelledOn": [
+    "3GPP Technical Specifications for GSM, UMTS, LTE and 5G NR",
+    "Sauter, From GSM to LTE-Advanced Pro and 5G: An Introduction to Mobile Networks and Mobile Broadband",
+    "Holma and Toskala, LTE for UMTS: Evolution to LTE-Advanced",
+    "Dahlman, Parkvall and Skold, 5G NR: The Next Generation Wireless Access Technology"
+  ],
+  "outcomes": [
+    "Explain the cellular concept and plan cells, frequency reuse and capacity for a given coverage area and traffic load.",
+    "Describe the radio access and core networks of GSM, UMTS, LTE and 5G and the role of each network element and interface.",
+    "Trace signalling procedures such as attach, authentication, bearer setup, paging and handover across the protocol stack.",
+    "Analyse mobility management, location updating and roaming and their cost in signalling load and latency.",
+    "Design SMS, USSD and mobile data services and explain how the operator's network delivers and charges for them.",
+    "Compare 4G and 5G deployment options and assess them for urban and rural coverage in Ghana and the wider region."
+  ],
+  "units": [
+    {
+      "title": "Cellular concepts and the evolution of mobile networks",
+      "weeks": "1-2",
+      "topics": [
+        "Generations of mobile networks from 1G analogue to 5G: what each added in services, data rate and architecture; the roles of 3GPP and the ITU",
+        "Cells, clusters and frequency reuse; reuse distance, co-channel interference and the signal-to-interference ratio",
+        "Capacity: cell splitting, sectoring, microcells, picocells and small cells; traffic in Erlangs and grade of service",
+        "Macro, micro and umbrella cell layers; coverage-limited versus capacity-limited cells",
+        "Mobile markets in Africa: operator landscape, tower sharing, mobile penetration and the rural coverage gap"
+      ]
+    },
+    {
+      "title": "Radio access and spectrum",
+      "weeks": "3",
+      "topics": [
+        "Spectrum bands for 2G to 5G (sub-1 GHz, mid-band, millimetre wave); the coverage and capacity trade-offs of each",
+        "Spectrum licensing and auctions; the National Communications Authority and spectrum policy in Ghana",
+        "Duplexing (FDD, TDD) and multiple access (FDMA, TDMA, CDMA, OFDMA) as used by each generation",
+        "Link budget and cell range; why low bands matter for rural cell coverage",
+        "Base station hardware: antennas, remote radio heads, baseband units; backhaul over microwave, fibre and satellite"
+      ]
+    },
+    {
+      "title": "GSM architecture and protocols",
+      "weeks": "4-5",
+      "topics": [
+        "GSM network elements: MS, SIM, BTS, BSC, MSC, HLR, VLR, AuC, EIR; the Um, Abis and A interfaces",
+        "Air interface: TDMA frames, timeslots, logical channels (traffic, broadcast, common and dedicated control)",
+        "Signalling: SS7, MAP and the GSM protocol stack (LAPDm, RR, MM, CM)",
+        "Call setup for mobile-originated and mobile-terminated calls; paging and channel assignment",
+        "Security: IMSI and TMSI, A3 and A8 challenge-response authentication, A5 ciphering and the known weaknesses of 2G"
+      ]
+    },
+    {
+      "title": "GPRS and 3G UMTS",
+      "weeks": "6",
+      "topics": [
+        "GPRS and EDGE: packet data over GSM, SGSN and GGSN, PDP contexts, the Gn and Gi interfaces",
+        "UMTS architecture: UTRAN with NodeB and RNC, the Iub and Iu interfaces, circuit-switched and packet-switched domains",
+        "WCDMA radio: spreading, fast power control, soft handover and the near-far problem",
+        "HSPA and HSPA+: higher data rates, fast scheduling and the shift to data-dominated traffic",
+        "Mutual authentication with AKA and the improvements over GSM security"
+      ]
+    },
+    {
+      "title": "4G LTE: E-UTRAN and the Evolved Packet Core",
+      "weeks": "7-8",
+      "topics": [
+        "Flat all-IP architecture: eNodeB, MME, S-GW, P-GW, HSS, PCRF; the S1, X2 and S11 interfaces",
+        "LTE radio: OFDMA downlink, SC-FDMA uplink, resource blocks, frame structure, MIMO and carrier aggregation",
+        "Protocol stack: PDCP, RLC, MAC and PHY in the user plane; RRC and NAS in the control plane",
+        "Attach, default and dedicated bearers, QoS class identifiers and policy control",
+        "Voice over LTE with IMS; circuit-switched fallback as a transition",
+        "Simulating an LTE attach and measuring control-plane latency"
+      ]
+    },
+    {
+      "title": "Mobility management and roaming",
+      "weeks": "9",
+      "topics": [
+        "Idle-mode mobility: location, routing and tracking areas; the trade-off between location updating and paging",
+        "Connected-mode handover: measurement reports, hard, soft and X2-based handover, inter-RAT handover",
+        "Handover failures, ping-pong and parameter tuning (hysteresis, time to trigger)",
+        "National and international roaming: home routing versus local breakout, HLR and VLR signalling, GRX and IPX",
+        "Cross-border roaming arrangements in East and West Africa and their effect on what subscribers pay"
+      ]
+    },
+    {
+      "title": "5G networks",
+      "weeks": "10-11",
+      "topics": [
+        "5G use cases: enhanced mobile broadband, massive machine-type communication, ultra-reliable low-latency communication",
+        "5G NR radio: flexible numerology, bandwidth parts, massive MIMO and beamforming, millimetre wave",
+        "5G core service-based architecture: AMF, SMF, UPF, AUSF, UDM, PCF, NRF; HTTP-based service interfaces",
+        "Non-standalone and standalone deployment options; dual connectivity with LTE",
+        "Network slicing, multi-access edge computing and the virtualised, cloud-native core",
+        "Fixed wireless access and the business case for 5G in African cities versus extending 4G to rural areas"
+      ]
+    },
+    {
+      "title": "Mobile data services, SMS and USSD",
+      "weeks": "12",
+      "topics": [
+        "SMS: the SMSC, store and forward, MAP signalling, delivery reports, SMS over IMS and bulk SMS gateways",
+        "USSD: session-oriented signalling, mobile-initiated and network-initiated sessions, the USSD gateway and session timeouts",
+        "Designing USSD menus for mobile money and government services: shortcodes such as *170#, menu depth and session limits",
+        "Mobile data services: APNs, DNS, carrier-grade NAT, data bundles and charging (online and offline charging, the OCS)",
+        "Security and fraud in mobile services: SIM swap, SS7 attacks, SMS one-time passwords and their weaknesses"
+      ]
+    },
+    {
+      "title": "Network planning, operations and capstone",
+      "weeks": "13",
+      "topics": [
+        "Radio network planning: coverage prediction, capacity dimensioning, site selection and drive tests",
+        "Key performance indicators: call setup success, drop rate, handover success, throughput; network optimisation",
+        "Network management with OSS and BSS; powering off-grid sites with solar and generators",
+        "Capstone: plan an LTE network for a rural Ghanaian district and simulate attach, handover and a USSD transaction across it"
+      ]
+    }
+  ]
+}

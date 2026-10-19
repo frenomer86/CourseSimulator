@@ -1,0 +1,119 @@
+{
+  "slug": "knowledge-representation-and-reasoning",
+  "description": "Representing what a system knows and drawing conclusions from it: propositional and first-order logic, inference and resolution, rule-based and expert systems, ontologies and semantic networks, reasoning under uncertainty with Bayesian networks, and automated planning. Taught through browser-based reasoners, a Prolog-style interpreter and a Bayesian-network tool, so every representation is encoded and every inference is run and checked.",
+  "modelledOn": [
+    "Brachman and Levesque, Knowledge Representation and Reasoning",
+    "Russell and Norvig, Artificial Intelligence: A Modern Approach",
+    "Poole and Mackworth, Artificial Intelligence: Foundations of Computational Agents"
+  ],
+  "outcomes": [
+    "Represent knowledge in propositional and first-order logic with correct syntax and semantics.",
+    "Perform inference by resolution, unification and forward and backward chaining.",
+    "Build rule-based and expert systems and explain their conclusions.",
+    "Model a domain with ontologies and semantic networks and reason over them.",
+    "Represent and reason about uncertain knowledge with Bayesian networks.",
+    "Formulate and solve planning problems and connect them to knowledge representation."
+  ],
+  "units": [
+    {
+      "title": "Knowledge, representation and reasoning",
+      "weeks": "1",
+      "topics": [
+        "What it means for a system to know something; the knowledge level versus the symbol level",
+        "Declarative versus procedural knowledge; the representation hypothesis",
+        "Entailment, soundness and completeness as the standards an inference method must meet",
+        "A survey of representations: logic, rules, frames, networks and probabilistic models",
+        "Applications: a crop-advisory assistant and a clinic triage aid for a rural health post"
+      ]
+    },
+    {
+      "title": "Propositional logic",
+      "weeks": "2-3",
+      "topics": [
+        "Syntax and semantics; truth tables, models and logical equivalence",
+        "Validity, satisfiability and entailment; the deduction theorem",
+        "Normal forms: conjunctive and disjunctive; converting to clauses",
+        "Model checking and the DPLL procedure for satisfiability",
+        "Encoding a scheduling or configuration constraint as a propositional formula"
+      ]
+    },
+    {
+      "title": "First-order logic",
+      "weeks": "4-5",
+      "topics": [
+        "Objects, relations and functions; constants, predicates, quantifiers and variables",
+        "Syntax and semantics of first-order logic; interpretations and models",
+        "Knowledge engineering: translating statements about a domain into first-order sentences",
+        "Expressing a family, organisation or geography ontology of Ghanaian regions and districts",
+        "The expressiveness and the decidability cost of first-order logic"
+      ]
+    },
+    {
+      "title": "Inference and resolution",
+      "weeks": "6-7",
+      "topics": [
+        "Inference rules; forward and backward chaining with Horn clauses",
+        "Unification and the most general unifier",
+        "Resolution refutation: converting to clausal form and proving by contradiction",
+        "Soundness, completeness and the search involved in finding a proof",
+        "A Prolog-style interpreter: facts, rules, queries and backtracking",
+        "Negation as failure and the closed-world assumption"
+      ]
+    },
+    {
+      "title": "Rules and expert systems",
+      "weeks": "8",
+      "topics": [
+        "Production systems: working memory, rule base and the inference engine",
+        "The match-resolve-act cycle and the Rete matching idea; conflict resolution",
+        "Forward- versus backward-chaining expert systems and when each fits",
+        "Explanation facilities and maintaining a rule base",
+        "Building a small diagnostic expert system for a common problem"
+      ]
+    },
+    {
+      "title": "Ontologies and semantic networks",
+      "weeks": "9-10",
+      "topics": [
+        "Semantic networks and frames; inheritance, defaults and exceptions",
+        "Ontologies: classes, individuals, properties and the subsumption hierarchy",
+        "Description logics as the formal basis; the open-world assumption",
+        "The semantic web stack: RDF triples, RDFS and OWL; querying a knowledge graph",
+        "Reasoning tasks: classification, consistency checking and instance retrieval",
+        "Modelling a local agriculture or health domain as an ontology"
+      ]
+    },
+    {
+      "title": "Reasoning under uncertainty",
+      "weeks": "11",
+      "topics": [
+        "Why strict logic is brittle for real knowledge; degrees of belief",
+        "Probability as a representation of uncertainty; the axioms and conditional probability",
+        "Bayes' rule and the naive Bayes assumption",
+        "Alternatives in brief: certainty factors, fuzzy logic and non-monotonic reasoning"
+      ]
+    },
+    {
+      "title": "Bayesian networks",
+      "weeks": "12",
+      "topics": [
+        "Representing a joint distribution compactly; conditional independence and the graph",
+        "Constructing a network and its conditional probability tables for a domain",
+        "Exact inference by enumeration and variable elimination",
+        "Approximate inference by sampling when exact inference is too costly",
+        "A diagnosis network for malaria-like symptoms at a clinic as a worked example"
+      ]
+    },
+    {
+      "title": "Planning",
+      "weeks": "13",
+      "topics": [
+        "Representing actions with preconditions and effects; the STRIPS and PDDL languages",
+        "State-space planning: forward and backward search and useful heuristics",
+        "Partial-order planning and planning graphs in brief",
+        "Planning as logical inference and as satisfiability; the link back to representation",
+        "Capstone: encode a logistics domain and have a planner produce and explain a plan"
+      ]
+    }
+  ]
+}

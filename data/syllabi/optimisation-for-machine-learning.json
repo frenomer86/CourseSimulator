@@ -1,0 +1,111 @@
+{
+  "slug": "optimisation-for-machine-learning",
+  "description": "The optimisation theory and algorithms that train machine learning models: convex sets and functions, gradient descent and its convergence, stochastic and mini-batch methods, momentum and adaptive methods such as Adam, constrained optimisation with Lagrange multipliers and duality, second-order and quasi-Newton methods, and the practice of tuning and diagnosing training. Every algorithm is derived, implemented from scratch and watched moving across loss surfaces in the browser before it is used on real models.",
+  "modelledOn": [
+    "Boyd and Vandenberghe, Convex Optimization",
+    "Nocedal and Wright, Numerical Optimization",
+    "Beck, First-Order Methods in Optimization",
+    "Goodfellow, Bengio and Courville, Deep Learning (optimisation chapters)"
+  ],
+  "outcomes": [
+    "Formulate learning problems as optimisation problems and recognise when they are convex.",
+    "Prove and apply the convergence properties of gradient descent under smoothness and strong convexity.",
+    "Implement stochastic, mini-batch, momentum and adaptive methods and explain their trade-offs in noise, speed and memory.",
+    "Solve constrained problems with Lagrange multipliers, KKT conditions and duality, including the support vector machine.",
+    "Apply Newton, quasi-Newton and other second-order methods and judge when their cost is justified.",
+    "Diagnose and tune training in practice using learning-rate schedules, gradient checks and loss curves."
+  ],
+  "units": [
+    {
+      "title": "Optimisation problems in machine learning",
+      "weeks": "1",
+      "topics": [
+        "Empirical risk minimisation as an optimisation problem; loss functions and regularisers",
+        "Calculus refresher: gradients, Jacobians, Hessians, directional derivatives and Taylor expansions",
+        "Local and global minima, saddle points; first- and second-order optimality conditions",
+        "Visualising loss surfaces and level sets for linear regression, logistic regression and small networks"
+      ]
+    },
+    {
+      "title": "Convex sets and functions",
+      "weeks": "2-3",
+      "topics": [
+        "Convex sets: hyperplanes, half-spaces, balls, polyhedra and cones; operations that preserve convexity",
+        "Convex functions: definitions, first- and second-order conditions, Jensen's inequality",
+        "Operations that preserve convexity; common convex losses in machine learning",
+        "Strong convexity, Lipschitz continuity and smoothness; condition number of a problem",
+        "Subgradients and non-smooth convex functions such as the L1 norm and hinge loss",
+        "Convex problem classes: least squares, linear and quadratic programming"
+      ]
+    },
+    {
+      "title": "Gradient descent and its variants",
+      "weeks": "4-5",
+      "topics": [
+        "Gradient descent derived from a quadratic upper bound; step size choice",
+        "Convergence rates for smooth convex and strongly convex functions",
+        "Line search: exact, backtracking and the Armijo and Wolfe conditions",
+        "Ill-conditioning, zig-zagging and the role of feature scaling and preconditioning",
+        "Subgradient methods, proximal gradient descent and ISTA for lasso",
+        "Coordinate descent"
+      ]
+    },
+    {
+      "title": "Stochastic optimisation",
+      "weeks": "6-7",
+      "topics": [
+        "Stochastic gradient descent: unbiased gradient estimates and their variance",
+        "Mini-batches, sampling with and without replacement, epochs and shuffling",
+        "Convergence of SGD with decreasing step sizes; the noise ball",
+        "Variance reduction: SVRG and SAGA",
+        "Generalisation and the implicit regularisation of SGD; large-batch training",
+        "Training on a laptop with limited memory: streaming data and small batches"
+      ]
+    },
+    {
+      "title": "Momentum and adaptive methods",
+      "weeks": "8",
+      "topics": [
+        "Heavy-ball momentum and Nesterov accelerated gradient; optimal rates for first-order methods",
+        "Adaptive learning rates: AdaGrad, RMSProp and Adam; bias correction",
+        "AdamW and decoupled weight decay; when adaptive methods generalise worse",
+        "Comparing optimisers on the same problem and reading their trajectories"
+      ]
+    },
+    {
+      "title": "Constrained optimisation and Lagrange multipliers",
+      "weeks": "9-10",
+      "topics": [
+        "Equality constraints and Lagrange multipliers; geometric interpretation",
+        "Inequality constraints and the Karush-Kuhn-Tucker conditions",
+        "Lagrangian duality: the dual function, weak and strong duality, Slater's condition",
+        "The support vector machine as a quadratic program; the dual and the kernel trick",
+        "Projected gradient descent, penalty and barrier methods; an overview of interior-point methods",
+        "Allocating a fertiliser budget across farms as a constrained problem"
+      ]
+    },
+    {
+      "title": "Second-order methods",
+      "weeks": "11",
+      "topics": [
+        "Newton's method: derivation, quadratic convergence and damped Newton",
+        "Gauss-Newton and Levenberg-Marquardt for least squares; iteratively reweighted least squares for logistic regression",
+        "Quasi-Newton methods: BFGS and limited-memory L-BFGS",
+        "Hessian-vector products, conjugate gradient and Hessian-free optimisation",
+        "Cost and memory of second-order methods at scale"
+      ]
+    },
+    {
+      "title": "Optimisation in practice: tuning and diagnostics",
+      "weeks": "12-13",
+      "topics": [
+        "Non-convex optimisation in deep learning: saddle points, plateaus and the loss landscape",
+        "Learning-rate schedules: step decay, cosine annealing, warm-up and the learning-rate range test",
+        "Initialisation, normalisation and gradient clipping; vanishing and exploding gradients",
+        "Diagnostics: gradient checking, loss curves, divergence and NaNs; reproducibility and random seeds",
+        "Hyperparameter optimisation: grid, random, Bayesian optimisation and early stopping",
+        "Capstone: implementing and benchmarking optimisers on a real model with a written analysis"
+      ]
+    }
+  ]
+}

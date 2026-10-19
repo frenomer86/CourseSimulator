@@ -1,0 +1,124 @@
+{
+  "slug": "statistical-inference",
+  "description": "Drawing conclusions from samples with stated uncertainty: sampling distributions, estimation, confidence intervals, hypothesis tests, t-tests and ANOVA, chi-square tests for categorical data, linear regression with its assumptions checked, and non-parametric and resampling methods. Every procedure is first watched at work on thousands of simulated samples in the browser, then derived, then applied to real data such as district health records and market prices.",
+  "modelledOn": [
+    "Casella and Berger, Statistical Inference",
+    "Wasserman, All of Statistics: A Concise Course in Statistical Inference",
+    "Rice, Mathematical Statistics and Data Analysis",
+    "Efron and Hastie, Computer Age Statistical Inference"
+  ],
+  "outcomes": [
+    "Derive and simulate the sampling distributions of common statistics and explain the role of the central limit theorem.",
+    "Construct point estimators by the method of moments and maximum likelihood and compare them by bias, variance and mean squared error.",
+    "Build and interpret confidence intervals and carry out hypothesis tests, reporting p-values, effect sizes and power correctly.",
+    "Compare groups with t-tests, ANOVA and chi-square tests and choose the right test for the design and data type.",
+    "Fit linear regression models, check their assumptions with diagnostics and draw valid inferences from the coefficients.",
+    "Apply non-parametric tests, the bootstrap and permutation tests when parametric assumptions fail."
+  ],
+  "units": [
+    {
+      "title": "Populations, samples and sampling distributions",
+      "weeks": "1-2",
+      "topics": [
+        "Populations, parameters, samples and statistics; simple random, stratified, cluster and systematic sampling; sampling frames and bias",
+        "Random variables refresher: expectation, variance, the normal, binomial, Poisson and exponential families",
+        "Sampling distribution of the mean and of a proportion; standard error; the law of large numbers",
+        "The central limit theorem stated, simulated and its limits with skewed data and small samples",
+        "Distributions derived from the normal: chi-square, Student's t and F; their shapes and degrees of freedom",
+        "Simulating thousands of household surveys in a Ghanaian district to watch estimates vary"
+      ]
+    },
+    {
+      "title": "Point estimation",
+      "weeks": "3",
+      "topics": [
+        "Estimators and estimates; bias, variance, mean squared error and consistency",
+        "Method of moments estimators",
+        "Maximum likelihood: the likelihood and log-likelihood, solving the score equation, numerical maximisation",
+        "Properties of maximum likelihood estimators: invariance, asymptotic normality, Fisher information and the Cramer-Rao bound",
+        "Sufficiency and efficiency in brief; Bayesian point estimates as a contrast"
+      ]
+    },
+    {
+      "title": "Interval estimation",
+      "weeks": "4",
+      "topics": [
+        "Confidence intervals: the pivotal method and what the confidence level does and does not mean",
+        "Intervals for a mean with known and unknown variance; intervals for a proportion (Wald, Wilson) and for a variance",
+        "Sample size calculation for a desired margin of error; finite population correction",
+        "Intervals for differences in means and proportions",
+        "Estimating malaria test positivity across district clinics with honest margins of error"
+      ]
+    },
+    {
+      "title": "Hypothesis testing",
+      "weeks": "5-6",
+      "topics": [
+        "Null and alternative hypotheses; test statistics, rejection regions and p-values; one- and two-sided tests",
+        "Type I and type II errors; significance level, power and power curves; sample size for a target power",
+        "The Neyman-Pearson lemma and likelihood ratio tests; the duality of tests and confidence intervals",
+        "Tests for a mean, a proportion and a variance; z and t tests",
+        "Multiple testing: family-wise error, Bonferroni and Holm corrections, false discovery rate with Benjamini-Hochberg",
+        "Misuse of p-values, p-hacking and the replication crisis; reporting effect sizes and intervals instead of only significance"
+      ]
+    },
+    {
+      "title": "Comparing groups: t-tests and ANOVA",
+      "weeks": "7-8",
+      "topics": [
+        "Two-sample t-test with pooled and Welch variances; paired t-test; checking normality and equal variance",
+        "One-way analysis of variance: partitioning sums of squares, the F statistic and the ANOVA table",
+        "Post hoc comparisons: Tukey's HSD and planned contrasts",
+        "Two-way ANOVA with interaction; randomised block designs",
+        "Effect sizes: Cohen's d and eta squared; basics of experimental design and randomisation",
+        "Comparing maize yields across fertiliser treatments in a field trial"
+      ]
+    },
+    {
+      "title": "Categorical data and chi-square tests",
+      "weeks": "9",
+      "topics": [
+        "Contingency tables; joint, marginal and conditional proportions",
+        "Chi-square goodness-of-fit test; expected counts and the small-count rule",
+        "Chi-square test of independence and test of homogeneity; standardised residuals",
+        "Fisher's exact test; McNemar's test for paired proportions",
+        "Measures of association: relative risk, odds ratio and their confidence intervals; Simpson's paradox"
+      ]
+    },
+    {
+      "title": "Linear regression and its assumptions",
+      "weeks": "10-11",
+      "topics": [
+        "Correlation and simple linear regression by least squares; the regression line and R squared",
+        "Inference for slope and intercept; confidence intervals for the mean response and prediction intervals",
+        "Multiple regression in matrix form; categorical predictors and interactions; the overall F test",
+        "Assumptions and diagnostics: linearity, independence, constant variance, normal errors; residual and Q-Q plots",
+        "Leverage, influence and Cook's distance; multicollinearity and variance inflation factors; transformations",
+        "Correlation versus causation; confounding and omitted variables",
+        "Modelling tomato prices at Kumasi Central Market against season, rainfall and transport cost"
+      ]
+    },
+    {
+      "title": "Non-parametric and resampling methods",
+      "weeks": "12",
+      "topics": [
+        "Rank-based tests: sign test, Wilcoxon signed-rank, Mann-Whitney U and Kruskal-Wallis",
+        "Spearman's rank correlation; Kolmogorov-Smirnov test",
+        "The bootstrap: resampling, bootstrap standard errors, percentile and BCa confidence intervals",
+        "Permutation tests for group differences and correlation",
+        "When resampling fails: dependence, very small samples and extreme statistics"
+      ]
+    },
+    {
+      "title": "Inference in practice",
+      "weeks": "13",
+      "topics": [
+        "Choosing a method: a decision guide by question, design and data type",
+        "Frequentist and Bayesian inference compared: prior, posterior and credible intervals in brief",
+        "Survey data in practice: weights, non-response and design effects",
+        "Reproducible analysis and honest reporting; preregistration",
+        "Capstone: a full inferential analysis of a public Ghanaian dataset with a written report"
+      ]
+    }
+  ]
+}

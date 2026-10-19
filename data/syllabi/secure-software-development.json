@@ -1,0 +1,122 @@
+{
+  "slug": "secure-software-development",
+  "description": "Building software that resists attack across the whole life cycle: secure development processes, threat modelling, the OWASP Top Ten and memory-safety flaws, input validation and output encoding, authentication, sessions and secrets, static and dynamic analysis, and security code review and dependency management. Every vulnerability is first exploited and then fixed in deliberately vulnerable applications running in the browser lab, and every fix is verified with automated tests and scanners.",
+  "modelledOn": [
+    "OWASP Top Ten and the OWASP Application Security Verification Standard",
+    "NIST SP 800-218 Secure Software Development Framework",
+    "Howard and Lipner, The Security Development Lifecycle",
+    "ISC2 Certified Secure Software Lifecycle Professional (CSSLP)"
+  ],
+  "outcomes": [
+    "Integrate security activities into each phase of a software development life cycle and write security requirements.",
+    "Build threat models with data flow diagrams and STRIDE and rate and mitigate the threats found.",
+    "Exploit and remediate the OWASP Top Ten and common memory-safety vulnerabilities.",
+    "Implement input validation, output encoding, authentication, session management and secrets handling correctly.",
+    "Use static analysis, dynamic analysis and fuzzing in a CI pipeline and triage their findings.",
+    "Conduct a security code review and manage third-party dependencies and the software supply chain."
+  ],
+  "units": [
+    {
+      "title": "The secure development life cycle",
+      "weeks": "1",
+      "topics": [
+        "Why software is insecure; vulnerabilities, exploits and the economics of security",
+        "Design principles: least privilege, fail-safe defaults, complete mediation, defence in depth, economy of mechanism",
+        "Secure development processes: the SDL, the NIST SSDF and OWASP SAMM",
+        "Security requirements, abuse cases and shifting security left",
+        "Ghana's Cybersecurity Act and Data Protection Act and what they demand of developers"
+      ]
+    },
+    {
+      "title": "Threat modelling",
+      "weeks": "2-3",
+      "topics": [
+        "Data flow diagrams, assets and trust boundaries",
+        "STRIDE per element; attack trees",
+        "Privacy threat modelling with LINDDUN",
+        "Rating risk with CVSS and likelihood-impact matrices; choosing mitigations",
+        "Threat modelling a mobile money app with USSD, agent and API channels",
+        "Keeping threat models current as the design changes"
+      ]
+    },
+    {
+      "title": "Common vulnerabilities: the OWASP Top Ten",
+      "weeks": "4-5",
+      "topics": [
+        "Broken access control and insecure direct object references",
+        "Injection: SQL, NoSQL, OS command and template injection",
+        "Cryptographic failures, insecure design and security misconfiguration",
+        "Vulnerable components, identification failures and software and data integrity failures, including insecure deserialisation",
+        "Security logging and monitoring failures; server-side request forgery",
+        "Memory-safety flaws: buffer overflows, integer overflows, use-after-free and format strings; the CWE Top 25"
+      ]
+    },
+    {
+      "title": "Input validation and output encoding",
+      "weeks": "6-7",
+      "topics": [
+        "Trust boundaries, allow-listing, canonicalisation and safe parsing",
+        "Parameterised queries, stored procedures and ORMs done safely",
+        "Cross-site scripting: reflected, stored and DOM-based; context-aware output encoding; Content Security Policy",
+        "Cross-site request forgery, SameSite cookies and anti-CSRF tokens",
+        "File uploads, path traversal and XML external entities",
+        "Validating phone numbers, amounts and names in multiple scripts without breaking real users"
+      ]
+    },
+    {
+      "title": "Authentication, sessions and secrets",
+      "weeks": "8-9",
+      "topics": [
+        "Password storage with bcrypt, scrypt and Argon2; credential stuffing and rate limiting",
+        "Multi-factor authentication; the weaknesses of SMS one-time codes and SIM-swap fraud",
+        "OAuth 2.0, OpenID Connect and JSON Web Token pitfalls",
+        "Session management: cookie flags, fixation, expiry, revocation and logout",
+        "Secrets management: vaults, environment variables, key rotation and secrets leaked into Git history",
+        "Applied cryptography for developers: TLS, authenticated encryption, secure randomness and not inventing your own"
+      ]
+    },
+    {
+      "title": "Authorisation and secure API design",
+      "weeks": "10",
+      "topics": [
+        "Access control models: RBAC and ABAC; enforcing authorisation on the server",
+        "API security: object-level and function-level authorisation, mass assignment, rate limiting",
+        "Secure defaults, safe error handling and logging without leaking personal data",
+        "The OWASP API Security Top Ten"
+      ]
+    },
+    {
+      "title": "Static and dynamic analysis",
+      "weeks": "11-12",
+      "topics": [
+        "Static application security testing: pattern matching, data-flow and taint analysis",
+        "Writing custom static analysis rules",
+        "Dynamic application security testing with an intercepting proxy and automated scanner",
+        "Fuzzing: mutation-based and coverage-guided fuzzers, sanitisers",
+        "Triage: false positives, false negatives and prioritising findings",
+        "Integrating security tools into continuous integration with sensible gates"
+      ]
+    },
+    {
+      "title": "Security code review and dependency management",
+      "weeks": "13",
+      "topics": [
+        "Manual security code review: checklists, focusing on trust boundaries and authentication flows",
+        "Software composition analysis, CVEs and the National Vulnerability Database",
+        "Software bills of materials with CycloneDX and SPDX",
+        "Supply-chain attacks: typosquatting, dependency confusion and compromised maintainers",
+        "Pinning, signing, reproducible builds and the SLSA framework; patch management"
+      ]
+    },
+    {
+      "title": "Secure deployment and incident response",
+      "weeks": "14",
+      "topics": [
+        "Hardening containers and infrastructure as code; scanning images and configuration",
+        "Vulnerability disclosure policies and bug bounties",
+        "Incident response for application teams: detection, containment and post-incident review",
+        "Capstone: threat-model, attack, fix and verify a vulnerable payment application"
+      ]
+    }
+  ]
+}

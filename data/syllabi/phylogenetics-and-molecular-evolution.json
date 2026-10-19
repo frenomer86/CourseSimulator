@@ -1,0 +1,119 @@
+{
+  "slug": "phylogenetics-and-molecular-evolution",
+  "description": "Reconstructing evolutionary history from molecular sequences: homology and models of sequence change, distance methods, parsimony, maximum likelihood, Bayesian inference, molecular clocks and the use of time-scaled phylogenies to track pathogen outbreaks. Practised by building and testing trees in browser-based simulators and on public alignments, with outbreak cases such as Ebola in West Africa, Lassa fever and cholera.",
+  "modelledOn": [
+    "Felsenstein, Inferring Phylogenies",
+    "Yang, Molecular Evolution: A Statistical Approach",
+    "Lemey, Salemi and Vandamme, The Phylogenetic Handbook",
+    "Graur, Molecular and Genome Evolution"
+  ],
+  "outcomes": [
+    "Explain mutation, selection, drift and homology and read rooted and unrooted trees, clades and branch lengths correctly.",
+    "Fit nucleotide and amino acid substitution models, compute corrected distances and build trees with UPGMA, neighbour joining and minimum evolution.",
+    "Score trees by parsimony and likelihood, implement Fitch and Felsenstein pruning algorithms and search tree space with heuristic rearrangements.",
+    "Run and diagnose Bayesian phylogenetic analyses, assess convergence and summarise posterior distributions of trees and parameters.",
+    "Estimate divergence times with strict and relaxed molecular clocks and test for temporal signal and selection with dN/dS.",
+    "Infer the origin, spread and growth of an outbreak from pathogen genomes with phylodynamic and phylogeographic methods and report the limits of the inference."
+  ],
+  "units": [
+    {
+      "title": "Evolution and homology",
+      "weeks": "1",
+      "topics": [
+        "Mutation, natural selection, genetic drift and gene flow; the neutral theory of molecular evolution",
+        "Homology versus similarity; orthology, paralogy and xenology; horizontal gene transfer in bacteria",
+        "Trees as hypotheses: rooted and unrooted, topology, branch lengths, clades, polytomies; Newick format",
+        "Rooting with outgroups and midpoint rooting; gene trees versus species trees",
+        "Selection in human populations: the sickle cell allele and balancing selection under malaria"
+      ]
+    },
+    {
+      "title": "Models of sequence evolution",
+      "weeks": "2",
+      "topics": [
+        "Substitution as a continuous-time Markov process: rate matrices and transition probabilities",
+        "Nucleotide models: Jukes-Cantor, Kimura two-parameter, HKY, GTR; base frequencies and transition bias",
+        "Rate heterogeneity among sites: gamma distribution and invariant sites",
+        "Amino acid and codon models; empirical matrices such as JTT, WAG and LG",
+        "Model selection with likelihood ratio tests, AIC and BIC"
+      ]
+    },
+    {
+      "title": "Distance-based tree building",
+      "weeks": "3-4",
+      "topics": [
+        "From alignments to distances: p-distance, saturation and model-corrected distances",
+        "UPGMA and the ultrametric assumption; when it fails",
+        "Neighbour joining derived and implemented step by step; minimum evolution and least squares",
+        "Additive and ultrametric metrics; the four-point condition",
+        "Speed versus accuracy: distance methods for very large datasets"
+      ]
+    },
+    {
+      "title": "Parsimony",
+      "weeks": "5",
+      "topics": [
+        "The principle of minimum change; informative and uninformative sites",
+        "The Fitch algorithm and weighted Sankoff parsimony; reconstructing ancestral states",
+        "Counting trees and searching tree space: exhaustive, branch and bound, heuristic searches",
+        "Long-branch attraction and statistical inconsistency of parsimony",
+        "Consensus trees: strict, majority-rule; measuring homoplasy with consistency indices"
+      ]
+    },
+    {
+      "title": "Maximum likelihood methods",
+      "weeks": "6-7",
+      "topics": [
+        "The likelihood of a tree; Felsenstein's pruning algorithm implemented",
+        "Optimising branch lengths and model parameters; tree rearrangements with NNI, SPR and TBR",
+        "Practical maximum likelihood with RAxML and IQ-TREE; partitioned analyses",
+        "Assessing support: non-parametric bootstrap, ultrafast bootstrap, SH-aLRT",
+        "Comparing trees statistically: KH, SH and AU tests; Robinson-Foulds distances"
+      ]
+    },
+    {
+      "title": "Bayesian phylogenetics",
+      "weeks": "8-9",
+      "topics": [
+        "Bayes' theorem for trees: priors on topology, branch lengths and parameters; posterior probabilities",
+        "Markov chain Monte Carlo: Metropolis-Hastings proposals, burn-in, mixing; coupled chains",
+        "Diagnosing runs: trace plots, effective sample size, convergence between independent runs",
+        "Summarising posteriors: maximum clade credibility trees, credible sets, posterior support compared with the bootstrap",
+        "Running MrBayes and BEAST; prior sensitivity and model averaging"
+      ]
+    },
+    {
+      "title": "Molecular clocks and selection",
+      "weeks": "10",
+      "topics": [
+        "The molecular clock hypothesis; testing it with likelihood ratio tests",
+        "Strict and relaxed clocks; calibration with fossils or sampling dates; tip-dating of rapidly evolving pathogens",
+        "Root-to-tip regression and temporal signal; estimating substitution rates and time to the most recent common ancestor",
+        "Detecting selection: synonymous and non-synonymous rates, dN/dS, site and branch models",
+        "Drug resistance and immune escape in Plasmodium falciparum as examples of positive selection"
+      ]
+    },
+    {
+      "title": "Tracking outbreaks with phylogenies",
+      "weeks": "11-12",
+      "topics": [
+        "Phylodynamics: coalescent and birth-death models; inferring effective population size and the reproduction number",
+        "Phylogeography: discrete trait and continuous diffusion models; reconstructing spread between districts and countries",
+        "Transmission trees versus phylogenies; within-host diversity and sampling bias",
+        "Real-time tools: Nextstrain, Nextclade and TreeTime; lineage nomenclature",
+        "Case studies: the 2014-2016 Ebola epidemic in West Africa, Lassa fever reservoirs and spillover, seventh-pandemic cholera lineages in Africa",
+        "Reporting phylogenetic evidence responsibly to outbreak response teams"
+      ]
+    },
+    {
+      "title": "Phylogenomics and project",
+      "weeks": "13",
+      "topics": [
+        "Phylogenomics: concatenation versus coalescent species-tree methods; incomplete lineage sorting",
+        "Recombination and reticulate evolution; networks and recombination detection",
+        "Reproducible phylogenetic workflows and archiving trees and alignments",
+        "Project: a dated phylogeny of a public pathogen dataset with an interpretation for public health"
+      ]
+    }
+  ]
+}

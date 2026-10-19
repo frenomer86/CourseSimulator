@@ -1,0 +1,119 @@
+{
+  "slug": "software-defined-networking",
+  "description": "Why traditional networks are hard to change and how separating the control plane from the data plane fixes that: OpenFlow, SDN controllers and network applications, network function virtualisation, programmable data planes with P4, and SDN in data centres and operator networks. Every idea is built and tested on emulated networks of virtual switches, with students writing controller applications and data-plane programs that run against live traffic.",
+  "modelledOn": [
+    "Open Networking Foundation, OpenFlow Switch Specification",
+    "Goransson, Black and Culver, Software Defined Networks: A Comprehensive Approach",
+    "Nadeau and Gray, SDN: Software Defined Networks",
+    "ETSI Network Functions Virtualisation (NFV) architectural framework"
+  ],
+  "outcomes": [
+    "Explain the limits of distributed, vendor-closed networks and how SDN separates the control and data planes.",
+    "Program OpenFlow switches with flow tables, match fields, actions and counters to implement forwarding and filtering.",
+    "Build network applications on an SDN controller, such as a learning switch, a load balancer and a firewall.",
+    "Design virtualised network functions and service chains and explain the NFV management and orchestration stack.",
+    "Write P4 programs for a programmable data plane and reason about their parsing, match-action and pipeline behaviour.",
+    "Evaluate SDN deployments in data centres, wide-area networks and mobile operators for scalability, reliability and security."
+  ],
+  "units": [
+    {
+      "title": "Limits of traditional networks",
+      "weeks": "1",
+      "topics": [
+        "The traditional router and switch: integrated control and data planes, vendor-specific operating systems and command-line configuration",
+        "Distributed control: routing protocols, spanning tree, convergence and the difficulty of enforcing global policy",
+        "Operational pain: manual configuration, misconfiguration outages, slow feature rollout and middlebox sprawl",
+        "Early programmability: active networks, ForCES, the 4D project and Ethane as precursors to SDN",
+        "Setting up the emulator: virtual hosts, Open vSwitch and a scripted topology"
+      ]
+    },
+    {
+      "title": "Control and data planes",
+      "weeks": "2-3",
+      "topics": [
+        "Data plane, control plane and management plane: responsibilities and timescales",
+        "The SDN architecture: logically centralised control, southbound and northbound interfaces, the network operating system",
+        "Physical versus logical centralisation; controller placement and the consistency-availability trade-off",
+        "Abstractions for forwarding, distribution and specification; the network as a graph the controller computes on",
+        "Network virtualisation: overlays, tunnelling with VXLAN and GRE, network hypervisors and slicing"
+      ]
+    },
+    {
+      "title": "OpenFlow",
+      "weeks": "4-5",
+      "topics": [
+        "OpenFlow switch model: flow tables, match fields, priorities, actions, instructions, counters and timeouts",
+        "Multiple tables and pipelines, group tables (all, select, fast failover) and meter tables",
+        "The OpenFlow channel: hello, features, packet-in, packet-out, flow-mod, barrier and port-status messages",
+        "Reactive versus proactive flow installation; table-miss handling and flow-table capacity limits",
+        "Capturing and decoding OpenFlow messages; installing flows by hand from the command line",
+        "Alternatives and complements: NETCONF and YANG, OVSDB, gNMI"
+      ]
+    },
+    {
+      "title": "SDN controllers",
+      "weeks": "6-7",
+      "topics": [
+        "Controller architecture: event loop, topology discovery with LLDP, host tracking, device and flow databases",
+        "Open-source controllers compared: Ryu, ONOS, OpenDaylight; distributed controllers and clustering",
+        "Northbound interfaces: REST APIs, intent-based networking and policy languages",
+        "Controller scalability and fault tolerance: state replication, leader election, switch-to-controller failover",
+        "Consistent network updates: two-phase updates, race conditions and transient loops"
+      ]
+    },
+    {
+      "title": "Network applications on the controller",
+      "weeks": "8",
+      "topics": [
+        "A learning switch and shortest-path routing written as controller applications",
+        "A stateless firewall and access control driven by a policy file",
+        "A server load balancer and traffic engineering from link utilisation statistics",
+        "Monitoring: polling flow counters, sampling with sFlow and detecting heavy hitters",
+        "Testing and verifying applications: header space analysis and checking for loops and black holes"
+      ]
+    },
+    {
+      "title": "Network function virtualisation",
+      "weeks": "9-10",
+      "topics": [
+        "From hardware middleboxes to virtual network functions: firewalls, NAT, load balancers, deep packet inspection",
+        "The ETSI NFV framework: NFV infrastructure, virtual network functions, management and orchestration (MANO)",
+        "Service function chaining and steering traffic through chains with SDN",
+        "Performance of software packet processing: kernel bypass, DPDK, SR-IOV and smart NICs",
+        "Containers and cloud-native network functions; orchestration with OpenStack and Kubernetes",
+        "Building a chain of a virtual firewall and NAT in the emulator and measuring its throughput"
+      ]
+    },
+    {
+      "title": "Programmable data planes",
+      "weeks": "11",
+      "topics": [
+        "Why fixed-function switches are limiting: the protocol-independent switch architecture",
+        "The P4 language: headers, parsers, match-action tables, actions, control blocks and deparsers",
+        "Targets: software switches, programmable switch ASICs and smart NICs; the P4Runtime control interface",
+        "In-band network telemetry and other data-plane applications (load balancing, caching, congestion signalling)",
+        "Writing and testing a P4 program for a custom header on a software switch"
+      ]
+    },
+    {
+      "title": "SDN in data centres and wide-area networks",
+      "weeks": "12",
+      "topics": [
+        "Data centre fabrics: leaf-spine and Clos topologies, ECMP, overlays and multi-tenant virtual networks",
+        "SDN for cloud providers: tenant isolation, virtual routers and the host virtual switch",
+        "Software-defined WAN: centrally engineered inter-data-centre traffic and SD-WAN for enterprise branch offices",
+        "Internet exchange points and software-defined exchanges; keeping traffic local at African IXPs"
+      ]
+    },
+    {
+      "title": "SDN in operators, security and capstone",
+      "weeks": "13",
+      "topics": [
+        "SDN and NFV in mobile operators: virtualised packet core, control and user plane separation in 4G and 5G, network slicing",
+        "Transport SDN and segment routing for operator backbones",
+        "Security of SDN: the controller as a single target, flow-table exhaustion, securing the control channel, SDN for DDoS mitigation",
+        "Capstone: an emulated campus or operator network with a controller application for routing, access control and monitoring, plus one P4 or NFV extension"
+      ]
+    }
+  ]
+}

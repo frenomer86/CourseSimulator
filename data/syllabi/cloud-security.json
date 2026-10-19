@@ -1,0 +1,106 @@
+{
+  "slug": "cloud-security",
+  "description": "Securing workloads and data in public and hybrid clouds: the shared responsibility model, identity and access management, network security, encryption and key management, logging and threat detection, securing containers and serverless functions, and compliance including data residency under Ghana's Data Protection Act 843. Practised by attacking and hardening deliberately misconfigured environments in a simulated cloud console and terminal in the browser, taught to the depth of the professional cloud security certifications.",
+  "modelledOn": [
+    "Cloud Security Alliance, Security Guidance for Critical Areas of Focus in Cloud Computing and the CCSK body of knowledge",
+    "NIST SP 800-144 Guidelines on Security and Privacy in Public Cloud Computing and NIST SP 800-53 controls",
+    "ISO/IEC 27017 and ISO/IEC 27018",
+    "(ISC)2 Certified Cloud Security Professional (CCSP) and AWS Certified Security - Specialty objectives"
+  ],
+  "outcomes": [
+    "Apply the shared responsibility model to IaaS, PaaS, SaaS and serverless services and model threats to a cloud architecture.",
+    "Design identity and access policies with least privilege, federation and short-lived credentials, and find privilege escalation paths.",
+    "Secure cloud networks with segmentation, private endpoints, firewalls and protection against denial of service.",
+    "Protect data with encryption at rest and in transit, managed keys, secrets management and backup strategies.",
+    "Build logging, monitoring and detection pipelines and respond to cloud security incidents.",
+    "Assess compliance with data protection law and standards and secure container and serverless workloads end to end."
+  ],
+  "units": [
+    {
+      "title": "The shared responsibility model",
+      "weeks": "1",
+      "topics": [
+        "Who secures what in IaaS, PaaS, SaaS and serverless; where customers most often fail",
+        "The cloud threat landscape: misconfiguration, credential theft, insecure APIs, account hijacking, insider threats",
+        "Case studies of public storage bucket leaks and leaked access keys in source repositories",
+        "Threat modelling a cloud application with STRIDE and attack trees; the MITRE ATT&CK cloud matrix"
+      ]
+    },
+    {
+      "title": "Identity and access management",
+      "weeks": "2-3",
+      "topics": [
+        "Principals, roles, policies and permissions; policy evaluation logic and explicit denies",
+        "Least privilege in practice: permission boundaries, service control policies, access analysers",
+        "Federation and single sign-on with SAML and OpenID Connect; MFA and phishing-resistant authenticators",
+        "Workload identity: instance roles, Kubernetes service accounts, OIDC federation for CI pipelines; eliminating long-lived keys",
+        "Privilege escalation paths in cloud IAM and how to find them; break-glass accounts"
+      ]
+    },
+    {
+      "title": "Network security in the cloud",
+      "weeks": "4-5",
+      "topics": [
+        "Virtual networks, subnets and route tables; security groups versus network ACLs",
+        "Private endpoints, service endpoints, NAT and egress control; removing public exposure",
+        "Bastions, session managers and zero-trust access in place of open SSH and RDP",
+        "Web application firewalls, DDoS protection and API rate limiting",
+        "Hybrid connectivity: site-to-site VPN and dedicated links; flow logs for network forensics"
+      ]
+    },
+    {
+      "title": "Data protection and encryption",
+      "weeks": "6-7",
+      "topics": [
+        "Data classification and discovery; tokenisation and masking of personal and payment data",
+        "Encryption at rest: provider-managed, customer-managed and customer-supplied keys; envelope encryption with AES-256",
+        "Key management services and hardware security modules; key rotation and separation of duties",
+        "Encryption in transit: TLS configuration, certificate management, mutual TLS between services",
+        "Secrets management with vaults; backups, immutable storage and ransomware resilience"
+      ]
+    },
+    {
+      "title": "Logging, monitoring and detection",
+      "weeks": "8-9",
+      "topics": [
+        "Audit logs, data access logs and flow logs; centralising logs and protecting them from tampering",
+        "Cloud security posture management: benchmarks such as the CIS Foundations Benchmarks and continuous misconfiguration scanning",
+        "Threat detection services and SIEM integration; writing detection rules for suspicious API activity",
+        "Cloud incident response: containment by revoking credentials, snapshotting for forensics, recovery",
+        "Investigating a simulated breach that begins with a leaked key and ends in data exfiltration"
+      ]
+    },
+    {
+      "title": "Securing containers and serverless",
+      "weeks": "10-11",
+      "topics": [
+        "Container supply chain: image scanning, signing, software bills of materials, trusted registries",
+        "Kubernetes security: RBAC, Pod Security Standards, network policies, admission control, runtime detection",
+        "Serverless risks: over-privileged functions, event injection, dependency vulnerabilities, denial of wallet",
+        "Securing APIs and gateways: authentication, authorisation, input validation against the OWASP API Security Top 10",
+        "Infrastructure as code scanning and policy as code to stop insecure deployments before they happen"
+      ]
+    },
+    {
+      "title": "Compliance and data residency",
+      "weeks": "12",
+      "topics": [
+        "Ghana's Data Protection Act 843: principles, registration with the Data Protection Commission, cross-border transfer of personal data",
+        "Ghana's Cybersecurity Act 1038 and the licensing of service providers; sector rules from the Bank of Ghana for financial data",
+        "Data residency and sovereignty: choosing regions, local and in-country hosting, contractual safeguards",
+        "Frameworks and assurance: ISO/IEC 27001, 27017 and 27018, SOC 2, PCI DSS for payment card data, CSA Cloud Controls Matrix",
+        "Evidence collection, continuous compliance and preparing for an audit"
+      ]
+    },
+    {
+      "title": "Cloud security architecture capstone",
+      "weeks": "13",
+      "topics": [
+        "Secure landing zones: account and subscription structure, guardrails, centralised logging and identity",
+        "Security reviews against well-architected security pillars",
+        "Multi-cloud and hybrid security: consistent identity, policy and logging across providers and on-premises data centres",
+        "Capstone: secure a mobile money style payment platform in the cloud, with a threat model, hardened configuration, detection rules and a compliance report"
+      ]
+    }
+  ]
+}

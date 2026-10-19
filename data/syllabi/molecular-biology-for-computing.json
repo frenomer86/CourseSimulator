@@ -1,0 +1,101 @@
+{
+  "slug": "molecular-biology-for-computing",
+  "description": "The molecular biology a computer scientist needs to work with biological data: cells and biomolecules, DNA structure and replication, transcription and translation, genes, genomes and mutation, protein structure and function, the laboratory techniques that generate sequence and expression data, and the databases that store it. Assumes no prior biology and is taught through interactive simulations of molecules and processes and small programs that manipulate real sequences in the browser, at the depth of a first-year molecular biology course for quantitative students.",
+  "modelledOn": [
+    "Alberts et al., Essential Cell Biology",
+    "Watson et al., Molecular Biology of the Gene",
+    "Lodish et al., Molecular Cell Biology",
+    "Zvelebil and Baum, Understanding Bioinformatics"
+  ],
+  "outcomes": [
+    "Describe the structure of cells and the main classes of biomolecules and explain how their chemistry determines their function.",
+    "Explain DNA structure, replication and repair and represent sequences and their operations as strings and algorithms.",
+    "Trace the flow of information from gene to protein through transcription, RNA processing and translation, and implement it in code.",
+    "Classify mutations and genomic variation and predict their effects, using sickle cell disease and drug-resistant malaria as worked examples.",
+    "Relate protein structure to function and describe how enzymes, receptors and antibodies work.",
+    "Explain how sequencing, PCR, microarrays and other laboratory techniques produce data and retrieve and interpret records from biological databases."
+  ],
+  "units": [
+    {
+      "title": "Cells and biomolecules",
+      "weeks": "1-2",
+      "topics": [
+        "Why computing needs biology: genomics, drug discovery, epidemiology and precision medicine",
+        "Prokaryotic and eukaryotic cells; organelles; membranes and transport; viruses as a special case",
+        "Chemistry of life: water, bonds, pH; carbohydrates, lipids, nucleic acids and proteins",
+        "Energy and metabolism in outline: enzymes, ATP, respiration and photosynthesis",
+        "The cell cycle, mitosis and meiosis; how traits are inherited"
+      ]
+    },
+    {
+      "title": "DNA structure and replication",
+      "weeks": "3-4",
+      "topics": [
+        "Nucleotides, the double helix, base pairing, antiparallel strands and 5' to 3' direction",
+        "Chromosomes, chromatin, histones and packaging; genome sizes across organisms",
+        "Semi-conservative replication: helicase, polymerases, primers, leading and lagging strands, Okazaki fragments",
+        "Replication errors, proofreading and DNA repair pathways",
+        "DNA as data: alphabets, reverse complements, GC content and k-mers written as small programs"
+      ]
+    },
+    {
+      "title": "Transcription and translation",
+      "weeks": "5-6",
+      "topics": [
+        "The central dogma and its exceptions: reverse transcription in HIV, RNA viruses",
+        "Transcription: promoters, RNA polymerase, transcription factors, termination",
+        "RNA processing in eukaryotes: capping, polyadenylation, splicing and alternative splicing",
+        "The genetic code: codons, reading frames, start and stop codons, codon usage; translating sequences in code",
+        "Translation: ribosomes, tRNA, initiation, elongation, termination; post-translational modification",
+        "Gene regulation: operons, enhancers, epigenetics and non-coding RNAs in outline"
+      ]
+    },
+    {
+      "title": "Genes, genomes and mutation",
+      "weeks": "7-8",
+      "topics": [
+        "Gene structure: exons, introns, untranslated regions, regulatory regions; genome organisation and repeats",
+        "Types of mutation: substitutions, insertions, deletions, frameshifts, copy number and structural variants",
+        "Sickle cell disease: the single substitution in the beta-globin gene, inheritance patterns and its prevalence in West Africa",
+        "Malaria and human genetics: the sickle cell trait, G6PD deficiency and balancing selection",
+        "Pathogen genomes: Plasmodium falciparum, drug-resistance mutations and genomic surveillance",
+        "Population genetics in brief: alleles, Hardy-Weinberg equilibrium, African genetic diversity"
+      ]
+    },
+    {
+      "title": "Proteins and their functions",
+      "weeks": "9-10",
+      "topics": [
+        "Amino acids and their properties; peptide bonds",
+        "Levels of structure: primary, secondary, tertiary and quaternary; folding and misfolding",
+        "Haemoglobin and how one amino acid change causes sickling",
+        "Enzymes and kinetics in outline; inhibitors and drug targets such as antimalarials",
+        "Antibodies, receptors and signalling; vaccines and the immune response",
+        "Predicting and visualising protein structure; the impact of structure prediction models"
+      ]
+    },
+    {
+      "title": "Laboratory techniques that produce data",
+      "weeks": "11-12",
+      "topics": [
+        "Extraction, gel electrophoresis, restriction enzymes and cloning",
+        "PCR and quantitative PCR; rapid diagnostic tests for malaria and their limits",
+        "Sanger sequencing and next-generation sequencing: reads, quality scores, FASTQ files, coverage; long-read and portable sequencing",
+        "Measuring expression: microarrays and RNA-seq; mass spectrometry for proteins",
+        "Genome editing with CRISPR-Cas9 and its ethical questions",
+        "Sources of error and noise in experimental data; replicates and controls"
+      ]
+    },
+    {
+      "title": "Biological databases",
+      "weeks": "13",
+      "topics": [
+        "Sequence formats: FASTA, GenBank and FASTQ; parsing them with code",
+        "Primary databases: GenBank, ENA and DDBJ; UniProt for proteins and the Protein Data Bank for structures",
+        "Genome browsers, Ensembl and variant databases such as dbSNP and ClinVar",
+        "Searching with BLAST and interpreting a result; ontologies such as the Gene Ontology",
+        "Data sharing, consent and benefit-sharing in African genomics research; capstone: annotate a malaria parasite gene from database records"
+      ]
+    }
+  ]
+}

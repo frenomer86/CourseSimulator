@@ -1,0 +1,122 @@
+{
+  "slug": "software-testing-and-quality-assurance",
+  "description": "Systematic software testing and quality assurance: testing fundamentals and the test pyramid, black-box and white-box test design, coverage criteria, unit, integration and end-to-end testing, test-driven development, performance and security testing, and quality metrics and process improvement. Students write and run real test suites against seeded-fault programs in the browser, measuring coverage and mutation scores to see which of their tests actually find bugs.",
+  "modelledOn": [
+    "Ammann and Offutt, Introduction to Software Testing",
+    "Myers, Badgett and Sandler, The Art of Software Testing",
+    "ISTQB Certified Tester Foundation Level syllabus",
+    "ISO/IEC/IEEE 29119 Software Testing"
+  ],
+  "outcomes": [
+    "Explain the vocabulary and principles of testing and plan a test strategy using the test pyramid and risk.",
+    "Design black-box tests with equivalence partitioning, boundary values, decision tables, state transitions and combinatorial methods.",
+    "Measure and improve white-box coverage, including branch, MC/DC and data-flow coverage, and assess test quality by mutation analysis.",
+    "Write maintainable unit, integration and end-to-end tests with test doubles, and develop code test-first.",
+    "Plan and run performance and security tests and interpret their results.",
+    "Use quality metrics, reviews and process models to assess and improve software quality."
+  ],
+  "units": [
+    {
+      "title": "Testing fundamentals and the test pyramid",
+      "weeks": "1",
+      "topics": [
+        "Errors, faults and failures; testing versus debugging; verification and validation",
+        "The test oracle problem; the principles of testing; why exhaustive testing is impossible",
+        "Test levels and test types; static and dynamic testing",
+        "The test pyramid and its alternatives; the cost of finding defects late",
+        "Famous failures and what testing would have caught"
+      ]
+    },
+    {
+      "title": "Black-box test design",
+      "weeks": "2-3",
+      "topics": [
+        "Equivalence partitioning and boundary value analysis",
+        "Decision tables and cause-effect graphing",
+        "State transition testing",
+        "Combinatorial and pairwise testing; covering arrays",
+        "Use-case-based, error-guessing and exploratory testing",
+        "Worked example: testing mobile money transfer limits, fee bands and reversals"
+      ]
+    },
+    {
+      "title": "White-box testing and coverage",
+      "weeks": "4-5",
+      "topics": [
+        "Control-flow graphs; statement, branch and condition coverage",
+        "Modified condition/decision coverage and where it is required",
+        "Basis-path testing and cyclomatic complexity",
+        "Data-flow testing: definitions, uses and def-use paths",
+        "Mutation testing: mutation operators, mutation score and equivalent mutants",
+        "Coverage tools and the limits of coverage as a goal"
+      ]
+    },
+    {
+      "title": "Unit, integration and end-to-end tests",
+      "weeks": "6-7",
+      "topics": [
+        "Unit testing frameworks; arrange-act-assert, fixtures and parameterised tests",
+        "Test doubles: dummies, stubs, fakes, spies and mocks; when mocking hurts",
+        "Integration strategies: big bang, top-down, bottom-up and sandwich; testing against real databases in containers",
+        "Contract testing between services",
+        "End-to-end browser testing; flaky tests and how to fix them",
+        "Testing under simulated slow and unreliable 2G and 3G networks"
+      ]
+    },
+    {
+      "title": "Test-driven development",
+      "weeks": "8",
+      "topics": [
+        "The red-green-refactor cycle; katas and worked examples",
+        "Behaviour-driven development with Gherkin scenarios",
+        "Property-based testing and generators",
+        "Characterisation tests for legacy code without tests",
+        "Evidence on the costs and benefits of TDD"
+      ]
+    },
+    {
+      "title": "Performance and security testing",
+      "weeks": "9-10",
+      "topics": [
+        "Load, stress, soak and spike testing; workload models",
+        "Performance metrics: latency percentiles, throughput, error rates and resource utilisation",
+        "Capacity testing for month-end salary peaks on a payment service",
+        "Security testing: static and dynamic analysis, fuzzing and penetration testing basics",
+        "The OWASP Web Security Testing Guide",
+        "Reporting performance and security findings"
+      ]
+    },
+    {
+      "title": "Test management and automation",
+      "weeks": "11",
+      "topics": [
+        "Test plans and strategies; risk-based testing and entry and exit criteria",
+        "The defect life cycle and writing good bug reports",
+        "Continuous integration pipelines and automated regression suites; regression test selection",
+        "Test environments, test data management and data privacy"
+      ]
+    },
+    {
+      "title": "Quality metrics and process improvement",
+      "weeks": "12-13",
+      "topics": [
+        "Software quality models: ISO/IEC 25010 characteristics",
+        "Product metrics: defect density, escaped defects, complexity, code churn",
+        "Reliability: failure intensity, MTTF and reliability growth models",
+        "Reviews and inspections; static analysis and linters in the pipeline",
+        "Process improvement: CMMI, ISO 9001, retrospectives and root-cause analysis",
+        "Delivery metrics: deployment frequency, lead time, change failure rate and time to restore"
+      ]
+    },
+    {
+      "title": "Testing for real users",
+      "weeks": "14",
+      "topics": [
+        "Usability and accessibility testing",
+        "Localisation testing for local languages, number and currency formats",
+        "Mobile testing across low-end devices and Android versions",
+        "Capstone: a complete test suite and quality report for a seeded-fault application"
+      ]
+    }
+  ]
+}

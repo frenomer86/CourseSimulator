@@ -1,0 +1,108 @@
+{
+  "slug": "biostatistics",
+  "description": "Statistics for biology, medicine and public health: study design, describing biological and clinical data, probability distributions in health data, estimation and hypothesis testing, regression for continuous, binary and count outcomes, survival analysis and the problem of multiple testing in genomic studies. Every method is computed by hand on small examples, then run on real health datasets with interactive plots and notebooks in the browser, taught to the depth of a strong biostatistics course for computing and health science students.",
+  "modelledOn": [
+    "Rosner, Fundamentals of Biostatistics",
+    "Kirkwood and Sterne, Essential Medical Statistics",
+    "Pagano and Gauvreau, Principles of Biostatistics",
+    "Altman, Practical Statistics for Medical Research"
+  ],
+  "outcomes": [
+    "Choose an appropriate study design for a biological or medical question and identify bias, confounding and sources of error.",
+    "Summarise and visualise biological and clinical data and compute measures of disease frequency and association.",
+    "Apply probability distributions to model counts, proportions and measurements in health data, and evaluate diagnostic tests.",
+    "Estimate parameters with confidence intervals and carry out and interpret hypothesis tests, including power and sample size calculations.",
+    "Fit, check and interpret linear, logistic and Poisson regression models and Kaplan-Meier and Cox survival models.",
+    "Control error rates when testing many hypotheses and report analyses reproducibly according to reporting guidelines."
+  ],
+  "units": [
+    {
+      "title": "Study design in biology and medicine",
+      "weeks": "1-2",
+      "topics": [
+        "Populations, samples and variables; observational and experimental studies",
+        "Cross-sectional surveys, case-control and cohort studies; randomised controlled trials, blinding and allocation concealment",
+        "Bias, confounding and effect modification; causation and the Bradford Hill considerations",
+        "Sampling methods: simple random, stratified, cluster and multistage designs as used in demographic and health surveys",
+        "Ethics of research on people: informed consent, ethics committees, the Declaration of Helsinki; CONSORT and STROBE reporting guidelines"
+      ]
+    },
+    {
+      "title": "Describing biological data",
+      "weeks": "3",
+      "topics": [
+        "Types of data: categorical, ordinal, discrete and continuous; data cleaning and missing values",
+        "Measures of location and spread; percentiles and growth reference charts for children",
+        "Graphs: histograms, box plots, scatter plots, Kaplan-Meier curves, forest plots",
+        "Measures of disease frequency: prevalence, incidence rate, cumulative incidence; malaria incidence by district",
+        "Measures of association: risk difference, risk ratio, odds ratio, rate ratio"
+      ]
+    },
+    {
+      "title": "Probability distributions in health data",
+      "weeks": "4-5",
+      "topics": [
+        "Probability rules, conditional probability and Bayes' theorem",
+        "Diagnostic tests: sensitivity, specificity, predictive values, likelihood ratios and ROC curves; malaria rapid diagnostic tests against microscopy",
+        "Binomial distribution for proportions such as sickle cell trait carriers; Poisson distribution for counts of cases",
+        "The normal distribution, standardisation and the central limit theorem; transformations of skewed data",
+        "Simulation of sampling distributions in the browser"
+      ]
+    },
+    {
+      "title": "Estimation and hypothesis testing",
+      "weeks": "6-7",
+      "topics": [
+        "Standard errors and confidence intervals for means, proportions, differences and ratios",
+        "Hypothesis tests and p-values; type I and type II errors; statistical versus clinical significance",
+        "t-tests, paired tests and their non-parametric counterparts: Wilcoxon and Mann-Whitney",
+        "Chi-squared and Fisher's exact tests for contingency tables; McNemar's test",
+        "Analysis of variance and post hoc comparisons",
+        "Power and sample size calculations for a trial of a new antimalarial"
+      ]
+    },
+    {
+      "title": "Regression for health outcomes",
+      "weeks": "8-9",
+      "topics": [
+        "Correlation and simple linear regression; least squares, residuals and model checking",
+        "Multiple linear regression: adjusting for confounders, interactions, categorical predictors",
+        "Logistic regression for binary outcomes; interpreting odds ratios; risk factors for anaemia in pregnancy",
+        "Poisson and negative binomial regression for counts and rates; offsets",
+        "Model building, collinearity and overfitting; prediction models and their validation",
+        "Clustered and repeated measures data in brief: mixed models and generalised estimating equations"
+      ]
+    },
+    {
+      "title": "Survival analysis",
+      "weeks": "10-11",
+      "topics": [
+        "Time-to-event data, censoring and truncation; survival and hazard functions",
+        "Kaplan-Meier estimation and the log-rank test",
+        "Cox proportional hazards regression; hazard ratios; checking proportional hazards",
+        "Time-varying covariates and competing risks in brief",
+        "Survival of patients on antiretroviral therapy or of children with sickle cell disease in a cohort study"
+      ]
+    },
+    {
+      "title": "Multiple testing",
+      "weeks": "12",
+      "topics": [
+        "Why testing many hypotheses inflates false positives; the family-wise error rate",
+        "Bonferroni and Holm corrections; false discovery rate and the Benjamini-Hochberg procedure",
+        "Genome-wide association studies: significance thresholds, Manhattan and QQ plots, population structure",
+        "Differential expression analysis and q-values; subgroup analyses and p-hacking in clinical research"
+      ]
+    },
+    {
+      "title": "Bayesian methods and reproducible analysis",
+      "weeks": "13",
+      "topics": [
+        "Bayesian inference in brief: priors, posteriors and credible intervals for a prevalence estimate",
+        "Meta-analysis: fixed and random effects, heterogeneity and forest plots",
+        "Reproducible analysis with scripts and notebooks; data protection for health records",
+        "Capstone: a complete analysis of a public health dataset with a statistical analysis plan and report"
+      ]
+    }
+  ]
+}

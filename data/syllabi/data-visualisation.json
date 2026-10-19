@@ -1,0 +1,113 @@
+{
+  "slug": "data-visualisation",
+  "description": "Turning data into charts and maps that people read correctly: how visual perception works, choosing the right chart for the question, colour, labelling and annotation, plotting with code, interactive web visualisation, geographic data and maps, and telling an honest story with data. Every chart is built in code in the browser, critiqued against perception principles and redesigned until it works on a small phone screen as well as a projector.",
+  "modelledOn": [
+    "Tufte, The Visual Display of Quantitative Information",
+    "Munzner, Visualization Analysis and Design",
+    "Wilke, Fundamentals of Data Visualization",
+    "Cairo, How Charts Lie: Getting Smarter about Visual Information"
+  ],
+  "outcomes": [
+    "Explain how preattentive features, visual channels and Gestalt principles determine what a reader sees in a chart.",
+    "Choose and justify a chart type from the data types and the question being asked.",
+    "Apply colour, labelling and annotation that are accessible, colour-blind safe and honest.",
+    "Build static and interactive visualisations in code with a grammar-of-graphics library and web technologies.",
+    "Map geographic data correctly with appropriate projections, choropleths and symbol maps.",
+    "Design a data story for a stated audience and identify and correct misleading charts."
+  ],
+  "units": [
+    {
+      "title": "Why visualise and the data behind a chart",
+      "weeks": "1",
+      "topics": [
+        "Exploration versus explanation; Anscombe's quartet and the Datasaurus dozen",
+        "Data types: nominal, ordinal, interval, ratio, temporal and spatial; tidy data and long versus wide formats",
+        "Munzner's what, why and how framework: data abstraction, task abstraction and idioms",
+        "A short history: Playfair, Nightingale, Minard, Snow and Tukey"
+      ]
+    },
+    {
+      "title": "Principles of visual perception",
+      "weeks": "2",
+      "topics": [
+        "Preattentive processing and pop-out; visual search",
+        "Marks and channels; the ranking of channels for quantitative and categorical data (Cleveland and McGill, Mackinlay)",
+        "Gestalt principles: proximity, similarity, enclosure, connection, continuity and closure",
+        "Weber's law, area and angle judgement errors; why 3D and pie charts mislead",
+        "Change blindness, working memory limits and the data-ink ratio"
+      ]
+    },
+    {
+      "title": "Choosing the right chart",
+      "weeks": "3-4",
+      "topics": [
+        "Comparing categories: bar, dot and lollipop charts; ordering and baselines",
+        "Distributions: histograms and bin width, density plots, box plots, violin and strip plots",
+        "Relationships: scatter plots, overplotting remedies, bubble charts, scatter-plot matrices and correlation heatmaps",
+        "Change over time: line charts, slope charts, area charts, and when to use a log scale",
+        "Part-to-whole and hierarchy: stacked bars, treemaps, sunbursts and Sankey diagrams for flows",
+        "Small multiples and faceting; multivariate views and parallel coordinates",
+        "Matching a chart to a question about mobile money transaction volumes by region"
+      ]
+    },
+    {
+      "title": "Colour, labels and annotation",
+      "weeks": "5",
+      "topics": [
+        "Colour models: RGB, HSL and perceptually uniform spaces such as CIELAB and OKLCH",
+        "Sequential, diverging and qualitative palettes; why the rainbow scale misleads",
+        "Colour-vision deficiency, contrast ratios and accessible chart design",
+        "Titles that state the finding, direct labelling instead of legends, axis and tick choices",
+        "Annotation layers: highlighting, reference lines, callouts and uncertainty bands"
+      ]
+    },
+    {
+      "title": "Plotting with code",
+      "weeks": "6-7",
+      "topics": [
+        "The grammar of graphics: data, aesthetics, geometries, scales, coordinates, facets and themes",
+        "Plotting in Python with Matplotlib, seaborn and a declarative library such as Vega-Lite or Altair",
+        "Data wrangling for charts with pandas: reshaping, grouping, aggregating and joining",
+        "Visualising uncertainty: error bars, confidence bands, quantile dot plots and hypothetical outcome plots",
+        "Reproducible figures: scripts, themes, export formats (SVG, PNG) and resolution",
+        "Exploring cocoa export and price data from raw tables to a publication-quality figure"
+      ]
+    },
+    {
+      "title": "Interactive and web-based visualisation",
+      "weeks": "8-9",
+      "topics": [
+        "SVG, Canvas and WebGL as rendering targets; performance with large data",
+        "D3.js fundamentals: selections, data joins, scales, axes and transitions",
+        "Interaction techniques: tooltips, filtering, brushing and linking, zooming, details on demand (Shneiderman's mantra)",
+        "Responsive and mobile-first charts; keyboard access and screen-reader descriptions",
+        "Designing for low-bandwidth users: small payloads, server-side aggregation and progressive loading",
+        "Building a linked dashboard of district health indicators that works on a basic smartphone"
+      ]
+    },
+    {
+      "title": "Maps and geographic data",
+      "weeks": "10-11",
+      "topics": [
+        "Coordinate reference systems, latitude and longitude, map projections and their distortions",
+        "Geographic data formats: GeoJSON, TopoJSON and shapefiles; joining attribute data to boundaries",
+        "Choropleth maps: normalisation by population or area, classification schemes and the modifiable areal unit problem",
+        "Symbol, dot-density and flow maps; cartograms and hexagonal tile maps",
+        "Web maps with tiles and a library such as Leaflet; simplifying geometries for small downloads",
+        "Mapping rainfall across northern Ghana and access to health facilities by district"
+      ]
+    },
+    {
+      "title": "Data storytelling and avoiding misleading charts",
+      "weeks": "12-13",
+      "topics": [
+        "Narrative structures: martini glass, drill-down and scrollytelling; knowing the audience",
+        "From exploration to explanation: choosing the one message and removing clutter",
+        "Misleading techniques: truncated and dual axes, cherry-picked ranges, area distortion, hidden denominators",
+        "Ethics of visualisation: representing people, uncertainty and missing data honestly",
+        "Critique and redesign of published charts from news and government reports",
+        "Capstone: a data story on a Ghanaian or African dataset, with code, peer critique and a redesign"
+      ]
+    }
+  ]
+}

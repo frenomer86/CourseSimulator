@@ -6,6 +6,8 @@ import { router } from './App';
 import { initAuth } from './store/auth';
 import { startSync } from './lib/sync';
 import { startTelemetry } from './lib/telemetry';
+import { startRealtime } from './lib/realtime';
+import { startInbox } from './store/inbox';
 import './index.css';
 
 registerSW({ immediate: true });
@@ -13,6 +15,8 @@ registerSW({ immediate: true });
 // Accounts, progress sync and learning events against the app's own API. Harmless on a copy with no API.
 startSync();
 startTelemetry();
+startRealtime();
+startInbox();
 void initAuth();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

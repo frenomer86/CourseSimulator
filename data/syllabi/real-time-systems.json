@@ -1,0 +1,118 @@
+{
+  "slug": "real-time-systems",
+  "description": "Designing systems where correctness depends on timing as well as results: hard and soft deadlines, real-time operating systems, fixed- and dynamic-priority scheduling, synchronisation and priority inversion, worst-case timing analysis, real-time communication, and the design of safety-critical software. Taught with browser-based simulations of a real-time scheduler and task sets, so students run schedules, inject timing faults and measure response times without physical hardware.",
+  "modelledOn": [
+    "Liu, Real-Time Systems",
+    "Buttazzo, Hard Real-Time Computing Systems",
+    "Burns and Wellings, Real-Time Systems and Programming Languages"
+  ],
+  "outcomes": [
+    "Distinguish hard, firm and soft real-time requirements and state tasks as periodic, sporadic or aperiodic with deadlines.",
+    "Select and configure a real-time operating system and explain how it bounds latency.",
+    "Apply rate-monotonic and earliest-deadline-first scheduling and test a task set for schedulability.",
+    "Diagnose priority inversion and apply priority inheritance and ceiling protocols to shared resources.",
+    "Compute worst-case execution and response times and reason about jitter and overload.",
+    "Design communication and safety-critical architectures that meet timing and dependability requirements."
+  ],
+  "units": [
+    {
+      "title": "Real-time requirements and deadlines",
+      "weeks": "1-2",
+      "topics": [
+        "What makes a system real-time: timing as a correctness condition, not just performance",
+        "Hard, firm and soft deadlines; value-versus-time functions and the cost of a miss",
+        "Task models: periodic, sporadic and aperiodic tasks; period, deadline, release and execution time",
+        "Metrics: response time, latency, jitter, throughput and utilisation",
+        "Examples across domains: engine control, a mobile-money transaction switch under load, medical monitors"
+      ]
+    },
+    {
+      "title": "Real-time operating systems",
+      "weeks": "3",
+      "topics": [
+        "General-purpose versus real-time operating systems; sources of unbounded latency in a general-purpose kernel",
+        "The real-time kernel: task control blocks, states, the ready queue and the dispatcher",
+        "Preemptive priority scheduling, context-switch cost and tick-based versus tickless timing",
+        "Interrupt handling, deferred work and interrupt latency",
+        "Clocks, timers and time representation; measuring kernel overhead in the simulator"
+      ]
+    },
+    {
+      "title": "Fixed-priority scheduling: rate monotonic",
+      "weeks": "4-5",
+      "topics": [
+        "Fixed-priority preemptive scheduling and priority assignment",
+        "Rate-monotonic priority assignment and its optimality among fixed-priority schemes",
+        "The utilisation bound test and its sufficiency but not necessity",
+        "Deadline-monotonic assignment when deadlines differ from periods",
+        "Running task sets in the simulator and observing missed deadlines at high utilisation"
+      ]
+    },
+    {
+      "title": "Dynamic-priority scheduling: earliest deadline first",
+      "weeks": "6",
+      "topics": [
+        "Earliest-deadline-first scheduling and its optimality for preemptive single-processor systems",
+        "The EDF utilisation test and comparison with rate monotonic",
+        "Least-laxity-first and other dynamic schemes",
+        "Behaviour under transient overload: domino effect in EDF versus graceful degradation",
+        "Admission control and handling aperiodic work with servers"
+      ]
+    },
+    {
+      "title": "Synchronisation and priority inversion",
+      "weeks": "7-8",
+      "topics": [
+        "Shared resources, critical sections and mutual exclusion in a real-time context",
+        "Unbounded priority inversion: how a low-priority task blocks a high-priority one",
+        "The priority-inheritance protocol and its limits",
+        "The priority-ceiling and immediate-ceiling protocols; bounding blocking time and preventing deadlock",
+        "Accounting for blocking in a schedulability test",
+        "Reproducing a priority-inversion failure in the simulator and fixing it"
+      ]
+    },
+    {
+      "title": "Worst-case timing analysis",
+      "weeks": "9-10",
+      "topics": [
+        "Worst-case execution time: why average time is not enough for hard deadlines",
+        "Measurement-based and static analysis of execution time; the effect of caches and pipelines",
+        "Response-time analysis: the recurrence for a task's worst-case response under interference",
+        "Accounting for release jitter, blocking and context-switch overhead",
+        "Sensitivity analysis and headroom; what to do when a set is not schedulable"
+      ]
+    },
+    {
+      "title": "Real-time communication",
+      "weeks": "11",
+      "topics": [
+        "Timing on a shared medium; bounding message latency and jitter",
+        "Priority-based and time-triggered buses; the controller area network arbitration scheme",
+        "Time-triggered and time-sensitive networking; clock synchronisation across nodes",
+        "End-to-end deadlines across a distributed system and holistic analysis",
+        "Degradation under a congested or lossy link, as on intermittent West Africa backhaul"
+      ]
+    },
+    {
+      "title": "Safety-critical design",
+      "weeks": "12",
+      "topics": [
+        "Dependability: reliability, availability, safety and the difference between faults, errors and failures",
+        "Hazard analysis and safety integrity levels; fail-safe and fail-operational design",
+        "Redundancy, watchdogs, and detecting a missed deadline or a hung task",
+        "Handling power cuts and brown-outs with safe shutdown and an uninterruptible supply",
+        "Certification evidence and the role of standards in safety-critical software"
+      ]
+    },
+    {
+      "title": "Designing and evaluating a real-time system",
+      "weeks": "13",
+      "topics": [
+        "Putting it together: task decomposition, priority assignment, resource protocols and timing budget",
+        "Validating a design by schedulability analysis and by simulation",
+        "Diagnosing overload, jitter and inversion from traces",
+        "Capstone: specify, schedule and verify a small safety-critical controller under a fixed timing budget"
+      ]
+    }
+  ]
+}

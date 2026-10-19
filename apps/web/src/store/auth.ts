@@ -22,6 +22,8 @@ interface AuthState {
   signOut: () => Promise<void>;
   updateProfile: (patch: ProfilePatch) => Promise<{ error?: string }>;
   deleteAccount: (password: string) => Promise<{ error?: string }>;
+  /** Declare (or give up) the facilitator role. Self-declared for now; verification comes later. */
+  setFacilitator: (on: boolean) => Promise<{ error?: string }>;
   /** Called by the sync layer when the server returns a fresher profile. */
   applyProfile: (profile: Profile) => void;
 }
@@ -116,6 +118,16 @@ export const useAuth = create<AuthState>()((set, get) => ({
       setToken(null);
       writeCache(null);
       set({ status: 'guest', user: null, profile: null });
+      return {};
+    } catch (err) {
+      return { error: message(err) };
+    }
+  },
+
+  setFacilitator: async (on) => {
+    try {
+      const res = await api<{ profile: Profile }>('/me/facilitator', { method: on ? 'POST' : 'DELETE' });
+      get().applyProfile(res.profile);
       return {};
     } catch (err) {
       return { error: message(err) };

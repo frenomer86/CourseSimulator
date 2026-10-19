@@ -1,0 +1,118 @@
+{
+  "slug": "natural-language-processing",
+  "description": "How computers process human language: tokenisation and text normalisation, n-gram and neural language models, word and sentence embeddings, text classification, sequence labelling, transformers and machine translation, with sustained attention to low-resource African languages such as Twi, Ewe and Hausa. Every model is built and probed in browser notebooks on real corpora, taught to the depth of a strong final-year NLP course.",
+  "modelledOn": [
+    "Jurafsky and Martin, Speech and Language Processing",
+    "Eisenstein, Introduction to Natural Language Processing",
+    "Tunstall, von Werra and Wolf, Natural Language Processing with Transformers",
+    "Goldberg, Neural Network Methods for Natural Language Processing"
+  ],
+  "outcomes": [
+    "Build text-processing pipelines that tokenise, normalise and segment text in English and African languages, including subword tokenisers trained from scratch.",
+    "Implement and evaluate n-gram and neural language models and explain perplexity, smoothing and decoding strategies.",
+    "Train and compare word and sentence embeddings and use them for similarity search, classification and analysis of bias.",
+    "Design, train and evaluate text classifiers and sequence labellers with appropriate metrics and error analysis.",
+    "Explain the transformer architecture and fine-tune pretrained models for classification, tagging and machine translation.",
+    "Plan an NLP project for a low-resource language, covering data collection, annotation, evaluation and the ethics of language technology."
+  ],
+  "units": [
+    {
+      "title": "Text processing and tokenisation",
+      "weeks": "1-2",
+      "topics": [
+        "What makes language hard for computers: ambiguity, variation, Zipf's law, code-switching between English and Twi or Pidgin",
+        "Unicode, encodings and normalisation; diacritics and tone marks in Ewe and Yoruba; regular expressions for text cleaning",
+        "Word, sentence and morphological segmentation; stemming and lemmatisation; edit distance and spelling correction",
+        "Subword tokenisation: byte-pair encoding, WordPiece and unigram models trained and compared on an Akan corpus",
+        "Corpora and annotation: building a corpus from radio transcripts, news and social media; licensing and consent"
+      ]
+    },
+    {
+      "title": "Language models",
+      "weeks": "3-4",
+      "topics": [
+        "n-gram language models: the chain rule, Markov assumption, maximum likelihood estimates",
+        "Smoothing and backoff: Laplace, Kneser-Ney, interpolation; handling unknown words",
+        "Evaluation: perplexity, cross-entropy and their relation; intrinsic versus extrinsic evaluation",
+        "Neural language models: feedforward and recurrent models, LSTMs and GRUs, teacher forcing",
+        "Decoding: greedy, beam search, temperature, top-k and nucleus sampling; generating text and its failure modes"
+      ]
+    },
+    {
+      "title": "Word and sentence embeddings",
+      "weeks": "5-6",
+      "topics": [
+        "Distributional semantics: co-occurrence matrices, PMI, SVD-based word vectors",
+        "word2vec skip-gram and CBOW with negative sampling derived and implemented; GloVe and fastText subword vectors",
+        "Evaluating embeddings: similarity benchmarks, analogies, visualisation with t-SNE and UMAP",
+        "Contextual embeddings and sentence encoders: mean pooling, siamese networks, contrastive training",
+        "Semantic search and retrieval with vector indexes; bias measured in embedding spaces"
+      ]
+    },
+    {
+      "title": "Text classification",
+      "weeks": "7",
+      "topics": [
+        "Bag of words and TF-IDF features; naive Bayes and logistic regression baselines",
+        "Neural classifiers over embeddings; convolutional text classifiers; class imbalance",
+        "Sentiment analysis of Ghanaian tweets and mobile money customer complaints; topic and intent classification",
+        "Evaluation: precision, recall, macro and micro F1, confusion matrices, inter-annotator agreement with Cohen's kappa",
+        "Error analysis and robustness: adversarial inputs, spurious cues, out-of-domain text"
+      ]
+    },
+    {
+      "title": "Sequence labelling",
+      "weeks": "8",
+      "topics": [
+        "Part-of-speech tagging and named entity recognition; BIO tagging schemes",
+        "Hidden Markov models and the Viterbi algorithm; forward-backward",
+        "Conditional random fields; BiLSTM-CRF taggers",
+        "Span-level evaluation; NER for Hausa, Yoruba and Swahili news text using community datasets",
+        "Dependency parsing in brief: transition-based parsing and Universal Dependencies treebanks"
+      ]
+    },
+    {
+      "title": "Attention and transformers",
+      "weeks": "9-10",
+      "topics": [
+        "Encoder-decoder models and attention; the alignment problem",
+        "The transformer: scaled dot-product and multi-head attention, positional encodings, layer normalisation, residual connections",
+        "Pretraining objectives: masked language modelling, causal language modelling, span corruption",
+        "Encoder, decoder and encoder-decoder families; multilingual models and their coverage of African languages",
+        "Fine-tuning, parameter-efficient adaptation with adapters and LoRA, and prompting"
+      ]
+    },
+    {
+      "title": "Machine translation",
+      "weeks": "11",
+      "topics": [
+        "From rule-based and statistical translation to neural machine translation",
+        "Training a transformer translation model; data cleaning and parallel corpus alignment",
+        "Evaluation: BLEU, chrF and COMET; human evaluation of adequacy and fluency",
+        "Low-resource translation: back-translation, transfer from related languages, multilingual models; English to Twi and Ewe experiments",
+        "Speech in brief: automatic speech recognition and text-to-speech for languages with little written text"
+      ]
+    },
+    {
+      "title": "Working with African languages",
+      "weeks": "12",
+      "topics": [
+        "The landscape: over two thousand African languages; tone, noun classes, rich morphology and orthographic variation",
+        "Data scarcity: community data collection, crowdsourcing, participatory research and fair pay for annotators",
+        "Building resources: lexicons, morphological analysers, keyboards and spell checkers for Ghanaian languages",
+        "Benchmarking multilingual models on African languages and reporting results per language",
+        "Language technology for inclusion: health information, agricultural advisories and government services in local languages"
+      ]
+    },
+    {
+      "title": "Large language models, evaluation and ethics",
+      "weeks": "13",
+      "topics": [
+        "Scaling, instruction tuning and alignment in brief; retrieval-augmented generation",
+        "Evaluating generated text: hallucination, factuality, toxicity and benchmark contamination",
+        "Bias, representation and harms across languages and dialects; privacy of text data under the Data Protection Act",
+        "Capstone: an NLP system for a Ghanaian language with a datasheet, evaluation report and model card"
+      ]
+    }
+  ]
+}

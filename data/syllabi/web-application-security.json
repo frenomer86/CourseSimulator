@@ -1,0 +1,117 @@
+{
+  "slug": "web-application-security",
+  "description": "How web applications are attacked and defended: injection, cross-site scripting, broken authentication and session management, access-control flaws, server-side request forgery and file attacks, and the defences of input handling, output encoding and secure headers. Practised against deliberately vulnerable applications running on isolated virtual machines in the browser, so every attack and fix is carried out hands-on and safely.",
+  "modelledOn": [
+    "Stuttard and Pinto, The Web Application Hacker's Handbook",
+    "OWASP Top Ten and OWASP Application Security Verification Standard",
+    "Hoffman, Web Application Security"
+  ],
+  "outcomes": [
+    "Explain the client-server web model and map an application's attack surface.",
+    "Find and exploit injection flaws including SQL and command injection and then fix them.",
+    "Detect and prevent cross-site scripting and cross-site request forgery.",
+    "Analyse authentication, session and access-control flaws and design correct controls.",
+    "Exploit and mitigate server-side request forgery and unsafe file upload and inclusion.",
+    "Harden an application with validation, output encoding, secure headers and a sound configuration."
+  ],
+  "units": [
+    {
+      "title": "The web platform and its attack surface",
+      "weeks": "1-2",
+      "topics": [
+        "HTTP and HTTPS, requests, responses, methods, status codes and headers as an attacker sees them",
+        "The browser security model: the same-origin policy, cookies, storage and the DOM",
+        "Where trust boundaries lie: client, network, server, database and third-party services",
+        "Mapping an application: spidering, parameters, entry points and hidden functionality",
+        "Setting up an intercepting proxy and a deliberately vulnerable app on an isolated virtual machine"
+      ]
+    },
+    {
+      "title": "How web applications are attacked",
+      "weeks": "3",
+      "topics": [
+        "The OWASP Top Ten as a map of common risks and how it is used",
+        "Trust and tainted data: never trusting input from the client",
+        "Threat modelling a feature such as a mobile-money top-up form",
+        "The economics of attacks on small-business and cafe-hosted sites in Ghana",
+        "Reading an application's behaviour through error messages and timing"
+      ]
+    },
+    {
+      "title": "Injection attacks",
+      "weeks": "4-5",
+      "topics": [
+        "SQL injection: in-band, blind and error-based; extracting and modifying data",
+        "Exploiting a login bypass and data exfiltration against a lab database",
+        "Command, LDAP and NoSQL injection; the common root cause of mixing code and data",
+        "Defences: parameterised queries and prepared statements, least-privilege database accounts",
+        "Input validation and allow-listing as defence in depth"
+      ]
+    },
+    {
+      "title": "Cross-site scripting",
+      "weeks": "6-7",
+      "topics": [
+        "Reflected, stored and DOM-based cross-site scripting and their impact",
+        "Stealing sessions and performing actions as the victim; keylogging a form",
+        "Context-aware output encoding for HTML, attributes, JavaScript and URLs",
+        "Content Security Policy and trusted types; sanitising rich input",
+        "Cross-site request forgery: tokens, same-site cookies and re-authentication"
+      ]
+    },
+    {
+      "title": "Authentication and session flaws",
+      "weeks": "8",
+      "topics": [
+        "Credential handling: hashing and salting, password policy, and the weakness of SMS codes against SIM-swap",
+        "Flaws in login: user enumeration, weak reset flows, missing lockout and multi-factor",
+        "Session management: generation, transport, fixation, hijacking and timeout",
+        "Secure cookie attributes and token-based sessions",
+        "Account-recovery abuse and safe re-authentication for sensitive actions"
+      ]
+    },
+    {
+      "title": "Access control flaws",
+      "weeks": "9",
+      "topics": [
+        "Vertical and horizontal privilege escalation",
+        "Insecure direct object references and broken function-level authorisation",
+        "Exploiting an identifier to read another user's wallet or records in a lab app",
+        "Designing enforced server-side authorisation and deny-by-default",
+        "Multi-tenant isolation and testing access control systematically"
+      ]
+    },
+    {
+      "title": "Server-side request forgery and file attacks",
+      "weeks": "10-11",
+      "topics": [
+        "Server-side request forgery: reaching internal services and cloud metadata; blind variants",
+        "Unrestricted file upload leading to code execution; content-type and extension pitfalls",
+        "Local and remote file inclusion and path traversal",
+        "Insecure deserialisation and XML external entity attacks in brief",
+        "Defences: allow-lists, network egress restriction, safe storage and rendering of uploads"
+      ]
+    },
+    {
+      "title": "Defences and secure headers",
+      "weeks": "12",
+      "topics": [
+        "A layered defence: validation, encoding, parameterisation, authorisation and logging",
+        "Security headers: HSTS, Content Security Policy, X-Content-Type-Options, frame controls and referrer policy",
+        "Secure configuration: TLS, cookie flags, CORS and error handling that does not leak",
+        "Dependency and supply-chain risk; keeping components patched",
+        "A web application firewall as a stopgap, not a cure"
+      ]
+    },
+    {
+      "title": "Building and testing a secure application",
+      "weeks": "13",
+      "topics": [
+        "Secure development lifecycle: requirements, design review, testing and verification against the ASVS",
+        "Automated and manual testing with OWASP ZAP and Burp Suite",
+        "Triaging and fixing a backlog of findings for a resource-constrained team",
+        "Capstone: attack a vulnerable application, then remediate it and prove the fixes hold"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "slug": "health-information-systems",
+  "description": "How information flows through a health system and how software supports it: the building blocks of health systems, district health information systems such as DHIS2, facility workflows from registration to claims, indicators and routine reporting, data quality, evaluation of information systems and the history and governance of health information systems in Africa. Taught through case-based simulations of a district health directorate, with realistic reporting cycles, dashboards and data quality reviews built in browser-based tools.",
+  "modelledOn": [
+    "WHO, Framework and Standards for Country Health Information Systems (Health Metrics Network)",
+    "WHO, Data Quality Review: A Toolkit for Facility Data Quality Assessment",
+    "Wager, Lee and Glaser, Health Care Information Systems: A Practical Approach for Health Care Management",
+    "Braa and Sahay, Integrated Health Information Architecture: Power to the Users"
+  ],
+  "outcomes": [
+    "Describe the building blocks of a health system and map the information needs of patients, clinicians, managers and policy makers at each level.",
+    "Configure a district health information system with organisation units, data elements, data sets and indicators and use it to collect and aggregate routine data.",
+    "Model health facility workflows from registration to discharge and insurance claims and identify where information is created, used and lost.",
+    "Define, calculate and interpret health indicators and produce reports and dashboards that support decisions at facility, district and national level.",
+    "Assess routine data for completeness, timeliness and consistency, and design interventions that improve data quality and use.",
+    "Evaluate a health information system against its goals using established frameworks and propose improvements suited to African health systems."
+  ],
+  "units": [
+    {
+      "title": "Health systems and their information needs",
+      "weeks": "1",
+      "topics": [
+        "The WHO health system building blocks; health information as one of six; universal health coverage",
+        "Levels of care in Ghana: CHPS compounds, health centres, district, regional and teaching hospitals; the Ghana Health Service",
+        "Who needs what information: patients, clinicians, facility managers, district and regional directorates, ministries, donors",
+        "Data, information, knowledge and decisions; the information cycle from collection to action",
+        "Sources of health data: routine facility data, surveys (DHS, MICS), censuses, civil registration and vital statistics, surveillance"
+      ]
+    },
+    {
+      "title": "Health information system architecture",
+      "weeks": "2",
+      "topics": [
+        "Components of a national HIS: patient-level systems, aggregate systems, registries, logistics, HR and finance systems",
+        "Paper registers, tally sheets and summary forms and how they become electronic data",
+        "Fragmentation and vertical programme systems; the case for integration and enterprise architecture",
+        "Digital health building blocks and the OpenHIE architecture in outline",
+        "Open-source platforms in common use: DHIS2, OpenMRS, OpenLMIS, iHRIS"
+      ]
+    },
+    {
+      "title": "District health information systems",
+      "weeks": "3-4",
+      "topics": [
+        "DHIS2 concepts: organisation unit hierarchy, data elements, category combinations, data sets, periods",
+        "Aggregate versus individual (tracker) data; programme stages and events",
+        "Data entry, offline capture on Android and synchronisation over weak networks",
+        "Aggregation, disaggregation by age and sex, and analytics tables",
+        "Configuring a district instance with facilities, monthly reports and validation rules",
+        "Ghana's national rollout of DHIS2 and lessons from other African countries"
+      ]
+    },
+    {
+      "title": "Health facility workflows",
+      "weeks": "5-6",
+      "topics": [
+        "Patient journeys through an outpatient department: registration, triage, consultation, laboratory, pharmacy, billing",
+        "Inpatient admission, ward management, transfer, discharge and referral between levels of care",
+        "Maternal and child health clinics, immunisation sessions and outreach by community health nurses",
+        "Health insurance workflows: NHIS membership verification, claims preparation and submission, claims auditing in Ghana",
+        "Supply chain and pharmacy stock management; stock-outs and logistics reports",
+        "Workflow modelling with BPMN and swimlane diagrams; finding duplicated recording and delays"
+      ]
+    },
+    {
+      "title": "Indicators and reporting",
+      "weeks": "7-8",
+      "topics": [
+        "Indicator design: numerators, denominators, targets; input, process, output, outcome and impact indicators",
+        "Population denominators and catchment areas; coverage rates for antenatal care, skilled delivery and immunisation",
+        "Programme indicators for malaria, HIV, TB and maternal health; national and SDG indicator frameworks",
+        "Reporting cycles, deadlines and feedback to facilities; avoiding reporting for its own sake",
+        "Dashboards, pivot tables, maps and scorecards for district management meetings",
+        "From data to decisions: district league tables and performance reviews"
+      ]
+    },
+    {
+      "title": "Data quality in health",
+      "weeks": "9-10",
+      "topics": [
+        "Dimensions of data quality: completeness, timeliness, accuracy, consistency, validity",
+        "Validation rules, outlier detection and internal consistency checks between related data elements",
+        "Data quality audits and verification: re-counting registers against reported figures; verification factors",
+        "Root causes of poor data: workload, training, form design, incentives, supervision",
+        "Improving data use: data review meetings, feedback, a culture of information use (PRISM framework)",
+        "Running a data quality review on a simulated district's monthly reports"
+      ]
+    },
+    {
+      "title": "Evaluating health information systems",
+      "weeks": "11",
+      "topics": [
+        "Why systems fail: design-reality gaps, sustainability, pilots that never scale",
+        "Evaluation frameworks: HMN assessment, PRISM, the DeLone and McLean success model",
+        "Measuring usability, adoption, data use and impact on health outcomes",
+        "Costing a health information system: total cost of ownership and sustainability planning"
+      ]
+    },
+    {
+      "title": "Health information systems in Africa",
+      "weeks": "12",
+      "topics": [
+        "History of HIS in Africa: from paper registers to DHIS2 and national digital health strategies",
+        "Governance, ownership and donor coordination; the role of ministries and health services",
+        "Infrastructure realities: power, connectivity, devices, local support and hosting",
+        "Ghana's digital health initiatives: Lightwave e-Health, the national health insurance claims system, e-Tracker",
+        "Privacy and data protection under Ghana's Data Protection Act 843 for health data"
+      ]
+    },
+    {
+      "title": "Project",
+      "weeks": "13",
+      "topics": [
+        "Assessing the information needs of a chosen district or facility",
+        "Designing data sets, indicators and dashboards to meet those needs",
+        "Planning data quality checks and a feedback cycle",
+        "Project: a configured district reporting system with a written evaluation and improvement plan"
+      ]
+    }
+  ]
+}

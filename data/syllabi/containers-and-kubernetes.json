@@ -1,0 +1,108 @@
+{
+  "slug": "containers-and-kubernetes",
+  "description": "Packaging and running software with containers and orchestrating it with Kubernetes: how containers isolate processes, building images with Dockerfiles, container networking and storage, the Kubernetes control plane, pods, deployments and services, configuration, secrets and autoscaling, and systematic troubleshooting of broken clusters. Practised hands-on in simulated terminals and a simulated multi-node cluster in the browser, taught to the depth of the Kubernetes administrator and developer certifications.",
+  "modelledOn": [
+    "Burns, Beda, Hightower and Evenson, Kubernetes: Up and Running",
+    "Lukša, Kubernetes in Action",
+    "CNCF Certified Kubernetes Administrator (CKA) and Certified Kubernetes Application Developer (CKAD) curricula",
+    "Open Container Initiative image and runtime specifications"
+  ],
+  "outcomes": [
+    "Explain how containers use namespaces, control groups and layered file systems and contrast them with virtual machines.",
+    "Write efficient, secure Dockerfiles and multi-container applications and publish images to a registry.",
+    "Configure container networking and persistent storage for stateful and stateless workloads.",
+    "Describe the Kubernetes architecture and deploy applications with pods, deployments, services and ingress.",
+    "Manage configuration, secrets, resource limits and autoscaling and perform rolling updates and rollbacks.",
+    "Diagnose and repair failing workloads, nodes and cluster networking using a systematic troubleshooting method."
+  ],
+  "units": [
+    {
+      "title": "Containers and images",
+      "weeks": "1-2",
+      "topics": [
+        "Why containers: dependency hell, environment drift, density; containers versus virtual machines",
+        "Linux foundations: namespaces, cgroups, capabilities, seccomp, union and overlay file systems",
+        "The OCI image format: layers, manifests, digests and tags; registries and pulling by digest",
+        "Container runtimes: Docker Engine, containerd, runc and Podman; rootless containers",
+        "The container life cycle: run, exec, logs, inspect, stop, remove; restart policies"
+      ]
+    },
+    {
+      "title": "Writing Dockerfiles",
+      "weeks": "3",
+      "topics": [
+        "Dockerfile instructions: FROM, RUN, COPY, ENV, ARG, WORKDIR, USER, EXPOSE, ENTRYPOINT versus CMD",
+        "Layer caching and build order; .dockerignore; multi-stage builds for small images",
+        "Choosing base images: distroless, Alpine and slim images; image size on slow and metered connections",
+        "Image security: running as non-root, pinning versions, scanning for vulnerabilities, signing images",
+        "Containerising a Node.js API and a Python service; Docker Compose for multi-container development"
+      ]
+    },
+    {
+      "title": "Container networking and storage",
+      "weeks": "4",
+      "topics": [
+        "Bridge, host and overlay networks; port publishing; DNS-based service discovery between containers",
+        "Network namespaces and virtual Ethernet pairs; inspecting traffic between containers",
+        "Volumes, bind mounts and tmpfs; data that must survive a container",
+        "Running a database in a container: persistence, backups and why it is often a bad idea in production"
+      ]
+    },
+    {
+      "title": "Kubernetes architecture",
+      "weeks": "5-6",
+      "topics": [
+        "Why orchestration: scheduling, self-healing, scaling, rolling updates; the declarative model and reconciliation loops",
+        "Control plane: API server, etcd, scheduler, controller manager, cloud controller manager",
+        "Worker nodes: kubelet, kube-proxy, the container runtime interface",
+        "Setting up a cluster with kubeadm; managed clusters on EKS, AKS and GKE; lightweight k3s for low-cost hardware",
+        "kubectl, kubeconfig, contexts and namespaces; reading and writing YAML manifests"
+      ]
+    },
+    {
+      "title": "Pods, deployments and services",
+      "weeks": "7-8",
+      "topics": [
+        "Pods: multi-container patterns (sidecar, init containers, ambassador), pod life cycle, probes for liveness, readiness and startup",
+        "ReplicaSets and Deployments; rolling updates, rollout history and rollbacks",
+        "StatefulSets, DaemonSets, Jobs and CronJobs",
+        "Services: ClusterIP, NodePort, LoadBalancer, headless services; endpoints and EndpointSlices",
+        "Ingress and the Gateway API; TLS termination; exposing a mobile money payment API through an ingress controller"
+      ]
+    },
+    {
+      "title": "Configuration, secrets and scaling",
+      "weeks": "9-10",
+      "topics": [
+        "ConfigMaps and Secrets as environment variables and mounted files; encryption of secrets at rest; external secret stores",
+        "Resource requests and limits; quality of service classes; LimitRanges and ResourceQuotas",
+        "Scheduling: node selectors, affinity and anti-affinity, taints and tolerations, topology spread",
+        "Autoscaling: Horizontal Pod Autoscaler, Vertical Pod Autoscaler, cluster autoscaler; metrics server",
+        "Persistent storage: PersistentVolumes, PersistentVolumeClaims, StorageClasses and dynamic provisioning",
+        "Packaging applications with Helm charts and Kustomize overlays"
+      ]
+    },
+    {
+      "title": "Cluster security and networking",
+      "weeks": "11",
+      "topics": [
+        "Authentication and RBAC: service accounts, roles, role bindings, least privilege",
+        "Pod Security Standards and admission control; security contexts",
+        "The pod network model; CNI plugins such as Calico and Cilium; NetworkPolicies for isolation",
+        "Cluster DNS with CoreDNS; service meshes in brief"
+      ]
+    },
+    {
+      "title": "Troubleshooting clusters",
+      "weeks": "12-13",
+      "topics": [
+        "A troubleshooting method: observe, hypothesise, test, fix, verify; reading events and describe output",
+        "Failing workloads: CrashLoopBackOff, ImagePullBackOff, OOMKilled, pending pods and unschedulable nodes",
+        "Failing networking: services without endpoints, DNS failures, NetworkPolicy mistakes, ingress misrouting",
+        "Failing nodes and control plane: NotReady nodes, kubelet logs, certificate expiry, etcd backup and restore",
+        "Logging and monitoring a cluster with Prometheus, Grafana and centralised logs",
+        "Capstone: deploy, scale, secure and repair a multi-service application on a broken cluster under timed conditions"
+      ]
+    }
+  ]
+}

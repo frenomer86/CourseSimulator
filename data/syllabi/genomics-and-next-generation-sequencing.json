@@ -1,0 +1,111 @@
+{
+  "slug": "genomics-and-next-generation-sequencing",
+  "description": "Turning raw sequencing reads into biological answers: sequencing technologies and their error profiles, read quality control, mapping to a reference, de novo genome assembly, variant calling and annotation, RNA-seq gene expression analysis, and pathogen genomics for outbreak surveillance. Practised as complete analysis pipelines run on small public datasets with browser-based tools, working through cases such as Vibrio cholerae and Lassa virus genomes and human variants shaped by malaria.",
+  "modelledOn": [
+    "Pevsner, Bioinformatics and Functional Genomics",
+    "Compeau and Pevzner, Bioinformatics Algorithms: An Active Learning Approach",
+    "Brown, Genomes",
+    "WHO, Global Genomic Surveillance Strategy for Pathogens with Pandemic and Epidemic Potential"
+  ],
+  "outcomes": [
+    "Compare short-read and long-read sequencing technologies and choose a platform, read length and depth suited to a genomic question.",
+    "Assess and clean raw reads using quality scores, adapter trimming and duplication metrics, and justify each filtering decision.",
+    "Map reads to a reference genome with indexed aligners and interpret SAM and BAM records, mapping quality and coverage.",
+    "Assemble a genome from reads with de Bruijn and overlap graph methods and evaluate the assembly with contiguity and completeness measures.",
+    "Call, filter and annotate genetic variants and analyse differential gene expression from RNA-seq counts with appropriate statistics.",
+    "Apply pathogen genomics to outbreak surveillance, from sample to lineage assignment and resistance prediction, and report the findings to public health teams."
+  ],
+  "units": [
+    {
+      "title": "Genomes and sequencing technologies",
+      "weeks": "1-2",
+      "topics": [
+        "Genome organisation in bacteria, viruses and eukaryotes: genes, repeats, plasmids, ploidy; the human reference genome",
+        "Sanger sequencing and the move to massively parallel sequencing; cost and throughput",
+        "Illumina sequencing by synthesis: library preparation, cluster amplification, single-end and paired-end reads",
+        "Long-read technologies: nanopore sequencing (MinION) and PacBio HiFi; error profiles and when long reads are essential",
+        "Experimental design: coverage and depth (Lander-Waterman), multiplexing and barcodes, whole-genome versus exome versus amplicon",
+        "Portable sequencing for field surveillance: nanopore runs in national and regional laboratories in Africa"
+      ]
+    },
+    {
+      "title": "Read quality control",
+      "weeks": "3",
+      "topics": [
+        "FASTQ in depth: Phred scores, encodings, per-base and per-read quality",
+        "Quality reports with FastQC and MultiQC: base composition, GC distribution, overrepresented sequences, duplication",
+        "Adapter and quality trimming; length filtering; removing host and contaminant reads",
+        "Quality control for nanopore reads: read length distributions and basecalling accuracy",
+        "Recording QC decisions so an analysis can be reproduced"
+      ]
+    },
+    {
+      "title": "Read mapping",
+      "weeks": "4-5",
+      "topics": [
+        "Why mapping differs from classical alignment: speed, seeds and the scale of the problem",
+        "Indexing a reference: suffix arrays, the Burrows-Wheeler transform and the FM-index; backward search",
+        "Short-read aligners (BWA, Bowtie2) and long-read aligners (minimap2); paired-end constraints",
+        "SAM and BAM formats: flags, CIGAR strings, mapping quality; sorting, indexing and viewing with samtools",
+        "Coverage, insert size and duplicate marking; inspecting alignments in a genome browser"
+      ]
+    },
+    {
+      "title": "Genome assembly",
+      "weeks": "6-7",
+      "topics": [
+        "The assembly problem: reads, overlaps, contigs and scaffolds; why repeats make it hard",
+        "Overlap-layout-consensus and string graphs for long reads",
+        "De Bruijn graphs from k-mers: Eulerian paths, choice of k, error correction, bubbles and tips",
+        "Assemblers in practice: SPAdes for bacteria, Flye for long reads; hybrid assembly",
+        "Evaluating assemblies: N50, misassemblies, BUSCO completeness, comparison with a reference",
+        "Genome annotation basics: gene prediction and functional labelling of a bacterial assembly"
+      ]
+    },
+    {
+      "title": "Variant calling",
+      "weeks": "8-9",
+      "topics": [
+        "Types of variation: SNVs, indels, structural variants, copy-number variation",
+        "Genotype likelihoods and Bayesian variant calling; how base and mapping quality enter the model",
+        "Calling pipelines: GATK best practices and bcftools; base quality recalibration and joint genotyping",
+        "The VCF format; hard filtering versus model-based filtering; transition/transversion ratio as a sanity check",
+        "Variant annotation and effect prediction; population databases such as gnomAD and the under-representation of African genomes",
+        "Case study: the HbS allele, G6PD deficiency and other human variants shaped by malaria selection"
+      ]
+    },
+    {
+      "title": "Gene expression analysis",
+      "weeks": "10-11",
+      "topics": [
+        "RNA-seq experimental design: replicates, depth, batch effects, stranded and poly-A libraries",
+        "Spliced alignment and pseudo-alignment for quantification (HISAT2, Salmon); counts per gene",
+        "Normalisation: library size, TPM, size factors; exploratory analysis with PCA and clustering",
+        "Differential expression with negative binomial models (DESeq2, edgeR); multiple testing and the false discovery rate",
+        "Interpreting results: volcano plots, gene set and pathway enrichment",
+        "Single-cell RNA-seq in brief"
+      ]
+    },
+    {
+      "title": "Pathogen genomics for disease surveillance",
+      "weeks": "12",
+      "topics": [
+        "From sample to sequence in an outbreak: amplicon schemes, turnaround time and laboratory networks",
+        "Lineage and genotype assignment for SARS-CoV-2, Vibrio cholerae and Lassa virus; typing schemes such as MLST",
+        "Antimicrobial resistance prediction from genomes; resistance gene databases",
+        "Linking genomes to case data; sharing sequences through public archives and GISAID",
+        "Case study: genomic surveillance of cholera and Lassa fever in West Africa and the Africa CDC Pathogen Genomics Initiative"
+      ]
+    },
+    {
+      "title": "Reproducible pipelines and project",
+      "weeks": "13",
+      "topics": [
+        "Workflow managers (Snakemake, Nextflow) and containers for reproducible pipelines",
+        "Compute, storage and cost on limited infrastructure; working with shared servers and the cloud",
+        "Ethics and governance of genomic data: consent, community engagement, benefit sharing, data sovereignty in Africa",
+        "Project: an end-to-end analysis of a public bacterial or viral outbreak dataset with a surveillance report"
+      ]
+    }
+  ]
+}

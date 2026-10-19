@@ -394,3 +394,447 @@ Simulators: Phone emulator frame with Android-style screen builder (layouts, vie
 | E12 Cloud Console | 404, 408, 409 |
 
 Total: 38 BCSC courses, 228 labs sketched (6 per course), 12 shared engines.
+
+
+## Programmes
+
+The catalogue now serves several programmes, not only Computer Science. A programme is an ordered path through the courses; many courses are shared, so a learner's progress counts in every programme that includes the course. Programmes and the courses they add are defined in `data/programmes.json`; `scripts/build-courses.mjs` merges them into `data/courses.json` (run `node scripts/build-courses.mjs .` after editing) and refuses a programme that names an unknown course or a course that belongs to no programme. Every course has a detailed syllabus in `data/syllabi/<slug>.json` and is mapped to the simulation engines it needs. Course year and semester values only order the lists; they are never shown as groupings.
+
+Programmes requested: Computer Science, Computer Engineering, Software Engineering, Data Analytics, Data Science, Information Systems, Machine Learning, Cloud Computing, Bioinformatics, Health Informatics and Robotics. Programmes recommended in addition, because they fit browser simulation and are in demand across Africa: Cybersecurity, Artificial Intelligence, Information Technology, Networking and Telecommunications, Game Development and Financial Technology.
+
+### Computer Science
+
+All 53 courses mapped above.
+
+### Computer Engineering
+
+Where hardware meets software: circuits, digital systems, processors, embedded devices and the signals they handle. Students build and test circuits, microcontroller programs and control loops on simulated benches.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Calculus | E7 Maths lab, E1 Code runner |  |
+| 2 | Mathematics for Computer Science | E7 Maths lab, E1 Code runner |  |
+| 3 | Basic Electronics | E2 Circuit bench, E8 Hardware bench, E7 Maths lab |  |
+| 4 | Circuit Analysis | E8 Hardware bench, E7 Maths lab | yes |
+| 5 | Programming with C | E1 Code runner, E6 Step visualiser |  |
+| 6 | Digital Logic Design | E2 Circuit bench, E6 Step visualiser |  |
+| 7 | Signals and Systems | E7 Maths lab, E1 Code runner | yes |
+| 8 | Data Communications | E7 Maths lab, E3 Network simulator |  |
+| 9 | Computer Organization and Architecture | E6 Step visualiser |  |
+| 10 | Assembly Language and Microprocessors | E6 Step visualiser |  |
+| 11 | Embedded Systems | E8 Hardware bench, E1 Code runner |  |
+| 12 | Digital Signal Processing | E7 Maths lab, E1 Code runner | yes |
+| 13 | Control Systems | E7 Maths lab, E1 Code runner | yes |
+| 14 | Real-Time Systems | E6 Step visualiser, E8 Hardware bench | yes |
+| 15 | Operating Systems | E6 Step visualiser, E4 Virtual machine |  |
+| 16 | Computer Networking I | E3 Network simulator, E8 Hardware bench |  |
+| 17 | Internet of Things | E8 Hardware bench, E3 Network simulator, E12 Cloud console |  |
+| 18 | VLSI Design | E2 Circuit bench, E6 Step visualiser | yes |
+
+### Software Engineering
+
+Building software that works, lasts and can be trusted: requirements, design, testing, delivery and teamwork. Students practise on real codebases, pipelines and review exercises.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Principles of Programming | E1 Code runner, E6 Step visualiser |  |
+| 2 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 3 | Discrete Mathematics | E7 Maths lab |  |
+| 4 | Programming with C++ | E1 Code runner, E6 Step visualiser |  |
+| 5 | Software Development with Java | E1 Code runner, E6 Step visualiser |  |
+| 6 | Data Structures and Algorithms | E6 Step visualiser, E1 Code runner |  |
+| 7 | Database Systems and Design | E5 Database engine, E9 Diagram studio |  |
+| 8 | Web Application Programming I | E1 Code runner |  |
+| 9 | Requirements Engineering | E9 Diagram studio, E10 Case scenarios | yes |
+| 10 | Object-Oriented System Analysis and Design | E9 Diagram studio, E10 Case scenarios |  |
+| 11 | Software Engineering | E9 Diagram studio, E10 Case scenarios, E1 Code runner |  |
+| 12 | Version Control and DevOps | E4 Virtual machine, E1 Code runner |  |
+| 13 | Web Application Programming II | E1 Code runner, E5 Database engine |  |
+| 14 | Software Architecture and Design Patterns | E9 Diagram studio, E1 Code runner | yes |
+| 15 | Software Testing and Quality Assurance | E1 Code runner, E6 Step visualiser | yes |
+| 16 | Human-Computer Interaction | E9 Diagram studio, E10 Case scenarios |  |
+| 17 | Advanced Software Development with Java | E1 Code runner, E5 Database engine |  |
+| 18 | Mobile Application Development | E11 Phone emulator, E1 Code runner |  |
+| 19 | Secure Software Development | E1 Code runner, E10 Case scenarios | yes |
+| 20 | IT Project Management | E9 Diagram studio, E10 Case scenarios |  |
+| 21 | Legal and Ethical Issues in Computing | E10 Case scenarios |  |
+
+### Data Analytics
+
+Turning raw data into decisions: cleaning, querying, analysing and presenting data for organisations. Students work with spreadsheets, SQL, code and dashboards on realistic local datasets.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Spreadsheet Analytics | E5 Database engine, E7 Maths lab | yes |
+| 2 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 3 | Probability and Statistics | E7 Maths lab, E1 Code runner |  |
+| 4 | Database Systems and Design | E5 Database engine, E9 Diagram studio |  |
+| 5 | Data Wrangling and Preparation | E1 Code runner, E5 Database engine | yes |
+| 6 | Statistical Inference | E7 Maths lab, E1 Code runner | yes |
+| 7 | Data Visualisation | E1 Code runner, E5 Database engine | yes |
+| 8 | Business Intelligence and Dashboards | E5 Database engine, E10 Case scenarios | yes |
+| 9 | Data Mining and Warehousing | E5 Database engine, E1 Code runner, E6 Step visualiser |  |
+| 10 | Time Series Analysis and Forecasting | E7 Maths lab, E1 Code runner | yes |
+| 11 | Data Science | E1 Code runner, E5 Database engine, E12 Cloud console |  |
+| 12 | Legal and Ethical Issues in Computing | E10 Case scenarios |  |
+
+### Data Science
+
+The mathematics, statistics and computing behind learning from data at scale. Students build models end to end, from collection and cleaning to evaluation and communication.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 2 | Calculus | E7 Maths lab, E1 Code runner |  |
+| 3 | Linear Algebra for Data Science | E7 Maths lab, E1 Code runner | yes |
+| 4 | Probability and Statistics | E7 Maths lab, E1 Code runner |  |
+| 5 | Data Structures and Algorithms | E6 Step visualiser, E1 Code runner |  |
+| 6 | Database Systems and Design | E5 Database engine, E9 Diagram studio |  |
+| 7 | Data Wrangling and Preparation | E1 Code runner, E5 Database engine | yes |
+| 8 | Statistical Inference | E7 Maths lab, E1 Code runner | yes |
+| 9 | Data Visualisation | E1 Code runner, E5 Database engine | yes |
+| 10 | Numerical Methods and Computation | E7 Maths lab, E1 Code runner |  |
+| 11 | Data Science | E1 Code runner, E5 Database engine, E12 Cloud console |  |
+| 12 | Machine Learning | E1 Code runner, E6 Step visualiser |  |
+| 13 | Data Mining and Warehousing | E5 Database engine, E1 Code runner, E6 Step visualiser |  |
+| 14 | Time Series Analysis and Forecasting | E7 Maths lab, E1 Code runner | yes |
+| 15 | Big Data and Parallel Computing | E1 Code runner, E6 Step visualiser |  |
+| 16 | Deep Learning | E1 Code runner, E6 Step visualiser | yes |
+| 17 | Legal and Ethical Issues in Computing | E10 Case scenarios |  |
+
+### Information Systems
+
+How organisations use information technology to work, decide and serve people. Students model business processes, design databases and evaluate systems through case scenarios.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Fundamentals of Computer Science | E8 Hardware bench, E10 Case scenarios, E3 Network simulator |  |
+| 2 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 3 | Spreadsheet Analytics | E5 Database engine, E7 Maths lab | yes |
+| 4 | Database Systems and Design | E5 Database engine, E9 Diagram studio |  |
+| 5 | Business Process Modelling | E9 Diagram studio, E10 Case scenarios | yes |
+| 6 | Accounting and Finance for Information Systems | E10 Case scenarios, E5 Database engine | yes |
+| 7 | Information Systems and E-Commerce | E10 Case scenarios, E5 Database engine |  |
+| 8 | Object-Oriented System Analysis and Design | E9 Diagram studio, E10 Case scenarios |  |
+| 9 | Web Application Programming I | E1 Code runner |  |
+| 10 | Computer Networking I | E3 Network simulator, E8 Hardware bench |  |
+| 11 | Human-Computer Interaction | E9 Diagram studio, E10 Case scenarios |  |
+| 12 | Enterprise Resource Planning | E5 Database engine, E10 Case scenarios | yes |
+| 13 | Business Intelligence and Dashboards | E5 Database engine, E10 Case scenarios | yes |
+| 14 | IT Project Management | E9 Diagram studio, E10 Case scenarios |  |
+| 15 | IT Service Management and Governance | E10 Case scenarios | yes |
+| 16 | Information Security | E3 Network simulator, E4 Virtual machine, E10 Case scenarios, E7 Maths lab |  |
+| 17 | Research Methods in Computer Science | E10 Case scenarios, E1 Code runner |  |
+| 18 | Legal and Ethical Issues in Computing | E10 Case scenarios |  |
+
+### Machine Learning
+
+Building systems that learn from data, from the mathematics to deployment. Students implement algorithms from scratch, then train, evaluate and ship models within modest compute budgets.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 2 | Calculus | E7 Maths lab, E1 Code runner |  |
+| 3 | Linear Algebra for Data Science | E7 Maths lab, E1 Code runner | yes |
+| 4 | Probability and Statistics | E7 Maths lab, E1 Code runner |  |
+| 5 | Data Structures and Algorithms | E6 Step visualiser, E1 Code runner |  |
+| 6 | Optimisation for Machine Learning | E7 Maths lab, E1 Code runner | yes |
+| 7 | Statistical Inference | E7 Maths lab, E1 Code runner | yes |
+| 8 | Data Wrangling and Preparation | E1 Code runner, E5 Database engine | yes |
+| 9 | Machine Learning | E1 Code runner, E6 Step visualiser |  |
+| 10 | Artificial Intelligence | E6 Step visualiser, E1 Code runner |  |
+| 11 | Deep Learning | E1 Code runner, E6 Step visualiser | yes |
+| 12 | Natural Language Processing | E1 Code runner | yes |
+| 13 | Computer Vision | E1 Code runner, E7 Maths lab | yes |
+| 14 | Reinforcement Learning | E6 Step visualiser, E1 Code runner | yes |
+| 15 | Big Data and Parallel Computing | E1 Code runner, E6 Step visualiser |  |
+| 16 | MLOps and Model Deployment | E1 Code runner, E12 Cloud console | yes |
+| 17 | Responsible AI | E10 Case scenarios | yes |
+
+### Cloud Computing
+
+Running software on shared, programmable infrastructure: networks, servers, containers and automation. Students provision, secure and operate services in simulated cloud consoles and terminals.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 2 | Computer Networking I | E3 Network simulator, E8 Hardware bench |  |
+| 3 | Operating Systems | E6 Step visualiser, E4 Virtual machine |  |
+| 4 | Systems Administration I | E4 Virtual machine, E3 Network simulator |  |
+| 5 | Computer Networking II | E3 Network simulator |  |
+| 6 | Systems Administration II | E4 Virtual machine, E3 Network simulator |  |
+| 7 | Database Systems and Design | E5 Database engine, E9 Diagram studio |  |
+| 8 | Version Control and DevOps | E4 Virtual machine, E1 Code runner |  |
+| 9 | Cloud Computing | E12 Cloud console, E3 Network simulator, E4 Virtual machine |  |
+| 10 | Containers and Kubernetes | E4 Virtual machine, E12 Cloud console | yes |
+| 11 | Infrastructure as Code | E12 Cloud console, E1 Code runner | yes |
+| 12 | Distributed Systems | E3 Network simulator, E6 Step visualiser |  |
+| 13 | Serverless and Cloud-Native Applications | E12 Cloud console, E1 Code runner | yes |
+| 14 | Information Security | E3 Network simulator, E4 Virtual machine, E10 Case scenarios, E7 Maths lab |  |
+| 15 | Cloud Security | E12 Cloud console, E3 Network simulator | yes |
+| 16 | Site Reliability Engineering | E12 Cloud console, E4 Virtual machine | yes |
+
+### Bioinformatics
+
+Computing applied to biology: sequences, genomes, proteins and evolution. Students align sequences, assemble genomes and build trees with browser-based tools and real public data.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Molecular Biology for Computing | E10 Case scenarios, E6 Step visualiser | yes |
+| 2 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 3 | Probability and Statistics | E7 Maths lab, E1 Code runner |  |
+| 4 | Biostatistics | E7 Maths lab, E1 Code runner | yes |
+| 5 | Data Structures and Algorithms | E6 Step visualiser, E1 Code runner |  |
+| 6 | Database Systems and Design | E5 Database engine, E9 Diagram studio |  |
+| 7 | Sequence Analysis and Alignment | E6 Step visualiser, E1 Code runner | yes |
+| 8 | Genomics and Next-Generation Sequencing | E1 Code runner, E5 Database engine | yes |
+| 9 | Phylogenetics and Molecular Evolution | E6 Step visualiser, E1 Code runner | yes |
+| 10 | Structural Bioinformatics | E1 Code runner, E7 Maths lab | yes |
+| 11 | Data Science | E1 Code runner, E5 Database engine, E12 Cloud console |  |
+| 12 | Machine Learning | E1 Code runner, E6 Step visualiser |  |
+| 13 | Legal and Ethical Issues in Computing | E10 Case scenarios |  |
+
+### Health Informatics
+
+Information systems and data for better health care and public health. Students design patient records, exchange data with health standards and analyse outbreaks in case-based simulations.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Fundamentals of Computer Science | E8 Hardware bench, E10 Case scenarios, E3 Network simulator |  |
+| 2 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 3 | Database Systems and Design | E5 Database engine, E9 Diagram studio |  |
+| 4 | Biostatistics | E7 Maths lab, E1 Code runner | yes |
+| 5 | Health Information Systems | E10 Case scenarios, E5 Database engine | yes |
+| 6 | Health Data Standards and Interoperability | E5 Database engine, E1 Code runner | yes |
+| 7 | Epidemiology and Public Health Data | E7 Maths lab, E1 Code runner | yes |
+| 8 | Electronic Health Records | E5 Database engine, E10 Case scenarios | yes |
+| 9 | Human-Computer Interaction | E9 Diagram studio, E10 Case scenarios |  |
+| 10 | Data Science | E1 Code runner, E5 Database engine, E12 Cloud console |  |
+| 11 | Information Security | E3 Network simulator, E4 Virtual machine, E10 Case scenarios, E7 Maths lab |  |
+| 12 | Digital Health and Telemedicine | E11 Phone emulator, E10 Case scenarios | yes |
+| 13 | IT Project Management | E9 Diagram studio, E10 Case scenarios |  |
+| 14 | Legal and Ethical Issues in Computing | E10 Case scenarios |  |
+
+### Robotics
+
+Machines that sense, decide and act: electronics, mechanics, control and intelligence together. Students program simulated robots, tune controllers and plan paths before touching hardware.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Calculus | E7 Maths lab, E1 Code runner |  |
+| 2 | Linear Algebra for Data Science | E7 Maths lab, E1 Code runner | yes |
+| 3 | Basic Electronics | E2 Circuit bench, E8 Hardware bench, E7 Maths lab |  |
+| 4 | Programming with C | E1 Code runner, E6 Step visualiser |  |
+| 5 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 6 | Digital Logic Design | E2 Circuit bench, E6 Step visualiser |  |
+| 7 | Embedded Systems | E8 Hardware bench, E1 Code runner |  |
+| 8 | Sensors and Actuators | E8 Hardware bench, E7 Maths lab | yes |
+| 9 | Signals and Systems | E7 Maths lab, E1 Code runner | yes |
+| 10 | Control Systems | E7 Maths lab, E1 Code runner | yes |
+| 11 | Robot Kinematics and Dynamics | E7 Maths lab, E1 Code runner | yes |
+| 12 | Real-Time Systems | E6 Step visualiser, E8 Hardware bench | yes |
+| 13 | Robot Programming with ROS | E1 Code runner, E6 Step visualiser | yes |
+| 14 | Computer Vision | E1 Code runner, E7 Maths lab | yes |
+| 15 | Artificial Intelligence | E6 Step visualiser, E1 Code runner |  |
+| 16 | Mobile Robotics and Navigation | E6 Step visualiser, E1 Code runner | yes |
+| 17 | Internet of Things | E8 Hardware bench, E3 Network simulator, E12 Cloud console |  |
+
+### Cybersecurity (recommended)
+
+Protecting systems, networks and data, and responding when attacks happen. Students attack and defend isolated virtual machines and networks safely inside the browser.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 2 | Programming with C | E1 Code runner, E6 Step visualiser |  |
+| 3 | Computer Networking I | E3 Network simulator, E8 Hardware bench |  |
+| 4 | Operating Systems | E6 Step visualiser, E4 Virtual machine |  |
+| 5 | Systems Administration I | E4 Virtual machine, E3 Network simulator |  |
+| 6 | Computer Networking II | E3 Network simulator |  |
+| 7 | Systems Administration II | E4 Virtual machine, E3 Network simulator |  |
+| 8 | Web Application Programming I | E1 Code runner |  |
+| 9 | Information Security | E3 Network simulator, E4 Virtual machine, E10 Case scenarios, E7 Maths lab |  |
+| 10 | Cryptography and Network Security | E7 Maths lab, E3 Network simulator |  |
+| 11 | Web Application Security | E1 Code runner, E4 Virtual machine | yes |
+| 12 | Ethical Hacking and Penetration Testing | E4 Virtual machine, E3 Network simulator | yes |
+| 13 | Secure Software Development | E1 Code runner, E10 Case scenarios | yes |
+| 14 | Security Operations and Incident Response | E4 Virtual machine, E10 Case scenarios | yes |
+| 15 | Computer Forensics | E4 Virtual machine, E10 Case scenarios |  |
+| 16 | Malware Analysis and Reverse Engineering | E4 Virtual machine, E6 Step visualiser | yes |
+| 17 | Cloud Security | E12 Cloud console, E3 Network simulator | yes |
+| 18 | Legal and Ethical Issues in Computing | E10 Case scenarios |  |
+
+### Artificial Intelligence (recommended)
+
+Building systems that reason, learn, perceive and act, and doing so responsibly. Students implement search, logic and learning algorithms and test them in simulated environments.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 2 | Discrete Mathematics | E7 Maths lab |  |
+| 3 | Linear Algebra for Data Science | E7 Maths lab, E1 Code runner | yes |
+| 4 | Probability and Statistics | E7 Maths lab, E1 Code runner |  |
+| 5 | Data Structures and Algorithms | E6 Step visualiser, E1 Code runner |  |
+| 6 | Theory of Computation | E6 Step visualiser |  |
+| 7 | Artificial Intelligence | E6 Step visualiser, E1 Code runner |  |
+| 8 | Knowledge Representation and Reasoning | E6 Step visualiser, E1 Code runner | yes |
+| 9 | Machine Learning | E1 Code runner, E6 Step visualiser |  |
+| 10 | Deep Learning | E1 Code runner, E6 Step visualiser | yes |
+| 11 | Natural Language Processing | E1 Code runner | yes |
+| 12 | Computer Vision | E1 Code runner, E7 Maths lab | yes |
+| 13 | Reinforcement Learning | E6 Step visualiser, E1 Code runner | yes |
+| 14 | Responsible AI | E10 Case scenarios | yes |
+
+### Information Technology (recommended)
+
+Keeping the technology of organisations running: hardware, networks, servers, users and services. Students troubleshoot, configure and support systems in simulated workplaces.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Fundamentals of Computer Science | E8 Hardware bench, E10 Case scenarios, E3 Network simulator |  |
+| 2 | Computer Hardware | E8 Hardware bench |  |
+| 3 | IT Support and Troubleshooting | E8 Hardware bench, E4 Virtual machine, E10 Case scenarios | yes |
+| 4 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 5 | Computer Networking I | E3 Network simulator, E8 Hardware bench |  |
+| 6 | Operating Systems | E6 Step visualiser, E4 Virtual machine |  |
+| 7 | Systems Administration I | E4 Virtual machine, E3 Network simulator |  |
+| 8 | Database Systems and Design | E5 Database engine, E9 Diagram studio |  |
+| 9 | Web Application Programming I | E1 Code runner |  |
+| 10 | Computer Networking II | E3 Network simulator |  |
+| 11 | Systems Administration II | E4 Virtual machine, E3 Network simulator |  |
+| 12 | Version Control and DevOps | E4 Virtual machine, E1 Code runner |  |
+| 13 | Cloud Computing | E12 Cloud console, E3 Network simulator, E4 Virtual machine |  |
+| 14 | Information Security | E3 Network simulator, E4 Virtual machine, E10 Case scenarios, E7 Maths lab |  |
+| 15 | IT Service Management and Governance | E10 Case scenarios | yes |
+| 16 | IT Project Management | E9 Diagram studio, E10 Case scenarios |  |
+| 17 | Legal and Ethical Issues in Computing | E10 Case scenarios |  |
+
+### Networking and Telecommunications (recommended)
+
+The networks that connect people: data links, the internet, mobile and wireless systems. Students design, configure and troubleshoot networks and radio links in simulators.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Calculus | E7 Maths lab, E1 Code runner |  |
+| 2 | Basic Electronics | E2 Circuit bench, E8 Hardware bench, E7 Maths lab |  |
+| 3 | Data Communications | E7 Maths lab, E3 Network simulator |  |
+| 4 | Signals and Systems | E7 Maths lab, E1 Code runner | yes |
+| 5 | Computer Networking I | E3 Network simulator, E8 Hardware bench |  |
+| 6 | Computer Networking II | E3 Network simulator |  |
+| 7 | Systems Administration II | E4 Virtual machine, E3 Network simulator |  |
+| 8 | Wireless Communication | E7 Maths lab, E3 Network simulator, E1 Code runner |  |
+| 9 | Telecommunication Systems | E7 Maths lab, E3 Network simulator | yes |
+| 10 | Mobile and Cellular Networks | E3 Network simulator, E7 Maths lab | yes |
+| 11 | Cryptography and Network Security | E7 Maths lab, E3 Network simulator |  |
+| 12 | Software-Defined Networking | E3 Network simulator, E12 Cloud console | yes |
+| 13 | Internet of Things | E8 Hardware bench, E3 Network simulator, E12 Cloud console |  |
+| 14 | Distributed Systems | E3 Network simulator, E6 Step visualiser |  |
+| 15 | Cloud Computing | E12 Cloud console, E3 Network simulator, E4 Virtual machine |  |
+
+### Game Development (recommended)
+
+Designing and programming games, including games that teach. Students prototype mechanics, write engine code and simulate physics that runs on everyday phones.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Principles of Programming | E1 Code runner, E6 Step visualiser |  |
+| 2 | Game Design Principles | E9 Diagram studio, E10 Case scenarios | yes |
+| 3 | Mathematics for Computer Science | E7 Maths lab, E1 Code runner |  |
+| 4 | Linear Algebra for Data Science | E7 Maths lab, E1 Code runner | yes |
+| 5 | Programming with C++ | E1 Code runner, E6 Step visualiser |  |
+| 6 | Data Structures and Algorithms | E6 Step visualiser, E1 Code runner |  |
+| 7 | Computer Graphics | E1 Code runner, E7 Maths lab |  |
+| 8 | Game Engine Programming | E1 Code runner, E7 Maths lab | yes |
+| 9 | Game Physics and Simulation | E7 Maths lab, E1 Code runner | yes |
+| 10 | Human-Computer Interaction | E9 Diagram studio, E10 Case scenarios |  |
+| 11 | Artificial Intelligence | E6 Step visualiser, E1 Code runner |  |
+| 12 | Software Engineering | E9 Diagram studio, E10 Case scenarios, E1 Code runner |  |
+| 13 | Mobile Application Development | E11 Phone emulator, E1 Code runner |  |
+
+### Financial Technology (recommended)
+
+Technology for money: payments, mobile money, credit, ledgers and the rules around them. Students build payment flows, model risk and work through compliance cases drawn from African markets.
+
+| # | Course | Engines | New |
+|---|---|---|---|
+| 1 | Introduction to Python | E1 Code runner, E6 Step visualiser |  |
+| 2 | Financial Mathematics | E7 Maths lab, E1 Code runner | yes |
+| 3 | Accounting and Finance for Information Systems | E10 Case scenarios, E5 Database engine | yes |
+| 4 | Database Systems and Design | E5 Database engine, E9 Diagram studio |  |
+| 5 | Web Application Programming I | E1 Code runner |  |
+| 6 | Information Systems and E-Commerce | E10 Case scenarios, E5 Database engine |  |
+| 7 | Digital Payments and Mobile Money | E10 Case scenarios, E5 Database engine | yes |
+| 8 | Data Science | E1 Code runner, E5 Database engine, E12 Cloud console |  |
+| 9 | Mobile Application Development | E11 Phone emulator, E1 Code runner |  |
+| 10 | Cryptography and Network Security | E7 Maths lab, E3 Network simulator |  |
+| 11 | Information Security | E3 Network simulator, E4 Virtual machine, E10 Case scenarios, E7 Maths lab |  |
+| 12 | Blockchain and Distributed Ledgers | E6 Step visualiser, E1 Code runner |  |
+| 13 | Machine Learning | E1 Code runner, E6 Step visualiser |  |
+| 14 | Regulatory Technology and Compliance | E10 Case scenarios | yes |
+| 15 | Legal and Ethical Issues in Computing | E10 Case scenarios |  |
+
+### Courses added for the programmes (63)
+
+- **Molecular Biology for Computing**: Case scenarios, Step visualiser. Cells and biomolecules; DNA structure and replication; Transcription and translation; Genes, genomes and mutation; Proteins and their functions; Laboratory techniques that produce data; Biological databases.
+- **Spreadsheet Analytics**: Database engine, Maths lab. Organising data in tables; Formulas, references and functions; Lookup and logical functions; Pivot tables and summaries; Charts in spreadsheets; What-if analysis and goal seek; Building a simple business model.
+- **Circuit Analysis**: Hardware bench, Maths lab. Voltage, current, resistance and Ohm's law; Kirchhoff's laws, nodal and mesh analysis; Thevenin, Norton and superposition; Capacitors, inductors and transients; AC circuits, phasors and impedance; Power in AC circuits; Diodes and transistors as circuit elements.
+- **Game Design Principles**: Diagram studio, Case scenarios. What makes a game; Mechanics, dynamics and aesthetics; Level design; Balancing and difficulty; Narrative in games; Playtesting; Designing games for learning.
+- **IT Support and Troubleshooting**: Hardware bench, Virtual machine, Case scenarios. The role of IT support; Troubleshooting method; Hardware faults; Operating system and software issues; Network connectivity problems; Users, accounts and printers; Documentation and customer care.
+- **Linear Algebra for Data Science**: Maths lab, Code runner. Vectors and vector spaces; Matrices and matrix operations; Systems of linear equations; Determinants and inverses; Eigenvalues and eigenvectors; Orthogonality and projections; Singular value decomposition and PCA.
+- **Biostatistics**: Maths lab, Code runner. Study design in biology and medicine; Describing biological data; Probability distributions in health data; Estimation and hypothesis testing; Regression for health outcomes; Survival analysis; Multiple testing.
+- **Business Process Modelling**: Diagram studio, Case scenarios. Processes, activities and roles; BPMN notation; As-is and to-be analysis; Process simulation and bottlenecks; Process improvement methods; Workflow automation; Case study: a mobile money agent network.
+- **Data Wrangling and Preparation**: Code runner, Database engine. Data sources and file formats; Loading data with pandas and SQL; Cleaning missing and inconsistent values; Reshaping, joining and aggregating; Working with dates, text and categories; Data quality checks and validation; Reproducible data pipelines.
+- **Financial Mathematics**: Maths lab, Code runner. Interest and time value of money; Annuities and loans; Bonds and yields; Risk and return; Portfolio theory; Options and derivatives basics; Microfinance and credit scoring.
+- **Health Information Systems**: Case scenarios, Database engine. Health systems and their information needs; District health information systems; Health facility workflows; Indicators and reporting; Data quality in health; Evaluating health information systems; Health information systems in Africa.
+- **Requirements Engineering**: Diagram studio, Case scenarios. Stakeholders and elicitation techniques; Functional and non-functional requirements; Use cases and user stories; Requirements modelling; Validation, prioritisation and negotiation; Requirements management and traceability; Requirements for low-connectivity users.
+- **Signals and Systems**: Maths lab, Code runner. Continuous and discrete-time signals; Linear time-invariant systems and convolution; Fourier series; Fourier transform and frequency response; Laplace transform; Sampling and aliasing; The z-transform.
+- **Statistical Inference**: Maths lab, Code runner. Sampling distributions; Point and interval estimation; Hypothesis testing; Comparing groups: t-tests and ANOVA; Categorical data and chi-square tests; Linear regression and its assumptions; Non-parametric and resampling methods.
+- **Accounting and Finance for Information Systems**: Case scenarios, Database engine. Double-entry bookkeeping; Financial statements; Costing and budgeting; Investment appraisal; Accounting information systems; Payroll and tax basics; Financial controls and fraud.
+- **Data Visualisation**: Code runner, Database engine. Principles of visual perception; Choosing the right chart; Colour, labels and annotation; Plotting with code; Interactive and web-based visualisation; Maps and geographic data; Data storytelling and avoiding misleading charts.
+- **Digital Payments and Mobile Money**: Case scenarios, Database engine. Payment systems and clearing; Cards and online payments; Mobile money architecture; Agent networks; USSD and app channels; Interoperability between providers; Fraud and consumer protection.
+- **Optimisation for Machine Learning**: Maths lab, Code runner. Convex sets and functions; Gradient descent and its variants; Stochastic optimisation; Momentum and adaptive methods; Constrained optimisation and Lagrange multipliers; Second-order methods; Optimisation in practice: tuning and diagnostics.
+- **Sensors and Actuators**: Hardware bench, Maths lab. Sensing principles; Position, speed and distance sensors; Inertial and environmental sensors; Signal conditioning; DC, stepper and servo motors; Motor drivers and power; Sensor fusion basics.
+- **Sequence Analysis and Alignment**: Step visualiser, Code runner. Sequences and file formats; Pairwise alignment with dynamic programming; Scoring matrices and gap penalties; Database search with BLAST; Multiple sequence alignment; Motifs and profiles; Hidden Markov models for sequences.
+- **Business Intelligence and Dashboards**: Database engine, Case scenarios. Business questions and key performance indicators; Dimensional models for reporting; Extract, transform and load; Building dashboards; Self-service analytics; Reporting for decision makers; Data governance in organisations.
+- **Containers and Kubernetes**: Virtual machine, Cloud console. Containers and images; Writing Dockerfiles; Container networking and storage; Kubernetes architecture; Pods, deployments and services; Configuration, secrets and scaling; Troubleshooting clusters.
+- **Control Systems**: Maths lab, Code runner. Modelling dynamic systems; Transfer functions and block diagrams; Time response and stability; Root locus; Frequency response: Bode and Nyquist; PID controller design and tuning; State-space models and digital control.
+- **Digital Signal Processing**: Maths lab, Code runner. Discrete-time signals and the DFT; The fast Fourier transform; FIR filter design; IIR filter design; Multirate processing; Spectral analysis; Audio and image processing applications.
+- **Enterprise Resource Planning**: Database engine, Case scenarios. What ERP systems do; Finance and accounting modules; Supply chain and inventory; Human resources and payroll; ERP data models; Selecting and implementing ERP; ERP for small and medium enterprises.
+- **Epidemiology and Public Health Data**: Maths lab, Code runner. Measures of disease frequency; Study designs in epidemiology; Surveillance systems; Outbreak investigation; Disease modelling: SIR models; Spatial epidemiology; Communicating public health data.
+- **Game Engine Programming**: Code runner, Maths lab. The game loop; Rendering sprites and scenes; Input handling; Entity and component systems; Collision detection; Audio; Performance on low-end phones.
+- **Genomics and Next-Generation Sequencing**: Code runner, Database engine. Sequencing technologies; Read quality control; Read mapping; Genome assembly; Variant calling; Gene expression analysis; Pathogen genomics for disease surveillance.
+- **Health Data Standards and Interoperability**: Database engine, Code runner. Why interoperability matters; Terminologies: ICD, SNOMED CT and LOINC; HL7 messaging; FHIR resources and APIs; Patient identity and matching; Health information exchanges; Building a FHIR integration.
+- **Robot Kinematics and Dynamics**: Maths lab, Code runner. Rigid body motion and coordinate frames; Forward kinematics; Inverse kinematics; Velocity kinematics and the Jacobian; Dynamics of manipulators; Trajectory planning; Kinematics of mobile robots.
+- **Software Architecture and Design Patterns**: Diagram studio, Code runner. Design principles: SOLID, coupling and cohesion; Creational patterns; Structural patterns; Behavioural patterns; Architectural styles: layered, event-driven, microservices; Quality attributes and trade-offs; Documenting and evaluating architecture.
+- **Telecommunication Systems**: Maths lab, Network simulator. Telecommunication networks overview; Switching and signalling; Transmission systems; Optical fibre communication; Satellite communication; Traffic engineering; Regulation of telecommunications.
+- **Web Application Security**: Code runner, Virtual machine. How web applications are attacked; Injection attacks; Cross-site scripting; Authentication and session flaws; Access control flaws; Server-side request forgery and file attacks; Defences and secure headers.
+- **Electronic Health Records**: Database engine, Case scenarios. What an electronic health record holds; Clinical workflows and documentation; Data models for patient records; Clinical decision support; Usability and clinician burden; Privacy, consent and access control; Implementing records in low-resource clinics.
+- **Ethical Hacking and Penetration Testing**: Virtual machine, Network simulator. Rules of engagement and the law; Reconnaissance; Scanning and enumeration; Exploitation; Password attacks; Post-exploitation; Reporting findings.
+- **Game Physics and Simulation**: Maths lab, Code runner. Kinematics and numerical integration; Forces and Newton's laws; Collision response; Rigid body dynamics; Particles and springs; Fluids and cloth; Stability and determinism.
+- **Infrastructure as Code**: Cloud console, Code runner. Why infrastructure as code; Declarative provisioning; Modules and reuse; State and drift; Configuration management; Testing infrastructure; GitOps workflows.
+- **IT Service Management and Governance**: Case scenarios. IT services and value; Service desk, incidents and problems; Change and release management; Service levels and agreements; IT governance frameworks; Risk, audit and compliance; Measuring IT performance.
+- **Knowledge Representation and Reasoning**: Step visualiser, Code runner. Propositional and first-order logic; Inference and resolution; Rules and expert systems; Ontologies and semantic networks; Reasoning under uncertainty; Bayesian networks; Planning.
+- **Mobile and Cellular Networks**: Network simulator, Maths lab. Cellular concepts; Radio access and spectrum; GSM and 3G architecture; 4G LTE; 5G networks; Mobility management; Mobile data services and USSD.
+- **Phylogenetics and Molecular Evolution**: Step visualiser, Code runner. Evolution and homology; Distance-based tree building; Parsimony; Maximum likelihood methods; Bayesian phylogenetics; Molecular clocks; Tracking outbreaks with phylogenies.
+- **Real-Time Systems**: Step visualiser, Hardware bench. Real-time requirements and deadlines; Real-time operating systems; Scheduling: rate monotonic and EDF; Synchronisation and priority inversion; Timing analysis; Real-time communication; Safety-critical design.
+- **Robot Programming with ROS**: Code runner, Step visualiser. Robot software architecture; Nodes, topics and messages; Services and actions; Transforms and coordinate frames; Simulation of robots; Perception pipelines; Launching and debugging robot systems.
+- **Software Testing and Quality Assurance**: Code runner, Step visualiser. Testing fundamentals and the test pyramid; Black-box test design; White-box testing and coverage; Unit, integration and end-to-end tests; Test-driven development; Performance and security testing; Quality metrics and process improvement.
+- **Time Series Analysis and Forecasting**: Maths lab, Code runner. Time series components; Smoothing and decomposition; Stationarity and autocorrelation; ARIMA models; Seasonal models; Forecast evaluation; Forecasting rainfall, prices and demand.
+- **Cloud Security**: Cloud console, Network simulator. The shared responsibility model; Identity and access management; Network security in the cloud; Data protection and encryption; Logging, monitoring and detection; Compliance and data residency; Securing containers and serverless.
+- **Computer Vision**: Code runner, Maths lab. Images as data; Filtering and edge detection; Features and matching; Image classification with CNNs; Object detection; Segmentation; Geometry, cameras and 3D.
+- **Deep Learning**: Code runner, Step visualiser. Neural network building blocks; Training deep networks; Convolutional networks; Recurrent networks and sequences; Attention and transformers; Generative models; Transfer learning with limited compute.
+- **Digital Health and Telemedicine**: Phone emulator, Case scenarios. Digital health landscape; Mobile health applications; Telemedicine models; Community health worker tools; Remote monitoring and wearables; Regulation and ethics; Scaling and sustaining digital health.
+- **Mobile Robotics and Navigation**: Step visualiser, Code runner. Locomotion and motion models; Localisation; Mapping; Simultaneous localisation and mapping; Path planning; Obstacle avoidance; Multi-robot systems.
+- **Natural Language Processing**: Code runner. Text processing and tokenisation; Language models; Word and sentence embeddings; Text classification; Sequence labelling; Machine translation and transformers; Working with African languages.
+- **Regulatory Technology and Compliance**: Case scenarios. Financial regulation and why it exists; Know your customer and anti-money laundering; Data protection law; Reporting to regulators; Automated compliance monitoring; Regulatory sandboxes; Risk management frameworks.
+- **Secure Software Development**: Code runner, Case scenarios. Secure development life cycle; Threat modelling; Common vulnerabilities: OWASP Top Ten; Input validation and output encoding; Authentication, sessions and secrets; Static and dynamic analysis; Security code review and dependency management.
+- **Security Operations and Incident Response**: Virtual machine, Case scenarios. Security operations centres; Logging and log analysis; Intrusion detection; Threat intelligence; Incident response life cycle; Containment and recovery; Lessons learned and reporting.
+- **Serverless and Cloud-Native Applications**: Cloud console, Code runner. Cloud-native principles; Functions as a service; Managed databases and storage; Event-driven design and queues; APIs and gateways; Observability; Designing for cost.
+- **Software-Defined Networking**: Network simulator, Cloud console. Limits of traditional networks; Control and data planes; OpenFlow; SDN controllers; Network function virtualisation; Programmable data planes; SDN in data centres and operators.
+- **Structural Bioinformatics**: Code runner, Maths lab. Protein structure levels; Structure databases and visualisation; Structure comparison; Secondary structure prediction; Protein structure prediction; Molecular docking; Drug discovery workflows.
+- **VLSI Design**: Circuit bench, Step visualiser. MOS transistors and CMOS logic; Fabrication and layout rules; Combinational and sequential CMOS circuits; Hardware description languages; Timing, power and delay; FPGA design flow; Testing and design for testability.
+- **Malware Analysis and Reverse Engineering**: Virtual machine, Step visualiser. Types of malware; Safe analysis environments; Static analysis; Dynamic analysis; Reading assembly and binaries; Mobile malware; Writing detection signatures.
+- **MLOps and Model Deployment**: Code runner, Cloud console. The machine learning life cycle; Experiment tracking and versioning; Packaging and serving models; Deployment on cloud and on device; Monitoring and drift; Automated retraining pipelines; Cost, latency and offline inference.
+- **Reinforcement Learning**: Step visualiser, Code runner. Agents, environments and rewards; Markov decision processes; Dynamic programming; Monte Carlo and temporal-difference learning; Q-learning; Policy gradient methods; Deep reinforcement learning.
+- **Responsible AI**: Case scenarios. Harms from AI systems; Fairness and bias; Transparency and explainability; Privacy and data rights; Safety and robustness; AI governance and regulation; AI for African contexts.
+- **Site Reliability Engineering**: Cloud console, Virtual machine. Reliability goals and error budgets; Monitoring and alerting; Incident response; Postmortems; Capacity planning; Load balancing and failover; Automation and toil reduction.

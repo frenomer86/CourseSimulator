@@ -1,0 +1,134 @@
+{
+  "slug": "circuit-analysis",
+  "description": "Analysing linear electric circuits from Ohm's and Kirchhoff's laws through nodal and mesh analysis, network theorems, first- and second-order transients, sinusoidal steady state with phasors and AC power, ending with diodes and transistors as circuit elements. Every circuit is built and measured on a simulated bench in the browser, with virtual meters and an oscilloscope checking each hand calculation.",
+  "modelledOn": [
+    "Alexander and Sadiku, Fundamentals of Electric Circuits",
+    "Hayt, Kemmerly and Durbin, Engineering Circuit Analysis",
+    "Nilsson and Riedel, Electric Circuits",
+    "Sedra and Smith, Microelectronic Circuits (introductory chapters)"
+  ],
+  "outcomes": [
+    "Apply Ohm's law, Kirchhoff's laws and the passive sign convention to compute voltage, current, power and energy in resistive circuits.",
+    "Solve any linear circuit, including dependent sources and ideal op-amps, by nodal and mesh analysis in matrix form.",
+    "Simplify networks with superposition, source transformation and Thevenin and Norton equivalents, and design for maximum power transfer.",
+    "Derive and sketch the transient response of first- and second-order RC, RL and RLC circuits after switching.",
+    "Analyse circuits in sinusoidal steady state with phasors and impedance, and calculate real, reactive and complex power and power-factor correction.",
+    "Model diodes and transistors as circuit elements and design simple rectifier, regulator and switching circuits."
+  ],
+  "units": [
+    {
+      "title": "Circuit variables and elements",
+      "weeks": "1",
+      "topics": [
+        "Charge, current, voltage, power and energy; the passive sign convention",
+        "Ideal independent and dependent (controlled) voltage and current sources",
+        "Resistance, Ohm's law, conductance and resistivity; open and short circuits",
+        "Power ratings and energy in kWh; reading a prepaid electricity meter and estimating a household bill",
+        "Measuring with ammeters, voltmeters and ohmmeters; meter loading errors"
+      ]
+    },
+    {
+      "title": "Kirchhoff's laws and resistive circuits",
+      "weeks": "2",
+      "topics": [
+        "Nodes, branches, loops and meshes; Kirchhoff's current and voltage laws",
+        "Series and parallel resistors; voltage and current division",
+        "Wye-delta transformations and bridge networks; the Wheatstone bridge",
+        "Equivalent resistance by inspection and by test source",
+        "Worked circuits: torch, charger and household lighting circuits"
+      ]
+    },
+    {
+      "title": "Nodal and mesh analysis",
+      "weeks": "3-4",
+      "topics": [
+        "Node-voltage method; supernodes for voltage sources between nodes",
+        "Mesh-current method; supermeshes for current sources shared by meshes",
+        "Circuits with dependent sources; writing the equations in matrix form",
+        "Solving the systems by Gaussian elimination and Cramer's rule; checking with the simulator",
+        "Choosing between nodal and mesh analysis",
+        "The ideal operational amplifier as a circuit element: inverting, non-inverting, summing and difference amplifiers"
+      ]
+    },
+    {
+      "title": "Network theorems",
+      "weeks": "5",
+      "topics": [
+        "Linearity and the superposition principle",
+        "Source transformation between voltage and current sources",
+        "Thevenin and Norton equivalents, including circuits with dependent sources",
+        "Maximum power transfer and its efficiency cost",
+        "Modelling a solar panel, battery and inverter as Thevenin sources for an off-grid home"
+      ]
+    },
+    {
+      "title": "Capacitors, inductors and first-order transients",
+      "weeks": "6-7",
+      "topics": [
+        "Capacitor and inductor voltage-current relations, stored energy and continuity conditions; series and parallel combinations",
+        "Source-free RC and RL circuits; the time constant",
+        "Step response of RC and RL circuits; initial and final values by inspection",
+        "Singularity functions: unit step, impulse and ramp",
+        "Switching transients and inrush current when power returns after a power cut",
+        "First-order op-amp circuits: integrator and differentiator"
+      ]
+    },
+    {
+      "title": "Second-order circuits",
+      "weeks": "8",
+      "topics": [
+        "Source-free series and parallel RLC circuits; the characteristic equation",
+        "Overdamped, critically damped and underdamped responses; damping ratio and natural frequency",
+        "Step response of RLC circuits and finding initial conditions",
+        "General second-order circuits and duality",
+        "Ringing and overshoot observed on the simulated oscilloscope"
+      ]
+    },
+    {
+      "title": "Sinusoids, phasors and impedance",
+      "weeks": "9-10",
+      "topics": [
+        "Sinusoids: amplitude, frequency, phase and RMS value; the 230 V, 50 Hz national grid supply",
+        "Complex numbers and phasors; phasor relations for R, L and C",
+        "Impedance and admittance; series and parallel impedance combinations",
+        "Kirchhoff's laws, nodal and mesh analysis in the frequency domain",
+        "Thevenin and Norton equivalents, and superposition with sources of different frequencies",
+        "Phasor diagrams and AC measurements"
+      ]
+    },
+    {
+      "title": "Power in AC circuits",
+      "weeks": "11",
+      "topics": [
+        "Instantaneous and average power; effective (RMS) values",
+        "Apparent, reactive and complex power; the power triangle",
+        "Power factor and power-factor correction with capacitors; why utilities penalise poor power factor",
+        "Maximum average power transfer",
+        "Balanced three-phase systems in brief: wye and delta connections, line and phase quantities, three-phase power",
+        "Domestic wiring, earthing, fuses and circuit breakers; electrical safety"
+      ]
+    },
+    {
+      "title": "Frequency response, resonance and coupled circuits",
+      "weeks": "12",
+      "topics": [
+        "Transfer functions and frequency response; Bode plots in brief",
+        "Series and parallel resonance; quality factor and bandwidth",
+        "Passive low-pass, high-pass, band-pass and band-stop filters",
+        "Mutual inductance and the ideal transformer; step-down transformers in chargers and distribution"
+      ]
+    },
+    {
+      "title": "Diodes and transistors as circuit elements",
+      "weeks": "13-14",
+      "topics": [
+        "The pn-junction diode: I-V characteristic; ideal, constant-voltage-drop and piecewise-linear models",
+        "Half-wave and full-wave rectifiers; smoothing capacitors and ripple voltage",
+        "Zener diodes and simple voltage regulators; LEDs and current-limiting resistors",
+        "The bipolar junction transistor: regions of operation, DC biasing and the load line; the BJT as a switch and as a small-signal amplifier",
+        "The MOSFET as a switch for driving loads",
+        "Capstone: design and test a mains-to-5 V phone charger on the simulated bench"
+      ]
+    }
+  ]
+}

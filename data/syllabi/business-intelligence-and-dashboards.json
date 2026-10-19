@@ -1,0 +1,120 @@
+{
+  "slug": "business-intelligence-and-dashboards",
+  "description": "Turning an organisation's operational data into decisions: framing business questions and key performance indicators, dimensional models for reporting, extract, transform and load pipelines, dashboard design, self-service analytics, reporting for managers and the governance that keeps the numbers trusted. Students build a working star schema, ETL pipeline and dashboard on simulated company data in the browser and defend every metric to a mock management team.",
+  "modelledOn": [
+    "Kimball and Ross, The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling",
+    "Few, Information Dashboard Design: Displaying Data for At-a-Glance Monitoring",
+    "Parmenter, Key Performance Indicators: Developing, Implementing and Using Winning KPIs",
+    "DAMA International, DAMA-DMBOK: Data Management Body of Knowledge"
+  ],
+  "outcomes": [
+    "Translate organisational goals into precise business questions and well-defined key performance indicators.",
+    "Design dimensional models with fact tables, conformed dimensions and slowly changing dimensions for reporting.",
+    "Build and test extract, transform and load pipelines that clean, integrate and incrementally load data.",
+    "Design dashboards that follow perception principles and answer the questions of a named audience.",
+    "Enable self-service analytics with a semantic layer, and write reports that lead decision makers to action.",
+    "Apply data governance, quality and privacy controls so that reported figures are trusted and lawful."
+  ],
+  "units": [
+    {
+      "title": "Business intelligence and decision making",
+      "weeks": "1",
+      "topics": [
+        "Operational versus analytical systems; OLTP and OLAP; the BI value chain from data to decision",
+        "Descriptive, diagnostic, predictive and prescriptive analytics",
+        "BI architectures: data warehouse, data marts, data lake and lakehouse; Inmon versus Kimball",
+        "The BI tool landscape: open-source and commercial reporting, OLAP and dashboard tools"
+      ]
+    },
+    {
+      "title": "Business questions and key performance indicators",
+      "weeks": "2-3",
+      "topics": [
+        "Eliciting requirements from stakeholders; turning vague goals into answerable questions",
+        "Metrics versus KPIs; leading and lagging indicators; SMART targets",
+        "Balanced scorecard and strategy maps; KPI trees linking operations to goals",
+        "Defining a KPI precisely: formula, grain, filters, owner, target, frequency and data source",
+        "Perverse incentives and Goodhart's law",
+        "KPIs for a mobile money operator: active agents, float availability, transaction value and churn"
+      ]
+    },
+    {
+      "title": "Dimensional models for reporting",
+      "weeks": "4-5",
+      "topics": [
+        "Kimball's four-step design: business process, grain, dimensions and facts",
+        "Star and snowflake schemas; transaction, periodic snapshot and accumulating snapshot fact tables",
+        "Additive, semi-additive and non-additive measures",
+        "Conformed dimensions and the bus matrix; the date dimension; degenerate and junk dimensions",
+        "Slowly changing dimensions types 1, 2 and 3; surrogate keys",
+        "Designing a sales star schema for a chain of pharmacies across Ghana's regions"
+      ]
+    },
+    {
+      "title": "Extract, transform and load",
+      "weeks": "6-7",
+      "topics": [
+        "Source systems and extraction: full, incremental and change data capture",
+        "Data profiling and cleansing: duplicates, missing values, inconsistent codes and units",
+        "Transformations: lookups, surrogate key assignment, SCD handling and aggregation",
+        "ETL versus ELT; staging areas; orchestration and scheduling of pipelines",
+        "Testing pipelines: row counts, reconciliation, data quality rules and audit columns",
+        "Handling unreliable connectivity: batching uploads from branches and idempotent loads"
+      ]
+    },
+    {
+      "title": "Querying and OLAP",
+      "weeks": "8",
+      "topics": [
+        "OLAP operations: slice, dice, drill-down, roll-up and pivot",
+        "Analytical SQL: GROUP BY with ROLLUP and CUBE, window functions, running totals and period-over-period comparisons",
+        "Cubes, aggregates and materialised views for performance",
+        "Semantic layers and calculated measures; time intelligence such as year to date"
+      ]
+    },
+    {
+      "title": "Building dashboards",
+      "weeks": "9-10",
+      "topics": [
+        "Strategic, operational and analytical dashboards; designing for the audience and the decision",
+        "Layout and visual hierarchy; at-a-glance monitoring; bullet graphs and sparklines",
+        "Choosing charts for KPIs; showing targets, variance and trends; avoiding gauges and clutter",
+        "Filters, drill-through and interactivity; mobile layouts and low-bandwidth delivery",
+        "Usability testing a dashboard with real users; iterating on feedback",
+        "A district health dashboard of immunisation coverage and stock-outs"
+      ]
+    },
+    {
+      "title": "Self-service analytics",
+      "weeks": "11",
+      "topics": [
+        "Self-service models: governed data sets, certified metrics and sandboxes",
+        "Designing a semantic model that business users can understand",
+        "Training and data literacy; the citizen analyst",
+        "Risks of self-service: conflicting numbers, spreadmarts and shadow IT"
+      ]
+    },
+    {
+      "title": "Reporting for decision makers",
+      "weeks": "12",
+      "topics": [
+        "Structuring a management report: the answer first, evidence, and recommended action",
+        "Variance analysis and exception reporting; commentary that explains movements",
+        "Presenting uncertainty and data limitations honestly",
+        "Scheduled reports, alerts and distribution by email, SMS and messaging apps",
+        "Presenting findings on cocoa purchasing to a licensed buying company's board"
+      ]
+    },
+    {
+      "title": "Data governance in organisations",
+      "weeks": "13",
+      "topics": [
+        "Data governance roles: owners, stewards and custodians; a data governance council",
+        "Data quality dimensions and measurement; master data and reference data management",
+        "Metadata, data catalogues, business glossaries and lineage",
+        "Security, row-level access and privacy; Ghana's Data Protection Act, 2012 (Act 843)",
+        "Capstone: an end-to-end BI solution with schema, pipeline, dashboard and governance plan"
+      ]
+    }
+  ]
+}

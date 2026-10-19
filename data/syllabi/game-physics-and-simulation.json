@@ -1,0 +1,120 @@
+{
+  "slug": "game-physics-and-simulation",
+  "description": "The physics behind games and interactive simulations: kinematics and numerical integration, forces and Newton's laws, particles and springs, collision detection and response, rigid body dynamics with constraints, fluids and cloth, and keeping simulations stable and deterministic. Every method is derived, then implemented and visualised in a browser physics sandbox where students compare integrators, break simulations on purpose and tune them to run in real time on a phone.",
+  "modelledOn": [
+    "Millington, Game Physics Engine Development",
+    "Eberly, Game Physics",
+    "Ericson, Real-Time Collision Detection",
+    "Bridson, Fluid Simulation for Computer Graphics"
+  ],
+  "outcomes": [
+    "Model motion with vectors and kinematics and implement explicit, semi-implicit and higher-order numerical integrators.",
+    "Apply Newton's laws to compute forces such as gravity, drag, friction and springs and simulate particle systems.",
+    "Detect collisions and resolve them with impulses, restitution and friction for particles and rigid bodies.",
+    "Simulate rigid body dynamics in 2D and 3D, including rotation, inertia tensors, contacts and joint constraints.",
+    "Implement mass-spring cloth and particle-based fluids and explain the trade-offs between accuracy and speed.",
+    "Analyse the stability, energy behaviour and determinism of a simulation and design it for networked and replayable games."
+  ],
+  "units": [
+    {
+      "title": "Vectors, kinematics and the simulation loop",
+      "weeks": "1",
+      "topics": [
+        "Vector algebra for physics: dot and cross products, projections, normalisation and coordinate frames",
+        "Kinematics: position, velocity and acceleration; projectile motion and analytic solutions",
+        "The physics step inside the game loop: fixed time steps, accumulators and rendering interpolation",
+        "Units, scales and choosing world dimensions for a game; floating-point precision"
+      ]
+    },
+    {
+      "title": "Numerical integration",
+      "weeks": "2-3",
+      "topics": [
+        "Ordinary differential equations as the model of motion; initial value problems",
+        "Explicit Euler, semi-implicit (symplectic) Euler and velocity Verlet; local and global error",
+        "Runge-Kutta methods (RK2, RK4) and when the extra cost is worth it",
+        "Stability: stiff systems, the effect of step size, energy drift and damping",
+        "Implicit integration for stiff springs; position-based approaches as an alternative",
+        "Comparing integrators on an orbit and a spring and plotting energy over time"
+      ]
+    },
+    {
+      "title": "Forces and Newton's laws",
+      "weeks": "4",
+      "topics": [
+        "Newton's three laws, mass and momentum; force accumulation in an engine",
+        "Gravity, drag (linear and quadratic), buoyancy and friction (static and kinetic)",
+        "Force generators and registries; game-tuned forces versus physically accurate ones",
+        "Projectiles and vehicles: a thrown ball, a bicycle on a laterite road, an okada braking"
+      ]
+    },
+    {
+      "title": "Particles and springs",
+      "weeks": "5-6",
+      "topics": [
+        "Particle systems: emitters, lifetimes and effects such as smoke, fire, dust and rain",
+        "Hooke's law, damped springs and critical damping; bungees and anchored springs",
+        "Mass-spring networks: structural, shear and bending springs; soft bodies",
+        "Stiff springs and instability; fake springs and position constraints",
+        "Rods, cables and simple particle contact constraints",
+        "Building a rope bridge or a hanging chain in the sandbox"
+      ]
+    },
+    {
+      "title": "Collision detection for physics",
+      "weeks": "7",
+      "topics": [
+        "Broad phase and narrow phase: bounding volume hierarchies, grids and sweep and prune",
+        "Contact generation: sphere, box and plane tests, the separating axis theorem and contact manifolds",
+        "GJK and EPA for convex shapes; penetration depth and contact normals",
+        "Continuous collision detection and time of impact against tunnelling"
+      ]
+    },
+    {
+      "title": "Collision response",
+      "weeks": "8",
+      "topics": [
+        "Impulse-based response: relative velocity, coefficient of restitution and conservation of momentum",
+        "Friction impulses and the Coulomb friction cone",
+        "Resolving interpenetration: projection, Baumgarte stabilisation and slop",
+        "Resting contact, stacking and sleeping bodies",
+        "Simulating a game of marbles or oware seeds bouncing in a board"
+      ]
+    },
+    {
+      "title": "Rigid body dynamics",
+      "weeks": "9-10",
+      "topics": [
+        "Rotational kinematics: angular velocity, orientation as angles, matrices and quaternions",
+        "Torque, angular momentum, moment of inertia and the inertia tensor in world and body space",
+        "Integrating rigid bodies in 2D and 3D; normalising quaternions and avoiding drift",
+        "Contacts on rigid bodies: impulses at contact points and the effect on spin",
+        "Constraints and joints: distance, hinge, ball and socket; sequential impulse solvers and warm starting",
+        "Building a 2D rigid body engine with stacking boxes and a ragdoll"
+      ]
+    },
+    {
+      "title": "Fluids and cloth",
+      "weeks": "11-12",
+      "topics": [
+        "Cloth as a mass-spring system and with position-based dynamics; collisions and self-collision",
+        "Fluid models: Eulerian grids versus Lagrangian particles; the Navier-Stokes equations in outline",
+        "Smoothed particle hydrodynamics: kernels, density, pressure and viscosity",
+        "Grid-based smoke and water: advection, diffusion and pressure projection (stable fluids)",
+        "Height-field water and other cheap approximations for phones",
+        "Simulating a flag in the wind or kente cloth draped over a figure"
+      ]
+    },
+    {
+      "title": "Stability and determinism",
+      "weeks": "13",
+      "topics": [
+        "Sources of instability: large time steps, stiff constraints, mass ratios and accumulated error",
+        "Determinism: floating-point differences across devices, fixed-point arithmetic and fixed update order",
+        "Deterministic lockstep and rollback netcode for multiplayer; replays from recorded input",
+        "Performance: island partitioning, sleeping, solver iterations and budgets on low-end phones",
+        "Capstone: a physics-driven browser game with a documented, stable and deterministic simulation"
+      ]
+    }
+  ]
+}

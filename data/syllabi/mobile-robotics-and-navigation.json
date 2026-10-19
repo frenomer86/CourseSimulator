@@ -1,0 +1,117 @@
+{
+  "slug": "mobile-robotics-and-navigation",
+  "description": "How a mobile robot moves and finds its way: locomotion and motion models, probabilistic localisation, mapping, simultaneous localisation and mapping, global and local path planning, reactive obstacle avoidance, and coordination across multiple robots. Taught through browser simulations of wheeled robots moving through mapped and unmapped environments, so every algorithm is run and measured without physical hardware.",
+  "modelledOn": [
+    "Thrun, Burgard and Fox, Probabilistic Robotics",
+    "Siegwart, Nourbakhsh and Scaramuzza, Introduction to Autonomous Mobile Robots",
+    "LaValle, Planning Algorithms"
+  ],
+  "outcomes": [
+    "Derive and apply motion models for wheeled robots and predict pose from control inputs.",
+    "Localise a robot in a known map with Bayesian filters including the Kalman and particle filters.",
+    "Build an occupancy grid or feature map from range data and estimate its uncertainty.",
+    "Explain and run a SLAM algorithm that maps an unknown environment while tracking the robot's pose.",
+    "Plan global paths with graph and sampling-based planners and follow them with a local controller.",
+    "Coordinate obstacle avoidance and simple cooperation across several robots sharing a space."
+  ],
+  "units": [
+    {
+      "title": "Mobile robots and the navigation problem",
+      "weeks": "1",
+      "topics": [
+        "Classes of mobile robot: differential drive, Ackermann, omnidirectional, legged; actuation and sensing",
+        "The navigation stack: where am I, where is everything else, how do I get there",
+        "Sources of uncertainty: slip, noise, drift, and why probabilistic reasoning is unavoidable",
+        "Sensors for navigation: wheel encoders, IMU, lidar, cameras, GNSS and their failure modes",
+        "Setting up the browser simulation of a wheeled robot and a mapped environment"
+      ]
+    },
+    {
+      "title": "Locomotion and motion models",
+      "weeks": "2-3",
+      "topics": [
+        "Kinematics of differential-drive and Ackermann robots; nonholonomic constraints",
+        "Dead reckoning from wheel odometry and its accumulating error",
+        "Velocity and odometry motion models with noise; sampling predicted poses",
+        "Representing pose and uncertainty: covariance ellipses and belief distributions",
+        "Calibrating a motion model against simulated ground truth"
+      ]
+    },
+    {
+      "title": "Localisation",
+      "weeks": "4-5",
+      "topics": [
+        "Bayesian filtering recursion: prediction and correction with a measurement model",
+        "The Kalman filter and extended Kalman filter for pose estimation",
+        "Grid and histogram localisation; the global versus local localisation problem",
+        "Monte Carlo localisation with a particle filter; resampling and particle depletion",
+        "The kidnapped-robot problem and recovery; convergence and the number of particles"
+      ]
+    },
+    {
+      "title": "Mapping",
+      "weeks": "6",
+      "topics": [
+        "Map representations: occupancy grids, feature and landmark maps, topological maps",
+        "Building an occupancy grid from range scans with an inverse sensor model",
+        "Mapping with known poses; log-odds update and clearing dynamic obstacles",
+        "Representing and visualising map uncertainty and unobserved space"
+      ]
+    },
+    {
+      "title": "Simultaneous localisation and mapping",
+      "weeks": "7-8",
+      "topics": [
+        "Why mapping and localisation are coupled; the full and online SLAM problems",
+        "Scan matching and the iterative closest point idea for registering range scans",
+        "Filter-based SLAM and the growth of the state; FastSLAM with particles",
+        "Graph-based SLAM: pose graphs, constraints and nonlinear optimisation",
+        "Loop closure and its effect on global consistency; detecting and correcting drift",
+        "Running a SLAM session over a simulated building and evaluating the resulting map"
+      ]
+    },
+    {
+      "title": "Path planning",
+      "weeks": "9-10",
+      "topics": [
+        "Configuration space, obstacles and the free space for a mobile robot",
+        "Graph search planners: grids, Dijkstra, A* and heuristics for navigation",
+        "Sampling-based planners: probabilistic roadmaps and rapidly exploring random trees",
+        "Cost maps, inflation and planning with clearance from obstacles",
+        "Smoothing and re-planning when the map changes"
+      ]
+    },
+    {
+      "title": "Obstacle avoidance and local control",
+      "weeks": "11",
+      "topics": [
+        "Reactive avoidance: potential fields, the vector field histogram and their local minima",
+        "The dynamic window approach and trajectory sampling under velocity limits",
+        "Tracking a global path with a local controller while avoiding unexpected obstacles",
+        "Handling moving obstacles such as people in a corridor",
+        "Safe behaviour under sensor dropout and intermittent power on shared campus robots"
+      ]
+    },
+    {
+      "title": "Multi-robot systems",
+      "weeks": "12",
+      "topics": [
+        "Architectures for teams: centralised, decentralised and market-based coordination",
+        "Collision avoidance between robots and shared-space deconfliction",
+        "Task allocation and formation keeping",
+        "Communication limits and consistency of a shared map across robots",
+        "Simulating a small fleet delivering across a campus map"
+      ]
+    },
+    {
+      "title": "Integrating an autonomous navigation system",
+      "weeks": "13",
+      "topics": [
+        "Combining localisation, mapping, planning and avoidance into one navigation stack",
+        "Tuning and evaluating navigation: success rate, path length, time, safety margin",
+        "Failure recovery behaviours when localisation is lost or the goal is unreachable",
+        "Capstone: an autonomous robot that maps an unknown simulated market, then navigates deliveries through it"
+      ]
+    }
+  ]
+}

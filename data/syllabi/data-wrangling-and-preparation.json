@@ -1,0 +1,111 @@
+{
+  "slug": "data-wrangling-and-preparation",
+  "description": "Turning messy real-world data into reliable analysis-ready tables: data sources and file formats, loading with pandas and SQL, cleaning missing and inconsistent values, reshaping, joining and aggregating, handling dates, text and categories, data quality validation and reproducible pipelines. Students wrangle genuinely messy local datasets in a Python and SQL notebook that runs in the browser, and every cleaning step is checked by automated assertions on the resulting data.",
+  "modelledOn": [
+    "McKinney, Python for Data Analysis",
+    "Wickham, Cetinkaya-Rundel and Grolemund, R for Data Science (data transformation and tidying chapters)",
+    "DAMA International, DAMA-DMBOK: Data Management Body of Knowledge",
+    "ISO 8000 Data Quality"
+  ],
+  "outcomes": [
+    "Acquire data from files, databases and APIs and load it correctly, handling formats, encodings and types.",
+    "Diagnose and treat missing, duplicated, inconsistent and outlying values, and justify each choice.",
+    "Reshape, join and aggregate tables with pandas and SQL while checking keys and cardinality.",
+    "Parse and transform dates, free text and categorical variables, including local names and phone numbers.",
+    "Define and automate data quality checks and validation rules.",
+    "Build reproducible, documented and privacy-aware data preparation pipelines."
+  ],
+  "units": [
+    {
+      "title": "Data sources and file formats",
+      "weeks": "1-2",
+      "topics": [
+        "The data life cycle and where wrangling fits; tidy data principles",
+        "Delimited text: CSV and TSV, quoting, headers, and character encodings such as UTF-8 and Latin-1",
+        "JSON, XML, spreadsheets and columnar formats such as Parquet",
+        "Web APIs: authentication, pagination and rate limits; scraping responsibly",
+        "Open data portals and exports from DHIS2 district health information systems",
+        "Licensing, provenance and documenting where data came from"
+      ]
+    },
+    {
+      "title": "Loading data with pandas and SQL",
+      "weeks": "3-4",
+      "topics": [
+        "pandas Series and DataFrames; dtypes and the index",
+        "read_csv and related readers: parsing options, dtypes, chunking and large files on modest laptops",
+        "Selecting and filtering: loc, iloc, boolean masks and query",
+        "SQL for wrangling: SELECT, WHERE, JOIN, GROUP BY and window functions in SQLite",
+        "Moving data between SQL databases and pandas",
+        "Memory use, vectorisation and avoiding row-by-row loops"
+      ]
+    },
+    {
+      "title": "Cleaning missing and inconsistent values",
+      "weeks": "5-6",
+      "topics": [
+        "Missingness mechanisms: MCAR, MAR and MNAR; sentinel values and hidden missingness",
+        "Deletion versus imputation: mean, median, mode, forward-fill, group-wise and model-based imputation",
+        "Inconsistent spellings of district and town names; standardising units and codes",
+        "Exact and fuzzy duplicate detection; record linkage",
+        "Outliers: detection with IQR, z-scores and domain rules, and deciding what to do",
+        "Type coercion and fixing numbers stored as text"
+      ]
+    },
+    {
+      "title": "Reshaping, joining and aggregating",
+      "weeks": "7-8",
+      "topics": [
+        "Wide and long formats: melt, pivot, pivot_table, stack and unstack",
+        "Joins: inner, left, right and outer; join keys, one-to-many and many-to-many cardinality checks",
+        "Anti-joins and semi-joins for finding unmatched records",
+        "Split-apply-combine with groupby: aggregate, transform and filter",
+        "Rolling, expanding and cumulative calculations",
+        "Linking cocoa purchase records to a farmer registry and summarising by society and season"
+      ]
+    },
+    {
+      "title": "Working with dates, text and categories",
+      "weeks": "9-10",
+      "topics": [
+        "Parsing dates in mixed formats; time zones; periods, resampling and fiscal calendars",
+        "String methods and regular expressions for extraction and cleaning",
+        "Normalising Ghanaian phone numbers to +233 format and validating network prefixes",
+        "Unicode normalisation and names in local languages",
+        "Categorical data: ordered categories, recoding, binning and one-hot encoding",
+        "Geographic data in brief: region and district codes and boundary changes"
+      ]
+    },
+    {
+      "title": "Data quality checks and validation",
+      "weeks": "11",
+      "topics": [
+        "Data quality dimensions: completeness, accuracy, consistency, timeliness, validity and uniqueness",
+        "Profiling a dataset; summary statistics as checks",
+        "Schema and rule-based validation with assertions and validation libraries",
+        "Data dictionaries, data contracts and reporting quality issues to data owners"
+      ]
+    },
+    {
+      "title": "Reproducible data pipelines",
+      "weeks": "12-13",
+      "topics": [
+        "From notebooks to scripts and functions; method chaining for readable transformations",
+        "Version control for code and data; pinned environments",
+        "Pipeline orchestration with Make or a lightweight workflow tool; idempotent, restartable steps",
+        "Logging and testing transformations",
+        "Incremental loads and handling interrupted runs on unreliable power and connectivity"
+      ]
+    },
+    {
+      "title": "Privacy, ethics and the capstone",
+      "weeks": "14",
+      "topics": [
+        "Personal data in datasets: anonymisation, pseudonymisation and re-identification risk",
+        "Ghana's Data Protection Act and consent for secondary use of data",
+        "Documenting a prepared dataset with a datasheet",
+        "Capstone: an end-to-end, validated pipeline from raw public data to an analysis-ready table"
+      ]
+    }
+  ]
+}

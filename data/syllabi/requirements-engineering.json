@@ -1,0 +1,123 @@
+{
+  "slug": "requirements-engineering",
+  "description": "Discovering, analysing, specifying, validating and managing what a software system must do: stakeholder analysis and elicitation, functional and non-functional requirements, use cases and user stories, requirements models, prioritisation and negotiation, traceability, and requirements for users with poor connectivity. Students practise on simulated stakeholder interviews and case studies in the browser, producing and reviewing a complete requirements specification for a real local problem.",
+  "modelledOn": [
+    "Wiegers and Beatty, Software Requirements",
+    "Robertson and Robertson, Mastering the Requirements Process",
+    "ISO/IEC/IEEE 29148 Systems and Software Engineering: Requirements Engineering",
+    "IIBA, A Guide to the Business Analysis Body of Knowledge (BABOK Guide)"
+  ],
+  "outcomes": [
+    "Identify and analyse stakeholders and plan and conduct elicitation with interviews, observation, workshops and prototypes.",
+    "Write clear, testable functional and non-functional requirements and organise them into a specification that follows ISO/IEC/IEEE 29148.",
+    "Express requirements as use cases, user stories with acceptance criteria and analysis models.",
+    "Validate, prioritise and negotiate requirements among stakeholders with conflicting goals.",
+    "Manage change and maintain traceability from business goals to requirements, design and tests.",
+    "Design requirements that account for low connectivity, low-end devices, local languages and varied literacy."
+  ],
+  "units": [
+    {
+      "title": "Requirements and the requirements process",
+      "weeks": "1",
+      "topics": [
+        "What a requirement is: business, user and system requirements; requirements versus design",
+        "The requirements engineering process: elicitation, analysis, specification, validation and management",
+        "Why projects fail on requirements; the cost of requirements errors",
+        "Requirements in plan-driven and agile development",
+        "Running case: a mobile money agent and float-management app"
+      ]
+    },
+    {
+      "title": "Stakeholders and elicitation techniques",
+      "weeks": "2-3",
+      "topics": [
+        "Identifying stakeholders: the onion model, power-interest grids, user classes and personas",
+        "Interviews: structured, semi-structured and unstructured; question design and active listening",
+        "Observation and ethnography; apprenticing and contextual inquiry",
+        "Workshops, focus groups, questionnaires, document analysis and prototyping",
+        "Tacit knowledge, elicitation pitfalls and working through interpreters in multilingual communities",
+        "Simulated interviews with district health officers about routine health data reporting"
+      ]
+    },
+    {
+      "title": "Functional and non-functional requirements",
+      "weeks": "4",
+      "topics": [
+        "Functional requirements, business rules, constraints and data requirements",
+        "Qualities of a good requirement: correct, unambiguous, complete, consistent, verifiable, traceable",
+        "Non-functional requirements and the ISO/IEC 25010 quality model",
+        "Quantifying qualities with fit criteria and Planguage",
+        "Detecting and removing ambiguity; requirement templates and boilerplates"
+      ]
+    },
+    {
+      "title": "Use cases and user stories",
+      "weeks": "5-6",
+      "topics": [
+        "Actors, goals and use case diagrams; include and extend relationships",
+        "Fully dressed use cases: main success scenario, alternative and exception flows, pre- and post-conditions",
+        "User stories and the INVEST criteria; epics, themes and splitting stories",
+        "Acceptance criteria in Given-When-Then form",
+        "Story mapping and building a product backlog",
+        "Writing use cases and stories for buying a tro-tro ticket by mobile money"
+      ]
+    },
+    {
+      "title": "Requirements modelling",
+      "weeks": "7-8",
+      "topics": [
+        "Context diagrams, event lists and data flow diagrams",
+        "Domain models with class diagrams; entity-relationship models",
+        "Behaviour models: state machines, activity diagrams and BPMN process models",
+        "Goal-oriented modelling with i* and KAOS",
+        "Formal specification in brief: why and when to use Alloy or Z",
+        "Modelling the cocoa purchasing chain from farmer to buying company to port"
+      ]
+    },
+    {
+      "title": "Validation, prioritisation and negotiation",
+      "weeks": "9-10",
+      "topics": [
+        "Validation techniques: reviews, inspections, walkthroughs and checklists",
+        "Prototyping and acceptance tests as validation; testability of requirements",
+        "Prioritisation: MoSCoW, Kano model, cost-value analysis and the analytic hierarchy process",
+        "Negotiation and conflict resolution; the WinWin approach",
+        "Estimating size and effort from requirements",
+        "Simulated review meeting with stakeholders who disagree"
+      ]
+    },
+    {
+      "title": "Requirements management and traceability",
+      "weeks": "11",
+      "topics": [
+        "Baselines, versioning and change control; the change control board and impact analysis",
+        "Traceability: forward and backward links, the traceability matrix",
+        "Requirements tools and attributes: status, priority, source, rationale",
+        "Structure of a software requirements specification following ISO/IEC/IEEE 29148",
+        "Requirements volatility and measuring requirements quality"
+      ]
+    },
+    {
+      "title": "Requirements for low-connectivity users",
+      "weeks": "12-13",
+      "topics": [
+        "Offline-first requirements: local storage, synchronisation, conflict resolution and data costs",
+        "Channels beyond the smartphone: USSD, SMS and voice for feature-phone users",
+        "Device, battery and power-cut constraints as non-functional requirements",
+        "Localisation into Twi, Ewe, Hausa and other local languages; designing for varied literacy",
+        "Accessibility requirements and WCAG",
+        "Field validation in low-bandwidth settings"
+      ]
+    },
+    {
+      "title": "Security, privacy, safety and the capstone",
+      "weeks": "14",
+      "topics": [
+        "Security requirements, misuse cases and abuse cases",
+        "Privacy requirements and Ghana's Data Protection Act; consent and data minimisation",
+        "Safety-critical and regulated systems: hazards and safety requirements",
+        "Capstone: a validated, traceable requirements specification for a local organisation"
+      ]
+    }
+  ]
+}

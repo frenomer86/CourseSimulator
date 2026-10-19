@@ -1,0 +1,103 @@
+{
+  "slug": "sensors-and-actuators",
+  "description": "How machines measure the physical world and act on it: sensing principles and sensor characteristics, position, speed and distance sensors, inertial and environmental sensors, signal conditioning and data conversion, DC, stepper and servo motors, motor drivers and power electronics, and the basics of fusing several sensors into one estimate. Practised in browser-based circuit and motor simulations with virtual instruments, building towards field devices such as soil-moisture irrigation controllers and line-following delivery robots.",
+  "modelledOn": [
+    "Fraden, Handbook of Modern Sensors: Physics, Designs, and Applications",
+    "Bolton, Mechatronics: Electronic Control Systems in Mechanical and Electrical Engineering",
+    "Hughes and Drury, Electric Motors and Drives: Fundamentals, Types and Applications",
+    "Horowitz and Hill, The Art of Electronics"
+  ],
+  "outcomes": [
+    "Explain the physical principles behind common transducers and characterise a sensor by its range, sensitivity, resolution, accuracy, linearity and dynamic response.",
+    "Select and interface position, speed, distance, inertial and environmental sensors for a given measurement task and calibrate them.",
+    "Design signal conditioning circuits with bridges, amplifiers and filters and choose sampling rates and ADC resolution to avoid aliasing and quantisation error.",
+    "Model DC, stepper and servo motors and select a motor and gearing from torque, speed and power requirements.",
+    "Design motor drive circuits with H-bridges, PWM and protection and size power supplies and batteries for a mobile system.",
+    "Combine readings from several sensors with complementary and Kalman filters to estimate orientation and position."
+  ],
+  "units": [
+    {
+      "title": "Sensing principles",
+      "weeks": "1-2",
+      "topics": [
+        "Measurement systems: transducer, conditioning, conversion, processing; sensors and actuators in a control loop",
+        "Physical effects used in sensing: resistive, capacitive, inductive, piezoelectric, thermoelectric, photoelectric, Hall effect",
+        "Static characteristics: range, sensitivity, resolution, accuracy, precision, linearity, hysteresis, offset and drift",
+        "Dynamic characteristics: first- and second-order response, time constant, bandwidth, settling time",
+        "Errors and uncertainty: systematic and random error, noise, calibration curves and least-squares fitting",
+        "Reading sensor datasheets and choosing a sensor against cost, power and environment"
+      ]
+    },
+    {
+      "title": "Position, speed and distance sensors",
+      "weeks": "3-4",
+      "topics": [
+        "Potentiometers, limit switches and Hall effect position sensing",
+        "Rotary and linear encoders: incremental quadrature decoding, absolute encoders, counts per revolution",
+        "Speed measurement from encoder pulses, tachogenerators and frequency or period counting",
+        "Distance sensing: ultrasonic time of flight, infrared triangulation, optical time-of-flight and lidar in outline",
+        "Proximity and line sensors: inductive, capacitive and reflective optical; a line-following array for a delivery robot",
+        "Error sources: echo dropouts, temperature effects on the speed of sound, surface reflectivity"
+      ]
+    },
+    {
+      "title": "Inertial and environmental sensors",
+      "weeks": "5-6",
+      "topics": [
+        "MEMS accelerometers and gyroscopes: proof masses, capacitive sensing, bias, noise density and drift",
+        "Magnetometers and compass heading; hard- and soft-iron calibration",
+        "Temperature sensing: thermistors, RTDs, thermocouples with cold-junction compensation, digital sensors",
+        "Humidity, pressure, light and gas sensors; soil moisture by resistive and capacitive probes",
+        "Strain gauges and load cells for weighing produce; the Wheatstone bridge",
+        "Sensors for agriculture and weather stations in Ghana: rainfall gauges, soil moisture and grain storage monitoring"
+      ]
+    },
+    {
+      "title": "Signal conditioning",
+      "weeks": "7-8",
+      "topics": [
+        "Voltage dividers, bridges and current loops (4-20 mA) for industrial sensors",
+        "Operational amplifier circuits: inverting, non-inverting, differential and instrumentation amplifiers",
+        "Analogue filtering: passive and active RC filters, anti-aliasing filter design",
+        "Sampling and the Nyquist criterion; ADC resolution, reference voltage, quantisation noise, oversampling",
+        "Digital filtering of sensor data: moving average, exponential smoothing, median filters",
+        "Noise, grounding, shielding and protection against ESD and overvoltage"
+      ]
+    },
+    {
+      "title": "DC, stepper and servo motors",
+      "weeks": "9-10",
+      "topics": [
+        "Electromagnetic principles: force on a conductor, back EMF, torque constant",
+        "Brushed DC motors: equivalent circuit, torque-speed curve, efficiency, transfer function model",
+        "Brushless DC motors and electronic commutation in outline",
+        "Stepper motors: permanent-magnet and hybrid types, full, half and microstepping, holding torque, missed steps",
+        "RC servos and closed-loop position control; PID control of motor speed in outline",
+        "Gearing, inertia matching and selecting a motor for a robot wheel or irrigation valve; solenoids and relays as actuators"
+      ]
+    },
+    {
+      "title": "Motor drivers and power",
+      "weeks": "11-12",
+      "topics": [
+        "Switching loads with transistors and MOSFETs; flyback diodes and inductive kickback",
+        "H-bridges for direction and braking; PWM speed control, switching frequency and current ripple",
+        "Stepper drivers with current chopping; integrated driver ICs and their thermal limits",
+        "Current sensing, overcurrent and thermal protection; electrical noise from motors",
+        "Power supplies, regulators and batteries: capacity, discharge rates, lithium and lead-acid chemistries",
+        "Solar power budgeting for an off-grid pump or sensor node"
+      ]
+    },
+    {
+      "title": "Sensor fusion basics and project",
+      "weeks": "13",
+      "topics": [
+        "Why fuse sensors: complementary strengths and uncorrelated errors",
+        "Complementary filter for tilt from an accelerometer and gyroscope",
+        "The one-dimensional Kalman filter: prediction, update, covariance; tuning noise parameters",
+        "Dead reckoning from wheel encoders corrected with other sensors",
+        "Project: a sensing and actuation system such as an automatic irrigation controller or a small delivery robot with odometry"
+      ]
+    }
+  ]
+}

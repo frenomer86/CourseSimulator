@@ -1,0 +1,120 @@
+{
+  "slug": "financial-mathematics",
+  "description": "The mathematics of money and risk: interest and the time value of money, annuities and loans, bonds and yields, risk and return, portfolio theory, options and derivatives, and the mathematics of microfinance and credit scoring. Every formula is derived and then computed, plotted and simulated in the browser on real cases such as treasury bills, mobile loans and susu groups.",
+  "modelledOn": [
+    "Kellison, The Theory of Interest",
+    "Luenberger, Investment Science",
+    "Bodie, Kane and Marcus, Investments",
+    "Hull, Options, Futures, and Other Derivatives"
+  ],
+  "outcomes": [
+    "Compute present and future values under simple, compound and continuous interest and compare nominal, effective and real rates.",
+    "Value annuities and perpetuities and build amortisation schedules for loans, mortgages and microloans.",
+    "Price bonds and treasury bills, compute their yields, duration and convexity and interpret the yield curve.",
+    "Measure risk and return, construct efficient portfolios and apply the capital asset pricing model.",
+    "Price forwards and options with no-arbitrage, binomial and Black-Scholes models and explain their use for hedging.",
+    "Build and evaluate a credit scoring model and analyse the true cost of microfinance and mobile loans."
+  ],
+  "units": [
+    {
+      "title": "Interest and the time value of money",
+      "weeks": "1-2",
+      "topics": [
+        "Simple and compound interest; accumulation and discount functions",
+        "Nominal and effective rates, compounding frequency, continuous compounding and the force of interest",
+        "Present and future value; equations of value and solving for unknown rates and times",
+        "Inflation and real interest rates; the Fisher equation; the Bank of Ghana policy rate and its effect on lending rates",
+        "Comparing savings options: bank deposits, mobile money interest and a susu collector's fee as an implied rate"
+      ]
+    },
+    {
+      "title": "Annuities and cash-flow valuation",
+      "weeks": "3",
+      "topics": [
+        "Annuities immediate and due; perpetuities; deferred annuities",
+        "Annuities with varying payments: arithmetic and geometric growth",
+        "Net present value, internal rate of return and payback period; choosing between projects",
+        "Building cash-flow models in a spreadsheet and in code"
+      ]
+    },
+    {
+      "title": "Loans and amortisation",
+      "weeks": "4",
+      "topics": [
+        "Amortisation schedules: interest and principal in each instalment; outstanding balance (prospective and retrospective)",
+        "Sinking funds; flat-rate versus reducing-balance interest and why flat rates mislead",
+        "Annual percentage rate, fees and the true cost of credit; consumer credit disclosure",
+        "Mortgages, car loans, hire purchase and refinancing decisions",
+        "Pricing a mobile nano-loan with a fee and a short tenor, and converting it to an annual rate"
+      ]
+    },
+    {
+      "title": "Bonds and yields",
+      "weeks": "5-6",
+      "topics": [
+        "Bond terminology: face value, coupon, maturity, clean and dirty price, accrued interest",
+        "Bond pricing and yield to maturity; premium, par and discount bonds",
+        "Treasury bills: discount and interest yields, the 91-day and 182-day bill auctions in Ghana",
+        "Term structure: spot rates, forward rates, bootstrapping the yield curve, theories of the term structure",
+        "Duration, modified duration and convexity; immunisation of a liability",
+        "Credit risk, default and sovereign debt restructuring, with Ghana's domestic debt exchange as a case"
+      ]
+    },
+    {
+      "title": "Risk and return",
+      "weeks": "7",
+      "topics": [
+        "Holding-period returns, arithmetic and geometric means, annualising returns",
+        "Random returns: expected value, variance, standard deviation, covariance and correlation",
+        "Risk preferences and utility functions; risk aversion and certainty equivalents",
+        "Value at risk and the limits of the normal distribution: fat tails and skew",
+        "Returns on the Ghana Stock Exchange and other African markets analysed from price data"
+      ]
+    },
+    {
+      "title": "Portfolio theory",
+      "weeks": "8-9",
+      "topics": [
+        "Two-asset and multi-asset portfolios; diversification and the effect of correlation",
+        "Mean-variance optimisation; the efficient frontier and the minimum-variance portfolio",
+        "The risk-free asset, the capital market line and the tangency portfolio; the Sharpe ratio",
+        "The capital asset pricing model: beta, the security market line, systematic and idiosyncratic risk",
+        "Factor models and arbitrage pricing theory in outline; market efficiency",
+        "Computing an efficient frontier numerically in the browser"
+      ]
+    },
+    {
+      "title": "Options and derivatives basics",
+      "weeks": "10-11",
+      "topics": [
+        "Forwards and futures: payoffs, no-arbitrage pricing, cost of carry; currency forwards for the cedi",
+        "Options: calls and puts, payoffs and profit diagrams, put-call parity and option strategies",
+        "The binomial model: replicating portfolios, risk-neutral valuation, multi-period trees, American options",
+        "Brownian motion in outline and the Black-Scholes formula; the Greeks and delta hedging",
+        "Monte Carlo pricing of options and convergence of the binomial tree to Black-Scholes",
+        "Uses of derivatives in Africa: commodity hedging for cocoa and gold, and the risks of speculation"
+      ]
+    },
+    {
+      "title": "Microfinance",
+      "weeks": "12",
+      "topics": [
+        "Microfinance models: group lending, joint liability, village banking and rotating savings (susu and ROSCAs)",
+        "Analysing a susu group or ROSCA as a sequence of loans and savings; the implied interest rate for each position",
+        "Microfinance interest rates: operating costs, loan size, portfolio at risk and sustainability",
+        "Mobile credit and digital lending: nano-loans on mobile money, over-indebtedness and consumer protection"
+      ]
+    },
+    {
+      "title": "Credit scoring",
+      "weeks": "13",
+      "topics": [
+        "Credit risk measures: probability of default, loss given default, exposure at default and expected loss",
+        "Scorecards: logistic regression, weight of evidence, information value and points scaling",
+        "Model evaluation: ROC curves, the Gini coefficient, the KS statistic, calibration and cut-off choice",
+        "Alternative data for thin-file borrowers: mobile money histories, airtime top-ups and credit bureau data, and fairness concerns",
+        "Capstone: build and evaluate a credit scoring model for a microfinance lender on a synthetic loan book"
+      ]
+    }
+  ]
+}

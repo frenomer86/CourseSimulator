@@ -1,0 +1,118 @@
+{
+  "slug": "ethical-hacking-and-penetration-testing",
+  "description": "Conducting an authorised penetration test end to end: rules of engagement and the law, open-source and active reconnaissance, scanning and enumeration, exploitation and password attacks, post-exploitation and privilege escalation, and reporting findings with remediation. Practised only against isolated virtual machines and simulated networks in the browser, with every exercise scoped and authorised so techniques are learned lawfully.",
+  "modelledOn": [
+    "Weidman, Penetration Testing: A Hands-On Introduction to Hacking",
+    "Engebretson, The Basics of Hacking and Penetration Testing",
+    "OWASP Testing Guide and NIST SP 800-115",
+    "Offensive Security Certified Professional (OSCP) objectives"
+  ],
+  "outcomes": [
+    "Scope an engagement and work within rules of engagement, authorisation and the relevant law.",
+    "Gather intelligence on a target with open-source and active reconnaissance.",
+    "Scan and enumerate hosts, services and versions to build an attack surface map.",
+    "Exploit vulnerabilities and crack passwords against authorised lab targets.",
+    "Escalate privilege, move laterally and establish persistence during post-exploitation.",
+    "Write a clear penetration test report that prioritises findings and recommends remediation."
+  ],
+  "units": [
+    {
+      "title": "Rules of engagement and the law",
+      "weeks": "1-2",
+      "topics": [
+        "Why authorisation is everything: the line between a penetration test and a crime",
+        "Ghana's Cybersecurity Act 2020 and Data Protection Act 843; the Cyber Security Authority and lawful disclosure",
+        "Scoping: targets, exclusions, time windows, permitted techniques and emergency contacts",
+        "Rules of engagement, get-out-of-jail letters, data handling and confidentiality",
+        "Penetration testing methodologies and standards; types of test: black, grey and white box",
+        "Professional ethics and responsible disclosure"
+      ]
+    },
+    {
+      "title": "The tester's environment",
+      "weeks": "3",
+      "topics": [
+        "Building an isolated lab of virtual machines and a simulated network in the browser",
+        "A testing distribution and its toolchain; keeping test traffic off production",
+        "Note-taking, evidence capture and command logging for a defensible report",
+        "Networking refresher: addressing, ports, protocols and the OSI layers as they matter to testing"
+      ]
+    },
+    {
+      "title": "Reconnaissance",
+      "weeks": "4",
+      "topics": [
+        "Passive open-source intelligence: WHOIS, DNS records, certificate transparency, search and social media",
+        "Footprinting an organisation: employees, technologies, leaked credentials and metadata",
+        "Active reconnaissance and when passive crosses into active",
+        "Mapping the external attack surface, including exposed mobile-money and SIM-registration portals",
+        "Organising findings into a target profile"
+      ]
+    },
+    {
+      "title": "Scanning and enumeration",
+      "weeks": "5-6",
+      "topics": [
+        "Host discovery and port scanning with nmap; scan types, timing and evasion basics",
+        "Service and version detection and operating-system fingerprinting",
+        "Vulnerability scanning with OpenVAS and interpreting results without over-trusting them",
+        "Enumerating services: web, SMB, SNMP, SMTP, DNS and databases",
+        "Turning scan output into a prioritised list of likely entry points"
+      ]
+    },
+    {
+      "title": "Exploitation",
+      "weeks": "7-8",
+      "topics": [
+        "From vulnerability to working exploit; matching a service version to a known flaw and CVE/CVSS",
+        "Using an exploitation framework: payloads, listeners and sessions",
+        "Common server-side flaws: unpatched services, default credentials, misconfigurations",
+        "Client-side and social-engineering vectors in a controlled lab",
+        "Verifying impact without damaging the target; avoiding denial of service"
+      ]
+    },
+    {
+      "title": "Password attacks",
+      "weeks": "9",
+      "topics": [
+        "Where credentials live: hashes, caches, configuration files and memory",
+        "Online attacks: brute force, dictionary, spraying and credential stuffing against lab services",
+        "Offline cracking of captured hashes with John the Ripper and hashcat; wordlists and rules",
+        "Default and reused passwords; the weakness of SMS one-time codes and SIM-swap risk",
+        "Defences: strong hashing, lockout, multi-factor authentication"
+      ]
+    },
+    {
+      "title": "Post-exploitation",
+      "weeks": "10-11",
+      "topics": [
+        "Local situational awareness after a foothold: users, processes, network and stored secrets",
+        "Privilege escalation on Linux and Windows: misconfigurations, weak permissions, kernel and service flaws",
+        "Lateral movement and pivoting through a simulated internal network",
+        "Persistence, and the difference between a test artefact and real-world stealth",
+        "Collecting proof of access and cleaning up afterwards"
+      ]
+    },
+    {
+      "title": "Web and network attack techniques",
+      "weeks": "12",
+      "topics": [
+        "Web application testing against the OWASP Top Ten: injection, broken authentication, access control",
+        "Intercepting proxies and request manipulation with Burp Suite and OWASP ZAP",
+        "Network attacks in the lab: sniffing, spoofing and man-in-the-middle",
+        "Wireless assessment basics against a simulated access point"
+      ]
+    },
+    {
+      "title": "Reporting findings",
+      "weeks": "13",
+      "topics": [
+        "Structure of a penetration test report: executive summary, methodology, findings, evidence",
+        "Rating severity with likelihood and impact; CVSS as an input, not the whole story",
+        "Writing actionable remediation that a stretched IT team in a cafe or school can apply",
+        "Re-testing and verifying fixes; the debrief",
+        "Capstone: a full authorised test of a simulated small-business network and a written report"
+      ]
+    }
+  ]
+}

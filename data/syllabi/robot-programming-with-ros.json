@@ -1,0 +1,120 @@
+{
+  "slug": "robot-programming-with-ros",
+  "description": "Building robot software with the Robot Operating System: the node graph and architecture, publish-subscribe topics and messages, request-reply services and long-running actions, coordinate-frame transforms, simulation, perception pipelines, and the tools for launching and debugging a running robot. Practised entirely in the browser against a simulated robot and sensors, with no physical hardware required.",
+  "modelledOn": [
+    "Quigley, Gerkey and Smart, Programming Robots with ROS",
+    "Siciliano and Khatib, Springer Handbook of Robotics",
+    "Corke, Robotics, Vision and Control"
+  ],
+  "outcomes": [
+    "Design a robot application as a graph of cooperating nodes with clear responsibilities and interfaces.",
+    "Implement publishers, subscribers, services and action servers and choose the right communication pattern for a task.",
+    "Model a robot's links and sensors with coordinate frames and transform data correctly between them.",
+    "Run and inspect a robot in simulation, driving it and reading its sensors without physical hardware.",
+    "Assemble a perception pipeline that turns sensor streams into usable world information.",
+    "Launch, parameterise, record and debug a multi-node robot system and diagnose failures from its logs."
+  ],
+  "units": [
+    {
+      "title": "Robots and robot software architecture",
+      "weeks": "1",
+      "topics": [
+        "What a robot is: sensing, computation and actuation; the sense-plan-act loop and reactive versus deliberative control",
+        "Why robot software is a distributed system: many processes, asynchronous messages, partial failure",
+        "ROS as a framework: the computation graph, the master or discovery layer, and the reasons for a message-passing design",
+        "The robotics software ecosystem and where ROS fits; versions and long-term support",
+        "Setting up a browser-based ROS workspace, building packages and running a first node"
+      ]
+    },
+    {
+      "title": "Nodes, topics and messages",
+      "weeks": "2-3",
+      "topics": [
+        "Nodes as units of computation; naming, namespaces and the parameter server",
+        "Publish-subscribe over topics: decoupling producers and consumers, many-to-many communication",
+        "Message types and interface definition; standard messages for sensors, geometry and diagnostics",
+        "Defining custom messages; serialisation and message versioning pitfalls",
+        "Queue size, latching, publish rate and the cost of dropped or stale messages",
+        "Inspecting the graph with command-line tools: listing topics, echoing messages, measuring rates"
+      ]
+    },
+    {
+      "title": "Services and actions",
+      "weeks": "4",
+      "topics": [
+        "Request-reply services for short synchronous queries; service definitions and blocking calls",
+        "When a service is wrong: long tasks, cancellation, progress feedback",
+        "Action servers and clients: goals, feedback and results for navigate-to-goal and grasp tasks",
+        "Pre-emption, cancelling and goal state machines",
+        "Choosing between topics, services and actions for a given interaction"
+      ]
+    },
+    {
+      "title": "Transforms and coordinate frames",
+      "weeks": "5-6",
+      "topics": [
+        "Rigid-body pose: translation and rotation, rotation matrices, quaternions and Euler angles",
+        "The frame tree: base, odometry, map, sensor and end-effector frames; parent-child relationships",
+        "Broadcasting and buffering transforms over time; looking up a transform at a timestamp",
+        "Static versus dynamic transforms; extrinsic sensor calibration",
+        "Transforming a point, a laser scan or a detected object between frames",
+        "Diagnosing a broken or disconnected frame tree"
+      ]
+    },
+    {
+      "title": "Simulation of robots",
+      "weeks": "7",
+      "topics": [
+        "Why simulate: safety, cost, repeatability, and the reality gap for teams without hardware",
+        "Robot description: links, joints, inertia, collision and visual geometry in a URDF model",
+        "Spawning a robot in a simulated world with gravity, contact and sensor plugins",
+        "Simulated sensors: cameras, depth, lidar and IMU, and the noise models that make them realistic",
+        "Driving the simulated robot by publishing velocity commands and reading joint states"
+      ]
+    },
+    {
+      "title": "Perception pipelines",
+      "weeks": "8-9",
+      "topics": [
+        "From raw sensor stream to decision: the stages of a perception pipeline and their data types",
+        "Images: encoding, rectification, and converting between image messages and processing buffers",
+        "Point clouds and laser scans: filtering, downsampling and segmentation",
+        "Detecting and localising objects and publishing them as poses in the correct frame",
+        "Time synchronisation of multiple sensor streams and approximate-time matching",
+        "Visualising sensor data and pipeline output to confirm correctness"
+      ]
+    },
+    {
+      "title": "Launching, configuring and recording systems",
+      "weeks": "10-11",
+      "topics": [
+        "Launch files: starting many nodes, setting parameters, remapping names and composing subsystems",
+        "Parameters and configuration files for reusable, deployable robot stacks",
+        "Recording and replaying message logs to debug offline and build repeatable tests",
+        "Namespacing and multi-robot launches on one graph",
+        "Lifecycle and managed nodes; bringing a system up in a known order"
+      ]
+    },
+    {
+      "title": "Debugging and introspecting robot systems",
+      "weeks": "12",
+      "topics": [
+        "Logging levels and structured log output; reading a node's logs to localise a fault",
+        "Introspection tools: the node graph viewer, topic and transform inspectors, plotting over time",
+        "Common failures: no messages, wrong frame, clock and timestamp mismatch, queue overflow",
+        "Measuring latency and throughput and finding the bottleneck node",
+        "Diagnosing simulation artefacts under power-cut-interrupted sessions common on shared campus machines"
+      ]
+    },
+    {
+      "title": "Integrating a complete robot behaviour",
+      "weeks": "13",
+      "topics": [
+        "Composing nodes, transforms, perception and actions into one behaviour",
+        "A state machine or behaviour tree coordinating drive, sense and act",
+        "Parameterising the stack for a different simulated robot or world",
+        "Capstone: a simulated delivery robot that perceives an obstacle, plans around it and reports status over an action"
+      ]
+    }
+  ]
+}

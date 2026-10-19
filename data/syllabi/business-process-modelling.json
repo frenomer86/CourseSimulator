@@ -1,0 +1,119 @@
+{
+  "slug": "business-process-modelling",
+  "description": "Discovering, modelling, analysing and improving how organisations actually work: processes, activities and roles, BPMN notation, as-is and to-be analysis, process simulation and bottleneck analysis, improvement methods such as Lean and Six Sigma, and workflow automation. Students draw executable BPMN models in the browser, simulate them with queues and resources to find bottlenecks, and redesign a mobile money agent network end to end.",
+  "modelledOn": [
+    "Dumas, La Rosa, Mendling and Reijers, Fundamentals of Business Process Management",
+    "Object Management Group, Business Process Model and Notation (BPMN) 2.0",
+    "Weske, Business Process Management: Concepts, Languages, Architectures",
+    "van der Aalst, Process Mining: Data Science in Action"
+  ],
+  "outcomes": [
+    "Identify an organisation's processes, their activities, roles, inputs and outputs, and organise them into a process architecture.",
+    "Model processes correctly in BPMN, including events, gateways, pools, lanes, messages and sub-processes.",
+    "Analyse as-is processes qualitatively and quantitatively, finding waste, root causes, cycle times and costs.",
+    "Simulate processes with resources and arrival rates to locate bottlenecks and test redesigns before implementation.",
+    "Apply improvement methods to design to-be processes and justify them with measured gains.",
+    "Automate a process with a workflow engine and monitor its performance with process mining."
+  ],
+  "units": [
+    {
+      "title": "Processes, activities and roles",
+      "weeks": "1",
+      "topics": [
+        "What a business process is: events, activities, decisions, actors, resources, inputs and outputs",
+        "Process orientation versus functional silos; the BPM lifecycle from identification to monitoring",
+        "Roles, responsibilities and the RACI matrix",
+        "Core, support and management processes; customers and value"
+      ]
+    },
+    {
+      "title": "Process identification and discovery",
+      "weeks": "2",
+      "topics": [
+        "Process architecture: value chains, process landscapes and levels of decomposition",
+        "Selecting processes for improvement by importance, health and feasibility",
+        "Discovery methods: interviews, workshops, observation, document analysis and event logs",
+        "Modelling quality: syntactic, semantic and pragmatic quality; the seven process modelling guidelines"
+      ]
+    },
+    {
+      "title": "BPMN notation",
+      "weeks": "3-4",
+      "topics": [
+        "Flow objects: tasks, events and gateways; sequence flow",
+        "Gateways: exclusive, parallel, inclusive and event-based; splits, joins and correct pairing",
+        "Pools, lanes, message flow and collaboration diagrams between organisations",
+        "Data objects, data stores and artefacts",
+        "Sub-processes, call activities, loops and multi-instance activities",
+        "Modelling a cocoa purchasing process from farm gate to licensed buying company"
+      ]
+    },
+    {
+      "title": "Advanced BPMN and process correctness",
+      "weeks": "5",
+      "topics": [
+        "Intermediate events: timers, messages, signals, errors, escalation and compensation; boundary events",
+        "Event sub-processes and exception handling",
+        "Token semantics; soundness, deadlocks and livelocks; Petri nets in brief",
+        "Decision modelling with DMN decision tables alongside BPMN"
+      ]
+    },
+    {
+      "title": "As-is and to-be analysis",
+      "weeks": "6",
+      "topics": [
+        "Value-added, business value-added and non-value-adding activities",
+        "Waste analysis with the seven wastes; issue registers and Pareto analysis",
+        "Root cause analysis: cause-and-effect diagrams and why-why analysis",
+        "Quantitative analysis: cycle time, waiting time, cycle time efficiency and activity-based costing",
+        "Flow analysis of sequential, parallel and rework structures; Little's law"
+      ]
+    },
+    {
+      "title": "Process simulation and bottlenecks",
+      "weeks": "7-8",
+      "topics": [
+        "Queueing fundamentals: arrival rates, service times, utilisation and the M/M/1 and M/M/c models",
+        "Discrete-event simulation of BPMN models: arrival distributions, task durations, resource pools and calendars",
+        "Identifying bottlenecks from utilisation and waiting times; the theory of constraints",
+        "Running scenarios and comparing designs; warm-up, replications and confidence intervals",
+        "Simulating queues at a district hospital outpatient department"
+      ]
+    },
+    {
+      "title": "Process improvement methods",
+      "weeks": "9-10",
+      "topics": [
+        "Redesign heuristics: task elimination, resequencing, parallelism, specialisation and triage",
+        "Lean: value stream mapping, flow, pull and continuous improvement",
+        "Six Sigma and DMAIC; variation, control charts and process capability",
+        "Business process re-engineering and its lessons",
+        "Measuring improvement: the devil's quadrangle of time, cost, quality and flexibility",
+        "Redesigning loan approval for a rural bank serving susu groups"
+      ]
+    },
+    {
+      "title": "Workflow automation",
+      "weeks": "11-12",
+      "topics": [
+        "Process-aware information systems and business process management systems",
+        "Making a model executable: data, forms, service tasks, user tasks and business rules",
+        "Process engines and an open-source BPMN engine such as Camunda or Flowable",
+        "Robotic process automation versus workflow orchestration; integration with APIs and SMS",
+        "Process mining: event logs, process discovery, conformance checking and performance analysis",
+        "Change management and user adoption of automated processes"
+      ]
+    },
+    {
+      "title": "Case study: a mobile money agent network",
+      "weeks": "13",
+      "topics": [
+        "Modelling cash-in, cash-out, registration and float rebalancing across agents and the operator",
+        "KYC checks, transaction limits and reversal handling as process rules",
+        "Simulating agent queues and float shortages on market days",
+        "Proposing and simulating a to-be design with measured gains",
+        "Capstone: presenting the as-is model, analysis, simulation and to-be process to stakeholders"
+      ]
+    }
+  ]
+}

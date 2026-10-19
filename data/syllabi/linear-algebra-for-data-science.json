@@ -1,0 +1,110 @@
+{
+  "slug": "linear-algebra-for-data-science",
+  "description": "The linear algebra that data science and machine learning run on: vectors and vector spaces, matrices and their operations, solving linear systems, determinants and inverses, eigenvalues and eigenvectors, orthogonality, projections and least squares, and the singular value decomposition behind principal component analysis. Each idea is seen geometrically in interactive browser plots, worked by hand, and then implemented in NumPy on real data.",
+  "modelledOn": [
+    "Strang, Introduction to Linear Algebra",
+    "Lay, Lay and McDonald, Linear Algebra and Its Applications",
+    "Boyd and Vandenberghe, Introduction to Applied Linear Algebra: Vectors, Matrices, and Least Squares",
+    "Deisenroth, Faisal and Ong, Mathematics for Machine Learning (linear algebra chapters)"
+  ],
+  "outcomes": [
+    "Represent data as vectors and matrices and reason about linear combinations, span, independence, basis and dimension.",
+    "Solve linear systems by Gaussian elimination and LU factorisation and interpret their solutions through the four fundamental subspaces.",
+    "Compute determinants and inverses and explain when a matrix is invertible and how conditioning affects numerical results.",
+    "Compute eigenvalues and eigenvectors, diagonalise matrices and apply them to dynamical systems and Markov chains.",
+    "Use orthogonality, projections, QR factorisation and least squares to fit models to data.",
+    "Derive and apply the singular value decomposition for low-rank approximation and principal component analysis."
+  ],
+  "units": [
+    {
+      "title": "Vectors",
+      "weeks": "1-2",
+      "topics": [
+        "Vectors as arrows, as lists of numbers and as data points; feature vectors for customers, images and documents",
+        "Vector addition, scalar multiplication and linear combinations; geometric interpretation in 2D and 3D",
+        "Dot product, length, angle and cosine similarity; the Cauchy-Schwarz and triangle inequalities",
+        "Norms: L1, L2 and infinity norms; distance between data points",
+        "NumPy arrays, broadcasting and vectorised computation"
+      ]
+    },
+    {
+      "title": "Vector spaces",
+      "weeks": "3",
+      "topics": [
+        "Span, linear independence and dependence",
+        "Subspaces, basis and dimension; coordinates relative to a basis and change of basis",
+        "Column space, null space, row space and left null space; rank",
+        "The rank-nullity theorem and the four fundamental subspaces"
+      ]
+    },
+    {
+      "title": "Matrices and matrix operations",
+      "weeks": "4",
+      "topics": [
+        "Matrices as data tables and as linear transformations; rotation, scaling, shear and projection in the plane",
+        "Matrix-vector and matrix-matrix multiplication: row, column and outer-product views",
+        "Transpose, symmetric matrices, identity, diagonal, triangular and permutation matrices",
+        "Block matrices and the cost of matrix computations",
+        "Adjacency matrices of graphs: a road network between market towns"
+      ]
+    },
+    {
+      "title": "Systems of linear equations",
+      "weeks": "5-6",
+      "topics": [
+        "Linear systems in matrix form; the row picture and the column picture",
+        "Gaussian elimination, row echelon and reduced row echelon form; pivots and free variables",
+        "Existence and uniqueness: consistent, inconsistent and underdetermined systems",
+        "LU factorisation and solving many right-hand sides; partial pivoting",
+        "Numerical issues: floating-point error, ill-conditioning and the condition number",
+        "Applications: balancing a mixing problem for animal feed and network flow"
+      ]
+    },
+    {
+      "title": "Determinants and inverses",
+      "weeks": "7",
+      "topics": [
+        "The inverse matrix: definition, Gauss-Jordan computation and the invertible matrix theorem",
+        "Determinants: cofactor expansion, row operations and properties",
+        "The determinant as signed volume and as a test for invertibility",
+        "Cramer's rule in brief; why software solves systems instead of inverting matrices"
+      ]
+    },
+    {
+      "title": "Orthogonality and projections",
+      "weeks": "8-9",
+      "topics": [
+        "Orthogonal vectors and subspaces; orthogonal complements",
+        "Projection onto a line and onto a subspace; projection matrices",
+        "Least squares: the normal equations and fitting a line or plane to data",
+        "Orthonormal bases, the Gram-Schmidt process and QR factorisation",
+        "Orthogonal matrices and their numerical stability",
+        "Fitting a trend to maize prices in Kumasi by least squares"
+      ]
+    },
+    {
+      "title": "Eigenvalues and eigenvectors",
+      "weeks": "10-11",
+      "topics": [
+        "Eigenvalues and eigenvectors; the characteristic polynomial; geometric meaning",
+        "Diagonalisation, powers of a matrix and repeated linear maps",
+        "Symmetric matrices and the spectral theorem; positive definite matrices and quadratic forms",
+        "Markov chains and steady states; PageRank as an eigenvector problem",
+        "The power method and how libraries compute eigenvalues",
+        "Covariance matrices and their eigenvectors as directions of variation"
+      ]
+    },
+    {
+      "title": "Singular value decomposition and PCA",
+      "weeks": "12-13",
+      "topics": [
+        "The singular value decomposition: existence, geometry and relation to eigen-decomposition",
+        "Low-rank approximation and the Eckart-Young theorem; image compression with the SVD",
+        "Pseudoinverse and minimum-norm least squares",
+        "Principal component analysis derived from the SVD: centring, explained variance and scree plots",
+        "Applications: recommender systems by matrix factorisation and latent semantic analysis of text",
+        "Capstone: reducing and visualising a multi-indicator dataset of Ghanaian districts with PCA"
+      ]
+    }
+  ]
+}

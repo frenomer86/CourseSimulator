@@ -1,0 +1,105 @@
+{
+  "slug": "infrastructure-as-code",
+  "description": "Defining, provisioning and maintaining infrastructure as version-controlled code: the case for automation, declarative provisioning with Terraform, reusable modules, state and drift, configuration management with Ansible, testing infrastructure, policy as code and GitOps workflows. Practised in simulated terminals and a simulated cloud console in the browser, where every plan and apply shows its effect on real-looking resources, taught to the depth of the infrastructure automation certifications.",
+  "modelledOn": [
+    "Morris, Infrastructure as Code: Dynamic Systems for the Cloud Age",
+    "Brikman, Terraform: Up and Running",
+    "Geerling, Ansible for DevOps",
+    "HashiCorp Certified: Terraform Associate objectives"
+  ],
+  "outcomes": [
+    "Justify infrastructure as code by contrasting it with manual, ticket-driven provisioning and identify where it fails.",
+    "Write declarative Terraform configurations that provision networks, compute, storage and identity on a cloud platform.",
+    "Design reusable, versioned modules and structure code for multiple environments and teams.",
+    "Manage remote state safely, detect and reconcile drift, and import existing resources.",
+    "Configure servers idempotently with Ansible and choose between immutable and mutable infrastructure.",
+    "Test infrastructure code, enforce policy and deliver changes through GitOps workflows with review and audit."
+  ],
+  "units": [
+    {
+      "title": "Why infrastructure as code",
+      "weeks": "1",
+      "topics": [
+        "The problems of manual provisioning: snowflake servers, configuration drift, undocumented changes, slow recovery",
+        "Principles: everything in version control, idempotence, repeatability, disposability, small changes",
+        "Declarative versus imperative tools; provisioning versus configuration management; the tool landscape",
+        "Infrastructure as code in a team: code review for infrastructure, change records, blast radius"
+      ]
+    },
+    {
+      "title": "Declarative provisioning",
+      "weeks": "2-3",
+      "topics": [
+        "HCL syntax: providers, resources, data sources, variables, outputs, locals",
+        "The workflow: init, plan, apply, destroy; reading a plan; the dependency graph and parallelism",
+        "Expressions: count, for_each, conditionals, dynamic blocks, built-in functions",
+        "Provisioning a VPC, subnets, security groups, virtual machines and object storage",
+        "Cloud-native alternatives in brief: CloudFormation, Bicep, Pulumi and OpenTofu"
+      ]
+    },
+    {
+      "title": "Modules and reuse",
+      "weeks": "4-5",
+      "topics": [
+        "Writing modules: inputs, outputs, encapsulation; root and child modules",
+        "Module sources and versioning: registries, Git tags, semantic versioning",
+        "Composing modules into stacks; environment layouts for development, staging and production",
+        "Workspaces versus separate directories; managing differences with variable files",
+        "A reusable module for a three-tier web application used by several teams"
+      ]
+    },
+    {
+      "title": "State and drift",
+      "weeks": "6-7",
+      "topics": [
+        "What state is and why it exists: mapping configuration to real resources",
+        "Remote backends, state locking and encryption; secrets that leak into state",
+        "Drift: how it happens, detecting it with refresh and plan, deciding whether to revert or adopt",
+        "Refactoring safely: moved blocks, state mv, rm and import; splitting large states",
+        "Recovering from a corrupted or lost state file"
+      ]
+    },
+    {
+      "title": "Configuration management",
+      "weeks": "8-9",
+      "topics": [
+        "Ansible architecture: inventories, ad hoc commands, playbooks, modules, agentless SSH",
+        "Idempotent tasks, handlers, variables, facts and templates with Jinja2",
+        "Roles and collections; Ansible Vault for secrets",
+        "Immutable infrastructure: building golden images with Packer versus configuring running servers",
+        "Configuring a fleet of servers for a mobile money agent network, with Terraform and Ansible working together"
+      ]
+    },
+    {
+      "title": "Testing infrastructure",
+      "weeks": "10-11",
+      "topics": [
+        "The testing pyramid for infrastructure: formatting, validation, static analysis, unit, integration, end-to-end",
+        "Linting and security scanning: tflint, Checkov, tfsec; ansible-lint",
+        "Native terraform test, Terratest and Molecule; ephemeral test environments and their cost",
+        "Policy as code with Open Policy Agent and Sentinel: blocking public buckets and enforcing data residency rules",
+        "Cost estimation in pull requests"
+      ]
+    },
+    {
+      "title": "GitOps workflows",
+      "weeks": "12",
+      "topics": [
+        "GitOps principles: Git as the source of truth, declarative desired state, pull-based reconciliation",
+        "CI/CD for infrastructure: plan on pull request, apply on merge, approvals and protected environments",
+        "Argo CD and Flux for Kubernetes; Atlantis and similar tools for Terraform",
+        "Secrets in GitOps: sealed secrets, external secret operators, short-lived credentials with OIDC"
+      ]
+    },
+    {
+      "title": "Operating infrastructure as code at scale",
+      "weeks": "13",
+      "topics": [
+        "Disaster recovery by rebuilding from code; tested recovery times",
+        "Platform engineering and self-service infrastructure; golden paths",
+        "Compliance and audit: change history, tagging standards, data residency under the Data Protection Act",
+        "Capstone: provision, configure, test and deliver through GitOps a complete environment, then detect and fix injected drift"
+      ]
+    }
+  ]
+}

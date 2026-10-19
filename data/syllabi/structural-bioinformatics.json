@@ -1,0 +1,119 @@
+{
+  "slug": "structural-bioinformatics",
+  "description": "Computing with the three-dimensional structures of proteins and their ligands: levels of protein structure, structure databases and visualisation, structural comparison, secondary and tertiary structure prediction including deep learning methods, molecular docking and the computational stages of drug discovery. Practised with browser-based molecular viewers and docking simulations on public structures, with targets drawn from malaria, sickle cell disease and neglected tropical diseases.",
+  "modelledOn": [
+    "Branden and Tooze, Introduction to Protein Structure",
+    "Gu and Bourne, Structural Bioinformatics",
+    "Leach, Molecular Modelling: Principles and Applications",
+    "Petsko and Ringe, Protein Structure and Function"
+  ],
+  "outcomes": [
+    "Describe primary, secondary, tertiary and quaternary protein structure and relate the physical forces that stabilise folds to structure and function.",
+    "Retrieve, validate and visualise experimental structures from the Protein Data Bank and judge their quality from resolution, R-factors and validation reports.",
+    "Superpose and compare structures with RMSD, TM-score and structural alignment algorithms and classify folds with CATH and SCOP.",
+    "Predict secondary and tertiary structure with statistical, homology-based and deep learning methods and assess the confidence of a prediction.",
+    "Prepare receptors and ligands, run molecular docking and interpret poses and scores with an understanding of their limitations.",
+    "Design a structure-based drug discovery workflow from target selection through virtual screening to ADMET filtering."
+  ],
+  "units": [
+    {
+      "title": "Protein structure levels",
+      "weeks": "1-2",
+      "topics": [
+        "Amino acids and the peptide bond; backbone torsion angles phi, psi and omega; the Ramachandran plot",
+        "Secondary structure: alpha helices, beta sheets, turns and loops; hydrogen-bonding patterns",
+        "Tertiary structure: motifs, domains and folds; the hydrophobic effect, salt bridges, disulphide bonds",
+        "Quaternary structure and assemblies; haemoglobin as a model of cooperativity and allostery",
+        "Protein folding and stability: Anfinsen's experiment, energy landscapes, Levinthal's paradox",
+        "How one substitution changes structure: HbS polymerisation in sickle cell disease"
+      ]
+    },
+    {
+      "title": "Experimental methods, databases and visualisation",
+      "weeks": "3",
+      "topics": [
+        "X-ray crystallography, NMR and cryo-electron microscopy: what each measures and its limits",
+        "The Protein Data Bank: PDB and mmCIF formats, chains, residues, atoms, B-factors, occupancy",
+        "Assessing structure quality: resolution, R and R-free, validation reports, Ramachandran outliers",
+        "Visualising and selecting structures in Mol* and PyMOL: cartoons, surfaces, electrostatics, binding sites",
+        "Related resources: UniProt, PDBsum, the AlphaFold Protein Structure Database"
+      ]
+    },
+    {
+      "title": "Structure comparison and classification",
+      "weeks": "4-5",
+      "topics": [
+        "Optimal superposition: the Kabsch algorithm and root-mean-square deviation",
+        "Structural alignment when sequences differ: DALI, CE and TM-align; TM-score and GDT",
+        "Fold classification with CATH and SCOP; convergent and divergent evolution of folds",
+        "Structure conservation beyond sequence similarity; detecting remote homologues",
+        "Contact maps, distance matrices and solvent accessibility"
+      ]
+    },
+    {
+      "title": "Secondary structure prediction",
+      "weeks": "6",
+      "topics": [
+        "Assigning secondary structure from coordinates with DSSP",
+        "Early statistical methods: Chou-Fasman and GOR propensities",
+        "Neural network predictors using evolutionary profiles (PSIPRED); accuracy measures Q3 and SOV",
+        "Predicting transmembrane helices, disordered regions and signal peptides"
+      ]
+    },
+    {
+      "title": "Protein structure prediction",
+      "weeks": "7-8",
+      "topics": [
+        "Homology modelling: template search, target-template alignment, model building, loop modelling (MODELLER, SWISS-MODEL)",
+        "Threading and fold recognition; fragment assembly and ab initio methods (Rosetta)",
+        "Coevolution and contact prediction from multiple sequence alignments",
+        "Deep learning prediction with AlphaFold and RoseTTAFold: architecture in outline, pLDDT and PAE confidence measures",
+        "Assessing models: the CASP experiments, MolProbity, knowing when a prediction should not be trusted",
+        "Modelling a Plasmodium falciparum protein with no experimental structure"
+      ]
+    },
+    {
+      "title": "Molecular mechanics and dynamics",
+      "weeks": "9",
+      "topics": [
+        "Force fields: bonded and non-bonded terms, partial charges, solvation models",
+        "Energy minimisation by steepest descent and conjugate gradients",
+        "Molecular dynamics: integrating Newton's equations, timesteps, thermostats, periodic boundaries",
+        "Analysing trajectories: RMSD and RMSF, flexibility and conformational change"
+      ]
+    },
+    {
+      "title": "Molecular docking",
+      "weeks": "10-11",
+      "topics": [
+        "Protein-ligand interactions: hydrogen bonds, hydrophobic contacts, pi stacking, binding affinity",
+        "Binding site detection and receptor preparation: protonation, waters, missing atoms",
+        "Ligand preparation: SMILES, 3D conformers, tautomers, charges; chemical databases such as PubChem and ChEMBL",
+        "Search algorithms and scoring functions in AutoDock Vina; rigid and flexible docking",
+        "Validating a docking protocol by redocking a crystal ligand; false positives and the limits of scores",
+        "Docking candidate inhibitors into Plasmodium falciparum dihydrofolate reductase"
+      ]
+    },
+    {
+      "title": "Drug discovery workflows",
+      "weeks": "12",
+      "topics": [
+        "The drug discovery pipeline: target identification, hit finding, lead optimisation, preclinical and clinical stages",
+        "Virtual screening: structure-based and ligand-based approaches, pharmacophores, similarity search",
+        "Drug-likeness and ADMET prediction: Lipinski's rule of five, toxicity filters",
+        "QSAR modelling and machine learning for activity prediction",
+        "Case studies: antimalarials such as artemisinin derivatives, open-source drug discovery for neglected tropical diseases, natural products from African medicinal plants"
+      ]
+    },
+    {
+      "title": "Project",
+      "weeks": "13",
+      "topics": [
+        "Choosing a disease target and gathering structural and chemical data",
+        "Building or retrieving a structure, preparing it and running a small virtual screen",
+        "Reporting results with figures, confidence assessment and limitations",
+        "Project: a structure-based screening report for a target relevant to health in Africa"
+      ]
+    }
+  ]
+}

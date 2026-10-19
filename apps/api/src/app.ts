@@ -8,9 +8,14 @@ import cors from '@fastify/cors';
 import { z } from 'zod';
 import { iso, num, type Db, type Queryable } from './db.js';
 import { hashPassword, hashToken, makeRateLimiter, newSessionToken, SESSION_DAYS, usernameFromEmail, verifyPassword } from './auth.js';
-import { levelFromXp, XP, type AgeBand, type Mastery, type Profile, type ProgressRecords, type User } from './types.js';
+import { levelFromXp, XP, type AgeBand, type Mastery, type PlatformRole, type Profile, type ProgressRecords, type User } from './types.js';
 import { HttpError } from './errors.js';
 import { purgeOnAccountDelete, registerAnalytics } from './analytics.js';
+import { registerCommunity } from './community.js';
+import { registerForum } from './forum.js';
+import { registerMessages } from './messages.js';
+import { registerCompetitions } from './competitions.js';
+import { createHub, registerRealtime } from './realtime.js';
 
 declare module 'fastify' {
   interface FastifyRequest {
@@ -48,6 +53,7 @@ const profilePatch = z
     avatarUrl: z.string().trim().url().max(500).nullable(),
     ageBand: z.enum(['under_18', '18_plus', 'undisclosed']),
     showOnBoards: z.boolean(),
+    bio: z.string().trim().max(500).nullable(),
   })
   .partial();
 
@@ -99,6 +105,9 @@ interface ProfileRow {
   age_band: AgeBand;
   show_on_boards: boolean;
   xp: number;
+  platform_role: PlatformRole;
+  facilitator_verified: boolean;
+  bio: string | null;
 }
 
 function toProfile(r: ProfileRow): Profile {
@@ -110,11 +119,16 @@ function toProfile(r: ProfileRow): Profile {
     showOnBoards: r.show_on_boards,
     xp: num(r.xp),
     level: levelFromXp(num(r.xp)),
+    platformRole: r.platform_role,
+    facilitatorVerified: r.facilitator_verified,
+    bio: r.bio,
   };
 }
 
-async function loadProfile(q: Queryable, userId: string): Promise<Profile> {
-  const r = await q.query<ProfileRow>('select username, display_name, avatar_url, age_band, show_on_boards, xp from profiles where user_id = $1', [userId]);
+export const PROFILE_COLUMNS = 'username, display_name, avatar_url, age_band, show_on_boards, xp, platform_role, facilitator_verified, bio';
+
+export async function loadProfile(q: Queryable, userId: string): Promise<Profile> {
+  const r = await q.query<ProfileRow>(`select ${PROFILE_COLUMNS} from profiles where user_id = $1`, [userId]);
   if (!r.rows[0]) throw new HttpError(500, 'no_profile', 'Your profile is missing. Please contact support.');
   return toProfile(r.rows[0]);
 }
@@ -351,6 +365,7 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     if (patch.avatarUrl !== undefined) add('avatar_url', patch.avatarUrl);
     if (patch.ageBand !== undefined) add('age_band', patch.ageBand);
     if (patch.showOnBoards !== undefined) add('show_on_boards', patch.showOnBoards);
+    if (patch.bio !== undefined) add('bio', patch.bio);
     if (sets.length) {
       try {
         await db.query(`update profiles set ${sets.join(', ')}, updated_at = now() where user_id = $1`, params);
@@ -360,6 +375,21 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
         throw err;
       }
     }
+    return { profile: await loadProfile(db, req.userId!) };
+  });
+
+  /** Self-declared facilitator role (teacher, lecturer, tutor), flagged for later verification. Moderators and admins keep their role. */
+  app.post('/api/me/facilitator', { preHandler: requireAuth }, async (req) => {
+    await db.query(
+      `update profiles set platform_role = 'facilitator', facilitator_requested_at = coalesce(facilitator_requested_at, now()), updated_at = now()
+        where user_id = $1 and platform_role = 'learner'`,
+      [req.userId],
+    );
+    return { profile: await loadProfile(db, req.userId!) };
+  });
+
+  app.delete('/api/me/facilitator', { preHandler: requireAuth }, async (req) => {
+    await db.query(`update profiles set platform_role = 'learner', facilitator_verified = false, updated_at = now() where user_id = $1 and platform_role = 'facilitator'`, [req.userId]);
     return { profile: await loadProfile(db, req.userId!) };
   });
 
@@ -391,6 +421,13 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
   });
 
   registerAnalytics(app, { db, researchSalt, requireAuth });
+
+  const hub = createHub();
+  await registerRealtime(app, { db, hub });
+  registerCommunity(app, { db, requireAuth, hub });
+  registerForum(app, { db, requireAuth, hub });
+  registerMessages(app, { db, requireAuth, hub });
+  registerCompetitions(app, { db, requireAuth, hub });
 
   app.get('/api/*', async () => {
     throw new HttpError(404, 'not_found', 'No such API route.');

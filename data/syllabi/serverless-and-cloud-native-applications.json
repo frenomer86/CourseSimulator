@@ -1,0 +1,105 @@
+{
+  "slug": "serverless-and-cloud-native-applications",
+  "description": "Designing and building applications that are native to the cloud: cloud-native principles, functions as a service, managed databases and object storage, event-driven design with queues and streams, APIs and gateways, observability of distributed systems, and designing for cost. Practised by building and deploying a complete event-driven application in a simulated cloud console and code editor in the browser, taught to the depth of a strong final-year cloud application development course and the cloud developer certifications.",
+  "modelledOn": [
+    "CNCF Cloud Native Definition and the CloudEvents specification",
+    "Richardson, Microservices Patterns",
+    "Hohpe and Woolf, Enterprise Integration Patterns",
+    "AWS Certified Developer - Associate and Microsoft Azure Developer Associate objectives"
+  ],
+  "outcomes": [
+    "Apply cloud-native principles to design stateless, loosely coupled and resilient applications.",
+    "Build, configure and test functions as a service and explain cold starts, concurrency and execution limits.",
+    "Choose and model managed databases and storage services for given access patterns and consistency needs.",
+    "Design event-driven systems with queues, topics and streams that handle retries, ordering and idempotence correctly.",
+    "Expose and secure APIs through gateways and instrument applications with logs, metrics and distributed traces.",
+    "Estimate, compare and reduce the cost of serverless and container-based designs."
+  ],
+  "units": [
+    {
+      "title": "Cloud-native principles",
+      "weeks": "1",
+      "topics": [
+        "What cloud-native means: containers, microservices, declarative APIs, immutable infrastructure, automation",
+        "Twelve-factor applications: configuration, backing services, disposability, logs as event streams",
+        "Monoliths, modular monoliths, microservices and serverless: when each fits",
+        "Designing for failure: timeouts, retries with backoff, circuit breakers, bulkheads"
+      ]
+    },
+    {
+      "title": "Functions as a service",
+      "weeks": "2-3",
+      "topics": [
+        "The FaaS execution model: triggers, handlers, statelessness, ephemeral storage, timeouts and memory settings",
+        "Cold starts, provisioned concurrency, concurrency limits and throttling",
+        "Platforms compared: AWS Lambda, Azure Functions, Google Cloud Run functions; open-source Knative and OpenFaaS",
+        "Packaging, dependencies, layers and environment configuration; local emulation and unit testing",
+        "Serverless containers and when to choose them over functions"
+      ]
+    },
+    {
+      "title": "Managed databases and storage",
+      "weeks": "4-5",
+      "topics": [
+        "Object storage: buckets, keys, lifecycle rules, signed URLs, static website hosting",
+        "Managed relational databases and serverless SQL; connection pooling from functions",
+        "Key-value and document stores: single-table design, partition keys, access patterns, secondary indexes",
+        "Consistency, transactions and conditional writes; caching with managed Redis",
+        "Choosing a data store for a school results portal, a ride-hailing app and a mobile money ledger"
+      ]
+    },
+    {
+      "title": "Event-driven design and queues",
+      "weeks": "6-7",
+      "topics": [
+        "Events, commands and messages; event notification, event-carried state transfer and event sourcing",
+        "Queues and topics: point-to-point and publish-subscribe; dead-letter queues and visibility timeouts",
+        "Streams: partitions, ordering, consumer groups, replay; Kafka and managed streaming services",
+        "Delivery guarantees: at-least-once delivery, idempotent consumers, deduplication, the outbox pattern",
+        "Workflows and sagas with step functions and durable orchestration; handling mobile money payment callbacks reliably"
+      ]
+    },
+    {
+      "title": "APIs and gateways",
+      "weeks": "8-9",
+      "topics": [
+        "API styles: REST, GraphQL, gRPC and webhooks; OpenAPI contracts and versioning",
+        "API gateways: routing, request validation, throttling, quotas, caching and custom domains",
+        "Authentication and authorisation: JWTs, OAuth 2.0 and OpenID Connect, API keys, managed identity providers",
+        "Real-time APIs with WebSockets and server-sent events",
+        "Backend for frontend and API composition; designing APIs for low-bandwidth mobile clients and USSD gateways"
+      ]
+    },
+    {
+      "title": "Observability",
+      "weeks": "10-11",
+      "topics": [
+        "The three signals: structured logs, metrics and distributed traces; correlation identifiers",
+        "OpenTelemetry instrumentation; tracing a request across functions, queues and databases",
+        "Dashboards, service level indicators and alerts for serverless applications",
+        "Debugging distributed failures: poison messages, retry storms, timeouts and partial failure",
+        "Testing cloud-native applications: contract tests, integration tests in ephemeral environments, chaos experiments"
+      ]
+    },
+    {
+      "title": "Designing for cost",
+      "weeks": "12",
+      "topics": [
+        "Serverless pricing: invocations, duration, memory, requests, data transfer and storage",
+        "Comparing the monthly cost of functions, containers and virtual machines at different traffic levels",
+        "Cost-aware design: batching, caching, right-sizing memory, avoiding chatty architectures and egress",
+        "Budgets, alerts and tagging; a worked estimate in dollars and cedis for a growing start-up"
+      ]
+    },
+    {
+      "title": "Deployment and capstone",
+      "weeks": "13",
+      "topics": [
+        "Infrastructure as code for serverless: SAM, Serverless Framework, Terraform; CI/CD pipelines with staged environments",
+        "Security essentials: least-privilege function roles, secrets management, dependency scanning",
+        "Data residency considerations when choosing regions for Ghanaian users",
+        "Capstone: an event-driven application with functions, a managed database, a queue, an API gateway, tracing and a cost estimate"
+      ]
+    }
+  ]
+}

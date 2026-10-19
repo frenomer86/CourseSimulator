@@ -9,6 +9,9 @@ import type { AgeBand } from '../lib/api';
 import { Avatar } from '../components/Avatar';
 import { Field, Notice } from '../components/Form';
 import { ResearchCard } from '../components/ResearchCard';
+import { competitions } from '../lib/community';
+import { TrophyCase } from './Competitions';
+import { useLoad } from '../components/Community';
 
 const AGE_BANDS: Array<{ value: AgeBand; label: string }> = [
   { value: 'undisclosed', label: 'Prefer not to say' },
@@ -155,6 +158,8 @@ export function ProfilePage() {
       )}
 
       <AccountCard onMessage={setMessage} />
+      {auth.status === 'signed-in' && <FacilitatorCard />}
+      {auth.status === 'signed-in' && <TrophyCard />}
       <ResearchCard />
 
       <form onSubmit={save} className="mt-6 rounded-lg border border-line bg-surface p-5 space-y-4">
@@ -391,6 +396,67 @@ function AccountCard({ onMessage }: { onMessage: (m: Message) => void }) {
           </button>
         </form>
       </details>
+    </section>
+  );
+}
+
+function FacilitatorCard() {
+  const auth = useAuth();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const role = auth.profile?.platformRole ?? 'learner';
+  if (role === 'moderator' || role === 'admin') return null;
+  const toggle = async () => {
+    setBusy(true);
+    setError(null);
+    const res = await auth.setFacilitator(role !== 'facilitator');
+    setBusy(false);
+    if (res.error) setError(res.error);
+  };
+  return (
+    <section className="mt-6 rounded-lg border border-line bg-surface p-5">
+      <h2 className="font-medium text-lg">Do you teach?</h2>
+      {role === 'facilitator' ? (
+        <>
+          <p className="mt-1 text-sm text-ink-soft leading-relaxed">
+            You are a facilitator{auth.profile?.facilitatorVerified ? '' : ' (not yet verified)'}. You can set simulation tasks in your groups, run contests, post in the Lecturers forum and
+            endorse answers. Verification of facilitator accounts is coming; until then the role is on your word.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Link to="/community" className="rounded-md bg-high px-4 py-2 text-white font-medium hover:bg-[#0c5a46]">
+              Go to your groups
+            </Link>
+            <button type="button" onClick={toggle} disabled={busy} className="rounded-md border border-line bg-surface px-4 py-2 font-medium hover:bg-bench disabled:opacity-60">
+              I am a learner after all
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="mt-1 text-sm text-ink-soft leading-relaxed">
+            Lecturers, teachers and tutors can create a group, share its join code or link, set simulation tasks from the labs and checks with deadlines, see who has finished, and run
+            contests. Declare yourself a facilitator to switch those on. Accounts will be verified later.
+          </p>
+          <button type="button" onClick={toggle} disabled={busy} className="mt-3 rounded-md border border-line bg-surface px-4 py-2 font-medium hover:bg-bench disabled:opacity-60">
+            I am a facilitator
+          </button>
+        </>
+      )}
+      {error && (
+        <div className="mt-3">
+          <Notice tone="error">{error}</Notice>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function TrophyCard() {
+  const awards = useLoad(() => competitions.myAwards(), []);
+  return (
+    <section className="mt-6 rounded-lg border border-line bg-surface p-5">
+      <h2 className="font-medium text-lg">Trophy case</h2>
+      <TrophyCase awards={awards.data ?? []} />
     </section>
   );
 }

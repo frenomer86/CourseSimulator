@@ -1,0 +1,113 @@
+{
+  "slug": "time-series-analysis-and-forecasting",
+  "description": "Modelling data ordered in time and forecasting it with honest uncertainty: trend, seasonality and cycles, smoothing and decomposition, exponential smoothing, stationarity and autocorrelation, ARIMA and seasonal ARIMA models, regression with time series, and rigorous forecast evaluation. Every model is fitted and diagnosed in browser notebooks on real series such as rainfall in northern Ghana, food prices in Kumasi and electricity demand, and judged only by out-of-sample accuracy.",
+  "modelledOn": [
+    "Hyndman and Athanasopoulos, Forecasting: Principles and Practice",
+    "Box, Jenkins, Reinsel and Ljung, Time Series Analysis: Forecasting and Control",
+    "Shumway and Stoffer, Time Series Analysis and Its Applications",
+    "Brockwell and Davis, Introduction to Time Series and Forecasting"
+  ],
+  "outcomes": [
+    "Identify the trend, seasonal, cyclical and irregular components of a time series and decompose it with classical and STL methods.",
+    "Produce forecasts with benchmark methods and exponential smoothing models, including prediction intervals.",
+    "Test for stationarity, interpret autocorrelation and partial autocorrelation functions and transform a series to stationarity.",
+    "Identify, estimate and diagnose ARIMA and seasonal ARIMA models and use them to forecast.",
+    "Evaluate forecasts with appropriate accuracy measures and time series cross-validation and choose between models.",
+    "Build and communicate a forecasting system for rainfall, prices or demand that decision makers can act on."
+  ],
+  "units": [
+    {
+      "title": "Time series data and components",
+      "weeks": "1",
+      "topics": [
+        "What makes time series different: dependence, ordering and the forecasting horizon",
+        "Time plots, seasonal plots, subseries plots, lag plots and scatter-plot matrices",
+        "Components: trend, seasonality, cycles and irregular variation; additive and multiplicative structure",
+        "Calendar effects, missing observations, irregular sampling and resampling to a common frequency",
+        "Handling time series in pandas: datetime indexes, rolling windows and resampling"
+      ]
+    },
+    {
+      "title": "Smoothing and decomposition",
+      "weeks": "2-3",
+      "topics": [
+        "Moving averages: simple, centred and weighted; moving averages of moving averages",
+        "Classical additive and multiplicative decomposition",
+        "STL decomposition with LOESS; robustness to outliers",
+        "Seasonal adjustment and its uses in official statistics (X-13ARIMA-SEATS in brief)",
+        "Box-Cox and log transformations; adjusting for inflation, population and calendar days",
+        "Decomposing monthly rainfall at Tamale into trend and seasonal patterns"
+      ]
+    },
+    {
+      "title": "Benchmark forecasts and exponential smoothing",
+      "weeks": "4-5",
+      "topics": [
+        "Benchmark methods: mean, naive, seasonal naive and drift; residual diagnostics",
+        "Simple exponential smoothing; choosing the smoothing parameter by minimising errors",
+        "Holt's linear trend and damped trend methods",
+        "Holt-Winters additive and multiplicative seasonal methods",
+        "The ETS state space framework: error, trend and seasonal combinations, likelihood and AIC",
+        "Prediction intervals and why they widen with the horizon"
+      ]
+    },
+    {
+      "title": "Stationarity and autocorrelation",
+      "weeks": "6",
+      "topics": [
+        "Strict and weak stationarity; white noise and random walks",
+        "The autocorrelation function and partial autocorrelation function; correlograms",
+        "Differencing and seasonal differencing; unit roots",
+        "Unit root and stationarity tests: augmented Dickey-Fuller and KPSS",
+        "Portmanteau tests for residual autocorrelation: Box-Pierce and Ljung-Box"
+      ]
+    },
+    {
+      "title": "ARIMA models",
+      "weeks": "7-8",
+      "topics": [
+        "The backshift operator; autoregressive AR(p) and moving average MA(q) processes",
+        "ARMA processes: stationarity and invertibility conditions; theoretical ACF and PACF patterns",
+        "ARIMA(p,d,q): model identification by the Box-Jenkins approach",
+        "Estimation by maximum likelihood; information criteria AIC, AICc and BIC; automatic order selection",
+        "Diagnostic checking of residuals and forecasting from ARIMA models",
+        "Modelling the monthly price of a bag of maize in Kumasi"
+      ]
+    },
+    {
+      "title": "Seasonal models and regression with time series",
+      "weeks": "9-10",
+      "topics": [
+        "Seasonal ARIMA models: (p,d,q)(P,D,Q)m notation, identification and fitting",
+        "Time series regression: trend and seasonal dummies, Fourier terms for long or multiple seasonality",
+        "Dynamic regression with ARIMA errors; lagged predictors and spurious regression",
+        "Interventions and outliers: level shifts, pulses and holiday effects such as Ramadan and Christmas trading",
+        "Multiple seasonality in hourly and daily data; an overview of TBATS and Prophet",
+        "Forecasting daily mobile money transaction volumes with weekly and monthly patterns"
+      ]
+    },
+    {
+      "title": "Forecast evaluation",
+      "weeks": "11",
+      "topics": [
+        "Training and test sets for time series; why random splitting fails",
+        "Point accuracy measures: MAE, RMSE, MAPE and its problems, and the scaled MASE",
+        "Evaluating distributions: prediction interval coverage, Winkler score and CRPS",
+        "Time series cross-validation with a rolling origin",
+        "Comparing models and the Diebold-Mariano test; forecast combination"
+      ]
+    },
+    {
+      "title": "Forecasting rainfall, prices and demand",
+      "weeks": "12-13",
+      "topics": [
+        "Rainfall forecasting for farmers in the north: onset dates, dry spells and seasonal totals",
+        "Market price forecasting for traders and food security monitoring; forecasting with sparse market data",
+        "Demand forecasting for inventory: hierarchical series, reconciliation and intermittent demand with Croston's method",
+        "Machine learning for time series in brief: lag features, gradient boosting and recurrent networks",
+        "Communicating forecasts and uncertainty to non-specialists; scenario forecasts",
+        "Capstone: a forecasting study on a Ghanaian series with model comparison and a written brief"
+      ]
+    }
+  ]
+}

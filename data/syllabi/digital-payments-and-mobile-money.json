@@ -1,0 +1,123 @@
+{
+  "slug": "digital-payments-and-mobile-money",
+  "description": "How money moves electronically: payment systems, clearing and settlement, cards and online payments, the architecture of mobile money platforms, agent networks, USSD and app channels, interoperability between providers, and fraud and consumer protection, with Ghana's GhIPSS and mobile money market as the running case. Students design and simulate a working mobile money system in the browser, posting every transaction to a double-entry ledger and tracing it through the switch, the agent and the USSD menu.",
+  "modelledOn": [
+    "CPMI-IOSCO, Principles for Financial Market Infrastructures",
+    "ISO 20022 and ISO 8583 financial messaging standards",
+    "PCI DSS (Payment Card Industry Data Security Standard)",
+    "GSMA Mobile Money API specification and Mobile Money Certification"
+  ],
+  "outcomes": [
+    "Explain how payment systems clear and settle transactions and compare gross and net settlement and their risks.",
+    "Describe the card and online payment flows, their message standards and the security controls that protect them.",
+    "Design the architecture of a mobile money platform, including wallets, a double-entry ledger, the trust account and its APIs.",
+    "Analyse agent network operations, including float, liquidity and commissions, and USSD and app channel design.",
+    "Explain how interoperability between providers is achieved through a national switch and how disputes and reversals are handled.",
+    "Identify common payment fraud and evaluate controls, KYC tiers and consumer protection rules set by regulators."
+  ],
+  "units": [
+    {
+      "title": "Money, payments and payment systems",
+      "weeks": "1",
+      "topics": [
+        "Functions of money; cash, central bank money, commercial bank money and e-money",
+        "Payment instruments: cash, cheques, credit transfers, direct debits, cards, mobile money and QR payments",
+        "Parties in a payment: payer, payee, their providers, the switch or scheme, the settlement agent and the regulator",
+        "The payments landscape in Ghana and Africa: the Bank of Ghana, GhIPSS, banks, electronic money issuers and fintechs",
+        "Financial inclusion: why mobile money spread in Africa, from M-Pesa in Kenya to Ghana's mobile money market"
+      ]
+    },
+    {
+      "title": "Payment systems and clearing",
+      "weeks": "2-3",
+      "topics": [
+        "Clearing and settlement: authorisation, clearing, netting and settlement; finality and irrevocability",
+        "Real-time gross settlement (the Ghana Interbank Settlement system) versus deferred net settlement (ACH)",
+        "Cheque codeline clearing, ACH direct credits and debits, and instant payment systems such as GhIPSS Instant Pay",
+        "Settlement risk, liquidity risk and credit risk; collateral, prefunding and intraday liquidity",
+        "Payment messages: ISO 20022 structure (pacs, pain and camt messages) and migration from legacy formats",
+        "Simulating netting across banks and computing settlement positions"
+      ]
+    },
+    {
+      "title": "Cards and online payments",
+      "weeks": "4-5",
+      "topics": [
+        "Card schemes and the four-party model: issuer, acquirer, scheme, merchant and cardholder; interchange and the merchant discount rate",
+        "Card transaction flow: authorisation, clearing and settlement; ISO 8583 messages and response codes",
+        "Chip cards and EMV: cryptograms, offline and online authentication; contactless payment",
+        "Online payments: payment gateways, 3-D Secure, tokenisation, chargebacks and card-not-present fraud",
+        "PCI DSS requirements and reducing scope with hosted payment pages and tokens",
+        "National card schemes such as gh-link and regional switching"
+      ]
+    },
+    {
+      "title": "Mobile money architecture",
+      "weeks": "6-7",
+      "topics": [
+        "The mobile money model: electronic money issuer, trust account at a bank, e-value backed one-to-one by funds",
+        "Platform architecture: wallet service, double-entry ledger, transaction engine, fees and limits, notification service",
+        "Transaction types: cash-in, cash-out, person-to-person transfer, merchant payment, bill payment, bulk disbursement",
+        "Correctness under failure: atomic transactions, idempotency keys, reconciliation and handling timeouts",
+        "APIs for merchants and partners; the GSMA Mobile Money API and callback design",
+        "Regulation: the Payment Systems and Services Act 2019 (Act 987), licence categories and trust account rules"
+      ]
+    },
+    {
+      "title": "Agent networks",
+      "weeks": "8",
+      "topics": [
+        "The role of agents: cash-in and cash-out points that turn e-value into cash and back",
+        "Agent hierarchy: master agents, sub-agents and merchants; recruitment, training and supervision",
+        "Liquidity management: e-float and cash float, rebalancing, and running out of float on market days",
+        "Commission structures, agent economics and the viability of rural agents",
+        "Agent fraud and errors: split transactions, unauthorised withdrawals, and agent monitoring",
+        "Simulating an agent network and the float rebalancing across a district"
+      ]
+    },
+    {
+      "title": "USSD and app channels",
+      "weeks": "9",
+      "topics": [
+        "USSD as a channel: sessions, shortcodes, menu trees, session timeouts and USSD gateway integration",
+        "Designing USSD menus for low literacy and feature phones: menu depth, confirmations, PIN entry and local languages",
+        "Smartphone apps, SIM toolkit applications and their security trade-offs",
+        "QR code payments and interoperable QR (GhQR); NFC and the move to merchant acceptance",
+        "Building and usability-testing a USSD mobile money menu in the browser simulator"
+      ]
+    },
+    {
+      "title": "Interoperability between providers",
+      "weeks": "10-11",
+      "topics": [
+        "Closed-loop versus interoperable systems; bilateral links versus a central switch",
+        "The GhIPSS Mobile Money Interoperability platform: wallet-to-wallet and wallet-to-bank transfers",
+        "Switch design: routing, name enquiry, transaction status queries, reversals and dispute resolution",
+        "Settlement between providers: net positions, settlement windows and reconciliation files",
+        "Cross-border payments and remittances: corridors, correspondent banking and the Pan-African Payment and Settlement System (PAPSS)",
+        "Interoperability elsewhere in Africa: Tanzania, Kenya, Rwanda and the WAEMU zone compared"
+      ]
+    },
+    {
+      "title": "Fraud and consumer protection",
+      "weeks": "12",
+      "topics": [
+        "Common mobile money fraud: social engineering, fake reversal requests, SIM swap, PIN theft and insider fraud",
+        "Fraud detection: velocity rules, device and location signals, anomaly detection and case management",
+        "Customer due diligence and KYC tiers with the Ghana Card; transaction and balance limits",
+        "Consumer protection: transparent fees, complaint handling, dispute timelines and dormant accounts",
+        "Taxes and levies on electronic transfers and their effect on usage"
+      ]
+    },
+    {
+      "title": "The future of payments and capstone",
+      "weeks": "13",
+      "topics": [
+        "Central bank digital currencies: the eCedi pilot, design choices and offline payments",
+        "Open banking and payment APIs; super-apps and embedded finance",
+        "Savings and credit on mobile money: digital susu, nano-loans and their risks",
+        "Capstone: design and simulate an interoperable mobile money service with a USSD menu, a ledger, agents and settlement through a switch"
+      ]
+    }
+  ]
+}

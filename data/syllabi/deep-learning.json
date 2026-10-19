@@ -1,0 +1,109 @@
+{
+  "slug": "deep-learning",
+  "description": "Modern deep learning from the building blocks up: layers, activations and automatic differentiation, training deep networks reliably, convolutional networks for vision, recurrent networks for sequences, attention and transformers, generative models from autoencoders to diffusion, and transfer learning when compute and data are scarce. Every architecture is built from tensors in PyTorch, trained in the browser lab on small budgets and then scaled up, with experiments on African data such as crop disease images and local-language text.",
+  "modelledOn": [
+    "Goodfellow, Bengio and Courville, Deep Learning",
+    "Prince, Understanding Deep Learning",
+    "Zhang, Lipton, Li and Smola, Dive into Deep Learning",
+    "Bishop and Bishop, Deep Learning: Foundations and Concepts"
+  ],
+  "outcomes": [
+    "Build neural networks from layers, activations and loss functions and implement automatic differentiation for them.",
+    "Train deep networks reliably using suitable initialisation, normalisation, optimisers and regularisation, and diagnose training failures.",
+    "Design and train convolutional networks for image classification, detection and segmentation.",
+    "Model sequences with recurrent networks and with attention-based transformers, and explain their trade-offs.",
+    "Implement and evaluate generative models including autoencoders, GANs and diffusion models.",
+    "Adapt pretrained models with transfer learning, fine-tuning and compression to work under limited compute and data."
+  ],
+  "units": [
+    {
+      "title": "Neural network building blocks",
+      "weeks": "1-2",
+      "topics": [
+        "From linear models to multilayer perceptrons; depth, width and universal approximation",
+        "Activation functions: sigmoid, tanh, ReLU, GELU and their gradients",
+        "Loss functions: mean squared error, cross-entropy and their probabilistic interpretation",
+        "Computational graphs and reverse-mode automatic differentiation implemented from scratch",
+        "Tensors, broadcasting and GPU computation in PyTorch; modules, datasets and data loaders"
+      ]
+    },
+    {
+      "title": "Training deep networks",
+      "weeks": "3-4",
+      "topics": [
+        "Initialisation schemes: Xavier and He; vanishing and exploding gradients",
+        "Normalisation: batch, layer and group normalisation; residual connections",
+        "Optimisers: SGD with momentum, Adam and AdamW; learning-rate schedules and warm-up",
+        "Regularisation: weight decay, dropout, data augmentation, label smoothing and early stopping",
+        "Double descent and generalisation in over-parameterised networks",
+        "Debugging training: overfitting a small batch, loss curves, gradient norms and experiment tracking"
+      ]
+    },
+    {
+      "title": "Convolutional networks",
+      "weeks": "5-6",
+      "topics": [
+        "Convolution, padding, stride, pooling and receptive fields; parameter sharing and equivariance",
+        "Architectures: LeNet, AlexNet, VGG, ResNet, and efficient networks such as MobileNet and EfficientNet",
+        "Object detection and semantic segmentation: anchor boxes, YOLO-style detectors and U-Net",
+        "Visualising and interpreting CNNs: saliency maps and Grad-CAM",
+        "Classifying cassava and cocoa leaf diseases from smartphone photographs"
+      ]
+    },
+    {
+      "title": "Recurrent networks and sequences",
+      "weeks": "7",
+      "topics": [
+        "Sequence modelling tasks; recurrent neural networks and backpropagation through time",
+        "Long short-term memory and gated recurrent units; gradient clipping",
+        "Bidirectional and stacked RNNs; sequence-to-sequence encoder-decoder models",
+        "Word embeddings and tokenisation for low-resource languages such as Twi, Ewe and Hausa"
+      ]
+    },
+    {
+      "title": "Attention and transformers",
+      "weeks": "8-9",
+      "topics": [
+        "Attention as soft lookup; scaled dot-product and multi-head attention",
+        "The transformer: positional encodings, encoder and decoder blocks, layer normalisation and feed-forward layers",
+        "Pretraining objectives: masked language modelling and next-token prediction; BERT and GPT-style models",
+        "Vision transformers and multimodal models in brief",
+        "Scaling laws, efficient attention and the cost of large models",
+        "Building a small transformer for machine translation between English and a Ghanaian language"
+      ]
+    },
+    {
+      "title": "Generative models",
+      "weeks": "10-11",
+      "topics": [
+        "Autoencoders and variational autoencoders: the evidence lower bound and the reparameterisation trick",
+        "Generative adversarial networks: the minimax game, training instability and mode collapse",
+        "Normalising flows in brief",
+        "Diffusion models: forward noising, denoising score matching and sampling",
+        "Autoregressive language models and decoding strategies: greedy, beam search, top-k and nucleus sampling",
+        "Evaluating generative models and the risks of synthetic media and deepfakes"
+      ]
+    },
+    {
+      "title": "Transfer learning with limited compute",
+      "weeks": "12",
+      "topics": [
+        "Feature extraction versus fine-tuning; choosing layers to freeze",
+        "Parameter-efficient fine-tuning: adapters and LoRA",
+        "Self-supervised and contrastive pretraining; few-shot learning with foundation models",
+        "Model compression: quantisation, pruning and knowledge distillation",
+        "Mixed precision, gradient accumulation and free or shared GPUs; on-device inference for low-bandwidth users"
+      ]
+    },
+    {
+      "title": "Responsible deployment and capstone",
+      "weeks": "13",
+      "topics": [
+        "Dataset bias, under-representation of African data and fairness evaluation",
+        "Robustness, adversarial examples and distribution shift",
+        "Serving a model and monitoring it after deployment; energy and environmental cost",
+        "Capstone: a deep learning project on an African dataset with a model card and compute budget report"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "slug": "sequence-analysis-and-alignment",
+  "description": "Comparing DNA and protein sequences computationally: sequence formats and databases, pairwise alignment by dynamic programming, substitution matrices and gap penalties, BLAST database search and its statistics, multiple sequence alignment, motifs and profiles, and hidden Markov models for sequence families. Practised by implementing the core algorithms in the browser and applying them to public data such as the haemoglobin beta gene behind sickle cell disease and Plasmodium falciparum drug-resistance genes.",
+  "modelledOn": [
+    "Durbin, Eddy, Krogh and Mitchison, Biological Sequence Analysis: Probabilistic Models of Proteins and Nucleic Acids",
+    "Mount, Bioinformatics: Sequence and Genome Analysis",
+    "Pevsner, Bioinformatics and Functional Genomics",
+    "Jones and Pevzner, An Introduction to Bioinformatics Algorithms"
+  ],
+  "outcomes": [
+    "Retrieve, parse and convert nucleotide and protein sequences in FASTA, GenBank and FASTQ formats and navigate the major public sequence databases.",
+    "Derive and implement global, local and semi-global alignment by dynamic programming, including affine gap penalties and traceback.",
+    "Explain how PAM and BLOSUM substitution matrices are built from log-odds scores and choose matrices and gap penalties suited to a comparison.",
+    "Search sequence databases with BLAST and interpret bit scores, E-values and alignment coverage when judging homology.",
+    "Construct and assess multiple sequence alignments and summarise conserved regions as consensus sequences, position weight matrices and sequence logos.",
+    "Build and apply hidden Markov models with the Viterbi, forward and Baum-Welch algorithms to gene finding and protein family classification."
+  ],
+  "units": [
+    {
+      "title": "Biological sequences, formats and databases",
+      "weeks": "1",
+      "topics": [
+        "From the central dogma to data: DNA, RNA and protein alphabets; codons, reading frames and translation",
+        "Sequence file formats: FASTA, GenBank flat files, FASTQ with Phred quality scores; parsing them in code",
+        "Primary and curated databases: GenBank, ENA, RefSeq, UniProtKB/Swiss-Prot, Ensembl; accession numbers and versions",
+        "Basic sequence operations: reverse complement, GC content, k-mer counting, open reading frame finding",
+        "Retrieving the human HBB gene with the sickle cell mutation (Glu6Val) and Plasmodium falciparum genes from public databases"
+      ]
+    },
+    {
+      "title": "Dot plots and the alignment problem",
+      "weeks": "2",
+      "topics": [
+        "Why align: homology, similarity and identity distinguished; orthologues and paralogues",
+        "Dot plots with windows and stringency; spotting repeats, inversions and domain duplications",
+        "Edit distance and the alignment as a path through a grid; how many possible alignments there are",
+        "Recursion with memoisation versus tabulation; why brute force fails"
+      ]
+    },
+    {
+      "title": "Pairwise alignment with dynamic programming",
+      "weeks": "3-4",
+      "topics": [
+        "Needleman-Wunsch global alignment: recurrence, initialisation, filling the matrix, traceback",
+        "Smith-Waterman local alignment and semi-global (overlap) alignment; when each is appropriate",
+        "Affine gap penalties with Gotoh's three-matrix algorithm; gap opening versus extension",
+        "Time and space complexity; linear-space alignment with Hirschberg's divide and conquer",
+        "Banded alignment for long similar sequences; implementing and visualising each algorithm step by step"
+      ]
+    },
+    {
+      "title": "Scoring matrices and gap penalties",
+      "weeks": "5",
+      "topics": [
+        "Scoring as log-odds: target frequencies, background frequencies and the meaning of a score",
+        "PAM matrices from closely related sequences and extrapolation by matrix powers; Dayhoff's evolutionary model",
+        "BLOSUM matrices from conserved blocks; how clustering thresholds define BLOSUM62 and its relatives",
+        "Nucleotide scoring schemes, transition and transversion weighting; choosing a matrix for the divergence at hand",
+        "Statistical significance of alignment scores: extreme value distribution, Karlin-Altschul statistics, permutation tests"
+      ]
+    },
+    {
+      "title": "Database search with BLAST",
+      "weeks": "6-7",
+      "topics": [
+        "Heuristic search: word seeding, neighbourhood words, two-hit extension and gapped extension in BLAST; FASTA in brief",
+        "BLAST programs: blastn, blastp, blastx, tblastn, tblastx and megablast; choosing the right one",
+        "Interpreting results: raw and bit scores, E-values, percentage identity, query coverage; the effect of database size",
+        "Low-complexity filtering, repeat masking and avoiding false positives",
+        "Iterative profile search with PSI-BLAST; the risk of profile drift",
+        "Identifying an unknown pathogen sequence or a resistance gene such as pfcrt or pfkelch13 by BLAST"
+      ]
+    },
+    {
+      "title": "Multiple sequence alignment",
+      "weeks": "8-9",
+      "topics": [
+        "Why multiple alignment is hard: the sum-of-pairs objective and NP-hardness",
+        "Progressive alignment: guide trees, profile-profile alignment and why early gaps are frozen (Clustal)",
+        "Iterative refinement and consistency-based methods: MUSCLE, MAFFT, T-Coffee",
+        "Evaluating alignments against benchmarks; trimming unreliable columns",
+        "Visualising and editing alignments; conservation scores across malaria antigen variants"
+      ]
+    },
+    {
+      "title": "Motifs and profiles",
+      "weeks": "10",
+      "topics": [
+        "Consensus sequences, regular-expression patterns and PROSITE",
+        "Position frequency and position weight matrices; pseudocounts; information content and sequence logos",
+        "Scanning sequences with a weight matrix for transcription factor binding sites",
+        "Motif discovery by expectation maximisation (MEME) and Gibbs sampling",
+        "Protein domains and family databases: Pfam and InterPro"
+      ]
+    },
+    {
+      "title": "Hidden Markov models for sequences",
+      "weeks": "11-12",
+      "topics": [
+        "Markov chains for sequences: CpG islands and log-likelihood ratio scoring",
+        "Hidden Markov models: states, transitions, emissions; the occasionally dishonest casino",
+        "Viterbi decoding, the forward and backward algorithms, posterior decoding; working in log space",
+        "Parameter estimation by counting and by Baum-Welch expectation maximisation",
+        "Profile HMMs with match, insert and delete states; HMMER searches against Pfam",
+        "Gene finding with HMMs: exons, introns and splice signals"
+      ]
+    },
+    {
+      "title": "Applications and project",
+      "weeks": "13",
+      "topics": [
+        "Reproducible sequence analysis with Biopython and notebooks; recording tool versions and parameters",
+        "Comparing HBB variants across populations and relating sequence change to protein change",
+        "Annotating a newly sequenced gene: search, align, identify domains, predict function",
+        "Project: an alignment and annotation report on a gene of public health importance in Africa"
+      ]
+    }
+  ]
+}

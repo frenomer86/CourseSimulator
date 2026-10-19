@@ -1,0 +1,111 @@
+{
+  "slug": "spreadsheet-analytics",
+  "description": "Using spreadsheets to organise, analyse and model data: structured tables, formulas and references, lookup and logical functions, pivot tables, charts, descriptive statistics, what-if analysis with goal seek and Solver, and building a sound business model. Every skill is practised on real-looking local datasets in a spreadsheet that runs in the browser, with each exercise checked automatically for correct formulas as well as correct answers.",
+  "modelledOn": [
+    "Winston, Microsoft Excel Data Analysis and Business Modeling",
+    "Powell and Baker, Business Analytics: The Art of Modeling with Spreadsheets",
+    "Ragsdale, Spreadsheet Modeling and Decision Analysis",
+    "Microsoft Office Specialist: Excel Expert certification"
+  ],
+  "outcomes": [
+    "Organise raw data into clean, validated tables suitable for analysis.",
+    "Write correct formulas with relative, absolute and mixed references and use statistical, text, date, lookup and logical functions.",
+    "Summarise and explore data with conditional aggregation, pivot tables and descriptive statistics.",
+    "Choose and build charts and simple dashboards that communicate findings honestly.",
+    "Perform what-if analysis with data tables, scenarios, goal seek and Solver.",
+    "Build, document and check a small business model that separates inputs, calculations and outputs."
+  ],
+  "units": [
+    {
+      "title": "Organising data in tables",
+      "weeks": "1-2",
+      "topics": [
+        "Rows as records and columns as fields; one table per subject; avoiding merged cells and blank rows",
+        "Data types and formats: numbers, text, dates, currency in cedis and percentages",
+        "Structured tables and named ranges",
+        "Data validation with drop-down lists and input rules",
+        "Sorting, filtering, removing duplicates, text to columns and importing CSV files",
+        "Running dataset: a market trader's daily sales log"
+      ]
+    },
+    {
+      "title": "Formulas, references and functions",
+      "weeks": "3-4",
+      "topics": [
+        "Operators and precedence; relative, absolute and mixed references",
+        "Mathematical and statistical functions: SUM, AVERAGE, MEDIAN, MIN, MAX, COUNT, COUNTA, ROUND",
+        "Text functions: LEFT, RIGHT, MID, LEN, TRIM, PROPER, CONCAT, TEXTJOIN; cleaning phone numbers",
+        "Date and time functions: TODAY, DATE, EOMONTH, NETWORKDAYS, DATEDIF",
+        "Dynamic arrays: FILTER, SORT, UNIQUE and SEQUENCE",
+        "Error values and formula auditing: trace precedents and dependents, evaluate formula"
+      ]
+    },
+    {
+      "title": "Lookup and logical functions",
+      "weeks": "5-6",
+      "topics": [
+        "IF, nested IF, IFS, AND, OR, NOT and IFERROR",
+        "Conditional aggregation: SUMIFS, COUNTIFS, AVERAGEIFS, MAXIFS",
+        "VLOOKUP and HLOOKUP and their limitations; INDEX with MATCH; XLOOKUP",
+        "Approximate-match lookups for bands: mobile money fee tiers and income tax brackets",
+        "Combining lookups across sheets; building a price list and invoice"
+      ]
+    },
+    {
+      "title": "Pivot tables and summaries",
+      "weeks": "7",
+      "topics": [
+        "Creating pivot tables: rows, columns, values and filters",
+        "Summarising by sum, count, average and percentage of total; grouping dates and numbers",
+        "Calculated fields, slicers and timelines",
+        "Cross-tabulating district health data by region, month and condition",
+        "Refreshing pivots when the source data changes"
+      ]
+    },
+    {
+      "title": "Charts in spreadsheets",
+      "weeks": "8",
+      "topics": [
+        "Choosing a chart: column, bar, line, scatter, pie, histogram and box plot",
+        "Formatting axes, labels and titles; combination charts and secondary axes",
+        "Misleading charts: truncated axes, 3-D effects and cherry-picked ranges",
+        "Conditional formatting, data bars and sparklines",
+        "Building a one-page dashboard"
+      ]
+    },
+    {
+      "title": "Descriptive statistics and trends",
+      "weeks": "9",
+      "topics": [
+        "Measures of centre and spread: mean, median, mode, range, standard deviation, percentiles",
+        "Frequency distributions and histograms with FREQUENCY and COUNTIFS",
+        "Correlation and scatter plots; trendlines",
+        "Simple linear regression with SLOPE, INTERCEPT and LINEST; forecasting with FORECAST and moving averages",
+        "Analysing seasonal cocoa prices or rainfall"
+      ]
+    },
+    {
+      "title": "What-if analysis and goal seek",
+      "weeks": "10-11",
+      "topics": [
+        "One- and two-variable data tables; sensitivity analysis",
+        "Scenario manager: best, worst and expected cases",
+        "Goal seek: break-even volume and target price",
+        "Solver for optimisation: linear programming for product mix and delivery routes",
+        "Financial functions: PMT, FV, NPV and IRR; a loan amortisation schedule"
+      ]
+    },
+    {
+      "title": "Building a simple business model",
+      "weeks": "12-13",
+      "topics": [
+        "Model design: separating inputs, calculations and outputs; documenting assumptions",
+        "Revenue, costs, profit and loss and a monthly cash-flow forecast for a small business such as a chop bar or a cocoa cooperative",
+        "Error checks, consistency totals and spreadsheet risk; well-known spreadsheet errors and their costs",
+        "Protecting sheets and cells, version control and sharing models",
+        "Presenting results and recommendations to a non-technical owner",
+        "Capstone: a complete, checked business model with a short report"
+      ]
+    }
+  ]
+}

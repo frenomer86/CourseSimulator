@@ -1,0 +1,105 @@
+{
+  "slug": "mlops-and-model-deployment",
+  "description": "Taking machine learning from notebook to production: the model life cycle, data and experiment versioning, packaging and serving models behind APIs, deployment to the cloud and to phones and edge devices, monitoring for drift, automated retraining pipelines, and the cost and latency trade-offs of online and offline inference. Practised end to end in browser notebooks, simulated terminals and a simulated cloud console, taught to the depth of a strong final-year MLOps course and the machine learning engineering certifications.",
+  "modelledOn": [
+    "Huyen, Designing Machine Learning Systems",
+    "Lakshmanan, Robinson and Munn, Machine Learning Design Patterns",
+    "Treveil et al., Introducing MLOps",
+    "Google Cloud Professional Machine Learning Engineer and AWS Certified Machine Learning Engineer - Associate objectives"
+  ],
+  "outcomes": [
+    "Describe the machine learning life cycle and design a system that connects data, training, deployment and feedback.",
+    "Version data, code and models and track experiments so that any result can be reproduced.",
+    "Package models in containers and serve them through batch, online and streaming interfaces with tested APIs.",
+    "Deploy models to cloud platforms and to low-cost phones and edge devices, choosing compression techniques to meet latency and size budgets.",
+    "Monitor deployed models for data and concept drift and build automated, gated retraining pipelines.",
+    "Estimate and reduce the cost and latency of inference and design for intermittent connectivity and offline use."
+  ],
+  "units": [
+    {
+      "title": "The machine learning life cycle",
+      "weeks": "1",
+      "topics": [
+        "Why most models never reach production; technical debt in ML systems; the gap between research and engineering",
+        "Life cycle stages: problem framing, data collection, training, evaluation, deployment, monitoring, feedback",
+        "Roles and maturity levels: data scientist, ML engineer, platform team; MLOps maturity models",
+        "Framing business metrics against model metrics: a fraud detector for a mobile money operator"
+      ]
+    },
+    {
+      "title": "Experiment tracking and versioning",
+      "weeks": "2-3",
+      "topics": [
+        "Reproducibility: random seeds, environment pinning, deterministic training, lock files",
+        "Data versioning with DVC and content-addressed storage; dataset snapshots and lineage",
+        "Experiment tracking with MLflow: parameters, metrics, artefacts, comparing runs",
+        "Model registries: model versions, stages, approvals and model cards",
+        "Feature stores: offline and online features, point-in-time correctness and training-serving skew"
+      ]
+    },
+    {
+      "title": "Packaging and serving models",
+      "weeks": "4-5",
+      "topics": [
+        "Serialising models: pickle and its risks, ONNX, TorchScript, SavedModel",
+        "Serving a model behind a REST API with FastAPI; input validation, schemas and error handling",
+        "Containerising the model server with Docker; health checks, configuration and image size",
+        "Batch, online and streaming inference; dedicated serving frameworks and model servers",
+        "Testing ML code: unit tests for features, model behaviour tests, contract tests for the API"
+      ]
+    },
+    {
+      "title": "Deployment on cloud and on device",
+      "weeks": "6-7",
+      "topics": [
+        "Cloud deployment options: virtual machines, managed endpoints, Kubernetes, serverless functions",
+        "Release strategies: shadow deployment, canary releases, blue-green, A/B tests and interleaving",
+        "Model compression: quantisation, pruning, knowledge distillation; measuring accuracy loss",
+        "On-device inference with TensorFlow Lite and ONNX Runtime on low-cost Android phones; WebAssembly and WebGPU in the browser",
+        "A crop disease classifier that works offline on a farmer's phone and syncs results when connectivity returns"
+      ]
+    },
+    {
+      "title": "Automated retraining pipelines",
+      "weeks": "8-9",
+      "topics": [
+        "CI/CD for ML: continuous integration of code and data, continuous training, continuous delivery of models",
+        "Pipeline orchestration: directed acyclic graphs, Airflow, Kubeflow Pipelines; idempotent steps and caching",
+        "Triggers for retraining: schedules, data volume, performance drops; validation gates and human approval",
+        "Data validation: schema checks, expectations, anomaly detection on incoming data",
+        "Rollback and model governance: audit trails, reproducible builds and sign-off"
+      ]
+    },
+    {
+      "title": "Monitoring and drift",
+      "weeks": "10-11",
+      "topics": [
+        "What to monitor: system metrics, prediction distributions, input features, delayed ground truth",
+        "Data drift, concept drift and label shift; seasonal effects such as harvest cycles and festive spending",
+        "Detecting drift: population stability index, Kolmogorov-Smirnov tests, Jensen-Shannon divergence, windowed statistics",
+        "Observability stack for models: logging predictions, dashboards with Prometheus and Grafana, alerting thresholds",
+        "Feedback loops and fairness monitoring across regions, languages and user groups"
+      ]
+    },
+    {
+      "title": "Cost, latency and offline inference",
+      "weeks": "12",
+      "topics": [
+        "Latency budgets: p50, p95 and p99; batching, caching and hardware choice between CPU and GPU",
+        "Estimating inference cost per thousand predictions in dollars and cedis; autoscaling and scale to zero",
+        "Designing for unreliable networks and power: offline-first apps, store-and-forward, USSD and SMS fallbacks",
+        "Serving large models economically: distillation, quantised models, retrieval to shrink prompts"
+      ]
+    },
+    {
+      "title": "Responsible operation and capstone",
+      "weeks": "13",
+      "topics": [
+        "Security of ML systems: model theft, data poisoning, adversarial inputs, supply-chain risks in model files",
+        "Privacy and compliance: personal data in training sets, retention and the Data Protection Act",
+        "Incident response for models: runbooks, kill switches and fallbacks to rules",
+        "Capstone: a versioned, containerised, monitored model with an automated retraining pipeline and a cost report"
+      ]
+    }
+  ]
+}

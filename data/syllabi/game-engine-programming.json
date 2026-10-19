@@ -1,0 +1,119 @@
+{
+  "slug": "game-engine-programming",
+  "description": "How a game engine works inside and how to build one: the game loop and timing, rendering sprites and scenes, input handling, entity and component systems, collision detection, audio, resource management and performance on low-end phones. Students write a small engine in JavaScript on the HTML canvas and WebGL piece by piece, profile it in the browser and ship a complete game on it.",
+  "modelledOn": [
+    "Gregory, Game Engine Architecture",
+    "Nystrom, Game Programming Patterns",
+    "Ericson, Real-Time Collision Detection",
+    "McShaffry and Graham, Game Coding Complete"
+  ],
+  "outcomes": [
+    "Explain the architecture of a game engine and the responsibilities of its runtime subsystems.",
+    "Implement a game loop with fixed and variable time steps, frame pacing and interpolation.",
+    "Render sprites, tile maps and scenes efficiently with the canvas and WebGL, using batching, atlases and cameras.",
+    "Design entity and component systems and apply game programming patterns to organise game code.",
+    "Implement collision detection with bounding volumes and spatial partitioning, and integrate input and audio subsystems.",
+    "Profile and optimise a game to run smoothly on low-end Android phones with limited memory, CPU and battery."
+  ],
+  "units": [
+    {
+      "title": "Engine architecture and the game loop",
+      "weeks": "1-2",
+      "topics": [
+        "What an engine is: runtime layers (platform, core systems, resources, rendering, physics, gameplay) and the tools pipeline",
+        "The game loop: process input, update, render; requestAnimationFrame and the browser event loop",
+        "Time: delta time, fixed time step with accumulator, interpolation between states, spiral of death",
+        "Frame rate, vertical sync, frame pacing and measuring frame time",
+        "Engine start-up and shut-down, configuration, logging and a debug overlay"
+      ]
+    },
+    {
+      "title": "Rendering sprites and scenes",
+      "weeks": "3-4",
+      "topics": [
+        "2D rendering with the canvas: sprites, transforms, layering and draw order",
+        "Sprite sheets and texture atlases; frame-based and skeletal animation; animation state machines",
+        "Tile maps: tile sets, layers, culling to the visible area, map editors and loading map files",
+        "Cameras and viewports: following, dead zones, screen shake, parallax and resolution independence",
+        "WebGL sprite batching: vertex buffers, a textured-quad shader, minimising draw calls and state changes",
+        "Scene graphs, render queues and particle effects"
+      ]
+    },
+    {
+      "title": "Input handling",
+      "weeks": "5",
+      "topics": [
+        "Input devices in the browser: keyboard, mouse, touch, pointer events and gamepads",
+        "Polling versus events; input buffering and mapping raw input to game actions",
+        "Touch controls for phones: virtual joysticks, gestures, tap zones and hit-target sizing",
+        "Input latency, debouncing and combos; recording and replaying input for testing"
+      ]
+    },
+    {
+      "title": "Entity and component systems",
+      "weeks": "6-7",
+      "topics": [
+        "From inheritance hierarchies to composition: the problems with deep game-object class trees",
+        "Entity-component-system architecture: entities as identifiers, components as data, systems as behaviour",
+        "Data-oriented design: structure of arrays, cache locality, archetypes and sparse sets",
+        "Game programming patterns: command, observer, state, component, object pool, update method, service locator",
+        "Messaging and events between systems; scripting gameplay and hot reloading",
+        "Saving and loading game state; serialisation of entities and components"
+      ]
+    },
+    {
+      "title": "Collision detection",
+      "weeks": "8-9",
+      "topics": [
+        "Bounding volumes: circles, axis-aligned bounding boxes, oriented boxes and capsules; intersection tests",
+        "The separating axis theorem for convex polygons; point-in-polygon and ray casts",
+        "Broad phase: uniform grids, quadtrees, sweep and prune, bounding volume hierarchies",
+        "Continuous collision detection and tunnelling; swept tests",
+        "Collision layers and masks, triggers and resolving overlaps for tile-based and platform games",
+        "Measuring broad-phase performance as the number of entities grows"
+      ]
+    },
+    {
+      "title": "Audio",
+      "weeks": "10",
+      "topics": [
+        "Digital audio basics: sampling, formats, compression and latency",
+        "The Web Audio API: audio context, buffers, gain and panning nodes, the browser autoplay policy",
+        "A sound manager: channels, priorities, pooling, music crossfades and ducking",
+        "Positional audio, procedural sound effects and keeping audio in sync with gameplay"
+      ]
+    },
+    {
+      "title": "Resources, scenes and tools",
+      "weeks": "11",
+      "topics": [
+        "Resource management: loading, caching, reference counting and unloading assets",
+        "Asset pipelines: image compression, atlasing, audio encoding and bundling for the web",
+        "Scene management, transitions and loading screens; progressive loading on slow connections",
+        "Debugging tools: in-game console, entity inspector, collision visualisation and time scaling",
+        "Offline play with service workers and caching for intermittent connectivity"
+      ]
+    },
+    {
+      "title": "Performance on low-end phones",
+      "weeks": "12",
+      "topics": [
+        "The target: entry-level Android phones with little RAM, slow CPUs and GPUs, and expensive mobile data",
+        "Profiling in the browser: frame timelines, CPU profiles, memory snapshots and GPU bottlenecks",
+        "Avoiding garbage-collection pauses: object pools, preallocated arrays and avoiding per-frame allocations",
+        "Reducing draw calls, overdraw and fill-rate cost; lower resolutions and adaptive quality settings",
+        "Battery, thermal throttling, download size and start-up time as design constraints"
+      ]
+    },
+    {
+      "title": "Capstone: a complete game on the engine",
+      "weeks": "13",
+      "topics": [
+        "Integrating the subsystems: loop, renderer, input, ECS, collision and audio into one engine",
+        "Building a complete 2D game, such as a platformer about an Ananse story or an arcade game set in a Ghanaian market",
+        "Testing on a real low-end phone and meeting a frame-time and memory budget",
+        "Packaging as a progressive web app and documenting the engine's architecture"
+      ]
+    }
+  ]
+}

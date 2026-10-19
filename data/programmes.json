@@ -1,0 +1,374 @@
+{
+  "$comment": "Programmes of study and the courses they add to the catalogue. Read by scripts/build-courses.mjs, which merges newCourses into data/courses.json and writes the programmes list there. A programme lists course slugs in suggested order; a course can belong to several programmes. year and semester only order courses and are never shown as groupings.",
+  "areas": {
+    "signals-control": "Signals, Control and Robotics",
+    "information-systems": "Information Systems, Business and Finance",
+    "health-bio": "Health and Bioinformatics",
+    "games": "Games and Interactive Media"
+  },
+  "newCourses": [
+    { "title": "Circuit Analysis", "area": "hardware", "year": 1, "semester": 2, "engines": ["E8", "E7"], "phase": 3,
+      "topics": ["Voltage, current, resistance and Ohm's law", "Kirchhoff's laws, nodal and mesh analysis", "Thevenin, Norton and superposition", "Capacitors, inductors and transients", "AC circuits, phasors and impedance", "Power in AC circuits", "Diodes and transistors as circuit elements"] },
+    { "title": "Signals and Systems", "area": "signals-control", "year": 2, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Continuous and discrete-time signals", "Linear time-invariant systems and convolution", "Fourier series", "Fourier transform and frequency response", "Laplace transform", "Sampling and aliasing", "The z-transform"] },
+    { "title": "Digital Signal Processing", "area": "signals-control", "year": 3, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Discrete-time signals and the DFT", "The fast Fourier transform", "FIR filter design", "IIR filter design", "Multirate processing", "Spectral analysis", "Audio and image processing applications"] },
+    { "title": "Control Systems", "area": "signals-control", "year": 3, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Modelling dynamic systems", "Transfer functions and block diagrams", "Time response and stability", "Root locus", "Frequency response: Bode and Nyquist", "PID controller design and tuning", "State-space models and digital control"] },
+    { "title": "VLSI Design", "area": "hardware", "year": 4, "semester": 1, "engines": ["E2", "E6"], "phase": 3,
+      "topics": ["MOS transistors and CMOS logic", "Fabrication and layout rules", "Combinational and sequential CMOS circuits", "Hardware description languages", "Timing, power and delay", "FPGA design flow", "Testing and design for testability"] },
+
+    { "title": "Requirements Engineering", "area": "software-practice", "year": 2, "semester": 1, "engines": ["E9", "E10"], "phase": 3,
+      "topics": ["Stakeholders and elicitation techniques", "Functional and non-functional requirements", "Use cases and user stories", "Requirements modelling", "Validation, prioritisation and negotiation", "Requirements management and traceability", "Requirements for low-connectivity users"] },
+    { "title": "Software Architecture and Design Patterns", "area": "software-practice", "year": 3, "semester": 1, "engines": ["E9", "E1"], "phase": 3,
+      "topics": ["Design principles: SOLID, coupling and cohesion", "Creational patterns", "Structural patterns", "Behavioural patterns", "Architectural styles: layered, event-driven, microservices", "Quality attributes and trade-offs", "Documenting and evaluating architecture"] },
+    { "title": "Software Testing and Quality Assurance", "area": "software-practice", "year": 3, "semester": 2, "engines": ["E1", "E6"], "phase": 3,
+      "topics": ["Testing fundamentals and the test pyramid", "Black-box test design", "White-box testing and coverage", "Unit, integration and end-to-end tests", "Test-driven development", "Performance and security testing", "Quality metrics and process improvement"] },
+    { "title": "Secure Software Development", "area": "security-ethics", "year": 4, "semester": 1, "engines": ["E1", "E10"], "phase": 3,
+      "topics": ["Secure development life cycle", "Threat modelling", "Common vulnerabilities: OWASP Top Ten", "Input validation and output encoding", "Authentication, sessions and secrets", "Static and dynamic analysis", "Security code review and dependency management"] },
+
+    { "title": "Spreadsheet Analytics", "area": "data", "year": 1, "semester": 1, "engines": ["E5", "E7"], "phase": 3,
+      "topics": ["Organising data in tables", "Formulas, references and functions", "Lookup and logical functions", "Pivot tables and summaries", "Charts in spreadsheets", "What-if analysis and goal seek", "Building a simple business model"] },
+    { "title": "Data Wrangling and Preparation", "area": "data", "year": 2, "semester": 1, "engines": ["E1", "E5"], "phase": 3,
+      "topics": ["Data sources and file formats", "Loading data with pandas and SQL", "Cleaning missing and inconsistent values", "Reshaping, joining and aggregating", "Working with dates, text and categories", "Data quality checks and validation", "Reproducible data pipelines"] },
+    { "title": "Statistical Inference", "area": "maths-theory", "year": 2, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Sampling distributions", "Point and interval estimation", "Hypothesis testing", "Comparing groups: t-tests and ANOVA", "Categorical data and chi-square tests", "Linear regression and its assumptions", "Non-parametric and resampling methods"] },
+    { "title": "Data Visualisation", "area": "data", "year": 2, "semester": 2, "engines": ["E1", "E5"], "phase": 3,
+      "topics": ["Principles of visual perception", "Choosing the right chart", "Colour, labels and annotation", "Plotting with code", "Interactive and web-based visualisation", "Maps and geographic data", "Data storytelling and avoiding misleading charts"] },
+    { "title": "Business Intelligence and Dashboards", "area": "data", "year": 3, "semester": 1, "engines": ["E5", "E10"], "phase": 3,
+      "topics": ["Business questions and key performance indicators", "Dimensional models for reporting", "Extract, transform and load", "Building dashboards", "Self-service analytics", "Reporting for decision makers", "Data governance in organisations"] },
+    { "title": "Linear Algebra for Data Science", "area": "maths-theory", "year": 1, "semester": 2, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Vectors and vector spaces", "Matrices and matrix operations", "Systems of linear equations", "Determinants and inverses", "Eigenvalues and eigenvectors", "Orthogonality and projections", "Singular value decomposition and PCA"] },
+    { "title": "Time Series Analysis and Forecasting", "area": "data", "year": 3, "semester": 2, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Time series components", "Smoothing and decomposition", "Stationarity and autocorrelation", "ARIMA models", "Seasonal models", "Forecast evaluation", "Forecasting rainfall, prices and demand"] },
+
+    { "title": "Business Process Modelling", "area": "information-systems", "year": 2, "semester": 1, "engines": ["E9", "E10"], "phase": 3,
+      "topics": ["Processes, activities and roles", "BPMN notation", "As-is and to-be analysis", "Process simulation and bottlenecks", "Process improvement methods", "Workflow automation", "Case study: a mobile money agent network"] },
+    { "title": "Enterprise Resource Planning", "area": "information-systems", "year": 3, "semester": 1, "engines": ["E5", "E10"], "phase": 3,
+      "topics": ["What ERP systems do", "Finance and accounting modules", "Supply chain and inventory", "Human resources and payroll", "ERP data models", "Selecting and implementing ERP", "ERP for small and medium enterprises"] },
+    { "title": "IT Service Management and Governance", "area": "information-systems", "year": 3, "semester": 2, "engines": ["E10"], "phase": 3,
+      "topics": ["IT services and value", "Service desk, incidents and problems", "Change and release management", "Service levels and agreements", "IT governance frameworks", "Risk, audit and compliance", "Measuring IT performance"] },
+    { "title": "Accounting and Finance for Information Systems", "area": "information-systems", "year": 2, "semester": 2, "engines": ["E10", "E5"], "phase": 3,
+      "topics": ["Double-entry bookkeeping", "Financial statements", "Costing and budgeting", "Investment appraisal", "Accounting information systems", "Payroll and tax basics", "Financial controls and fraud"] },
+
+    { "title": "Optimisation for Machine Learning", "area": "maths-theory", "year": 2, "semester": 2, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Convex sets and functions", "Gradient descent and its variants", "Stochastic optimisation", "Momentum and adaptive methods", "Constrained optimisation and Lagrange multipliers", "Second-order methods", "Optimisation in practice: tuning and diagnostics"] },
+    { "title": "Deep Learning", "area": "ai", "year": 4, "semester": 1, "engines": ["E1", "E6"], "phase": 3,
+      "topics": ["Neural network building blocks", "Training deep networks", "Convolutional networks", "Recurrent networks and sequences", "Attention and transformers", "Generative models", "Transfer learning with limited compute"] },
+    { "title": "Natural Language Processing", "area": "ai", "year": 4, "semester": 1, "engines": ["E1"], "phase": 3,
+      "topics": ["Text processing and tokenisation", "Language models", "Word and sentence embeddings", "Text classification", "Sequence labelling", "Machine translation and transformers", "Working with African languages"] },
+    { "title": "Computer Vision", "area": "ai", "year": 4, "semester": 1, "engines": ["E1", "E7"], "phase": 3,
+      "topics": ["Images as data", "Filtering and edge detection", "Features and matching", "Image classification with CNNs", "Object detection", "Segmentation", "Geometry, cameras and 3D"] },
+    { "title": "Reinforcement Learning", "area": "ai", "year": 4, "semester": 2, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Agents, environments and rewards", "Markov decision processes", "Dynamic programming", "Monte Carlo and temporal-difference learning", "Q-learning", "Policy gradient methods", "Deep reinforcement learning"] },
+    { "title": "MLOps and Model Deployment", "area": "ai", "year": 4, "semester": 2, "engines": ["E1", "E12"], "phase": 3,
+      "topics": ["The machine learning life cycle", "Experiment tracking and versioning", "Packaging and serving models", "Deployment on cloud and on device", "Monitoring and drift", "Automated retraining pipelines", "Cost, latency and offline inference"] },
+
+    { "title": "Containers and Kubernetes", "area": "networks-systems", "year": 3, "semester": 1, "engines": ["E4", "E12"], "phase": 3,
+      "topics": ["Containers and images", "Writing Dockerfiles", "Container networking and storage", "Kubernetes architecture", "Pods, deployments and services", "Configuration, secrets and scaling", "Troubleshooting clusters"] },
+    { "title": "Infrastructure as Code", "area": "networks-systems", "year": 3, "semester": 2, "engines": ["E12", "E1"], "phase": 3,
+      "topics": ["Why infrastructure as code", "Declarative provisioning", "Modules and reuse", "State and drift", "Configuration management", "Testing infrastructure", "GitOps workflows"] },
+    { "title": "Cloud Security", "area": "security-ethics", "year": 4, "semester": 1, "engines": ["E12", "E3"], "phase": 3,
+      "topics": ["The shared responsibility model", "Identity and access management", "Network security in the cloud", "Data protection and encryption", "Logging, monitoring and detection", "Compliance and data residency", "Securing containers and serverless"] },
+    { "title": "Serverless and Cloud-Native Applications", "area": "networks-systems", "year": 4, "semester": 1, "engines": ["E12", "E1"], "phase": 3,
+      "topics": ["Cloud-native principles", "Functions as a service", "Managed databases and storage", "Event-driven design and queues", "APIs and gateways", "Observability", "Designing for cost"] },
+    { "title": "Site Reliability Engineering", "area": "networks-systems", "year": 4, "semester": 2, "engines": ["E12", "E4"], "phase": 3,
+      "topics": ["Reliability goals and error budgets", "Monitoring and alerting", "Incident response", "Postmortems", "Capacity planning", "Load balancing and failover", "Automation and toil reduction"] },
+
+    { "title": "Molecular Biology for Computing", "area": "health-bio", "year": 1, "semester": 1, "engines": ["E10", "E6"], "phase": 3,
+      "topics": ["Cells and biomolecules", "DNA structure and replication", "Transcription and translation", "Genes, genomes and mutation", "Proteins and their functions", "Laboratory techniques that produce data", "Biological databases"] },
+    { "title": "Biostatistics", "area": "health-bio", "year": 2, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Study design in biology and medicine", "Describing biological data", "Probability distributions in health data", "Estimation and hypothesis testing", "Regression for health outcomes", "Survival analysis", "Multiple testing"] },
+    { "title": "Sequence Analysis and Alignment", "area": "health-bio", "year": 2, "semester": 2, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Sequences and file formats", "Pairwise alignment with dynamic programming", "Scoring matrices and gap penalties", "Database search with BLAST", "Multiple sequence alignment", "Motifs and profiles", "Hidden Markov models for sequences"] },
+    { "title": "Genomics and Next-Generation Sequencing", "area": "health-bio", "year": 3, "semester": 1, "engines": ["E1", "E5"], "phase": 3,
+      "topics": ["Sequencing technologies", "Read quality control", "Read mapping", "Genome assembly", "Variant calling", "Gene expression analysis", "Pathogen genomics for disease surveillance"] },
+    { "title": "Phylogenetics and Molecular Evolution", "area": "health-bio", "year": 3, "semester": 2, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Evolution and homology", "Distance-based tree building", "Parsimony", "Maximum likelihood methods", "Bayesian phylogenetics", "Molecular clocks", "Tracking outbreaks with phylogenies"] },
+    { "title": "Structural Bioinformatics", "area": "health-bio", "year": 4, "semester": 1, "engines": ["E1", "E7"], "phase": 3,
+      "topics": ["Protein structure levels", "Structure databases and visualisation", "Structure comparison", "Secondary structure prediction", "Protein structure prediction", "Molecular docking", "Drug discovery workflows"] },
+
+    { "title": "Health Information Systems", "area": "health-bio", "year": 2, "semester": 1, "engines": ["E10", "E5"], "phase": 3,
+      "topics": ["Health systems and their information needs", "District health information systems", "Health facility workflows", "Indicators and reporting", "Data quality in health", "Evaluating health information systems", "Health information systems in Africa"] },
+    { "title": "Health Data Standards and Interoperability", "area": "health-bio", "year": 3, "semester": 1, "engines": ["E5", "E1"], "phase": 3,
+      "topics": ["Why interoperability matters", "Terminologies: ICD, SNOMED CT and LOINC", "HL7 messaging", "FHIR resources and APIs", "Patient identity and matching", "Health information exchanges", "Building a FHIR integration"] },
+    { "title": "Electronic Health Records", "area": "health-bio", "year": 3, "semester": 2, "engines": ["E5", "E10"], "phase": 3,
+      "topics": ["What an electronic health record holds", "Clinical workflows and documentation", "Data models for patient records", "Clinical decision support", "Usability and clinician burden", "Privacy, consent and access control", "Implementing records in low-resource clinics"] },
+    { "title": "Epidemiology and Public Health Data", "area": "health-bio", "year": 3, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Measures of disease frequency", "Study designs in epidemiology", "Surveillance systems", "Outbreak investigation", "Disease modelling: SIR models", "Spatial epidemiology", "Communicating public health data"] },
+    { "title": "Digital Health and Telemedicine", "area": "health-bio", "year": 4, "semester": 1, "engines": ["E11", "E10"], "phase": 3,
+      "topics": ["Digital health landscape", "Mobile health applications", "Telemedicine models", "Community health worker tools", "Remote monitoring and wearables", "Regulation and ethics", "Scaling and sustaining digital health"] },
+
+    { "title": "Sensors and Actuators", "area": "signals-control", "year": 2, "semester": 2, "engines": ["E8", "E7"], "phase": 3,
+      "topics": ["Sensing principles", "Position, speed and distance sensors", "Inertial and environmental sensors", "Signal conditioning", "DC, stepper and servo motors", "Motor drivers and power", "Sensor fusion basics"] },
+    { "title": "Robot Kinematics and Dynamics", "area": "signals-control", "year": 3, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Rigid body motion and coordinate frames", "Forward kinematics", "Inverse kinematics", "Velocity kinematics and the Jacobian", "Dynamics of manipulators", "Trajectory planning", "Kinematics of mobile robots"] },
+    { "title": "Robot Programming with ROS", "area": "signals-control", "year": 3, "semester": 2, "engines": ["E1", "E6"], "phase": 3,
+      "topics": ["Robot software architecture", "Nodes, topics and messages", "Services and actions", "Transforms and coordinate frames", "Simulation of robots", "Perception pipelines", "Launching and debugging robot systems"] },
+    { "title": "Mobile Robotics and Navigation", "area": "signals-control", "year": 4, "semester": 1, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Locomotion and motion models", "Localisation", "Mapping", "Simultaneous localisation and mapping", "Path planning", "Obstacle avoidance", "Multi-robot systems"] },
+    { "title": "Real-Time Systems", "area": "hardware", "year": 3, "semester": 2, "engines": ["E6", "E8"], "phase": 3,
+      "topics": ["Real-time requirements and deadlines", "Real-time operating systems", "Scheduling: rate monotonic and EDF", "Synchronisation and priority inversion", "Timing analysis", "Real-time communication", "Safety-critical design"] },
+
+    { "title": "Ethical Hacking and Penetration Testing", "area": "security-ethics", "year": 3, "semester": 2, "engines": ["E4", "E3"], "phase": 3,
+      "topics": ["Rules of engagement and the law", "Reconnaissance", "Scanning and enumeration", "Exploitation", "Password attacks", "Post-exploitation", "Reporting findings"] },
+    { "title": "Web Application Security", "area": "security-ethics", "year": 3, "semester": 1, "engines": ["E1", "E4"], "phase": 3,
+      "topics": ["How web applications are attacked", "Injection attacks", "Cross-site scripting", "Authentication and session flaws", "Access control flaws", "Server-side request forgery and file attacks", "Defences and secure headers"] },
+    { "title": "Security Operations and Incident Response", "area": "security-ethics", "year": 4, "semester": 1, "engines": ["E4", "E10"], "phase": 3,
+      "topics": ["Security operations centres", "Logging and log analysis", "Intrusion detection", "Threat intelligence", "Incident response life cycle", "Containment and recovery", "Lessons learned and reporting"] },
+    { "title": "Malware Analysis and Reverse Engineering", "area": "security-ethics", "year": 4, "semester": 2, "engines": ["E4", "E6"], "phase": 3,
+      "topics": ["Types of malware", "Safe analysis environments", "Static analysis", "Dynamic analysis", "Reading assembly and binaries", "Mobile malware", "Writing detection signatures"] },
+
+    { "title": "Knowledge Representation and Reasoning", "area": "ai", "year": 3, "semester": 2, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Propositional and first-order logic", "Inference and resolution", "Rules and expert systems", "Ontologies and semantic networks", "Reasoning under uncertainty", "Bayesian networks", "Planning"] },
+    { "title": "Responsible AI", "area": "ai", "year": 4, "semester": 2, "engines": ["E10"], "phase": 3,
+      "topics": ["Harms from AI systems", "Fairness and bias", "Transparency and explainability", "Privacy and data rights", "Safety and robustness", "AI governance and regulation", "AI for African contexts"] },
+
+    { "title": "IT Support and Troubleshooting", "area": "networks-systems", "year": 1, "semester": 2, "engines": ["E8", "E4", "E10"], "phase": 3,
+      "topics": ["The role of IT support", "Troubleshooting method", "Hardware faults", "Operating system and software issues", "Network connectivity problems", "Users, accounts and printers", "Documentation and customer care"] },
+
+    { "title": "Telecommunication Systems", "area": "networks-systems", "year": 3, "semester": 1, "engines": ["E7", "E3"], "phase": 3,
+      "topics": ["Telecommunication networks overview", "Switching and signalling", "Transmission systems", "Optical fibre communication", "Satellite communication", "Traffic engineering", "Regulation of telecommunications"] },
+    { "title": "Mobile and Cellular Networks", "area": "networks-systems", "year": 3, "semester": 2, "engines": ["E3", "E7"], "phase": 3,
+      "topics": ["Cellular concepts", "Radio access and spectrum", "GSM and 3G architecture", "4G LTE", "5G networks", "Mobility management", "Mobile data services and USSD"] },
+    { "title": "Software-Defined Networking", "area": "networks-systems", "year": 4, "semester": 1, "engines": ["E3", "E12"], "phase": 3,
+      "topics": ["Limits of traditional networks", "Control and data planes", "OpenFlow", "SDN controllers", "Network function virtualisation", "Programmable data planes", "SDN in data centres and operators"] },
+
+    { "title": "Game Design Principles", "area": "games", "year": 1, "semester": 2, "engines": ["E9", "E10"], "phase": 3,
+      "topics": ["What makes a game", "Mechanics, dynamics and aesthetics", "Level design", "Balancing and difficulty", "Narrative in games", "Playtesting", "Designing games for learning"] },
+    { "title": "Game Engine Programming", "area": "games", "year": 3, "semester": 1, "engines": ["E1", "E7"], "phase": 3,
+      "topics": ["The game loop", "Rendering sprites and scenes", "Input handling", "Entity and component systems", "Collision detection", "Audio", "Performance on low-end phones"] },
+    { "title": "Game Physics and Simulation", "area": "games", "year": 3, "semester": 2, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Kinematics and numerical integration", "Forces and Newton's laws", "Collision response", "Rigid body dynamics", "Particles and springs", "Fluids and cloth", "Stability and determinism"] },
+
+    { "title": "Digital Payments and Mobile Money", "area": "information-systems", "year": 2, "semester": 2, "engines": ["E10", "E5"], "phase": 3,
+      "topics": ["Payment systems and clearing", "Cards and online payments", "Mobile money architecture", "Agent networks", "USSD and app channels", "Interoperability between providers", "Fraud and consumer protection"] },
+    { "title": "Financial Mathematics", "area": "information-systems", "year": 2, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Interest and time value of money", "Annuities and loans", "Bonds and yields", "Risk and return", "Portfolio theory", "Options and derivatives basics", "Microfinance and credit scoring"] },
+    { "title": "Regulatory Technology and Compliance", "area": "information-systems", "year": 4, "semester": 1, "engines": ["E10"], "phase": 3,
+      "topics": ["Financial regulation and why it exists", "Know your customer and anti-money laundering", "Data protection law", "Reporting to regulators", "Automated compliance monitoring", "Regulatory sandboxes", "Risk management frameworks"] }
+  ],
+  "programmes": [
+    {
+      "slug": "computer-science",
+      "title": "Computer Science",
+      "description": "The science of computation: programming, algorithms, theory, systems and their applications. Every practical, from wiring logic gates to training models, runs in the browser.",
+      "outcomes": [
+        "Design, implement and analyse algorithms and data structures.",
+        "Build software across the stack, from low-level code to web and mobile applications.",
+        "Explain how computers, operating systems and networks work and configure them.",
+        "Apply mathematics, data and artificial intelligence to real problems responsibly."
+      ],
+      "recommended": false,
+      "courses": "__ALL_ORIGINAL__"
+    },
+    {
+      "slug": "computer-engineering",
+      "title": "Computer Engineering",
+      "description": "Where hardware meets software: circuits, digital systems, processors, embedded devices and the signals they handle. Students build and test circuits, microcontroller programs and control loops on simulated benches.",
+      "outcomes": [
+        "Analyse analogue and digital circuits and design combinational and sequential logic.",
+        "Program microcontrollers and processors at the register and assembly level.",
+        "Process signals and design filters and feedback controllers.",
+        "Design embedded and connected systems that work within power and cost limits."
+      ],
+      "recommended": false,
+      "courses": ["calculus", "mathematics-for-computer-science", "basic-electronics", "circuit-analysis", "programming-with-c", "digital-logic-design", "signals-and-systems", "data-communications", "computer-organization-and-architecture", "assembly-language-and-microprocessors", "embedded-systems", "digital-signal-processing", "control-systems", "real-time-systems", "operating-systems", "computer-networking-i", "internet-of-things", "vlsi-design"]
+    },
+    {
+      "slug": "software-engineering",
+      "title": "Software Engineering",
+      "description": "Building software that works, lasts and can be trusted: requirements, design, testing, delivery and teamwork. Students practise on real codebases, pipelines and review exercises.",
+      "outcomes": [
+        "Elicit and specify requirements with users and stakeholders.",
+        "Design maintainable systems using patterns and sound architecture.",
+        "Test, review and deliver software through automated pipelines.",
+        "Plan and run software projects in teams, securely and ethically."
+      ],
+      "recommended": false,
+      "courses": ["principles-of-programming", "introduction-to-python", "discrete-mathematics", "programming-with-cpp", "software-development-with-java", "data-structures-and-algorithms", "database-systems-and-design", "web-application-programming-i", "requirements-engineering", "object-oriented-system-analysis-and-design", "software-engineering", "version-control-and-devops", "web-application-programming-ii", "software-architecture-and-design-patterns", "software-testing-and-quality-assurance", "human-computer-interaction", "advanced-software-development-with-java", "mobile-application-development", "secure-software-development", "it-project-management", "legal-and-ethical-issues-in-computing"]
+    },
+    {
+      "slug": "data-analytics",
+      "title": "Data Analytics",
+      "description": "Turning raw data into decisions: cleaning, querying, analysing and presenting data for organisations. Students work with spreadsheets, SQL, code and dashboards on realistic local datasets.",
+      "outcomes": [
+        "Collect, clean and prepare data from spreadsheets, databases and files.",
+        "Query and summarise data with SQL and code.",
+        "Apply statistical methods to answer business and public questions.",
+        "Communicate findings with clear charts, dashboards and reports."
+      ],
+      "recommended": false,
+      "courses": ["spreadsheet-analytics", "introduction-to-python", "probability-and-statistics", "database-systems-and-design", "data-wrangling-and-preparation", "statistical-inference", "data-visualisation", "business-intelligence-and-dashboards", "data-mining-and-warehousing", "time-series-analysis-and-forecasting", "data-science", "legal-and-ethical-issues-in-computing"]
+    },
+    {
+      "slug": "data-science",
+      "title": "Data Science",
+      "description": "The mathematics, statistics and computing behind learning from data at scale. Students build models end to end, from collection and cleaning to evaluation and communication.",
+      "outcomes": [
+        "Use linear algebra, calculus and probability to reason about data and models.",
+        "Prepare, explore and visualise large and messy datasets.",
+        "Build, evaluate and explain statistical and machine learning models.",
+        "Process data at scale and handle it lawfully and ethically."
+      ],
+      "recommended": false,
+      "courses": ["introduction-to-python", "calculus", "linear-algebra-for-data-science", "probability-and-statistics", "data-structures-and-algorithms", "database-systems-and-design", "data-wrangling-and-preparation", "statistical-inference", "data-visualisation", "numerical-methods-and-computation", "data-science", "machine-learning", "data-mining-and-warehousing", "time-series-analysis-and-forecasting", "big-data-and-parallel-computing", "deep-learning", "legal-and-ethical-issues-in-computing"]
+    },
+    {
+      "slug": "information-systems",
+      "title": "Information Systems",
+      "description": "How organisations use information technology to work, decide and serve people. Students model business processes, design databases and evaluate systems through case scenarios.",
+      "outcomes": [
+        "Analyse business processes and the information they need.",
+        "Design and manage databases and enterprise systems.",
+        "Plan, govern and evaluate information technology investments.",
+        "Protect information and respect privacy and the law."
+      ],
+      "recommended": false,
+      "courses": ["fundamentals-of-computer-science", "introduction-to-python", "spreadsheet-analytics", "database-systems-and-design", "business-process-modelling", "accounting-and-finance-for-information-systems", "information-systems-and-e-commerce", "object-oriented-system-analysis-and-design", "web-application-programming-i", "computer-networking-i", "human-computer-interaction", "enterprise-resource-planning", "business-intelligence-and-dashboards", "it-project-management", "it-service-management-and-governance", "information-security", "research-methods-in-computer-science", "legal-and-ethical-issues-in-computing"]
+    },
+    {
+      "slug": "machine-learning",
+      "title": "Machine Learning",
+      "description": "Building systems that learn from data, from the mathematics to deployment. Students implement algorithms from scratch, then train, evaluate and ship models within modest compute budgets.",
+      "outcomes": [
+        "Derive and implement core learning algorithms using linear algebra, calculus and probability.",
+        "Train and tune deep networks for text, images and sequences.",
+        "Evaluate models rigorously and diagnose failure.",
+        "Deploy, monitor and govern models responsibly."
+      ],
+      "recommended": false,
+      "courses": ["introduction-to-python", "calculus", "linear-algebra-for-data-science", "probability-and-statistics", "data-structures-and-algorithms", "optimisation-for-machine-learning", "statistical-inference", "data-wrangling-and-preparation", "machine-learning", "artificial-intelligence", "deep-learning", "natural-language-processing", "computer-vision", "reinforcement-learning", "big-data-and-parallel-computing", "mlops-and-model-deployment", "responsible-ai"]
+    },
+    {
+      "slug": "cloud-computing",
+      "title": "Cloud Computing",
+      "description": "Running software on shared, programmable infrastructure: networks, servers, containers and automation. Students provision, secure and operate services in simulated cloud consoles and terminals.",
+      "outcomes": [
+        "Configure networks, servers and operating systems.",
+        "Package and run applications with containers and orchestrators.",
+        "Automate infrastructure and delivery with code and pipelines.",
+        "Secure, monitor and keep cloud services reliable and affordable."
+      ],
+      "recommended": false,
+      "courses": ["introduction-to-python", "computer-networking-i", "operating-systems", "systems-administration-i", "computer-networking-ii", "systems-administration-ii", "database-systems-and-design", "version-control-and-devops", "cloud-computing", "containers-and-kubernetes", "infrastructure-as-code", "distributed-systems", "serverless-and-cloud-native-applications", "information-security", "cloud-security", "site-reliability-engineering"]
+    },
+    {
+      "slug": "bioinformatics",
+      "title": "Bioinformatics",
+      "description": "Computing applied to biology: sequences, genomes, proteins and evolution. Students align sequences, assemble genomes and build trees with browser-based tools and real public data.",
+      "outcomes": [
+        "Explain the molecular biology behind biological data.",
+        "Implement and apply sequence alignment and search algorithms.",
+        "Analyse sequencing data from reads to variants and expression.",
+        "Use statistics and machine learning on biological data, including for disease surveillance."
+      ],
+      "recommended": false,
+      "courses": ["molecular-biology-for-computing", "introduction-to-python", "probability-and-statistics", "biostatistics", "data-structures-and-algorithms", "database-systems-and-design", "sequence-analysis-and-alignment", "genomics-and-next-generation-sequencing", "phylogenetics-and-molecular-evolution", "structural-bioinformatics", "data-science", "machine-learning", "legal-and-ethical-issues-in-computing"]
+    },
+    {
+      "slug": "health-informatics",
+      "title": "Health Informatics",
+      "description": "Information systems and data for better health care and public health. Students design patient records, exchange data with health standards and analyse outbreaks in case-based simulations.",
+      "outcomes": [
+        "Describe how health systems collect and use information.",
+        "Design and evaluate health information systems and electronic records.",
+        "Exchange health data using international standards.",
+        "Analyse health data while protecting patient privacy."
+      ],
+      "recommended": false,
+      "courses": ["fundamentals-of-computer-science", "introduction-to-python", "database-systems-and-design", "biostatistics", "health-information-systems", "health-data-standards-and-interoperability", "epidemiology-and-public-health-data", "electronic-health-records", "human-computer-interaction", "data-science", "information-security", "digital-health-and-telemedicine", "it-project-management", "legal-and-ethical-issues-in-computing"]
+    },
+    {
+      "slug": "robotics",
+      "title": "Robotics",
+      "description": "Machines that sense, decide and act: electronics, mechanics, control and intelligence together. Students program simulated robots, tune controllers and plan paths before touching hardware.",
+      "outcomes": [
+        "Model robot motion with kinematics and dynamics.",
+        "Interface sensors and actuators through embedded programs.",
+        "Design controllers and real-time software for robots.",
+        "Give robots perception, localisation and planning."
+      ],
+      "recommended": false,
+      "courses": ["calculus", "linear-algebra-for-data-science", "basic-electronics", "programming-with-c", "introduction-to-python", "digital-logic-design", "embedded-systems", "sensors-and-actuators", "signals-and-systems", "control-systems", "robot-kinematics-and-dynamics", "real-time-systems", "robot-programming-with-ros", "computer-vision", "artificial-intelligence", "mobile-robotics-and-navigation", "internet-of-things"]
+    },
+    {
+      "slug": "cybersecurity",
+      "title": "Cybersecurity",
+      "description": "Protecting systems, networks and data, and responding when attacks happen. Students attack and defend isolated virtual machines and networks safely inside the browser.",
+      "outcomes": [
+        "Secure operating systems, networks and applications.",
+        "Find and responsibly report vulnerabilities through testing.",
+        "Detect, investigate and respond to incidents.",
+        "Apply cryptography and work within the law and ethics."
+      ],
+      "recommended": true,
+      "courses": ["introduction-to-python", "programming-with-c", "computer-networking-i", "operating-systems", "systems-administration-i", "computer-networking-ii", "systems-administration-ii", "web-application-programming-i", "information-security", "cryptography-and-network-security", "web-application-security", "ethical-hacking-and-penetration-testing", "secure-software-development", "security-operations-and-incident-response", "computer-forensics", "malware-analysis-and-reverse-engineering", "cloud-security", "legal-and-ethical-issues-in-computing"]
+    },
+    {
+      "slug": "artificial-intelligence",
+      "title": "Artificial Intelligence",
+      "description": "Building systems that reason, learn, perceive and act, and doing so responsibly. Students implement search, logic and learning algorithms and test them in simulated environments.",
+      "outcomes": [
+        "Apply search, logic and probabilistic reasoning to problems.",
+        "Build learning systems for language, vision and decision making.",
+        "Evaluate AI systems for accuracy, fairness and safety.",
+        "Design AI that suits local languages, data and constraints."
+      ],
+      "recommended": true,
+      "courses": ["introduction-to-python", "discrete-mathematics", "linear-algebra-for-data-science", "probability-and-statistics", "data-structures-and-algorithms", "theory-of-computation", "artificial-intelligence", "knowledge-representation-and-reasoning", "machine-learning", "deep-learning", "natural-language-processing", "computer-vision", "reinforcement-learning", "responsible-ai"]
+    },
+    {
+      "slug": "information-technology",
+      "title": "Information Technology",
+      "description": "Keeping the technology of organisations running: hardware, networks, servers, users and services. Students troubleshoot, configure and support systems in simulated workplaces.",
+      "outcomes": [
+        "Install, troubleshoot and maintain hardware and software.",
+        "Set up and run networks and servers.",
+        "Support users and manage IT services well.",
+        "Keep systems secure, backed up and compliant."
+      ],
+      "recommended": true,
+      "courses": ["fundamentals-of-computer-science", "computer-hardware", "it-support-and-troubleshooting", "introduction-to-python", "computer-networking-i", "operating-systems", "systems-administration-i", "database-systems-and-design", "web-application-programming-i", "computer-networking-ii", "systems-administration-ii", "version-control-and-devops", "cloud-computing", "information-security", "it-service-management-and-governance", "it-project-management", "legal-and-ethical-issues-in-computing"]
+    },
+    {
+      "slug": "networking-and-telecommunications",
+      "title": "Networking and Telecommunications",
+      "description": "The networks that connect people: data links, the internet, mobile and wireless systems. Students design, configure and troubleshoot networks and radio links in simulators.",
+      "outcomes": [
+        "Explain how signals carry data over wired, wireless and optical media.",
+        "Design, address and route networks and secure them.",
+        "Describe and plan mobile and cellular networks.",
+        "Use programmable and virtualised networks."
+      ],
+      "recommended": true,
+      "courses": ["calculus", "basic-electronics", "data-communications", "signals-and-systems", "computer-networking-i", "computer-networking-ii", "systems-administration-ii", "wireless-communication", "telecommunication-systems", "mobile-and-cellular-networks", "cryptography-and-network-security", "software-defined-networking", "internet-of-things", "distributed-systems", "cloud-computing"]
+    },
+    {
+      "slug": "game-development",
+      "title": "Game Development",
+      "description": "Designing and programming games, including games that teach. Students prototype mechanics, write engine code and simulate physics that runs on everyday phones.",
+      "outcomes": [
+        "Design game mechanics, levels and player experiences.",
+        "Program games with graphics, input, audio and physics.",
+        "Use mathematics for movement, collisions and cameras.",
+        "Test games with players and ship them to phones and the web."
+      ],
+      "recommended": true,
+      "courses": ["principles-of-programming", "game-design-principles", "mathematics-for-computer-science", "linear-algebra-for-data-science", "programming-with-cpp", "data-structures-and-algorithms", "computer-graphics", "game-engine-programming", "game-physics-and-simulation", "human-computer-interaction", "artificial-intelligence", "software-engineering", "mobile-application-development"]
+    },
+    {
+      "slug": "financial-technology",
+      "title": "Financial Technology",
+      "description": "Technology for money: payments, mobile money, credit, ledgers and the rules around them. Students build payment flows, model risk and work through compliance cases drawn from African markets.",
+      "outcomes": [
+        "Explain how payment systems and mobile money work.",
+        "Build secure financial applications and data pipelines.",
+        "Model interest, risk and credit with mathematics and data.",
+        "Work within financial regulation and protect customers."
+      ],
+      "recommended": true,
+      "courses": ["introduction-to-python", "financial-mathematics", "accounting-and-finance-for-information-systems", "database-systems-and-design", "web-application-programming-i", "information-systems-and-e-commerce", "digital-payments-and-mobile-money", "data-science", "mobile-application-development", "cryptography-and-network-security", "information-security", "blockchain-and-distributed-ledgers", "machine-learning", "regulatory-technology-and-compliance", "legal-and-ethical-issues-in-computing"]
+    }
+  ]
+}

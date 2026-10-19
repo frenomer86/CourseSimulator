@@ -1,0 +1,122 @@
+{
+  "slug": "signals-and-systems",
+  "description": "The mathematics of signals and the systems that transform them: continuous- and discrete-time signals, linear time-invariant systems and convolution, Fourier series and transforms, frequency response, sampling and aliasing, and the Laplace and z-transforms. Every transform is computed by hand and then explored interactively in the browser, where students sketch signals, convolve them and hear the effect of filtering and aliasing.",
+  "modelledOn": [
+    "Oppenheim, Willsky and Nawab, Signals and Systems",
+    "Lathi, Linear Systems and Signals",
+    "Haykin and Van Veen, Signals and Systems"
+  ],
+  "outcomes": [
+    "Classify and manipulate continuous- and discrete-time signals and determine the properties of a system from its description.",
+    "Compute the response of linear time-invariant systems by convolution and by solving differential and difference equations.",
+    "Represent periodic and aperiodic signals with Fourier series and transforms and interpret frequency response in magnitude and phase.",
+    "Apply the sampling theorem to choose sampling rates, predict aliasing and design reconstruction.",
+    "Analyse causality, stability and transient response with the Laplace transform and the z-transform using poles, zeros and regions of convergence."
+  ],
+  "units": [
+    {
+      "title": "Continuous and discrete-time signals",
+      "weeks": "1-2",
+      "topics": [
+        "Continuous-time and discrete-time signals; analogue, sampled and digital signals",
+        "Transformations of the independent variable: shifting, scaling and reversal",
+        "Even and odd, periodic and aperiodic, energy and power signals",
+        "Elementary signals: unit step, unit impulse, ramp, real and complex exponentials, sinusoids",
+        "Periodicity of discrete-time sinusoids and the uniqueness of discrete frequencies",
+        "Real signals: an ECG trace, a voice recording and a day of national grid electricity demand"
+      ]
+    },
+    {
+      "title": "Systems and their properties",
+      "weeks": "3",
+      "topics": [
+        "Systems as mappings from input to output; block diagram notation",
+        "Memory, causality, invertibility and BIBO stability",
+        "Linearity and time invariance, with tests and counter-examples",
+        "Series, parallel and feedback interconnections",
+        "Systems described by linear constant-coefficient differential and difference equations"
+      ]
+    },
+    {
+      "title": "Linear time-invariant systems and convolution",
+      "weeks": "4-5",
+      "topics": [
+        "Impulse response and the representation of signals as sums of shifted impulses",
+        "The convolution sum and the convolution integral; graphical convolution step by step",
+        "Properties of convolution: commutative, associative and distributive; LTI systems in series and parallel",
+        "Causality, stability and memory read from the impulse response; step response",
+        "Solving differential and difference equations: natural and forced response, zero-state and zero-input response",
+        "Smoothing daily mobile money transaction counts with a moving-average system"
+      ]
+    },
+    {
+      "title": "Fourier series",
+      "weeks": "6",
+      "topics": [
+        "Complex exponentials as eigenfunctions of LTI systems",
+        "Continuous-time Fourier series: synthesis and analysis equations; trigonometric form",
+        "Convergence, Dirichlet conditions and the Gibbs phenomenon",
+        "Properties of Fourier series and Parseval's relation; line spectra",
+        "Discrete-time Fourier series",
+        "LTI response to periodic inputs; harmonics drawn from the mains by non-linear loads"
+      ]
+    },
+    {
+      "title": "Fourier transform and frequency response",
+      "weeks": "7-8",
+      "topics": [
+        "The continuous-time Fourier transform as the limit of the Fourier series; common transform pairs",
+        "Properties: linearity, shifting, scaling, duality, differentiation and Parseval's theorem",
+        "The convolution and multiplication properties; filtering as multiplication in frequency",
+        "The discrete-time Fourier transform and its periodicity",
+        "Frequency response: magnitude and phase, group delay, Bode plots; ideal and practical filters",
+        "Amplitude modulation and demodulation; how FM radio stations share the spectrum"
+      ]
+    },
+    {
+      "title": "Sampling and aliasing",
+      "weeks": "9",
+      "topics": [
+        "Impulse-train sampling and the Nyquist-Shannon sampling theorem",
+        "Aliasing in time and frequency; anti-aliasing filters",
+        "Reconstruction: ideal band-limited interpolation, zero-order and first-order hold",
+        "Discrete-time processing of continuous-time signals",
+        "Quantisation in brief; why telephone speech is sampled at 8 kHz"
+      ]
+    },
+    {
+      "title": "The Laplace transform",
+      "weeks": "10-11",
+      "topics": [
+        "The bilateral Laplace transform and the region of convergence",
+        "Inverse Laplace transform by partial fractions",
+        "Properties of the Laplace transform; initial and final value theorems",
+        "System functions, poles and zeros; causality and stability in the s-plane",
+        "The unilateral transform for differential equations with initial conditions; circuit analysis in the s-domain",
+        "Block diagrams and feedback systems; a preview of control"
+      ]
+    },
+    {
+      "title": "The z-transform",
+      "weeks": "12-13",
+      "topics": [
+        "The z-transform and the region of convergence; common pairs",
+        "Inverse z-transform by partial fractions and power series",
+        "Properties of the z-transform; convolution becomes multiplication",
+        "System functions, poles and zeros, and stability relative to the unit circle",
+        "The unilateral z-transform for difference equations with initial conditions",
+        "Relating the z-transform, the DTFT and the Laplace transform; mapping the s-plane to the z-plane"
+      ]
+    },
+    {
+      "title": "Signals and systems in practice",
+      "weeks": "14",
+      "topics": [
+        "Removing 50 Hz mains hum from an ECG recording with a notch filter",
+        "Communication systems in outline: modulation, multiplexing and channel distortion",
+        "State-space descriptions in brief",
+        "Capstone: model, simulate and filter a real recorded signal end to end"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "slug": "health-data-standards-and-interoperability",
+  "description": "Making health systems exchange data that both sides understand: the levels of interoperability, clinical terminologies such as ICD, SNOMED CT and LOINC, HL7 version 2 messaging and CDA documents, FHIR resources and RESTful APIs, patient identity and record matching, health information exchange architectures and a working FHIR integration. Practised hands-on with browser-based message parsers, terminology browsers and a FHIR server sandbox, linking simulated clinics, laboratories and a district reporting system.",
+  "modelledOn": [
+    "HL7 International, FHIR R4 specification and HL7 Version 2 messaging standard",
+    "Benson and Grieve, Principles of Health Interoperability: FHIR, HL7 and SNOMED CT",
+    "WHO, International Classification of Diseases (ICD-10 and ICD-11)",
+    "IHE International, IT Infrastructure Technical Framework"
+  ],
+  "outcomes": [
+    "Explain technical, syntactic, semantic and organisational interoperability and the cost of its absence in a health system.",
+    "Code clinical data with ICD, SNOMED CT and LOINC and map between local codes and standard terminologies.",
+    "Parse, construct and validate HL7 version 2 messages and explain the structure of CDA clinical documents.",
+    "Model clinical data as FHIR resources and query and update a FHIR server through its RESTful API with appropriate security.",
+    "Design patient identification and record matching with master patient indexes and deterministic and probabilistic matching.",
+    "Design and build an integration between health applications through a health information exchange using IHE profiles and FHIR."
+  ],
+  "units": [
+    {
+      "title": "Why interoperability matters",
+      "weeks": "1",
+      "topics": [
+        "Fragmented systems in practice: repeated tests, lost referrals, duplicate reporting, siloed vertical programmes",
+        "Levels of interoperability: foundational, structural, semantic and organisational",
+        "The standards landscape: HL7, ISO health informatics standards, CEN, IHE, WHO, DICOM, openEHR; how standards are developed",
+        "National digital health strategies and enterprise architectures; OpenHIE as a reference",
+        "A referral from a CHPS compound to a district hospital traced through systems that do not talk"
+      ]
+    },
+    {
+      "title": "Terminologies: ICD, SNOMED CT and LOINC",
+      "weeks": "2-3",
+      "topics": [
+        "Terminologies, classifications and code systems: purpose, granularity, versioning",
+        "ICD-10 and ICD-11: chapters, coding rules, mortality and morbidity coding, use in insurance claims",
+        "SNOMED CT: concepts, descriptions, relationships, hierarchies, post-coordination and expression constraints",
+        "LOINC for laboratory tests and observations; UCUM units; RxNorm and ATC for medicines",
+        "Mapping local codes to standards; value sets and terminology services",
+        "Coding diagnoses and procedures for NHIS claims and district reports in Ghana"
+      ]
+    },
+    {
+      "title": "HL7 messaging",
+      "weeks": "4-5",
+      "topics": [
+        "HL7 version 2: segments, fields, components, delimiters, encoding; MSH, PID, PV1, OBR and OBX segments",
+        "Message types and trigger events: ADT admissions and transfers, ORM orders, ORU results; acknowledgements",
+        "Interface engines and message routing, transformation and error handling",
+        "HL7 version 3 and the Reference Information Model in brief; why it saw limited adoption",
+        "Clinical Document Architecture: header, structured body, templates; discharge summaries and referral letters",
+        "Building a laboratory results interface between a hospital laboratory and a records system"
+      ]
+    },
+    {
+      "title": "FHIR resources and APIs",
+      "weeks": "6-8",
+      "topics": [
+        "FHIR principles: resources, references, data types, JSON and XML representations",
+        "Core resources: Patient, Practitioner, Organization, Encounter, Observation, Condition, MedicationRequest, Immunization",
+        "RESTful interactions: read, search with parameters and chaining, create, update, delete, history; bundles and transactions",
+        "Profiles, extensions and implementation guides; validating resources against profiles",
+        "Terminology in FHIR: CodeSystem, ValueSet, ConceptMap and terminology operations",
+        "Security: SMART on FHIR, OAuth 2.0 scopes, audit events and consent resources",
+        "Bulk data export and FHIR for public health reporting"
+      ]
+    },
+    {
+      "title": "Patient identity and matching",
+      "weeks": "9",
+      "topics": [
+        "Why identity is hard: naming conventions, missing birth dates, shared phone numbers, transliteration",
+        "Master patient indexes and enterprise identifiers; national IDs such as the Ghana Card and NHIS numbers",
+        "Deterministic and probabilistic record linkage; the Fellegi-Sunter model, blocking and match thresholds",
+        "Measuring matching quality: false matches versus missed matches and their clinical risk",
+        "Biometrics and privacy-preserving linkage; IHE PIX and PDQ profiles"
+      ]
+    },
+    {
+      "title": "Health information exchanges",
+      "weeks": "10-11",
+      "topics": [
+        "Exchange architectures: point-to-point, hub and spoke, federated and centralised models",
+        "OpenHIE components: interoperability layer, client registry, facility registry, health worker registry, shared health record, terminology service",
+        "IHE profiles for document sharing (XDS) and mobile access (MHD)",
+        "Aggregate exchange with ADX and linking patient-level systems to DHIS2",
+        "Governance, consent, data sharing agreements and Data Protection Act 843 obligations",
+        "Case studies of national health information exchanges in Africa"
+      ]
+    },
+    {
+      "title": "Building a FHIR integration",
+      "weeks": "12-13",
+      "topics": [
+        "Requirements and data mapping from a clinic system to FHIR resources",
+        "Implementing a client that searches, creates and updates resources against a FHIR server",
+        "Testing with validators and test servers; conformance statements and capability statements",
+        "Error handling, retries and offline queues for unreliable connections",
+        "Project: an integration that sends immunisation or laboratory data from a simulated clinic to a shared record and a district report"
+      ]
+    }
+  ]
+}

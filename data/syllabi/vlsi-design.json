@@ -1,0 +1,119 @@
+{
+  "slug": "vlsi-design",
+  "description": "Designing digital integrated circuits from the MOS transistor up: CMOS logic, fabrication and layout rules, delay, power and timing, combinational and sequential subsystems, hardware description languages, the FPGA design flow and design for testability. Circuits are described in Verilog, simulated and synthesised in the browser, and laid out and timed until a small design passes its rule checks and tests.",
+  "modelledOn": [
+    "Weste and Harris, CMOS VLSI Design: A Circuits and Systems Perspective",
+    "Rabaey, Chandrakasan and Nikolic, Digital Integrated Circuits: A Design Perspective",
+    "IEEE 1364 Verilog and IEEE 1800 SystemVerilog hardware description language standards",
+    "IEEE 1149.1 Standard Test Access Port and Boundary-Scan Architecture"
+  ],
+  "outcomes": [
+    "Explain MOS transistor operation and analyse the static and dynamic behaviour of the CMOS inverter.",
+    "Design static and dynamic CMOS gates and draw their stick diagrams and layouts within design rules.",
+    "Estimate delay with RC and logical-effort models, analyse power dissipation and apply low-power techniques.",
+    "Describe, simulate and synthesise combinational and sequential designs in Verilog and take them through an FPGA flow to timing closure.",
+    "Apply fault models, scan design and built-in self-test to make a design testable."
+  ],
+  "units": [
+    {
+      "title": "MOS transistors and the CMOS inverter",
+      "weeks": "1-2",
+      "topics": [
+        "Integrated circuit history, scaling and Moore's law; design hierarchy and abstraction levels",
+        "MOS structure, threshold voltage and the long-channel I-V model",
+        "Non-ideal effects: velocity saturation, channel-length modulation, body effect, subthreshold and gate leakage",
+        "The CMOS inverter: voltage transfer characteristic, noise margins and beta ratio",
+        "Switching behaviour of the inverter; load capacitance"
+      ]
+    },
+    {
+      "title": "CMOS logic",
+      "weeks": "3",
+      "topics": [
+        "Static CMOS: complementary pull-up and pull-down networks; NAND, NOR and compound AOI and OAI gates",
+        "Transmission gates and pass-transistor logic; multiplexers",
+        "Ratioed logic and pseudo-NMOS",
+        "Dynamic and domino logic; charge sharing and keepers",
+        "Stick diagrams and Euler paths for gate layout"
+      ]
+    },
+    {
+      "title": "Fabrication and layout rules",
+      "weeks": "4-5",
+      "topics": [
+        "Wafer preparation, oxidation, photolithography, doping, etching and metallisation",
+        "The CMOS process flow: n-well and twin-well processes; interconnect layers and vias",
+        "Lambda-based and micron design rules; latch-up and guard rings",
+        "Layout of an inverter and a NAND gate; standard-cell layout conventions",
+        "Design rule checking, layout-versus-schematic and parasitic extraction",
+        "Process variation, corners and yield"
+      ]
+    },
+    {
+      "title": "Timing and delay",
+      "weeks": "6",
+      "topics": [
+        "RC delay models and the Elmore delay",
+        "Logical effort: gate sizing and choosing the best number of stages",
+        "Interconnect: wire resistance and capacitance, crosstalk and repeater insertion",
+        "Static timing analysis: setup and hold constraints, critical paths, clock skew and jitter"
+      ]
+    },
+    {
+      "title": "Power",
+      "weeks": "7",
+      "topics": [
+        "Dynamic switching power, short-circuit power and static leakage",
+        "Activity factors and power estimation",
+        "Low-power techniques: clock gating, power gating, multiple threshold voltages, dynamic voltage and frequency scaling",
+        "Energy-delay trade-offs; designing chips for battery-powered and off-grid devices"
+      ]
+    },
+    {
+      "title": "Combinational and sequential subsystems",
+      "weeks": "8",
+      "topics": [
+        "Static and dynamic latches and flip-flops in CMOS; sequencing overhead",
+        "Clock generation and distribution: H-trees, clock skew management, PLLs in brief",
+        "Datapath subsystems: ripple, carry-lookahead and prefix adders; array and Booth multipliers; shifters",
+        "Memory arrays: the 6T SRAM cell, DRAM, sense amplifiers and decoders",
+        "Pipelining a datapath to meet a clock target"
+      ]
+    },
+    {
+      "title": "Hardware description languages",
+      "weeks": "9-10",
+      "topics": [
+        "Verilog modules, ports, data types and continuous assignment",
+        "Procedural blocks: combinational and clocked always blocks; blocking versus non-blocking assignment",
+        "Finite state machines in Verilog; parameterised and hierarchical designs",
+        "Testbenches, stimulus generation, self-checking tests and waveform debugging",
+        "Writing synthesisable code: inferred latches, resets and coding pitfalls",
+        "VHDL and SystemVerilog compared in brief"
+      ]
+    },
+    {
+      "title": "FPGA design flow",
+      "weeks": "11-12",
+      "topics": [
+        "FPGA architecture: look-up tables, configurable logic blocks, routing, block RAM and DSP slices",
+        "The flow: synthesis, technology mapping, placement, routing and bitstream generation",
+        "Timing constraints, timing reports and achieving timing closure",
+        "ASIC and FPGA flows compared: cost, volume, performance and time to market",
+        "Project: a UART and a prepaid electricity meter controller implemented on a simulated FPGA"
+      ]
+    },
+    {
+      "title": "Testing and design for testability",
+      "weeks": "13-14",
+      "topics": [
+        "Manufacturing test versus functional verification; defects and yield",
+        "Fault models: stuck-at, transition and bridging faults; fault coverage",
+        "Automatic test pattern generation and the D-algorithm",
+        "Controllability and observability; scan chains and scan design",
+        "Built-in self-test with LFSRs and MISRs",
+        "Boundary scan and the JTAG test access port"
+      ]
+    }
+  ]
+}

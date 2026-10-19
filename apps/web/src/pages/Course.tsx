@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { LEVEL_LABEL, LEVEL_ORDER, masteryRank, type LabLevel } from '@cslab/lab-runtime';
-import { AREAS, checkForTopic, courseBySlug, ENGINE_NAMES, labsForCourse, labsForUnit } from '../lib/catalogue';
+import { AREAS, checkForTopic, courseBySlug, ENGINE_NAMES, labsForCourse, labsForUnit, programmesForCourse } from '../lib/catalogue';
 import { topicMastery, useProgress } from '../store/progress';
 import { track } from '../lib/telemetry';
 import { MasteryDot, MasteryLegend } from '../components/Mastery';
@@ -45,6 +45,15 @@ export function CoursePage() {
       <h1 className="mt-2 text-3xl font-semibold tracking-tight">{course.title}</h1>
       <p className="mt-2 text-ink-soft text-sm">{course.engines.map((e) => ENGINE_NAMES[e] ?? e).join(', ')}</p>
       {course.description && <p className="mt-4 max-w-[70ch] leading-relaxed">{course.description}</p>}
+      <InProgrammes slug={course.slug} />
+      <p className="mt-3 flex flex-wrap gap-2 text-sm">
+        <Link to={`/forum/c/${course.slug}`} className="rounded-md border border-line bg-surface px-3 py-1.5 hover:bg-bench">
+          Questions about this course
+        </Link>
+        <Link to={`/community?course=${course.slug}`} className="rounded-md border border-line bg-surface px-3 py-1.5 hover:bg-bench">
+          Study groups
+        </Link>
+      </p>
 
       {units.length > 0 ? (
         <section className="mt-8">
@@ -197,5 +206,24 @@ export function CoursePage() {
         </section>
       </div>
     </div>
+  );
+}
+
+function InProgrammes({ slug }: { slug: string }) {
+  const list = programmesForCourse(slug);
+  if (list.length === 0) return null;
+  return (
+    <p className="mt-3 text-sm text-ink-soft">
+      Part of {list.length === 1 ? 'the programme' : `${list.length} programmes`}:{' '}
+      {list.map((p, i) => (
+        <span key={p.slug}>
+          {i > 0 && ', '}
+          <Link to={`/programmes/${p.slug}`} className="text-ink underline underline-offset-2 hover:text-high">
+            {p.title}
+          </Link>
+        </span>
+      ))}
+      .
+    </p>
   );
 }

@@ -1,0 +1,117 @@
+{
+  "slug": "enterprise-resource-planning",
+  "description": "How integrated enterprise systems run a business on one shared database: the purpose of ERP, finance and accounting, procurement, inventory and supply chain, sales, human resources and payroll, the master and transaction data models underneath, and how ERP is selected, implemented and adapted for small and medium enterprises. Students run complete order-to-cash, procure-to-pay and hire-to-retire cycles on a simulated company in the browser and trace every document to its journal entries and tables.",
+  "modelledOn": [
+    "Monk and Wagner, Concepts in Enterprise Resource Planning",
+    "Magal and Word, Integrated Business Processes with ERP Systems",
+    "Sumner, Enterprise Resource Planning",
+    "ASCM (APICS), Certified in Planning and Inventory Management (CPIM)"
+  ],
+  "outcomes": [
+    "Explain what ERP systems do, how integration on a shared database differs from isolated departmental systems, and where their value comes from.",
+    "Execute and explain the finance, procurement, inventory, sales and HR processes in an ERP system and the postings each step creates.",
+    "Analyse ERP data models, distinguishing organisational structures, master data and transaction data.",
+    "Plan inventory and supply using reorder points, economic order quantity and material requirements planning.",
+    "Evaluate ERP options and plan an implementation covering selection, fit-gap analysis, data migration, testing and change management.",
+    "Recommend an appropriate ERP approach for a small or medium enterprise with limited budget and connectivity."
+  ],
+  "units": [
+    {
+      "title": "What ERP systems do",
+      "weeks": "1",
+      "topics": [
+        "From isolated departmental systems to integrated enterprise systems; the single source of truth",
+        "ERP history: MRP, MRP II, ERP and cloud ERP; the major commercial and open-source products",
+        "Modules and how they share data; end-to-end business processes across departments",
+        "Benefits, costs and well-known ERP failures"
+      ]
+    },
+    {
+      "title": "ERP data models",
+      "weeks": "2-3",
+      "topics": [
+        "Organisational structures: company, plant, warehouse, sales and purchasing organisations",
+        "Master data: customers, suppliers, materials, chart of accounts, employees; ownership and quality",
+        "Transaction data and document flow: orders, deliveries, invoices and payments linked by reference",
+        "The relational schema behind an ERP; header and line tables; tracing a document to its tables",
+        "Configuration versus customisation; extensions and APIs"
+      ]
+    },
+    {
+      "title": "Finance and accounting modules",
+      "weeks": "4-5",
+      "topics": [
+        "General ledger, chart of accounts and automatic postings from operational modules",
+        "Accounts receivable and accounts payable; subledgers and reconciliation",
+        "Asset accounting and depreciation runs; bank reconciliation and mobile money settlements",
+        "Controlling: cost centres, profit centres and internal orders",
+        "Period-end closing and financial statements; multi-currency transactions in cedis and dollars",
+        "Taxes in the ERP: VAT and levies configured for Ghana"
+      ]
+    },
+    {
+      "title": "Supply chain and inventory",
+      "weeks": "6-7",
+      "topics": [
+        "Procure-to-pay: purchase requisition, purchase order, goods receipt, invoice verification and three-way match",
+        "Order-to-cash: quotation, sales order, availability check, delivery, billing and payment",
+        "Inventory management: stock types, movements, valuation methods and cycle counting",
+        "Inventory planning: reorder points, safety stock, economic order quantity and ABC analysis",
+        "Production planning and material requirements planning; bills of materials and routings",
+        "A shea butter cooperative's supply chain from collection centres to export"
+      ]
+    },
+    {
+      "title": "Human resources and payroll",
+      "weeks": "8",
+      "topics": [
+        "Organisational management: positions, jobs and reporting lines",
+        "Hire-to-retire: recruitment, onboarding, time and attendance, leave and exit",
+        "Payroll processing: gross pay, deductions, PAYE and SSNIT contributions, and posting payroll to the ledger",
+        "Employee self-service and access to sensitive personal data"
+      ]
+    },
+    {
+      "title": "Reporting, integration and controls",
+      "weeks": "9",
+      "topics": [
+        "Operational reports, embedded analytics and links to a data warehouse",
+        "Integration with e-commerce, banks, mobile money and tax authority systems through APIs and files",
+        "Authorisations, roles and segregation of duties within the ERP",
+        "Audit trails and internal controls built into ERP processes"
+      ]
+    },
+    {
+      "title": "Selecting and implementing ERP",
+      "weeks": "10-11",
+      "topics": [
+        "Business case and total cost of ownership; on-premise, hosted and SaaS deployment",
+        "Vendor selection: requirements, request for proposal, scoring, demonstrations and references",
+        "Fit-gap analysis and the choice between changing the process and modifying the software",
+        "Implementation approaches: big bang, phased and parallel; implementation methodologies",
+        "Data migration, testing, training, cutover and post go-live support",
+        "Change management, critical success factors and lessons from failed implementations"
+      ]
+    },
+    {
+      "title": "ERP for small and medium enterprises",
+      "weeks": "12",
+      "topics": [
+        "SME needs and constraints: budget, skills, informal processes and cash-based trading",
+        "Open-source and cloud options such as Odoo and ERPNext; accounting packages as a first step",
+        "Working with intermittent power and connectivity: offline modes and mobile front ends",
+        "Implementing ERP for a pharmacy chain or an agro-processing firm in Ghana"
+      ]
+    },
+    {
+      "title": "Trends and capstone",
+      "weeks": "13",
+      "topics": [
+        "Cloud ERP, two-tier ERP and composable architectures",
+        "Analytics, automation and machine learning embedded in ERP",
+        "ERP security and data protection obligations",
+        "Capstone: configuring and running the full business cycle of a simulated Ghanaian company with an implementation plan"
+      ]
+    }
+  ]
+}

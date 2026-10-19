@@ -1,0 +1,101 @@
+{
+  "slug": "robot-kinematics-and-dynamics",
+  "description": "The mathematics of how robots move: rigid body motion and coordinate frames, forward and inverse kinematics of serial manipulators, velocity kinematics and the Jacobian, Lagrangian and Newton-Euler dynamics, trajectory planning and the kinematics of wheeled mobile robots. Taught with interactive browser simulations of arms and mobile robots in which every formula is implemented and tested, applied to tasks such as fruit-picking arms and warehouse or farm delivery robots.",
+  "modelledOn": [
+    "Lynch and Park, Modern Robotics: Mechanics, Planning, and Control",
+    "Craig, Introduction to Robotics: Mechanics and Control",
+    "Spong, Hutchinson and Vidyasagar, Robot Modeling and Control",
+    "Siciliano, Sciavicco, Villani and Oriolo, Robotics: Modelling, Planning and Control"
+  ],
+  "outcomes": [
+    "Represent the position and orientation of rigid bodies with rotation matrices, Euler angles, quaternions and homogeneous transformations.",
+    "Derive the forward kinematics of serial manipulators with Denavit-Hartenberg parameters and the product of exponentials formula.",
+    "Solve inverse kinematics analytically and numerically and reason about multiple solutions, workspace and reachability.",
+    "Compute the manipulator Jacobian, identify singularities and use the Jacobian for velocity control and static force analysis.",
+    "Derive equations of motion for manipulators with Lagrangian and Newton-Euler methods and use them for simulation and computed-torque control.",
+    "Plan smooth joint-space and task-space trajectories and model, simulate and steer differential-drive and other wheeled mobile robots."
+  ],
+  "units": [
+    {
+      "title": "Rigid body motion and coordinate frames",
+      "weeks": "1-2",
+      "topics": [
+        "Robots, links, joints and degrees of freedom; Grubler's formula; configuration space and task space",
+        "Rotation matrices and the special orthogonal group; composing rotations in fixed and moving frames",
+        "Representations of orientation: Euler angles, roll-pitch-yaw, axis-angle, unit quaternions; gimbal lock",
+        "Homogeneous transformations and the special Euclidean group; chaining frames",
+        "Twists, screws and the exponential map in outline; angular velocity and skew-symmetric matrices",
+        "Visualising frames and transformations in a browser simulation"
+      ]
+    },
+    {
+      "title": "Forward kinematics",
+      "weeks": "3-4",
+      "topics": [
+        "Serial chains: revolute and prismatic joints, link lengths and offsets",
+        "Denavit-Hartenberg convention, standard and modified; assigning frames step by step",
+        "The product of exponentials formula as an alternative to DH parameters",
+        "Forward kinematics of planar two- and three-link arms, SCARA and a six-axis industrial arm",
+        "Workspace: reachable and dexterous workspace; plotting it by sampling joint space"
+      ]
+    },
+    {
+      "title": "Inverse kinematics",
+      "weeks": "5-6",
+      "topics": [
+        "The inverse problem: existence, multiple solutions, elbow-up and elbow-down configurations",
+        "Analytical solutions for planar arms and the spherical wrist by kinematic decoupling",
+        "Numerical inverse kinematics: Newton-Raphson, Jacobian transpose and damped least squares",
+        "Joint limits, redundancy and choosing among solutions",
+        "Inverse kinematics for a fruit-picking or sorting arm reaching targets detected by a camera"
+      ]
+    },
+    {
+      "title": "Velocity kinematics and the Jacobian",
+      "weeks": "7-8",
+      "topics": [
+        "Linear and angular velocity of the end effector; the geometric and analytical Jacobian",
+        "Computing the Jacobian column by column; the space and body Jacobians",
+        "Singularities: boundary and interior singularities, loss of mobility, manipulability ellipsoids",
+        "Resolved-rate motion control and the pseudo-inverse for redundant arms",
+        "Statics: the Jacobian transpose relating end-effector forces to joint torques"
+      ]
+    },
+    {
+      "title": "Dynamics of manipulators",
+      "weeks": "9-10",
+      "topics": [
+        "Mass properties: centre of mass, inertia tensors, the parallel axis theorem",
+        "Lagrangian dynamics: kinetic and potential energy, the Euler-Lagrange equations for a two-link arm",
+        "Recursive Newton-Euler formulation and its computational efficiency",
+        "The manipulator equation: mass matrix, Coriolis and centrifugal terms, gravity; properties used in control",
+        "Forward dynamics for simulation; numerical integration and its stability",
+        "Joint-space control: PD with gravity compensation and computed-torque control; actuator and friction models"
+      ]
+    },
+    {
+      "title": "Trajectory planning",
+      "weeks": "11",
+      "topics": [
+        "Paths versus trajectories; time scaling",
+        "Point-to-point motion with cubic and quintic polynomials; trapezoidal velocity profiles",
+        "Via points and spline interpolation; blending segments",
+        "Task-space straight-line and circular paths; interpolating orientations with quaternion slerp",
+        "Time-optimal trajectories under velocity, acceleration and torque limits in outline"
+      ]
+    },
+    {
+      "title": "Kinematics of mobile robots",
+      "weeks": "12-13",
+      "topics": [
+        "Wheel types and constraints; holonomic and non-holonomic systems",
+        "Differential-drive kinematics: instantaneous centre of rotation, forward and inverse kinematics",
+        "Car-like, tricycle and omnidirectional (mecanum) platforms",
+        "Odometry from wheel encoders, error growth and dead reckoning",
+        "Path following: pure pursuit and simple feedback controllers for go-to-goal behaviour",
+        "Mobile robots in African settings: farm robots between crop rows and delivery robots on campus paths",
+        "Project: a simulated arm or mobile robot that completes a pick-and-place or delivery task"
+      ]
+    }
+  ]
+}

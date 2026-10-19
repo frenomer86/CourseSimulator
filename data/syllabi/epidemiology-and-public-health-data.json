@@ -1,0 +1,111 @@
+{
+  "slug": "epidemiology-and-public-health-data",
+  "description": "The quantitative methods of epidemiology and the data systems behind public health: measures of disease frequency and association, study designs and bias, surveillance systems, outbreak investigation, compartmental SIR models, spatial epidemiology and the communication of public health data. Practised with browser-based simulations and public datasets, working through African cases such as malaria incidence, cholera and meningitis outbreaks and district surveillance reports.",
+  "modelledOn": [
+    "Rothman, Epidemiology: An Introduction",
+    "Gordis, Epidemiology",
+    "Vynnycky and White, An Introduction to Infectious Disease Modelling",
+    "WHO and Africa CDC, Integrated Disease Surveillance and Response (IDSR) Technical Guidelines"
+  ],
+  "outcomes": [
+    "Calculate and interpret incidence, prevalence, mortality rates and standardised rates and measures of association such as relative risk and odds ratios.",
+    "Choose an appropriate study design for a public health question and identify confounding, selection bias and information bias.",
+    "Describe how surveillance systems collect, analyse and act on data and evaluate a system's sensitivity, timeliness and representativeness.",
+    "Investigate an outbreak from case definition and line list through epidemic curves to control measures and a written report.",
+    "Build, simulate and fit SIR-type models and use them to estimate reproduction numbers and compare interventions.",
+    "Analyse and map spatial health data and communicate findings clearly and honestly to decision makers and the public."
+  ],
+  "units": [
+    {
+      "title": "Epidemiology and measures of disease frequency",
+      "weeks": "1-2",
+      "topics": [
+        "The epidemiological approach: person, place and time; the epidemiological triangle; natural history of disease",
+        "Counts, proportions, ratios and rates; incidence (risk and rate), prevalence and their relationship",
+        "Mortality and morbidity measures: crude, specific and case fatality rates; maternal and under-five mortality",
+        "Direct and indirect standardisation; population pyramids and denominators from census data",
+        "Burden of disease: DALYs and YLLs; malaria, HIV and TB burden in sub-Saharan Africa",
+        "Confidence intervals for rates and proportions"
+      ]
+    },
+    {
+      "title": "Measures of association and causation",
+      "weeks": "3",
+      "topics": [
+        "Risk difference, relative risk, odds ratio, attributable fraction",
+        "Two-by-two tables, chi-squared tests and confidence intervals",
+        "Causal inference: Bradford Hill considerations, counterfactuals, directed acyclic graphs",
+        "Screening and diagnostic tests: sensitivity, specificity, predictive values; rapid diagnostic tests for malaria"
+      ]
+    },
+    {
+      "title": "Study designs in epidemiology",
+      "weeks": "4-5",
+      "topics": [
+        "Descriptive studies: case reports, case series, ecological and cross-sectional studies; demographic and health surveys",
+        "Cohort studies: prospective and retrospective, follow-up, person-time",
+        "Case-control studies: selecting controls, matching, why the odds ratio is used",
+        "Randomised controlled trials: randomisation, blinding, intention to treat; community and cluster trials such as bed net trials",
+        "Bias and confounding: selection, information, recall; stratification, adjustment and effect modification",
+        "Sample size and power in outline; ethics of research with human participants"
+      ]
+    },
+    {
+      "title": "Surveillance systems",
+      "weeks": "6-7",
+      "topics": [
+        "Purposes and types of surveillance: passive, active, sentinel, syndromic, event-based, laboratory-based",
+        "Integrated Disease Surveillance and Response: priority diseases, case definitions, thresholds and weekly reporting",
+        "Notifiable diseases and the flow of reports from community to district to national level; DHIS2 for surveillance",
+        "Alert and epidemic thresholds; detecting aberrations with moving averages and statistical methods",
+        "Evaluating surveillance: sensitivity, positive predictive value, timeliness, completeness, representativeness",
+        "Community-based surveillance by community health volunteers; One Health and zoonotic surveillance"
+      ]
+    },
+    {
+      "title": "Outbreak investigation",
+      "weeks": "8-9",
+      "topics": [
+        "The steps of an outbreak investigation from verifying the outbreak to communicating findings",
+        "Case definitions (suspected, probable, confirmed), line lists and case finding",
+        "Epidemic curves: point source, continuing and propagated outbreaks; incubation periods",
+        "Analytical studies in an outbreak: attack rates and food-specific risk tables",
+        "Control measures, contact tracing and declaring an outbreak over",
+        "Simulated investigations: a cholera outbreak in a coastal community, a meningitis season in the northern belt, a Lassa fever cluster"
+      ]
+    },
+    {
+      "title": "Disease modelling: SIR models",
+      "weeks": "10-11",
+      "topics": [
+        "Compartmental models: SIR and SEIR differential equations; solving them numerically",
+        "The basic and effective reproduction numbers; herd immunity thresholds and vaccination coverage",
+        "Fitting models to incidence data; estimating growth rates and the reproduction number in real time",
+        "Stochastic models and early extinction; age structure and contact matrices",
+        "Modelling interventions: vaccination, isolation, treatment, vector control; malaria transmission in outline",
+        "Uncertainty and the limits of models; scenarios versus forecasts"
+      ]
+    },
+    {
+      "title": "Spatial epidemiology",
+      "weeks": "12",
+      "topics": [
+        "Spatial data: points, polygons, rasters, coordinate systems; geocoding health facilities and cases",
+        "Choropleth maps, rates by district, small-number problems and smoothing",
+        "Clusters and hotspots: Snow's cholera map, spatial autocorrelation, scan statistics",
+        "Access to care and catchment areas; mapping malaria risk with environmental data"
+      ]
+    },
+    {
+      "title": "Communicating public health data",
+      "weeks": "13",
+      "topics": [
+        "Choosing charts and tables for epidemiological data; honest axes, rates versus counts, uncertainty",
+        "Situation reports and epidemiological bulletins for district and national audiences",
+        "Risk communication with communities and the media; countering misinformation",
+        "Privacy and ethics in publishing health data; small-area disclosure risk and Data Protection Act 843",
+        "Project: an outbreak or surveillance analysis with a model, a map and a situation report"
+      ]
+    }
+  ]
+}

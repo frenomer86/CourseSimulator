@@ -1,0 +1,111 @@
+{
+  "slug": "software-architecture-and-design-patterns",
+  "description": "Structuring software at the class and system level: design principles such as SOLID, coupling and cohesion, the creational, structural and behavioural design patterns, architectural styles from layered to event-driven and microservices, quality attributes and their trade-offs, and documenting and evaluating architecture. Every pattern is implemented, refactored into and tested in the browser code lab, and every style is exercised on a running system whose behaviour under load and failure students can observe.",
+  "modelledOn": [
+    "Gamma, Helm, Johnson and Vlissides, Design Patterns: Elements of Reusable Object-Oriented Software",
+    "Bass, Clements and Kazman, Software Architecture in Practice",
+    "Martin, Clean Architecture",
+    "ISO/IEC/IEEE 42010 Architecture Description"
+  ],
+  "outcomes": [
+    "Apply SOLID and related design principles to reduce coupling, increase cohesion and refactor code smells.",
+    "Select, implement and justify creational, structural and behavioural design patterns for a given design problem.",
+    "Compare architectural styles and choose one, or a combination, that fits a system's requirements and constraints.",
+    "Analyse quality attributes with scenarios and apply architectural tactics to meet them, explaining the trade-offs.",
+    "Document an architecture with multiple views and decision records and evaluate it with a structured method."
+  ],
+  "units": [
+    {
+      "title": "Design principles: SOLID, coupling and cohesion",
+      "weeks": "1-2",
+      "topics": [
+        "Modularity, information hiding and abstraction; kinds of coupling and cohesion",
+        "SOLID: single responsibility, open-closed, Liskov substitution, interface segregation and dependency inversion",
+        "Composition over inheritance; the law of Demeter; DRY and YAGNI",
+        "UML class and sequence diagrams as design notation",
+        "Code smells and refactoring; refactoring towards patterns"
+      ]
+    },
+    {
+      "title": "Creational patterns",
+      "weeks": "3",
+      "topics": [
+        "Factory method and abstract factory",
+        "Builder and prototype",
+        "Singleton and why it is often an anti-pattern; testability concerns",
+        "Dependency injection and inversion-of-control containers",
+        "Object pools and lazy initialisation"
+      ]
+    },
+    {
+      "title": "Structural patterns",
+      "weeks": "4-5",
+      "topics": [
+        "Adapter: wrapping several mobile money provider APIs behind one payment interface",
+        "Facade and proxy: simplifying subsystems; remote, caching and protection proxies",
+        "Decorator: adding logging, retries and caching without subclassing",
+        "Composite and bridge",
+        "Flyweight and memory-conscious design for low-end devices",
+        "Comparing similar patterns: adapter, decorator, proxy and facade"
+      ]
+    },
+    {
+      "title": "Behavioural patterns",
+      "weeks": "6-7",
+      "topics": [
+        "Strategy and template method: pluggable fare-calculation rules for tro-tro routes",
+        "Observer and publish-subscribe; event handling in user interfaces",
+        "Command, memento and undo; chain of responsibility",
+        "State: modelling a transaction life cycle as a state machine",
+        "Iterator, mediator and visitor; interpreter in brief",
+        "Anti-patterns and pattern overuse"
+      ]
+    },
+    {
+      "title": "Architectural styles: layered, event-driven, microservices",
+      "weeks": "8-9",
+      "topics": [
+        "What architecture is: structures, views, components and connectors",
+        "Layered, client-server and pipe-and-filter styles; MVC and MVVM",
+        "Hexagonal (ports and adapters) and clean architecture",
+        "Event-driven architecture: message brokers, event sourcing and CQRS",
+        "Microservices versus the modular monolith; service boundaries and domain-driven design",
+        "Serverless and peer-to-peer styles in brief"
+      ]
+    },
+    {
+      "title": "Quality attributes and trade-offs",
+      "weeks": "10-11",
+      "topics": [
+        "Quality attribute scenarios: source, stimulus, environment, response and response measure",
+        "Tactics for availability, performance and scalability",
+        "Tactics for security, modifiability, testability and usability",
+        "Consistency and partition tolerance: the CAP theorem and eventual consistency",
+        "Designing for intermittent power and low bandwidth: offline queues, caching, retries and idempotent operations",
+        "Cost, time to market and team structure as architectural forces; Conway's law"
+      ]
+    },
+    {
+      "title": "Patterns for distributed systems",
+      "weeks": "12",
+      "topics": [
+        "API gateway, service discovery and backend-for-frontend",
+        "Resilience patterns: circuit breaker, bulkhead, timeout and retry with backoff",
+        "Data management: database per service, sagas and the outbox pattern",
+        "Migrating legacy systems with the strangler fig pattern"
+      ]
+    },
+    {
+      "title": "Documenting and evaluating architecture",
+      "weeks": "13-14",
+      "topics": [
+        "Views and viewpoints: the 4+1 view model and the C4 model",
+        "Architecture decision records and documenting rationale",
+        "Evaluation with ATAM: utility trees, sensitivity points and risks",
+        "Architecture fitness functions and conformance checking in code",
+        "Technical debt and architectural erosion",
+        "Capstone: design, document and evaluate the architecture for a city transport and fare-payment platform"
+      ]
+    }
+  ]
+}

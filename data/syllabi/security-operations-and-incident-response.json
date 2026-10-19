@@ -1,0 +1,118 @@
+{
+  "slug": "security-operations-and-incident-response",
+  "description": "Running the defensive side of security: the security operations centre, logging and log analysis, intrusion detection, threat intelligence, the incident response life cycle, containment and recovery, and the lessons-learned and reporting that close an incident. Taught through browser-based simulations of a monitored network and a live incident, where students triage alerts, investigate logs and work a response on isolated virtual machines.",
+  "modelledOn": [
+    "Sanders and Smith, Applied Network Security Monitoring",
+    "NIST SP 800-61 Computer Security Incident Handling Guide",
+    "MITRE ATT&CK framework",
+    "CompTIA Cybersecurity Analyst (CySA+) objectives"
+  ],
+  "outcomes": [
+    "Describe how a security operations centre is staffed, tiered and measured.",
+    "Collect, normalise and analyse logs to detect and investigate suspicious activity.",
+    "Deploy and tune intrusion detection and correlate alerts in a SIEM.",
+    "Use threat intelligence and the ATT&CK framework to prioritise detection and hunting.",
+    "Work an incident through the full life cycle from detection to recovery.",
+    "Conduct a post-incident review and write reports for technical and management audiences."
+  ],
+  "units": [
+    {
+      "title": "Security operations centres",
+      "weeks": "1-2",
+      "topics": [
+        "The mission of a SOC: monitor, detect, triage, respond and improve",
+        "Tiered analyst roles, shift handover and escalation paths",
+        "Metrics that matter: dwell time, mean time to detect and respond, false-positive rate",
+        "People, process and technology; build-versus-outsource for a small Ghanaian bank or university",
+        "The monitored-network simulation and the analyst's console"
+      ]
+    },
+    {
+      "title": "Logging and log analysis",
+      "weeks": "3-4",
+      "topics": [
+        "Log sources: endpoints, servers, network devices, applications, cloud and authentication systems",
+        "Collection, time synchronisation, normalisation and retention; log integrity and tamper resistance",
+        "Searching and pivoting through logs to reconstruct a sequence of events",
+        "Baselining normal behaviour to make anomalies visible, including on shared internet-cafe machines",
+        "Parsing a mobile-money fraud attempt from authentication and transaction logs"
+      ]
+    },
+    {
+      "title": "Intrusion detection",
+      "weeks": "5",
+      "topics": [
+        "Host and network intrusion detection and prevention; signature versus anomaly detection",
+        "Writing and tuning rules with Snort and Suricata; reducing noise",
+        "Network security monitoring with Zeek and endpoint telemetry with an EDR agent",
+        "Detecting scans, exploitation and command-and-control traffic in the simulator",
+        "False positives, false negatives and the cost of each"
+      ]
+    },
+    {
+      "title": "SIEM and correlation",
+      "weeks": "6",
+      "topics": [
+        "Aggregating sources into a SIEM; parsing, enrichment and correlation rules",
+        "Dashboards, alerting and case management",
+        "Detection engineering: turning an attack technique into a reliable detection",
+        "Mapping detections to MITRE ATT&CK for coverage",
+        "Managing alert fatigue and prioritisation"
+      ]
+    },
+    {
+      "title": "Threat intelligence",
+      "weeks": "7",
+      "topics": [
+        "Strategic, operational and tactical threat intelligence and who consumes each",
+        "Indicators of compromise, the pyramid of pain and the limits of indicators",
+        "Sharing and standards: STIX, TAXII and community feeds relevant to West Africa",
+        "Threat hunting hypotheses driven by ATT&CK techniques",
+        "Attribution, bias and avoiding over-reading an indicator"
+      ]
+    },
+    {
+      "title": "The incident response life cycle",
+      "weeks": "8-9",
+      "topics": [
+        "The phases: preparation, detection and analysis, containment, eradication, recovery, lessons learned",
+        "Preparation: the incident response plan, roles, the RACI, communications and legal contacts",
+        "Classifying and prioritising incidents by impact and urgency",
+        "Evidence handling and chain of custody for a possible prosecution under the Cybersecurity Act 2020",
+        "Declaring an incident and standing up the response team in the simulation"
+      ]
+    },
+    {
+      "title": "Containment and recovery",
+      "weeks": "10-11",
+      "topics": [
+        "Short-term and long-term containment; isolating hosts without destroying evidence",
+        "Eradication: removing malware, closing the entry vector, resetting credentials",
+        "Digital forensics basics: disk and memory acquisition, timeline building",
+        "Recovery: restoring from clean backups, validating integrity and monitoring for recurrence",
+        "Working an incident through brown-outs and unreliable power with offline runbooks"
+      ]
+    },
+    {
+      "title": "Lessons learned and reporting",
+      "weeks": "12",
+      "topics": [
+        "The post-incident review: what happened, what worked, what to change, without blame",
+        "Root-cause analysis and tracking remediation to completion",
+        "Reporting to management and to the regulator or affected customers",
+        "Feeding lessons back into detections, playbooks and training",
+        "Updating runbooks and the response plan"
+      ]
+    },
+    {
+      "title": "Running a full response exercise",
+      "weeks": "13",
+      "topics": [
+        "A tabletop and a live simulated breach combining detection, triage and response",
+        "Coordinating containment, communication and recovery under time pressure",
+        "Producing the incident report and the improvement plan",
+        "Capstone: lead the response to a simulated ransomware outbreak and present the after-action review"
+      ]
+    }
+  ]
+}

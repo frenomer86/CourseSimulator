@@ -1,0 +1,110 @@
+{
+  "slug": "telecommunication-systems",
+  "description": "How telecommunication networks carry voice and data at scale: an overview of network structure, switching and signalling, transmission systems, optical-fibre and satellite communication, traffic engineering, and the regulation of telecommunications. Taught with browser-based simulations of links, switches and traffic loads, so students dimension networks, model blocking and trace a call or packet across the network without physical equipment.",
+  "modelledOn": [
+    "Stallings, Data and Computer Communications",
+    "Rappaport, Wireless Communications: Principles and Practice",
+    "ITU-T recommendations and the ITU radio regulations"
+  ],
+  "outcomes": [
+    "Describe the structure of a telecommunication network from access to core.",
+    "Explain circuit and packet switching and the signalling that sets up and controls connections.",
+    "Analyse transmission systems in terms of bandwidth, multiplexing, modulation and impairments.",
+    "Explain optical-fibre and satellite links and when each is the right choice.",
+    "Apply traffic engineering to dimension a network and estimate blocking and quality of service.",
+    "Describe how telecommunications are regulated and how spectrum and licensing are managed."
+  ],
+  "units": [
+    {
+      "title": "Telecommunication networks overview",
+      "weeks": "1-2",
+      "topics": [
+        "The anatomy of a network: access, aggregation, core and interconnection",
+        "A brief history from the telegraph and telephone to mobile and all-IP networks",
+        "Analogue versus digital; bandwidth, bit rate and the Nyquist and Shannon limits",
+        "Standards and layering; the roles of the ITU, IEEE and regional bodies",
+        "Ghana's telecom landscape: the mobile operators, mobile money and the national backbone"
+      ]
+    },
+    {
+      "title": "Switching and signalling",
+      "weeks": "3-4",
+      "topics": [
+        "Circuit, message and packet switching and the trade-offs between them",
+        "Space- and time-division switching inside a switch fabric",
+        "Signalling: in-band versus out-of-band and the common-channel signalling system",
+        "Call set-up, routing and teardown; numbering and addressing plans",
+        "The move from circuit-switched telephony to voice over IP and softswitches"
+      ]
+    },
+    {
+      "title": "Transmission systems",
+      "weeks": "5-6",
+      "topics": [
+        "Transmission media: copper pair, coaxial, radio and fibre and their characteristics",
+        "Impairments: attenuation, noise, distortion and the link budget",
+        "Modulation: amplitude, frequency, phase and quadrature schemes",
+        "Multiplexing: frequency-, time-, wavelength- and code-division",
+        "Digital transmission hierarchies and the synchronous optical and digital hierarchies",
+        "Error detection and correction on a link"
+      ]
+    },
+    {
+      "title": "Optical fibre communication",
+      "weeks": "7-8",
+      "topics": [
+        "Light guiding in fibre: total internal reflection, single- and multi-mode fibre",
+        "Sources, detectors and the optical link budget; attenuation and dispersion windows",
+        "Wavelength-division multiplexing and optical amplifiers for long-haul capacity",
+        "Submarine cable systems and the West Africa cables that carry the region's traffic",
+        "Fibre to the home and the access network; resilience when a cable is cut"
+      ]
+    },
+    {
+      "title": "Wireless and mobile transmission",
+      "weeks": "9",
+      "topics": [
+        "Radio propagation: path loss, fading, multipath and interference",
+        "Cellular principles: cells, frequency reuse, handover and capacity",
+        "Generations of mobile networks and their air interfaces in brief",
+        "Spectrum as a scarce resource and why it is licensed",
+        "Mobile coverage realities in rural Ghana and the economics of extending it"
+      ]
+    },
+    {
+      "title": "Satellite communication",
+      "weeks": "10",
+      "topics": [
+        "Orbits: geostationary, medium and low earth orbit and their latency and coverage trade-offs",
+        "The satellite link: uplink, downlink, transponders and the ground segment",
+        "Link budget, rain fade and frequency bands",
+        "Applications: backhaul for remote areas, broadcasting and new low-earth-orbit broadband",
+        "When satellite is the right choice for underserved communities"
+      ]
+    },
+    {
+      "title": "Traffic engineering",
+      "weeks": "11-12",
+      "topics": [
+        "Offered traffic, the erlang and grade of service",
+        "The Erlang-B and Erlang-C models for blocking and queued systems",
+        "Dimensioning circuits and channels for a target blocking probability",
+        "Queueing basics for packet networks: utilisation, delay and loss",
+        "Quality of service, congestion and admission control",
+        "Dimensioning a mobile cell or a data link under a given load in the simulator"
+      ]
+    },
+    {
+      "title": "Regulation of telecommunications",
+      "weeks": "13",
+      "topics": [
+        "Why telecoms are regulated: scarce spectrum, natural monopoly and universal service",
+        "Licensing, interconnection and number portability",
+        "Spectrum management and the ITU's role in international coordination",
+        "Ghana's National Communications Authority: licensing, SIM registration and consumer protection",
+        "Pricing, competition and universal-access funds for underserved areas",
+        "Capstone: plan and dimension a regulated access network for a Ghanaian district"
+      ]
+    }
+  ]
+}

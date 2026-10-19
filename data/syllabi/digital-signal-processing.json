@@ -1,0 +1,121 @@
+{
+  "slug": "digital-signal-processing",
+  "description": "Processing sampled signals with algorithms: the discrete Fourier transform and the FFT, FIR and IIR filter design and realisation, finite word-length effects, multirate systems, spectral estimation and applications to speech, audio and images. Each algorithm is implemented in code and run on real recordings in the browser, so every filter is designed, plotted, heard and measured against its specification.",
+  "modelledOn": [
+    "Oppenheim and Schafer, Discrete-Time Signal Processing",
+    "Proakis and Manolakis, Digital Signal Processing: Principles, Algorithms and Applications",
+    "Lyons, Understanding Digital Signal Processing",
+    "Mitra, Digital Signal Processing: A Computer-Based Approach"
+  ],
+  "outcomes": [
+    "Compute and interpret the DFT, use it for fast convolution and spectral analysis, and explain the effects of windowing and zero padding.",
+    "Derive and implement radix-2 FFT algorithms and analyse their computational cost.",
+    "Design FIR filters by windowing, frequency sampling and equiripple methods, and IIR filters from analogue prototypes, to meet a specification.",
+    "Realise filters in direct, cascade, parallel and lattice structures and assess finite word-length effects.",
+    "Design decimators, interpolators and polyphase filter banks for multirate systems.",
+    "Apply DSP techniques to speech, audio and image processing problems and evaluate the results quantitatively."
+  ],
+  "units": [
+    {
+      "title": "Discrete-time signals, sampling and quantisation",
+      "weeks": "1",
+      "topics": [
+        "Review of discrete-time signals, LTI systems, convolution, the DTFT and the z-transform",
+        "Analogue-to-digital and digital-to-analogue conversion; sampling and reconstruction in practice",
+        "Uniform quantisation, quantisation noise and SNR per bit; dithering",
+        "Fixed-point and floating-point number formats for DSP"
+      ]
+    },
+    {
+      "title": "The discrete Fourier transform",
+      "weeks": "2-3",
+      "topics": [
+        "The discrete Fourier series and the DFT as samples of the DTFT; the DFT matrix",
+        "DFT properties: linearity, circular shift, symmetry, Parseval's theorem",
+        "Circular convolution and computing linear convolution with the DFT; zero padding",
+        "Block convolution for long signals: overlap-add and overlap-save",
+        "The discrete cosine transform and energy compaction"
+      ]
+    },
+    {
+      "title": "The fast Fourier transform",
+      "weeks": "4",
+      "topics": [
+        "Computational cost of the direct DFT; the divide-and-conquer idea",
+        "Radix-2 decimation-in-time and decimation-in-frequency FFTs; butterflies, bit reversal and in-place computation",
+        "Mixed-radix and real-input FFTs; the inverse FFT",
+        "The Goertzel algorithm and detecting DTMF keypresses on a phone line",
+        "Implementing an FFT from scratch and validating it against a library routine"
+      ]
+    },
+    {
+      "title": "FIR filter design",
+      "weeks": "5-6",
+      "topics": [
+        "Filter specifications: passband, stopband, ripple, transition width; linear phase and the four FIR types",
+        "Window method: rectangular, Hann, Hamming, Blackman and Kaiser windows",
+        "Frequency-sampling design",
+        "Optimal equiripple design with the Parks-McClellan algorithm",
+        "FIR structures: direct form, transposed form, cascade and lattice",
+        "Removing 50 Hz mains interference and baseline wander from an ECG recording"
+      ]
+    },
+    {
+      "title": "IIR filter design",
+      "weeks": "7-8",
+      "topics": [
+        "Analogue prototypes: Butterworth, Chebyshev types I and II, and elliptic filters",
+        "Impulse invariance and the bilinear transform with frequency prewarping",
+        "Frequency transformations to high-pass, band-pass and band-stop filters",
+        "IIR structures: direct forms I and II, transposed forms, cascade of second-order sections, parallel form",
+        "Finite word-length effects: coefficient quantisation, round-off noise, overflow, scaling and limit cycles",
+        "Choosing between FIR and IIR: phase, cost, stability and latency"
+      ]
+    },
+    {
+      "title": "Multirate processing",
+      "weeks": "9",
+      "topics": [
+        "Downsampling and upsampling in time and frequency",
+        "Decimation and interpolation filters; rational sampling-rate conversion",
+        "Polyphase decomposition and efficient multirate implementations",
+        "Two-channel filter banks, quadrature mirror filters and perfect reconstruction",
+        "Oversampling and sigma-delta converters"
+      ]
+    },
+    {
+      "title": "Spectral analysis",
+      "weeks": "10-11",
+      "topics": [
+        "Spectral analysis with the DFT: leakage, resolution, windowing and zero padding",
+        "The short-time Fourier transform and spectrograms; time-frequency trade-offs",
+        "Random signals: autocorrelation and power spectral density",
+        "Non-parametric estimation: periodogram, Bartlett and Welch methods",
+        "Parametric estimation: autoregressive models and the Yule-Walker equations",
+        "Analysing grid frequency fluctuations and vibration from a cocoa-processing motor"
+      ]
+    },
+    {
+      "title": "Optimal and adaptive filtering",
+      "weeks": "12",
+      "topics": [
+        "Linear prediction and the Levinson-Durbin recursion",
+        "The Wiener filter and the mean-square error criterion",
+        "Adaptive filters: LMS and normalised LMS; convergence and step size",
+        "Noise and echo cancellation for voice calls"
+      ]
+    },
+    {
+      "title": "Audio and image processing applications",
+      "weeks": "13-14",
+      "topics": [
+        "Speech analysis: pitch detection, linear predictive coding and MFCC features for recognising Twi and Ewe keywords",
+        "Audio effects and equalisers; perceptual audio coding principles",
+        "Two-dimensional signals: the 2-D DFT and 2-D convolution",
+        "Image filtering: smoothing, sharpening, edge detection and median filtering",
+        "DCT-based image compression and JPEG for low-bandwidth delivery",
+        "Real-time constraints: latency, buffering and DSP processor architectures"
+      ]
+    }
+  ]
+}

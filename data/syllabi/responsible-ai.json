@@ -1,0 +1,109 @@
+{
+  "slug": "responsible-ai",
+  "description": "How to build and govern artificial intelligence that is fair, transparent, private, safe and accountable: the harms AI systems cause, fairness and bias, transparency and explainability, privacy and data rights, safety and robustness, governance and regulation, and what responsible AI means for African contexts. Taught through browser-based exercises that audit real datasets and models for bias, probe them for failures and apply mitigations, grounding each principle in hands-on measurement rather than theory alone.",
+  "modelledOn": [
+    "Barocas, Hardt and Narayanan, Fairness and Machine Learning",
+    "O'Neil, Weapons of Math Destruction",
+    "NIST AI Risk Management Framework",
+    "ISO/IEC 42001 Artificial Intelligence Management System"
+  ],
+  "outcomes": [
+    "Identify and categorise the harms an AI system can cause across its lifecycle.",
+    "Measure bias and apply fairness definitions, recognising the trade-offs between them.",
+    "Explain model behaviour with interpretability methods and produce transparency documentation.",
+    "Protect privacy and uphold data rights when collecting and using data.",
+    "Assess and improve the safety and robustness of a model against failures and attacks.",
+    "Apply governance frameworks and regulation and adapt responsible-AI practice to African contexts."
+  ],
+  "units": [
+    {
+      "title": "Harms from AI systems",
+      "weeks": "1-2",
+      "topics": [
+        "A taxonomy of harms: allocative, representational, quality-of-service, and harms to autonomy and dignity",
+        "Where harm enters the lifecycle: problem framing, data, model, deployment and feedback loops",
+        "Case studies: biased hiring and credit scoring, flawed facial recognition, content-moderation failures",
+        "Harms with regional weight: credit scoring for the unbanked and mobile-money risk models",
+        "Stakeholders and the diffusion of responsibility; who bears the cost"
+      ]
+    },
+    {
+      "title": "Fairness and bias",
+      "weeks": "3-5",
+      "topics": [
+        "Sources of bias: historical, representation, measurement, aggregation and deployment bias",
+        "Group fairness definitions: demographic parity, equalised odds, predictive parity",
+        "Individual and counterfactual fairness; the impossibility results that force trade-offs",
+        "Measuring disparity and auditing a model on a held-out dataset in the browser",
+        "Mitigations at pre-processing, in-processing and post-processing stages",
+        "Choosing protected attributes sensitively where ethnicity, language and region are involved"
+      ]
+    },
+    {
+      "title": "Transparency and explainability",
+      "weeks": "6-7",
+      "topics": [
+        "Transparency versus explainability versus interpretability",
+        "Intrinsically interpretable models versus post-hoc explanation",
+        "Local explanations: feature attribution, LIME and Shapley-value methods",
+        "Global explanations, partial-dependence and the limits and misuse of explanations",
+        "Documentation: model cards, datasheets for datasets and system fact sheets",
+        "Explaining a decision to an affected user such as a declined loan applicant"
+      ]
+    },
+    {
+      "title": "Privacy and data rights",
+      "weeks": "8-9",
+      "topics": [
+        "Personal data, consent, purpose limitation and data minimisation",
+        "Ghana's Data Protection Act 843 and the role of the Data Protection Commission",
+        "Re-identification risk and the failure of naive anonymisation",
+        "Privacy-preserving techniques: k-anonymity, differential privacy and federated learning in brief",
+        "Data collection ethics for low-resource languages and communities; informed consent in practice"
+      ]
+    },
+    {
+      "title": "Safety and robustness",
+      "weeks": "10-11",
+      "topics": [
+        "Distribution shift and why accuracy on a test set overstates real-world reliability",
+        "Adversarial examples and data poisoning; probing a model's brittleness in the browser",
+        "Uncertainty estimation, calibration and knowing when to abstain",
+        "Robustness to missing data, noisy inputs and intermittent connectivity",
+        "Monitoring, drift detection and safe rollback after deployment"
+      ]
+    },
+    {
+      "title": "AI governance and regulation",
+      "weeks": "12",
+      "topics": [
+        "Risk-based governance: the NIST AI Risk Management Framework and an AI management system",
+        "The emerging regulatory landscape and risk tiers; sectoral rules for finance and health",
+        "Impact assessments, audits and accountability structures within an organisation",
+        "Procurement and third-party model risk; responsibility across a supply chain",
+        "Standards, voluntary codes and the limits of self-regulation"
+      ]
+    },
+    {
+      "title": "AI for African contexts",
+      "weeks": "13",
+      "topics": [
+        "Data scarcity and representation for African languages, faces and settings",
+        "Infrastructure realities: offline and low-bandwidth deployment, on-device models, power cuts",
+        "Data sovereignty, benefit sharing and avoiding extractive data practices",
+        "Continental and national policy: the African Union's AI stance and local strategy",
+        "Building appropriate, locally governed AI rather than importing ill-fitting systems"
+      ]
+    },
+    {
+      "title": "A responsible-AI assessment",
+      "weeks": "14",
+      "topics": [
+        "Combining fairness, transparency, privacy and safety into one evaluation of a system",
+        "Producing an impact assessment and a mitigation and monitoring plan",
+        "Communicating findings to technical and non-technical stakeholders",
+        "Capstone: audit a provided model and dataset and deliver a responsible-AI report with fixes"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "slug": "it-service-management-and-governance",
+  "description": "How IT is run as a set of services that create value and how it is directed and controlled: service value and the service value system, the service desk, incident, problem, change and release management, service level agreements, IT governance frameworks, risk, audit and compliance, and measuring IT performance. Students work tickets, changes and outages on a simulated IT department in the browser, write service level agreements and run a governance and audit review against recognised frameworks.",
+  "modelledOn": [
+    "AXELOS, ITIL 4 Foundation and the ITIL 4 practice guides",
+    "ISACA, COBIT 2019 Framework: Governance and Management Objectives",
+    "ISO/IEC 20000-1, Service management system requirements",
+    "ISO/IEC 38500, Governance of IT for the organisation"
+  ],
+  "outcomes": [
+    "Explain how IT services co-create value and describe the service value system, value chain and guiding principles.",
+    "Operate service desk, incident, request and problem management processes and prioritise work by impact and urgency.",
+    "Plan and assess changes and releases so that risk to live services is controlled.",
+    "Negotiate and write service level agreements with measurable targets and supporting agreements.",
+    "Apply IT governance, risk and audit frameworks to evaluate controls and compliance in an organisation.",
+    "Design metrics, dashboards and improvement plans that measure IT performance against business goals."
+  ],
+  "units": [
+    {
+      "title": "IT services and value",
+      "weeks": "1",
+      "topics": [
+        "Services, products, service offerings and service relationships; value co-creation with consumers",
+        "Utility and warranty; outcomes, costs and risks",
+        "The four dimensions of service management: organisations and people, information and technology, partners and suppliers, value streams and processes",
+        "IT as a cost centre versus a service provider; services at a university, a bank and a mobile operator"
+      ]
+    },
+    {
+      "title": "The service value system",
+      "weeks": "2",
+      "topics": [
+        "The service value system: guiding principles, governance, the service value chain, practices and continual improvement",
+        "The seven guiding principles and how they shape decisions",
+        "Service value chain activities: plan, improve, engage, design and transition, obtain or build, deliver and support",
+        "Service catalogue and service portfolio management; mapping a value stream"
+      ]
+    },
+    {
+      "title": "Service desk, incidents and requests",
+      "weeks": "3-4",
+      "topics": [
+        "Service desk structures: local, centralised, virtual and follow-the-sun; channels including phone, WhatsApp and SMS",
+        "Incident lifecycle: logging, categorisation, prioritisation by impact and urgency, diagnosis, escalation and closure",
+        "Major incident procedures and communication during outages",
+        "Service requests and request fulfilment; self-service portals and knowledge bases",
+        "Ticketing tools, queues and workload; first-contact resolution",
+        "Handling a mobile money outage on a public holiday"
+      ]
+    },
+    {
+      "title": "Problem management",
+      "weeks": "5",
+      "topics": [
+        "Problems, known errors and workarounds; reactive and proactive problem management",
+        "Root cause analysis techniques: five whys, Ishikawa diagrams, fault tree and Kepner-Tregoe analysis",
+        "Trend analysis of incident data to find recurring problems",
+        "Blameless post-incident reviews"
+      ]
+    },
+    {
+      "title": "Change and release management",
+      "weeks": "6-7",
+      "topics": [
+        "Change enablement: standard, normal and emergency changes; change authority and the change advisory board",
+        "Risk and impact assessment, change schedules and freeze periods",
+        "Release and deployment management: release planning, build, test, deployment and early life support",
+        "Configuration management: configuration items, the CMDB and service dependency maps",
+        "Integrating change management with DevOps, continuous delivery and automated testing",
+        "Planning a core banking upgrade with minimal downtime"
+      ]
+    },
+    {
+      "title": "Service levels and agreements",
+      "weeks": "8",
+      "topics": [
+        "Service level management: service level requirements, targets and reviews",
+        "Service level agreements, operational level agreements and underpinning contracts",
+        "Availability, capacity, continuity and information security as warranty requirements",
+        "Supplier and relationship management; SLAs with internet and cloud providers serving low-bandwidth regions",
+        "Writing an SLA with measurable availability and response targets"
+      ]
+    },
+    {
+      "title": "IT governance frameworks",
+      "weeks": "9-10",
+      "topics": [
+        "Corporate governance and IT governance; governance versus management",
+        "COBIT 2019: governance system principles, objectives, components, design factors and capability levels",
+        "ISO/IEC 38500 principles: evaluate, direct and monitor",
+        "ISO/IEC 20000 certification and how ITIL, COBIT and ISO standards fit together",
+        "IT strategy, investment decisions, IT steering committees and portfolio governance",
+        "Governance of public sector IT and e-government services in Ghana"
+      ]
+    },
+    {
+      "title": "Risk, audit and compliance",
+      "weeks": "11",
+      "topics": [
+        "IT risk management: identification, assessment, risk appetite, treatment and risk registers",
+        "Internal controls: preventive, detective and corrective; general and application controls",
+        "The IT audit process: planning, evidence, testing controls and reporting findings",
+        "Compliance obligations: ISO/IEC 27001, data protection law and sector regulators such as the Bank of Ghana",
+        "Business continuity and disaster recovery planning; recovery time and recovery point objectives"
+      ]
+    },
+    {
+      "title": "Measuring IT performance",
+      "weeks": "12",
+      "topics": [
+        "Critical success factors, KPIs and metrics; the metrics hierarchy from operational to strategic",
+        "Service metrics: availability, MTTR, MTBF, first-contact resolution and customer satisfaction",
+        "IT balanced scorecard and value measurement; cost of services and chargeback",
+        "Continual improvement models and maturity assessment",
+        "Service reporting dashboards for management"
+      ]
+    },
+    {
+      "title": "Capstone",
+      "weeks": "13",
+      "topics": [
+        "Assessing the service management maturity of a simulated organisation",
+        "Running a governance and audit review against COBIT objectives",
+        "Producing a service improvement plan with prioritised actions and metrics",
+        "Presenting findings to an IT steering committee"
+      ]
+    }
+  ]
+}

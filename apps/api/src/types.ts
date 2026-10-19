@@ -6,6 +6,7 @@
 export type Mastery = 'not_started' | 'attempted' | 'proficient' | 'mastered';
 export type LabLevel = 'beginner' | 'intermediate' | 'advanced';
 export type AgeBand = 'under_18' | '18_plus' | 'undisclosed';
+export type PlatformRole = 'learner' | 'facilitator' | 'moderator' | 'admin';
 
 export interface User {
   id: string;
@@ -21,6 +22,10 @@ export interface Profile {
   showOnBoards: boolean;
   xp: number;
   level: number;
+  /** Learner by default. A facilitator (teacher, lecturer, tutor) is self-declared until verified. */
+  platformRole: PlatformRole;
+  facilitatorVerified: boolean;
+  bio: string | null;
 }
 
 export interface LabProgress {

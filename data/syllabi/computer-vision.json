@@ -1,0 +1,106 @@
+{
+  "slug": "computer-vision",
+  "description": "How machines see: images as arrays of measurements, filtering and edge detection, local features and matching, convolutional networks for classification, object detection, segmentation, and the geometry of cameras and 3D reconstruction. Classical algorithms are implemented by hand and modern networks are trained in browser notebooks with live image visualisations, taught to the depth of a strong final-year computer vision course.",
+  "modelledOn": [
+    "Szeliski, Computer Vision: Algorithms and Applications",
+    "Hartley and Zisserman, Multiple View Geometry in Computer Vision",
+    "Forsyth and Ponce, Computer Vision: A Modern Approach",
+    "Prince, Computer Vision: Models, Learning, and Inference"
+  ],
+  "outcomes": [
+    "Represent and manipulate images as data, explaining sampling, colour spaces and the image formation process.",
+    "Implement linear and non-linear filters, edge and corner detectors and explain them in the spatial and frequency domains.",
+    "Detect, describe and match local features and estimate transformations robustly with RANSAC.",
+    "Design, train and evaluate convolutional networks for classification, detection and segmentation, using transfer learning when data is scarce.",
+    "Model cameras with projective geometry, calibrate them and recover 3D structure from multiple views.",
+    "Evaluate vision systems for accuracy, robustness and fairness and plan their deployment on low-cost devices."
+  ],
+  "units": [
+    {
+      "title": "Images as data",
+      "weeks": "1",
+      "topics": [
+        "Image formation: light, lenses, sensors, the Bayer pattern; sampling, quantisation and aliasing",
+        "Pixels, channels and colour spaces: RGB, HSV, Lab, greyscale conversion; image file formats and compression",
+        "Point operations: brightness, contrast, gamma, histograms and histogram equalisation",
+        "Tooling: NumPy, OpenCV, PIL and PyTorch tensors; loading and inspecting a dataset of cassava and cocoa leaf images"
+      ]
+    },
+    {
+      "title": "Filtering and edge detection",
+      "weeks": "2-3",
+      "topics": [
+        "Linear filtering: convolution and correlation, box and Gaussian filters, separability, border handling",
+        "The Fourier transform of images; frequency-domain filtering; the sampling theorem and image pyramids",
+        "Non-linear filters: median, bilateral; morphological operations: erosion, dilation, opening, closing",
+        "Image gradients, Sobel and Laplacian of Gaussian; the Canny edge detector implemented step by step",
+        "Lines and shapes: the Hough transform for lines and circles; finding road lane markings"
+      ]
+    },
+    {
+      "title": "Features and matching",
+      "weeks": "4-5",
+      "topics": [
+        "Corner detection: Harris and Shi-Tomasi; scale space and blob detection with the difference of Gaussians",
+        "Descriptors: SIFT, ORB and BRIEF; invariance to scale, rotation and illumination",
+        "Matching: nearest neighbours, the ratio test, approximate nearest neighbour search",
+        "Geometric transformations: similarity, affine, homography; robust estimation with RANSAC",
+        "Image stitching for panoramas; optical flow with Lucas-Kanade in brief"
+      ]
+    },
+    {
+      "title": "Image classification with CNNs",
+      "weeks": "6-7",
+      "topics": [
+        "From hand-crafted to learned features: convolution layers, pooling, receptive fields, parameter sharing",
+        "Architectures: LeNet, AlexNet, VGG, ResNet and residual connections, MobileNet and EfficientNet; vision transformers in brief",
+        "Training in practice: data augmentation, batch normalisation, learning-rate schedules, overfitting on small datasets",
+        "Transfer learning and fine-tuning pretrained networks; classifying crop diseases from smartphone photos",
+        "Interpreting CNNs: filter visualisation, saliency maps, Grad-CAM; adversarial examples"
+      ]
+    },
+    {
+      "title": "Object detection",
+      "weeks": "8-9",
+      "topics": [
+        "The detection problem: bounding boxes, intersection over union, non-maximum suppression",
+        "Two-stage detectors: R-CNN, Fast and Faster R-CNN, region proposal networks, anchors",
+        "One-stage detectors: YOLO, SSD and RetinaNet with focal loss; anchor-free detection",
+        "Evaluation with precision-recall curves and mean average precision",
+        "Building a dataset: annotation tools and labelling guidelines; detecting vehicles and motorbikes in Accra traffic footage"
+      ]
+    },
+    {
+      "title": "Segmentation",
+      "weeks": "10",
+      "topics": [
+        "Classical segmentation: thresholding and Otsu's method, k-means in colour space, region growing, watershed, graph cuts",
+        "Semantic segmentation: fully convolutional networks, U-Net, encoder-decoder designs and dilated convolutions",
+        "Instance and panoptic segmentation: Mask R-CNN; promptable segmentation models",
+        "Metrics: pixel accuracy, mean IoU, Dice coefficient; segmenting malaria parasites in blood smear images and farmland in satellite imagery"
+      ]
+    },
+    {
+      "title": "Geometry, cameras and 3D",
+      "weeks": "11-12",
+      "topics": [
+        "Homogeneous coordinates and projective geometry; the pinhole camera model, intrinsics, extrinsics and lens distortion",
+        "Camera calibration with a checkerboard; pose estimation and perspective-n-point",
+        "Two-view geometry: epipolar constraints, the essential and fundamental matrices, the eight-point algorithm",
+        "Stereo vision and depth from disparity; triangulation",
+        "Structure from motion and visual SLAM in outline; bundle adjustment; depth sensors and point clouds"
+      ]
+    },
+    {
+      "title": "Video, generative models and responsible vision",
+      "weeks": "13",
+      "topics": [
+        "Video understanding: tracking by detection, Kalman filtering for tracks, action recognition in brief",
+        "Generative models for images in brief: autoencoders, GANs, diffusion; synthetic data and deepfakes",
+        "Deploying vision on phones and edge devices: quantisation, pruning, latency budgets",
+        "Fairness and privacy: skin-tone bias in face analysis, surveillance concerns, consent and the Data Protection Act",
+        "Capstone: an end-to-end vision application with a dataset card, evaluation report and deployment demonstration"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "slug": "it-support-and-troubleshooting",
+  "description": "The practical work of keeping people's computers and networks running: the role of IT support, a disciplined troubleshooting method, hardware faults, operating-system and software problems, network connectivity issues, managing users, accounts and printers, and the documentation and customer care that make support effective. Practised on simulated machines and networks in the browser where faults are injected and resolved, mirroring the realities of shared computers, internet cafes and frequent power cuts.",
+  "modelledOn": [
+    "Meyers, CompTIA A+ Certification All-in-One Exam Guide",
+    "CompTIA A+ and Network+ objectives",
+    "ITIL service management foundation"
+  ],
+  "outcomes": [
+    "Describe the role of IT support and the service desk and how tickets flow and escalate.",
+    "Apply a structured troubleshooting method to isolate and resolve a fault.",
+    "Diagnose and remedy common hardware faults and power problems.",
+    "Resolve operating-system and application issues including boot, update and malware problems.",
+    "Diagnose network connectivity problems from the device to the internet.",
+    "Manage users, accounts and printers and document work with clear customer care."
+  ],
+  "units": [
+    {
+      "title": "The role of IT support",
+      "weeks": "1",
+      "topics": [
+        "What IT support does: keeping people productive, not just fixing machines",
+        "The service desk, tiers of support, escalation and service-level expectations",
+        "Ticketing: logging, categorising, prioritising and tracking a request to closure",
+        "Support contexts in Ghana: schools, small businesses, internet cafes and shared computers",
+        "Professionalism, confidentiality and safety around electricity and equipment"
+      ]
+    },
+    {
+      "title": "The troubleshooting method",
+      "weeks": "2",
+      "topics": [
+        "A structured approach: identify the problem, form a theory, test, plan, implement, verify, document",
+        "Gathering information: questioning the user and reproducing the fault",
+        "Isolating a cause by halving the problem and changing one thing at a time",
+        "Distinguishing symptoms from root causes; avoiding assumptions",
+        "Knowing when to escalate and how to hand over cleanly"
+      ]
+    },
+    {
+      "title": "Hardware faults",
+      "weeks": "3-4",
+      "topics": [
+        "Inside the PC: power supply, motherboard, CPU, memory, storage and peripherals",
+        "Diagnosing no-power, no-boot and POST beep and error codes",
+        "Storage faults: failing drives, bad sectors, backups and data recovery basics",
+        "Overheating, dust and the effect of a hot, dusty climate on hardware",
+        "Power problems: surges, brown-outs, outages, surge protectors and the uninterruptible power supply",
+        "Safe handling, electrostatic discharge and basic component replacement"
+      ]
+    },
+    {
+      "title": "Operating system and software issues",
+      "weeks": "5-6",
+      "topics": [
+        "The boot process and repairing a machine that will not start",
+        "Updates, drivers and compatibility problems; rolling back a bad change",
+        "Slow or unstable systems: resources, startup programs and disk space",
+        "Malware symptoms, removal and the special risk of shared cafe machines",
+        "Backups, restore points and reinstalling an operating system as a last resort",
+        "Licensing and keeping software legal and patched"
+      ]
+    },
+    {
+      "title": "Network connectivity problems",
+      "weeks": "7-8",
+      "topics": [
+        "The path from a device to the internet: adapter, cable or Wi-Fi, router, ISP and beyond",
+        "IP addressing, DHCP, DNS and the gateway; reading a device's network configuration",
+        "Troubleshooting tools: ping, traceroute, nslookup and interpreting their output",
+        "Wi-Fi problems: signal, channels, interference and authentication",
+        "Diagnosing a dead link versus slow or intermittent service on shared or metered connections",
+        "When the fault is upstream: the ISP, a mobile-data outage or a cut submarine cable"
+      ]
+    },
+    {
+      "title": "Users, accounts and permissions",
+      "weeks": "9-10",
+      "topics": [
+        "User accounts, groups and the principle of least privilege",
+        "Password resets, account lockouts and safe identity verification of the requester",
+        "File and folder permissions and shared-resource access",
+        "Directory services and centrally managed accounts in an organisation",
+        "Onboarding and offboarding a user securely"
+      ]
+    },
+    {
+      "title": "Printers and peripherals",
+      "weeks": "11",
+      "topics": [
+        "Printer types and the print path: driver, spooler, queue and device",
+        "Diagnosing jobs that will not print, jams, quality problems and connectivity",
+        "Shared and networked printers and managing a print queue",
+        "Consumables, maintenance and cost control in a resource-constrained office"
+      ]
+    },
+    {
+      "title": "Documentation and customer care",
+      "weeks": "12-13",
+      "topics": [
+        "Writing clear ticket notes, resolutions and a knowledge-base article others can reuse",
+        "Asset inventories, configuration records and standard operating procedures",
+        "Communicating with non-technical users: listening, managing expectations and following up",
+        "Handling difficult situations, data loss and bad news professionally",
+        "Preventive maintenance and user training to reduce repeat problems",
+        "Capstone: work a queue of simulated tickets from logging to documented resolution"
+      ]
+    }
+  ]
+}

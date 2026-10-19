@@ -1,0 +1,112 @@
+{
+  "slug": "digital-health-and-telemedicine",
+  "description": "Designing and delivering health services through digital technology: the digital health landscape and its evidence, mobile health applications, telemedicine models, tools for community health workers, remote monitoring and wearables, regulation and ethics, and the economics of scaling and sustaining digital health programmes. Taught through case-based simulations and prototypes built in the browser, from USSD and SMS services and offline-first community health worker apps to a teleconsultation flow between a rural clinic and a specialist.",
+  "modelledOn": [
+    "WHO, Guideline: Recommendations on Digital Interventions for Health System Strengthening",
+    "WHO, Classification of Digital Interventions, Services and Applications in Health",
+    "WHO, Monitoring and Evaluating Digital Health Interventions: A Practical Guide",
+    "Wootton, Craig and Patterson, Introduction to Telemedicine"
+  ],
+  "outcomes": [
+    "Describe the digital health landscape using WHO classifications and appraise the evidence for digital interventions.",
+    "Design mobile health applications and services for low-bandwidth and basic-phone settings using SMS, USSD, voice and offline-first apps.",
+    "Compare synchronous, store-and-forward and remote monitoring telemedicine models and design a teleconsultation service with referral pathways.",
+    "Design and evaluate digital tools for community health workers that support decision making, reporting and supervision.",
+    "Analyse the regulatory, ethical and data protection requirements for a digital health product, including software as a medical device.",
+    "Plan the scale-up and sustainability of a digital health programme with costing, interoperability, governance and monitoring and evaluation."
+  ],
+  "units": [
+    {
+      "title": "Digital health landscape",
+      "weeks": "1-2",
+      "topics": [
+        "Digital health, eHealth, mHealth and telehealth defined; the WHO classification of digital health interventions",
+        "Health system challenges digital tools address: access, workforce shortages, information gaps, supply chains",
+        "The evidence base: what works, the pilot problem and the WHO digital health guideline",
+        "National digital health strategies and the WHO-ITU National eHealth Strategy Toolkit; Ghana's eHealth strategy",
+        "Stakeholders and business models: ministries, donors, start-ups, mobile network operators",
+        "The Principles for Digital Development"
+      ]
+    },
+    {
+      "title": "Mobile health applications",
+      "weeks": "3-4",
+      "topics": [
+        "Channels for basic phones: SMS, USSD and interactive voice response; local languages and low literacy",
+        "Smartphone apps: offline-first architecture, synchronisation and low data usage",
+        "Use cases: appointment reminders, adherence support, maternal messaging, health education, drug verification by SMS",
+        "Human-centred design with patients and health workers; designing for shared and low-end devices",
+        "Mobile money and health: insurance premium payments and mobile NHIS renewal",
+        "Building a USSD or SMS reminder service prototype"
+      ]
+    },
+    {
+      "title": "Telemedicine models",
+      "weeks": "5-6",
+      "topics": [
+        "Synchronous video and audio consultation, store-and-forward and remote monitoring compared",
+        "Specialties suited to telemedicine: teledermatology, teleradiology, telepathology, tele-ophthalmology, telepsychiatry",
+        "Hub-and-spoke teleconsultation between rural facilities and referral hospitals; national teleconsultation centres in Ghana",
+        "Technical requirements: bandwidth, latency, image quality, DICOM and secure messaging",
+        "Clinical governance: protocols, documentation, liability, licensing across borders",
+        "Simulated teleconsultation workflow from a CHPS compound to a specialist"
+      ]
+    },
+    {
+      "title": "Community health worker tools",
+      "weeks": "7-8",
+      "topics": [
+        "Community health workers and volunteers in African health systems; the CHPS model in Ghana",
+        "Decision support for community case management of malaria, pneumonia and diarrhoea",
+        "Household registration, visit scheduling, referrals and follow-up; community-based surveillance",
+        "Platforms for CHW tools: Community Health Toolkit, CommCare, DHIS2 Android; offline data collection",
+        "Supervision, performance feedback and motivation through digital tools",
+        "Evaluating CHW tools: accuracy of classification, workload, data quality"
+      ]
+    },
+    {
+      "title": "Remote monitoring and wearables",
+      "weeks": "9",
+      "topics": [
+        "Remote patient monitoring for chronic disease: hypertension, diabetes, heart failure, pregnancy",
+        "Connected devices and wearables: blood pressure monitors, glucometers, pulse oximeters, activity trackers",
+        "Device data standards and integration: IEEE 11073, Bluetooth health profiles, FHIR observations",
+        "Signal quality, validation of consumer devices and alert thresholds",
+        "Point-of-care diagnostics with smartphones; AI-assisted screening"
+      ]
+    },
+    {
+      "title": "Regulation and ethics",
+      "weeks": "10-11",
+      "topics": [
+        "Software as a medical device: risk classification, IEC 62304, ISO 14971; the Ghana Food and Drugs Authority",
+        "Data protection: Ghana's Data Protection Act 843, the Malabo Convention, cross-border data transfer and cloud hosting",
+        "Informed consent, privacy and confidentiality in remote care; shared phones and family access",
+        "Equity and the digital divide: gender, rurality, literacy, disability, language",
+        "Ethics of AI in health: bias, accountability, explainability; WHO guidance on AI ethics",
+        "Security of mobile health systems: authentication, encryption, device loss"
+      ]
+    },
+    {
+      "title": "Scaling and sustaining digital health",
+      "weeks": "12",
+      "topics": [
+        "From pilot to national scale: pilotitis, government ownership and integration into the health system",
+        "Costing and economic evaluation: total cost of ownership, cost-effectiveness, financing models",
+        "Interoperability and digital public goods; avoiding vendor lock-in",
+        "Monitoring and evaluation frameworks for digital health; maturity models such as the Global Digital Health Monitor",
+        "Case studies: drone delivery of medical supplies, mobile maternal messaging, national telemedicine programmes in Africa"
+      ]
+    },
+    {
+      "title": "Project",
+      "weeks": "13",
+      "topics": [
+        "Identifying a health problem and the users affected through a needs assessment",
+        "Designing and prototyping a digital intervention with user feedback",
+        "Writing a regulatory, data protection and sustainability plan",
+        "Project: a working prototype with an evaluation plan and a pitch to a district health directorate"
+      ]
+    }
+  ]
+}

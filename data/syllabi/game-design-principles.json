@@ -1,0 +1,112 @@
+{
+  "slug": "game-design-principles",
+  "description": "The craft of designing games that people want to play: what makes a game, the mechanics-dynamics-aesthetics framework, core loops, level design, balancing and difficulty, narrative, playtesting and designing games that teach. Every idea is prototyped first on paper and then in the browser, played on a phone by classmates and revised from what the playtests show.",
+  "modelledOn": [
+    "Schell, The Art of Game Design: A Book of Lenses",
+    "Fullerton, Game Design Workshop: A Playcentric Approach to Creating Innovative Games",
+    "Salen and Zimmerman, Rules of Play: Game Design Fundamentals",
+    "Koster, A Theory of Fun for Game Design"
+  ],
+  "outcomes": [
+    "Define what makes a game and analyse existing games in terms of goals, rules, feedback and player choice.",
+    "Apply the mechanics, dynamics and aesthetics framework to design and critique a core gameplay loop.",
+    "Design levels that teach, pace and challenge players, using flow, difficulty curves and spatial layout.",
+    "Balance a game's economy, progression and difficulty using spreadsheets, simulation and playtest data.",
+    "Write game narrative that works with play, drawing on local stories such as Ananse tales and Ghanaian history.",
+    "Plan and run playtests, interpret the results and iterate a prototype into a finished game for learning or entertainment."
+  ],
+  "units": [
+    {
+      "title": "What makes a game",
+      "weeks": "1",
+      "topics": [
+        "Definitions of play and games: goals, rules, conflict, outcome and voluntary participation; the magic circle",
+        "Formal elements: players, objectives, procedures, rules, resources, boundaries and outcomes",
+        "Types of fun and player motivation: Bartle's player types, self-determination theory, intrinsic and extrinsic reward",
+        "Traditional games as designed systems: oware, ludo, ampe and draughts analysed as rule sets",
+        "The designer's role and the iterative design cycle: idea, prototype, playtest, evaluate"
+      ]
+    },
+    {
+      "title": "Mechanics, dynamics and aesthetics",
+      "weeks": "2-3",
+      "topics": [
+        "The MDA framework: how designers and players see a game from opposite ends",
+        "Mechanics: actions, verbs, rules, space, objects and chance; emergent versus progression-based design",
+        "Dynamics: feedback loops (positive and negative), rubber-banding, snowballing and player interaction",
+        "Aesthetics: the eight kinds of fun (sensation, fantasy, narrative, challenge, fellowship, discovery, expression, submission)",
+        "Meaningful choice, uncertainty and risk; the role of randomness and skill",
+        "Deconstructing a popular mobile game with MDA"
+      ]
+    },
+    {
+      "title": "Core loops and prototyping",
+      "weeks": "4",
+      "topics": [
+        "Core loops, compulsion loops and session design; designing for short sessions on a phone",
+        "Paper prototyping with cards, dice and tokens; rapid digital prototyping in the browser",
+        "Game design documents, one-page designs and pitching a concept",
+        "Designing for constraints: touch input, small screens, intermittent data and low-end Android phones"
+      ]
+    },
+    {
+      "title": "Level design",
+      "weeks": "5-6",
+      "topics": [
+        "Goals of level design: teaching, testing, pacing and rewarding; the teach-test-twist pattern",
+        "Spatial design: sightlines, landmarks, chokepoints, guiding the player with light, colour and geometry",
+        "Flow theory and pacing: tension and release, interest curves and rest areas",
+        "Procedural versus handcrafted levels; seeds, constraints and quality control",
+        "Puzzle design: clear rules, aha moments, hint systems and avoiding guesswork",
+        "Building and critiquing a level set for a small puzzle or platform game"
+      ]
+    },
+    {
+      "title": "Balancing and difficulty",
+      "weeks": "7-8",
+      "topics": [
+        "Types of balance: symmetric and asymmetric, fairness, dominant strategies and transitive versus intransitive relations",
+        "Game economies: sources and sinks, inflation, resource flow diagrams (Machinations-style)",
+        "Difficulty curves, dynamic difficulty adjustment and accessibility options",
+        "Progression systems: experience, unlocks, skill trees and avoiding grind",
+        "Balancing with spreadsheets, cost curves and Monte Carlo simulation of play",
+        "Ethics of monetisation: loot boxes, dark patterns and fair free-to-play design"
+      ]
+    },
+    {
+      "title": "Narrative in games",
+      "weeks": "9",
+      "topics": [
+        "Story structure in games: linear, branching, emergent and environmental storytelling",
+        "Ludonarrative harmony and dissonance; letting mechanics carry meaning",
+        "Characters, dialogue systems and player agency; writing branching dialogue",
+        "Adapting oral tradition: Ananse stories, folktales and episodes of Ghanaian and African history as game narratives",
+        "Worldbuilding, tone and cultural authenticity; avoiding stereotypes"
+      ]
+    },
+    {
+      "title": "Playtesting",
+      "weeks": "10-11",
+      "topics": [
+        "Planning playtests: goals, recruiting players, scripts and the role of the silent observer",
+        "Methods: think-aloud, observation, questionnaires, interviews and gameplay telemetry",
+        "Usability and onboarding: first-time user experience, tutorials and teaching through play",
+        "Analysing results: separating symptoms from causes, prioritising changes, A/B tests",
+        "Running remote playtests on phones and collecting play data in the browser",
+        "Iterating a prototype across two playtest rounds and reporting the changes"
+      ]
+    },
+    {
+      "title": "Designing games for learning",
+      "weeks": "12-13",
+      "topics": [
+        "Serious games and gamification: what each is, and where points and badges help or hurt",
+        "Aligning mechanics with learning outcomes; intrinsic integration of content and play",
+        "Feedback, scaffolding and assessment inside the game; measuring whether learning happened",
+        "Case studies: games for literacy, mathematics, health and financial literacy (for example a susu savings game)",
+        "Designing for classrooms and community settings with shared or low-end devices",
+        "Project: a playable browser game for learning, such as a game about local history or an Ananse story, with a design document and playtest report"
+      ]
+    }
+  ]
+}
