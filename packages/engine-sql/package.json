@@ -1,0 +1,13 @@
+{
+  "name": "@cslab/engine-sql",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Database engine (E5): SQLite in the browser via sql.js, with result-set, script, constraint and source checks.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@cslab/lab-runtime": "*",
+    "sql.js": "^1.15.1"
+  }
+}

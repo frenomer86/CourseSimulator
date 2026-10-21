@@ -1,0 +1,47 @@
+{
+  "id": "database-systems-and-design-a2-transcript-report",
+  "course": "database-systems-and-design",
+  "topic": "Reports with joins, aggregates and CASE",
+  "unit": 7,
+  "topicIndex": 5,
+  "level": "advanced",
+  "engine": "E5",
+  "title": "The transcript report",
+  "estimatedMinutes": 30,
+  "instructions": "## The brief\n\nThe examinations office wants one report with a row per student who has **at least one mark**:\n\n| column | meaning |\n|---|---|\n| name | the student's name |\n| courses | number of enrolments **with a mark** |\n| average | average mark, rounded to 1 decimal place |\n| standing | `'Good'` if the average is 60 or more, otherwise `'At risk'` |\n\nSorted by average, highest first, then by name. Students with no marks at all do not appear.\n\nThe database has three tables: **students** (id, name, programme, level, hometown), **courses** (code, title, credits, lecturer) and **enrolments** (student_id, course_code, semester, mark). Marks can be NULL when a result is not yet in. Use the Tables panel to peek at the data.\n\n## Do this\n\nJoin students to enrolments, ignore NULL marks (`WHERE mark IS NOT NULL`), group by student, and use `ROUND(AVG(mark), 1)` and a `CASE` expression for the standing. Column names must match: use `AS`.",
+  "config": {
+    "language": "sql",
+    "schema": "CREATE TABLE students (\n  id INTEGER PRIMARY KEY,\n  name TEXT NOT NULL,\n  programme TEXT NOT NULL,\n  level INTEGER NOT NULL,\n  hometown TEXT\n);\nCREATE TABLE courses (\n  code TEXT PRIMARY KEY,\n  title TEXT NOT NULL,\n  credits INTEGER NOT NULL,\n  lecturer TEXT\n);\nCREATE TABLE enrolments (\n  student_id INTEGER NOT NULL REFERENCES students(id),\n  course_code TEXT NOT NULL REFERENCES courses(code),\n  semester TEXT NOT NULL,\n  mark INTEGER,\n  PRIMARY KEY (student_id, course_code, semester)\n);\nINSERT INTO students VALUES\n  (1, 'Ama Mensah', 'Computer Science', 200, 'Ho'),\n  (2, 'Kofi Boateng', 'Computer Science', 200, 'Kumasi'),\n  (3, 'Esi Owusu', 'Information Technology', 100, 'Cape Coast'),\n  (4, 'Yaw Darko', 'Computer Science', 300, 'Accra'),\n  (5, 'Adjoa Asante', 'Information Technology', 200, 'Ho'),\n  (6, 'Kwame Mensah', 'Computer Engineering', 100, 'Nkroful'),\n  (7, 'Abena Osei', 'Computer Science', 100, 'Kumasi'),\n  (8, 'Selorm Agbeko', 'Computer Engineering', 300, 'Ho'),\n  (9, 'Efua Tetteh', 'Information Technology', 300, 'Tema'),\n  (10, 'Kojo Antwi', 'Computer Science', 200, NULL);\nINSERT INTO courses VALUES\n  ('CS101', 'Principles of Programming', 3, 'Dr Owusu'),\n  ('CS103', 'Discrete Mathematics', 3, 'Mr Amoah'),\n  ('CS201', 'Computer Networking I', 3, 'Dr Owusu'),\n  ('CS203', 'Database Systems and Design', 3, 'Mrs Dei'),\n  ('CS205', 'Digital Logic Design', 3, 'Mr Amoah'),\n  ('CS301', 'Software Engineering', 3, 'Dr Lartey');\nINSERT INTO enrolments VALUES\n  (1, 'CS101', '2024-2', 78), (1, 'CS103', '2024-2', 65), (1, 'CS203', '2025-1', 82), (1, 'CS201', '2025-1', NULL),\n  (2, 'CS101', '2024-2', 55), (2, 'CS103', '2024-2', 48), (2, 'CS203', '2025-1', 61),\n  (3, 'CS101', '2025-1', 90), (3, 'CS103', '2025-1', 71),\n  (4, 'CS203', '2024-2', 88), (4, 'CS301', '2025-1', 74), (4, 'CS201', '2024-2', 69),\n  (5, 'CS101', '2024-2', 40), (5, 'CS203', '2025-1', 58), (5, 'CS201', '2025-1', NULL),\n  (6, 'CS101', '2025-1', 67),\n  (7, 'CS101', '2025-1', 85), (7, 'CS103', '2025-1', 92),\n  (8, 'CS205', '2024-2', 77), (8, 'CS301', '2025-1', 81), (8, 'CS201', '2024-2', 59),\n  (9, 'CS301', '2025-1', 63);\n"
+  },
+  "initialState": {
+    "sql": "SELECT s.name,\n       COUNT(*) AS courses,\n       ROUND(AVG(e.mark), 1) AS average,\n       CASE ... END AS standing\nFROM students s\n"
+  },
+  "hints": [
+    "`JOIN enrolments e ON e.student_id = s.id WHERE e.mark IS NOT NULL GROUP BY s.id, s.name`.",
+    "`CASE WHEN AVG(e.mark) >= 60 THEN 'Good' ELSE 'At risk' END AS standing`.",
+    "`ORDER BY average DESC, s.name`."
+  ],
+  "checks": [
+    {
+      "type": "sql.query",
+      "label": "The report has the right rows, columns and order",
+      "expectedQuery": "SELECT s.name, COUNT(*) AS courses, ROUND(AVG(e.mark), 1) AS average, CASE WHEN AVG(e.mark) >= 60 THEN 'Good' ELSE 'At risk' END AS standing FROM students s JOIN enrolments e ON e.student_id = s.id WHERE e.mark IS NOT NULL GROUP BY s.id, s.name ORDER BY average DESC, s.name",
+      "ordered": true,
+      "columns": true,
+      "tolerance": 0.05
+    },
+    {
+      "type": "sql.source",
+      "label": "It uses CASE for the standing",
+      "pattern": "\\bCASE\\b[\\s\\S]*\\bEND\\b",
+      "message": "Compute the standing with a CASE expression."
+    },
+    {
+      "type": "sql.source",
+      "label": "It ignores missing marks",
+      "pattern": "IS\\s+NOT\\s+NULL",
+      "message": "Leave out enrolments whose mark IS NULL, or they distort the count."
+    }
+  ],
+  "realityNote": "Real transcript rules weight by credits and handle resits; the shape of the query is the same, with a weighted average instead of AVG."
+}

@@ -1,0 +1,104 @@
+{
+  "id": "database-systems-and-design-a1-create-clinic-schema",
+  "course": "database-systems-and-design",
+  "topic": "CREATE TABLE with constraints; INSERT",
+  "unit": 8,
+  "topicIndex": 1,
+  "level": "advanced",
+  "engine": "E5",
+  "title": "Build the clinic database",
+  "estimatedMinutes": 25,
+  "instructions": "## The brief\n\nA community clinic needs a database. Write a script that creates two tables and loads the first records. The database starts **empty**.\n\n**patients**\n\n| column | type | rules |\n|---|---|---|\n| id | INTEGER | primary key |\n| name | TEXT | required |\n| date_of_birth | TEXT | required (ISO date, e.g. 1998-04-17) |\n| phone | TEXT | optional, but unique when given |\n\n**visits**\n\n| column | type | rules |\n|---|---|---|\n| id | INTEGER | primary key |\n| patient_id | INTEGER | required, must refer to a patient |\n| visit_date | TEXT | required |\n| temperature_c | REAL | optional, but between 30 and 45 when given (CHECK) |\n| notes | TEXT | optional |\n\nThen insert these rows:\n\n- patients: (1, 'Akosua Boateng', '1998-04-17', '0244000111'), (2, 'Yaw Mensah', '1975-11-02', NULL)\n- visits: (1, 1, '2026-10-01', 37.2, 'Headache'), (2, 2, '2026-10-01', 38.9, 'Fever'), (3, 1, '2026-10-15', NULL, 'Follow-up')\n\n## Checks\n\nThe checker reads your tables back, and then tries to insert bad rows: a visit for a patient who does not exist, a temperature of 70, and a patient with no name. A correct schema refuses all three. SQLite enforces foreign keys only after `PRAGMA foreign_keys = ON;` so put that line first.",
+  "config": {
+    "language": "sql",
+    "schema": "-- The clinic database starts empty: your script creates it.\n"
+  },
+  "initialState": {
+    "sql": "PRAGMA foreign_keys = ON;\n\nCREATE TABLE patients (\n\n);\n\nCREATE TABLE visits (\n\n);\n\n-- insert the rows\n"
+  },
+  "hints": [
+    "`name TEXT NOT NULL`, `phone TEXT UNIQUE` (UNIQUE allows several NULLs).",
+    "`patient_id INTEGER NOT NULL REFERENCES patients(id)` makes the link; `temperature_c REAL CHECK (temperature_c BETWEEN 30 AND 45)` limits the value.",
+    "`INSERT INTO patients VALUES (1, 'Akosua Boateng', '1998-04-17', '0244000111'), (2, 'Yaw Mensah', '1975-11-02', NULL);`"
+  ],
+  "checks": [
+    {
+      "type": "sql.script",
+      "label": "Both tables exist with the right rows",
+      "probes": [
+        {
+          "query": "SELECT id, name, date_of_birth, phone FROM patients ORDER BY id",
+          "expected": [
+            [
+              1,
+              "Akosua Boateng",
+              "1998-04-17",
+              "0244000111"
+            ],
+            [
+              2,
+              "Yaw Mensah",
+              "1975-11-02",
+              null
+            ]
+          ],
+          "ordered": true,
+          "name": "the patients table"
+        },
+        {
+          "query": "SELECT id, patient_id, visit_date, temperature_c, notes FROM visits ORDER BY id",
+          "expected": [
+            [
+              1,
+              1,
+              "2026-10-01",
+              37.2,
+              "Headache"
+            ],
+            [
+              2,
+              2,
+              "2026-10-01",
+              38.9,
+              "Fever"
+            ],
+            [
+              3,
+              1,
+              "2026-10-15",
+              null,
+              "Follow-up"
+            ]
+          ],
+          "ordered": true,
+          "name": "the visits table"
+        }
+      ]
+    },
+    {
+      "type": "sql.rejects",
+      "label": "A visit for a patient who does not exist is refused",
+      "statement": "PRAGMA foreign_keys = ON; INSERT INTO visits VALUES (4, 99, '2026-10-20', 37.0, 'x')",
+      "message": "The visits table accepted a patient_id that does not exist. Add REFERENCES patients(id) and keep PRAGMA foreign_keys = ON at the top."
+    },
+    {
+      "type": "sql.rejects",
+      "label": "A temperature of 70 is refused",
+      "statement": "INSERT INTO visits VALUES (5, 1, '2026-10-20', 70, 'x')",
+      "message": "The visits table accepted a temperature of 70. Add a CHECK constraint on temperature_c."
+    },
+    {
+      "type": "sql.rejects",
+      "label": "A patient without a name is refused",
+      "statement": "INSERT INTO patients VALUES (3, NULL, '2000-01-01', NULL)",
+      "message": "The patients table accepted a NULL name. Add NOT NULL."
+    },
+    {
+      "type": "sql.rejects",
+      "label": "Two patients cannot share a phone number",
+      "statement": "INSERT INTO patients VALUES (3, 'Someone', '2000-01-01', '0244000111')",
+      "message": "Two patients were allowed the same phone number. Add UNIQUE to phone."
+    }
+  ],
+  "realityNote": "PostgreSQL and MySQL enforce foreign keys by default and have real DATE types; SQLite stores dates as text, which is why the ISO format matters so sorting works."
+}

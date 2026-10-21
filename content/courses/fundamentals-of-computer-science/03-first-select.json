@@ -1,0 +1,39 @@
+{
+  "id": "fundamentals-of-computer-science-b1-first-select",
+  "course": "fundamentals-of-computer-science",
+  "topic": "Relational databases and simple SELECT queries",
+  "unit": 5,
+  "topicIndex": 4,
+  "level": "beginner",
+  "engine": "E5",
+  "title": "Your first SQL query",
+  "estimatedMinutes": 10,
+  "instructions": "## A database of students\n\nThe database has three tables: **students** (id, name, programme, level, hometown), **courses** (code, title, credits, lecturer) and **enrolments** (student_id, course_code, semester, mark). Marks can be NULL when a result is not yet in. Use the Tables panel to peek at the data.\n\nA **query** asks the database a question. The starting query asks for everything in the students table. Press **Run** and look at the rows.\n\n## Do this\n\nChange the query so it returns only the **name** and **programme** of students at **level 100**, sorted by name (A to Z). Three rows should come back.\n\nThe pattern is:\n\n```sql\nSELECT column1, column2 FROM table WHERE condition ORDER BY column1;\n```",
+  "config": {
+    "language": "sql",
+    "schema": "CREATE TABLE students (\n  id INTEGER PRIMARY KEY,\n  name TEXT NOT NULL,\n  programme TEXT NOT NULL,\n  level INTEGER NOT NULL,\n  hometown TEXT\n);\nCREATE TABLE courses (\n  code TEXT PRIMARY KEY,\n  title TEXT NOT NULL,\n  credits INTEGER NOT NULL,\n  lecturer TEXT\n);\nCREATE TABLE enrolments (\n  student_id INTEGER NOT NULL REFERENCES students(id),\n  course_code TEXT NOT NULL REFERENCES courses(code),\n  semester TEXT NOT NULL,\n  mark INTEGER,\n  PRIMARY KEY (student_id, course_code, semester)\n);\nINSERT INTO students VALUES\n  (1, 'Ama Mensah', 'Computer Science', 200, 'Ho'),\n  (2, 'Kofi Boateng', 'Computer Science', 200, 'Kumasi'),\n  (3, 'Esi Owusu', 'Information Technology', 100, 'Cape Coast'),\n  (4, 'Yaw Darko', 'Computer Science', 300, 'Accra'),\n  (5, 'Adjoa Asante', 'Information Technology', 200, 'Ho'),\n  (6, 'Kwame Mensah', 'Computer Engineering', 100, 'Nkroful'),\n  (7, 'Abena Osei', 'Computer Science', 100, 'Kumasi'),\n  (8, 'Selorm Agbeko', 'Computer Engineering', 300, 'Ho'),\n  (9, 'Efua Tetteh', 'Information Technology', 300, 'Tema'),\n  (10, 'Kojo Antwi', 'Computer Science', 200, NULL);\nINSERT INTO courses VALUES\n  ('CS101', 'Principles of Programming', 3, 'Dr Owusu'),\n  ('CS103', 'Discrete Mathematics', 3, 'Mr Amoah'),\n  ('CS201', 'Computer Networking I', 3, 'Dr Owusu'),\n  ('CS203', 'Database Systems and Design', 3, 'Mrs Dei'),\n  ('CS205', 'Digital Logic Design', 3, 'Mr Amoah'),\n  ('CS301', 'Software Engineering', 3, 'Dr Lartey');\nINSERT INTO enrolments VALUES\n  (1, 'CS101', '2024-2', 78), (1, 'CS103', '2024-2', 65), (1, 'CS203', '2025-1', 82), (1, 'CS201', '2025-1', NULL),\n  (2, 'CS101', '2024-2', 55), (2, 'CS103', '2024-2', 48), (2, 'CS203', '2025-1', 61),\n  (3, 'CS101', '2025-1', 90), (3, 'CS103', '2025-1', 71),\n  (4, 'CS203', '2024-2', 88), (4, 'CS301', '2025-1', 74), (4, 'CS201', '2024-2', 69),\n  (5, 'CS101', '2024-2', 40), (5, 'CS203', '2025-1', 58), (5, 'CS201', '2025-1', NULL),\n  (6, 'CS101', '2025-1', 67),\n  (7, 'CS101', '2025-1', 85), (7, 'CS103', '2025-1', 92),\n  (8, 'CS205', '2024-2', 77), (8, 'CS301', '2025-1', 81), (8, 'CS201', '2024-2', 59),\n  (9, 'CS301', '2025-1', 63);\n"
+  },
+  "initialState": {
+    "sql": "SELECT * FROM students;"
+  },
+  "hints": [
+    "List the two columns after SELECT, separated by a comma: `SELECT name, programme`.",
+    "The condition is `WHERE level = 100`.",
+    "Add `ORDER BY name` at the end."
+  ],
+  "checks": [
+    {
+      "type": "sql.query",
+      "label": "The query returns the names and programmes of level 100 students, in name order",
+      "expectedQuery": "SELECT name, programme FROM students WHERE level = 100 ORDER BY name",
+      "ordered": true
+    },
+    {
+      "type": "sql.source",
+      "label": "It filters with WHERE",
+      "pattern": "\\bWHERE\\b",
+      "message": "Use WHERE to keep only level 100 students."
+    }
+  ],
+  "realityNote": "A real university registry holds hundreds of thousands of rows across dozens of tables, but the question is asked in exactly the same way."
+}
