@@ -1,0 +1,188 @@
+{
+  "id": "legal-and-ethical-issues-in-computing-a1-evoting-whistleblower",
+  "course": "legal-and-ethical-issues-in-computing",
+  "topic": "Professional codes and whistleblowing",
+  "unit": 9,
+  "topicIndex": 2,
+  "level": "advanced",
+  "engine": "E10",
+  "title": "The e-voting whistle-blower",
+  "estimatedMinutes": 30,
+  "instructions": "## Your role\n\nYou are a developer at a small software firm in Accra. The firm is delivering an electronic voting system for a district assembly election pilot in three days. Yesterday, during testing, you found two serious security problems.\n\n## How this works\n\nExamine the evidence, then make a series of decisions. Each decision has consequences. At one point you will be asked to justify your position in writing using three lenses: **consequences** (utilitarian), **duties and rules** (deontological) and the **ACM Code of Ethics**.\n\nTo pass: reach an ending where the flaw is fixed before anyone votes, without breaking confidentiality needlessly, and write a justification that uses all three lenses.",
+  "config": {
+    "scenario": {
+      "start": "finding",
+      "nodes": [
+        {
+          "id": "finding",
+          "title": "Wednesday, 6 pm",
+          "text": "Your test log is open on the screen. Your manager has just said, in the team chat: \"We ship Friday. Whatever it is, log it for version two.\"",
+          "evidence": [
+            {
+              "id": "testlog",
+              "kind": "log",
+              "title": "Your test log",
+              "text": "```\n[17:02] Vote tallies sent from polling-station tablet to central server over plain HTTP.\n        Captured on the test Wi-Fi: candidate counts readable and editable in transit.\n[17:31] Admin panel accepts password 'admin2024' hard-coded in config.js.\n        Same password on every tablet. Admin can edit tallies after close of poll.\n[17:40] Reported both in the issue tracker as CRITICAL. Manager set them to 'Later'.\n```"
+            },
+            {
+              "id": "contract",
+              "kind": "document",
+              "title": "Clause 12 of the contract with the District Assembly",
+              "text": "**12. Security.** The Supplier warrants that vote data shall be protected in transit and at rest by encryption meeting the standards in Schedule 3, and that administrative access shall be individually authenticated and logged. The Supplier shall notify the Assembly's designated officer **in writing without delay** of any known defect that could affect the integrity of the count."
+            },
+            {
+              "id": "acm",
+              "kind": "policy",
+              "title": "ACM Code of Ethics (extracts)",
+              "text": "- **1.2** Avoid harm. ... When harm is an intentional part of the system, those responsible are obligated to ensure that the harm is ethically justified.\n- **1.7** Honor confidentiality ... except where it is evidence of the violation of law, of organizational regulations, or of the Code.\n- **2.5** Give comprehensive and thorough evaluations of computer systems and their impacts, including analysis of possible risks.\n- **2.7** Foster public awareness and understanding of computing ... and their consequences.\n- **3.7** Recognize and take special care of systems that become integrated into the infrastructure of society."
+            }
+          ],
+          "choices": [
+            {
+              "id": "ship",
+              "text": "Log it for version two, as instructed, and keep your head down.",
+              "next": "breach",
+              "score": -3,
+              "flags": ["stayed_silent"],
+              "feedback": "You followed an instruction you knew to be wrong."
+            },
+            {
+              "id": "internal",
+              "text": "Put the two findings in writing to your manager, with the contract clause and the test log attached, and ask for a decision in writing.",
+              "next": "manager",
+              "score": 2,
+              "flags": ["raised_internally"],
+              "requires": ["testlog", "contract", "acm"],
+              "feedback": "You have created a record and given the organisation the first chance to act. That is what both the Code and the contract expect."
+            },
+            {
+              "id": "press",
+              "text": "Email a journalist tonight with the test log.",
+              "next": "leak",
+              "score": -2,
+              "flags": ["leaked_first"],
+              "feedback": "You skipped every internal channel and broke confidentiality before anyone inside had refused to act."
+            }
+          ]
+        },
+        {
+          "id": "manager",
+          "title": "Thursday, 9 am",
+          "text": "Your manager replies: \"Noted. The client signed off the demo. Add the encryption after the pilot. Please sign the release form by noon; the whole team's bonus depends on Friday.\"",
+          "choices": [
+            {
+              "id": "sign",
+              "text": "Sign the release form. You raised it; the decision is now theirs.",
+              "next": "breach",
+              "score": -3,
+              "flags": ["signed_off"],
+              "feedback": "Your signature says the system is fit for release. You know it is not."
+            },
+            {
+              "id": "escalate",
+              "text": "Decline to sign, and escalate in writing to the firm's director with the same evidence.",
+              "next": "director",
+              "score": 2,
+              "flags": ["escalated"],
+              "feedback": "You stayed inside the organisation one more level, and still in writing."
+            },
+            {
+              "id": "resign",
+              "text": "Resign quietly this morning.",
+              "next": "resigned",
+              "score": -1,
+              "flags": ["resigned"],
+              "feedback": "You are no longer part of it, but the system still ships with the flaw."
+            }
+          ]
+        },
+        {
+          "id": "director",
+          "title": "Thursday, 4 pm",
+          "text": "The director calls you in. \"I hear you. Postponing costs us the contract and maybe the company. Give me until Monday to talk to the client.\" The pilot vote is Saturday morning. The contract's Clause 12 is open on your phone.",
+          "prompts": [
+            {
+              "id": "justification",
+              "label": "Before you decide, write your justification (150 words or more)",
+              "hint": "Analyse the decision through consequences for voters and the company, through duties and rules (the contract, the law, promises made), and through the ACM Code (cite the clause numbers you rely on).",
+              "minWords": 150
+            }
+          ],
+          "choices": [
+            {
+              "id": "notify",
+              "text": "Tell the director you will notify the Assembly's designated officer in writing today, as Clause 12 requires, and do so, copying the director.",
+              "next": "postponed",
+              "score": 3,
+              "flags": ["notified_client"],
+              "feedback": "The client has a contractual right to know, and the clause names the channel. The notification is specific, factual and goes only to the person entitled to it."
+            },
+            {
+              "id": "wait",
+              "text": "Give the director until Monday.",
+              "next": "breach",
+              "score": -2,
+              "flags": ["waited"],
+              "feedback": "Monday is after the vote."
+            },
+            {
+              "id": "leak2",
+              "text": "Post the test log on social media tonight so the public can judge.",
+              "next": "leak",
+              "score": -1,
+              "flags": ["leaked_late"],
+              "feedback": "A public post reaches the right people and many wrong ones, including anyone who wants to exploit the flaw before it is fixed."
+            }
+          ]
+        },
+        {
+          "id": "postponed",
+          "title": "The pilot is postponed",
+          "text": "The Assembly's officer postpones the pilot by two weeks. The firm adds transport encryption and per-user admin accounts with logging, and passes an independent check. The director is furious for a week, then quietly adds a security sign-off step to every project. Nobody voted on a system that could be altered in transit.",
+          "end": true,
+          "outcome": "good"
+        },
+        {
+          "id": "breach",
+          "title": "Saturday, 2 pm",
+          "text": "A student at the polling station connects to the open Wi-Fi, captures the tallies and posts a screenshot showing that the numbers can be edited. The Electoral Commission suspends the pilot. The firm loses the contract anyway, the Assembly sues under Clause 12, and the issue tracker shows that the defects were known on Wednesday.",
+          "end": true,
+          "outcome": "bad"
+        },
+        {
+          "id": "leak",
+          "title": "Front page",
+          "text": "The story runs before the vote and the pilot is stopped, which protects voters. But the published log includes the admin password, two other councils using the same product are now exposed, and you are dismissed for breach of confidentiality with no record that you ever tried an internal channel first.",
+          "end": true,
+          "outcome": "mixed"
+        },
+        {
+          "id": "resigned",
+          "title": "Someone else's problem",
+          "text": "The pilot runs on the flawed system. Nothing goes wrong that weekend, which proves nothing. Your written report still exists in the tracker; when the flaw is found a year later, it shows that the firm knew and that you left rather than act.",
+          "end": true,
+          "outcome": "bad"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Internal first, in writing, with evidence: that is both the professional norm and what protects you later.",
+    "The contract gives you a lawful, confidential channel to the client. Use the channel that is narrow enough to do no extra harm.",
+    "A utilitarian argument weighs harms to all voters and future users against the firm's loss; a deontological one asks what duty the contract and the Code impose regardless of outcome."
+  ],
+  "checks": [
+    { "type": "scenario.examined", "label": "You read the test log, the contract and the Code before acting", "evidence": ["testlog", "contract", "acm"] },
+    { "type": "scenario.reached", "label": "The flaw was fixed before anyone voted, without a public leak", "nodes": ["postponed"], "message": "The goal is an ending where the flaw is fixed before the vote and confidentiality is kept. Start again and reconsider." },
+    { "type": "scenario.flags", "label": "You raised it internally first and never signed off or leaked", "all": ["raised_internally"], "none": ["signed_off", "leaked_first", "leaked_late", "stayed_silent"], "message": "Either you did not raise it internally first, or you signed off or leaked along the way." },
+    {
+      "type": "scenario.rubric",
+      "label": "Your justification uses consequences, duties and the ACM Code",
+      "prompt": "justification",
+      "patterns": ["utilitarian|consequence|outcome|greatest|harm to voters|benefit", "deontolog|duty|duties|rule|obligation|promise|contract|clause 12", "ACM|1\\.2|1\\.7|2\\.5|3\\.7|code of ethics|professional", "voter|election|public|integrity"],
+      "required": 4,
+      "minWords": 150
+    }
+  ],
+  "realityNote": "Ghana's Whistleblower Act 2006 (Act 720) protects disclosures made to listed authorities in good faith. Protection is strongest when the disclosure is specific, made to an appropriate body, and preceded by a reasonable attempt to use internal channels."
+}

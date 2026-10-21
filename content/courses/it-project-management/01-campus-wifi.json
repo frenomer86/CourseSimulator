@@ -1,0 +1,230 @@
+{
+  "id": "it-project-management-a1-campus-wifi",
+  "course": "it-project-management",
+  "topic": "Managing common IT project risks",
+  "unit": 9,
+  "topicIndex": 5,
+  "level": "advanced",
+  "engine": "E10",
+  "title": "Campus Wi-Fi rollout, week by week",
+  "estimatedMinutes": 30,
+  "instructions": "## Your role\n\nYou are the project manager for a campus Wi-Fi rollout: 12 buildings, 60 access points, a budget of GHS 480,000 and ten weeks before the semester starts. The project runs week by week. Each week something happens; you decide how to respond.\n\n## How this works\n\nEvidence (the plan, the contract, the risk register) is available at each step. Decisions change your **score**, which stands for time, cost and quality together. At the end you write a lessons-learned note.\n\nTo pass: finish the project with a score of at least 7, having used change control for the scope request, and write a lessons-learned note that mentions risk, change control and stakeholders.",
+  "config": {
+    "scenario": {
+      "start": "w1",
+      "nodes": [
+        {
+          "id": "w1",
+          "title": "Week 1: kick-off",
+          "text": "The sponsor, the Pro Vice-Chancellor, wants to see cables going in this week. The vendor's access points are due in week 3. You have a draft plan and a blank risk register.",
+          "evidence": [
+            {
+              "id": "plan",
+              "kind": "document",
+              "title": "Draft plan (summary)",
+              "text": "- Weeks 1-2: site surveys, cabling contractor mobilised\n- Week 3: access points delivered (vendor: NetBridge Ltd)\n- Weeks 3-8: install per building, 2 buildings a week\n- Week 9: testing and handover\n- Week 10: contingency\n- Team: you, one network engineer (Selorm), two cabling technicians, one vendor engineer on call"
+            },
+            {
+              "id": "contract",
+              "kind": "document",
+              "title": "Vendor contract (extracts)",
+              "text": "**Delivery:** 60 units by end of week 3. **Late delivery:** 2% of the order value per week, up to 10%, and the Buyer may source up to 20 units elsewhere at the Supplier's cost. **Spares:** 6 units held by the Supplier in Accra for warranty swaps."
+            },
+            {
+              "id": "register",
+              "kind": "document",
+              "title": "Risk register (draft)",
+              "text": "| Risk | Probability | Impact | Response |\n|---|---|---|---|\n| Vendor delivers late | Medium | High | (none yet) |\n| Scope grows (new buildings) | High | Medium | (none yet) |\n| Key engineer unavailable | Medium | High | (none yet) |\n| Power outages during install | High | Low | Generator at each site |"
+            }
+          ],
+          "choices": [
+            {
+              "id": "w1-workshop",
+              "text": "Hold a two-hour workshop with the sponsor and the team: agree the scope statement, fill the risk register with responses, and set up a change-control process.",
+              "next": "w3",
+              "score": 2,
+              "flags": ["risk_planned"],
+              "requires": ["plan", "register"],
+              "feedback": "Two hours now; the responses in the register will pay for themselves the first time something goes wrong."
+            },
+            {
+              "id": "w1-cables",
+              "text": "Start cabling the first building immediately to show progress; the register can wait.",
+              "next": "w3",
+              "score": -1,
+              "flags": ["no_plan"],
+              "feedback": "Visible progress, but the first surprise will find you without a response ready."
+            }
+          ]
+        },
+        {
+          "id": "w3",
+          "title": "Week 3: the vendor is late",
+          "text": "NetBridge emails: the shipment is held at Tema port; the 60 access points will arrive in week 5 at the earliest. Cabling in two buildings is finished and the technicians have nothing to install.",
+          "evidence": [
+            {
+              "id": "contract2",
+              "kind": "document",
+              "title": "Vendor contract (extracts)",
+              "text": "**Late delivery:** 2% of the order value per week, up to 10%, and the Buyer may source up to 20 units elsewhere at the Supplier's cost. **Spares:** 6 units held by the Supplier in Accra for warranty swaps."
+            }
+          ],
+          "choices": [
+            {
+              "id": "w3-wait",
+              "text": "Wait for week 5 and keep cabling ahead.",
+              "next": "w5",
+              "score": -1,
+              "flags": ["slipped"],
+              "feedback": "Two weeks of install time lost; the contingency week is already spent."
+            },
+            {
+              "id": "w3-contingency",
+              "text": "Invoke the contract: take the 6 spares from Accra now, source 20 units locally at the vendor's cost, apply the late-delivery penalty, and keep installing.",
+              "next": "w5",
+              "score": 2,
+              "flags": ["used_contract"],
+              "requires": ["contract2"],
+              "feedback": "26 units arrive within days. The schedule holds, and the penalty funds the local purchase."
+            },
+            {
+              "id": "w3-switch",
+              "text": "Cancel NetBridge and order 60 units from a different vendor you found online.",
+              "next": "w5",
+              "score": -2,
+              "flags": ["switched_vendor"],
+              "feedback": "No contract review, no procurement process, an unknown vendor, and the old contract's penalty clause abandoned."
+            }
+          ]
+        },
+        {
+          "id": "w5",
+          "title": "Week 5: a request from the Dean",
+          "text": "The Dean of Engineering writes to the sponsor: the new hostel block, not in the plan, must be covered too, \"since the team is already on site\". The sponsor forwards it to you with the words \"make it happen\".",
+          "choices": [
+            {
+              "id": "w5-yes",
+              "text": "Say yes. It is only one more building.",
+              "next": "w7",
+              "score": -2,
+              "flags": ["scope_creep"],
+              "feedback": "One more building is 8% more work, 10 more access points you do not have, and no money or time added. That is scope creep."
+            },
+            {
+              "id": "w5-no",
+              "text": "Refuse: it is not in the scope.",
+              "next": "w7",
+              "score": -1,
+              "flags": ["refused_flat"],
+              "feedback": "You protected the baseline but lost the Dean's goodwill and gave the sponsor nothing to decide with."
+            },
+            {
+              "id": "w5-change",
+              "text": "Raise a change request: estimate the extra access points, cabling, cost and days, and ask the sponsor to approve a new baseline or decline, in writing.",
+              "next": "w7",
+              "score": 2,
+              "flags": ["change_control"],
+              "feedback": "The sponsor approves the hostel with GHS 42,000 more and one extra week. The baseline moves, on record."
+            }
+          ]
+        },
+        {
+          "id": "w7",
+          "title": "Week 7: Selorm resigns",
+          "text": "Your only network engineer has accepted a job in Accra and leaves on Friday. The switch configuration and the controller setup are in his head.",
+          "choices": [
+            {
+              "id": "w7-self",
+              "text": "Do the configuration yourself in the evenings.",
+              "next": "w9",
+              "score": -1,
+              "flags": ["pm_overload"],
+              "feedback": "The configuration gets done; the status reports, the vendor and the sponsor do not. The project is now a single point of failure: you."
+            },
+            {
+              "id": "w7-handover",
+              "text": "Use his last four days for a documented handover and bring in the vendor engineer under the support clause for the remaining weeks.",
+              "next": "w9",
+              "score": 2,
+              "flags": ["handover"],
+              "feedback": "The configuration is written down for the first time, and the vendor engineer finishes the rollout."
+            },
+            {
+              "id": "w7-pause",
+              "text": "Pause the project until a replacement is hired.",
+              "next": "w9",
+              "score": -2,
+              "flags": ["paused"],
+              "feedback": "Hiring takes six weeks. The semester starts without Wi-Fi."
+            }
+          ]
+        },
+        {
+          "id": "w9",
+          "title": "Week 9: testing or catching up?",
+          "text": "Three buildings are still being installed. The plan said week 9 is for testing every building against the signal and throughput targets. The team suggests skipping the tests in the finished buildings to catch up.",
+          "choices": [
+            {
+              "id": "w9-skip",
+              "text": "Skip testing in finished buildings; students will report problems.",
+              "next": "end",
+              "score": -2,
+              "flags": ["skipped_tests"],
+              "feedback": "Two buildings have dead zones in lecture halls; the complaints arrive in week 1 of the semester, when every engineer is busiest."
+            },
+            {
+              "id": "w9-test",
+              "text": "Test each finished building as planned, and report the three late buildings to the sponsor with a dated completion plan.",
+              "next": "end",
+              "score": 1,
+              "flags": ["tested"],
+              "feedback": "Eleven of the buildings are handed over tested; the sponsor knows exactly when the last three follow."
+            }
+          ]
+        },
+        {
+          "id": "end",
+          "title": "Week 10: handover",
+          "text": "The semester starts. Your score stands for how the project did on time, cost and quality together. Before you close the project, write the lessons-learned note that goes in the project file.",
+          "prompts": [
+            {
+              "id": "lessons",
+              "label": "Lessons learned",
+              "hint": "What would you do the same, what differently, and why? Name the processes that helped or that you missed.",
+              "minWords": 80
+            }
+          ],
+          "choices": [
+            { "id": "close", "text": "Close the project.", "next": "closed", "score": 0 }
+          ]
+        },
+        {
+          "id": "closed",
+          "title": "Project closed",
+          "text": "The file holds the charter, the register, the change requests, the handover document and your note. The next project manager will read it before their first week.",
+          "end": true,
+          "outcome": "mixed"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "The contract already contains the response to a late delivery; read it before deciding.",
+    "A scope request is neither a yes nor a no: it is an estimate and a decision by the sponsor.",
+    "Knowledge in one person's head is a risk; a handover turns it into a document."
+  ],
+  "checks": [
+    { "type": "scenario.finished", "label": "You closed the project" },
+    { "type": "scenario.flags", "label": "You used change control for the scope request", "all": ["change_control"], "message": "The scope request should have gone through change control: estimate, then a sponsor decision in writing." },
+    { "type": "scenario.score", "label": "The project did well on time, cost and quality together (score of at least 7)", "min": 7, "message": "The project finished, but late, over budget or with quality problems. Look at each week's feedback and run it again." },
+    {
+      "type": "scenario.rubric",
+      "label": "Your lessons-learned note covers risk, change control and stakeholders",
+      "prompt": "lessons",
+      "patterns": ["risk", "change control|change request|scope|baseline", "stakeholder|sponsor|dean|vendor", "handover|document|single point|knowledge"],
+      "required": 3,
+      "minWords": 80
+    }
+  ],
+  "realityNote": "Real projects have thirty of these weeks, not five, and the surprises overlap. The processes are the same: a register with responses before you need them, a change-control path for every request, and nothing that lives only in one person's head."
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@cslab/engine-scenario",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Scenario engine (E10): branching case studies with evidence, decisions, consequences and rubric-graded written answers.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@cslab/lab-runtime": "*"
+  }
+}

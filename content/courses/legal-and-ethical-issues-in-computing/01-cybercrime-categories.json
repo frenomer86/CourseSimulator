@@ -1,0 +1,86 @@
+{
+  "id": "legal-and-ethical-issues-in-computing-b1-cybercrime-categories",
+  "course": "legal-and-ethical-issues-in-computing",
+  "topic": "Categories of ICT crime",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E10",
+  "title": "Which cybercrime is it?",
+  "estimatedMinutes": 15,
+  "instructions": "## Five incidents, five categories\n\nYou are a paralegal at a law firm in Accra. Five clients describe what happened to them. For each one, pick the category of ICT crime it best fits, using the categories from the Cybersecurity Act 2020 (Act 1038) and the Electronic Transactions Act 2008 (Act 772):\n\n- **unauthorised access** (getting into a system you have no right to use),\n- **data interference** (altering, deleting or damaging data),\n- **system interference** (stopping a system from working),\n- **computer-related fraud or forgery** (deceiving to gain money or value),\n- **identity theft**, **cyberstalking** and **misuse of devices** (tools made for attacks).\n\nEach correct classification scores two points. You need eight of the ten to pass. Wrong answers show the reasoning, and you can run the case again.",
+  "config": {
+    "scenario": {
+      "start": "one",
+      "nodes": [
+        {
+          "id": "one",
+          "title": "Incident 1: the ex-employee",
+          "text": "A dismissed accounts clerk still remembered the firm's payroll password. Two weeks after leaving, she logged in from home and looked through the salary list. She changed nothing and took nothing.",
+          "choices": [
+            { "id": "1-access", "text": "Unauthorised access", "next": "two", "score": 2, "flags": ["c1"], "feedback": "Correct. Her right to use the system ended with her job; logging in afterwards is access without authorisation, even though nothing was taken." },
+            { "id": "1-fraud", "text": "Computer-related fraud", "next": "two", "feedback": "Not fraud: nobody was deceived and she gained no money or value. The offence is in the access itself." },
+            { "id": "1-data", "text": "Data interference", "next": "two", "feedback": "Data interference needs the data to be altered, deleted or damaged. She only read it. The access alone is the offence." }
+          ]
+        },
+        {
+          "id": "two",
+          "title": "Incident 2: the SIM swap",
+          "text": "A trader's phone went dead. An hour later her mobile-money balance was empty. Someone had convinced the network's agent, with a photocopy of her ID and a story, to issue a new SIM for her number, then reset her mobile-money PIN.",
+          "choices": [
+            { "id": "2-identity", "text": "Identity theft (with computer-related fraud)", "next": "three", "score": 2, "flags": ["c2"], "feedback": "Correct. The attacker used her identity to take over the number and then used it to obtain money by deception: identity theft and computer-related fraud together." },
+            { "id": "2-system", "text": "System interference", "next": "three", "feedback": "Her phone stopped working, but that was a side effect, not an attack on a system. The crime is in using her identity to get her number and her money." },
+            { "id": "2-stalking", "text": "Cyberstalking", "next": "three", "feedback": "Nobody harassed or followed her online. This is about taking her identity and her money." }
+          ]
+        },
+        {
+          "id": "three",
+          "title": "Incident 3: the exam server",
+          "text": "During online examinations a student ran a program from his hostel that sent tens of thousands of requests a second to the university's exam server. It crashed for two hours and the exam was cancelled. He read no data and changed no marks.",
+          "choices": [
+            { "id": "3-system", "text": "System interference", "next": "four", "score": 2, "flags": ["c3"], "feedback": "Correct. Deliberately stopping a system from working is system interference (a denial-of-service attack), whether or not any data is touched." },
+            { "id": "3-access", "text": "Unauthorised access", "next": "four", "feedback": "He never got into the server; he flooded it from outside. The harm is that the system stopped working." },
+            { "id": "3-data", "text": "Data interference", "next": "four", "feedback": "No data was altered or deleted. The system was prevented from running." }
+          ]
+        },
+        {
+          "id": "four",
+          "title": "Incident 4: the romance",
+          "text": "Over four months, a person using a false profile and borrowed photographs persuaded a nurse in Tamale that they were engaged. She sent GHS 32,000 in \"customs fees\" for a parcel that never existed.",
+          "choices": [
+            { "id": "4-fraud", "text": "Computer-related fraud", "next": "five", "score": 2, "flags": ["c4"], "feedback": "Correct. Deceiving someone through a computer system to obtain money is computer-related fraud, the offence behind romance and sakawa scams." },
+            { "id": "4-stalking", "text": "Cyberstalking", "next": "five", "feedback": "The contact was welcomed, not unwanted; the harm is the deception for money. That is fraud." },
+            { "id": "4-identity", "text": "Identity theft", "next": "five", "feedback": "Using borrowed photographs is part of the deception, but the offence that caused the loss is the fraud." }
+          ]
+        },
+        {
+          "id": "five",
+          "title": "Incident 5: the clinic records",
+          "text": "A records officer at a clinic, angry about an unpaid allowance, deleted six months of patient visit records from the database before resigning. The backups had not run for a year.",
+          "choices": [
+            { "id": "5-data", "text": "Data interference", "next": "done", "score": 2, "flags": ["c5"], "feedback": "Correct. Deleting or damaging data without right is data interference; it is also a data protection breach for the clinic." },
+            { "id": "5-access", "text": "Unauthorised access", "next": "done", "feedback": "He was allowed to use the system; his access was authorised. What he did with it, deleting the data, is the offence." },
+            { "id": "5-devices", "text": "Misuse of devices", "next": "done", "feedback": "Misuse of devices is about making or distributing tools for attacks (malware, password lists). He used ordinary access to delete data." }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Case notes complete",
+          "text": "You file the five classifications for the partners. The next step in each case is the evidence: logs for the first and third incidents, the agent's records for the second, the chat history for the fourth, and the database audit trail for the fifth.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Ask first: was the person allowed to be in the system at all? Then: was data changed? Was the system stopped? Was someone deceived for gain?",
+    "Fraud needs deception and gain; interference needs damage; access needs a lack of permission.",
+    "An insider who deletes data is interfering with data, not accessing without authority."
+  ],
+  "checks": [
+    { "type": "scenario.finished", "label": "You classified all five incidents" },
+    { "type": "scenario.score", "label": "At least four of the five classifications are right", "min": 8, "message": "Fewer than four of the five were right. Read the feedback, then run the case again." }
+  ],
+  "realityNote": "Real cases often fit more than one offence, and prosecutors charge several. The categories still matter: they decide which evidence is needed and which penalties apply."
+}

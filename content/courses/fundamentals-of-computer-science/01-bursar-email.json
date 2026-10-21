@@ -1,0 +1,231 @@
+{
+  "id": "fundamentals-of-computer-science-a1-bursar-email",
+  "course": "fundamentals-of-computer-science",
+  "topic": "Threats: phishing, malware and social engineering",
+  "unit": 7,
+  "topicIndex": 1,
+  "level": "advanced",
+  "engine": "E10",
+  "title": "The bursar's email",
+  "estimatedMinutes": 20,
+  "instructions": "## Your role\n\nYou are the student IT assistant at a senior high school in Ho. The bursar's office runs the school's fee records on one laptop. On Monday morning the bursar forwards you an email and asks what to do.\n\n## How this works\n\nRead the situation, **examine the evidence** (click each item), then choose what you do. Every decision has consequences and there is no undo, only starting the case again. At the end you will write a short piece of advice for the office.\n\nTo pass, you need to reach the safe ending without opening anything dangerous, having examined the evidence, with advice that covers the key points.",
+  "config": {
+    "scenario": {
+      "start": "inbox",
+      "nodes": [
+        {
+          "id": "inbox",
+          "title": "Monday, 8:40 am",
+          "text": "The bursar leans over your desk. \"The bank says our account will be blocked today unless we confirm the statement. Can you open it for me? I am in a meeting in five minutes.\"\n\nShe has forwarded the email. Her note is attached too.",
+          "evidence": [
+            {
+              "id": "email",
+              "kind": "email",
+              "title": "The forwarded email",
+              "text": "**From:** GCB Bank Alerts <alerts@gcb-secure-login.com>\n**To:** bursar@hohigh.edu.gh\n**Subject:** URGENT: Confirm your statement within 24 hours\n\nDear Valued Customer,\n\nOur system has detected unusual activity on your school account. To avoid suspension, download and review the attached statement and confirm your details at the link below within 24 HOURS.\n\n[Confirm now](http://gcb-secure-login.com/verify?id=88213)\n\nAttachment: **Statement_Oct.pdf.exe** (412 KB)\n\nGCB Customer Care"
+            },
+            {
+              "id": "note",
+              "kind": "message",
+              "title": "The bursar's note",
+              "text": "\"I did not get a call from our branch about this. Our relationship officer is Mr Agbeko, his number is on the card in my drawer. The fees laptop has all of this term's records on it.\""
+            },
+            {
+              "id": "backup",
+              "kind": "policy",
+              "title": "The school's backup routine",
+              "text": "Printed sheet taped to the wall of the bursar's office:\n\n1. Every evening at 6 pm the fees laptop copies the records folder to the external drive in the safe.\n2. On Fridays the external drive is also copied to the cloud account.\n3. Keep the laptop's Windows updates on.\n\n_Last tick on the checklist: Friday last week._"
+            }
+          ],
+          "choices": [
+            {
+              "id": "open",
+              "text": "Open the attachment to check the statement, as she asked.",
+              "next": "ransomware",
+              "score": -3,
+              "flags": ["opened_attachment"],
+              "feedback": "The file name ends in **.pdf.exe**: it is a program dressed up as a PDF. Windows ran it."
+            },
+            {
+              "id": "link",
+              "text": "Click the link and log in with the school's online banking details to confirm.",
+              "next": "credentials",
+              "score": -3,
+              "flags": ["entered_password"],
+              "feedback": "The page looked exactly like the bank's. The address was not the bank's, and the password you typed went straight to the attacker."
+            },
+            {
+              "id": "reply",
+              "text": "Reply to the email and ask whether it is genuine.",
+              "next": "replied",
+              "score": -1,
+              "flags": ["replied_to_attacker"],
+              "feedback": "You have just told the attacker the address is live and someone is paying attention."
+            },
+            {
+              "id": "report",
+              "text": "Tell the bursar not to open anything, and report the email to the IT teacher and the bank's real number.",
+              "next": "reported",
+              "score": 3,
+              "flags": ["reported"],
+              "requires": ["email", "note"],
+              "feedback": "You checked the sender's address and the file name before deciding. That is exactly the habit that stops phishing."
+            }
+          ]
+        },
+        {
+          "id": "replied",
+          "title": "A reply arrives in two minutes",
+          "text": "\"Dear customer, yes this message is genuine and time sensitive. Please open the attached statement immediately to avoid suspension. GCB Customer Care.\"\n\nThe bursar is back from her meeting and looking at you.",
+          "choices": [
+            {
+              "id": "trust",
+              "text": "They confirmed it. Open the attachment.",
+              "next": "ransomware",
+              "score": -3,
+              "flags": ["opened_attachment"],
+              "feedback": "Anyone can reply \"yes, it is genuine\". A confirmation has to come through a channel you trust, such as the number on the bank card."
+            },
+            {
+              "id": "report-late",
+              "text": "A reply proves nothing. Report it to the IT teacher and call the bank on the number from the card.",
+              "next": "reported",
+              "score": 2,
+              "flags": ["reported"],
+              "feedback": "Better late than never. The bank confirms they sent nothing."
+            }
+          ]
+        },
+        {
+          "id": "ransomware",
+          "title": "The screen turns red",
+          "text": "Every file in the records folder now ends in **.locked**. A message demands 2,000 US dollars in cryptocurrency within 48 hours. The bursar is close to tears: \"That is the whole term's fees.\"\n\nWhat now?",
+          "evidence": [
+            {
+              "id": "backup2",
+              "kind": "policy",
+              "title": "The school's backup routine",
+              "text": "1. Every evening at 6 pm the fees laptop copies the records folder to the external drive in the safe.\n2. On Fridays the external drive is also copied to the cloud account.\n\n_Last tick on the checklist: Friday last week._ The external drive is in the safe and was **not** plugged in this morning."
+            }
+          ],
+          "choices": [
+            {
+              "id": "pay",
+              "text": "Advise the school to pay. The records are worth more than 2,000 dollars.",
+              "next": "paid",
+              "score": -3,
+              "flags": ["paid_ransom"],
+              "feedback": "Payment funds the next attack and often buys nothing: many victims never receive a working key."
+            },
+            {
+              "id": "restore",
+              "text": "Unplug the laptop from the network, report to the IT teacher and the police, and restore Friday's backup from the drive in the safe onto a clean machine.",
+              "next": "recovered",
+              "score": 2,
+              "flags": ["restored_backup"],
+              "requires": ["backup2"],
+              "feedback": "Because the drive was in the safe, not plugged in, it was not encrypted. The school loses one day of entries and learns an expensive lesson."
+            }
+          ]
+        },
+        {
+          "id": "credentials",
+          "title": "Tuesday morning",
+          "text": "The real bank calls: three transfers totalling GHS 18,400 were attempted overnight from the school's online banking. Two went through before the bank's fraud desk froze the account.",
+          "choices": [
+            {
+              "id": "panic",
+              "text": "Say nothing about the link; it might have been a coincidence.",
+              "next": "lost",
+              "score": -2,
+              "feedback": "Hiding the cause delays the bank's recovery process and the school's chance of getting the money back."
+            },
+            {
+              "id": "disclose",
+              "text": "Tell the bursar and the bank exactly what happened, change every password, and ask the bank to trace the transfers.",
+              "next": "partial",
+              "score": 2,
+              "flags": ["disclosed"],
+              "feedback": "Honesty lets the bank act quickly. One transfer is recalled; the other is gone."
+            }
+          ]
+        },
+        {
+          "id": "reported",
+          "title": "The IT teacher confirms it",
+          "text": "The IT teacher looks at the headers: the email came from a server in another country, and the link's domain was registered four days ago. Mr Agbeko at the bank confirms the bank never sends attachments like this. Nothing was opened. Nothing is lost.\n\nThe headteacher asks you to write a short notice for every office in the school, so this does not happen next time.",
+          "prompts": [
+            {
+              "id": "advice",
+              "label": "Your notice to the offices",
+              "hint": "Say how to spot such an email, what never to do, what to do instead, and what protects the records if someone slips.",
+              "minWords": 60
+            }
+          ],
+          "choices": [
+            {
+              "id": "send",
+              "text": "Send the notice.",
+              "next": "safe",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "id": "safe",
+          "title": "Nothing lost, everyone warned",
+          "text": "Your notice goes up in every office. Two weeks later the admissions clerk forwards you a similar email with the words \"I think this is one of yours\". She did not open it either.",
+          "end": true,
+          "outcome": "good"
+        },
+        {
+          "id": "recovered",
+          "title": "Recovered, one day lost",
+          "text": "The laptop is wiped and reinstalled, Friday's records are restored, and Monday's entries are typed in again from the receipt book. The school now keeps the backup drive unplugged except at 6 pm, and nobody opens attachments from banks.\n\nStart the case again and see whether you can keep the records safe without losing a day.",
+          "end": true,
+          "outcome": "mixed"
+        },
+        {
+          "id": "paid",
+          "title": "Paid, and still locked",
+          "text": "The school pays. No key arrives. A second demand follows a week later. The records are rebuilt by hand from receipt books over a month; the external drive in the safe is found to have had a clean copy all along.",
+          "end": true,
+          "outcome": "bad"
+        },
+        {
+          "id": "partial",
+          "title": "Half the money back",
+          "text": "The bank recalls one transfer. GHS 9,200 is gone. The school adds two-factor authentication to its banking and a rule that no one logs in from a link in an email.",
+          "end": true,
+          "outcome": "mixed"
+        },
+        {
+          "id": "lost",
+          "title": "The money is gone",
+          "text": "Without a prompt report, the bank treats the transfers as authorised. The school absorbs the loss, and the investigation later finds the link in the email you clicked.",
+          "end": true,
+          "outcome": "bad"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Look at the sender's domain and the attachment's file extension before anything else.",
+    "A reply to the email goes to whoever sent it, which is not the bank.",
+    "The note tells you a trusted way to reach the real bank."
+  ],
+  "checks": [
+    { "type": "scenario.examined", "label": "You examined the email and the note before deciding", "evidence": ["email", "note"] },
+    { "type": "scenario.flags", "label": "You never opened the attachment or entered the password", "none": ["opened_attachment", "entered_password", "paid_ransom"], "message": "Something dangerous was opened or entered along the way. Start the case again." },
+    { "type": "scenario.reached", "label": "You reached the ending where nothing is lost", "nodes": ["safe"], "message": "You can recover from a mistake, but the goal is to avoid it: start again and reach the ending where nothing is lost." },
+    {
+      "type": "scenario.rubric",
+      "label": "Your notice covers spotting, avoiding, reporting and backups",
+      "prompt": "advice",
+      "patterns": ["attachment|\\.exe|file", "sender|address|domain|link", "report|IT teacher|bank|phone|call", "backup|two-factor|2FA|password"],
+      "required": 3,
+      "minWords": 60
+    }
+  ],
+  "realityNote": "Real phishing emails are often better written than this one, and mobile-money versions arrive as SMS. The habits are the same: check where it really comes from, never act from inside the message, and keep a backup that the attacker cannot reach."
+}

@@ -1,0 +1,122 @@
+{
+  "id": "fundamentals-of-computer-science-a2-mobile-money-market",
+  "course": "fundamentals-of-computer-science",
+  "topic": "Computing in Ghana: mobile money and society",
+  "unit": 8,
+  "topicIndex": 1,
+  "level": "advanced",
+  "engine": "E10",
+  "title": "Mobile money at the market",
+  "estimatedMinutes": 25,
+  "instructions": "## The brief\n\nThe Ho Municipal Assembly wants a short, honest analysis of what mobile money has done for traders at Ho Central Market before it decides whether to subsidise digital payments for market stalls.\n\nYou have five pieces of evidence: three interviews, a data table and a note on charges. Examine all of them, decide what question matters most, then write your analysis.\n\nA good analysis names benefits **and** costs, says who gains and who loses, and uses the evidence rather than opinion.",
+  "config": {
+    "scenario": {
+      "start": "brief",
+      "nodes": [
+        {
+          "id": "brief",
+          "title": "Tuesday at the market",
+          "text": "You spend a morning at Ho Central Market with a notebook. Examine each piece of evidence, then choose the question you think the Assembly most needs answered.",
+          "evidence": [
+            {
+              "id": "trader",
+              "kind": "interview",
+              "title": "Auntie Efua, tomato trader, 23 years at the market",
+              "text": "\"Before, I kept cash in a cloth bag and twice I was robbed on the road to Kumasi. Now my supplier in Kumasi sends the tomatoes when he sees my MoMo. I do not travel with cash. But the charges: every time a customer pays me by MoMo and I cash out, I lose something. On a bad network day I cannot receive at all, and the customers walk to the next stall who takes cash.\""
+            },
+            {
+              "id": "youth",
+              "kind": "interview",
+              "title": "Kwame, 24, phone-accessories stall",
+              "text": "\"All my customers pay MoMo. I keep a record on my phone and I can see what I sold this week. Last month I got a small loan from the MoMo app because they could see my transactions. My mother sells kenkey next to me and still only takes cash; she says the phone menu confuses her and she does not trust the agent.\""
+            },
+            {
+              "id": "agent",
+              "kind": "interview",
+              "title": "Mr Dzidzor, MoMo agent at the market gate",
+              "text": "\"I serve maybe 200 people a day. Cash-outs are more than cash-ins here. When the network is down, people shout at me as if it is my fault. The float I keep is a risk: I have been threatened once. The commission is small per transaction but it feeds my family.\""
+            },
+            {
+              "id": "data",
+              "kind": "document",
+              "title": "Bank of Ghana figures (summary table)",
+              "text": "| Year | Registered mobile-money accounts (millions) | Value of transactions (GHS billion) |\n|---|---|---|\n| 2017 | 23 | 156 |\n| 2019 | 32 | 309 |\n| 2021 | 48 | 978 |\n| 2023 | 66 | 1,900 |\n\nAbout 40% of adults did not have a bank account in 2021; most of them had a mobile-money account."
+            },
+            {
+              "id": "charges",
+              "kind": "policy",
+              "title": "Note on charges",
+              "text": "Operators charge a percentage on cash-outs and some transfers, with a cap. From 2022 a government e-levy applied to many transfers above a daily threshold; it was reduced in 2023 and withdrawn in 2025. During the levy, several traders at the market went back to cash for larger payments."
+            }
+          ],
+          "choices": [
+            {
+              "id": "q-safety",
+              "text": "Focus on safety: has mobile money made traders safer?",
+              "next": "analysis",
+              "score": 1,
+              "flags": ["focus_safety"],
+              "requires": ["trader", "youth", "agent", "data", "charges"]
+            },
+            {
+              "id": "q-cost",
+              "text": "Focus on cost: do charges and the levy cancel out the benefits for small traders?",
+              "next": "analysis",
+              "score": 1,
+              "flags": ["focus_cost"],
+              "requires": ["trader", "youth", "agent", "data", "charges"]
+            },
+            {
+              "id": "q-inclusion",
+              "text": "Focus on inclusion: who is left out, and why?",
+              "next": "analysis",
+              "score": 1,
+              "flags": ["focus_inclusion"],
+              "requires": ["trader", "youth", "agent", "data", "charges"]
+            }
+          ]
+        },
+        {
+          "id": "analysis",
+          "title": "Write the analysis",
+          "text": "Write 120 to 200 words for the Assembly. Cover:\n\n- at least two **benefits** with the evidence behind them,\n- at least two **costs or risks**,\n- **who gains and who loses** (think of Auntie Efua, Kwame's mother and Mr Dzidzor),\n- one **recommendation** the Assembly could act on.",
+          "prompts": [
+            {
+              "id": "analysis",
+              "label": "Your analysis for the Assembly",
+              "hint": "Use the words of the people you interviewed and the numbers from the table.",
+              "minWords": 120
+            }
+          ],
+          "choices": [
+            { "id": "submit", "text": "Submit the analysis.", "next": "submitted", "score": 1 }
+          ]
+        },
+        {
+          "id": "submitted",
+          "title": "Submitted",
+          "text": "The Assembly's committee reads your analysis alongside two others. Whatever they decide, they now know that a subsidy helps traders like Kwame but does nothing for Kwame's mother unless someone sits with her at the stall and shows her the menu, and that on a bad network day no subsidy matters at all.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Benefits appear in the trader's and the young seller's interviews; costs appear in all three interviews and the charges note.",
+    "The table shows scale; the sentence under it shows inclusion.",
+    "A recommendation is something the Assembly can actually do: training at the stalls, a shared agent, lobbying on charges, a cash fallback."
+  ],
+  "checks": [
+    { "type": "scenario.examined", "label": "You examined all five pieces of evidence", "evidence": ["trader", "youth", "agent", "data", "charges"] },
+    { "type": "scenario.finished", "label": "You submitted the analysis" },
+    {
+      "type": "scenario.rubric",
+      "label": "The analysis names benefits, costs, winners and losers, and a recommendation",
+      "prompt": "analysis",
+      "patterns": ["rob|cash|safe|theft|travel", "charge|fee|levy|cost|commission", "network|downtime|signal|down", "loan|record|supplier|Kumasi", "mother|older|trust|menu|excluded|left out|inclusion|unbanked", "recommend|should|propose|suggest"],
+      "required": 5,
+      "minWords": 120
+    }
+  ]
+}

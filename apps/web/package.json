@@ -17,6 +17,7 @@
     "@codemirror/view": "^6.43.15",
     "@cslab/engine-code": "*",
     "@cslab/engine-digital-logic": "*",
+    "@cslab/engine-scenario": "*",
     "@cslab/lab-runtime": "*",
     "codemirror": "^6.0.2",
     "marked": "^15.0.4",
