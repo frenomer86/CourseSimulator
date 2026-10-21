@@ -1,0 +1,93 @@
+{
+  "id": "mathematics-for-computer-science-i1-matrices",
+  "course": "mathematics-for-computer-science",
+  "topic": "Matrices as transformations",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "engine": "E7",
+  "title": "Matrix products, determinants and inverses",
+  "estimatedMinutes": 20,
+  "instructions": "## Two matrices\n\nA = [[2, 1], [1, 3]] and B = [[1, 0], [4, 2]]. The **Matrices** tool multiplies, transposes, finds determinants and inverses. Work each answer by hand first, then confirm.\n\nEnter matrices as rows separated by semicolons: `19 22; 43 50`. Fractions such as 3/5 are fine.\n\n## Do this\n\nAnswer the questions on the right. For the last one, think about what the determinant says about an inverse.",
+  "config": {
+    "tools": [
+      "matrix"
+    ],
+    "matrixA": "2 1; 1 3",
+    "matrixB": "1 0; 4 2"
+  },
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "hints": [
+    "Row of A times column of B, entry by entry.",
+    "det [[a, b], [c, d]] = ad − bc.",
+    "For a 2×2 matrix, swap the diagonal, negate the other two, divide by the determinant."
+  ],
+  "checks": [
+    {
+      "type": "math.matrix",
+      "label": "A × B",
+      "id": "q1",
+      "expected": [
+        [
+          6,
+          2
+        ],
+        [
+          13,
+          6
+        ]
+      ],
+      "question": "What is A × B?"
+    },
+    {
+      "type": "math.matrix",
+      "label": "B × A",
+      "id": "q2",
+      "expected": [
+        [
+          2,
+          1
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "question": "What is B × A? (Is it the same as A × B?)"
+    },
+    {
+      "type": "math.number",
+      "label": "det A",
+      "id": "q3",
+      "expected": 5,
+      "question": "What is the determinant of A?"
+    },
+    {
+      "type": "math.matrix",
+      "label": "A⁻¹",
+      "id": "q4",
+      "expected": [
+        [
+          0.6,
+          -0.2
+        ],
+        [
+          -0.2,
+          0.4
+        ]
+      ],
+      "tolerance": 0.001,
+      "question": "What is A⁻¹? (fractions allowed, e.g. 3/5)"
+    },
+    {
+      "type": "math.number",
+      "label": "det of a singular matrix",
+      "id": "q5",
+      "expected": 0,
+      "question": "What is the determinant of [[1, 2], [2, 4]], and so why has it no inverse?"
+    }
+  ]
+}

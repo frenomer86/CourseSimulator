@@ -1,0 +1,71 @@
+{
+  "id": "probability-and-statistics-b1-dice-and-binomial",
+  "course": "probability-and-statistics",
+  "topic": "Experiments, sampling and the binomial distribution",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E7",
+  "title": "Dice, coins and the binomial distribution",
+  "estimatedMinutes": 20,
+  "instructions": "## Simulate, then calculate\n\nThe **Sampler** rolls dice and flips coins thousands of times and compares the observed frequencies with theory. The **Statistics** tool describes a data set.\n\n## Do this\n\n1. Roll two dice 10,000 times. Estimate the probability that the sum is 7, then compute the exact value as a fraction.\n2. Flip 5 coins. What is the probability of exactly 2 heads? Compute it from the binomial formula.\n3. A trial succeeds with probability 0.3. In 5 trials, what is P(exactly 2 successes)? Compare with the sampler.\n4. The data set loaded in Statistics is the number of tro-tro trips a mate made on ten days. Give the mean and the median.",
+  "config": {
+    "tools": [
+      "sample",
+      "stats"
+    ],
+    "data": "12, 15, 11, 14, 15, 18, 10, 15, 13, 17"
+  },
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "hints": [
+    "Six of the 36 equally likely outcomes give a sum of 7.",
+    "P(k heads in n flips) = C(n, k) / 2ⁿ; C(5, 2) = 10.",
+    "P(X = k) = C(n, k) pᵏ (1 − p)ⁿ⁻ᵏ."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "P(sum = 7)",
+      "id": "q1",
+      "expected": 0.16667,
+      "tolerance": 0.002,
+      "question": "What is the exact probability that two dice sum to 7? (a fraction is fine)"
+    },
+    {
+      "type": "math.number",
+      "label": "P(2 heads in 5 flips)",
+      "id": "q2",
+      "expected": 0.3125,
+      "tolerance": 0.001,
+      "question": "What is the probability of exactly 2 heads in 5 flips?"
+    },
+    {
+      "type": "math.number",
+      "label": "P(X = 2) for n = 5, p = 0.3",
+      "id": "q3",
+      "expected": 0.3087,
+      "tolerance": 0.001,
+      "question": "With n = 5 and p = 0.3, what is P(exactly 2 successes)?"
+    },
+    {
+      "type": "math.number",
+      "label": "Mean of the trips",
+      "id": "q4",
+      "expected": 14,
+      "tolerance": 0.01,
+      "question": "What is the mean of the ten daily trip counts?"
+    },
+    {
+      "type": "math.number",
+      "label": "Median of the trips",
+      "id": "q5",
+      "expected": 14.5,
+      "tolerance": 0.01,
+      "question": "And the median?"
+    }
+  ],
+  "realityNote": "Simulation (Monte Carlo) is how engineers estimate probabilities that have no closed form, from network outages to insurance risk; the exact binomial formula is the special case you can check it against."
+}

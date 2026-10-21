@@ -1,0 +1,75 @@
+{
+  "id": "discrete-mathematics-b2-sets",
+  "course": "discrete-mathematics",
+  "topic": "Set operations and Venn diagrams",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E7",
+  "title": "Sets, Venn diagrams and power sets",
+  "estimatedMinutes": 12,
+  "instructions": "## Two sets in a universe\n\nLet U = {1, 2, 3, 4, 5, 6, 7, 8}, A = {1, 2, 3, 4, 6} and B = {2, 4, 5, 6, 8}. The **Sets** tool draws the Venn diagram and computes the usual operations; change A and B to explore.\n\n## Do this\n\nAnswer the questions on the right. Write sets in braces, like `{1, 2}`, and the empty set as `{}`.",
+  "config": {
+    "tools": [
+      "sets"
+    ],
+    "setA": "{1, 2, 3, 4, 6}",
+    "setB": "{2, 4, 5, 6, 8}",
+    "universe": "{1, 2, 3, 4, 5, 6, 7, 8}"
+  },
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "hints": [
+    "A − B keeps the members of A that are not in B.",
+    "The complement of A is everything in U that is not in A.",
+    "A set with n members has 2ⁿ subsets."
+  ],
+  "checks": [
+    {
+      "type": "math.set",
+      "label": "A ∩ B",
+      "id": "q1",
+      "expected": [
+        2,
+        4,
+        6
+      ],
+      "question": "What is A ∩ B?"
+    },
+    {
+      "type": "math.set",
+      "label": "A − B",
+      "id": "q2",
+      "expected": [
+        1,
+        3
+      ],
+      "question": "What is A − B?"
+    },
+    {
+      "type": "math.set",
+      "label": "(A ∪ B)ᶜ",
+      "id": "q3",
+      "expected": [
+        7
+      ],
+      "question": "What is the complement of A ∪ B in U?"
+    },
+    {
+      "type": "math.number",
+      "label": "|P(A)|",
+      "id": "q4",
+      "expected": 32,
+      "question": "How many subsets does A have?"
+    },
+    {
+      "type": "math.number",
+      "label": "|A × B|",
+      "id": "q5",
+      "expected": 25,
+      "question": "How many ordered pairs are in A × B?"
+    }
+  ]
+}

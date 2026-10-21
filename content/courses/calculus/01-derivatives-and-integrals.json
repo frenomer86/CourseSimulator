@@ -1,0 +1,70 @@
+{
+  "id": "calculus-b1-derivatives-and-integrals",
+  "course": "calculus",
+  "topic": "Derivatives and definite integrals",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E7",
+  "title": "Derivatives and areas, checked numerically",
+  "estimatedMinutes": 20,
+  "instructions": "## Differentiate, integrate, verify\n\nThe checker compares your expression with the correct one at many points, so any equivalent form is accepted: `x*cos(x) + sin(x)` and `sin(x) + x cos(x)` are both fine.\n\n## Do this\n\n1. Differentiate f(x) = x·sin(x) (product rule).\n2. Differentiate g(x) = e^(2x) + ln(x).\n3. Compute the definite integral of 2x from 0 to 3. Plot `2x` and read the area under it as a triangle to confirm.\n4. Find the slope of y = x³ at x = 2.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "x sin(x)",
+      "2x"
+    ]
+  },
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "hints": [
+    "(uv)' = u'v + uv'.",
+    "d/dx e^(kx) = k e^(kx); d/dx ln(x) = 1/x.",
+    "The integral of 2x is x²; evaluate between the limits."
+  ],
+  "checks": [
+    {
+      "type": "math.expr",
+      "label": "f'(x) for x sin(x)",
+      "id": "q1",
+      "expected": "sin(x) + x*cos(x)",
+      "variables": [
+        "x"
+      ],
+      "question": "What is f'(x) for f(x) = x sin(x)?"
+    },
+    {
+      "type": "math.expr",
+      "label": "g'(x) for e^(2x) + ln(x)",
+      "id": "q2",
+      "expected": "2*e^(2x) + 1/x",
+      "variables": [
+        "x"
+      ],
+      "domain": [
+        0.5,
+        3
+      ],
+      "question": "What is g'(x) for g(x) = e^(2x) + ln(x)?"
+    },
+    {
+      "type": "math.number",
+      "label": "∫₀³ 2x dx",
+      "id": "q3",
+      "expected": 9,
+      "question": "What is the integral of 2x from 0 to 3?"
+    },
+    {
+      "type": "math.number",
+      "label": "Slope of x³ at 2",
+      "id": "q4",
+      "expected": 12,
+      "question": "What is the slope of y = x³ at x = 2?"
+    }
+  ]
+}

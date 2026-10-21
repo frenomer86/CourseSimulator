@@ -1,14 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { LEVEL_LABEL, type EventObject, type LabResult, type LabSpec } from '@cslab/lab-runtime';
 import { createLogicChecks, emptyCircuit, type Circuit, type GateType } from '@cslab/engine-digital-logic';
 import type { CodeState } from '@cslab/engine-code';
 import type { ScenarioState } from '@cslab/engine-scenario';
-import { CodeLab } from '../components/CodeLab';
-import { ScenarioLab } from '../components/ScenarioLab';
-import { SqlLab } from '../components/SqlLab';
 import type { VizState } from '@cslab/engine-visualiser';
-import { VisualiserLab } from '../components/VisualiserLab';
+import type { MathsState } from '@cslab/engine-maths';
 import { checkForTopic, courseBySlug, labById, nextLab, unitOf } from '../lib/catalogue';
 import { useProgress } from '../store/progress';
 import { secondsSince, track } from '../lib/telemetry';
@@ -22,6 +19,23 @@ import { QuestionsAbout } from './Forum';
 
 const logicChecks = createLogicChecks();
 
+// Each engine's workspace is loaded only when a lab of that kind is opened, so the first visit
+// stays small and a learner on a slow connection downloads only the simulator they need.
+const CodeLab = lazy(() => import('../components/CodeLab').then((m) => ({ default: m.CodeLab })));
+const ScenarioLab = lazy(() => import('../components/ScenarioLab').then((m) => ({ default: m.ScenarioLab })));
+const SqlLab = lazy(() => import('../components/SqlLab').then((m) => ({ default: m.SqlLab })));
+const VisualiserLab = lazy(() => import('../components/VisualiserLab').then((m) => ({ default: m.VisualiserLab })));
+const MathsLab = lazy(() => import('../components/MathsLab').then((m) => ({ default: m.MathsLab })));
+
+function Loading({ title }: { title: string }) {
+  return (
+    <div className="mx-auto max-w-6xl px-4 py-16" aria-busy>
+      <h1 className="text-2xl font-semibold">{title}</h1>
+      <p className="mt-2 text-ink-soft">Loading the simulator…</p>
+    </div>
+  );
+}
+
 function labObject(lab: LabSpec<unknown>): EventObject {
   return { type: 'lab', id: lab.id, course: lab.course, unit: lab.unit, topic: lab.topicIndex, labId: lab.id, labLevel: lab.level };
 }
@@ -30,10 +44,12 @@ export function LabPage() {
   const { id = '' } = useParams();
   const lab = labById(id);
   if (!lab) return <NotFoundPage />;
-  if (lab.engine === 'E1') return <CodeLab key={lab.id} lab={lab as LabSpec<CodeState>} />;
-  if (lab.engine === 'E10') return <ScenarioLab key={lab.id} lab={lab as LabSpec<ScenarioState>} />;
-  if (lab.engine === 'E5') return <SqlLab key={lab.id} lab={lab as LabSpec<{ sql: string }>} />;
-  if (lab.engine === 'E6') return <VisualiserLab key={lab.id} lab={lab as LabSpec<VizState>} />;
+  const fallback = <Loading title={lab.title} />;
+  if (lab.engine === 'E1') return <Suspense fallback={fallback}><CodeLab key={lab.id} lab={lab as LabSpec<CodeState>} /></Suspense>;
+  if (lab.engine === 'E10') return <Suspense fallback={fallback}><ScenarioLab key={lab.id} lab={lab as LabSpec<ScenarioState>} /></Suspense>;
+  if (lab.engine === 'E5') return <Suspense fallback={fallback}><SqlLab key={lab.id} lab={lab as LabSpec<{ sql: string }>} /></Suspense>;
+  if (lab.engine === 'E6') return <Suspense fallback={fallback}><VisualiserLab key={lab.id} lab={lab as LabSpec<VizState>} /></Suspense>;
+  if (lab.engine === 'E7') return <Suspense fallback={fallback}><MathsLab key={lab.id} lab={lab as LabSpec<MathsState>} /></Suspense>;
   if (lab.engine !== 'E2') {
     return (
       <div className="mx-auto max-w-6xl px-4 py-16">

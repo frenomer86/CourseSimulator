@@ -1,0 +1,63 @@
+{
+  "id": "fundamentals-of-computer-science-b3-number-bases",
+  "course": "fundamentals-of-computer-science",
+  "topic": "Bits, bytes and number bases",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E7",
+  "title": "Bits, bytes and bases",
+  "estimatedMinutes": 10,
+  "instructions": "## Counting in twos and sixteens\n\nComputers store everything as bits. This lab is arithmetic you can do on paper; the questions are checked instantly.\n\n## Do this\n\nAnswer the questions on the right. For binary and hexadecimal answers, type just the digits (for example `1101` or `2F`).",
+  "config": {
+    "tools": [
+      "euclid"
+    ]
+  },
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "hints": [
+    "45 = 32 + 8 + 4 + 1.",
+    "Group binary digits in fours from the right: 1111 = F, 1010 = A.",
+    "A kilobyte in computing is 1024 bytes; a byte is 8 bits."
+  ],
+  "checks": [
+    {
+      "type": "math.text",
+      "label": "45 in binary",
+      "id": "q1",
+      "pattern": "0*101101",
+      "question": "Write 45 in binary."
+    },
+    {
+      "type": "math.number",
+      "label": "10110 in decimal",
+      "id": "q2",
+      "expected": 22,
+      "question": "What is binary 10110 in decimal?"
+    },
+    {
+      "type": "math.text",
+      "label": "250 in hexadecimal",
+      "id": "q3",
+      "pattern": "(0x)?FA",
+      "question": "Write 250 in hexadecimal."
+    },
+    {
+      "type": "math.number",
+      "label": "Bits in 4 KB",
+      "id": "q4",
+      "expected": 32768,
+      "question": "How many bits are in 4 kilobytes (1 KB = 1024 bytes)?"
+    },
+    {
+      "type": "math.number",
+      "label": "Largest 8-bit value",
+      "id": "q5",
+      "expected": 255,
+      "question": "What is the largest unsigned number one byte can hold?"
+    }
+  ]
+}

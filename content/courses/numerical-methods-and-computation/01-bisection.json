@@ -1,0 +1,69 @@
+{
+  "id": "numerical-methods-and-computation-b1-bisection",
+  "course": "numerical-methods-and-computation",
+  "topic": "Root finding by bisection",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E7",
+  "title": "Find a root by bisection",
+  "estimatedMinutes": 20,
+  "instructions": "## Halving the interval\n\nf(x) = x³ − x − 2 has one real root. Bisection keeps an interval [a, b] with f(a) and f(b) of opposite signs, tests the midpoint, and keeps the half where the sign changes.\n\n## Do this\n\n1. Plot f and confirm the root lies between 1 and 2. What is f(1) and f(2)?\n2. Do the first three bisection steps by hand starting from [1, 2]. What is the midpoint after step 3? (The interval after three steps is [1.5, 1.625], so the next midpoint tested is 1.5625.)\n3. How many steps are needed to shrink the interval from width 1 to below 0.001?\n4. Give the root to three decimal places.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "x^3 - x - 2"
+    ]
+  },
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "hints": [
+    "f(1) = 1 − 1 − 2 = −2 and f(2) = 8 − 2 − 2 = 4: opposite signs, so a root lies between.",
+    "Each step halves the width: 1, 0.5, 0.25, 0.125, …; find the first width below 0.001.",
+    "The midpoints go 1.5, 1.75, 1.625, 1.5625, 1.53125 … and settle near 1.521."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "f(1)",
+      "id": "q1",
+      "expected": -2,
+      "question": "What is f(1)?"
+    },
+    {
+      "type": "math.number",
+      "label": "f(2)",
+      "id": "q2",
+      "expected": 4,
+      "question": "What is f(2)?"
+    },
+    {
+      "type": "math.number",
+      "label": "Midpoint tested at step 4",
+      "id": "q3",
+      "expected": 1.5625,
+      "tolerance": 0.0001,
+      "question": "Starting from [1, 2], what midpoint is tested at step 4?"
+    },
+    {
+      "type": "math.number",
+      "label": "Steps to width below 0.001",
+      "id": "q4",
+      "expected": 10,
+      "question": "How many halvings take the width from 1 to below 0.001?"
+    },
+    {
+      "type": "math.number",
+      "label": "The root",
+      "id": "q5",
+      "expected": 1.5214,
+      "tolerance": 0.001,
+      "question": "What is the root to three decimal places?"
+    }
+  ],
+  "realityNote": "Bisection is slow but never fails when the signs differ; Newton's method is far faster but can run away. Real solvers combine them (Brent's method)."
+}

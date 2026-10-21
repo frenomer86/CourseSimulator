@@ -1,0 +1,85 @@
+{
+  "id": "discrete-mathematics-i1-euclid-and-modular",
+  "course": "discrete-mathematics",
+  "topic": "Euclid's algorithm and modular inverses",
+  "unit": 4,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "engine": "E7",
+  "title": "Euclid, Bezout and inverses mod n",
+  "estimatedMinutes": 20,
+  "instructions": "## From gcd to RSA\n\nThe **Euclid** tool runs the algorithm step by step and shows Bezout's identity a·x + b·y = gcd(a, b).\n\n## Do this\n\n1. Run Euclid's algorithm on 240 and 46 by hand first, then confirm with the tool. How many division steps does it take (rows in the table)?\n2. Find integers x and y with 240x + 46y = gcd(240, 46). Any pair that works is accepted.\n3. Find the inverse of 7 modulo 26: the number between 1 and 25 whose product with 7 leaves remainder 1. (This is exactly the kind of inverse RSA needs.)\n4. Does 4 have an inverse modulo 8? Enter yes or no.",
+  "config": {
+    "tools": [
+      "euclid"
+    ]
+  },
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "hints": [
+    "Divide 240 by 46: quotient 5, remainder 10. Then divide 46 by 10, and so on until the remainder is 0.",
+    "Work the remainders backwards (extended Euclid) or read x and y off the tool and check the equation yourself.",
+    "An inverse mod n exists only when gcd(a, n) = 1."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "gcd(240, 46)",
+      "id": "q1",
+      "expected": 2,
+      "question": "What is gcd(240, 46)?"
+    },
+    {
+      "type": "math.number",
+      "label": "Steps in Euclid",
+      "id": "q2",
+      "expected": 5,
+      "question": "How many division steps does Euclid take on 240 and 46?"
+    },
+    {
+      "type": "math.number",
+      "label": "x in Bezout",
+      "id": "x",
+      "expected": -9,
+      "tolerance": 1000000000,
+      "question": "Give an integer x such that 240x + 46y = 2 for some integer y."
+    },
+    {
+      "type": "math.number",
+      "label": "y in Bezout",
+      "id": "y",
+      "expected": 47,
+      "tolerance": 1000000000,
+      "question": "And the matching y."
+    },
+    {
+      "type": "math.relation",
+      "label": "240x + 46y = 2",
+      "expr": "240*x + 46*y",
+      "equals": 2,
+      "using": [
+        "x",
+        "y"
+      ],
+      "question": "Your x and y must satisfy 240x + 46y = 2."
+    },
+    {
+      "type": "math.number",
+      "label": "7⁻¹ mod 26",
+      "id": "q5",
+      "expected": 15,
+      "question": "What is the inverse of 7 modulo 26?"
+    },
+    {
+      "type": "math.text",
+      "label": "Inverse of 4 mod 8",
+      "id": "q6",
+      "pattern": "no|none|does not exist",
+      "question": "Does 4 have an inverse modulo 8? (yes or no)",
+      "message": "Check gcd(4, 8) first."
+    }
+  ],
+  "realityNote": "RSA key generation computes d = e⁻¹ mod φ(n) with exactly this extended Euclid, on numbers with hundreds of digits."
+}

@@ -1,0 +1,59 @@
+{
+  "id": "discrete-mathematics-b1-truth-tables",
+  "course": "discrete-mathematics",
+  "topic": "Truth tables and logical equivalence",
+  "unit": 1,
+  "topicIndex": 2,
+  "level": "beginner",
+  "engine": "E7",
+  "title": "Truth tables and De Morgan",
+  "estimatedMinutes": 15,
+  "instructions": "## Two formulas, one table\n\nThe **Truth table** tool builds the table for any formula and can compare two formulas side by side. Write *not* as `~`, *and* as `&`, *or* as `|`, *implies* as `->` and *iff* as `<->`.\n\n## Do this\n\n1. Fill in the truth table for `p -> q` by hand in the questions panel. Check it against the tool afterwards.\n2. De Morgan's law says ¬(p ∧ q) is equivalent to something built from ¬p and ¬q. Write that formula.\n3. Find a formula using only `~` and `|` that is equivalent to `p -> q`.\n4. Which of these is a tautology? Enter the formula: `(p -> q) <-> (~q -> ~p)` or `(p -> q) <-> (q -> p)`. Use the tool to decide.",
+  "config": {
+    "tools": [
+      "logic"
+    ],
+    "formula": "~(p & q)"
+  },
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "hints": [
+    "p -> q is false only when p is true and q is false.",
+    "Push the negation inside and flip the connective: ¬(p ∧ q) ≡ ¬p ∨ ¬q.",
+    "p -> q is equivalent to ¬p ∨ q; the contrapositive ¬q -> ¬p is equivalent to the original."
+  ],
+  "checks": [
+    {
+      "type": "math.truthTable",
+      "label": "The truth table of p -> q",
+      "id": "q1",
+      "formula": "p -> q",
+      "question": "Fill in the result column for p -> q."
+    },
+    {
+      "type": "math.logic",
+      "label": "De Morgan's law for ¬(p ∧ q)",
+      "id": "q2",
+      "expected": "~p | ~q",
+      "question": "Write a formula equivalent to ~(p & q) that uses no parentheses around p and q."
+    },
+    {
+      "type": "math.logic",
+      "label": "p -> q with only ~ and |",
+      "id": "q3",
+      "expected": "~p | q",
+      "question": "Write a formula equivalent to p -> q using only ~ and |."
+    },
+    {
+      "type": "math.logic",
+      "label": "The tautology",
+      "id": "q4",
+      "expected": "T",
+      "question": "Enter the one of the two given formulas that is a tautology (copy it exactly).",
+      "message": "That formula is not always true. Compare both with the tool and look for the one whose column is all T."
+    }
+  ],
+  "realityNote": "Compilers and SQL optimisers rewrite conditions with exactly these equivalences; an \"if not (a and b)\" in your code is a De Morgan rewrite waiting to happen."
+}

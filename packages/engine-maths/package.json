@@ -1,0 +1,12 @@
+{
+  "name": "@cslab/engine-maths",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Maths lab engine (E7): expressions, propositional logic, sets, matrices and numerical helpers, with checks graded in the browser.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@cslab/lab-runtime": "*"
+  }
+}

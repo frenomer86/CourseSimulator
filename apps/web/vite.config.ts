@@ -26,7 +26,8 @@ export default defineConfig({
         icons: [{ src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,json,woff2}'],
+        globPatterns: ['**/*.{js,css,html,svg,json,woff2,wasm}'],
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
         // The Python runtime (Pyodide) is fetched from the CDN on first use and then kept, so labs work offline.
         runtimeCaching: [
           {

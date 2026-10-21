@@ -1,0 +1,68 @@
+{
+  "id": "mathematics-for-computer-science-b1-functions-and-limits",
+  "course": "mathematics-for-computer-science",
+  "topic": "Functions, limits and continuity",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E7",
+  "title": "Plot, zoom and find the limit",
+  "estimatedMinutes": 15,
+  "instructions": "## Read a limit off a graph\n\nThe **Plot** tool draws functions of x. Two are loaded: f(x) = (x² − 1)/(x − 1), which has a hole at x = 1, and g(x) = x² − 5x + 6.\n\n## Do this\n\n1. Zoom in around x = 1 (set the range to 0.9 to 1.1). What value does f approach? That is the limit.\n2. Read the roots of g from where it crosses the x-axis, then confirm by factorising.\n3. Write the derivative of h(x) = x³ − 2x as an expression in x.\n4. For which x does g(x) have its minimum? (Hint: halfway between the roots.)",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "(x^2 - 1)/(x - 1)",
+      "x^2 - 5x + 6"
+    ]
+  },
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "hints": [
+    "Near x = 1, f(x) = (x − 1)(x + 1)/(x − 1) = x + 1.",
+    "x² − 5x + 6 = (x − 2)(x − 3).",
+    "Differentiate term by term: d/dx xⁿ = n xⁿ⁻¹."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "The limit of f at 1",
+      "id": "q1",
+      "expected": 2,
+      "tolerance": 0.01,
+      "question": "What is the limit of f(x) as x approaches 1?"
+    },
+    {
+      "type": "math.set",
+      "label": "The roots of g",
+      "id": "q2",
+      "expected": [
+        2,
+        3
+      ],
+      "question": "What are the roots of g(x) = x² − 5x + 6? (as a set)"
+    },
+    {
+      "type": "math.expr",
+      "label": "h'(x)",
+      "id": "q3",
+      "expected": "3x^2 - 2",
+      "variables": [
+        "x"
+      ],
+      "question": "What is the derivative of h(x) = x³ − 2x?"
+    },
+    {
+      "type": "math.number",
+      "label": "Where g is smallest",
+      "id": "q4",
+      "expected": 2.5,
+      "tolerance": 0.01,
+      "question": "At which x is g(x) smallest?"
+    }
+  ]
+}
