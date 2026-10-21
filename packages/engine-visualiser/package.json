@@ -1,0 +1,12 @@
+{
+  "name": "@cslab/engine-visualiser",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Step visualiser engine (E6): algorithms that record every step, and checks graded from the trace.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@cslab/lab-runtime": "*"
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id": "data-structures-and-algorithms-i2-stack-and-queue",
+  "course": "data-structures-and-algorithms",
+  "topic": "Stacks and queues",
+  "unit": 2,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "engine": "E6",
+  "title": "Stack or queue: who comes out first?",
+  "estimatedMinutes": 15,
+  "instructions": "## The same operations, two structures\n\nThe operations box holds a sequence of `add` and `remove` operations. Run them on a **stack** (last in, first out) and on a **queue** (first in, first out) and watch which value comes out at each `remove`.\n\n## Do this\n\n1. For the stack, list the removed values in order; then do the same for the queue.\n2. Write the final contents of the stack.\n3. Edit the operations so that the stack reaches a size of **four** at some point (the `maxSize` metric), using at most eight operations.",
+  "config": {
+    "algorithms": [
+      "stack",
+      "queue"
+    ],
+    "editableInput": true
+  },
+  "initialState": {
+    "input": {
+      "ops": [
+        "add 4",
+        "add 7",
+        "add 1",
+        "remove",
+        "add 9",
+        "remove",
+        "remove"
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "Each remove on a stack takes the most recently added value that is still there.",
+    "Each remove on a queue takes the oldest value still there.",
+    "Four adds in a row give a size of four."
+  ],
+  "checks": [
+    {
+      "type": "viz.metric",
+      "label": "Values removed from the stack",
+      "id": "q1",
+      "algorithm": "stack",
+      "metric": "removed",
+      "input": {
+        "ops": [
+          "add 4",
+          "add 7",
+          "add 1",
+          "remove",
+          "add 9",
+          "remove",
+          "remove"
+        ]
+      },
+      "question": "Stack: which values come out, in order? (for the starting operations)"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Values removed from the queue",
+      "id": "q2",
+      "algorithm": "queue",
+      "metric": "removed",
+      "input": {
+        "ops": [
+          "add 4",
+          "add 7",
+          "add 1",
+          "remove",
+          "add 9",
+          "remove",
+          "remove"
+        ]
+      },
+      "question": "Queue: which values come out, in order? (for the starting operations)"
+    },
+    {
+      "type": "viz.final",
+      "label": "Final stack contents",
+      "id": "q3",
+      "algorithm": "stack",
+      "what": "stack",
+      "input": {
+        "ops": [
+          "add 4",
+          "add 7",
+          "add 1",
+          "remove",
+          "add 9",
+          "remove",
+          "remove"
+        ]
+      },
+      "question": "What is left on the stack at the end, bottom to top? (for the starting operations)"
+    },
+    {
+      "type": "viz.input",
+      "label": "Operations that make the stack reach size four",
+      "algorithm": "stack",
+      "metric": "maxSize",
+      "equals": 4,
+      "question": "Edit the operations so the stack reaches size four at some point."
+    }
+  ],
+  "realityNote": "The call stack of a running program and the undo history of an editor are stacks; print spoolers and message queues are queues. Choosing the wrong one is a classic bug."
+}

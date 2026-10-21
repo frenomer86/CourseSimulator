@@ -20,6 +20,7 @@
     "@cslab/engine-digital-logic": "*",
     "@cslab/engine-scenario": "*",
     "@cslab/engine-sql": "*",
+    "@cslab/engine-visualiser": "*",
     "@cslab/lab-runtime": "*",
     "codemirror": "^6.0.2",
     "marked": "^15.0.4",

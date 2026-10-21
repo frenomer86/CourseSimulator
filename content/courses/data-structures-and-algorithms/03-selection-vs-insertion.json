@@ -1,0 +1,101 @@
+{
+  "id": "data-structures-and-algorithms-i1-selection-vs-insertion",
+  "course": "data-structures-and-algorithms",
+  "topic": "Selection and insertion sort",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "engine": "E6",
+  "title": "Selection sort against insertion sort",
+  "estimatedMinutes": 20,
+  "instructions": "## Same list, three algorithms\n\nStep through **selection sort** and **insertion sort** on `29, 10, 14, 37, 13`. Selection sort finds the smallest remaining value and swaps it into place. Insertion sort takes the next value and shifts larger values right to make room.\n\n## Do this\n\n1. Count selection sort's comparisons and swaps.\n2. Count insertion sort's shifts.\n3. Find **five different values** on which insertion sort does **no shifts at all**, and keep them in the input. What does that say about insertion sort on nearly sorted data?",
+  "config": {
+    "algorithms": [
+      "selectionSort",
+      "insertionSort",
+      "bubbleSort"
+    ],
+    "editableInput": true
+  },
+  "initialState": {
+    "input": {
+      "values": [
+        29,
+        10,
+        14,
+        37,
+        13
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "Selection sort always makes about n²/2 comparisons, whatever the order; read `comparisons` on the last step.",
+    "A shift happens every time a larger value moves right; read `shifts` on the last step.",
+    "Insertion sort shifts nothing when every value is already in order."
+  ],
+  "checks": [
+    {
+      "type": "viz.metric",
+      "label": "Selection sort comparisons",
+      "id": "q1",
+      "algorithm": "selectionSort",
+      "metric": "comparisons",
+      "input": {
+        "values": [
+          29,
+          10,
+          14,
+          37,
+          13
+        ]
+      },
+      "question": "Selection sort on 29, 10, 14, 37, 13: how many comparisons?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Selection sort swaps",
+      "id": "q2",
+      "algorithm": "selectionSort",
+      "metric": "swaps",
+      "input": {
+        "values": [
+          29,
+          10,
+          14,
+          37,
+          13
+        ]
+      },
+      "question": "Selection sort on the same list: how many swaps?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Insertion sort shifts",
+      "id": "q3",
+      "algorithm": "insertionSort",
+      "metric": "shifts",
+      "input": {
+        "values": [
+          29,
+          10,
+          14,
+          37,
+          13
+        ]
+      },
+      "question": "Insertion sort on the same list: how many shifts?"
+    },
+    {
+      "type": "viz.input",
+      "label": "Five different values with zero shifts",
+      "algorithm": "insertionSort",
+      "metric": "shifts",
+      "equals": 0,
+      "length": 5,
+      "distinct": true,
+      "question": "Set five different values on which insertion sort makes no shifts."
+    }
+  ],
+  "realityNote": "Insertion sort is O(n) on sorted or nearly sorted input, which is why library sorts (Timsort, introsort) switch to it for small or already-ordered runs."
+}

@@ -1,0 +1,67 @@
+{
+  "id": "fundamentals-of-computer-science-b2-search-and-sort-by-hand",
+  "course": "fundamentals-of-computer-science",
+  "topic": "Searching and sorting by hand",
+  "unit": 4,
+  "topicIndex": 3,
+  "level": "beginner",
+  "engine": "E6",
+  "title": "Watch a search and a sort happen",
+  "estimatedMinutes": 12,
+  "instructions": "## Three algorithms, step by step\n\nPick an algorithm from the menu, then press **Play** or step through with **Next**. The pseudocode line being executed is highlighted, the variables are on the right, and the boxes show the list.\n\n## Do this\n\n1. Run **linear search** for 27 and count how many values it looks at.\n2. Run **binary search** for the same target. Why does it need so few comparisons?\n3. Switch to **bubble sort** and watch the largest value \"bubble\" to the end on the first pass.\n\nAnswer the questions on the right from what you see, then press **Check my answers**.",
+  "config": {
+    "algorithms": [
+      "linearSearch",
+      "binarySearch",
+      "bubbleSort"
+    ],
+    "editableInput": true
+  },
+  "initialState": {
+    "input": {
+      "values": [
+        3,
+        8,
+        12,
+        15,
+        21,
+        27,
+        34
+      ],
+      "target": 27
+    },
+    "answers": {}
+  },
+  "hints": [
+    "Linear search looks at every value from the left until it finds the target; the variable `comparisons` counts them.",
+    "Binary search looks at the middle value and throws away half the list each time.",
+    "The final step of bubble sort shows the sorted list; the variable `swaps` counts the swaps."
+  ],
+  "checks": [
+    {
+      "type": "viz.metric",
+      "label": "Linear search comparisons for 27",
+      "id": "q1",
+      "algorithm": "linearSearch",
+      "metric": "comparisons",
+      "question": "How many comparisons does linear search make to find 27?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Binary search comparisons for 27",
+      "id": "q2",
+      "algorithm": "binarySearch",
+      "metric": "comparisons",
+      "question": "How many comparisons does binary search make to find 27?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Bubble sort swaps",
+      "id": "q3",
+      "algorithm": "bubbleSort",
+      "metric": "swaps",
+      "question": "How many swaps does bubble sort make on this list?"
+    }
+  ],
+  "realityNote": "On a list of a million items, linear search may look at a million values; binary search needs about twenty. That difference is why sorted data and good algorithms matter."
+}

@@ -1,0 +1,238 @@
+{
+  "id": "data-structures-and-algorithms-a1-bfs-dfs-order",
+  "course": "data-structures-and-algorithms",
+  "topic": "Breadth-first and depth-first search",
+  "unit": 7,
+  "topicIndex": 2,
+  "level": "advanced",
+  "engine": "E6",
+  "title": "Breadth-first and depth-first through the Volta Region",
+  "estimatedMinutes": 20,
+  "instructions": "## A road graph\n\nThe graph joins seven Volta Region towns by road. Neighbours are always taken in **alphabetical order**. Breadth-first search explores town by town in rings around the start, using a queue; depth-first search follows one road as far as it goes, using a stack (the recursion).\n\n## Do this\n\n1. Starting at **Ho**, write the order in which BFS visits the towns, then the order for DFS.\n2. In BFS, how many roads away from Ho is Aflao?\n3. Choose a different **start** town from which BFS reaches Aflao in exactly one step (the `depth:Aflao` metric must be 1), and leave it selected.",
+  "config": {
+    "algorithms": [
+      "bfs",
+      "dfs"
+    ],
+    "editableInput": true
+  },
+  "initialState": {
+    "input": {
+      "graph": {
+        "nodes": [
+          "Ho",
+          "Hohoe",
+          "Kpando",
+          "Keta",
+          "Aflao",
+          "Sogakope",
+          "Jasikan"
+        ],
+        "edges": [
+          [
+            "Ho",
+            "Hohoe"
+          ],
+          [
+            "Ho",
+            "Kpando"
+          ],
+          [
+            "Ho",
+            "Sogakope"
+          ],
+          [
+            "Hohoe",
+            "Jasikan"
+          ],
+          [
+            "Hohoe",
+            "Kpando"
+          ],
+          [
+            "Sogakope",
+            "Keta"
+          ],
+          [
+            "Keta",
+            "Aflao"
+          ]
+        ]
+      },
+      "start": "Ho"
+    },
+    "answers": {}
+  },
+  "hints": [
+    "BFS: after visiting a town, add its unvisited neighbours (alphabetically) to the back of the queue; visit the queue front next.",
+    "DFS: from a town, go to its first unvisited neighbour immediately and keep going; only when stuck do you come back.",
+    "Aflao is one step away from its direct neighbour."
+  ],
+  "checks": [
+    {
+      "type": "viz.final",
+      "label": "BFS order from Ho",
+      "id": "q1",
+      "algorithm": "bfs",
+      "what": "order",
+      "input": {
+        "graph": {
+          "nodes": [
+            "Ho",
+            "Hohoe",
+            "Kpando",
+            "Keta",
+            "Aflao",
+            "Sogakope",
+            "Jasikan"
+          ],
+          "edges": [
+            [
+              "Ho",
+              "Hohoe"
+            ],
+            [
+              "Ho",
+              "Kpando"
+            ],
+            [
+              "Ho",
+              "Sogakope"
+            ],
+            [
+              "Hohoe",
+              "Jasikan"
+            ],
+            [
+              "Hohoe",
+              "Kpando"
+            ],
+            [
+              "Sogakope",
+              "Keta"
+            ],
+            [
+              "Keta",
+              "Aflao"
+            ]
+          ]
+        },
+        "start": "Ho"
+      },
+      "question": "BFS from Ho: list the towns in visiting order."
+    },
+    {
+      "type": "viz.final",
+      "label": "DFS order from Ho",
+      "id": "q2",
+      "algorithm": "dfs",
+      "what": "order",
+      "input": {
+        "graph": {
+          "nodes": [
+            "Ho",
+            "Hohoe",
+            "Kpando",
+            "Keta",
+            "Aflao",
+            "Sogakope",
+            "Jasikan"
+          ],
+          "edges": [
+            [
+              "Ho",
+              "Hohoe"
+            ],
+            [
+              "Ho",
+              "Kpando"
+            ],
+            [
+              "Ho",
+              "Sogakope"
+            ],
+            [
+              "Hohoe",
+              "Jasikan"
+            ],
+            [
+              "Hohoe",
+              "Kpando"
+            ],
+            [
+              "Sogakope",
+              "Keta"
+            ],
+            [
+              "Keta",
+              "Aflao"
+            ]
+          ]
+        },
+        "start": "Ho"
+      },
+      "question": "DFS from Ho: list the towns in visiting order."
+    },
+    {
+      "type": "viz.metric",
+      "label": "Distance from Ho to Aflao",
+      "id": "q3",
+      "algorithm": "bfs",
+      "metric": "depth:Aflao",
+      "input": {
+        "graph": {
+          "nodes": [
+            "Ho",
+            "Hohoe",
+            "Kpando",
+            "Keta",
+            "Aflao",
+            "Sogakope",
+            "Jasikan"
+          ],
+          "edges": [
+            [
+              "Ho",
+              "Hohoe"
+            ],
+            [
+              "Ho",
+              "Kpando"
+            ],
+            [
+              "Ho",
+              "Sogakope"
+            ],
+            [
+              "Hohoe",
+              "Jasikan"
+            ],
+            [
+              "Hohoe",
+              "Kpando"
+            ],
+            [
+              "Sogakope",
+              "Keta"
+            ],
+            [
+              "Keta",
+              "Aflao"
+            ]
+          ]
+        },
+        "start": "Ho"
+      },
+      "question": "BFS from Ho: how many roads away is Aflao?"
+    },
+    {
+      "type": "viz.input",
+      "label": "A start town one road from Aflao",
+      "algorithm": "bfs",
+      "metric": "depth:Aflao",
+      "equals": 1,
+      "question": "Choose a start town so that BFS reaches Aflao in exactly one step."
+    }
+  ],
+  "realityNote": "BFS on an unweighted graph gives shortest paths in hops, which is how a mapping app finds the fewest-stops route; with distances on the roads you need Dijkstra, the next lab topic."
+}

@@ -1,0 +1,101 @@
+{
+  "id": "data-structures-and-algorithms-b1-linear-vs-binary",
+  "course": "data-structures-and-algorithms",
+  "topic": "Linear and binary search",
+  "unit": 5,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E6",
+  "title": "Linear search versus binary search",
+  "estimatedMinutes": 15,
+  "instructions": "## Two ways to search a sorted list\n\nThe list has ten sorted values. Step through **linear search** and **binary search** for the target 72 and watch `comparisons` grow.\n\n## Do this\n\n1. Answer how many comparisons each algorithm makes for 72.\n2. Find a target in the list that binary search finds with **exactly one** comparison, and set it as the target. Which position must it be at?\n3. Then try a target that is not in the list and watch how `low` and `high` cross.\n\nThe third question is graded on the target you leave in the input box.",
+  "config": {
+    "algorithms": [
+      "linearSearch",
+      "binarySearch"
+    ],
+    "editableInput": true
+  },
+  "initialState": {
+    "input": {
+      "values": [
+        2,
+        5,
+        8,
+        12,
+        16,
+        23,
+        38,
+        56,
+        72,
+        91
+      ],
+      "target": 72
+    },
+    "answers": {}
+  },
+  "hints": [
+    "Linear search stops at the first match, so the count equals the position of 72 plus one.",
+    "Binary search checks the middle of the range: positions 0 to 9 have middle (0 + 9) // 2 = 4.",
+    "The value at position 4 is found in one comparison."
+  ],
+  "checks": [
+    {
+      "type": "viz.metric",
+      "label": "Linear search comparisons for 72",
+      "id": "q1",
+      "algorithm": "linearSearch",
+      "metric": "comparisons",
+      "input": {
+        "values": [
+          2,
+          5,
+          8,
+          12,
+          16,
+          23,
+          38,
+          56,
+          72,
+          91
+        ],
+        "target": 72
+      },
+      "question": "With target 72, how many comparisons does linear search make?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Binary search comparisons for 72",
+      "id": "q2",
+      "algorithm": "binarySearch",
+      "metric": "comparisons",
+      "input": {
+        "values": [
+          2,
+          5,
+          8,
+          12,
+          16,
+          23,
+          38,
+          56,
+          72,
+          91
+        ],
+        "target": 72
+      },
+      "question": "With target 72, how many comparisons does binary search make?"
+    },
+    {
+      "type": "viz.input",
+      "label": "A target that binary search finds in one comparison",
+      "algorithm": "binarySearch",
+      "metric": "comparisons",
+      "equals": 1,
+      "sorted": true,
+      "question": "Set the target so that binary search finds it with exactly one comparison.",
+      "message": "Binary search looks at the middle position first. Which value is there?"
+    }
+  ],
+  "realityNote": "Binary search needs the list sorted first. Sorting costs more than one search, so it pays off only when you search many times, which is the usual case for a database index."
+}

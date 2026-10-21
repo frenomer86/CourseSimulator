@@ -1,0 +1,103 @@
+{
+  "id": "data-structures-and-algorithms-b2-bubble-sort-passes",
+  "course": "data-structures-and-algorithms",
+  "topic": "Bubble sort: passes, swaps and early exit",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E6",
+  "title": "Bubble sort, pass by pass",
+  "estimatedMinutes": 15,
+  "instructions": "## Watch the passes\n\nStep through bubble sort on `5, 1, 4, 2, 8`. Each **pass** walks along the list comparing neighbours and swapping them when they are out of order. After each pass the largest remaining value is in its final place (shown in green).\n\n## Do this\n\n1. Write down the list at the end of pass 1.\n2. Count the swaps over the whole run, and the number of passes the algorithm needed before it stopped (it stops early when a pass makes no swap).\n3. Change the input: find **five different values** that make bubble sort do **ten** swaps, the most possible for five values.",
+  "config": {
+    "algorithms": [
+      "bubbleSort"
+    ],
+    "editableInput": true
+  },
+  "initialState": {
+    "input": {
+      "values": [
+        5,
+        1,
+        4,
+        2,
+        8
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "Step until the note says \"Pass 1 done\" and read the boxes.",
+    "The variables panel shows `swaps` and `pass` at every step; read them on the last step.",
+    "The most swaps happen when every pair is out of order: the list in reverse order."
+  ],
+  "checks": [
+    {
+      "type": "viz.state",
+      "label": "The list after pass 1",
+      "id": "q1",
+      "algorithm": "bubbleSort",
+      "what": "values",
+      "at": {
+        "var": "pass",
+        "value": 1
+      },
+      "input": {
+        "values": [
+          5,
+          1,
+          4,
+          2,
+          8
+        ]
+      },
+      "question": "What is the list at the end of pass 1 (for 5, 1, 4, 2, 8)?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Total swaps",
+      "id": "q2",
+      "algorithm": "bubbleSort",
+      "metric": "swaps",
+      "input": {
+        "values": [
+          5,
+          1,
+          4,
+          2,
+          8
+        ]
+      },
+      "question": "How many swaps in total (for 5, 1, 4, 2, 8)?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Passes before stopping",
+      "id": "q3",
+      "algorithm": "bubbleSort",
+      "metric": "passes",
+      "input": {
+        "values": [
+          5,
+          1,
+          4,
+          2,
+          8
+        ]
+      },
+      "question": "How many passes does it make before it stops (for 5, 1, 4, 2, 8)?"
+    },
+    {
+      "type": "viz.input",
+      "label": "Five different values that need ten swaps",
+      "algorithm": "bubbleSort",
+      "metric": "swaps",
+      "equals": 10,
+      "length": 5,
+      "distinct": true,
+      "question": "Set five different values that make bubble sort do exactly ten swaps."
+    }
+  ],
+  "realityNote": "Ten swaps for five items is n(n-1)/2, the worst case; for a thousand items that is nearly half a million. Bubble sort is for understanding, not for production."
+}

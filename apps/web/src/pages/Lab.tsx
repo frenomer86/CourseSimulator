@@ -7,6 +7,8 @@ import type { ScenarioState } from '@cslab/engine-scenario';
 import { CodeLab } from '../components/CodeLab';
 import { ScenarioLab } from '../components/ScenarioLab';
 import { SqlLab } from '../components/SqlLab';
+import type { VizState } from '@cslab/engine-visualiser';
+import { VisualiserLab } from '../components/VisualiserLab';
 import { checkForTopic, courseBySlug, labById, nextLab, unitOf } from '../lib/catalogue';
 import { useProgress } from '../store/progress';
 import { secondsSince, track } from '../lib/telemetry';
@@ -31,6 +33,7 @@ export function LabPage() {
   if (lab.engine === 'E1') return <CodeLab key={lab.id} lab={lab as LabSpec<CodeState>} />;
   if (lab.engine === 'E10') return <ScenarioLab key={lab.id} lab={lab as LabSpec<ScenarioState>} />;
   if (lab.engine === 'E5') return <SqlLab key={lab.id} lab={lab as LabSpec<{ sql: string }>} />;
+  if (lab.engine === 'E6') return <VisualiserLab key={lab.id} lab={lab as LabSpec<VizState>} />;
   if (lab.engine !== 'E2') {
     return (
       <div className="mx-auto max-w-6xl px-4 py-16">
