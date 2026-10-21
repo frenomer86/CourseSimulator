@@ -73,6 +73,9 @@ describe('logic', () => {
     expect(formulasEquivalent('¬p ∨ ¬q', '¬(p ∧ q)')).toBeNull();
     expect(formulasEquivalent('p & q', 'p | q')).toBe('when p = T, q = F, your formula is false but it should be true');
     expect(formulasEquivalent('p & r', 'p & q')).toMatch(/uses "r"/);
+    expect(formulasEquivalent('(p -> q) <-> (~q -> ~p)', 'T')).toBeNull();
+    expect(formulasEquivalent('(p -> q) <-> (q -> p)', 'T')).toMatch(/should be true/);
+    expect(formulasEquivalent('p & ~p', 'F')).toBeNull();
   });
 });
 

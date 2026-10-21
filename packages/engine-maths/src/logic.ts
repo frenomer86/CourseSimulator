@@ -221,7 +221,8 @@ export function formulasEquivalent(learner: string, expected: string): string | 
   }
   const b = parseFormula(expected);
   const vars = [...new Set([...formulaVariables(a), ...formulaVariables(b)])].sort();
-  const extra = [...formulaVariables(a)].filter((v) => !formulaVariables(b).has(v));
+  // A constant expectation (T or F, for tautology and contradiction questions) accepts any variables.
+  const extra = formulaVariables(b).size === 0 ? [] : [...formulaVariables(a)].filter((v) => !formulaVariables(b).has(v));
   if (extra.length) return `the formula uses ${extra.map((v) => `"${v}"`).join(', ')}, which the expected formula does not`;
   const ta = truthTable(a, vars);
   const tb = truthTable(b, vars);
