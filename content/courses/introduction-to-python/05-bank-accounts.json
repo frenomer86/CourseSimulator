@@ -1,0 +1,39 @@
+{
+  "id": "introduction-to-python-a1-bank-accounts",
+  "course": "introduction-to-python",
+  "topic": "Classes and inheritance",
+  "unit": 5,
+  "topicIndex": 3,
+  "level": "advanced",
+  "engine": "E1",
+  "title": "Account and SavingsAccount classes",
+  "estimatedMinutes": 25,
+  "instructions": "## The problem\n\nModel bank accounts with two classes.\n\n**`Account(owner, balance=0)`**\n\n- `deposit(amount)`: adds to the balance; raises `ValueError` if `amount <= 0`.\n- `withdraw(amount)`: subtracts from the balance; raises `ValueError` if `amount <= 0` or if the balance would go below zero.\n- `__str__` returns `Ama: GHS 120.00` (owner, colon, GHS, two decimal places).\n\n**`SavingsAccount(owner, balance=0, rate=0.05)`**, a subclass of `Account`\n\n- keeps a `rate`;\n- `add_interest()` increases the balance by `balance * rate`, rounded to two decimal places;\n- everything else is inherited: do not copy `deposit`, `withdraw` or `__str__`.\n\n## Do this\n\n1. Write `Account` first and run the demo at the bottom of the file.\n2. Write `SavingsAccount` using `super().__init__(...)` so the parent sets up `owner` and `balance`.\n3. Press Check. The checker creates accounts, deposits, withdraws, tries to overdraw and adds interest.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "class Account:\n    def __init__(self, owner, balance=0):\n        self.owner = owner\n        self.balance = balance\n\n    # deposit, withdraw and __str__ go here\n\n\nclass SavingsAccount(Account):\n    pass\n\n\nif __name__ == \"__main__\":\n    a = Account(\"Ama\", 100)\n    a.deposit(50)\n    a.withdraw(30)\n    print(a)\n    s = SavingsAccount(\"Kofi\", 1000, 0.05)\n    s.add_interest()\n    print(s)\n"
+  },
+  "hints": [
+    "`def deposit(self, amount): if amount <= 0: raise ValueError(\"amount must be positive\")` then `self.balance += amount`.",
+    "`def __str__(self): return f\"{self.owner}: GHS {self.balance:.2f}\"`.",
+    "In the subclass: `def __init__(self, owner, balance=0, rate=0.05): super().__init__(owner, balance); self.rate = rate` and `def add_interest(self): self.balance = round(self.balance + self.balance * self.rate, 2)`."
+  ],
+  "checks": [
+    {
+      "type": "code.script",
+      "label": "Account deposits, withdraws, refuses bad amounts and prints itself",
+      "success": "Account behaves correctly in every case.",
+      "script": "a = Account(\"Ama\", 100)\na.deposit(50)\nassert a.balance == 150, f\"after depositing 50 into 100 the balance should be 150, got {a.balance}\"\na.withdraw(30)\nassert a.balance == 120, f\"after withdrawing 30 from 150 the balance should be 120, got {a.balance}\"\ntry:\n    a.withdraw(500)\n    raise AssertionError(\"withdraw(500) from a balance of 120 should raise ValueError\")\nexcept ValueError:\n    pass\nassert a.balance == 120, \"a refused withdrawal must not change the balance\"\ntry:\n    a.deposit(-5)\n    raise AssertionError(\"deposit(-5) should raise ValueError\")\nexcept ValueError:\n    pass\ntry:\n    a.withdraw(0)\n    raise AssertionError(\"withdraw(0) should raise ValueError\")\nexcept ValueError:\n    pass\nassert str(a) == \"Ama: GHS 120.00\", f\"str(account) should be 'Ama: GHS 120.00', got {str(a)!r}\"\nb = Account(\"Yaw\")\nassert b.balance == 0, \"the balance should default to 0\""
+    },
+    {
+      "type": "code.script",
+      "label": "SavingsAccount inherits from Account and adds interest",
+      "success": "SavingsAccount inherits correctly and adds interest.",
+      "script": "s = SavingsAccount(\"Kofi\", 1000, 0.05)\nassert isinstance(s, Account), \"SavingsAccount should inherit from Account\"\ns.add_interest()\nassert s.balance == 1050, f\"5% interest on 1000 should give 1050, got {s.balance}\"\ns.deposit(50)\nassert s.balance == 1100, f\"deposit should be inherited; expected 1100, got {s.balance}\"\nassert str(s) == \"Kofi: GHS 1100.00\", f\"str(savings) should be 'Kofi: GHS 1100.00', got {str(s)!r}\"\nt = SavingsAccount(\"Esi\", 33.33)\nassert t.rate == 0.05, \"the default rate should be 0.05\"\nt.add_interest()\nassert t.balance == 35.0, f\"interest should be rounded to two decimals: expected 35.0, got {t.balance}\"\nassert 'deposit' not in SavingsAccount.__dict__, \"do not copy deposit into SavingsAccount; inherit it\""
+    },
+    { "type": "code.source", "label": "SavingsAccount calls super().__init__", "pattern": "super\\(\\)\\.__init__", "message": "Use super().__init__(owner, balance) in SavingsAccount so the parent sets up the account." }
+  ]
+}

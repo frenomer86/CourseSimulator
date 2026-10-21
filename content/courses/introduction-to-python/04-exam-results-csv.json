@@ -1,0 +1,49 @@
+{
+  "id": "introduction-to-python-i2-exam-results-csv",
+  "course": "introduction-to-python",
+  "topic": "Processing a file of exam results",
+  "unit": 3,
+  "topicIndex": 4,
+  "level": "intermediate",
+  "engine": "E1",
+  "title": "Exam results from a CSV",
+  "estimatedMinutes": 20,
+  "instructions": "## The problem\n\nThe program input holds a CSV table of exam results. The first line is the header; each other line is a student with three marks:\n\n```\nname,maths,english,science\nAma,80,65,72\nKofi,90,70,80\nEsi,55,60,58\n```\n\nPrint each student's average with one decimal place, in the order given, then the top student:\n\n```\nAma: average 72.3\nKofi: average 80.0\nEsi: average 57.7\nTop student: Kofi (80.0)\n```\n\n## Do this\n\n1. Read all the lines. In this lab the file arrives through `input()`: use `sys.stdin.read().splitlines()` to get every line at once (import `sys` first).\n2. Skip the header. For each row, `split(\",\")`, convert the marks to numbers, average them.\n3. Keep track of the best average and its name as you go.\n\nOn a real computer the same code would read from `open(\"results.csv\")` instead of `sys.stdin`.",
+  "config": {
+    "language": "python",
+    "sampleInput": "name,maths,english,science\nAma,80,65,72\nKofi,90,70,80\nEsi,55,60,58"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "import sys\n\nlines = sys.stdin.read().splitlines()\nheader = lines[0]\nrows = lines[1:]\n\nbest_name = None\nbest_average = -1\n\nfor row in rows:\n    # split the row, convert the marks, compute and print the average\n    pass\n\n# print the top student\n"
+  },
+  "hints": [
+    "`parts = row.split(\",\")` gives `[\"Ama\", \"80\", \"65\", \"72\"]`; the name is `parts[0]` and the marks are `parts[1:]`.",
+    "`marks = [int(m) for m in parts[1:]]` converts them; `average = sum(marks) / len(marks)`.",
+    "`if average > best_average:` remember both the name and the average."
+  ],
+  "checks": [
+    {
+      "type": "code.cases",
+      "label": "It prints every average and the top student for different files",
+      "cases": [
+        {
+          "stdin": "name,maths,english,science\nAma,80,65,72\nKofi,90,70,80\nEsi,55,60,58",
+          "expected": ["Ama: average 72.3", "Kofi: average 80.0", "Esi: average 57.7", "Top student: Kofi (80.0)"]
+        },
+        {
+          "stdin": "name,maths,english,science\nYaw,100,100,100",
+          "expected": ["Yaw: average 100.0", "Top student: Yaw (100.0)"],
+          "name": "one student"
+        },
+        {
+          "stdin": "name,maths,english,science\nAbena,40,50,45\nKwame,70,30,50\nAdjoa,65,65,65",
+          "expected": ["Abena: average 45.0", "Kwame: average 50.0", "Adjoa: average 65.0", "Top student: Adjoa (65.0)"],
+          "name": "three students, best last"
+        }
+      ]
+    },
+    { "type": "code.source", "label": "It splits each row on commas or uses the csv module", "pattern": "split\\s*\\(|csv\\.", "message": "Break each row into fields with split(\",\") or the csv module." }
+  ],
+  "realityNote": "Real result files have blank lines, missing marks and names with commas inside quotes. The csv module in the standard library handles those cases; split(\",\") does not."
+}

@@ -1,0 +1,38 @@
+{
+  "id": "principles-of-programming-b1-first-program",
+  "course": "principles-of-programming",
+  "topic": "Printing and reading input",
+  "unit": 1,
+  "topicIndex": 3,
+  "level": "beginner",
+  "engine": "E1",
+  "title": "Your first program: print and read",
+  "estimatedMinutes": 8,
+  "instructions": "## The edit-run-check loop\n\nEvery program you will ever write goes round the same loop: **edit** the text, **run** it, read what happened, fix it, run again. This lab gets you round the loop a few times.\n\nThe editor already prints a welcome line. Press **Run** and look at the black output box.\n\n## Do this\n\n1. Below the welcome line, read a name from the user with `input()` and keep it in a variable called `name`.\n2. Print `Hello, Ama!` (with the name the user typed, a comma, and an exclamation mark).\n3. Read a second line, the user's town, into a variable `town`, and print `Greetings from Ho.` (with a full stop).\n\nThe program input box under the editor holds what `input()` will read: one line per call. Change it and run again to see your program greet someone else.\n\n## Why it matters\n\n`print` and `input` are the whole of a program's conversation with a person. Everything else is deciding what to say.",
+  "config": {
+    "language": "python",
+    "sampleInput": "Ama\nHo"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "# Print a welcome line\nprint(\"Welcome to CS Virtual Lab\")\n\n# Read a name and greet the person\n\n\n# Read a town and send greetings from it\n"
+  },
+  "hints": [
+    "`name = input()` reads one line of input and stores it in `name`.",
+    "Join text with +, or use an f-string: `print(f\"Hello, {name}!\")`.",
+    "The second `input()` call reads the second line of the program input box."
+  ],
+  "checks": [
+    { "type": "code.runs", "label": "The program runs without errors", "stdin": "Ama\nHo" },
+    {
+      "type": "code.cases",
+      "label": "It greets the person and their town exactly as shown",
+      "cases": [
+        { "stdin": "Ama\nHo", "expected": ["Welcome to CS Virtual Lab", "Hello, Ama!", "Greetings from Ho."] },
+        { "stdin": "Kofi\nKumasi", "expected": ["Welcome to CS Virtual Lab", "Hello, Kofi!", "Greetings from Kumasi."], "name": "a different name and town" }
+      ]
+    },
+    { "type": "code.source", "label": "It uses input() to read from the user", "pattern": "input\\s*\\(", "message": "Read the name with input() instead of writing it into the program." }
+  ],
+  "realityNote": "On a laptop you would type this into a file called hello.py and run `python hello.py` in a terminal; the terminal is where input() waits for you to type."
+}

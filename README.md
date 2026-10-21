@@ -118,6 +118,10 @@ which parts are built.
 
 ## Deploying to a VPS (Hostinger or any Ubuntu server)
 
+The scripted path is `scripts/ops/setup-vps.sh`, then `docker compose up -d --build`, then
+`scripts/ops/install-backups.sh`; the full procedure, routine tasks and recovery steps are in
+[docs/ops/runbook.md](docs/ops/runbook.md). The manual steps below still apply.
+
 One `docker compose` stack runs Postgres, the app (API plus the built web app on the same
 origin) and Caddy, which handles HTTPS automatically for a domain.
 

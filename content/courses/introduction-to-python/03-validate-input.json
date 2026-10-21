@@ -1,0 +1,53 @@
+{
+  "id": "introduction-to-python-i1-validate-input",
+  "course": "introduction-to-python",
+  "topic": "Exceptions and validating input",
+  "unit": 2,
+  "topicIndex": 5,
+  "level": "intermediate",
+  "engine": "E1",
+  "title": "Validate input with exceptions",
+  "estimatedMinutes": 18,
+  "instructions": "## The problem\n\nUsers type anything. Write `parse_age(text)` that turns what they typed into an age:\n\n- `int(text)` after stripping spaces, so `\" 42 \"` gives `42`;\n- if the text is not a whole number, let the `ValueError` from `int()` propagate (do not catch it inside `parse_age`);\n- if the number is outside 0 to 120, `raise ValueError(\"out of range\")`.\n\nThe main program keeps asking until it gets a valid age. For each bad line it prints one message:\n\n- `Please enter a whole number.` when `int()` fails,\n- `Age must be between 0 and 120.` when the number is out of range,\n\nand finally `Age recorded: 19`.\n\nWith the sample input (`abc`, `200`, `19`) the output is those three lines in that order.\n\n## Do this\n\n1. Write `parse_age`.\n2. In the loop, call it inside `try:`; use `except ValueError as e:` and look at `str(e)` to decide which message to print (`\"out of range\"` versus anything else).",
+  "config": {
+    "language": "python",
+    "sampleInput": "abc\n200\n19"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def parse_age(text):\n    \"\"\"Return the age as an int. Raise ValueError('out of range') outside 0..120.\"\"\"\n    pass\n\n\nwhile True:\n    line = input()\n    # try to parse it; print the right message and keep asking, or print the age and stop\n"
+  },
+  "hints": [
+    "`age = int(text.strip())` raises ValueError by itself when the text is not a number; you do not need to check with if.",
+    "After converting: `if age < 0 or age > 120: raise ValueError(\"out of range\")`, then `return age`.",
+    "In the loop: `except ValueError as e: if str(e) == \"out of range\": print(...) else: print(...)`; on success print `Age recorded: ...` and `break`."
+  ],
+  "checks": [
+    {
+      "type": "code.function",
+      "label": "parse_age() accepts good input and raises ValueError on bad input",
+      "name": "parse_age",
+      "stdin": "19",
+      "cases": [
+        { "args": ["19"], "expected": 19 },
+        { "args": [" 42 "], "expected": 42 },
+        { "args": ["0"], "expected": 0 },
+        { "args": ["120"], "expected": 120 },
+        { "args": ["abc"], "expected": { "$error": "ValueError" } },
+        { "args": ["12.5"], "expected": { "$error": "ValueError" } },
+        { "args": ["121"], "expected": { "$error": "ValueError" } },
+        { "args": ["-1"], "expected": { "$error": "ValueError" } }
+      ]
+    },
+    {
+      "type": "code.cases",
+      "label": "The program keeps asking and prints the right message each time",
+      "cases": [
+        { "stdin": "abc\n200\n19", "expected": ["Please enter a whole number.", "Age must be between 0 and 120.", "Age recorded: 19"] },
+        { "stdin": "19", "expected": ["Age recorded: 19"], "name": "valid first time" },
+        { "stdin": "-3\n3.5\n\n45", "expected": ["Age must be between 0 and 120.", "Please enter a whole number.", "Please enter a whole number.", "Age recorded: 45"], "name": "a negative, a decimal and an empty line" }
+      ]
+    },
+    { "type": "code.source", "label": "It uses try and except", "pattern": "\\btry\\s*:[\\s\\S]*\\bexcept\\b", "message": "Handle the bad input with try / except rather than checking characters by hand." }
+  ]
+}

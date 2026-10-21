@@ -1,0 +1,68 @@
+{
+  "id": "principles-of-programming-a1-momo-fee",
+  "course": "principles-of-programming",
+  "topic": "Everyday algorithms: a mobile-money fee",
+  "unit": 2,
+  "topicIndex": 4,
+  "level": "advanced",
+  "engine": "E1",
+  "title": "A mobile-money fee calculator",
+  "estimatedMinutes": 25,
+  "instructions": "## The problem\n\nA mobile-money service charges a fee on every transfer:\n\n- the fee is **1% of the amount**,\n- but never less than **GHS 0.50** for a transfer above zero,\n- and never more than **GHS 10.00**,\n- and a transfer of zero or less has no fee.\n\nFees are rounded to two decimal places.\n\n## Do this\n\n1. Write `fee(amount)` that returns the fee as a number. Think about the order of your checks: when do the minimum and the cap apply?\n2. Write `total(amount)` that returns the amount plus its fee.\n3. The main program reads an amount and prints two lines, for example for `250`:\n\n```\nFee: GHS 2.50\nTotal: GHS 252.50\n```\n\nBefore coding, write the algorithm in pseudocode and trace it for 20, 250, 999, 1000 and 5000 cedis in a trace table. The checker uses exactly those kinds of values.",
+  "config": {
+    "language": "python",
+    "sampleInput": "250"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def fee(amount):\n    \"\"\"Fee for transferring `amount` cedis: 1%, at least 0.50, at most 10.00, zero for amounts <= 0.\"\"\"\n    pass\n\n\ndef total(amount):\n    \"\"\"The amount plus its fee.\"\"\"\n    pass\n\n\namount = float(input())\nprint(f\"Fee: GHS {fee(amount):.2f}\")\nprint(f\"Total: GHS {total(amount):.2f}\")\n"
+  },
+  "hints": [
+    "Start with `if amount <= 0: return 0`. Then compute `charge = amount * 0.01`.",
+    "`min()` and `max()` express the cap and the floor in one line: `charge = max(0.5, min(charge, 10))`.",
+    "`round(charge, 2)` rounds to two decimal places; `total` is just `amount + fee(amount)`."
+  ],
+  "checks": [
+    {
+      "type": "code.function",
+      "label": "fee() follows all four rules",
+      "name": "fee",
+      "stdin": "250",
+      "tolerance": 0.005,
+      "cases": [
+        { "args": [0], "expected": 0 },
+        { "args": [-5], "expected": 0 },
+        { "args": [20], "expected": 0.5 },
+        { "args": [50], "expected": 0.5 },
+        { "args": [100], "expected": 1.0 },
+        { "args": [250], "expected": 2.5 },
+        { "args": [999], "expected": 9.99 },
+        { "args": [1000], "expected": 10 },
+        { "args": [5000], "expected": 10 }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "total() adds the fee to the amount",
+      "name": "total",
+      "stdin": "250",
+      "tolerance": 0.005,
+      "cases": [
+        { "args": [250], "expected": 252.5 },
+        { "args": [20], "expected": 20.5 },
+        { "args": [5000], "expected": 5010 },
+        { "args": [0], "expected": 0 }
+      ]
+    },
+    {
+      "type": "code.cases",
+      "label": "The program prints fee and total for the amount it reads",
+      "cases": [
+        { "stdin": "250", "expected": ["Fee: GHS 2.50", "Total: GHS 252.50"] },
+        { "stdin": "20", "expected": ["Fee: GHS 0.50", "Total: GHS 20.50"], "name": "a small transfer" },
+        { "stdin": "5000", "expected": ["Fee: GHS 10.00", "Total: GHS 5010.00"], "name": "a large transfer" }
+      ]
+    }
+  ],
+  "realityNote": "Real tariffs change by provider and by month, and the e-levy adds a separate government charge. Keeping each rule in its own line of code is what lets a programmer update one rule without breaking the others."
+}

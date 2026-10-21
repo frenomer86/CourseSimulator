@@ -1,0 +1,12 @@
+{
+  "name": "@cslab/engine-code",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Code runner engine (E1): language-neutral checks for programs, a JavaScript executor, and harnesses for Python and JavaScript.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@cslab/lab-runtime": "*"
+  }
+}

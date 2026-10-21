@@ -1,0 +1,33 @@
+{
+  "id": "introduction-to-python-b2-class-register",
+  "course": "introduction-to-python",
+  "topic": "Dictionaries: counting things",
+  "unit": 3,
+  "topicIndex": 3,
+  "level": "beginner",
+  "engine": "E1",
+  "title": "Count attendance with a dictionary",
+  "estimatedMinutes": 12,
+  "instructions": "## The problem\n\nA tutor ticks a register each lesson by appending the student's name to a list. The list in the editor holds one week's register. Count how many times each student came, in the order they first appear, then say who was present most.\n\nExpected output, exactly:\n\n```\nAma: 3\nKofi: 2\nYaw: 1\nEsi: 1\nMost present: Ama\n```\n\n## Do this\n\n1. Create an empty dictionary `counts = {}`.\n2. Loop over `register`. For each name, add one to its count (start it at 0 the first time you see it). Dictionaries keep insertion order, which gives the order above.\n3. Loop over `counts.items()` and print each `name: count`.\n4. Find the name with the highest count. `max(counts, key=counts.get)` does it in one line, or write a loop.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "register = [\"Ama\", \"Kofi\", \"Ama\", \"Yaw\", \"Kofi\", \"Ama\", \"Esi\"]\n\ncounts = {}\n# count each name\n\n\n# print the counts, then the most present student\n"
+  },
+  "hints": [
+    "`counts[name] = counts.get(name, 0) + 1` adds one, treating a missing name as 0.",
+    "`for name, n in counts.items(): print(f\"{name}: {n}\")` prints the table.",
+    "`best = max(counts, key=counts.get)` gives the key with the largest value."
+  ],
+  "checks": [
+    {
+      "type": "code.stdout",
+      "label": "The counts and the most-present student are printed in order",
+      "expected": ["Ama: 3", "Kofi: 2", "Yaw: 1", "Esi: 1", "Most present: Ama"]
+    },
+    { "type": "code.source", "label": "It uses a dictionary", "pattern": "\\{\\}|dict\\s*\\(|Counter\\s*\\(", "message": "Keep the counts in a dictionary." },
+    { "type": "code.source", "label": "It counts with a loop, not by hand", "pattern": "\\bfor\\b", "message": "Loop over the register to count; do not type the numbers in." }
+  ]
+}

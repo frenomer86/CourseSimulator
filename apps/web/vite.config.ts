@@ -27,6 +27,14 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,json,woff2}'],
+        // The Python runtime (Pyodide) is fetched from the CDN on first use and then kept, so labs work offline.
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/cdn\.jsdelivr\.net\/pyodide\//,
+            handler: 'CacheFirst',
+            options: { cacheName: 'pyodide', expiration: { maxEntries: 60, maxAgeSeconds: 365 * 24 * 3600 }, cacheableResponse: { statuses: [0, 200] } },
+          },
+        ],
       },
     }),
   ],
@@ -37,6 +45,8 @@ export default defineConfig({
       '@docs': fileURLToPath(new URL('../../docs', import.meta.url)),
     },
   },
+  // Workers import shared packages, so they are built as modules (all target browsers support this).
+  worker: { format: 'es' },
   server: {
     fs: { allow: ['../..'] },
     // The API runs separately in development (npm run dev:api); production serves both from one origin.

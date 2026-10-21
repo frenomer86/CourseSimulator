@@ -1,0 +1,38 @@
+{
+  "id": "principles-of-programming-b2-trotro-fare",
+  "course": "principles-of-programming",
+  "topic": "Variables, arithmetic and formatted output",
+  "unit": 3,
+  "topicIndex": 5,
+  "level": "beginner",
+  "engine": "E1",
+  "title": "Variables and arithmetic: the tro-tro fare",
+  "estimatedMinutes": 12,
+  "instructions": "## The problem\n\nA tro-tro mate collects the same fare from every passenger. Write a program that reads the **number of passengers** and the **fare per passenger** (in cedis), then prints the total.\n\nInput comes as two lines, for example:\n\n```\n4\n2.5\n```\n\nExpected output, exactly:\n\n```\nPassengers: 4\nFare each: GHS 2.50\nTotal: GHS 10.00\n```\n\n## Things to get right\n\n- `input()` always gives you **text**. Convert the first line with `int(...)` and the second with `float(...)` before doing arithmetic.\n- Money is printed with **two decimal places**. In an f-string, `{total:.2f}` formats a number that way.\n\nRun with the sample input, then try `7` and `3` (the output should end with `Total: GHS 21.00`).",
+  "config": {
+    "language": "python",
+    "sampleInput": "4\n2.5"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "# Read the number of passengers and the fare per passenger\npassengers = \nfare = \n\n# Work out the total\n\n\n# Print the three lines\n"
+  },
+  "hints": [
+    "`passengers = int(input())` reads a line and turns it into a whole number.",
+    "`fare = float(input())` reads the second line as a decimal number.",
+    "`print(f\"Total: GHS {passengers * fare:.2f}\")` prints the total with two decimal places."
+  ],
+  "checks": [
+    {
+      "type": "code.cases",
+      "label": "It prints the three lines correctly for different inputs",
+      "cases": [
+        { "stdin": "4\n2.5", "expected": ["Passengers: 4", "Fare each: GHS 2.50", "Total: GHS 10.00"] },
+        { "stdin": "7\n3", "expected": ["Passengers: 7", "Fare each: GHS 3.00", "Total: GHS 21.00"], "name": "7 passengers at GHS 3" },
+        { "stdin": "1\n0.75", "expected": ["Passengers: 1", "Fare each: GHS 0.75", "Total: GHS 0.75"], "name": "one passenger" }
+      ]
+    },
+    { "type": "code.source", "label": "It converts the passenger count with int()", "pattern": "int\\s*\\(", "message": "Convert the number of passengers with int(...) so it is a whole number." },
+    { "type": "code.source", "label": "It converts the fare with float()", "pattern": "float\\s*\\(", "message": "Convert the fare with float(...) so decimals work." }
+  ]
+}

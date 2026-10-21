@@ -1,0 +1,66 @@
+{
+  "id": "introduction-to-python-a2-search-and-sort",
+  "course": "introduction-to-python",
+  "topic": "Searching and sorting algorithms",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "advanced",
+  "engine": "E1",
+  "title": "Binary search and merge sort",
+  "estimatedMinutes": 30,
+  "instructions": "## The problem\n\nTwo classic algorithms, written from scratch.\n\n**`binary_search(values, target)`** on a list that is already sorted: return the index of `target`, or `-1` if it is absent. Keep `low` and `high` indices and halve the range each step; never scan the whole list.\n\n**`merge_sort(values)`**: return a new sorted list. Split the list in half, sort each half (recursively), then **merge** the two sorted halves by repeatedly taking the smaller front item. Write the merge as its own function `merge(left, right)`.\n\nYou may not call `sort()` or `sorted()`.\n\n## Do this\n\n1. Write `binary_search` and test it on `[2, 5, 8, 12, 16, 23, 38]` with targets that are present, absent, first and last.\n2. Write `merge`, then `merge_sort`. A list of length 0 or 1 is already sorted: that is the base case.\n3. Count the steps: binary search on 1,000 items needs at most 10 comparisons; merge sort of 1,000 items about 10,000. A linear search or selection sort would need 1,000 and 500,000.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def binary_search(values, target):\n    \"\"\"Index of target in the sorted list values, or -1.\"\"\"\n    low, high = 0, len(values) - 1\n    # loop while low <= high, look at the middle, move low or high\n    return -1\n\n\ndef merge(left, right):\n    \"\"\"Merge two sorted lists into one sorted list.\"\"\"\n    pass\n\n\ndef merge_sort(values):\n    \"\"\"Return a new sorted list using merge sort.\"\"\"\n    pass\n\n\nif __name__ == \"__main__\":\n    data = [38, 27, 43, 3, 9, 82, 10]\n    print(merge_sort(data))\n    print(binary_search([2, 5, 8, 12, 16, 23, 38], 23))\n"
+  },
+  "hints": [
+    "Binary search: `mid = (low + high) // 2`; if `values[mid] == target` return mid; if `values[mid] < target` set `low = mid + 1`, else `high = mid - 1`.",
+    "Merge: two indices i and j; append the smaller of `left[i]` and `right[j]` and advance that index; when one list is used up, append the rest of the other.",
+    "Merge sort: `if len(values) <= 1: return list(values)`; `mid = len(values) // 2`; `return merge(merge_sort(values[:mid]), merge_sort(values[mid:]))`."
+  ],
+  "checks": [
+    {
+      "type": "code.function",
+      "label": "binary_search() finds present and absent targets",
+      "name": "binary_search",
+      "cases": [
+        { "args": [[2, 5, 8, 12, 16, 23, 38], 23], "expected": 5 },
+        { "args": [[2, 5, 8, 12, 16, 23, 38], 2], "expected": 0 },
+        { "args": [[2, 5, 8, 12, 16, 23, 38], 38], "expected": 6 },
+        { "args": [[2, 5, 8, 12, 16, 23, 38], 7], "expected": -1 },
+        { "args": [[], 3], "expected": -1 },
+        { "args": [[4], 4], "expected": 0 },
+        { "args": [[1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 19], "expected": 9 }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "merge() combines two sorted lists",
+      "name": "merge",
+      "cases": [
+        { "args": [[1, 4, 9], [2, 3, 10]], "expected": [1, 2, 3, 4, 9, 10] },
+        { "args": [[], [1, 2]], "expected": [1, 2] },
+        { "args": [[5], []], "expected": [5] },
+        { "args": [[2, 2], [2]], "expected": [2, 2, 2] }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "merge_sort() sorts every list",
+      "name": "merge_sort",
+      "cases": [
+        { "args": [[38, 27, 43, 3, 9, 82, 10]], "expected": [3, 9, 10, 27, 38, 43, 82] },
+        { "args": [[]], "expected": [] },
+        { "args": [[1]], "expected": [1] },
+        { "args": [[5, 4, 3, 2, 1]], "expected": [1, 2, 3, 4, 5] },
+        { "args": [[3, 1, 2, 3, 1]], "expected": [1, 1, 2, 3, 3] },
+        { "args": [[-2, 7, 0, -9]], "expected": [-9, -2, 0, 7] }
+      ]
+    },
+    { "type": "code.source", "label": "It does not call sort() or sorted()", "pattern": "\\.sort\\s*\\(|\\bsorted\\s*\\(", "mustMatch": false, "message": "Write the sort yourself: remove sort() and sorted()." },
+    { "type": "code.source", "label": "merge_sort() is recursive", "pattern": "merge_sort\\s*\\([^)]*\\)[\\s\\S]*merge_sort\\s*\\(", "message": "merge_sort should call itself on each half." }
+  ]
+}

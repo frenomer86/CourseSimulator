@@ -11,3 +11,6 @@ supabase
 *.log
 .env
 .env.*
+
+# The web build embeds the privacy notice from docs/governance; keep that folder.
+!docs/governance

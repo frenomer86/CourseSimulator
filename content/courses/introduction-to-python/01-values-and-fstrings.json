@@ -1,0 +1,33 @@
+{
+  "id": "introduction-to-python-b1-values-and-fstrings",
+  "course": "introduction-to-python",
+  "topic": "Values, types and f-strings",
+  "unit": 1,
+  "topicIndex": 3,
+  "level": "beginner",
+  "engine": "E1",
+  "title": "Values, types and f-strings",
+  "estimatedMinutes": 10,
+  "instructions": "## Four kinds of value\n\nThe editor defines four variables: a string, an integer, a float and a boolean. Your job is to print five lines about them using **f-strings**, which put values inside text with `{curly braces}`.\n\nExpected output, exactly:\n\n```\nAma is 19 years old.\nHeight: 1.62 m\nStudent: True\nNext year: 20\nType of age: <class 'int'>\n```\n\n## Do this\n\n1. Print the first three lines with one f-string each.\n2. For the fourth line, do the arithmetic inside the braces: `{age + 1}`.\n3. For the last line, use the built-in `type()` function inside the braces.\n\nThen change the values at the top (a different name, age or height) and run again. The sentences should follow.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "name = \"Ama\"\nage = 19\nheight = 1.62\nis_student = True\n\n# Print the five lines using f-strings\n"
+  },
+  "hints": [
+    "An f-string starts with the letter f before the quote: `print(f\"{name} is {age} years old.\")`.",
+    "Anything inside the braces is Python: `{age + 1}` prints 20.",
+    "`type(age)` is the value `<class 'int'>`, so `print(f\"Type of age: {type(age)}\")`."
+  ],
+  "checks": [
+    {
+      "type": "code.stdout",
+      "label": "The five lines come out exactly as shown",
+      "expected": ["Ama is 19 years old.", "Height: 1.62 m", "Student: True", "Next year: 20", "Type of age: <class 'int'>"]
+    },
+    { "type": "code.source", "label": "It uses f-strings", "pattern": "f[\"']", "message": "Use f-strings (f\"...\") to put the values inside the text." },
+    { "type": "code.source", "label": "It computes next year from the age variable", "pattern": "age\\s*\\+\\s*1", "message": "Compute next year as age + 1 instead of typing 20." }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "principles-of-programming-i2-sentinel-loop",
+  "course": "principles-of-programming",
+  "topic": "Sentinel-controlled loops",
+  "unit": 6,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "engine": "E1",
+  "title": "Count, sum, average and highest with a sentinel loop",
+  "estimatedMinutes": 18,
+  "instructions": "## The problem\n\nA lecturer types in marks one per line and finishes with `0` (the **sentinel**, which is not a mark). Your program then prints:\n\n```\nCount: 3\nTotal: 210\nAverage: 70.0\nHighest: 85\n```\n\nfor the input `60`, `85`, `65`, `0`. If the very first line is `0`, print `No marks entered.` instead.\n\n## Do this\n\n1. Keep four variables: a count, a running total, the highest mark seen so far, and the mark just read.\n2. Use a `while` loop that reads a line, converts it to an integer, and stops when it is `0`.\n3. The average is `total / count`, printed with one decimal place (`{average:.1f}`).\n\nTest with the sample, then with a single mark followed by `0`, then with `0` alone.",
+  "config": {
+    "language": "python",
+    "sampleInput": "60\n85\n65\n0"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "count = 0\ntotal = 0\nhighest = 0\n\nmark = int(input())\nwhile mark != 0:\n    # update count, total and highest here\n\n    mark = int(input())\n\n# print the four lines, or \"No marks entered.\"\n"
+  },
+  "hints": [
+    "Inside the loop: `count += 1`, `total += mark`, and `if mark > highest: highest = mark`.",
+    "Read the next mark at the end of the loop body so the condition is tested on the new value.",
+    "After the loop, `if count == 0:` print the message; otherwise print the four lines."
+  ],
+  "checks": [
+    {
+      "type": "code.cases",
+      "label": "It reports count, total, average and highest for several lists of marks",
+      "cases": [
+        { "stdin": "60\n85\n65\n0", "expected": ["Count: 3", "Total: 210", "Average: 70.0", "Highest: 85"] },
+        { "stdin": "90\n0", "expected": ["Count: 1", "Total: 90", "Average: 90.0", "Highest: 90"], "name": "a single mark" },
+        { "stdin": "55\n40\n100\n72\n0", "expected": ["Count: 4", "Total: 267", "Average: 66.8", "Highest: 100"], "name": "four marks" }
+      ]
+    },
+    { "type": "code.stdout", "label": "It handles no marks at all", "stdin": "0", "expected": "No marks entered." },
+    { "type": "code.source", "label": "It uses a while loop", "pattern": "\\bwhile\\b", "message": "Use a while loop: the number of marks is not known in advance." }
+  ]
+}

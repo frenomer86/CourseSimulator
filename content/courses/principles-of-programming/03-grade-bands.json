@@ -1,0 +1,47 @@
+{
+  "id": "principles-of-programming-i1-grade-bands",
+  "course": "principles-of-programming",
+  "topic": "Selection: if, elif, else",
+  "unit": 5,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "engine": "E1",
+  "title": "Grade bands with if, elif and else",
+  "estimatedMinutes": 15,
+  "instructions": "## The problem\n\nWrite a function `grade(score)` that turns a mark out of 100 into a letter:\n\n| Score | Grade |\n|---|---|\n| 80 to 100 | A |\n| 70 to 79 | B |\n| 60 to 69 | C |\n| 50 to 59 | D |\n| below 50 | F |\n\nThe program below the function reads a score and prints, for example, `Score 72 is grade B`. Leave that part as it is.\n\n## Do this\n\n1. Fill in `grade` using an `if` / `elif` / `else` ladder. Start from the highest band and work down, so each test only needs one comparison.\n2. Run with the sample input, then change it to the **boundary values**: 80, 79, 50, 49. Boundaries are where most grading bugs live.\n3. Press **Check my code**. The checker calls `grade` with ten scores, including every boundary.",
+  "config": {
+    "language": "python",
+    "sampleInput": "72"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def grade(score):\n    \"\"\"Return the letter grade for a score from 0 to 100.\"\"\"\n    # Replace this with an if / elif / else ladder\n    return \"?\"\n\n\nscore = int(input())\nprint(f\"Score {score} is grade {grade(score)}\")\n"
+  },
+  "hints": [
+    "`if score >= 80: return \"A\"` handles the top band; the next `elif score >= 70:` only runs for scores below 80.",
+    "Because each `elif` runs only when the ones above it were false, you never need both ends of a band.",
+    "The final `else:` catches everything below 50."
+  ],
+  "checks": [
+    {
+      "type": "code.function",
+      "label": "grade() returns the right letter for every band and boundary",
+      "name": "grade",
+      "stdin": "72",
+      "cases": [
+        { "args": [100], "expected": "A" },
+        { "args": [80], "expected": "A" },
+        { "args": [79], "expected": "B" },
+        { "args": [70], "expected": "B" },
+        { "args": [69], "expected": "C" },
+        { "args": [60], "expected": "C" },
+        { "args": [59], "expected": "D" },
+        { "args": [50], "expected": "D" },
+        { "args": [49], "expected": "F" },
+        { "args": [0], "expected": "F" }
+      ]
+    },
+    { "type": "code.stdout", "label": "The program prints the sentence for the score it reads", "stdin": "72", "expected": "Score 72 is grade B" },
+    { "type": "code.source", "label": "It uses an elif ladder", "pattern": "\\belif\\b", "message": "Use elif for the middle bands, not a chain of separate ifs." }
+  ]
+}

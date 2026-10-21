@@ -1,0 +1,54 @@
+{
+  "id": "principles-of-programming-a2-selection-sort",
+  "course": "principles-of-programming",
+  "topic": "Simple sorting by hand",
+  "unit": 8,
+  "topicIndex": 4,
+  "level": "advanced",
+  "engine": "E1",
+  "title": "Selection sort, by hand",
+  "estimatedMinutes": 25,
+  "instructions": "## The problem\n\nPython can sort a list for you, but this lab is about understanding **how** sorting works. Implement **selection sort** yourself: repeatedly find the smallest remaining value and move it to the front.\n\n```\n[3, 1, 2]  → smallest of all is 1, swap it into position 0  → [1, 3, 2]\n[1, 3, 2]  → smallest of the rest is 2, swap into position 1 → [1, 2, 3]\n```\n\n## Do this\n\n1. Write `find_min_index(values, start)` that returns the index of the smallest value at or after position `start`.\n2. Write `selection_sort(values)` that returns a **new** sorted list (copy the input first with `list(values)`), using `find_min_index` and a swap in a `for` loop.\n3. You may not call `sort()` or `sorted()` anywhere in the file.\n\nRun the program: it sorts the example list and prints it. Then press Check.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def find_min_index(values, start):\n    \"\"\"Index of the smallest value in values[start:], as an index into values.\"\"\"\n    pass\n\n\ndef selection_sort(values):\n    \"\"\"Return a new list with the same values in ascending order.\"\"\"\n    result = list(values)\n    # for each position i: find the smallest from i onward and swap it into place\n    return result\n\n\nprint(selection_sort([29, 10, 14, 37, 13]))\n"
+  },
+  "hints": [
+    "In `find_min_index`, keep `best = start` and loop `for i in range(start + 1, len(values))`, updating `best` when `values[i] < values[best]`.",
+    "Swapping two list items in Python: `result[i], result[j] = result[j], result[i]`.",
+    "The outer loop is `for i in range(len(result))`; inside, `j = find_min_index(result, i)` then swap positions i and j."
+  ],
+  "checks": [
+    {
+      "type": "code.function",
+      "label": "find_min_index() finds the smallest value from a start position",
+      "name": "find_min_index",
+      "cases": [
+        { "args": [[29, 10, 14, 37, 13], 0], "expected": 1 },
+        { "args": [[29, 10, 14, 37, 13], 2], "expected": 4 },
+        { "args": [[5], 0], "expected": 0 },
+        { "args": [[2, 2, 1], 1], "expected": 2 }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "selection_sort() sorts every list, including empty and repeated values",
+      "name": "selection_sort",
+      "cases": [
+        { "args": [[3, 1, 2]], "expected": [1, 2, 3] },
+        { "args": [[]], "expected": [] },
+        { "args": [[5]], "expected": [5] },
+        { "args": [[9, 8, 7, 6, 5]], "expected": [5, 6, 7, 8, 9] },
+        { "args": [[2, 2, 1]], "expected": [1, 2, 2] },
+        { "args": [[-1, 10, 0]], "expected": [-1, 0, 10] },
+        { "args": [[29, 10, 14, 37, 13]], "expected": [10, 13, 14, 29, 37] }
+      ]
+    },
+    { "type": "code.source", "label": "It does not call sort() or sorted()", "pattern": "\\.sort\\s*\\(|\\bsorted\\s*\\(", "mustMatch": false, "message": "This lab is about writing the sort yourself: remove sort() and sorted()." },
+    { "type": "code.source", "label": "It uses a for loop", "pattern": "\\bfor\\b", "message": "Use a for loop to walk through the positions." }
+  ],
+  "realityNote": "Selection sort makes about n²/2 comparisons, so sorting a million records this way takes minutes; Python's built-in sort (Timsort) does it in under a second. You will meet the faster algorithms in Data Structures and Algorithms."
+}

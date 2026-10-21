@@ -2,6 +2,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { LEVEL_LABEL, type EventObject, type LabResult, type LabSpec } from '@cslab/lab-runtime';
 import { createLogicChecks, emptyCircuit, type Circuit, type GateType } from '@cslab/engine-digital-logic';
+import type { CodeState } from '@cslab/engine-code';
+import { CodeLab } from '../components/CodeLab';
 import { checkForTopic, courseBySlug, labById, nextLab, unitOf } from '../lib/catalogue';
 import { useProgress } from '../store/progress';
 import { secondsSince, track } from '../lib/telemetry';
@@ -23,6 +25,7 @@ export function LabPage() {
   const { id = '' } = useParams();
   const lab = labById(id);
   if (!lab) return <NotFoundPage />;
+  if (lab.engine === 'E1') return <CodeLab key={lab.id} lab={lab as LabSpec<CodeState>} />;
   if (lab.engine !== 'E2') {
     return (
       <div className="mx-auto max-w-6xl px-4 py-16">
