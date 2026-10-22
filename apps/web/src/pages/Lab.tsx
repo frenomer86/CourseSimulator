@@ -10,6 +10,7 @@ import type { NetState } from '@cslab/engine-network';
 import type { ShellState } from '@cslab/engine-shell';
 import type { HardwareState } from '@cslab/engine-hardware';
 import type { CloudState } from '@cslab/engine-cloud';
+import type { DiagramState } from '@cslab/engine-diagram';
 import { checkForTopic, courseBySlug, labById, nextLab, unitOf } from '../lib/catalogue';
 import { useProgress } from '../store/progress';
 import { secondsSince, track } from '../lib/telemetry';
@@ -33,6 +34,7 @@ const NetworkLab = lazy(() => import('../components/NetworkLab').then((m) => ({ 
 const TerminalLab = lazy(() => import('../components/TerminalLab').then((m) => ({ default: m.TerminalLab })));
 const HardwareLab = lazy(() => import('../components/HardwareLab').then((m) => ({ default: m.HardwareLab })));
 const CloudLab = lazy(() => import('../components/CloudLab').then((m) => ({ default: m.CloudLab })));
+const DiagramLab = lazy(() => import('../components/DiagramLab').then((m) => ({ default: m.DiagramLab })));
 const MathsLab = lazy(() => import('../components/MathsLab').then((m) => ({ default: m.MathsLab })));
 
 function Loading({ title }: { title: string }) {
@@ -62,6 +64,7 @@ export function LabPage() {
   if (lab.engine === 'E4') return <Suspense fallback={fallback}><TerminalLab key={lab.id} lab={lab as LabSpec<ShellState>} /></Suspense>;
   if (lab.engine === 'E8') return <Suspense fallback={fallback}><HardwareLab key={lab.id} lab={lab as LabSpec<HardwareState>} /></Suspense>;
   if (lab.engine === 'E12') return <Suspense fallback={fallback}><CloudLab key={lab.id} lab={lab as LabSpec<CloudState>} /></Suspense>;
+  if (lab.engine === 'E9') return <Suspense fallback={fallback}><DiagramLab key={lab.id} lab={lab as LabSpec<DiagramState>} /></Suspense>;
   if (lab.engine !== 'E2') {
     return (
       <div className="mx-auto max-w-6xl px-4 py-16">

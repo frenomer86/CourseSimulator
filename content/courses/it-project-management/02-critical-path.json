@@ -1,0 +1,85 @@
+{
+  "engine": "E9",
+  "id": "it-project-management-i1-critical-path",
+  "course": "it-project-management",
+  "topic": "Critical path, slack and PERT",
+  "unit": 5,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Find the critical path of the Wi-Fi rollout",
+  "estimatedMinutes": 20,
+  "instructions": "## Which activities cannot slip?\n\nThe campus Wi-Fi rollout has these activities (durations in days):\n\n| Id | Activity | Days | After |\n|---|---|---|---|\n| A | Survey buildings | 4 | – |\n| B | Order access points | 15 | A |\n| C | Run cabling | 10 | A |\n| D | Install switches | 5 | C |\n| E | Mount access points | 6 | B, D |\n| F | Configure controller | 3 | B |\n| G | Test and hand over | 4 | E, F |\n\n## Do this\n\n1. Enter the network in the notation (`B \"Order access points\" 15 after A`). The studio computes early and late starts, slack and the critical path.\n2. Work it out by hand first, then compare. Answer the questions on the right.\n3. Now suppose ordering the access points took 11 days instead of 15. Which path is critical then, and what is the new duration? Try it in the studio, then put the original value back.",
+  "config": {
+    "kind": "cpm",
+    "starter": "diagram: cpm\nA \"Survey buildings\" 4\n"
+  },
+  "initialState": {
+    "source": "diagram: cpm\nA \"Survey buildings\" 4\n"
+  },
+  "hints": [
+    "Each activity: Id \"Label\" duration after predecessors, e.g. E \"Mount access points\" 6 after B, D",
+    "Forward pass gives early starts; the longest path to the end is the project duration.",
+    "Slack = late start − early start. Activities with zero slack form the critical path."
+  ],
+  "checks": [
+    {
+      "type": "diagram.parses",
+      "label": "The notation reads correctly"
+    },
+    {
+      "type": "diagram.count",
+      "label": "Seven activities",
+      "kind": "activity",
+      "min": 7
+    },
+    {
+      "type": "diagram.cpm",
+      "label": "The network gives a 29-day project with A, B, E, G critical",
+      "duration": 29,
+      "critical": [
+        "A",
+        "B",
+        "E",
+        "G"
+      ],
+      "slack": {
+        "C": 0,
+        "D": 0,
+        "F": 3
+      }
+    },
+    {
+      "type": "diagram.answer",
+      "label": "Project duration",
+      "id": "duration",
+      "expected": 29,
+      "question": "Project duration in days:"
+    },
+    {
+      "type": "diagram.answer",
+      "label": "Slack of F",
+      "id": "slackF",
+      "expected": 3,
+      "question": "Slack (float) of F, Configure controller, in days:"
+    },
+    {
+      "type": "diagram.answer",
+      "label": "Critical path with B at 11 days",
+      "id": "alt",
+      "expected": [
+        "A,C,D,E,G",
+        "A C D E G",
+        "ACDEG"
+      ],
+      "question": "If B took 11 days, the critical path would be (list the ids):"
+    },
+    {
+      "type": "diagram.answer",
+      "label": "Duration with B at 11 days",
+      "id": "altDuration",
+      "expected": 29,
+      "question": "And the duration would be (days):"
+    }
+  ],
+  "realityNote": "Notice the trap in the last question: with B shortened, C-D takes over as the critical path and the project does not get shorter at all. Crashing only helps while you shorten the path that is actually critical, and there may be two."
+}

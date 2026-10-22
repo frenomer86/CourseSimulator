@@ -1,0 +1,68 @@
+{
+  "engine": "E9",
+  "id": "business-process-modelling-b1-bpmn-gateways",
+  "course": "business-process-modelling",
+  "topic": "BPMN gateways: splits and joins",
+  "unit": 3,
+  "topicIndex": 2,
+  "level": "beginner",
+  "title": "Model the cocoa purchasing process in BPMN",
+  "estimatedMinutes": 20,
+  "instructions": "## Tokens through gateways\n\nAt a cocoa buying station: a **farmer delivers beans**. The clerk **weighs the beans** and **grades the beans** at the same time (two people, in parallel). Then the station **checks the grade**: if the beans are accepted, the station **issues a receipt** and **pays the farmer**; otherwise it **returns the beans**. Either way the process ends.\n\n## Do this\n\nWrite the BPMN process: a start event, tasks, a **parallel** gateway split (`{+}`) with a matching parallel join, an **exclusive** gateway (`{X Accepted?}`) with labelled flows and a matching exclusive join, and an end event. Put the clerk's and cashier's tasks in lanes if you like (`lane Clerk: A, B`).",
+  "config": {
+    "kind": "bpmn",
+    "starter": "diagram: bpmn\nS((Start))\nA[Receive beans]\nS --> A\n"
+  },
+  "initialState": {
+    "source": "diagram: bpmn\nS((Start))\nA[Receive beans]\nS --> A\n"
+  },
+  "hints": [
+    "P1{+} is a parallel split; A --> P1, P1 --> W[Weigh beans], P1 --> G[Grade beans]; then W --> P2{+} and G --> P2 join them.",
+    "X1{X Accepted?} splits: X1 -->|yes| R[Issue receipt] and X1 -->|no| B[Return beans].",
+    "Both branches must reach the same exclusive join X2{X} before the end event: R --> Y[Pay farmer], Y --> X2, B --> X2, X2 --> E((End))."
+  ],
+  "checks": [
+    {
+      "type": "diagram.parses",
+      "label": "The notation reads correctly"
+    },
+    {
+      "type": "diagram.node",
+      "label": "Weigh, grade, receipt, pay and return tasks",
+      "kind": "task",
+      "pattern": "weigh|grade|receipt|pay|return",
+      "count": 5
+    },
+    {
+      "type": "diagram.count",
+      "label": "Two parallel gateways (split and join)",
+      "kind": "gateway-parallel",
+      "min": 2
+    },
+    {
+      "type": "diagram.count",
+      "label": "Two exclusive gateways (split and join)",
+      "kind": "gateway-exclusive",
+      "min": 2
+    },
+    {
+      "type": "diagram.edge",
+      "label": "The accepted path issues a receipt",
+      "from": "accepted|X",
+      "to": "receipt",
+      "text": "yes|accept"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "The rejected path returns the beans",
+      "from": "accepted|X",
+      "to": "return",
+      "text": "no|reject"
+    },
+    {
+      "type": "diagram.rules",
+      "label": "BPMN rules: start and end events, gateways paired, nothing unreachable"
+    }
+  ],
+  "realityNote": "Mismatched gateways are the classic BPMN error: a parallel split closed by an exclusive join lets the process end twice; an exclusive split closed by a parallel join deadlocks, waiting for a token that never comes. Process engines like Camunda refuse such models."
+}

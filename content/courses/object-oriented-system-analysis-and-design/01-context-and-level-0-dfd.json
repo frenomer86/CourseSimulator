@@ -1,0 +1,68 @@
+{
+  "engine": "E9",
+  "id": "object-oriented-system-analysis-and-design-b1-context-and-level-0-dfd",
+  "course": "object-oriented-system-analysis-and-design",
+  "topic": "Data flow diagrams: context diagram, level 0, balancing and rules",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "A level-0 DFD for the admissions office",
+  "estimatedMinutes": 20,
+  "instructions": "## Data in, data out\n\nThe admissions office receives **application forms** from **Applicants**, checks them against the **Programme requirements** store, records them in an **Applications** store, and sends each applicant an **admission decision**. The **Registry** receives a **list of admitted students**.\n\n## Do this\n\nWrite the **level-0** DFD: two external entities, three processes (`P1 \"Receive application\"`, `P2 \"Assess application\"`, `P3 \"Issue decision\"`), two data stores, and **named** data flows. Every process needs an input and an output; stores and entities only connect to processes.",
+  "config": {
+    "kind": "dfd",
+    "starter": "diagram: dfd\nentity Applicant\nentity Registry\nprocess P1 \"Receive application\"\n"
+  },
+  "initialState": {
+    "source": "diagram: dfd\nentity Applicant\nentity Registry\nprocess P1 \"Receive application\"\n"
+  },
+  "hints": [
+    "Applicant -> P1 : application form names the flow; P1 -> D1 : application record stores it.",
+    "P2 reads the requirements: D2 -> P2 : programme requirements, and the application: D1 -> P2 : application.",
+    "P3 -> Applicant : admission decision and P3 -> Registry : admitted students list."
+  ],
+  "checks": [
+    {
+      "type": "diagram.parses",
+      "label": "The notation reads correctly"
+    },
+    {
+      "type": "diagram.count",
+      "label": "Three processes",
+      "kind": "process",
+      "min": 3
+    },
+    {
+      "type": "diagram.count",
+      "label": "Two data stores",
+      "kind": "store",
+      "min": 2
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Applicant sends an application form to P1",
+      "from": "Applicant",
+      "to": "P1",
+      "text": "application"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Decision goes back to the Applicant",
+      "from": "P3|decision",
+      "to": "Applicant",
+      "text": "decision"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Registry receives the admitted list",
+      "from": "P3|decision",
+      "to": "Registry",
+      "text": "admitted"
+    },
+    {
+      "type": "diagram.rules",
+      "label": "DFD rules: no miracles, black holes or store-to-store flows; all flows named"
+    }
+  ],
+  "realityNote": "Balancing means the inputs and outputs of the context diagram (one process, the whole system) match the external flows of level 0. Analysts still draw DFDs for data-heavy systems because they show what moves where before any class or screen exists."
+}

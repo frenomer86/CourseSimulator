@@ -1,0 +1,86 @@
+{
+  "engine": "E9",
+  "id": "requirements-engineering-i1-use-cases-with-include-extend",
+  "course": "requirements-engineering",
+  "topic": "Actors, goals and use case diagrams; include and extend",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Use cases for a mobile money agent app",
+  "estimatedMinutes": 20,
+  "instructions": "## Goals, not screens\n\nA mobile money **agent** registers customers, performs cash-in and cash-out, and views a float balance. A **customer** sends money and buys airtime. Every money-moving use case (cash-in, cash-out, send money, buy airtime) **includes** \"Verify PIN\". Cash-out may be **extended** by \"Request OTP\" when the amount is above a limit. A **supervisor** is a special kind of agent who can also approve float top-ups.\n\n## Do this\n\nWrite the diagram: three actors (Supervisor generalises Agent: `Agent <|-- Supervisor`), the use cases, associations, four include relationships to Verify PIN, one extend, and the supervisor's extra use case.",
+  "config": {
+    "kind": "usecase",
+    "starter": "diagram: usecase\nactor Agent\nactor Customer\n"
+  },
+  "initialState": {
+    "source": "diagram: usecase\nactor Agent\nactor Customer\n"
+  },
+  "hints": [
+    "actor Supervisor then Agent <|-- Supervisor for the generalisation.",
+    "Each of CashIn, CashOut, SendMoney and BuyAirtime gets a line like CashIn ..> VerifyPIN : include.",
+    "RequestOTP ..> CashOut : extend; the extension points at the base."
+  ],
+  "checks": [
+    {
+      "type": "diagram.parses",
+      "label": "The notation reads correctly"
+    },
+    {
+      "type": "diagram.count",
+      "label": "Three actors",
+      "kind": "actor",
+      "min": 3
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Supervisor is a kind of Agent",
+      "from": "Supervisor",
+      "to": "Agent",
+      "kind": "generalisation"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Cash-in includes Verify PIN",
+      "from": "cash.?in",
+      "to": "pin",
+      "kind": "include"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Send money includes Verify PIN",
+      "from": "send",
+      "to": "pin",
+      "kind": "include"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Buy airtime includes Verify PIN",
+      "from": "airtime",
+      "to": "pin",
+      "kind": "include"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Request OTP extends Cash-out",
+      "from": "otp",
+      "to": "cash.?out",
+      "kind": "extend"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Supervisor approves float top-ups",
+      "from": "Supervisor",
+      "to": "float|top",
+      "kind": [
+        "association",
+        "directed"
+      ]
+    },
+    {
+      "type": "diagram.rules",
+      "label": "No unconnected use cases"
+    }
+  ],
+  "realityNote": "Over-using include and extend turns a use case diagram into a flowchart; the rule of thumb is to add them only when the shared behaviour is substantial (PIN verification) or the optional behaviour has its own business rule (OTP above a limit)."
+}

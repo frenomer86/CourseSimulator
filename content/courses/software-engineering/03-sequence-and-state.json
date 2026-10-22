@@ -1,0 +1,72 @@
+{
+  "engine": "E9",
+  "id": "software-engineering-i1-sequence-and-state",
+  "course": "software-engineering",
+  "topic": "Sequence and state machine diagrams",
+  "unit": 3,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Paying the hostel fee: a sequence diagram",
+  "estimatedMinutes": 20,
+  "instructions": "## Objects talking in time\n\nWhen a student pays the hostel fee through the portal: the **Student** sends `payFee(amount)` to the **Portal**; the Portal sends `charge(amount)` to the **MobileMoney** service; if the charge succeeds the service returns `ok` and the Portal sends `confirmBooking()` to the **BookingService** and returns a `receipt` to the Student; if it fails the service returns `declined` and the Portal returns `error` to the Student.\n\n## Do this\n\nWrite the sequence diagram with four participants, the messages in order, and an `alt` fragment with the success and failure branches (`alt success` … `else declined` … `end`). Synchronous calls are `->>`, returns are `-->>`.",
+  "config": {
+    "kind": "sequence",
+    "starter": "diagram: sequence\nparticipant Student\nparticipant Portal\n"
+  },
+  "initialState": {
+    "source": "diagram: sequence\nparticipant Student\nparticipant Portal\n"
+  },
+  "hints": [
+    "Student ->> Portal : payFee(amount) is the first message.",
+    "The alt fragment wraps the two outcomes: alt success / else declined / end.",
+    "Returns are dashed: MobileMoney -->> Portal : ok"
+  ],
+  "checks": [
+    {
+      "type": "diagram.parses",
+      "label": "The notation reads correctly"
+    },
+    {
+      "type": "diagram.count",
+      "label": "Four participants",
+      "kind": "participant",
+      "min": 4
+    },
+    {
+      "type": "diagram.order",
+      "label": "payFee, then charge, then ok, then confirmBooking, then receipt",
+      "messages": [
+        "payFee",
+        "charge",
+        "ok",
+        "confirmBooking",
+        "receipt"
+      ]
+    },
+    {
+      "type": "diagram.order",
+      "label": "The failure branch: declined, then error",
+      "messages": [
+        "declined",
+        "error"
+      ]
+    },
+    {
+      "type": "diagram.edge",
+      "label": "The Portal charges the mobile money service",
+      "from": "Portal",
+      "to": "Mobile",
+      "kind": "message",
+      "text": "charge"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "The receipt returns to the Student",
+      "from": "Portal",
+      "to": "Student",
+      "kind": "return",
+      "text": "receipt"
+    }
+  ],
+  "realityNote": "Sequence diagrams are where timeouts and retries become visible: what happens if the mobile money provider never answers? Real payment integrations add an idempotency key to charge() so a retried call cannot charge twice."
+}

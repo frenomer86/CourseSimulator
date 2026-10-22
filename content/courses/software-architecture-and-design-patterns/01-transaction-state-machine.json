@@ -1,0 +1,76 @@
+{
+  "engine": "E9",
+  "id": "software-architecture-and-design-patterns-i1-transaction-state-machine",
+  "course": "software-architecture-and-design-patterns",
+  "topic": "State: modelling a transaction life cycle as a state machine",
+  "unit": 4,
+  "topicIndex": 4,
+  "level": "intermediate",
+  "title": "The life cycle of a mobile money transaction",
+  "estimatedMinutes": 15,
+  "instructions": "## Every transaction is in exactly one state\n\nA transfer is **Initiated** when the sender confirms it. It becomes **Pending** when sent to the provider. From Pending it is **Completed** on `provider_ok`, **Failed** on `provider_error`, or **Reversed** if the sender cancels within the window (`cancel`). A Failed transfer may be **retried** (back to Pending) at most once; after that it is final. Completed and Reversed are final.\n\n## Do this\n\nWrite the state machine: an initial pseudo-state, the five states, every transition labelled with its event, and final states (`--> [*]`) for Completed, Reversed and Failed.",
+  "config": {
+    "kind": "state",
+    "starter": "diagram: state\n[*] --> Initiated\n"
+  },
+  "initialState": {
+    "source": "diagram: state\n[*] --> Initiated\n"
+  },
+  "hints": [
+    "Initiated --> Pending : submit",
+    "Pending --> Completed : provider_ok, and similar lines for provider_error and cancel.",
+    "Failed --> Pending : retry [attempts < 1] shows the guard in square brackets; Failed --> [*] makes it final."
+  ],
+  "checks": [
+    {
+      "type": "diagram.parses",
+      "label": "The notation reads correctly"
+    },
+    {
+      "type": "diagram.node",
+      "label": "Five states",
+      "kind": "state",
+      "pattern": "Initiated|Pending|Completed|Failed|Reversed",
+      "count": 5
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Pending to Completed on provider_ok",
+      "from": "Pending",
+      "to": "Completed",
+      "text": "provider_ok"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Pending to Failed on provider_error",
+      "from": "Pending",
+      "to": "Failed",
+      "text": "provider_error"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Pending to Reversed on cancel",
+      "from": "Pending",
+      "to": "Reversed",
+      "text": "cancel"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Failed retries to Pending",
+      "from": "Failed",
+      "to": "Pending",
+      "text": "retry"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Completed is final",
+      "from": "Completed",
+      "to": "\\[\\*\\]end"
+    },
+    {
+      "type": "diagram.rules",
+      "label": "Every state reachable, every transition has an event"
+    }
+  ],
+  "realityNote": "The State pattern implements this diagram directly: one class per state with the transitions as methods, so an illegal transition (reversing a completed transfer) cannot even be called. Payment providers publish exactly these state tables in their API documentation."
+}

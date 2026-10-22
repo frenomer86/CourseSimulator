@@ -1,0 +1,79 @@
+{
+  "engine": "E9",
+  "id": "object-oriented-system-analysis-and-design-b2-er-diagram",
+  "course": "object-oriented-system-analysis-and-design",
+  "topic": "Entity-relationship diagrams for the data",
+  "unit": 4,
+  "topicIndex": 4,
+  "level": "beginner",
+  "title": "An ER diagram for a clinic",
+  "estimatedMinutes": 15,
+  "instructions": "## Entities, attributes and crow's feet\n\nA clinic keeps **Patients** (id, name, date of birth), **Doctors** (id, name, specialty) and **Appointments** (id, date, notes). A patient has many appointments; each appointment is with exactly one doctor and one patient; a doctor has many appointments. Each appointment may produce one **Prescription** (id, drug, dosage).\n\n## Do this\n\nWrite the ER diagram: four entities with attributes and a primary key each (mark it `PK`), and the relationships with crow's-foot cardinalities and a verb: `PATIENT ||--o{ APPOINTMENT : attends`.",
+  "config": {
+    "kind": "er",
+    "starter": "diagram: er\nPATIENT {\n  int id PK\n  string name\n  date dob\n}\n"
+  },
+  "initialState": {
+    "source": "diagram: er\nPATIENT {\n  int id PK\n  string name\n  date dob\n}\n"
+  },
+  "hints": [
+    "||--o{ reads \"exactly one to zero or more\".",
+    "DOCTOR ||--o{ APPOINTMENT : conducts",
+    "APPOINTMENT ||--o| PRESCRIPTION : produces (zero or one prescription)."
+  ],
+  "checks": [
+    {
+      "type": "diagram.parses",
+      "label": "The notation reads correctly"
+    },
+    {
+      "type": "diagram.count",
+      "label": "Four entities",
+      "kind": "entity",
+      "min": 4
+    },
+    {
+      "type": "diagram.member",
+      "label": "DOCTOR has a specialty",
+      "class": "DOCTOR",
+      "member": "specialt"
+    },
+    {
+      "type": "diagram.member",
+      "label": "PRESCRIPTION has a dosage",
+      "class": "PRESCRIPTION",
+      "member": "dosage"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Patient one to many appointments",
+      "from": "PATIENT",
+      "to": "APPOINTMENT",
+      "kind": "relationship",
+      "fromCard": "1",
+      "toCard": "0..*"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Doctor one to many appointments",
+      "from": "DOCTOR",
+      "to": "APPOINTMENT",
+      "kind": "relationship",
+      "fromCard": "1",
+      "toCard": "0..*"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Appointment to at most one prescription",
+      "from": "APPOINTMENT",
+      "to": "PRESCRIPTION",
+      "kind": "relationship",
+      "toCard": "0..1"
+    },
+    {
+      "type": "diagram.rules",
+      "label": "Every entity has attributes and a primary key; every relationship has a verb"
+    }
+  ],
+  "realityNote": "This diagram becomes CREATE TABLE statements almost mechanically: each \"many\" side gets a foreign key to the \"one\" side. The database labs in this course take the same clinic into SQL."
+}

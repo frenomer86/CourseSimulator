@@ -1,0 +1,12 @@
+{
+  "name": "@cslab/engine-diagram",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Diagram studio (E9): a text notation close to Mermaid for use case, class, sequence, state, ER, activity/BPMN, data flow and CPM/PERT network diagrams, with layout, rule checking and critical-path calculation.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@cslab/lab-runtime": "*"
+  }
+}

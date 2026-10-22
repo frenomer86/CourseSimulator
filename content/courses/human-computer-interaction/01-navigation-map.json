@@ -1,0 +1,78 @@
+{
+  "engine": "E9",
+  "id": "human-computer-interaction-b1-navigation-map",
+  "course": "human-computer-interaction",
+  "topic": "Wireframes and information architecture; navigation structures",
+  "unit": 3,
+  "topicIndex": 3,
+  "level": "beginner",
+  "title": "A navigation map for the results app",
+  "estimatedMinutes": 15,
+  "instructions": "## Every screen reachable in three taps\n\nA mobile app lets students check exam results. Screens: **Login**, **Home**, **Results** (list by semester), **Result detail**, **Transcript request**, **Profile**, **Help**. Rules from the design review:\n\n- From Home a student reaches Results, Transcript request, Profile and Help directly.\n- Result detail is reached only from Results, and goes back to Results.\n- Transcript request returns to Home when submitted; the user must **confirm** before submitting (a decision).\n- Help is reachable from every main screen (Home, Results, Profile).\n- Login leads to Home; Profile has a **Log out** that returns to Login.\n\n## Do this\n\nWrite the navigation flow with one node per screen and labelled flows for the actions (`Home -->|tap Results| Results`). Use a decision node for the confirmation.",
+  "config": {
+    "kind": "flow",
+    "starter": "diagram: flow\nLogin[Login] -->|sign in| Home[Home]\n"
+  },
+  "initialState": {
+    "source": "diagram: flow\nLogin[Login] -->|sign in| Home[Home]\n"
+  },
+  "hints": [
+    "Results -->|tap a result| Detail[Result detail] and Detail -->|back| Results.",
+    "Transcript[Transcript request] -->|submit| Confirm{Confirm?} then Confirm -->|yes| Home and Confirm -->|no| Transcript.",
+    "Help needs flows from Home, Results and Profile; Profile -->|log out| Login."
+  ],
+  "checks": [
+    {
+      "type": "diagram.parses",
+      "label": "The notation reads correctly"
+    },
+    {
+      "type": "diagram.node",
+      "label": "Seven screens",
+      "pattern": "login|home|results|detail|transcript|profile|help",
+      "count": 7
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Home reaches Results",
+      "from": "Home",
+      "to": "Results"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Detail goes back to Results",
+      "from": "detail",
+      "to": "Results"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Profile logs out to Login",
+      "from": "Profile",
+      "to": "Login",
+      "text": "log ?out"
+    },
+    {
+      "type": "diagram.node",
+      "label": "A confirmation decision",
+      "kind": "decision",
+      "pattern": "confirm"
+    },
+    {
+      "type": "diagram.path",
+      "label": "Help reachable from Results",
+      "from": "Results",
+      "to": "Help"
+    },
+    {
+      "type": "diagram.path",
+      "label": "Transcript request leads back to Home",
+      "from": "Transcript",
+      "to": "Home"
+    },
+    {
+      "type": "diagram.rules",
+      "label": "No screen left unconnected"
+    }
+  ],
+  "realityNote": "Navigation maps are the cheapest usability test there is: count the taps to each goal and look for dead ends before any pixel is drawn. Mobile platforms add the system back button, which must behave consistently with the map."
+}

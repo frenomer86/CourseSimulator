@@ -1,0 +1,100 @@
+{
+  "engine": "E9",
+  "id": "software-engineering-b2-class-diagram",
+  "course": "software-engineering",
+  "topic": "Class diagrams: associations, multiplicity, inheritance",
+  "unit": 3,
+  "topicIndex": 2,
+  "level": "beginner",
+  "title": "A class diagram for hostel bookings",
+  "estimatedMinutes": 20,
+  "instructions": "## From nouns to classes\n\nFrom the requirements: a **Student** (with an index number and name) makes **Bookings**; each Booking is for one **Room** in one **Hostel**, for an academic year, and has a status. A Hostel contains many Rooms (a room cannot exist without its hostel). A Room has a number and a capacity. Both students and hostel officers are **Persons** with a name and email; an **Officer** has a staff id.\n\n## Do this\n\nWrite the class diagram:\n\n- five or more classes with their attributes (use `+name: type`), and at least one operation such as `+book(room)` on Student;\n- Person as the superclass of Student and Officer;\n- Student `1` to `*` Booking; Room `1` to `*` Booking; Hostel to Room as **composition**, `1` to `*`.",
+  "config": {
+    "kind": "class",
+    "starter": "diagram: class\nclass Person {\n  +name: string\n  +email: string\n}\n"
+  },
+  "initialState": {
+    "source": "diagram: class\nclass Person {\n  +name: string\n  +email: string\n}\n"
+  },
+  "hints": [
+    "Person <|-- Student draws the inheritance arrow from Student to Person.",
+    "Student \"1\" -- \"*\" Booking : makes gives the multiplicities on each end.",
+    "Hostel \"1\" *-- \"*\" Room is composition: the filled diamond sits at the Hostel end."
+  ],
+  "checks": [
+    {
+      "type": "diagram.parses",
+      "label": "The notation reads correctly"
+    },
+    {
+      "type": "diagram.count",
+      "label": "At least five classes",
+      "kind": "class",
+      "min": 5
+    },
+    {
+      "type": "diagram.member",
+      "label": "Student has an index number",
+      "class": "^Student$",
+      "member": "index"
+    },
+    {
+      "type": "diagram.member",
+      "label": "Room has a capacity",
+      "class": "^Room$",
+      "member": "capacity"
+    },
+    {
+      "type": "diagram.member",
+      "label": "Student has a book operation",
+      "class": "^Student$",
+      "member": "book\\("
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Student inherits from Person",
+      "from": "Student",
+      "to": "Person",
+      "kind": "generalisation"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Officer inherits from Person",
+      "from": "Officer",
+      "to": "Person",
+      "kind": "generalisation"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Student 1 to * Booking",
+      "from": "Student",
+      "to": "Booking",
+      "kind": "association",
+      "fromCard": "1",
+      "toCard": "*",
+      "either": true
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Room 1 to * Booking",
+      "from": "Room",
+      "to": "Booking",
+      "kind": "association",
+      "fromCard": "1",
+      "toCard": "*",
+      "either": true
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Hostel composed of Rooms",
+      "from": "Hostel",
+      "to": "Room",
+      "kind": "composition"
+    },
+    {
+      "type": "diagram.rules",
+      "label": "Every class has members and is related to another"
+    }
+  ],
+  "realityNote": "A domain class diagram like this one maps almost directly to database tables or to classes in Java or Python; the multiplicities become foreign keys and collections. Composition versus aggregation is about lifetime: delete the hostel and its rooms go with it."
+}

@@ -1,0 +1,90 @@
+{
+  "engine": "E9",
+  "id": "software-engineering-b1-use-case-diagram",
+  "course": "software-engineering",
+  "topic": "Use case diagrams",
+  "unit": 3,
+  "topicIndex": 2,
+  "level": "beginner",
+  "title": "Use cases for the hostel booking system",
+  "estimatedMinutes": 15,
+  "instructions": "## Who does what with the system?\n\nThe university hostel office wants a booking system. From the interviews:\n\n- A **student** searches for rooms, books a room and pays the hostel fee.\n- Paying the fee always **includes** verifying the payment with the bank.\n- A student may apply for a fee waiver, which **extends** paying the fee (it only happens sometimes).\n- The **hostel officer** allocates rooms and generates occupancy reports.\n- Both the student and the officer must log in first; \"Log in\" is included by every other use case of theirs. Model it once, included by \"Book room\" and \"Allocate room\".\n\n## Do this\n\nWrite the use case diagram in the notation (open \"Notation\" on the left for the syntax). Declare the two actors, the use cases, the associations, and the include and extend relationships. The studio warns about unconnected use cases.",
+  "config": {
+    "kind": "usecase",
+    "starter": "diagram: usecase\nactor Student\n\n"
+  },
+  "initialState": {
+    "source": "diagram: usecase\nactor Student\n\n"
+  },
+  "hints": [
+    "usecase UC1 \"Search rooms\" declares a use case; Student -> UC1 associates the actor with it.",
+    "UC3 ..> UC4 : include means UC3 always includes UC4. The extending use case points at the base: UC5 ..> UC3 : extend.",
+    "Declare actor Officer and connect Allocate room and Generate report to it."
+  ],
+  "checks": [
+    {
+      "type": "diagram.parses",
+      "label": "The notation reads correctly"
+    },
+    {
+      "type": "diagram.node",
+      "label": "Two actors: Student and Hostel officer",
+      "kind": "actor",
+      "pattern": "student|officer",
+      "count": 2
+    },
+    {
+      "type": "diagram.node",
+      "label": "Search, book, pay, allocate, report and log in use cases",
+      "kind": "usecase",
+      "pattern": "search|book|pay|allocat|report|log ?in",
+      "count": 6
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Student books a room",
+      "from": "student",
+      "to": "book",
+      "kind": [
+        "association",
+        "directed"
+      ]
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Officer allocates rooms",
+      "from": "officer",
+      "to": "allocat",
+      "kind": [
+        "association",
+        "directed"
+      ]
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Pay fee includes Verify payment",
+      "from": "pay",
+      "to": "verif",
+      "kind": "include"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Fee waiver extends Pay fee",
+      "from": "waiver",
+      "to": "pay",
+      "kind": "extend"
+    },
+    {
+      "type": "diagram.edge",
+      "label": "Book room includes Log in",
+      "from": "book",
+      "to": "log ?in",
+      "kind": "include"
+    },
+    {
+      "type": "diagram.rules",
+      "label": "No unconnected use cases or actor-to-actor links"
+    }
+  ],
+  "realityNote": "The direction of include and extend arrows is the most common mistake in exams: include points from the base use case to the one it always needs; extend points from the optional behaviour to the base it extends."
+}
