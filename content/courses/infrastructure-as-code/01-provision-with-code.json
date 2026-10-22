@@ -1,0 +1,88 @@
+{
+  "engine": "E12",
+  "id": "infrastructure-as-code-i1-provision-with-code",
+  "course": "infrastructure-as-code",
+  "topic": "Provisioning a VPC, security groups, virtual machines and object storage",
+  "unit": 2,
+  "topicIndex": 4,
+  "level": "intermediate",
+  "title": "Provision a web server with code",
+  "estimatedMinutes": 20,
+  "instructions": "## Describe it, plan it, apply it\n\nInstead of clicking through the console, declare the infrastructure in HCL and let the tool create it. The **Infrastructure as code** tab has an editor, `terraform plan` and `terraform apply`.\n\n## Do this\n\nWrite code that declares:\n\n- a security group `web-sg` allowing port **80 from anywhere** and port **22 only from 10.0.0.0/16**;\n- a `small` virtual machine `web-1` in `af-west-1` that references the security group (`cloud_security_group.web.id`);\n- a private, encrypted bucket `web-assets`.\n\nRun **plan**, read the three additions, then **apply**. Check the resources on the other tabs.",
+  "config": {
+    "panels": [
+      "iac",
+      "resources",
+      "network",
+      "scanner"
+    ],
+    "starterHcl": "# Declare the resources, then plan and apply.\n\nresource \"cloud_security_group\" \"web\" {\n  name = \"web-sg\"\n  ingress {\n    port   = 80\n    source = \"0.0.0.0/0\"\n  }\n}\n\n# resource \"cloud_vm\" \"web\" { ... }\n# resource \"cloud_bucket\" \"assets\" { ... }\n"
+  },
+  "initialState": {
+    "resources": []
+  },
+  "hints": [
+    "A second ingress block adds the SSH rule: port = 22, source = \"10.0.0.0/16\".",
+    "resource \"cloud_vm\" \"web\" { name = \"web-1\"  region = \"af-west-1\"  size = \"small\"  security_group = cloud_security_group.web.id }",
+    "resource \"cloud_bucket\" \"assets\" { name = \"web-assets\"  encrypted = true  public = false }"
+  ],
+  "checks": [
+    {
+      "type": "cloud.hcl",
+      "label": "The code parses and declares a security group, a VM and a bucket",
+      "minResources": 3,
+      "mentions": [
+        "sg",
+        "vm",
+        "bucket"
+      ]
+    },
+    {
+      "type": "cloud.exists",
+      "label": "web-1 applied: small, in Lagos",
+      "kind": "vm",
+      "name": "web-1",
+      "where": {
+        "region": "af-west-1",
+        "size": "small"
+      }
+    },
+    {
+      "type": "cloud.sg",
+      "label": "web-1 reachable on 80, SSH only from the office",
+      "vm": "web-1",
+      "allows": [
+        {
+          "port": 80,
+          "source": "0.0.0.0/0"
+        },
+        {
+          "port": 22,
+          "source": "10.0.0.0/16"
+        }
+      ],
+      "denies": [
+        {
+          "port": 22,
+          "source": "0.0.0.0/0"
+        }
+      ]
+    },
+    {
+      "type": "cloud.exists",
+      "label": "web-assets applied: private and encrypted",
+      "kind": "bucket",
+      "name": "web-assets",
+      "where": {
+        "public": false,
+        "encrypted": true
+      }
+    },
+    {
+      "type": "cloud.findings",
+      "label": "No high-severity findings",
+      "maxHigh": 0
+    }
+  ],
+  "realityNote": "Real Terraform talks to the provider's API with the same plan/apply cycle, keeps a state file, and is run from a pipeline on every pull request. The resource names here mirror aws_instance, aws_security_group and aws_s3_bucket."
+}

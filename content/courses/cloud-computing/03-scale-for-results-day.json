@@ -1,0 +1,118 @@
+{
+  "engine": "E12",
+  "id": "cloud-computing-i1-scale-for-results-day",
+  "course": "cloud-computing",
+  "topic": "Building a three-tier application; load balancing and autoscaling",
+  "unit": 3,
+  "topicIndex": 5,
+  "level": "intermediate",
+  "title": "Scale the results portal for results day",
+  "estimatedMinutes": 25,
+  "instructions": "## 400 requests a second at 8 a.m.\n\nWhen exam results are released, traffic to the portal climbs from 20 to **400 requests per second** in 25 minutes and stays there. A single `small` server serves about 50. Build a deployment that absorbs the peak and shrinks afterwards.\n\n## Do this\n\n1. Create a load balancer `web-lb` in `af-west-1`.\n2. Create an autoscaling group `web-asg` of `small` instances, **minimum 2, maximum at least 8**, across zones **a and b**, scaling at **60% CPU** or lower, attached to `web-lb`.\n3. Create a managed database `results-db` with **Multi-AZ** and encryption on.\n4. On **Monitor**, run `results-day`. Read the log: when did it scale out, how many instances did it reach, and how many requests failed while new instances were starting?\n5. Press **Check my deployment**. Keep the monthly estimate under $200.",
+  "config": {
+    "panels": [
+      "resources",
+      "network",
+      "monitor",
+      "billing"
+    ],
+    "scenarios": {
+      "results-day": {
+        "durationMin": 60,
+        "traffic": [
+          [
+            0,
+            20
+          ],
+          [
+            10,
+            80
+          ],
+          [
+            15,
+            160
+          ],
+          [
+            20,
+            260
+          ],
+          [
+            25,
+            400
+          ],
+          [
+            45,
+            120
+          ],
+          [
+            55,
+            20
+          ]
+        ],
+        "sloAvailability": 0.98,
+        "sloP95Ms": 600
+      },
+      "quiet": {
+        "durationMin": 20,
+        "traffic": [
+          [
+            0,
+            10
+          ]
+        ],
+        "sloAvailability": 0.999,
+        "sloP95Ms": 600
+      }
+    }
+  },
+  "initialState": {
+    "resources": []
+  },
+  "hints": [
+    "An autoscaling group needs a load balancer to send traffic to its instances: create the LB first and select it in the ASG form.",
+    "New instances take two minutes to start, so scaling at 60% CPU leaves time before the group saturates. A higher minimum costs more but protects the first minutes.",
+    "The database tier is separate from the web tier; Multi-AZ keeps a standby in another zone."
+  ],
+  "checks": [
+    {
+      "type": "cloud.lb",
+      "label": "A load balancer with targets in two zones",
+      "name": "web-lb",
+      "minTargets": 2,
+      "minZones": 2
+    },
+    {
+      "type": "cloud.asg",
+      "label": "Autoscaling 2 to 8+ instances across two zones, scaling at 60% CPU",
+      "name": "web-asg",
+      "min": 2,
+      "max": 8,
+      "minZones": 2,
+      "maxTargetCpu": 60,
+      "attachedTo": "web-lb"
+    },
+    {
+      "type": "cloud.exists",
+      "label": "A Multi-AZ, encrypted database",
+      "kind": "db",
+      "where": {
+        "multiAz": true,
+        "encrypted": true
+      }
+    },
+    {
+      "type": "cloud.sim",
+      "label": "Results day served with at least 98% availability and a peak of 4+ instances",
+      "scenario": "results-day",
+      "availability": 0.98,
+      "maxInstances": 4,
+      "scaleOuts": 1
+    },
+    {
+      "type": "cloud.cost",
+      "label": "Monthly estimate under $200",
+      "max": 200
+    }
+  ],
+  "realityNote": "Real autoscaling policies also use request count per target and scheduled scaling: you know results day is coming, so you raise the minimum the night before. Pre-warming the database connection pool and caching the results page matter as much as the instance count."
+}

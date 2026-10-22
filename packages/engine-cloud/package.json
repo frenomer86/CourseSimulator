@@ -1,0 +1,12 @@
+{
+  "name": "@cslab/engine-cloud",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloud console (E12): a simulated IaaS/PaaS account with regions, VMs, storage, databases, load balancers, autoscaling and IAM, a workload and failure simulator with SLA scoring and cost, and a Terraform-style HCL planner.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@cslab/lab-runtime": "*"
+  }
+}

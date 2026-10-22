@@ -1,0 +1,217 @@
+{
+  "engine": "E12",
+  "id": "cloud-computing-i2-fix-the-misconfigured-account",
+  "course": "cloud-computing",
+  "topic": "IAM, network and data security; misconfiguration",
+  "unit": 4,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Fix the misconfigured account",
+  "estimatedMinutes": 20,
+  "instructions": "## The audit found everything\n\nA previous administrator set up the student records system in a hurry. The **Security scanner** shows the result: a public bucket, databases and SSH open to the world, an all-powerful user with no MFA and two long-lived keys.\n\n## Do this\n\nWork through the findings until the scanner shows **no high or medium findings**:\n\n- make the `student-records` bucket private and encrypted;\n- close port 22 and the database port 3306 to the internet in `db-sg` and `web-sg` (SSH only from `10.0.0.0/16`; 3306 only from `web-sg`, written as `sg:<its id>`);\n- make `records-db` private, encrypted and backed up (7 days);\n- give user `kofi` MFA, at most one access key, and replace the administrator policy with the `records-operator` policy.\n\nDo not delete the resources: the system must keep working.",
+  "config": {
+    "panels": [
+      "resources",
+      "network",
+      "iam",
+      "scanner"
+    ]
+  },
+  "initialState": {
+    "seq": 8,
+    "resources": [
+      {
+        "id": "sg-0001",
+        "type": "sg",
+        "name": "web-sg",
+        "rules": [
+          {
+            "port": 80,
+            "protocol": "tcp",
+            "source": "0.0.0.0/0"
+          },
+          {
+            "port": 22,
+            "protocol": "tcp",
+            "source": "0.0.0.0/0"
+          }
+        ]
+      },
+      {
+        "id": "sg-0002",
+        "type": "sg",
+        "name": "db-sg",
+        "rules": [
+          {
+            "port": 3306,
+            "protocol": "tcp",
+            "source": "0.0.0.0/0"
+          }
+        ]
+      },
+      {
+        "id": "i-0003",
+        "type": "vm",
+        "name": "records-web",
+        "region": "af-west-1",
+        "zone": "a",
+        "size": "small",
+        "image": "Ubuntu 24.04",
+        "sg": "sg-0001",
+        "publicIp": true,
+        "status": "running",
+        "diskGb": 20
+      },
+      {
+        "id": "bkt-0004",
+        "type": "bucket",
+        "name": "student-records",
+        "region": "af-west-1",
+        "public": true,
+        "encrypted": false,
+        "versioning": false,
+        "storageGb": 50,
+        "website": false
+      },
+      {
+        "id": "db-0005",
+        "type": "db",
+        "name": "records-db",
+        "region": "af-west-1",
+        "zone": "a",
+        "engine": "MySQL 8",
+        "size": "small",
+        "multiAz": false,
+        "encrypted": false,
+        "public": true,
+        "backupDays": 0,
+        "storageGb": 20
+      },
+      {
+        "id": "pol-0006",
+        "type": "policy",
+        "name": "administrator",
+        "statements": [
+          {
+            "effect": "Allow",
+            "actions": [
+              "*"
+            ],
+            "resources": [
+              "*"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pol-0007",
+        "type": "policy",
+        "name": "records-operator",
+        "statements": [
+          {
+            "effect": "Allow",
+            "actions": [
+              "s3:GetObject",
+              "s3:PutObject",
+              "rds:DescribeDBInstances"
+            ],
+            "resources": [
+              "bucket:student-records",
+              "db:records-db"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "usr-0008",
+        "type": "user",
+        "name": "kofi",
+        "policies": [
+          "pol-0006"
+        ],
+        "mfa": false,
+        "accessKeys": 2
+      }
+    ]
+  },
+  "hints": [
+    "Edit each resource from its row; the scanner updates as you go.",
+    "The database should accept connections only from the web servers: in db-sg, allow 3306 from source sg:sg-0001 instead of 0.0.0.0/0.",
+    "For kofi: tick MFA, set access keys to 1, untick administrator and tick records-operator."
+  ],
+  "checks": [
+    {
+      "type": "cloud.exists",
+      "label": "student-records private and encrypted",
+      "kind": "bucket",
+      "name": "student-records",
+      "where": {
+        "public": false,
+        "encrypted": true
+      }
+    },
+    {
+      "type": "cloud.sg",
+      "label": "SSH closed to the internet on web-sg",
+      "name": "web-sg",
+      "allows": [
+        {
+          "port": 80,
+          "source": "0.0.0.0/0"
+        }
+      ],
+      "denies": [
+        {
+          "port": 22,
+          "source": "0.0.0.0/0"
+        }
+      ]
+    },
+    {
+      "type": "cloud.sg",
+      "label": "Database port closed to the internet",
+      "name": "db-sg",
+      "denies": [
+        {
+          "port": 3306,
+          "source": "0.0.0.0/0"
+        }
+      ]
+    },
+    {
+      "type": "cloud.exists",
+      "label": "records-db private, encrypted, backed up",
+      "kind": "db",
+      "name": "records-db",
+      "where": {
+        "public": false,
+        "encrypted": true,
+        "backupDays": {
+          ">=": 7
+        }
+      }
+    },
+    {
+      "type": "cloud.iam",
+      "label": "kofi: MFA, one key, no administrator policy",
+      "user": "kofi",
+      "mfa": true,
+      "maxKeys": 1,
+      "noWildcard": true,
+      "hasPolicy": "records-operator"
+    },
+    {
+      "type": "cloud.findings",
+      "label": "Scanner clean",
+      "maxHigh": 0,
+      "maxMedium": 0
+    },
+    {
+      "type": "cloud.exists",
+      "label": "The web server still exists",
+      "kind": "vm",
+      "name": "records-web"
+    }
+  ],
+  "realityNote": "Every one of these findings has caused a real breach: open S3 buckets of personal records, databases on the public internet, leaked long-lived keys. Cloud security posture management tools run exactly this scan continuously."
+}

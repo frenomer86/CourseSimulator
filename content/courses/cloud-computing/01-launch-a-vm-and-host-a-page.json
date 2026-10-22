@@ -1,0 +1,93 @@
+{
+  "engine": "E12",
+  "id": "cloud-computing-b1-launch-a-vm-and-host-a-page",
+  "course": "cloud-computing",
+  "topic": "Hands-on: launching a virtual machine",
+  "unit": 2,
+  "topicIndex": 4,
+  "level": "beginner",
+  "title": "Launch a virtual machine and host a page",
+  "estimatedMinutes": 15,
+  "instructions": "## Your first server in the cloud\n\nThe department wants a small web page online, served from the region closest to Ghana. You have an empty account in the **Nimbus Console** (a simulated provider).\n\n## Do this\n\n1. On the **Networking** tab, create a security group `web-sg` that allows **port 80 from anywhere** (`0.0.0.0/0`) and **port 22 only from the office network** `10.0.0.0/16`. Never open SSH to the whole internet.\n2. On **Resources**, launch a `small` virtual machine called `web-1` in the **Lagos** region (`af-west-1`), with a public IP and `web-sg` attached.\n3. Open the **Security scanner**: it must report no high-severity findings.\n4. Open **Monitor** and run the `quiet` scenario to confirm the server answers.\n5. Press **Check my deployment**.",
+  "config": {
+    "panels": [
+      "resources",
+      "network",
+      "scanner",
+      "monitor",
+      "billing"
+    ],
+    "scenarios": {
+      "quiet": {
+        "durationMin": 20,
+        "traffic": [
+          [
+            0,
+            10
+          ]
+        ],
+        "sloAvailability": 0.999,
+        "sloP95Ms": 600
+      }
+    }
+  },
+  "initialState": {
+    "resources": []
+  },
+  "hints": [
+    "Create the security group first so it appears in the VM form.",
+    "Rules: port 80 from 0.0.0.0/0, port 22 from 10.0.0.0/16.",
+    "The region list shows latency from Accra: af-west-1 (Lagos) is the closest public region."
+  ],
+  "checks": [
+    {
+      "type": "cloud.exists",
+      "label": "A running small VM in Lagos with a public IP",
+      "kind": "vm",
+      "where": {
+        "region": "af-west-1",
+        "size": "small",
+        "status": "running",
+        "publicIp": true
+      }
+    },
+    {
+      "type": "cloud.sg",
+      "label": "Port 80 open to the internet, SSH only from the office",
+      "vm": "web-1",
+      "allows": [
+        {
+          "port": 80,
+          "source": "0.0.0.0/0"
+        },
+        {
+          "port": 22,
+          "source": "10.0.0.0/16"
+        }
+      ],
+      "denies": [
+        {
+          "port": 22,
+          "source": "0.0.0.0/0"
+        }
+      ]
+    },
+    {
+      "type": "cloud.findings",
+      "label": "No high-severity findings",
+      "maxHigh": 0
+    },
+    {
+      "type": "cloud.sim",
+      "label": "The page is served",
+      "scenario": "quiet",
+      "availability": 0.999
+    },
+    {
+      "type": "cloud.cost",
+      "label": "Costs under $40 a month",
+      "max": 40
+    }
+  ],
+  "realityNote": "On AWS this is EC2 + a security group, on Azure a Virtual Machine + a network security group, on Google Cloud Compute Engine + firewall rules. The idea, and the mistake of opening port 22 to 0.0.0.0/0, is identical on all three."
+}

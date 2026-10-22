@@ -1,0 +1,149 @@
+{
+  "engine": "E12",
+  "id": "cloud-computing-a1-right-size-for-a-budget",
+  "course": "cloud-computing",
+  "topic": "Capacity planning, right-sizing and cost optimisation",
+  "unit": 6,
+  "topicIndex": 3,
+  "level": "advanced",
+  "title": "Right-size the deployment for the budget",
+  "estimatedMinutes": 25,
+  "instructions": "## The bill is four times the budget\n\nThe library catalogue serves a steady **40 requests per second** from readers in Ghana, and the budget is **$150 a month**. The previous team provisioned it like a bank: two `2xlarge` servers in Virginia, a `large` Multi-AZ database, 500 GB of storage.\n\n## Do this\n\n1. Open **Billing** and **Monitor** (run `steady`) to see the current cost and latency.\n2. Right-size: smaller instances, a region close to the readers (latency counts towards the p95 target of 400 ms), only the storage that is used (about 40 GB), a database size that fits.\n3. Keep availability at 99.9% and p95 under 400 ms on the `steady` scenario. The load balancer and two instances in different zones are what give you the availability.\n4. Create a **budget** of $150 with an alert at 80% or lower.\n5. Bring the monthly estimate under $150.",
+  "config": {
+    "panels": [
+      "resources",
+      "network",
+      "monitor",
+      "billing"
+    ],
+    "scenarios": {
+      "steady": {
+        "durationMin": 60,
+        "traffic": [
+          [
+            0,
+            40
+          ]
+        ],
+        "sloAvailability": 0.999,
+        "sloP95Ms": 400
+      }
+    }
+  },
+  "initialState": {
+    "seq": 5,
+    "resources": [
+      {
+        "id": "lb-0001",
+        "type": "lb",
+        "name": "catalogue-lb",
+        "region": "us-east-1",
+        "targets": [
+          "i-0002",
+          "i-0003"
+        ],
+        "healthCheck": "/health",
+        "listenerPort": 80
+      },
+      {
+        "id": "i-0002",
+        "type": "vm",
+        "name": "cat-1",
+        "region": "us-east-1",
+        "zone": "a",
+        "size": "2xlarge",
+        "image": "Ubuntu 24.04",
+        "publicIp": false,
+        "status": "running",
+        "diskGb": 100
+      },
+      {
+        "id": "i-0003",
+        "type": "vm",
+        "name": "cat-2",
+        "region": "us-east-1",
+        "zone": "b",
+        "size": "2xlarge",
+        "image": "Ubuntu 24.04",
+        "publicIp": false,
+        "status": "running",
+        "diskGb": 100
+      },
+      {
+        "id": "db-0004",
+        "type": "db",
+        "name": "catalogue-db",
+        "region": "us-east-1",
+        "zone": "a",
+        "engine": "PostgreSQL 16",
+        "size": "large",
+        "multiAz": true,
+        "encrypted": true,
+        "public": false,
+        "backupDays": 7,
+        "storageGb": 200
+      },
+      {
+        "id": "bkt-0005",
+        "type": "bucket",
+        "name": "covers",
+        "region": "us-east-1",
+        "public": false,
+        "encrypted": true,
+        "versioning": false,
+        "storageGb": 500,
+        "website": false
+      }
+    ]
+  },
+  "hints": [
+    "40 req/s needs about 80 req/s of capacity for headroom: two small instances (50 each) behind the load balancer.",
+    "Moving to af-west-1 (Lagos) takes 145 ms off every request; Virginia alone breaks the 400 ms p95 target.",
+    "A small Multi-AZ database and 40 GB of storage cost a fraction of the original; the budget resource is on the Resources tab."
+  ],
+  "checks": [
+    {
+      "type": "cloud.cost",
+      "label": "Monthly estimate under $150",
+      "max": 150,
+      "min": 30
+    },
+    {
+      "type": "cloud.sim",
+      "label": "Still 99.9% available with p95 under 400 ms",
+      "scenario": "steady",
+      "availability": 0.999,
+      "p95Ms": 400
+    },
+    {
+      "type": "cloud.lb",
+      "label": "Two instances in different zones behind the load balancer",
+      "name": "catalogue-lb",
+      "minTargets": 2,
+      "minZones": 2
+    },
+    {
+      "type": "cloud.exists",
+      "label": "The database is still Multi-AZ and encrypted",
+      "kind": "db",
+      "where": {
+        "multiAz": true,
+        "encrypted": true
+      }
+    },
+    {
+      "type": "cloud.exists",
+      "label": "A budget with an alert",
+      "kind": "budget",
+      "where": {
+        "monthlyUsd": {
+          "<=": 150
+        },
+        "alertAt": {
+          "<=": 80
+        }
+      }
+    }
+  ],
+  "realityNote": "FinOps teams do this every month with the provider's cost explorer and right-sizing recommendations. Reserved or savings-plan pricing would cut the compute line by another 30 to 60% for a workload this steady."
+}

@@ -1,0 +1,122 @@
+{
+  "engine": "E12",
+  "id": "site-reliability-engineering-i1-failover-drill",
+  "course": "site-reliability-engineering",
+  "topic": "Database replication and failover; recovery objectives",
+  "unit": 6,
+  "topicIndex": 5,
+  "level": "intermediate",
+  "title": "Run a failover drill",
+  "estimatedMinutes": 20,
+  "instructions": "## Two failures in one afternoon\n\nThe four-hour `failover` scenario promotes a database standby at minute 10 and crashes the web server `web-1` at minute 25. The current deployment is one server and a single-zone database. Target: **99.5% availability**.\n\n## Do this\n\n1. Run `failover` as it is and note the availability and what the log says about each failure.\n2. Make `orders-db` **Multi-AZ** so failover takes a minute instead of ten.\n3. Put `web-1` and a second server `web-2` (in zone **b**) behind a load balancer `web-lb` so a crash drains to the other.\n4. Re-run and answer: what were the recovery times before and after?",
+  "config": {
+    "panels": [
+      "resources",
+      "monitor",
+      "billing"
+    ],
+    "scenarios": {
+      "failover": {
+        "durationMin": 240,
+        "traffic": [
+          [
+            0,
+            80
+          ]
+        ],
+        "events": [
+          {
+            "at": 10,
+            "kind": "db-failover",
+            "durationMin": 10
+          },
+          {
+            "at": 25,
+            "kind": "vm-crash",
+            "vm": "web-1",
+            "durationMin": 10
+          }
+        ],
+        "sloAvailability": 0.995,
+        "sloP95Ms": 600
+      }
+    }
+  },
+  "initialState": {
+    "seq": 2,
+    "resources": [
+      {
+        "id": "i-0001",
+        "type": "vm",
+        "name": "web-1",
+        "region": "af-west-1",
+        "zone": "a",
+        "size": "medium",
+        "image": "Ubuntu 24.04",
+        "publicIp": true,
+        "status": "running",
+        "diskGb": 20
+      },
+      {
+        "id": "db-0002",
+        "type": "db",
+        "name": "orders-db",
+        "region": "af-west-1",
+        "zone": "a",
+        "engine": "PostgreSQL 16",
+        "size": "small",
+        "multiAz": false,
+        "encrypted": true,
+        "public": false,
+        "backupDays": 7,
+        "storageGb": 20
+      }
+    ]
+  },
+  "hints": [
+    "Edit orders-db and tick Multi-AZ standby.",
+    "Create web-2 (medium, zone b), then a load balancer with both as targets. The scenario sends traffic to the load balancer when there is one.",
+    "Recovery time: single-AZ failover took 10 minutes; Multi-AZ about 1; the crashed server is drained immediately when the LB has another healthy target."
+  ],
+  "checks": [
+    {
+      "type": "cloud.exists",
+      "label": "orders-db is Multi-AZ",
+      "kind": "db",
+      "name": "orders-db",
+      "where": {
+        "multiAz": true
+      }
+    },
+    {
+      "type": "cloud.lb",
+      "label": "web-lb balances two servers in two zones",
+      "name": "web-lb",
+      "minTargets": 2,
+      "minZones": 2
+    },
+    {
+      "type": "cloud.sim",
+      "label": "The drill passes at 99.5%",
+      "scenario": "failover",
+      "availability": 0.995
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Failover time before",
+      "id": "before",
+      "expected": 10,
+      "absolute": 1,
+      "question": "How many minutes was the database unavailable in the first run?"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Failover time after",
+      "id": "after",
+      "expected": 1,
+      "absolute": 0.5,
+      "question": "And with Multi-AZ?"
+    }
+  ],
+  "realityNote": "Recovery time objective (RTO) and recovery point objective (RPO) are set per service and tested in drills, because a failover that has never been exercised usually fails in some new way. Synchronous standbys give RPO near zero at the cost of write latency."
+}

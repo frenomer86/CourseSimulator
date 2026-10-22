@@ -1,0 +1,114 @@
+{
+  "engine": "E12",
+  "id": "infrastructure-as-code-a1-detect-and-fix-drift",
+  "course": "infrastructure-as-code",
+  "topic": "Drift: detecting it with plan, deciding whether to revert or adopt",
+  "unit": 4,
+  "topicIndex": 3,
+  "level": "advanced",
+  "title": "Detect and fix configuration drift",
+  "estimatedMinutes": 15,
+  "instructions": "## Someone used the console\n\nThe code in `main.tf` is the source of truth for the `grades` system. Over the weekend someone \"fixed something\" in the console. The **Security scanner** is unhappy.\n\n## Do this\n\n1. Run **terraform plan** without changing the code. Every `~` line is drift: the account no longer matches the code.\n2. Decide: should the code adopt the change, or should the account be reverted? Here the changes are security regressions, so **revert** them by running **apply**.\n3. Answer how many resources the plan reported as changed.\n4. Confirm the scanner is clean.",
+  "config": {
+    "panels": [
+      "iac",
+      "scanner",
+      "resources",
+      "network"
+    ],
+    "starterHcl": "resource \"cloud_security_group\" \"web\" {\n  name = \"grades-sg\"\n  ingress {\n    port   = 443\n    source = \"0.0.0.0/0\"\n  }\n  ingress {\n    port   = 22\n    source = \"10.0.0.0/16\"\n  }\n}\n\nresource \"cloud_vm\" \"web\" {\n  name           = \"grades-web\"\n  region         = \"af-west-1\"\n  size           = \"small\"\n  security_group = cloud_security_group.web.id\n}\n\nresource \"cloud_bucket\" \"exports\" {\n  name      = \"grades-exports\"\n  encrypted = true\n  public    = false\n}\n"
+  },
+  "initialState": {
+    "seq": 3,
+    "resources": [
+      {
+        "id": "sg-0001",
+        "type": "sg",
+        "name": "grades-sg",
+        "rules": [
+          {
+            "port": 443,
+            "protocol": "tcp",
+            "source": "0.0.0.0/0"
+          },
+          {
+            "port": 22,
+            "protocol": "tcp",
+            "source": "0.0.0.0/0"
+          }
+        ]
+      },
+      {
+        "id": "i-0002",
+        "type": "vm",
+        "name": "grades-web",
+        "region": "af-west-1",
+        "zone": "a",
+        "size": "small",
+        "image": "Ubuntu 24.04",
+        "sg": "sg-0001",
+        "publicIp": true,
+        "status": "running",
+        "diskGb": 20
+      },
+      {
+        "id": "bkt-0003",
+        "type": "bucket",
+        "name": "grades-exports",
+        "region": "us-east-1",
+        "public": true,
+        "encrypted": true,
+        "versioning": false,
+        "storageGb": 10,
+        "website": false
+      }
+    ]
+  },
+  "hints": [
+    "The plan compares each declared resource with the account and lists the attributes that differ.",
+    "Two resources drifted: the security group (SSH source) and the bucket (public flag).",
+    "Apply writes the declared values back; the console changes are undone."
+  ],
+  "checks": [
+    {
+      "type": "cloud.answer",
+      "label": "Resources reported as changed by the plan",
+      "id": "changed",
+      "expected": 2,
+      "absolute": 0,
+      "question": "How many resources did the first plan show with ~ (changed)?"
+    },
+    {
+      "type": "cloud.sg",
+      "label": "SSH reverted to the office network only",
+      "name": "grades-sg",
+      "denies": [
+        {
+          "port": 22,
+          "source": "0.0.0.0/0"
+        }
+      ],
+      "allows": [
+        {
+          "port": 22,
+          "source": "10.0.0.0/16"
+        }
+      ]
+    },
+    {
+      "type": "cloud.exists",
+      "label": "The exports bucket is private again",
+      "kind": "bucket",
+      "name": "grades-exports",
+      "where": {
+        "public": false
+      }
+    },
+    {
+      "type": "cloud.findings",
+      "label": "Scanner clean",
+      "maxHigh": 0
+    }
+  ],
+  "realityNote": "Teams run plan on a schedule to detect drift and lock console write access to break-glass accounts. Sometimes drift is the right change made in the wrong place: then you update the code to adopt it, not the other way round."
+}

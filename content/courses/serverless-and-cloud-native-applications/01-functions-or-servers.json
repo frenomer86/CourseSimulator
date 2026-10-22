@@ -1,0 +1,88 @@
+{
+  "engine": "E12",
+  "id": "serverless-and-cloud-native-applications-i1-functions-or-servers",
+  "course": "serverless-and-cloud-native-applications",
+  "topic": "Comparing the monthly cost of functions, containers and virtual machines",
+  "unit": 7,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Functions or servers: who wins on cost?",
+  "estimatedMinutes": 15,
+  "instructions": "## Pay per request, or pay per hour\n\nA results-lookup API runs for about **100 ms at 128 MB** per request. Serverless pricing: **$0.20 per million invocations plus $0.0000167 per GB-second**. A `small` VM costs about $15 a month and can serve the same traffic up to about 50 requests per second.\n\n## Do this\n\n1. On **Resources**, create a function `lookup` with 128 MB, 100 ms, **2,000,000** invocations a month, and a `small` VM `lookup-vm`. Compare them on **Billing**.\n2. Edit the function to **200,000,000** invocations (about 77 req/s). Compare again.\n3. Answer the questions. Then delete the VM so the cheap configuration (2 M invocations, function only) is what you leave behind, and set the function back to 2,000,000.",
+  "config": {
+    "panels": [
+      "resources",
+      "billing"
+    ],
+    "allowed": [
+      "function",
+      "vm"
+    ]
+  },
+  "initialState": {
+    "resources": []
+  },
+  "hints": [
+    "GB-seconds = memory in GB × seconds × invocations: 0.125 × 0.1 × 2,000,000 = 25,000 GB-s, about $0.42, plus $0.40 for the invocations.",
+    "At 200 M invocations the function costs about $80; the VM is still $15 but would need two or three of them for 77 req/s with headroom.",
+    "The crossover is where traffic is steady and high; bursty or low traffic favours functions."
+  ],
+  "checks": [
+    {
+      "type": "cloud.exists",
+      "label": "A function with 128 MB, 100 ms, 2 M invocations",
+      "kind": "function",
+      "where": {
+        "memoryMb": 128,
+        "avgMs": 100,
+        "invocationsPerMonth": 2000000
+      }
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Cheaper at 2 M a month",
+      "id": "low",
+      "expected": "Function",
+      "options": [
+        "Function",
+        "Virtual machine"
+      ],
+      "question": "At 2 million requests a month, which is cheaper?"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Cheaper at 200 M a month",
+      "id": "high",
+      "expected": "Virtual machine",
+      "options": [
+        "Function",
+        "Virtual machine"
+      ],
+      "question": "At 200 million requests a month (about 77 per second), which is cheaper?"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Function cost at 200 M",
+      "id": "fncost",
+      "expected": 81.7,
+      "tolerance": 0.1,
+      "question": "Monthly cost of the function at 200 M invocations, in dollars:"
+    },
+    {
+      "type": "cloud.cost",
+      "label": "Final estimate under $10 (function only)",
+      "max": 10
+    },
+    {
+      "type": "cloud.exists",
+      "label": "No virtual machine left",
+      "kind": "vm",
+      "count": 0,
+      "where": {
+        "status": "running"
+      },
+      "message": "Delete the VM: at this traffic the function is the right choice."
+    }
+  ],
+  "realityNote": "Real comparisons add the hidden costs: the VM needs patching, monitoring and a second instance for availability; the function has cold starts and a concurrency limit. Most teams mix both, and the pricing pages change every year, so re-run the sums."
+}

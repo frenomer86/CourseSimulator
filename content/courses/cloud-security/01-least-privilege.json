@@ -1,0 +1,114 @@
+{
+  "engine": "E12",
+  "id": "cloud-security-i1-least-privilege",
+  "course": "cloud-security",
+  "topic": "Least privilege: roles, policies and permission boundaries",
+  "unit": 2,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Least privilege for the results-upload job",
+  "estimatedMinutes": 20,
+  "instructions": "## Everyone is an administrator\n\nA nightly job uploads exam results to the `results` bucket. It runs with user `kofi`'s access key, and kofi is an administrator without MFA. If that key leaks, the whole account is gone.\n\n## Do this\n\n1. On **IAM**, create a policy `results-upload` that allows **only** `s3:PutObject` on `bucket:results`.\n2. Create a role `uploader` with that policy. The job will assume the role instead of using a person's key.\n3. Give `kofi` MFA, remove the administrator policy and attach `results-upload` only, and reduce kofi to one access key.\n4. The scanner must show no findings about kofi.",
+  "config": {
+    "panels": [
+      "iam",
+      "resources",
+      "scanner"
+    ],
+    "allowed": [
+      "bucket"
+    ]
+  },
+  "initialState": {
+    "seq": 3,
+    "resources": [
+      {
+        "id": "bkt-0001",
+        "type": "bucket",
+        "name": "results",
+        "region": "af-west-1",
+        "public": false,
+        "encrypted": true,
+        "versioning": true,
+        "storageGb": 5,
+        "website": false
+      },
+      {
+        "id": "pol-0002",
+        "type": "policy",
+        "name": "administrator",
+        "statements": [
+          {
+            "effect": "Allow",
+            "actions": [
+              "*"
+            ],
+            "resources": [
+              "*"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "usr-0003",
+        "type": "user",
+        "name": "kofi",
+        "policies": [
+          "pol-0002"
+        ],
+        "mfa": false,
+        "accessKeys": 2
+      }
+    ]
+  },
+  "hints": [
+    "In the policy form, add one statement: actions s3:PutObject, resources bucket:results.",
+    "Roles are like users without passwords or keys: a job assumes the role and gets short-lived credentials.",
+    "Edit kofi: tick MFA, set access keys to 1, untick administrator, tick results-upload."
+  ],
+  "checks": [
+    {
+      "type": "cloud.iam",
+      "label": "The uploader role can only put objects in results",
+      "user": "uploader",
+      "hasPolicy": "results-upload",
+      "allowsOnly": [
+        "s3:PutObject"
+      ]
+    },
+    {
+      "type": "cloud.exists",
+      "label": "results-upload names only the results bucket",
+      "kind": "policy",
+      "name": "results-upload",
+      "where": {
+        "statements": [
+          {
+            "effect": "Allow",
+            "actions": [
+              "s3:PutObject"
+            ],
+            "resources": [
+              "bucket:results"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "cloud.iam",
+      "label": "kofi: MFA, no administrator policy, one key",
+      "user": "kofi",
+      "mfa": true,
+      "noWildcard": true,
+      "maxKeys": 1
+    },
+    {
+      "type": "cloud.findings",
+      "label": "Scanner clean",
+      "maxHigh": 0,
+      "maxMedium": 0
+    }
+  ],
+  "realityNote": "On AWS this is an IAM role assumed by the job (or an instance profile) instead of a user access key; access analysers then flag any policy broader than what the logs show is used. Long-lived keys in cron jobs and CI pipelines are the most common leaked secret."
+}

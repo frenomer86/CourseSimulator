@@ -1,0 +1,88 @@
+{
+  "engine": "E12",
+  "id": "site-reliability-engineering-b1-error-budgets",
+  "course": "site-reliability-engineering",
+  "topic": "SLIs, SLOs and error budgets",
+  "unit": 1,
+  "topicIndex": 4,
+  "level": "beginner",
+  "title": "Error budget arithmetic",
+  "estimatedMinutes": 15,
+  "instructions": "## How much can we break?\n\nAn SLO of 99.9% availability over a 30-day month allows 0.1% of the month to fail: that is the **error budget**. Work the numbers for the mobile money transfer service.\n\n| Fact | Value |\n|---|---|\n| Month | 30 days = 43,200 minutes |\n| Transfer SLO | 99.9% of requests succeed |\n| Last month | 12,000,000 requests, 9,600 failed |\n| This month so far | one 25-minute full outage |\n\nAnswer on the right; give minutes to one decimal place where needed.",
+  "config": {
+    "panels": [
+      "billing"
+    ],
+    "allowed": []
+  },
+  "initialState": {
+    "resources": []
+  },
+  "hints": [
+    "Budget in minutes = (1 − SLO) × minutes in the month: 0.001 × 43,200.",
+    "SLI = (requests − failures) / requests. Compare with 99.9%.",
+    "Budget remaining = budget − outage. If it is negative, feature releases pause until the budget recovers."
+  ],
+  "checks": [
+    {
+      "type": "cloud.answer",
+      "label": "Error budget at 99.9%",
+      "id": "budget",
+      "expected": 43.2,
+      "tolerance": 0.02,
+      "absolute": 0.3,
+      "question": "Error budget for the month at 99.9%, in minutes:"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Error budget at 99.95%",
+      "id": "budget2",
+      "expected": 21.6,
+      "tolerance": 0.02,
+      "absolute": 0.3,
+      "question": "Error budget at 99.95%, in minutes:"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Last month's SLI",
+      "id": "sli",
+      "expected": 99.92,
+      "tolerance": 0.001,
+      "absolute": 0.01,
+      "question": "Last month's availability SLI as a percentage (two decimals):"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Was the SLO met last month?",
+      "id": "met",
+      "expected": "Yes",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "question": "Did last month meet the 99.9% SLO?"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Budget left after the outage",
+      "id": "left",
+      "expected": 18.2,
+      "tolerance": 0.02,
+      "absolute": 0.3,
+      "question": "Budget remaining this month after the 25-minute outage, in minutes:"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Release decision",
+      "id": "decision",
+      "expected": "Continue releasing, but watch the burn rate",
+      "options": [
+        "Continue releasing, but watch the burn rate",
+        "Freeze all releases",
+        "Lower the SLO to 99%"
+      ],
+      "question": "With 18 minutes of budget left and two weeks to go, what does the error budget policy say?"
+    }
+  ],
+  "realityNote": "Real SLOs are measured on rolling windows and with burn-rate alerts: a 2% budget burn in one hour pages someone, a slow burn over days opens a ticket. The number of nines is a business decision about cost, not an engineering target."
+}

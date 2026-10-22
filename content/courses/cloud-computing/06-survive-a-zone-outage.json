@@ -1,0 +1,130 @@
+{
+  "engine": "E12",
+  "id": "cloud-computing-a2-survive-a-zone-outage",
+  "course": "cloud-computing",
+  "topic": "Backup, disaster recovery and multi-region design",
+  "unit": 8,
+  "topicIndex": 3,
+  "level": "advanced",
+  "title": "Survive a zone outage and a DDoS",
+  "estimatedMinutes": 25,
+  "instructions": "## Chaos day\n\nThe `outage` scenario loses **zone a** of `af-west-1` for twenty minutes, then sends a **2,000 request-per-second flood** for ten. The payment API must stay at **99.5% availability**.\n\n## Do this\n\nStart from the current single-zone deployment and make it survive:\n\n1. Spread the web tier over **at least two zones**: an autoscaling group `api-asg` (minimum 2, maximum 6, zones a and b, attached to `api-lb`).\n2. Make `payments-db` **Multi-AZ** so a zone loss does not take the database with it.\n3. Add a **web application firewall** to absorb the flood.\n4. Run the `outage` scenario and read what happened minute by minute. Iterate until the SLO is met.",
+  "config": {
+    "panels": [
+      "resources",
+      "network",
+      "monitor",
+      "billing"
+    ],
+    "scenarios": {
+      "outage": {
+        "durationMin": 60,
+        "traffic": [
+          [
+            0,
+            60
+          ],
+          [
+            20,
+            120
+          ]
+        ],
+        "events": [
+          {
+            "at": 10,
+            "kind": "zone-outage",
+            "zone": "af-west-1a",
+            "durationMin": 20
+          },
+          {
+            "at": 35,
+            "kind": "ddos",
+            "extraRps": 2000,
+            "durationMin": 10
+          }
+        ],
+        "sloAvailability": 0.995,
+        "sloP95Ms": 800
+      }
+    }
+  },
+  "initialState": {
+    "seq": 4,
+    "resources": [
+      {
+        "id": "lb-0001",
+        "type": "lb",
+        "name": "api-lb",
+        "region": "af-west-1",
+        "targets": [
+          "i-0002"
+        ],
+        "healthCheck": "/health",
+        "listenerPort": 80
+      },
+      {
+        "id": "i-0002",
+        "type": "vm",
+        "name": "api-1",
+        "region": "af-west-1",
+        "zone": "a",
+        "size": "medium",
+        "image": "Ubuntu 24.04",
+        "publicIp": false,
+        "status": "running",
+        "diskGb": 20
+      },
+      {
+        "id": "db-0003",
+        "type": "db",
+        "name": "payments-db",
+        "region": "af-west-1",
+        "zone": "a",
+        "engine": "PostgreSQL 16",
+        "size": "medium",
+        "multiAz": false,
+        "encrypted": true,
+        "public": false,
+        "backupDays": 7,
+        "storageGb": 50
+      }
+    ]
+  },
+  "hints": [
+    "The load balancer only helps if it has healthy targets in a zone that is still up.",
+    "An autoscaling group replaces instances lost in a dead zone by launching them in the other zone after a few minutes.",
+    "Without a WAF the whole 2,000 req/s reaches the servers; with one, about a tenth does."
+  ],
+  "checks": [
+    {
+      "type": "cloud.asg",
+      "label": "api-asg: 2 to 6 instances across two zones, attached to api-lb",
+      "name": "api-asg",
+      "min": 2,
+      "max": 6,
+      "minZones": 2,
+      "attachedTo": "api-lb"
+    },
+    {
+      "type": "cloud.exists",
+      "label": "payments-db is Multi-AZ",
+      "kind": "db",
+      "name": "payments-db",
+      "where": {
+        "multiAz": true
+      }
+    },
+    {
+      "type": "cloud.exists",
+      "label": "A web application firewall",
+      "kind": "waf"
+    },
+    {
+      "type": "cloud.sim",
+      "label": "The outage scenario keeps 99.5% availability",
+      "scenario": "outage",
+      "availability": 0.995
+    }
+  ],
+  "realityNote": "Providers publish zone outages a few times a year; multi-region failover is the next step for anything that cannot tolerate a whole region failing. Game days that inject exactly these failures are how SRE teams find out before customers do."
+}

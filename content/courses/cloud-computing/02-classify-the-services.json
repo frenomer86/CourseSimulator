@@ -1,0 +1,113 @@
+{
+  "engine": "E12",
+  "id": "cloud-computing-b2-classify-the-services",
+  "course": "cloud-computing",
+  "topic": "IaaS, PaaS, SaaS, FaaS and deployment models",
+  "unit": 2,
+  "topicIndex": 2,
+  "level": "beginner",
+  "title": "Who manages what? Classify the services",
+  "estimatedMinutes": 10,
+  "instructions": "## The responsibility split\n\nAt each service level the provider takes over more of the stack: hardware, virtualisation, operating system, runtime, application, data. Classify each offering, and pick a deployment model for two Ghanaian cases.\n\nAnswer the questions on the right. The **Billing** tab shows how the pricing differs between a VM and a function if you create one of each.",
+  "config": {
+    "panels": [
+      "resources",
+      "billing"
+    ],
+    "allowed": [
+      "vm",
+      "function"
+    ]
+  },
+  "initialState": {
+    "resources": []
+  },
+  "hints": [
+    "IaaS gives you a machine you administer; PaaS runs your code on a managed platform; SaaS is a finished application; FaaS runs single functions on demand.",
+    "A regulator that requires data to stay in-country points to a private or community cloud hosted locally, or an in-country region."
+  ],
+  "checks": [
+    {
+      "type": "cloud.answer",
+      "label": "A virtual machine you patch yourself",
+      "id": "q1",
+      "expected": "IaaS",
+      "options": [
+        "IaaS",
+        "PaaS",
+        "SaaS",
+        "FaaS"
+      ],
+      "question": "A Linux virtual machine on which you install and patch everything yourself:"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "A managed PostgreSQL database",
+      "id": "q2",
+      "expected": "PaaS",
+      "options": [
+        "IaaS",
+        "PaaS",
+        "SaaS",
+        "FaaS"
+      ],
+      "question": "A managed PostgreSQL service with automatic backups and patching:"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Webmail",
+      "id": "q3",
+      "expected": "SaaS",
+      "options": [
+        "IaaS",
+        "PaaS",
+        "SaaS",
+        "FaaS"
+      ],
+      "question": "A webmail service your university subscribes to per user:"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "A function that runs on each upload",
+      "id": "q4",
+      "expected": "FaaS",
+      "options": [
+        "IaaS",
+        "PaaS",
+        "SaaS",
+        "FaaS"
+      ],
+      "question": "A piece of code that runs for 200 ms each time a file is uploaded, billed per invocation:"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Bank with in-country data rules",
+      "id": "q5",
+      "expected": [
+        "Private cloud",
+        "Community cloud"
+      ],
+      "options": [
+        "Public cloud",
+        "Private cloud",
+        "Community cloud",
+        "Hybrid cloud"
+      ],
+      "question": "A bank whose regulator requires customer data to stay in Ghana and under its own control:"
+    },
+    {
+      "type": "cloud.answer",
+      "label": "Start-up with no capital",
+      "id": "q6",
+      "expected": "Public cloud",
+      "options": [
+        "Public cloud",
+        "Private cloud",
+        "Community cloud",
+        "Hybrid cloud"
+      ],
+      "question": "A three-person start-up that needs to launch next month with no money for servers:"
+    }
+  ],
+  "realityNote": "The shared responsibility model is the same question asked about security: at every level, the customer still owns their data, identities and configuration, whatever the provider manages underneath."
+}
