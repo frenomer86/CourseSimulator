@@ -1,0 +1,115 @@
+{
+  "id": "systems-administration-ii-a2-ssh-hardening",
+  "course": "systems-administration-ii",
+  "topic": "SSH keys and hardening sshd",
+  "unit": 7,
+  "topicIndex": 3,
+  "level": "advanced",
+  "engine": "E4",
+  "title": "Harden SSH on the server",
+  "estimatedMinutes": 25,
+  "instructions": "## Stop the password guessing\n\n`/var/log/auth.log` shows thousands of failed password logins for root from the internet. You are **ama**, an administrator with sudo. Move the server to key-based logins only.\n\n## Do this\n\n1. Look at the attack: `sudo grep \"Failed password\" /var/log/auth.log | wc -l`.\n2. Generate yourself an **ed25519** key pair with `ssh-keygen` (keep the default file name).\n3. Authorise your public key on this server: append `~/.ssh/id_ed25519.pub` to `~/.ssh/authorized_keys`. Make sure `~/.ssh` is mode **700** and `authorized_keys` is mode **600**, or sshd will ignore it.\n4. Edit `/etc/ssh/sshd_config` (with sudo) so that `PasswordAuthentication no` and `PermitRootLogin no`. Change the existing lines; do not leave the old ones in force.\n5. Restart `sshd` and confirm it is still active before you close your session.",
+  "config": {
+    "reference": [
+      "sudo grep \"Failed password\" /var/log/auth.log | wc -l",
+      "ssh-keygen -t ed25519",
+      "cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys",
+      "chmod 700 ~/.ssh",
+      "chmod 600 ~/.ssh/authorized_keys",
+      "sudo nano /etc/ssh/sshd_config",
+      "sudo systemctl restart sshd",
+      "systemctl status sshd"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-gw",
+      "user": "ama",
+      "users": {
+        "ama": {
+          "sudo": true
+        }
+      },
+      "network": {
+        "address": "196.201.44.10/24",
+        "gateway": "196.201.44.1"
+      },
+      "files": {
+        "/etc/ssh/sshd_config": "# sshd_config\nPort 22\nPermitRootLogin yes\nPasswordAuthentication yes\nPubkeyAuthentication yes\nAuthorizedKeysFile .ssh/authorized_keys\nX11Forwarding no\n",
+        "/var/log/auth.log": {
+          "content": "Oct 22 00:00:10 ktp-gw sshd[2200]: Failed password for root from 45.155.205.0 port 40000 ssh2\nOct 22 00:03:11 ktp-gw sshd[2201]: Failed password for root from 45.155.205.13 port 40001 ssh2\nOct 22 00:06:12 ktp-gw sshd[2202]: Failed password for root from 45.155.205.26 port 40002 ssh2\nOct 22 00:09:13 ktp-gw sshd[2203]: Failed password for root from 45.155.205.39 port 40003 ssh2\nOct 22 00:12:14 ktp-gw sshd[2204]: Failed password for root from 45.155.205.52 port 40004 ssh2\nOct 22 00:15:15 ktp-gw sshd[2205]: Failed password for root from 45.155.205.65 port 40005 ssh2\nOct 22 00:18:16 ktp-gw sshd[2206]: Failed password for root from 45.155.205.78 port 40006 ssh2\nOct 22 00:21:17 ktp-gw sshd[2207]: Failed password for root from 45.155.205.91 port 40007 ssh2\nOct 22 00:24:18 ktp-gw sshd[2208]: Failed password for root from 45.155.205.104 port 40008 ssh2\nOct 22 00:27:19 ktp-gw sshd[2209]: Failed password for root from 45.155.205.117 port 40009 ssh2\nOct 22 01:30:10 ktp-gw sshd[2210]: Failed password for root from 45.155.205.130 port 40010 ssh2\nOct 22 01:33:11 ktp-gw sshd[2211]: Failed password for root from 45.155.205.143 port 40011 ssh2\nOct 22 01:36:12 ktp-gw sshd[2212]: Failed password for root from 45.155.205.156 port 40012 ssh2\nOct 22 01:39:13 ktp-gw sshd[2213]: Failed password for root from 45.155.205.169 port 40013 ssh2\nOct 22 01:42:14 ktp-gw sshd[2214]: Failed password for root from 45.155.205.182 port 40014 ssh2\nOct 22 01:45:15 ktp-gw sshd[2215]: Failed password for root from 45.155.205.195 port 40015 ssh2\nOct 22 01:48:16 ktp-gw sshd[2216]: Failed password for root from 45.155.205.208 port 40016 ssh2\nOct 22 01:51:17 ktp-gw sshd[2217]: Failed password for root from 45.155.205.221 port 40017 ssh2\nOct 22 01:54:18 ktp-gw sshd[2218]: Failed password for root from 45.155.205.234 port 40018 ssh2\nOct 22 01:57:19 ktp-gw sshd[2219]: Failed password for root from 45.155.205.247 port 40019 ssh2\nOct 22 02:00:10 ktp-gw sshd[2220]: Failed password for root from 45.155.205.10 port 40020 ssh2\nOct 22 02:03:11 ktp-gw sshd[2221]: Failed password for root from 45.155.205.23 port 40021 ssh2\nOct 22 02:06:12 ktp-gw sshd[2222]: Failed password for root from 45.155.205.36 port 40022 ssh2\nOct 22 02:09:13 ktp-gw sshd[2223]: Failed password for root from 45.155.205.49 port 40023 ssh2\nOct 22 02:12:14 ktp-gw sshd[2224]: Failed password for root from 45.155.205.62 port 40024 ssh2\nOct 22 02:15:15 ktp-gw sshd[2225]: Failed password for root from 45.155.205.75 port 40025 ssh2\nOct 22 02:18:16 ktp-gw sshd[2226]: Failed password for root from 45.155.205.88 port 40026 ssh2\nOct 22 02:21:17 ktp-gw sshd[2227]: Failed password for root from 45.155.205.101 port 40027 ssh2\nOct 22 02:24:18 ktp-gw sshd[2228]: Failed password for root from 45.155.205.114 port 40028 ssh2\nOct 22 02:27:19 ktp-gw sshd[2229]: Failed password for root from 45.155.205.127 port 40029 ssh2\nOct 22 03:30:10 ktp-gw sshd[2230]: Failed password for root from 45.155.205.140 port 40030 ssh2\nOct 22 03:33:11 ktp-gw sshd[2231]: Failed password for root from 45.155.205.153 port 40031 ssh2\nOct 22 03:36:12 ktp-gw sshd[2232]: Failed password for root from 45.155.205.166 port 40032 ssh2\nOct 22 03:39:13 ktp-gw sshd[2233]: Failed password for root from 45.155.205.179 port 40033 ssh2\nOct 22 03:42:14 ktp-gw sshd[2234]: Failed password for root from 45.155.205.192 port 40034 ssh2\nOct 22 03:45:15 ktp-gw sshd[2235]: Failed password for root from 45.155.205.205 port 40035 ssh2\nOct 22 03:48:16 ktp-gw sshd[2236]: Failed password for root from 45.155.205.218 port 40036 ssh2\nOct 22 03:51:17 ktp-gw sshd[2237]: Failed password for root from 45.155.205.231 port 40037 ssh2\nOct 22 03:54:18 ktp-gw sshd[2238]: Failed password for root from 45.155.205.244 port 40038 ssh2\nOct 22 03:57:19 ktp-gw sshd[2239]: Failed password for root from 45.155.205.7 port 40039 ssh2\n",
+          "mode": "640",
+          "owner": "root",
+          "group": "adm"
+        }
+      }
+    }
+  },
+  "hints": [
+    "ssh-keygen -t ed25519 writes ~/.ssh/id_ed25519 (private, keep secret) and ~/.ssh/id_ed25519.pub (public).",
+    "cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys appends the key; then chmod 600 ~/.ssh/authorized_keys and chmod 700 ~/.ssh.",
+    "sudo sed -i \"s/^PasswordAuthentication yes/PasswordAuthentication no/; s/^PermitRootLogin yes/PermitRootLogin no/\" /etc/ssh/sshd_config changes both lines without an editor.",
+    "sudo systemctl restart sshd, then systemctl is-active sshd."
+  ],
+  "checks": [
+    {
+      "type": "sh.ran",
+      "label": "You measured the attack with grep",
+      "pattern": "grep.*Failed password"
+    },
+    {
+      "type": "sh.file",
+      "label": "An ed25519 key pair exists",
+      "path": "/home/ama/.ssh/id_ed25519.pub",
+      "contains": "ssh-ed25519"
+    },
+    {
+      "type": "sh.file",
+      "label": "Private key is mode 600",
+      "path": "/home/ama/.ssh/id_ed25519",
+      "mode": "600"
+    },
+    {
+      "type": "sh.file",
+      "label": "authorized_keys holds your key, mode 600",
+      "path": "/home/ama/.ssh/authorized_keys",
+      "contains": "ssh-ed25519",
+      "mode": "600",
+      "owner": "ama"
+    },
+    {
+      "type": "sh.file",
+      "label": "~/.ssh is mode 700",
+      "path": "/home/ama/.ssh",
+      "kind": "dir",
+      "mode": "700"
+    },
+    {
+      "type": "sh.file",
+      "label": "Password logins disabled",
+      "path": "/etc/ssh/sshd_config",
+      "pattern": "^PasswordAuthentication no\\s*$",
+      "notContains": "PasswordAuthentication yes",
+      "message": "sshd_config must have PasswordAuthentication no, and no line still saying yes."
+    },
+    {
+      "type": "sh.file",
+      "label": "Root login disabled",
+      "path": "/etc/ssh/sshd_config",
+      "pattern": "^PermitRootLogin no\\s*$",
+      "notContains": "PermitRootLogin yes"
+    },
+    {
+      "type": "sh.service",
+      "label": "sshd restarted and active",
+      "name": "sshd",
+      "active": true
+    },
+    {
+      "type": "sh.ran",
+      "label": "You restarted sshd",
+      "pattern": "systemctl\\s+(restart|reload)\\s+sshd"
+    }
+  ],
+  "realityNote": "Always keep one session open while you restart sshd, and test a new login from a second terminal before you log out: a typo here locks you out of a remote server. Fail2ban and moving sshd off port 22 reduce the noise further, but keys are the real fix."
+}

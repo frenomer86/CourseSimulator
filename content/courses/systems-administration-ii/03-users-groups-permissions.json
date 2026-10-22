@@ -1,0 +1,106 @@
+{
+  "id": "systems-administration-ii-i1-users-groups-permissions",
+  "course": "systems-administration-ii",
+  "topic": "Users, groups, ownership and mode bits",
+  "unit": 5,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "engine": "E4",
+  "title": "A shared folder for the finance office",
+  "estimatedMinutes": 25,
+  "instructions": "## The finance office needs a shared folder\n\nYou are **ama**, who can use `sudo`. Two new staff, **kofi** and **esi**, join the finance office. They must share files in `/srv/finance` that nobody else can read, and the auditors group must be able to read (but not change) them.\n\n## Do this\n\n1. Create the groups `finance` and `auditors`.\n2. Create users `kofi` and `esi` **with home directories**, in the `finance` group, and set each a password.\n3. Create `/srv/finance`, owned by `root` with group `finance`, mode **2770**: group members have full access, others none, and the setgid bit makes new files inherit the group.\n4. Give the `auditors` group read and execute on `/srv/finance` with an ACL (`setfacl -m g:auditors:r-x`).\n5. Test it: `su - kofi`, create `/srv/finance/budget.txt` with some text, then `exit`. Check with `ls -l` that the file belongs to group finance.\n\nRead `man useradd`, `man chmod` and `man setfacl` when stuck.",
+  "config": {
+    "reference": [
+      "sudo groupadd NAME",
+      "sudo useradd -m -G GROUP NAME",
+      "sudo passwd NAME",
+      "sudo chown root:GROUP DIR",
+      "sudo chmod 2770 DIR",
+      "sudo setfacl -m g:GROUP:r-x DIR",
+      "getfacl DIR",
+      "su - USER",
+      "id USER"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-files",
+      "user": "ama",
+      "users": {
+        "ama": {
+          "sudo": true
+        }
+      },
+      "files": {
+        "/srv/": null
+      }
+    }
+  },
+  "hints": [
+    "Most of these commands need sudo. If you see \"Permission denied\", that is why.",
+    "useradd -m -G finance kofi creates kofi with a home directory and adds the supplementary group finance.",
+    "chmod 2770 /srv/finance: the leading 2 is the setgid bit. getfacl shows the result including ACL entries.",
+    "After su - kofi you are kofi: touch /srv/finance/budget.txt, then exit to come back."
+  ],
+  "checks": [
+    {
+      "type": "sh.group",
+      "label": "Group finance with kofi and esi",
+      "name": "finance",
+      "members": [
+        "kofi",
+        "esi"
+      ]
+    },
+    {
+      "type": "sh.group",
+      "label": "Group auditors exists",
+      "name": "auditors"
+    },
+    {
+      "type": "sh.user",
+      "label": "kofi has a home and a password",
+      "name": "kofi",
+      "homeExists": true,
+      "hasPassword": true
+    },
+    {
+      "type": "sh.user",
+      "label": "esi has a home and a password",
+      "name": "esi",
+      "homeExists": true,
+      "hasPassword": true
+    },
+    {
+      "type": "sh.file",
+      "label": "/srv/finance is root:finance, mode 2770",
+      "path": "/srv/finance",
+      "kind": "dir",
+      "owner": "root",
+      "group": "finance",
+      "mode": "2770"
+    },
+    {
+      "type": "sh.file",
+      "label": "auditors can read via ACL",
+      "path": "/srv/finance",
+      "acl": "g:auditors:r-x"
+    },
+    {
+      "type": "sh.file",
+      "label": "budget.txt created by kofi in group finance",
+      "path": "/srv/finance/budget.txt",
+      "owner": "kofi",
+      "group": "finance",
+      "message": "Create /srv/finance/budget.txt as kofi (su - kofi). With the setgid bit set, its group will be finance."
+    },
+    {
+      "type": "sh.output",
+      "label": "Others cannot enter the folder",
+      "command": "su - ama -c \"ls /srv/finance\"",
+      "contains": "Permission denied",
+      "message": "A user outside finance and auditors (like ama) must get Permission denied on /srv/finance. Check the mode: others must have no bits."
+    }
+  ],
+  "realityNote": "This is the classic Unix pattern for a departmental share: a group, a setgid directory, and ACLs for the exceptions. On a real server you would also set the umask for the group (002) so new files are group-writable, and audit with getfacl -R."
+}

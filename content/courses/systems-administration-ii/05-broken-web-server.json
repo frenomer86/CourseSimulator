@@ -1,0 +1,115 @@
+{
+  "id": "systems-administration-ii-a1-broken-web-server",
+  "course": "systems-administration-ii",
+  "topic": "Troubleshooting from logs: journalctl, systemctl, configuration",
+  "unit": 10,
+  "topicIndex": 2,
+  "level": "advanced",
+  "engine": "E4",
+  "title": "The department website is down",
+  "estimatedMinutes": 30,
+  "instructions": "## Nobody can open the department website\n\nThe night technician \"fixed something\" and left. Apache is installed on this server, but the site is down. You are **root**.\n\n## Do this\n\nWork from the evidence, not from guesses:\n\n1. `systemctl status apache2` and `journalctl -u apache2` tell you why it will not start. Fix the configuration file named in the error.\n2. Start the service and **enable** it so it survives a reboot.\n3. `curl http://localhost/` should return the page. If it does not, check that the document root `/srv/www/htdocs/index.html` exists (the backup is in `/var/backups`).\n4. The firewall must allow **http**: `firewall-cmd --list-services`, then add the service permanently and reload.\n5. Press **Check my work**.",
+  "config": {
+    "reference": [
+      "systemctl status apache2",
+      "journalctl -u apache2 -n 20",
+      "nano /etc/apache2/listen.conf",
+      "apachectl configtest",
+      "systemctl enable --now apache2",
+      "curl http://localhost/",
+      "firewall-cmd --add-service=http --permanent",
+      "firewall-cmd --reload",
+      "tar -xzf ARCHIVE -C /"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-web",
+      "user": "root",
+      "packages": {
+        "apache2": {
+          "installed": true
+        }
+      },
+      "services": {
+        "apache2": {
+          "description": "The Apache Webserver",
+          "active": false,
+          "enabled": false,
+          "logs": [
+            "AH00526: Syntax error on line 1 of /etc/apache2/listen.conf:",
+            "Port must be specified",
+            "apache2.service: Main process exited, code=exited, status=1/FAILURE",
+            "Failed to start The Apache Webserver."
+          ],
+          "faults": [
+            {
+              "file": "/etc/apache2/listen.conf",
+              "pattern": "Listen\\s+8o\\b",
+              "message": "AH00526: Syntax error on line 1 of /etc/apache2/listen.conf: Port must be specified"
+            },
+            {
+              "missing": "/srv/www/htdocs",
+              "message": "AH00112: Warning: DocumentRoot [/srv/www/htdocs] does not exist"
+            }
+          ]
+        }
+      },
+      "files": {
+        "/etc/apache2/httpd.conf": "# Main configuration\nInclude /etc/apache2/listen.conf\nDocumentRoot \"/srv/www/htdocs\"\nErrorLog /var/log/apache2/error_log\n",
+        "/etc/apache2/listen.conf": "# Port the server listens on\nListen 8o\n",
+        "/var/log/apache2/error_log": "[Tue Oct 21 23:41:02 2026] [core:error] AH00526: Syntax error on line 1 of /etc/apache2/listen.conf: Port must be specified\n",
+        "/var/backups/htdocs-2026-10-20.tar.gz": "#CSLAB-TAR\n[{\"path\":\"srv/www/htdocs/\",\"type\":\"dir\",\"mode\":493,\"owner\":\"root\",\"group\":\"root\",\"mtime\":0},{\"path\":\"srv/www/htdocs/index.html\",\"type\":\"file\",\"content\":\"<h1>Department of Computer Science</h1>\\n<p>Welcome to the portal.</p>\\n\",\"mode\":420,\"owner\":\"root\",\"group\":\"root\",\"mtime\":0}]",
+        "/etc/firewalld/zones/public.xml": "service:ssh\nservice:dhcpv6-client\n"
+      }
+    }
+  },
+  "hints": [
+    "journalctl -u apache2 shows \"Port must be specified\" on line 1 of listen.conf: the letter o was typed instead of the digit 0.",
+    "After fixing the file, apachectl configtest should say Syntax OK. Then systemctl enable --now apache2.",
+    "The document root was deleted. Restore it from the archive: tar -xzf /var/backups/htdocs-2026-10-20.tar.gz -C /",
+    "firewall-cmd --permanent --add-service=http then firewall-cmd --reload."
+  ],
+  "checks": [
+    {
+      "type": "sh.file",
+      "label": "listen.conf fixed",
+      "path": "/etc/apache2/listen.conf",
+      "pattern": "^Listen\\s+80\\s*$",
+      "notContains": "8o",
+      "message": "listen.conf must say \"Listen 80\" (digit zero)."
+    },
+    {
+      "type": "sh.service",
+      "label": "apache2 running and enabled",
+      "name": "apache2",
+      "active": true,
+      "enabled": true
+    },
+    {
+      "type": "sh.file",
+      "label": "Document root restored",
+      "path": "/srv/www/htdocs/index.html",
+      "contains": "Department of Computer Science"
+    },
+    {
+      "type": "sh.output",
+      "label": "curl gets the page",
+      "command": "curl -s http://localhost/",
+      "contains": "Department of Computer Science"
+    },
+    {
+      "type": "sh.output",
+      "label": "Firewall allows http",
+      "command": "firewall-cmd --list-services",
+      "contains": "http"
+    },
+    {
+      "type": "sh.ran",
+      "label": "You read the logs first",
+      "pattern": "^(sudo )?(journalctl|systemctl status)",
+      "message": "Use journalctl -u apache2 or systemctl status apache2 to see why it failed."
+    }
+  ],
+  "realityNote": "The order you used is the troubleshooting method from the course: symptom, service status, logs, configuration test, fix, verify locally, then check the network path (firewall). Writing the steps into a runbook is what turns one fix into a repeatable one."
+}

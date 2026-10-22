@@ -1,0 +1,93 @@
+{
+  "id": "operating-systems-b1-processes-and-signals",
+  "course": "operating-systems",
+  "topic": "Processes: states, creation and termination; the process tree",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E4",
+  "title": "Find and stop a runaway process",
+  "estimatedMinutes": 15,
+  "instructions": "## The server is crawling\n\nStudents complain that the lab server is slow. Something is eating the CPU. You are **ama** and you have sudo.\n\n## Do this\n\n1. Look at the process table with `ps aux` and `top`. Find the process using almost all the CPU. Note its **PID**, its **user** and its **command**.\n2. Try to stop it with `kill PID` as yourself. Read the error: you may only signal your own processes.\n3. Stop it as root. Use the polite signal first (`kill`, which sends TERM = 15); if a process ignores it, `kill -9` (KILL) cannot be ignored.\n4. Confirm with `ps aux | grep` that it is gone (`pgrep` is handy too).\n5. Write an incident note in `~/incident.txt`: one line with the PID, the user and the command you stopped.",
+  "config": {
+    "reference": [
+      "ps aux",
+      "ps aux --sort=-%cpu | head",
+      "top",
+      "pgrep -f NAME",
+      "kill PID",
+      "sudo kill -9 PID",
+      "echo \"text\" > FILE"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-lab01",
+      "user": "ama",
+      "users": {
+        "ama": {
+          "sudo": true
+        },
+        "kwame": {}
+      },
+      "processes": [
+        {
+          "pid": 2457,
+          "user": "kwame",
+          "cmd": "/usr/bin/python3 /home/kwame/mine.py",
+          "cpu": 98.7,
+          "mem": 11.2
+        },
+        {
+          "pid": 2301,
+          "user": "kwame",
+          "cmd": "-bash",
+          "cpu": 0,
+          "mem": 0.1
+        }
+      ]
+    }
+  },
+  "hints": [
+    "ps aux prints USER, PID and %CPU as the first three columns; the hog is near the top of top.",
+    "kill 2457 as ama fails with Operation not permitted because the process belongs to kwame. sudo kill 2457 works.",
+    "echo \"2457 kwame /usr/bin/python3 /home/kwame/mine.py\" > ~/incident.txt"
+  ],
+  "checks": [
+    {
+      "type": "sh.ran",
+      "label": "You looked at the process table",
+      "pattern": "^(ps\\b|top\\b|htop\\b|pgrep\\b)"
+    },
+    {
+      "type": "sh.ran",
+      "label": "You tried kill as yourself first",
+      "pattern": "^kill\\s+(-\\S+\\s+)?2457",
+      "message": "Try kill 2457 without sudo first, and read the error."
+    },
+    {
+      "type": "sh.process",
+      "label": "The runaway process is stopped",
+      "name": "mine.py",
+      "running": false
+    },
+    {
+      "type": "sh.process",
+      "label": "kwame's shell was left alone",
+      "name": "-bash",
+      "running": true,
+      "message": "Only the runaway process should be killed, not every process kwame owns."
+    },
+    {
+      "type": "sh.file",
+      "label": "incident.txt names the PID, user and command",
+      "path": "/home/ama/incident.txt",
+      "contains": [
+        "2457",
+        "kwame",
+        "mine.py"
+      ]
+    }
+  ],
+  "realityNote": "On a real multi-user server you would also talk to the owner, look at what the program was (a crypto miner in /home is an incident, a runaway student script is a lesson), and consider ulimit or cgroups to stop one user taking the whole CPU."
+}

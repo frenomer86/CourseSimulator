@@ -1,0 +1,96 @@
+{
+  "id": "systems-administration-ii-b1-find-your-way-around",
+  "course": "systems-administration-ii",
+  "topic": "Core commands: ls, cd, cp, mv, rm, mkdir, find",
+  "unit": 3,
+  "topicIndex": 2,
+  "level": "beginner",
+  "engine": "E4",
+  "title": "Find your way around the shell",
+  "estimatedMinutes": 15,
+  "instructions": "## Your first shell session\n\nYou are **ama**, a new technician at the polytechnic. Your home directory is a mess: files from a previous project are scattered about.\n\n## Do this\n\n1. Look around with `pwd`, `ls` and `ls -la`. Read `man ls` if you are unsure what the columns mean.\n2. Create the directory `projects/thesis` (one command can make both levels).\n3. Move the three `.md` files from your home into `projects/thesis`.\n4. Copy `/etc/hostname` to `notes/hostname.txt`.\n5. Delete the `old` directory and everything inside it.\n6. Use `find /var/log -name \"*.log\"` to see the log files, then press **Check my work**.\n\nEvery command has a manual page: `man cp`, `man mv`, `man find`.",
+  "config": {
+    "reference": [
+      "ls -la",
+      "mkdir -p DIR/SUBDIR",
+      "mv FILE... DIR",
+      "cp SOURCE DEST",
+      "rm -r DIR",
+      "find PATH -name \"PATTERN\"",
+      "man COMMAND"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-lab01",
+      "user": "ama",
+      "files": {
+        "/home/ama/proposal.md": "# Thesis proposal\n\nA virtual lab for computer science.\n",
+        "/home/ama/literature.md": "# Literature review\n\n- Papert (1980)\n- Brown (2015)\n",
+        "/home/ama/methods.md": "# Methods\n\nDesign science.\n",
+        "/home/ama/todo.txt": "buy data bundle\nemail supervisor\n",
+        "/home/ama/notes/": null,
+        "/home/ama/old/draft1.txt": "old draft\n",
+        "/home/ama/old/draft2.txt": "older draft\n",
+        "/home/ama/old/tmp/scratch.txt": "scratch\n",
+        "/home/ama/.bashrc": "# ~/.bashrc\nalias ll=\"ls -l\"\n",
+        "/var/log/app.log": "INFO started\n",
+        "/var/log/backup.log": "INFO ok\n"
+      }
+    }
+  },
+  "hints": [
+    "mkdir -p projects/thesis creates both directories in one go.",
+    "mv *.md projects/thesis moves every file ending in .md; the shell expands the star.",
+    "rm -r old removes a directory and its contents. There is no undo, so look first with ls -R old."
+  ],
+  "checks": [
+    {
+      "type": "sh.file",
+      "label": "projects/thesis exists",
+      "path": "/home/ama/projects/thesis",
+      "kind": "dir"
+    },
+    {
+      "type": "sh.output",
+      "label": "The three .md files are in projects/thesis",
+      "command": "ls -1 /home/ama/projects/thesis",
+      "pattern": "^literature\\.md\\nmethods\\.md\\nproposal\\.md$",
+      "message": "projects/thesis should contain exactly proposal.md, literature.md and methods.md."
+    },
+    {
+      "type": "sh.file",
+      "label": "No .md files left in your home",
+      "path": "/home/ama/proposal.md",
+      "exists": false,
+      "message": "proposal.md is still in your home directory. Move it (mv), do not copy it."
+    },
+    {
+      "type": "sh.file",
+      "label": "notes/hostname.txt copied",
+      "path": "/home/ama/notes/hostname.txt",
+      "contains": "ktp-lab01"
+    },
+    {
+      "type": "sh.file",
+      "label": "old directory removed",
+      "path": "/home/ama/old",
+      "exists": false,
+      "message": "The old directory is still there. rm needs -r to remove a directory."
+    },
+    {
+      "type": "sh.file",
+      "label": "todo.txt untouched",
+      "path": "/home/ama/todo.txt",
+      "contains": "email supervisor",
+      "message": "todo.txt should still be in your home with its contents."
+    },
+    {
+      "type": "sh.ran",
+      "label": "You used find",
+      "pattern": "^find\\b",
+      "message": "Run find /var/log -name \"*.log\" to list the log files."
+    }
+  ],
+  "realityNote": "These commands behave the same on every Linux and on macOS. The one habit to build now: run ls before rm, and never type rm -rf / or rm -rf * without looking at where you are."
+}

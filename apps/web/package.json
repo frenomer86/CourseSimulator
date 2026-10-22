@@ -21,6 +21,7 @@
     "@cslab/engine-maths": "*",
     "@cslab/engine-network": "*",
     "@cslab/engine-scenario": "*",
+    "@cslab/engine-shell": "*",
     "@cslab/engine-sql": "*",
     "@cslab/engine-visualiser": "*",
     "@cslab/lab-runtime": "*",

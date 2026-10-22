@@ -1,0 +1,89 @@
+{
+  "id": "systems-administration-ii-i2-backup-script-and-cron",
+  "course": "systems-administration-ii",
+  "topic": "Scripts for backups; scheduling with cron",
+  "unit": 4,
+  "topicIndex": 4,
+  "level": "intermediate",
+  "engine": "E4",
+  "title": "A nightly backup script",
+  "estimatedMinutes": 30,
+  "instructions": "## Back up the website every night\n\nThe department website lives in `/srv/www`. You are **root** on this machine. Write a script that archives it, and schedule it with cron.\n\n## Do this\n\n1. Create `/usr/local/bin/backup.sh` with `nano` (or `cat > file <<'EOF'`). It must:\n   - start with `#!/bin/bash` and `set -euo pipefail`;\n   - create `/var/backups` if it does not exist (`mkdir -p`);\n   - create `/var/backups/www-YYYY-MM-DD.tar.gz` containing `/srv/www`, using `$(date +%F)` for the date;\n   - print one line saying which file it wrote.\n2. Make it executable and run it once. Check the archive with `ls -l /var/backups` and `tar -tzf`.\n3. Schedule it in **root's crontab** every day at **02:00** (`crontab -e`).\n4. Bonus: make the script delete archives older than 14 days with `find /var/backups -name \"www-*.tar.gz\" -mtime +14 -delete`.",
+  "config": {
+    "reference": [
+      "nano /usr/local/bin/backup.sh",
+      "chmod +x FILE",
+      "tar -czf ARCHIVE.tar.gz DIR",
+      "date +%F",
+      "tar -tzf ARCHIVE.tar.gz",
+      "crontab -e",
+      "crontab -l",
+      "bash -x SCRIPT"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-web",
+      "user": "root",
+      "files": {
+        "/srv/www/index.html": "<h1>Department of Computer Science</h1>\n",
+        "/srv/www/courses.html": "<h2>Courses</h2>\n",
+        "/srv/www/css/site.css": "body { font-family: sans-serif }\n",
+        "/var/backups/": null
+      }
+    }
+  },
+  "hints": [
+    "A minimal script:\n#!/bin/bash\nset -euo pipefail\nmkdir -p /var/backups\nfile=\"/var/backups/www-$(date +%F).tar.gz\"\ntar -czf \"$file\" /srv/www\necho \"Backup written to $file\"",
+    "chmod +x /usr/local/bin/backup.sh, then run it by typing /usr/local/bin/backup.sh or just backup.sh (it is on the PATH).",
+    "The crontab line for 02:00 every day: 0 2 * * * /usr/local/bin/backup.sh. The five fields are minute, hour, day of month, month, day of week."
+  ],
+  "checks": [
+    {
+      "type": "sh.file",
+      "label": "backup.sh exists and is executable",
+      "path": "/usr/local/bin/backup.sh",
+      "pattern": "^#!/bin/bash",
+      "message": "Create /usr/local/bin/backup.sh starting with #!/bin/bash."
+    },
+    {
+      "type": "sh.file",
+      "label": "The script uses tar and date",
+      "path": "/usr/local/bin/backup.sh",
+      "contains": [
+        "tar",
+        "date +%F"
+      ],
+      "message": "The script should call tar and use $(date +%F) in the archive name."
+    },
+    {
+      "type": "sh.file",
+      "label": "The script fails fast with set -euo pipefail",
+      "path": "/usr/local/bin/backup.sh",
+      "pattern": "set -euo pipefail"
+    },
+    {
+      "type": "sh.script",
+      "label": "Running it creates a dated archive",
+      "path": "/usr/local/bin/backup.sh",
+      "status": 0,
+      "creates": "/var/backups/www-2026-10-22.tar.gz",
+      "pattern": "www-\\d{4}-\\d{2}-\\d{2}\\.tar\\.gz",
+      "message": "The script must run without error, create /var/backups/www-YYYY-MM-DD.tar.gz and print the file name."
+    },
+    {
+      "type": "sh.output",
+      "label": "The archive contains the site",
+      "command": "tar -tzf /var/backups/www-2026-10-22.tar.gz",
+      "contains": "srv/www/index.html",
+      "message": "Run the script once so the archive exists, and make sure it contains srv/www/index.html."
+    },
+    {
+      "type": "sh.cron",
+      "label": "Scheduled daily at 02:00 in root's crontab",
+      "user": "root",
+      "pattern": "^\\s*0\\s+2\\s+\\*\\s+\\*\\s+\\*\\s+/usr/local/bin/backup\\.sh"
+    }
+  ],
+  "realityNote": "Real backup scripts also copy the archive off the machine (rsync to another server or object storage), test restores, and log to syslog. Cron sends the script's output by mail, so a quiet script is a good script: print only what matters."
+}

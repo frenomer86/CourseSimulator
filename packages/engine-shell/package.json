@@ -1,0 +1,12 @@
+{
+  "name": "@cslab/engine-shell",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Terminal engine (E4): a simulated Linux system with a permissioned file system, users and groups, a bash-subset shell, services, packages and cron.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@cslab/lab-runtime": "*"
+  }
+}

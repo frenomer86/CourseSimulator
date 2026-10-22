@@ -1,0 +1,90 @@
+{
+  "id": "systems-administration-ii-b2-pipes-and-text",
+  "course": "systems-administration-ii",
+  "topic": "Text processing: grep, sort, uniq, cut, wc, awk",
+  "unit": 3,
+  "topicIndex": 4,
+  "level": "beginner",
+  "engine": "E4",
+  "title": "Read a web log with pipes",
+  "estimatedMinutes": 20,
+  "instructions": "## What happened on the website last night?\n\nThe portal's access log is in `/var/log/portal/access.log`. Each line is: **IP address**, two dashes, a timestamp, the request, the **status code** and the size. The lecturer wants a short report.\n\n## Do this\n\n1. Count the lines with `wc -l`. Look at the first few with `head`.\n2. Make a directory `report` in your home.\n3. Put a count of requests per IP address, most frequent first, in `report/top-ips.txt`. Chain `cut`, `sort`, `uniq -c` and `sort -rn` with pipes.\n4. Put every request that returned status **500** in `report/errors.txt` (`grep`).\n5. Write just the number of 500 errors to `report/error-count.txt`.\n6. Which page was requested most? Write only its path (for example `/index.html`) to `report/top-page.txt`. `awk '{print $7}'` extracts the seventh field.\n\nUse `>` to send a command's output to a file.",
+  "config": {
+    "reference": [
+      "head -n 5 FILE",
+      "wc -l FILE",
+      "cut -d\" \" -f1 FILE",
+      "sort | uniq -c | sort -rn",
+      "grep \" 500 \" FILE",
+      "awk '{print $7}' FILE",
+      "command > file"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-web",
+      "user": "ama",
+      "files": {
+        "/var/log/portal/access.log": {
+          "content": "10.0.0.7 - - [21/Oct/2026:08:00:05 +0000] \"GET /index.html HTTP/1.1\" 200 512\n41.215.160.12 - - [21/Oct/2026:08:07:05 +0000] \"GET /courses HTTP/1.1\" 200 549\n10.0.0.7 - - [21/Oct/2026:08:14:05 +0000] \"GET /login HTTP/1.1\" 200 586\n196.201.44.9 - - [21/Oct/2026:09:21:05 +0000] \"GET /results HTTP/1.1\" 500 623\n10.0.0.7 - - [21/Oct/2026:09:28:05 +0000] \"GET /library HTTP/1.1\" 200 660\n41.215.160.12 - - [21/Oct/2026:09:35:05 +0000] \"GET /static/app.js HTTP/1.1\" 404 697\n10.0.0.7 - - [21/Oct/2026:10:42:05 +0000] \"GET /admin HTTP/1.1\" 200 734\n102.176.8.33 - - [21/Oct/2026:10:49:05 +0000] \"GET /courses/bcsc201 HTTP/1.1\" 500 771\n196.201.44.9 - - [21/Oct/2026:10:56:05 +0000] \"GET /static/logo.png HTTP/1.1\" 200 808\n10.0.0.7 - - [21/Oct/2026:11:03:05 +0000] \"GET /index.html HTTP/1.1\" 200 845\n41.215.160.12 - - [21/Oct/2026:11:10:05 +0000] \"GET /index.html HTTP/1.1\" 302 882\n102.176.8.33 - - [21/Oct/2026:11:17:05 +0000] \"GET /courses HTTP/1.1\" 200 919\n196.201.44.9 - - [21/Oct/2026:12:24:05 +0000] \"GET /login HTTP/1.1\" 500 956\n41.215.160.12 - - [21/Oct/2026:12:31:05 +0000] \"GET /results HTTP/1.1\" 200 993\n10.0.0.7 - - [21/Oct/2026:12:38:05 +0000] \"GET /library HTTP/1.1\" 200 1030\n154.160.22.5 - - [21/Oct/2026:13:45:05 +0000] \"GET /static/app.js HTTP/1.1\" 403 1067\n41.215.160.12 - - [21/Oct/2026:13:52:05 +0000] \"GET /admin HTTP/1.1\" 200 1104\n196.201.44.9 - - [21/Oct/2026:13:59:05 +0000] \"GET /courses/bcsc201 HTTP/1.1\" 200 1141\n10.0.0.7 - - [21/Oct/2026:14:06:05 +0000] \"GET /static/logo.png HTTP/1.1\" 500 1178\n102.176.8.33 - - [21/Oct/2026:14:13:05 +0000] \"GET /index.html HTTP/1.1\" 200 1215\n",
+          "mode": "644"
+        }
+      }
+    }
+  },
+  "hints": [
+    "cut -d' ' -f1 /var/log/portal/access.log prints only the first field of each line.",
+    "uniq only merges neighbouring duplicates, so sort before uniq -c, then sort -rn to put the biggest count first.",
+    "grep ' 500 ' /var/log/portal/access.log | wc -l gives the number of errors; send it to the file with >.",
+    "awk '{print $7}' /var/log/portal/access.log | sort | uniq -c | sort -rn | head -n 1 shows the top page with its count; add awk '{print $2}' to keep only the path."
+  ],
+  "checks": [
+    {
+      "type": "sh.file",
+      "label": "report/top-ips.txt starts with the busiest address",
+      "path": "/home/ama/report/top-ips.txt",
+      "pattern": "^\\s*7\\s+10\\.0\\.0\\.7",
+      "message": "The first line of top-ips.txt should be the count and address of the busiest client (7 requests). Sort the counts numerically in reverse."
+    },
+    {
+      "type": "sh.file",
+      "label": "top-ips.txt lists five addresses",
+      "path": "/home/ama/report/top-ips.txt",
+      "minLines": 5
+    },
+    {
+      "type": "sh.file",
+      "label": "errors.txt holds the 500 responses",
+      "path": "/home/ama/report/errors.txt",
+      "pattern": "\" 500 ",
+      "notContains": "\" 200 ",
+      "message": "errors.txt should contain only the lines whose status code is 500."
+    },
+    {
+      "type": "sh.output",
+      "label": "errors.txt has 4 lines",
+      "command": "wc -l < /home/ama/report/errors.txt",
+      "equals": "4"
+    },
+    {
+      "type": "sh.file",
+      "label": "error-count.txt has the number",
+      "path": "/home/ama/report/error-count.txt",
+      "pattern": "^\\s*4\\s*$",
+      "message": "error-count.txt should contain just the number 4."
+    },
+    {
+      "type": "sh.file",
+      "label": "top-page.txt names the most requested page",
+      "path": "/home/ama/report/top-page.txt",
+      "pattern": "^/index\\.html\\s*$",
+      "message": "top-page.txt should contain only /index.html."
+    },
+    {
+      "type": "sh.ran",
+      "label": "You used a pipeline with uniq -c",
+      "pattern": "\\|\\s*uniq\\s+-c"
+    }
+  ],
+  "realityNote": "Real access logs are gigabytes long, and exactly these pipelines are what administrators run on them. For anything regular, the commands go into a script and cron runs it every night."
+}
