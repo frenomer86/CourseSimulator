@@ -1,0 +1,41 @@
+{
+  "engine": "E1",
+  "id": "advanced-software-development-with-java-b1-shapes-abstract-and-interface",
+  "course": "advanced-software-development-with-java",
+  "topic": "Abstract classes and interfaces",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Shapes: an abstract base and an interface",
+  "estimatedMinutes": 20,
+  "instructions": "## One contract, many implementations\n\nModel shapes the way a Java program would, using JavaScript classes.\n\n- `Shape` is abstract: `new Shape()` throws an `Error`; it defines `area()` (throws if not overridden) and `describe()` returning `\"<name>: <area to 2 dp>\"` using the subclass's `name()`.\n- `Circle(r)` and `Rectangle(w, h)` extend `Shape` and implement `area()` and `name()` (`\"circle\"`, `\"rectangle\"`).\n- An object is `Comparable` if it has `compareTo(other)`: make `Shape.compareTo` compare areas (negative, zero, positive).\n- `largest(shapes)` returns the shape with the largest area using `compareTo`; `totalArea(shapes)` sums the areas.",
+  "config": {
+    "language": "javascript"
+  },
+  "initialState": {
+    "language": "javascript",
+    "source": "class Shape {\n  constructor() {\n    // forbid new Shape()\n  }\n  area() { throw new Error(\"area() not implemented\"); }\n  name() { throw new Error(\"name() not implemented\"); }\n  describe() {\n  }\n  compareTo(other) {\n  }\n}\n\nclass Circle extends Shape {\n}\n\nclass Rectangle extends Shape {\n}\n\nfunction largest(shapes) {\n}\n\nfunction totalArea(shapes) {\n}\n\nconsole.log(new Circle(1).describe());\n"
+  },
+  "hints": [
+    "In the constructor: if (new.target === Shape) throw new Error(\"Shape is abstract\");",
+    "describe(): return `${this.name()}: ${this.area().toFixed(2)}`",
+    "compareTo: return this.area() - other.area(); largest keeps the shape for which compareTo(best) > 0."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.script",
+      "label": "Subclasses implement the contract and describe themselves",
+      "script": "const c = new Circle(1), r = new Rectangle(2, 3);\nif (Math.abs(c.area() - Math.PI) > 1e-9) throw new Error(\"circle area\");\nif (r.area() !== 6) throw new Error(\"rectangle area\");\nif (c.describe() !== \"circle: 3.14\") throw new Error(\"describe got \" + c.describe());\nif (r.describe() !== \"rectangle: 6.00\") throw new Error(\"describe got \" + r.describe());\nif (!(c instanceof Shape)) throw new Error(\"Circle must extend Shape\");"
+    },
+    {
+      "type": "code.script",
+      "label": "Shape is abstract and compareTo orders by area",
+      "script": "let threw = false;\ntry { new Shape(); } catch (e) { threw = true; }\nif (!threw) throw new Error(\"new Shape() must throw\");\nconst a = new Rectangle(1, 1), b = new Circle(2), c = new Rectangle(3, 2);\nif (!(a.compareTo(b) < 0) || !(b.compareTo(a) > 0) || a.compareTo(new Rectangle(1, 1)) !== 0) throw new Error(\"compareTo\");\nif (largest([a, b, c]) !== b) throw new Error(\"largest should be the circle of radius 2\");\nif (Math.abs(totalArea([a, b, c]) - (1 + 4 * Math.PI + 6)) > 1e-9) throw new Error(\"totalArea\");"
+    }
+  ],
+  "realityNote": "In Java this is `abstract class Shape implements Comparable<Shape>` with `public abstract double area();`, and `Collections.max(shapes)` uses compareTo. The compiler enforces what the JavaScript version only checks at run time."
+}

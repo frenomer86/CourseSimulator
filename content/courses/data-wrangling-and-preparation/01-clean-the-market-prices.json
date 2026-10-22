@@ -1,0 +1,65 @@
+{
+  "engine": "E1",
+  "id": "data-wrangling-and-preparation-b1-clean-the-market-prices",
+  "course": "data-wrangling-and-preparation",
+  "topic": "Cleaning missing and inconsistent values",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Clean the market price sheet",
+  "estimatedMinutes": 20,
+  "instructions": "## Real data is messy\n\nThe program input is a CSV of market prices collected by hand: `market,item,price_ghs`. Spaces, inconsistent capitals and missing prices (empty or `n/a`) are all in there.\n\n## Do this\n\nRead all lines from standard input (`sys.stdin`), skip the header, and for every row print `market,item,price` where the market is **title case**, the item is **lower case**, and the price is printed with two decimals or the word `missing`. Then print one summary line exactly like `valid: 3, missing: 2, average: 10.00` (the average of the valid prices, two decimals).",
+  "config": {
+    "language": "python",
+    "sampleInput": "market,item,price_ghs\n Makola , tomatoes , 12.5\nKejetia,Tomatoes,\nmakola,Onions,8\nKejetia , onions, 9.5\nTakoradi,tomatoes,n/a\n"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "import sys\n\nlines = sys.stdin.read().splitlines()\nheader = lines[0]\nvalid = []\nmissing = 0\nfor line in lines[1:]:\n    market, item, price = [part.strip() for part in line.split(\",\")]\n    # clean market and item, parse the price or count it missing, print the row\n\n# print the summary\n"
+  },
+  "hints": [
+    "str.title() and str.lower() fix the capitals; strip() removes the spaces.",
+    "try: value = float(price) except ValueError: it is missing. An empty string also fails float().",
+    "f\"{value:.2f}\" prints two decimals."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs",
+      "stdin": "market,item,price_ghs\n Makola , tomatoes , 12.5\nKejetia,Tomatoes,\nmakola,Onions,8\nKejetia , onions, 9.5\nTakoradi,tomatoes,n/a\n"
+    },
+    {
+      "type": "code.cases",
+      "label": "Rows are cleaned and the summary is right",
+      "cases": [
+        {
+          "stdin": "market,item,price_ghs\n Makola , tomatoes , 12.5\nKejetia,Tomatoes,\nmakola,Onions,8\nKejetia , onions, 9.5\nTakoradi,tomatoes,n/a\n",
+          "expected": [
+            "Makola,tomatoes,12.50",
+            "Kejetia,tomatoes,missing",
+            "Makola,onions,8.00",
+            "Kejetia,onions,9.50",
+            "Takoradi,tomatoes,missing",
+            "valid: 3, missing: 2, average: 10.00"
+          ]
+        },
+        {
+          "stdin": "market,item,price_ghs\nTAMALE,Yam,20\ntamale,yam,\n",
+          "expected": [
+            "Tamale,yam,20.00",
+            "Tamale,yam,missing",
+            "valid: 1, missing: 1, average: 20.00"
+          ],
+          "name": "a second sheet"
+        }
+      ]
+    },
+    {
+      "type": "code.source",
+      "label": "Uses float() with error handling",
+      "pattern": "float\\(",
+      "message": "Convert the price with float() inside a try/except."
+    }
+  ],
+  "realityNote": "pandas does each of these steps in one call (str.strip, str.title, to_numeric with errors=\"coerce\", mean), but every one of them hides a decision you just made explicitly: what counts as missing, and whether the average should include it."
+}

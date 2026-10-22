@@ -1,0 +1,253 @@
+{
+  "engine": "E1",
+  "id": "computer-vision-i1-blur-and-edges",
+  "course": "computer-vision",
+  "topic": "Filtering and edge detection",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "A box blur and a Sobel edge map by hand",
+  "estimatedMinutes": 25,
+  "instructions": "## Convolution on a tiny image\n\nAn image is a list of rows of grey values (0 to 255). Implement two filters on the **interior** pixels; border pixels (first and last row and column) are copied from the input for the blur and set to 0 for the edge map.\n\n1. `box_blur(img)`: each interior pixel becomes the mean of its 3×3 neighbourhood, **rounded to the nearest integer** (Python `round`).\n2. `sobel(img)`: for each interior pixel compute `gx = (r-1,c+1) + 2(r,c+1) + (r+1,c+1) - (r-1,c-1) - 2(r,c-1) - (r+1,c-1)` and `gy` the same with rows and columns swapped (bottom minus top); the output is `abs(gx) + abs(gy)`.\n\nReturn new lists; do not modify the input.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def box_blur(img):\n    h, w = len(img), len(img[0])\n    out = [row[:] for row in img]\n    # for r in 1..h-2, c in 1..w-2: mean of the 3x3 block, rounded\n    return out\n\n\ndef sobel(img):\n    h, w = len(img), len(img[0])\n    out = [[0] * w for _ in range(h)]\n    # gx, gy on interior pixels; out = abs(gx) + abs(gy)\n    return out\n\n\nimg = [[0, 0, 0, 0], [0, 90, 90, 0], [0, 90, 90, 0], [0, 0, 0, 0]]\nfor row in box_blur(img):\n    print(row)\n"
+  },
+  "hints": [
+    "Sum img[r+dr][c+dc] for dr, dc in -1..1 and divide by 9; round() gives the nearest integer (Python rounds .5 to even).",
+    "gx weights column c+1 by (1, 2, 1) and column c-1 by (-1, -2, -1); gy weights row r+1 by (1, 2, 1) and row r-1 by (-1, -2, -1).",
+    "Build the output separately so later pixels do not see already-blurred neighbours."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "box_blur averages the interior",
+      "name": "box_blur",
+      "cases": [
+        {
+          "args": [
+            [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                90,
+                90,
+                0
+              ],
+              [
+                0,
+                90,
+                90,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              40,
+              0
+            ],
+            [
+              0,
+              40,
+              40,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              9,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "sobel finds the edges",
+      "name": "sobel",
+      "cases": [
+        {
+          "args": [
+            [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                100,
+                100,
+                100
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              400,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                0,
+                100
+              ],
+              [
+                0,
+                0,
+                100
+              ],
+              [
+                0,
+                0,
+                100
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              400,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                5,
+                5,
+                5
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "realityNote": "OpenCV's cv2.blur and cv2.Sobel do this with separable, vectorised convolutions over megapixel images, with a choice of border modes. The 3×3 kernels you wrote are the first layer of a CNN with its weights fixed by hand."
+}

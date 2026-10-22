@@ -1,0 +1,152 @@
+{
+  "engine": "E1",
+  "id": "programming-with-cpp-b1-array-functions",
+  "course": "programming-with-cpp",
+  "topic": "Arrays and functions",
+  "unit": 6,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Functions over arrays",
+  "estimatedMinutes": 15,
+  "instructions": "## Pass the array, loop with an index\n\nWrite three functions that work on an array of numbers the way C++ functions work on a `double[]` with a length.\n\n1. `mean(values)`: the arithmetic mean; `0` for an empty array.\n2. `maxIndex(values)`: the index of the largest value (the first one if there is a tie); `-1` for an empty array.\n3. `reverseInPlace(values)`: reverse the array **in place** by swapping ends towards the middle, and return the same array.\n\nUse a `for` loop with an index; do not use `reverse()`, `Math.max` or `reduce`. This course uses C++; the browser cannot compile C, so the logic is practised here in JavaScript, which has the same loops, arrays and functions. Translate it to C afterwards.",
+  "config": {
+    "language": "javascript"
+  },
+  "initialState": {
+    "language": "javascript",
+    "source": "function mean(values) {\n  // your code\n}\n\nfunction maxIndex(values) {\n  // your code\n}\n\nfunction reverseInPlace(values) {\n  // swap values[i] and values[n - 1 - i]\n  return values;\n}\n\nconsole.log(mean([2, 4, 9]));\nconsole.log(maxIndex([3, 9, 9, 1]));\nconsole.log(reverseInPlace([1, 2, 3, 4]));\n"
+  },
+  "hints": [
+    "Sum with a loop, then divide by values.length; check for length 0 first.",
+    "Keep the best index so far; replace it only when values[i] > values[best].",
+    "for (let i = 0; i < Math.floor(n / 2); i++) swap values[i] with values[n - 1 - i]."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "mean",
+      "name": "mean",
+      "cases": [
+        {
+          "args": [
+            [
+              2,
+              4,
+              9
+            ]
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              1.5,
+              2.5
+            ]
+          ],
+          "expected": 2
+        }
+      ],
+      "tolerance": 1e-9
+    },
+    {
+      "type": "code.function",
+      "label": "maxIndex returns the first largest",
+      "name": "maxIndex",
+      "cases": [
+        {
+          "args": [
+            [
+              3,
+              9,
+              9,
+              1
+            ]
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            [
+              -5,
+              -2,
+              -9
+            ]
+          ],
+          "expected": 1
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "reverseInPlace",
+      "name": "reverseInPlace",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "expected": [
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              7
+            ]
+          ],
+          "expected": [
+            7
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": [
+            3,
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "type": "code.source",
+      "label": "No reverse(), Math.max or reduce",
+      "pattern": "\\.reverse\\(|Math\\.max|\\.reduce\\(",
+      "mustMatch": false,
+      "message": "Write the loops yourself; that is the point of the exercise."
+    }
+  ],
+  "realityNote": "In C++ the array does not know its own length, so the function takes `double values[], int n`, and reversing in place is the same two-index swap. std::reverse and std::max_element exist, but you are expected to know what they do inside."
+}

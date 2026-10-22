@@ -1,0 +1,203 @@
+{
+  "engine": "E1",
+  "id": "game-engine-programming-i1-collision-detection",
+  "course": "game-engine-programming",
+  "topic": "Collision detection",
+  "unit": 5,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Boxes and circles: collision tests",
+  "estimatedMinutes": 15,
+  "instructions": "## Did they hit?\n\nEvery frame the engine asks whether pairs of entities overlap. Write the three tests a 2D engine needs.\n\n1. `aabbOverlap(a, b)`: two axis-aligned boxes `{x, y, w, h}` (top-left corner, width, height) overlap when they share some area; touching edges do **not** count.\n2. `circleOverlap(c1, c2)`: circles `{x, y, r}` overlap when the distance between centres is less than the sum of radii. Compare squared distances; do not call `Math.sqrt`.\n3. `circleInBox(c, b)`: a circle hits a box when the closest point of the box to the circle's centre is within the radius (clamp the centre to the box).",
+  "config": {
+    "language": "javascript"
+  },
+  "initialState": {
+    "language": "javascript",
+    "source": "function aabbOverlap(a, b) {\n  // your code\n}\n\nfunction circleOverlap(c1, c2) {\n  // compare squared distance with (r1 + r2)^2\n}\n\nfunction circleInBox(c, b) {\n  // clamp the centre into the box, then compare the squared distance\n}\n\nconsole.log(aabbOverlap({ x: 0, y: 0, w: 10, h: 10 }, { x: 5, y: 5, w: 10, h: 10 }));\n"
+  },
+  "hints": [
+    "Boxes do not overlap when one is entirely left, right, above or below the other: a.x + a.w <= b.x || b.x + b.w <= a.x || ...",
+    "dx*dx + dy*dy < (r1 + r2)*(r1 + r2).",
+    "closestX = Math.max(b.x, Math.min(c.x, b.x + b.w)); same for y; then compare the squared distance with r*r."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "aabbOverlap",
+      "name": "aabbOverlap",
+      "cases": [
+        {
+          "args": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 10,
+              "h": 10
+            },
+            {
+              "x": 5,
+              "y": 5,
+              "w": 10,
+              "h": 10
+            }
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 10,
+              "h": 10
+            },
+            {
+              "x": 10,
+              "y": 0,
+              "w": 10,
+              "h": 10
+            }
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 10,
+              "h": 10
+            },
+            {
+              "x": 3,
+              "y": 20,
+              "w": 2,
+              "h": 2
+            }
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "circleOverlap",
+      "name": "circleOverlap",
+      "cases": [
+        {
+          "args": [
+            {
+              "x": 0,
+              "y": 0,
+              "r": 5
+            },
+            {
+              "x": 8,
+              "y": 0,
+              "r": 4
+            }
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            {
+              "x": 0,
+              "y": 0,
+              "r": 5
+            },
+            {
+              "x": 9,
+              "y": 0,
+              "r": 4
+            }
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            {
+              "x": 0,
+              "y": 0,
+              "r": 1
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "r": 3
+            }
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "circleInBox",
+      "name": "circleInBox",
+      "cases": [
+        {
+          "args": [
+            {
+              "x": 12,
+              "y": 5,
+              "r": 3
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 10,
+              "h": 10
+            }
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            {
+              "x": 14,
+              "y": 5,
+              "r": 3
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 10,
+              "h": 10
+            }
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            {
+              "x": 5,
+              "y": 5,
+              "r": 1
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 10,
+              "h": 10
+            }
+          ],
+          "expected": true
+        }
+      ]
+    },
+    {
+      "type": "code.source",
+      "label": "No Math.sqrt in the circle tests",
+      "pattern": "Math\\.sqrt",
+      "mustMatch": false,
+      "message": "Compare squared distances; a square root per pair per frame is wasted work."
+    }
+  ],
+  "realityNote": "Engines run these narrow-phase tests only on pairs a broad phase (a grid or quadtree) says might collide; with hundreds of entities, testing every pair is what makes a game stutter on a low-end phone."
+}

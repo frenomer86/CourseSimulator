@@ -1,0 +1,163 @@
+{
+  "engine": "E1",
+  "id": "mlops-and-model-deployment-i1-detect-drift",
+  "course": "mlops-and-model-deployment",
+  "topic": "Monitoring and drift",
+  "unit": 6,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Detect data drift and accuracy decay",
+  "estimatedMinutes": 20,
+  "instructions": "## The model did not change; the world did\n\nA credit-scoring model was trained on last year's applicants. Two monitors are standard.\n\n1. `psi(expected, actual)`: the Population Stability Index between two histograms of counts over the same bins: convert each to proportions, replace zeros with 0.0001, and sum `(a − e) · ln(a / e)` over bins. Values above 0.2 indicate significant drift.\n2. `drift_level(value)`: `\"stable\"` below 0.1, `\"moderate\"` from 0.1 to below 0.2, `\"significant\"` from 0.2.\n3. `rolling_accuracy(y_true, y_pred, window)`: a list with the accuracy of each consecutive window of that size (non-overlapping, drop an incomplete tail).",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "import math\n\n\ndef psi(expected, actual):\n    pass\n\n\ndef drift_level(value):\n    pass\n\n\ndef rolling_accuracy(y_true, y_pred, window):\n    pass\n\n\nprint(psi([50, 30, 20], [50, 30, 20]))\nprint(psi([50, 30, 20], [20, 30, 50]))\n"
+  },
+  "hints": [
+    "Proportions: e = [c / sum(expected) for c in expected]; same for actual; then max(p, 0.0001) for each.",
+    "psi = sum((a - e) * math.log(a / e) for e, a in zip(exp_p, act_p)).",
+    "for start in range(0, len(y_true) - window + 1, window): slice both lists and compute the share of equal pairs."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "psi",
+      "name": "psi",
+      "cases": [
+        {
+          "args": [
+            [
+              50,
+              30,
+              20
+            ],
+            [
+              50,
+              30,
+              20
+            ]
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              50,
+              30,
+              20
+            ],
+            [
+              20,
+              30,
+              50
+            ]
+          ],
+          "expected": 0.5498
+        },
+        {
+          "args": [
+            [
+              100,
+              0
+            ],
+            [
+              90,
+              10
+            ]
+          ],
+          "expected": 0.7006
+        }
+      ],
+      "tolerance": 0.001
+    },
+    {
+      "type": "code.function",
+      "label": "drift_level",
+      "name": "drift_level",
+      "cases": [
+        {
+          "args": [
+            0.05
+          ],
+          "expected": "stable"
+        },
+        {
+          "args": [
+            0.1
+          ],
+          "expected": "moderate"
+        },
+        {
+          "args": [
+            0.2
+          ],
+          "expected": "significant"
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "rolling_accuracy",
+      "name": "rolling_accuracy",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              1,
+              0,
+              0,
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            2
+          ],
+          "expected": [
+            0.5,
+            1,
+            0
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              1
+            ],
+            4
+          ],
+          "expected": [
+            0.75
+          ]
+        }
+      ],
+      "tolerance": 1e-9
+    }
+  ],
+  "realityNote": "Evidently, Arize and the cloud ML monitors compute PSI and KS statistics per feature on a schedule and alert when a threshold is crossed; the hard part in practice is getting the true labels late enough to measure accuracy at all."
+}

@@ -1,0 +1,130 @@
+{
+  "engine": "E1",
+  "id": "web-application-programming-i-b1-validate-a-form",
+  "course": "web-application-programming-i",
+  "topic": "JavaScript basics: functions, strings and validation",
+  "unit": 8,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Validate a sign-up form with JavaScript",
+  "estimatedMinutes": 15,
+  "instructions": "## Check before you send\n\nA sign-up form on a Ghanaian site collects an email, a password and a phone number. Write the validation functions the page will call before submitting.\n\n1. `isValidEmail(text)`: true when there is exactly one `@`, at least one character before it, and a dot somewhere after it (not immediately after the `@`).\n2. `passwordStrength(pw)`: `\"weak\"` under 8 characters; `\"medium\"` when 8 or more with letters only or digits only; `\"strong\"` when 8 or more with both letters and digits.\n3. `formatPhone(text)`: accept `0241234567` or `+233241234567` (spaces allowed) and return `+233 24 123 4567`; return `null` for anything else.",
+  "config": {
+    "language": "javascript"
+  },
+  "initialState": {
+    "language": "javascript",
+    "source": "function isValidEmail(text) {\n  // your code\n}\n\nfunction passwordStrength(pw) {\n  // your code\n}\n\nfunction formatPhone(text) {\n  // your code\n}\n\nconsole.log(isValidEmail(\"ama@ug.edu.gh\"));\nconsole.log(passwordStrength(\"accra2026\"));\nconsole.log(formatPhone(\"024 123 4567\"));\n"
+  },
+  "hints": [
+    "text.indexOf(\"@\") and text.lastIndexOf(\"@\") must be equal and greater than 0; the dot must be after the @ plus one.",
+    "Test /[a-zA-Z]/.test(pw) and /[0-9]/.test(pw) separately.",
+    "Remove spaces, turn a leading 0 into +233, then check it is +233 followed by 9 digits before slicing it into groups."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "isValidEmail",
+      "name": "isValidEmail",
+      "cases": [
+        {
+          "args": [
+            "ama@ug.edu.gh"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "ama@ug"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "@ug.edu.gh"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "ama@.com"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "a@b@c.com"
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "passwordStrength",
+      "name": "passwordStrength",
+      "cases": [
+        {
+          "args": [
+            "abc"
+          ],
+          "expected": "weak"
+        },
+        {
+          "args": [
+            "abcdefgh"
+          ],
+          "expected": "medium"
+        },
+        {
+          "args": [
+            "12345678"
+          ],
+          "expected": "medium"
+        },
+        {
+          "args": [
+            "accra2026"
+          ],
+          "expected": "strong"
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "formatPhone",
+      "name": "formatPhone",
+      "cases": [
+        {
+          "args": [
+            "0241234567"
+          ],
+          "expected": "+233 24 123 4567"
+        },
+        {
+          "args": [
+            "+233 24 123 4567"
+          ],
+          "expected": "+233 24 123 4567"
+        },
+        {
+          "args": [
+            "024 123 456"
+          ],
+          "expected": null
+        },
+        {
+          "args": [
+            "hello"
+          ],
+          "expected": null
+        }
+      ]
+    }
+  ],
+  "realityNote": "Browser validation is for the user's convenience; the server must validate again because anyone can bypass the page. HTML5 input types (email, tel) and the pattern attribute give you a first layer for free."
+}

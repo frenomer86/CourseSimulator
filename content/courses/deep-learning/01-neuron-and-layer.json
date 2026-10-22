@@ -1,0 +1,192 @@
+{
+  "engine": "E1",
+  "id": "deep-learning-b1-neuron-and-layer",
+  "course": "deep-learning",
+  "topic": "Neural network building blocks",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "A neuron, a layer and softmax",
+  "estimatedMinutes": 20,
+  "instructions": "## Forward pass by hand\n\nEverything a network does forward is a weighted sum, a bias and a non-linearity. Implement the pieces in plain Python.\n\n1. `relu(x)` and `sigmoid(x)` on single numbers.\n2. `dense(x, W, b)`: for input vector `x`, weight matrix `W` (one row per output unit) and bias vector `b`, return the vector of `Σ_j W[i][j]·x[j] + b[i]`.\n3. `softmax(z)`: subtract the maximum before exponentiating (numerical stability) and return probabilities that sum to 1.\n4. `forward(x, W1, b1, W2, b2)`: dense → relu on every element → dense → softmax.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "import math\n\n\ndef relu(x):\n    pass\n\n\ndef sigmoid(x):\n    pass\n\n\ndef dense(x, W, b):\n    pass\n\n\ndef softmax(z):\n    pass\n\n\ndef forward(x, W1, b1, W2, b2):\n    pass\n\n\nprint(dense([1, 2], [[1, 0], [0, 1], [1, 1]], [0, 0, 1]))\nprint(softmax([1, 2, 3]))\n"
+  },
+  "hints": [
+    "relu: max(0, x); sigmoid: 1 / (1 + math.exp(-x)).",
+    "dense: [sum(w * xi for w, xi in zip(row, x)) + bi for row, bi in zip(W, b)].",
+    "softmax: m = max(z); e = [math.exp(v - m) for v in z]; s = sum(e); return [v / s for v in e]."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "relu and sigmoid",
+      "name": "relu",
+      "cases": [
+        {
+          "args": [
+            -3
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            2.5
+          ],
+          "expected": 2.5
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "sigmoid",
+      "name": "sigmoid",
+      "cases": [
+        {
+          "args": [
+            0
+          ],
+          "expected": 0.5
+        },
+        {
+          "args": [
+            2
+          ],
+          "expected": 0.8807970779778823
+        }
+      ],
+      "tolerance": 1e-9
+    },
+    {
+      "type": "code.function",
+      "label": "dense computes Wx + b",
+      "name": "dense",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              2
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4
+          ]
+        }
+      ],
+      "tolerance": 1e-9
+    },
+    {
+      "type": "code.function",
+      "label": "softmax sums to 1 and is stable",
+      "name": "softmax",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": [
+            0.09003057317038046,
+            0.24472847105479764,
+            0.6652409557748219
+          ]
+        },
+        {
+          "args": [
+            [
+              1000,
+              1000
+            ]
+          ],
+          "expected": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "tolerance": 1e-9
+    },
+    {
+      "type": "code.function",
+      "label": "forward chains the layers",
+      "name": "forward",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              0
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                -1,
+                0
+              ]
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "expected": [
+            0.8807970779778823,
+            0.11920292202211755
+          ]
+        }
+      ],
+      "tolerance": 1e-9
+    }
+  ],
+  "realityNote": "PyTorch's nn.Linear, torch.relu and torch.softmax are these functions over batches, on a GPU, with autograd recording every operation so the backward pass is derived for you. The max-subtraction trick in softmax is what stops exp() overflowing."
+}

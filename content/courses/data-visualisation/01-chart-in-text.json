@@ -1,0 +1,58 @@
+{
+  "engine": "E1",
+  "id": "data-visualisation-b1-chart-in-text",
+  "course": "data-visualisation",
+  "topic": "Plotting with code",
+  "unit": 5,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "A bar chart from scratch",
+  "estimatedMinutes": 15,
+  "instructions": "## What a plotting library does for you\n\nBefore using matplotlib, build the simplest chart by hand so the scaling and labelling are yours. The program input lists regions and rainfall in mm, one `name,value` per line.\n\n## Do this\n\nPrint one line per region: the name left-aligned in a field of **10** characters, a space, a bar of `#` characters whose length is the value scaled so that the **largest value gets 40 characters** (round to the nearest whole number), a space and the value. Then print `max: <name> <value>`.\n\nFor input `Accra,730` `Kumasi,1400` `Tamale,1000` the Kumasi bar is 40 long, Tamale is 29 (1000/1400×40 = 28.57), Accra is 21 (20.86).",
+  "config": {
+    "language": "python",
+    "sampleInput": "Accra,730\nKumasi,1400\nTamale,1000\n"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "import sys\n\nrows = []\nfor line in sys.stdin.read().splitlines():\n    name, value = line.split(\",\")\n    rows.append((name, float(value)))\n\n# find the largest value, then print the scaled bars and the max line\n"
+  },
+  "hints": [
+    "scale = 40 / largest; bar length = round(value * scale).",
+    "f\"{name:<10} {'#' * n} {value:g}\" left-aligns the name in 10 characters.",
+    "Keep the row with the largest value while you loop, or use max(rows, key=lambda r: r[1])."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs",
+      "stdin": "Accra,730\nKumasi,1400\nTamale,1000\n"
+    },
+    {
+      "type": "code.cases",
+      "label": "Bars are scaled to the largest value",
+      "cases": [
+        {
+          "stdin": "Accra,730\nKumasi,1400\nTamale,1000\n",
+          "expected": [
+            "Accra      ##################### 730",
+            "Kumasi     ######################################## 1400",
+            "Tamale     ############################# 1000",
+            "max: Kumasi 1400"
+          ]
+        },
+        {
+          "stdin": "Ho,500\nWa,250\n",
+          "expected": [
+            "Ho         ######################################## 500",
+            "Wa         #################### 250",
+            "max: Ho 500"
+          ],
+          "name": "two regions"
+        }
+      ],
+      "match": "exact"
+    }
+  ],
+  "realityNote": "matplotlib.pyplot.barh does exactly this scaling, plus axes, ticks and colours, in one call. Knowing the scaling rule is what lets you spot a chart whose axis does not start at zero."
+}

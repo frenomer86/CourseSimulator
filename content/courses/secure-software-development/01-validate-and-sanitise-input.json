@@ -1,0 +1,174 @@
+{
+  "engine": "E1",
+  "id": "secure-software-development-i1-validate-and-sanitise-input",
+  "course": "secure-software-development",
+  "topic": "Input validation and output encoding",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Validate input at the boundary",
+  "estimatedMinutes": 20,
+  "instructions": "## Allow-lists, not block-lists\n\nThree input handlers for a mobile money back end. Each must reject bad input loudly rather than guess.\n\n1. `parse_amount(text)`: accept a decimal amount in GHS with at most two decimals and no sign (`\"12\"`, `\"12.50\"`), return it as an integer number of **pesewas** (1250); raise `ValueError` for anything else, including `\"12.505\"`, `\"-5\"`, `\"1e3\"` and amounts above 10,000 GHS.\n2. `safe_filename(name)`: keep only letters, digits, `-`, `_` and `.`; collapse runs of other characters to a single `_`; refuse (ValueError) a result that is empty, starts with `.` or contains `..`.\n3. `mask_phone(phone)`: for a valid Ghana number (10 digits starting with 0) return `\"024****567\"` (first three and last three digits); raise `ValueError` otherwise.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "import re\n\n\ndef parse_amount(text):\n    pass\n\n\ndef safe_filename(name):\n    pass\n\n\ndef mask_phone(phone):\n    pass\n\n\nprint(parse_amount(\"12.50\"))\nprint(safe_filename(\"../etc/passwd\"))\n"
+  },
+  "hints": [
+    "A strict pattern: re.fullmatch(r\"\\d{1,5}(\\.\\d{1,2})?\", text); then split on the dot and compute pesewas with integers, not floats.",
+    "safe_filename: re.sub(r\"[^A-Za-z0-9._-]+\", \"_\", name) then check the result.",
+    "mask_phone: re.fullmatch(r\"0\\d{9}\", phone); return phone[:3] + \"****\" + phone[-3:]."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "parse_amount accepts valid amounts in pesewas",
+      "name": "parse_amount",
+      "cases": [
+        {
+          "args": [
+            "12"
+          ],
+          "expected": 1200
+        },
+        {
+          "args": [
+            "12.50"
+          ],
+          "expected": 1250
+        },
+        {
+          "args": [
+            "0.05"
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            "10000"
+          ],
+          "expected": 1000000
+        },
+        {
+          "args": [
+            "12.505"
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        },
+        {
+          "args": [
+            "-5"
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        },
+        {
+          "args": [
+            "1e3"
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        },
+        {
+          "args": [
+            "10000.01"
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "safe_filename neutralises paths",
+      "name": "safe_filename",
+      "cases": [
+        {
+          "args": [
+            "report 2026.pdf"
+          ],
+          "expected": "report_2026.pdf"
+        },
+        {
+          "args": [
+            "a/b\\c.txt"
+          ],
+          "expected": "a_b_c.txt"
+        },
+        {
+          "args": [
+            "../etc/passwd"
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        },
+        {
+          "args": [
+            ".hidden"
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "mask_phone",
+      "name": "mask_phone",
+      "cases": [
+        {
+          "args": [
+            "0241234567"
+          ],
+          "expected": "024****567"
+        },
+        {
+          "args": [
+            "24123456"
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        },
+        {
+          "args": [
+            "+233241234567"
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        }
+      ]
+    }
+  ],
+  "realityNote": "Money is never a float: a 0.1 + 0.2 error compounds across millions of transactions. The OWASP cheat sheets call this pattern \"syntactic validation at the trust boundary\", and every framework's validation layer is a place to put these functions."
+}

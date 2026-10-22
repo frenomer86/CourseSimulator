@@ -1,0 +1,121 @@
+{
+  "engine": "E1",
+  "id": "web-application-programming-ii-i1-registration-validation-and-escaping",
+  "course": "web-application-programming-ii",
+  "topic": "Forms with PHP and data validation; preventing injection",
+  "unit": 4,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Server-side validation and output escaping",
+  "estimatedMinutes": 20,
+  "instructions": "## Never trust the request\n\nA registration form posts `username`, `email`, `password` and `confirm`. Write the server-side logic (the course uses PHP; the same functions exist there as `htmlspecialchars` and `filter_var`).\n\n1. `escapeHtml(text)`: replace `&`, `<`, `>`, `\"` and `'` with `&amp;`, `&lt;`, `&gt;`, `&quot;` and `&#39;`, in that order of safety (ampersand first).\n2. `validateRegistration(form)`: return an **array of error messages** (empty when valid): `\"username must be 3-20 letters, digits or underscores\"`, `\"email is invalid\"` (must contain `@` and a dot after it), `\"password must be at least 8 characters\"`, `\"passwords do not match\"`.\n3. `safeSql(username)`: return the parameterised query and its parameters as an object `{ sql: \"SELECT * FROM users WHERE username = ?\", params: [username] }`. Never put the value into the string.",
+  "config": {
+    "language": "javascript"
+  },
+  "initialState": {
+    "language": "javascript",
+    "source": "function escapeHtml(text) {\n  // your code\n}\n\nfunction validateRegistration(form) {\n  const errors = [];\n  // push messages\n  return errors;\n}\n\nfunction safeSql(username) {\n  // return { sql, params }\n}\n\nconsole.log(escapeHtml(\"<b>Ama & Kofi</b>\"));\nconsole.log(validateRegistration({ username: \"ama_1\", email: \"ama@ug.edu.gh\", password: \"longenough\", confirm: \"longenough\" }));\n"
+  },
+  "hints": [
+    "Replace & first, or the entities you add will be escaped again.",
+    "The username rule is the regular expression /^[A-Za-z0-9_]{3,20}$/.",
+    "Prepared statements send the SQL and the values separately; that is why the ? placeholder is the whole defence against SQL injection."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "escapeHtml neutralises markup",
+      "name": "escapeHtml",
+      "cases": [
+        {
+          "args": [
+            "<b>Ama & Kofi</b>"
+          ],
+          "expected": "&lt;b&gt;Ama &amp; Kofi&lt;/b&gt;"
+        },
+        {
+          "args": [
+            "\"quoted\" & 'single'"
+          ],
+          "expected": "&quot;quoted&quot; &amp; &#39;single&#39;"
+        },
+        {
+          "args": [
+            "plain"
+          ],
+          "expected": "plain"
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "validateRegistration lists every problem",
+      "name": "validateRegistration",
+      "cases": [
+        {
+          "args": [
+            {
+              "username": "ama_1",
+              "email": "ama@ug.edu.gh",
+              "password": "longenough",
+              "confirm": "longenough"
+            }
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            {
+              "username": "a!",
+              "email": "nope",
+              "password": "short",
+              "confirm": "other"
+            }
+          ],
+          "expected": [
+            "username must be 3-20 letters, digits or underscores",
+            "email is invalid",
+            "password must be at least 8 characters",
+            "passwords do not match"
+          ]
+        },
+        {
+          "args": [
+            {
+              "username": "kofi",
+              "email": "k@x.org",
+              "password": "abcdefgh",
+              "confirm": "abcdefgX"
+            }
+          ],
+          "expected": [
+            "passwords do not match"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "safeSql keeps the value out of the query",
+      "name": "safeSql",
+      "cases": [
+        {
+          "args": [
+            "ama' OR 1=1 --"
+          ],
+          "expected": {
+            "sql": "SELECT * FROM users WHERE username = ?",
+            "params": [
+              "ama' OR 1=1 --"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "realityNote": "In PHP: htmlspecialchars($s, ENT_QUOTES), filter_var($email, FILTER_VALIDATE_EMAIL), and $pdo->prepare(\"SELECT * FROM users WHERE username = ?\")->execute([$username]). The error list pattern maps directly onto the messages shown next to each field."
+}

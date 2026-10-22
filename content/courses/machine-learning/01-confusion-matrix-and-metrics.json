@@ -1,0 +1,171 @@
+{
+  "engine": "E1",
+  "id": "machine-learning-b1-confusion-matrix-and-metrics",
+  "course": "machine-learning",
+  "topic": "Model evaluation: confusion matrix, precision, recall, F1",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Confusion matrix, precision, recall and F1",
+  "estimatedMinutes": 15,
+  "instructions": "## Accuracy is not enough\n\nA malaria screening model labels 1 for positive. Given the true labels and the predictions, compute the numbers a clinician would ask for.\n\n1. `confusion(y_true, y_pred)`: a dict `{\"tp\": .., \"fp\": .., \"fn\": .., \"tn\": ..}`.\n2. `precision(c)`, `recall(c)`, `f1(c)` from such a dict; return `0.0` when the denominator is zero.\n3. `accuracy(c)`.\n\nThen look at the example in the starter: 95% accuracy with a recall of 0.5. Which number would the clinic care about?",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def confusion(y_true, y_pred):\n    pass\n\n\ndef precision(c):\n    pass\n\n\ndef recall(c):\n    pass\n\n\ndef f1(c):\n    pass\n\n\ndef accuracy(c):\n    pass\n\n\ny_true = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\ny_pred = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nc = confusion(y_true, y_pred)\nprint(c, accuracy(c), recall(c))\n"
+  },
+  "hints": [
+    "tp: true 1 and predicted 1; fn: true 1 predicted 0; fp: true 0 predicted 1; tn: both 0.",
+    "precision = tp / (tp + fp); recall = tp / (tp + fn); f1 = 2·p·r / (p + r).",
+    "Guard each division: if the denominator is 0 return 0.0."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "confusion counts the four cells",
+      "name": "confusion",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              1,
+              1
+            ]
+          ],
+          "expected": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 1,
+            "tn": 1
+          }
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "precision, recall, f1, accuracy",
+      "name": "f1",
+      "cases": [
+        {
+          "args": [
+            {
+              "tp": 2,
+              "fp": 1,
+              "fn": 1,
+              "tn": 1
+            }
+          ],
+          "expected": 0.6666666666666666
+        },
+        {
+          "args": [
+            {
+              "tp": 0,
+              "fp": 0,
+              "fn": 3,
+              "tn": 7
+            }
+          ],
+          "expected": 0
+        }
+      ],
+      "tolerance": 1e-9
+    },
+    {
+      "type": "code.function",
+      "label": "recall",
+      "name": "recall",
+      "cases": [
+        {
+          "args": [
+            {
+              "tp": 1,
+              "fp": 0,
+              "fn": 1,
+              "tn": 18
+            }
+          ],
+          "expected": 0.5
+        },
+        {
+          "args": [
+            {
+              "tp": 0,
+              "fp": 0,
+              "fn": 0,
+              "tn": 5
+            }
+          ],
+          "expected": 0
+        }
+      ],
+      "tolerance": 1e-9
+    },
+    {
+      "type": "code.function",
+      "label": "precision",
+      "name": "precision",
+      "cases": [
+        {
+          "args": [
+            {
+              "tp": 2,
+              "fp": 1,
+              "fn": 1,
+              "tn": 1
+            }
+          ],
+          "expected": 0.6666666666666666
+        },
+        {
+          "args": [
+            {
+              "tp": 0,
+              "fp": 0,
+              "fn": 2,
+              "tn": 5
+            }
+          ],
+          "expected": 0
+        }
+      ],
+      "tolerance": 1e-9
+    },
+    {
+      "type": "code.function",
+      "label": "accuracy",
+      "name": "accuracy",
+      "cases": [
+        {
+          "args": [
+            {
+              "tp": 1,
+              "fp": 0,
+              "fn": 1,
+              "tn": 18
+            }
+          ],
+          "expected": 0.95
+        }
+      ],
+      "tolerance": 1e-9
+    }
+  ],
+  "realityNote": "sklearn.metrics.classification_report prints these per class. For a screening test the clinic wants recall (do not miss cases) and will accept lower precision, which changes the threshold you choose, not the model."
+}

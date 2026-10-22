@@ -1,0 +1,104 @@
+{
+  "engine": "E1",
+  "id": "programming-with-c-i1-caesar-and-word-count",
+  "course": "programming-with-c",
+  "topic": "Sorting and searching arrays; a word-count and a Caesar cipher",
+  "unit": 3,
+  "topicIndex": 4,
+  "level": "intermediate",
+  "title": "Caesar cipher and word count",
+  "estimatedMinutes": 20,
+  "instructions": "## Strings as arrays of characters\n\nIn C a string is an array of characters; you walk it with an index and look at each character code. Write two functions the same way here.\n\n## Do this\n\n1. `caesar(text, shift)`: shift every letter by `shift` places, wrapping round the alphabet, keeping case and leaving other characters alone. `caesar(\"abc XYZ!\", 3)` is `\"def ABC!\"`. Negative shifts decode.\n2. `wordCount(text)`: the number of words, where words are separated by one or more spaces (leading and trailing spaces count for nothing). `wordCount(\"  two  words \")` is 2.\n\nWork character by character with `charCodeAt` and `fromCharCode`, as you would with `char` arithmetic in C. This course uses C; the browser cannot compile C, so the logic is practised here in JavaScript, which has the same loops, arrays and functions. Translate it to C afterwards.",
+  "config": {
+    "language": "javascript"
+  },
+  "initialState": {
+    "language": "javascript",
+    "source": "// Shift letters, keep case, leave other characters alone.\nfunction caesar(text, shift) {\n  // your code\n}\n\n// Count words separated by spaces.\nfunction wordCount(text) {\n  // your code\n}\n\nconsole.log(caesar(\"Hello, Ghana!\", 3));\nconsole.log(wordCount(\"the quick brown fox\"));\n"
+  },
+  "hints": [
+    "For a lower-case letter c: ((c - 97 + shift) % 26 + 26) % 26 + 97 — the extra + 26 and % 26 handle negative shifts.",
+    "Upper case uses 65 in place of 97. Anything else is copied unchanged.",
+    "Count a word each time you see a non-space character that follows a space (or the start)."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "caesar shifts with wrap-around and keeps case",
+      "name": "caesar",
+      "cases": [
+        {
+          "args": [
+            "abc XYZ!",
+            3
+          ],
+          "expected": "def ABC!"
+        },
+        {
+          "args": [
+            "Hello, Ghana!",
+            3
+          ],
+          "expected": "Khoor, Jkdqd!"
+        },
+        {
+          "args": [
+            "Khoor, Jkdqd!",
+            -3
+          ],
+          "expected": "Hello, Ghana!"
+        },
+        {
+          "args": [
+            "zz",
+            1
+          ],
+          "expected": "aa"
+        },
+        {
+          "args": [
+            "Accra 2026",
+            29
+          ],
+          "expected": "Dffud 2026"
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "wordCount handles extra spaces",
+      "name": "wordCount",
+      "cases": [
+        {
+          "args": [
+            "the quick brown fox"
+          ],
+          "expected": 4
+        },
+        {
+          "args": [
+            "  two  words "
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "one"
+          ],
+          "expected": 1
+        }
+      ]
+    }
+  ],
+  "realityNote": "In C the same functions take a char* and modify the buffer in place; the classic bugs are forgetting the terminating NUL and writing past the end of the array. The arithmetic on character codes is identical."
+}

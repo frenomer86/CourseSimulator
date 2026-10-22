@@ -1,0 +1,151 @@
+{
+  "engine": "E1",
+  "id": "data-science-i1-least-squares-by-hand",
+  "course": "data-science",
+  "topic": "Machine learning: regression",
+  "unit": 6,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Fit a line by least squares",
+  "estimatedMinutes": 20,
+  "instructions": "## What .fit() computes\n\nFor points (x, y) the least-squares line has slope `b = Σ(x−x̄)(y−ȳ) / Σ(x−x̄)²` and intercept `a = ȳ − b·x̄`.\n\n## Do this\n\n1. `fit_line(xs, ys)` returns `(slope, intercept)` as a tuple.\n2. `predict(model, x)` returns `slope * x + intercept` for a model tuple.\n3. `r_squared(xs, ys)` returns 1 − SSres/SStot, where SSres is the sum of squared residuals of the fitted line and SStot the sum of squared deviations of y from its mean.\n\nUse plain Python; no numpy.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def fit_line(xs, ys):\n    # return (slope, intercept)\n    pass\n\n\ndef predict(model, x):\n    pass\n\n\ndef r_squared(xs, ys):\n    pass\n\n\nxs = [1, 2, 3, 4, 5]\nys = [2.2, 4.1, 6.0, 8.1, 9.9]\nprint(fit_line(xs, ys))\nprint(r_squared(xs, ys))\n"
+  },
+  "hints": [
+    "x_bar = sum(xs) / len(xs); num = sum((x - x_bar) * (y - y_bar) for x, y in zip(xs, ys)); den = sum((x - x_bar) ** 2 for x in xs).",
+    "intercept = y_bar - slope * x_bar.",
+    "r² of a perfect line is exactly 1.0; of the points (1,1),(2,3),(3,2) it is 0.25."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "fit_line",
+      "name": "fit_line",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              4,
+              6
+            ]
+          ],
+          "expected": [
+            2,
+            0
+          ]
+        },
+        {
+          "args": [
+            [
+              0,
+              1,
+              2,
+              3
+            ],
+            [
+              1,
+              3,
+              5,
+              7
+            ]
+          ],
+          "expected": [
+            2,
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              1,
+              3,
+              2
+            ]
+          ],
+          "expected": [
+            0.5,
+            1
+          ]
+        }
+      ],
+      "tolerance": 1e-9
+    },
+    {
+      "type": "code.function",
+      "label": "predict",
+      "name": "predict",
+      "cases": [
+        {
+          "args": [
+            [
+              2,
+              1
+            ],
+            10
+          ],
+          "expected": 21
+        }
+      ],
+      "tolerance": 1e-9
+    },
+    {
+      "type": "code.function",
+      "label": "r_squared",
+      "name": "r_squared",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              4,
+              6
+            ]
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              1,
+              3,
+              2
+            ]
+          ],
+          "expected": 0.25
+        }
+      ],
+      "tolerance": 1e-9
+    }
+  ],
+  "realityNote": "scikit-learn's LinearRegression solves the same normal equations (or a QR decomposition) for many features at once; knowing the one-variable formula tells you why outliers in x pull the slope so hard."
+}

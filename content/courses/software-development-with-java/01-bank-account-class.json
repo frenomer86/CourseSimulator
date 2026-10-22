@@ -1,0 +1,47 @@
+{
+  "engine": "E1",
+  "id": "software-development-with-java-b1-bank-account-class",
+  "course": "software-development-with-java",
+  "topic": "Object-oriented programming and encapsulation",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "An encapsulated bank account",
+  "estimatedMinutes": 20,
+  "instructions": "## Hide the balance behind methods\n\nWrite a class `BankAccount` whose balance can only change through its methods.\n\n- `new BankAccount(owner, opening)` sets the owner and an opening balance (which must not be negative: throw an `Error`).\n- `deposit(amount)` adds a positive amount; a zero or negative amount throws an `Error`.\n- `withdraw(amount)` subtracts a positive amount but throws an `Error` with the message `Insufficient funds` when the balance would go below zero.\n- `getBalance()` returns the balance; `getOwner()` returns the owner.\n- Keep the balance in a `#balance` private field (or a closure) so `account.balance` is `undefined`.\n\nThe course uses Java; the class syntax, constructors, private fields and exceptions here map one to one.",
+  "config": {
+    "language": "javascript"
+  },
+  "initialState": {
+    "language": "javascript",
+    "source": "class BankAccount {\n  #balance;\n\n  constructor(owner, opening) {\n    // validate, then store\n  }\n\n  deposit(amount) {\n  }\n\n  withdraw(amount) {\n  }\n\n  getBalance() {\n  }\n\n  getOwner() {\n  }\n}\n\nconst a = new BankAccount(\"Ama\", 100);\na.deposit(50);\nconsole.log(a.getOwner(), a.getBalance());\n"
+  },
+  "hints": [
+    "if (opening < 0) throw new Error(\"Opening balance cannot be negative\");",
+    "withdraw: if (amount <= 0) throw ...; if (amount > this.#balance) throw new Error(\"Insufficient funds\");",
+    "A # field is only visible inside the class, so a.balance is undefined from outside."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.script",
+      "label": "Deposits and withdrawals change the balance through the methods",
+      "script": "const a = new BankAccount(\"Ama\", 100);\na.deposit(50);\nif (a.getBalance() !== 150) throw new Error(\"balance after deposit should be 150, got \" + a.getBalance());\na.withdraw(30);\nif (a.getBalance() !== 120) throw new Error(\"balance after withdrawal should be 120\");\nif (a.getOwner() !== \"Ama\") throw new Error(\"getOwner should return Ama\");\nif (a.balance !== undefined) throw new Error(\"the balance must not be a public property\");"
+    },
+    {
+      "type": "code.script",
+      "label": "Overdrafts and bad amounts are refused",
+      "script": "const a = new BankAccount(\"Kofi\", 20);\nlet threw = false;\ntry { a.withdraw(50); } catch (e) { threw = /insufficient/i.test(e.message); }\nif (!threw) throw new Error(\"withdraw(50) on a balance of 20 must throw Insufficient funds\");\nif (a.getBalance() !== 20) throw new Error(\"a failed withdrawal must not change the balance\");\nlet bad = false;\ntry { a.deposit(-5); } catch (e) { bad = true; }\nif (!bad) throw new Error(\"deposit(-5) must throw\");\nlet neg = false;\ntry { new BankAccount(\"x\", -1); } catch (e) { neg = true; }\nif (!neg) throw new Error(\"a negative opening balance must throw\");"
+    },
+    {
+      "type": "code.source",
+      "label": "Uses a private field",
+      "pattern": "#balance",
+      "message": "Declare #balance as a private field so it cannot be changed from outside."
+    }
+  ],
+  "realityNote": "In Java the same class has a private double balance, a constructor, and throws IllegalArgumentException or a custom InsufficientFundsException; the principle, that invariants live inside the class, is the whole point of encapsulation."
+}

@@ -1,0 +1,41 @@
+{
+  "engine": "E1",
+  "id": "robot-programming-with-ros-b1-topics-and-messages",
+  "course": "robot-programming-with-ros",
+  "topic": "Nodes, topics and messages",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "A publish-subscribe bus like ROS topics",
+  "estimatedMinutes": 20,
+  "instructions": "## Nodes talk through topics\n\nIn ROS a node publishes messages on a named topic and any node subscribed to that topic receives them. Build the mechanism in Python to see what the framework does.\n\n## Do this\n\nWrite a class `Bus` with:\n- `subscribe(topic, callback)`: register a function to be called with each message on that topic;\n- `publish(topic, message)`: call every subscriber of that topic, in the order they subscribed, and return how many received it;\n- `topics()`: a sorted list of topic names that have at least one subscriber.\n\nThen write a node function `odometry_to_speed(bus)` that subscribes to `\"/odom\"`, receives messages like `{\"x\": 1.0, \"t\": 0.5}` and publishes to `\"/speed\"` the speed since the previous message (`dx / dt`, rounded to 3 decimals), publishing nothing for the first message.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "class Bus:\n    def __init__(self):\n        self._subs = {}\n\n    def subscribe(self, topic, callback):\n        pass\n\n    def publish(self, topic, message):\n        pass\n\n    def topics(self):\n        pass\n\n\ndef odometry_to_speed(bus):\n    # subscribe to /odom and publish speeds on /speed\n    pass\n\n\nbus = Bus()\nbus.subscribe(\"/speed\", lambda m: print(\"speed\", m))\nodometry_to_speed(bus)\nbus.publish(\"/odom\", {\"x\": 0.0, \"t\": 0.0})\nbus.publish(\"/odom\", {\"x\": 1.0, \"t\": 0.5})\n"
+  },
+  "hints": [
+    "self._subs.setdefault(topic, []).append(callback)",
+    "publish: for cb in self._subs.get(topic, []): cb(message); return the count.",
+    "Keep the previous message in a mutable (a list or dict) that the inner function updates; nonlocal works too."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.script",
+      "label": "Subscribers receive messages in order and topics() lists them",
+      "script": "b = Bus()\ngot = []\nb.subscribe(\"/a\", lambda m: got.append((\"one\", m)))\nb.subscribe(\"/a\", lambda m: got.append((\"two\", m)))\nb.subscribe(\"/b\", lambda m: got.append((\"b\", m)))\nn = b.publish(\"/a\", 7)\nassert n == 2, f\"publish should return 2 receivers, got {n}\"\nassert got == [(\"one\", 7), (\"two\", 7)], got\nassert b.publish(\"/none\", 1) == 0\nassert b.topics() == [\"/a\", \"/b\"], b.topics()"
+    },
+    {
+      "type": "code.script",
+      "label": "odometry_to_speed publishes dx/dt after the first message",
+      "script": "b = Bus()\nspeeds = []\nb.subscribe(\"/speed\", speeds.append)\nodometry_to_speed(b)\nb.publish(\"/odom\", {\"x\": 0.0, \"t\": 0.0})\nassert speeds == [], \"no speed before two messages\"\nb.publish(\"/odom\", {\"x\": 1.0, \"t\": 0.5})\nb.publish(\"/odom\", {\"x\": 1.3, \"t\": 1.0})\nassert speeds == [2.0, 0.6], speeds"
+    }
+  ],
+  "realityNote": "rospy.Publisher and rospy.Subscriber do exactly this across processes and machines, with typed messages (nav_msgs/Odometry) serialised over TCP. The hard parts the toy bus skips are discovery, message queues and timing."
+}

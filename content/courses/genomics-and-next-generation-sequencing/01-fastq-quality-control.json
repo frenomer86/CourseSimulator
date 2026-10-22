@@ -1,0 +1,59 @@
+{
+  "engine": "E1",
+  "id": "genomics-and-next-generation-sequencing-b1-fastq-quality-control",
+  "course": "genomics-and-next-generation-sequencing",
+  "topic": "Read quality control",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Quality control of sequencing reads",
+  "estimatedMinutes": 20,
+  "instructions": "## Four lines per read\n\nA FASTQ file holds reads in blocks of four lines: `@name`, the bases, `+`, and a quality string where each character encodes a Phred score as `ord(char) - 33`. A score of 20 means a 1% chance the base is wrong.\n\n## Do this\n\nRead the FASTQ from standard input. For every read print `name meanQ keep|drop` with the mean quality to one decimal, keeping reads whose mean is **at least 20**. Then print `kept K of N` and the **GC content of the kept reads** as `GC xx.x%` (G and C bases as a percentage of all bases in the kept reads, one decimal).",
+  "config": {
+    "language": "python",
+    "sampleInput": "@r1\nACGTACGTAC\n+\nIIIIIIIIII\n@r2\nGGGGCCCCAA\n+\n!!!!!!!!!!\n@r3\nATGCATGCAT\n+\n5555555555\n"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "import sys\n\nlines = sys.stdin.read().splitlines()\nreads = []\nfor i in range(0, len(lines), 4):\n    name = lines[i][1:]\n    bases = lines[i + 1]\n    quals = lines[i + 3]\n    reads.append((name, bases, quals))\n\n# mean quality per read, keep or drop, then the summary and GC content\n"
+  },
+  "hints": [
+    "ord(\"I\") - 33 is 40; ord(\"!\") - 33 is 0; ord(\"5\") - 33 is 20.",
+    "mean = sum(ord(c) - 33 for c in quals) / len(quals), printed with f\"{mean:.1f}\".",
+    "GC percentage: count(\"G\") + count(\"C\") over the total length of the kept reads, times 100."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs",
+      "stdin": "@r1\nACGTACGTAC\n+\nIIIIIIIIII\n@r2\nGGGGCCCCAA\n+\n!!!!!!!!!!\n@r3\nATGCATGCAT\n+\n5555555555\n"
+    },
+    {
+      "type": "code.cases",
+      "label": "Reads are scored, filtered and summarised",
+      "cases": [
+        {
+          "stdin": "@r1\nACGTACGTAC\n+\nIIIIIIIIII\n@r2\nGGGGCCCCAA\n+\n!!!!!!!!!!\n@r3\nATGCATGCAT\n+\n5555555555\n",
+          "expected": [
+            "r1 40.0 keep",
+            "r2 0.0 drop",
+            "r3 20.0 keep",
+            "kept 2 of 3",
+            "GC 45.0%"
+          ]
+        },
+        {
+          "stdin": "@a\nGGGG\n+\nIIII\n@b\nAAAA\n+\n5555\n",
+          "expected": [
+            "a 40.0 keep",
+            "b 20.0 keep",
+            "kept 2 of 2",
+            "GC 50.0%"
+          ],
+          "name": "all kept"
+        }
+      ]
+    }
+  ],
+  "realityNote": "FastQC and fastp do this over millions of reads with per-position statistics and adapter trimming. A mean threshold of Q20 is a common first filter; variant calling later uses the per-base scores, not the mean."
+}

@@ -1,0 +1,127 @@
+{
+  "engine": "E1",
+  "id": "software-testing-and-quality-assurance-b1-boundary-tests-first",
+  "course": "software-testing-and-quality-assurance",
+  "topic": "Black-box test design: equivalence classes and boundaries",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Boundary values first, then the code",
+  "estimatedMinutes": 20,
+  "instructions": "## Design the tests from the specification\n\nSpecification: `grade(score)` returns `\"A\"` for 80 to 100, `\"B\"` for 70 to 79, `\"C\"` for 60 to 69, `\"D\"` for 50 to 59, `\"F\"` for 0 to 49, and raises `ValueError` for anything outside 0 to 100 or not a whole number.\n\n## Do this\n\n1. Write `boundary_cases()` returning the list of scores a boundary-value analysis demands: each boundary and the values just inside and outside it. It must include at least `-1, 0, 1, 49, 50, 59, 60, 69, 70, 79, 80, 99, 100, 101`.\n2. Write `grade(score)` to the specification. The checks run it on your boundaries and on a few more.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def boundary_cases():\n    # return the list of scores to test\n    return []\n\n\ndef grade(score):\n    # raise ValueError outside 0..100 or for non-integers\n    pass\n\n\nfor s in boundary_cases():\n    try:\n        print(s, grade(s))\n    except ValueError as e:\n        print(s, \"ValueError\", e)\n"
+  },
+  "hints": [
+    "Boundaries are where the behaviour changes: 0, 50, 60, 70, 80 and 100. Test each with its neighbours.",
+    "if not isinstance(score, int) or isinstance(score, bool) or score < 0 or score > 100: raise ValueError(...)",
+    "Compare from the top down: if score >= 80: return \"A\", elif score >= 70 ..."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.script",
+      "label": "boundary_cases covers every boundary and its neighbours",
+      "script": "cases = set(boundary_cases())\nneeded = {-1, 0, 1, 49, 50, 59, 60, 69, 70, 79, 80, 99, 100, 101}\nmissing = needed - cases\nassert not missing, f\"boundary cases missing: {sorted(missing)}\""
+    },
+    {
+      "type": "code.function",
+      "label": "grade follows the specification at the boundaries",
+      "name": "grade",
+      "cases": [
+        {
+          "args": [
+            100
+          ],
+          "expected": "A"
+        },
+        {
+          "args": [
+            80
+          ],
+          "expected": "A"
+        },
+        {
+          "args": [
+            79
+          ],
+          "expected": "B"
+        },
+        {
+          "args": [
+            70
+          ],
+          "expected": "B"
+        },
+        {
+          "args": [
+            69
+          ],
+          "expected": "C"
+        },
+        {
+          "args": [
+            60
+          ],
+          "expected": "C"
+        },
+        {
+          "args": [
+            59
+          ],
+          "expected": "D"
+        },
+        {
+          "args": [
+            50
+          ],
+          "expected": "D"
+        },
+        {
+          "args": [
+            49
+          ],
+          "expected": "F"
+        },
+        {
+          "args": [
+            0
+          ],
+          "expected": "F"
+        },
+        {
+          "args": [
+            -1
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        },
+        {
+          "args": [
+            101
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        },
+        {
+          "args": [
+            75.5
+          ],
+          "expected": {
+            "$error": "ValueError"
+          }
+        }
+      ]
+    }
+  ],
+  "realityNote": "Writing the boundary list before the code is the discipline that catches the off-by-one that would otherwise ship. In pytest each case becomes a parametrised test; the list you wrote is the parameter table."
+}

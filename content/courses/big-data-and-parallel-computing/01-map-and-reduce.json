@@ -1,0 +1,139 @@
+{
+  "engine": "E1",
+  "id": "big-data-and-parallel-computing-b1-map-and-reduce",
+  "course": "big-data-and-parallel-computing",
+  "topic": "Distributed file systems and MapReduce",
+  "unit": 5,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Word count as map, shuffle and reduce",
+  "estimatedMinutes": 15,
+  "instructions": "## Why MapReduce can run on a thousand machines\n\nEach phase works on its own slice of data without talking to the others. Write the three phases for the classic word count.\n\n1. `map_line(line)`: a list of `(word, 1)` pairs for the lower-cased words of one line (split on whitespace, strip punctuation `.,!?;:` from both ends).\n2. `shuffle(pairs)`: group the pairs by key into a dict `word -> list of counts`.\n3. `reduce_counts(word, counts)`: return `(word, total)`.\n4. `word_count(lines)`: run map on every line, shuffle, reduce every group, and return a dict `word -> count`.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def map_line(line):\n    pass\n\n\ndef shuffle(pairs):\n    pass\n\n\ndef reduce_counts(word, counts):\n    pass\n\n\ndef word_count(lines):\n    pass\n\n\nprint(word_count([\"the cat sat.\", \"The cat ran!\"]))\n"
+  },
+  "hints": [
+    "[(w.strip(\".,!?;:\").lower(), 1) for w in line.split() if w.strip(\".,!?;:\")]",
+    "groups.setdefault(word, []).append(count)",
+    "The dict comprehension {w: reduce_counts(w, c)[1] for w, c in shuffle(pairs).items()} is the reduce phase."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "map_line emits (word, 1) pairs",
+      "name": "map_line",
+      "cases": [
+        {
+          "args": [
+            "The cat sat."
+          ],
+          "expected": [
+            [
+              "the",
+              1
+            ],
+            [
+              "cat",
+              1
+            ],
+            [
+              "sat",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "  "
+          ],
+          "expected": []
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "shuffle groups by key",
+      "name": "shuffle",
+      "cases": [
+        {
+          "args": [
+            [
+              [
+                "a",
+                1
+              ],
+              [
+                "b",
+                1
+              ],
+              [
+                "a",
+                1
+              ]
+            ]
+          ],
+          "expected": {
+            "a": [
+              1,
+              1
+            ],
+            "b": [
+              1
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "reduce_counts sums a group",
+      "name": "reduce_counts",
+      "cases": [
+        {
+          "args": [
+            "a",
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "expected": [
+            "a",
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "word_count end to end",
+      "name": "word_count",
+      "cases": [
+        {
+          "args": [
+            [
+              "the cat sat.",
+              "The cat ran!"
+            ]
+          ],
+          "expected": {
+            "the": 2,
+            "cat": 2,
+            "sat": 1,
+            "ran": 1
+          }
+        }
+      ]
+    }
+  ],
+  "realityNote": "Hadoop ran map tasks where the data blocks lived and shipped only the shuffled pairs over the network; Spark keeps the same shape with map, groupByKey and reduceByKey but holds intermediate data in memory."
+}

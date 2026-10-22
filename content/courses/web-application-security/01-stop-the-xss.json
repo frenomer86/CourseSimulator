@@ -1,0 +1,164 @@
+{
+  "engine": "E1",
+  "id": "web-application-security-i1-stop-the-xss",
+  "course": "web-application-security",
+  "topic": "Cross-site scripting: contexts and encoding",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Encode for the context",
+  "estimatedMinutes": 20,
+  "instructions": "## The same string, three contexts\n\nUser text ends up in HTML bodies, in attribute values and in URLs. Each context needs its own encoding, and a redirect target needs an allow-list.\n\n1. `encodeHtml(text)`: `&` `<` `>` `\"` `'` to entities (`&amp; &lt; &gt; &quot; &#39;`).\n2. `encodeAttribute(text)`: like encodeHtml, and additionally encode every character that is not a letter, digit, space or `-_.` as `&#NN;` with its decimal code (so `=` becomes `&#61;`).\n3. `isSafeRedirect(url, allowedHosts)`: true only for relative paths starting with a single `/` (not `//`) or absolute `https://` URLs whose host is in the list exactly.\n4. `constantTimeEqual(a, b)`: compare two strings without returning early (XOR every character code, after checking the lengths), to avoid timing leaks when comparing tokens.",
+  "config": {
+    "language": "javascript"
+  },
+  "initialState": {
+    "language": "javascript",
+    "source": "function encodeHtml(text) {\n}\n\nfunction encodeAttribute(text) {\n}\n\nfunction isSafeRedirect(url, allowedHosts) {\n}\n\nfunction constantTimeEqual(a, b) {\n}\n\nconsole.log(encodeHtml(\"<script>alert(1)</script>\"));\nconsole.log(isSafeRedirect(\"//evil.com\", [\"app.ug.edu.gh\"]));\n"
+  },
+  "hints": [
+    "encodeAttribute: run encodeHtml first? No: do it in one pass, deciding per character; letters, digits, space, - _ . pass through; everything else becomes \"&#\" + code + \";\".",
+    "For absolute URLs use new URL(url) and compare url.protocol === \"https:\" and allowedHosts.includes(url.host).",
+    "let diff = a.length ^ b.length; for each i, diff |= a.charCodeAt(i) ^ b.charCodeAt(i); return diff === 0."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "encodeHtml",
+      "name": "encodeHtml",
+      "cases": [
+        {
+          "args": [
+            "<script>alert(1)</script>"
+          ],
+          "expected": "&lt;script&gt;alert(1)&lt;/script&gt;"
+        },
+        {
+          "args": [
+            "Ama & \"Kofi\""
+          ],
+          "expected": "Ama &amp; &quot;Kofi&quot;"
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "encodeAttribute",
+      "name": "encodeAttribute",
+      "cases": [
+        {
+          "args": [
+            "a=1"
+          ],
+          "expected": "a&#61;1"
+        },
+        {
+          "args": [
+            "x\" onload=alert(1)"
+          ],
+          "expected": "x&quot; onload&#61;alert&#40;1&#41;"
+        },
+        {
+          "args": [
+            "safe-name_1.txt"
+          ],
+          "expected": "safe-name_1.txt"
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "isSafeRedirect",
+      "name": "isSafeRedirect",
+      "cases": [
+        {
+          "args": [
+            "/dashboard",
+            [
+              "app.ug.edu.gh"
+            ]
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "//evil.com/x",
+            [
+              "app.ug.edu.gh"
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "https://app.ug.edu.gh/home",
+            [
+              "app.ug.edu.gh"
+            ]
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "https://app.ug.edu.gh.evil.com/",
+            [
+              "app.ug.edu.gh"
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "http://app.ug.edu.gh/",
+            [
+              "app.ug.edu.gh"
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "javascript:alert(1)",
+            [
+              "app.ug.edu.gh"
+            ]
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "constantTimeEqual",
+      "name": "constantTimeEqual",
+      "cases": [
+        {
+          "args": [
+            "abc",
+            "abc"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "abc",
+            "abd"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "abc",
+            "ab"
+          ],
+          "expected": false
+        }
+      ]
+    }
+  ],
+  "realityNote": "Frameworks encode HTML bodies by default but not attributes, URLs or JavaScript contexts, which is where most modern XSS lives. Content Security Policy is the second layer when encoding is missed."
+}

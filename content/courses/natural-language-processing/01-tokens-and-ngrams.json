@@ -1,0 +1,143 @@
+{
+  "engine": "E1",
+  "id": "natural-language-processing-b1-tokens-and-ngrams",
+  "course": "natural-language-processing",
+  "topic": "Text processing and tokenisation",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Tokens, bigrams and the most common words",
+  "estimatedMinutes": 15,
+  "instructions": "## Text becomes a list\n\nEvery NLP pipeline starts by turning text into tokens. Write the first steps.\n\n1. `tokenize(text)`: lower-case the text and return the list of words, where a word is a maximal run of letters, digits or apostrophes (so `\"Kofi's\"` stays one token and punctuation is dropped).\n2. `bigrams(tokens)`: the list of consecutive pairs as tuples.\n3. `top_words(text, n)`: the `n` most frequent tokens as `(word, count)` tuples, most frequent first; ties broken alphabetically.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "import re\nfrom collections import Counter\n\n\ndef tokenize(text):\n    pass\n\n\ndef bigrams(tokens):\n    pass\n\n\ndef top_words(text, n):\n    pass\n\n\nprint(tokenize(\"Kofi's book, the book!\"))\nprint(top_words(\"the cat and the dog and the bird\", 2))\n"
+  },
+  "hints": [
+    "re.findall(r\"[a-z0-9']+\", text.lower())",
+    "list(zip(tokens, tokens[1:]))",
+    "sorted(Counter(tokens).items(), key=lambda kv: (-kv[1], kv[0]))[:n]"
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "tokenize",
+      "name": "tokenize",
+      "cases": [
+        {
+          "args": [
+            "Kofi's book, the book!"
+          ],
+          "expected": [
+            "kofi's",
+            "book",
+            "the",
+            "book"
+          ]
+        },
+        {
+          "args": [
+            "Accra 2026: hot, hot."
+          ],
+          "expected": [
+            "accra",
+            "2026",
+            "hot",
+            "hot"
+          ]
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": []
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "bigrams",
+      "name": "bigrams",
+      "cases": [
+        {
+          "args": [
+            [
+              "a",
+              "b",
+              "c"
+            ]
+          ],
+          "expected": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              "solo"
+            ]
+          ],
+          "expected": []
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "top_words orders by count then word",
+      "name": "top_words",
+      "cases": [
+        {
+          "args": [
+            "the cat and the dog and the bird",
+            2
+          ],
+          "expected": [
+            [
+              "the",
+              3
+            ],
+            [
+              "and",
+              2
+            ]
+          ]
+        },
+        {
+          "args": [
+            "b a b a c",
+            3
+          ],
+          "expected": [
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              2
+            ],
+            [
+              "c",
+              1
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "realityNote": "Real tokenisers (spaCy, SentencePiece) handle contractions, hyphens, emoji and languages without spaces; subword tokenisers split rare words into pieces. The regular expression here is the baseline every one of them improves on."
+}

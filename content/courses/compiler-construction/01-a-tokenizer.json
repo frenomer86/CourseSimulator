@@ -1,0 +1,122 @@
+{
+  "engine": "E1",
+  "id": "compiler-construction-b1-a-tokenizer",
+  "course": "compiler-construction",
+  "topic": "Lexical analysis",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "A tokenizer for a tiny expression language",
+  "estimatedMinutes": 20,
+  "instructions": "## Characters in, tokens out\n\nThe lexer turns `total = price * 12 + 5` into a list of tokens. Write it by hand with an index into the string, the way generated lexers work underneath.\n\n`tokenize(src)` returns a list of `(kind, text)` tuples with kinds: `NUMBER` (digits, optionally a dot and more digits), `IDENT` (a letter or underscore then letters, digits, underscores), `OP` (one of `+ - * / = ( )`), skipping spaces and tabs. Any other character raises `SyntaxError` with the message `unexpected character '<c>' at <index>`.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "def tokenize(src):\n    tokens = []\n    i = 0\n    while i < len(src):\n        c = src[i]\n        # skip whitespace; read a number, an identifier or an operator; else raise\n        i += 1\n    return tokens\n\n\nprint(tokenize(\"total = price * 12 + 5\"))\n"
+  },
+  "hints": [
+    "if c.isdigit(): j = i; while j < len(src) and (src[j].isdigit() or src[j] == \".\"): j += 1; tokens.append((\"NUMBER\", src[i:j])); i = j; continue",
+    "Identifiers start with a letter or _ (c.isalpha() or c == \"_\") and continue with isalnum() or _.",
+    "raise SyntaxError(f\"unexpected character {c!r} at {i}\") for anything else."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "tokenize",
+      "name": "tokenize",
+      "cases": [
+        {
+          "args": [
+            "total = price * 12 + 5"
+          ],
+          "expected": [
+            [
+              "IDENT",
+              "total"
+            ],
+            [
+              "OP",
+              "="
+            ],
+            [
+              "IDENT",
+              "price"
+            ],
+            [
+              "OP",
+              "*"
+            ],
+            [
+              "NUMBER",
+              "12"
+            ],
+            [
+              "OP",
+              "+"
+            ],
+            [
+              "NUMBER",
+              "5"
+            ]
+          ]
+        },
+        {
+          "args": [
+            "(x_1+2.5)/y"
+          ],
+          "expected": [
+            [
+              "OP",
+              "("
+            ],
+            [
+              "IDENT",
+              "x_1"
+            ],
+            [
+              "OP",
+              "+"
+            ],
+            [
+              "NUMBER",
+              "2.5"
+            ],
+            [
+              "OP",
+              ")"
+            ],
+            [
+              "OP",
+              "/"
+            ],
+            [
+              "IDENT",
+              "y"
+            ]
+          ]
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            "a $ b"
+          ],
+          "expected": {
+            "$error": "SyntaxError"
+          }
+        }
+      ]
+    }
+  ],
+  "realityNote": "Tools such as flex and re2c generate this loop from regular expressions as a table-driven finite automaton. The error message with a position is what every later phase of the compiler relies on to point at the right place in the source."
+}
