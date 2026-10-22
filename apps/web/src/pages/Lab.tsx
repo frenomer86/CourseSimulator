@@ -6,6 +6,7 @@ import type { CodeState } from '@cslab/engine-code';
 import type { ScenarioState } from '@cslab/engine-scenario';
 import type { VizState } from '@cslab/engine-visualiser';
 import type { MathsState } from '@cslab/engine-maths';
+import type { NetState } from '@cslab/engine-network';
 import { checkForTopic, courseBySlug, labById, nextLab, unitOf } from '../lib/catalogue';
 import { useProgress } from '../store/progress';
 import { secondsSince, track } from '../lib/telemetry';
@@ -25,6 +26,7 @@ const CodeLab = lazy(() => import('../components/CodeLab').then((m) => ({ defaul
 const ScenarioLab = lazy(() => import('../components/ScenarioLab').then((m) => ({ default: m.ScenarioLab })));
 const SqlLab = lazy(() => import('../components/SqlLab').then((m) => ({ default: m.SqlLab })));
 const VisualiserLab = lazy(() => import('../components/VisualiserLab').then((m) => ({ default: m.VisualiserLab })));
+const NetworkLab = lazy(() => import('../components/NetworkLab').then((m) => ({ default: m.NetworkLab })));
 const MathsLab = lazy(() => import('../components/MathsLab').then((m) => ({ default: m.MathsLab })));
 
 function Loading({ title }: { title: string }) {
@@ -50,6 +52,7 @@ export function LabPage() {
   if (lab.engine === 'E5') return <Suspense fallback={fallback}><SqlLab key={lab.id} lab={lab as LabSpec<{ sql: string }>} /></Suspense>;
   if (lab.engine === 'E6') return <Suspense fallback={fallback}><VisualiserLab key={lab.id} lab={lab as LabSpec<VizState>} /></Suspense>;
   if (lab.engine === 'E7') return <Suspense fallback={fallback}><MathsLab key={lab.id} lab={lab as LabSpec<MathsState>} /></Suspense>;
+  if (lab.engine === 'E3') return <Suspense fallback={fallback}><NetworkLab key={lab.id} lab={lab as LabSpec<NetState>} /></Suspense>;
   if (lab.engine !== 'E2') {
     return (
       <div className="mx-auto max-w-6xl px-4 py-16">

@@ -1,0 +1,187 @@
+{
+  "id": "computer-networking-i-b2-across-the-router",
+  "course": "computer-networking-i",
+  "topic": "IP forwarding, routers and routing tables",
+  "unit": 2,
+  "topicIndex": 5,
+  "level": "beginner",
+  "engine": "E3",
+  "title": "Across the router",
+  "estimatedMinutes": 10,
+  "instructions": "## Two subnets, one router\n\nThe library PCs are on `192.168.1.0/24` and the office server is on `192.168.2.0/24`. The router R1 sits between them with an interface in each subnet. Every address is already set, but the PCs have **no default gateway**, so they do not know where to send traffic for the other subnet.\n\n## Do this\n\n1. Ping the server from PC1 and read why it fails.\n2. Click each PC and set its **default gateway** to the router interface on its own subnet.\n3. Ping again, then press **Check my network**.",
+  "config": {
+    "editable": {
+      "addresses": true,
+      "routes": false,
+      "cables": false
+    }
+  },
+  "initialState": {
+    "topology": {
+      "devices": [
+        {
+          "id": "pc1",
+          "kind": "pc",
+          "name": "PC1",
+          "x": 80,
+          "y": 100,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "192.168.1.10",
+              "mask": "255.255.255.0"
+            }
+          ]
+        },
+        {
+          "id": "pc2",
+          "kind": "pc",
+          "name": "PC2",
+          "x": 80,
+          "y": 220,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "192.168.1.11",
+              "mask": "255.255.255.0"
+            }
+          ]
+        },
+        {
+          "id": "sw1",
+          "kind": "switch",
+          "name": "Switch",
+          "x": 220,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "p1"
+            },
+            {
+              "id": "p2"
+            },
+            {
+              "id": "p3"
+            },
+            {
+              "id": "p4"
+            }
+          ]
+        },
+        {
+          "id": "r1",
+          "kind": "router",
+          "name": "R1",
+          "x": 360,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "g0",
+              "ip": "192.168.1.1",
+              "mask": "255.255.255.0"
+            },
+            {
+              "id": "g1",
+              "ip": "192.168.2.1",
+              "mask": "255.255.255.0"
+            }
+          ]
+        },
+        {
+          "id": "srv",
+          "kind": "server",
+          "name": "Server",
+          "x": 540,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "192.168.2.50",
+              "mask": "255.255.255.0"
+            }
+          ],
+          "gateway": "192.168.2.1"
+        }
+      ],
+      "links": [
+        {
+          "id": "l1",
+          "a": {
+            "device": "pc1",
+            "iface": "eth0"
+          },
+          "b": {
+            "device": "sw1",
+            "iface": "p1"
+          }
+        },
+        {
+          "id": "l2",
+          "a": {
+            "device": "pc2",
+            "iface": "eth0"
+          },
+          "b": {
+            "device": "sw1",
+            "iface": "p2"
+          }
+        },
+        {
+          "id": "l3",
+          "a": {
+            "device": "sw1",
+            "iface": "p3"
+          },
+          "b": {
+            "device": "r1",
+            "iface": "g0"
+          }
+        },
+        {
+          "id": "l4",
+          "a": {
+            "device": "r1",
+            "iface": "g1"
+          },
+          "b": {
+            "device": "srv",
+            "iface": "eth0"
+          }
+        }
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "A default gateway must be an address on the PC's own subnet; it is the router's \"near\" interface.",
+    "Click R1 to see its two interfaces. The PCs are on the g0 side.",
+    "The gateway for both PCs is 192.168.1.1."
+  ],
+  "checks": [
+    {
+      "type": "net.gateway",
+      "label": "PC1 points at the router",
+      "device": "pc1",
+      "subnet": "192.168.1.0/24"
+    },
+    {
+      "type": "net.gateway",
+      "label": "PC2 points at the router",
+      "device": "pc2",
+      "subnet": "192.168.1.0/24"
+    },
+    {
+      "type": "net.ping",
+      "label": "PC1 reaches the server",
+      "from": "pc1",
+      "to": "srv"
+    },
+    {
+      "type": "net.ping",
+      "label": "PC2 reaches the server",
+      "from": "pc2",
+      "to": "srv"
+    }
+  ],
+  "realityNote": "On Windows the gateway is set under the adapter's IPv4 properties; `route print` shows the resulting default route 0.0.0.0/0. `tracert 192.168.2.50` would show R1 as the first hop."
+}

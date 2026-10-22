@@ -1,0 +1,229 @@
+{
+  "id": "computer-networking-ii-i1-hub-and-two-branches",
+  "course": "computer-networking-ii",
+  "topic": "Longest-prefix match, static and default routes",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "engine": "E3",
+  "title": "A hub router and two branches",
+  "estimatedMinutes": 25,
+  "instructions": "## Branch, hub, branch\n\nA bank has a hub router **HUB** in Accra with two branches: Kumasi (`172.16.1.0/24`, router KSI) and Tamale (`172.16.3.0/24`, router TML). The hub also hosts the core banking server on `172.16.0.0/24`. The branch routers have only one way out, so a **default route** is enough for them. The hub needs a **specific route** to each branch.\n\n## Do this\n\n1. Add a default route on KSI and on TML pointing at the hub.\n2. Add routes on HUB for each branch network via the right branch router.\n3. Check that Kumasi reaches the server and Tamale, then answer the question about longest-prefix match.",
+  "config": {
+    "editable": {
+      "addresses": false,
+      "routes": true,
+      "cables": false
+    }
+  },
+  "initialState": {
+    "topology": {
+      "devices": [
+        {
+          "id": "ksipc",
+          "kind": "pc",
+          "name": "Kumasi PC",
+          "x": 60,
+          "y": 80,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "172.16.1.10",
+              "mask": "/24"
+            }
+          ],
+          "gateway": "172.16.1.1"
+        },
+        {
+          "id": "ksi",
+          "kind": "router",
+          "name": "KSI",
+          "x": 200,
+          "y": 80,
+          "interfaces": [
+            {
+              "id": "g0",
+              "ip": "172.16.1.1",
+              "mask": "/24"
+            },
+            {
+              "id": "s0",
+              "ip": "10.0.12.1",
+              "mask": "/30"
+            }
+          ]
+        },
+        {
+          "id": "hub",
+          "kind": "router",
+          "name": "HUB",
+          "x": 340,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "g0",
+              "ip": "172.16.0.1",
+              "mask": "/24"
+            },
+            {
+              "id": "s0",
+              "ip": "10.0.12.2",
+              "mask": "/30"
+            },
+            {
+              "id": "s1",
+              "ip": "10.0.13.2",
+              "mask": "/30"
+            }
+          ]
+        },
+        {
+          "id": "core",
+          "kind": "server",
+          "name": "Core server",
+          "x": 340,
+          "y": 40,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "172.16.0.20",
+              "mask": "/24"
+            }
+          ],
+          "gateway": "172.16.0.1"
+        },
+        {
+          "id": "tml",
+          "kind": "router",
+          "name": "TML",
+          "x": 200,
+          "y": 240,
+          "interfaces": [
+            {
+              "id": "g0",
+              "ip": "172.16.3.1",
+              "mask": "/24"
+            },
+            {
+              "id": "s0",
+              "ip": "10.0.13.1",
+              "mask": "/30"
+            }
+          ]
+        },
+        {
+          "id": "tmlpc",
+          "kind": "pc",
+          "name": "Tamale PC",
+          "x": 60,
+          "y": 240,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "172.16.3.10",
+              "mask": "/24"
+            }
+          ],
+          "gateway": "172.16.3.1"
+        }
+      ],
+      "links": [
+        {
+          "id": "l1",
+          "a": {
+            "device": "ksipc",
+            "iface": "eth0"
+          },
+          "b": {
+            "device": "ksi",
+            "iface": "g0"
+          }
+        },
+        {
+          "id": "l2",
+          "a": {
+            "device": "ksi",
+            "iface": "s0"
+          },
+          "b": {
+            "device": "hub",
+            "iface": "s0"
+          }
+        },
+        {
+          "id": "l3",
+          "a": {
+            "device": "hub",
+            "iface": "g0"
+          },
+          "b": {
+            "device": "core",
+            "iface": "eth0"
+          }
+        },
+        {
+          "id": "l4",
+          "a": {
+            "device": "hub",
+            "iface": "s1"
+          },
+          "b": {
+            "device": "tml",
+            "iface": "s0"
+          }
+        },
+        {
+          "id": "l5",
+          "a": {
+            "device": "tml",
+            "iface": "g0"
+          },
+          "b": {
+            "device": "tmlpc",
+            "iface": "eth0"
+          }
+        }
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "KSI: 0.0.0.0/0 via 10.0.12.2. TML: 0.0.0.0/0 via 10.0.13.2.",
+    "HUB: 172.16.1.0/24 via 10.0.12.1 and 172.16.3.0/24 via 10.0.13.1.",
+    "When two routes match a destination, the router uses the one with the longer prefix (the more specific route), whatever order they were added in."
+  ],
+  "checks": [
+    {
+      "type": "net.ping",
+      "label": "Kumasi reaches the core server",
+      "from": "ksipc",
+      "to": "core"
+    },
+    {
+      "type": "net.ping",
+      "label": "Tamale reaches the core server",
+      "from": "tmlpc",
+      "to": "core"
+    },
+    {
+      "type": "net.ping",
+      "label": "Kumasi reaches Tamale through the hub",
+      "from": "ksipc",
+      "to": "tmlpc"
+    },
+    {
+      "type": "net.ping",
+      "label": "The core server reaches Tamale",
+      "from": "core",
+      "to": "tmlpc"
+    },
+    {
+      "type": "net.answer",
+      "label": "Longest-prefix match",
+      "id": "lpm",
+      "expected": "172.16.3.0/24",
+      "question": "HUB has routes 172.16.0.0/16 via 10.0.12.1 and 172.16.3.0/24 via 10.0.13.1. Which route does it use for 172.16.3.9?"
+    }
+  ],
+  "realityNote": "Real branch routers use exactly this pattern: a default route out of the branch and specific routes at the hub, or a routing protocol such as OSPF to learn them automatically (the next topics). `show ip route 172.16.3.9` on IOS shows which entry wins."
+}

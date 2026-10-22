@@ -1,0 +1,229 @@
+{
+  "id": "computer-networking-i-i2-campus-vlsm",
+  "course": "computer-networking-i",
+  "topic": "VLSM: designing a plan for a campus",
+  "unit": 3,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "engine": "E3",
+  "title": "A VLSM plan for a campus",
+  "estimatedMinutes": 20,
+  "instructions": "## Different sizes, one block\n\nA university campus has the block `10.1.0.0/22` (1024 addresses) and needs:\n\n| Network | Hosts needed |\n|---|---|\n| Students | 300 |\n| Staff | 100 |\n| Labs | 50 |\n| Link between R1 and R2 | 2 |\n\nWith **variable-length subnet masks** you give each network only as much as it needs. Allocate the largest network first, starting at the beginning of the block, then the next largest, and so on, with no gaps.\n\n## Do this\n\n1. Work out the four subnets in CIDR form (for example `10.1.0.0/23`) and type them on the right.\n2. The routers' LAN interfaces are already addressed. Click **R1** and **R2** and give their `s0` interfaces the two usable addresses of the link subnet.\n3. Ping R2 from R1 and press **Check my network**.",
+  "config": {
+    "editable": {
+      "addresses": true,
+      "routes": false,
+      "cables": false
+    }
+  },
+  "initialState": {
+    "topology": {
+      "devices": [
+        {
+          "id": "r1",
+          "kind": "router",
+          "name": "R1",
+          "x": 220,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "s0"
+            },
+            {
+              "id": "g0",
+              "ip": "10.1.0.1",
+              "mask": "/23"
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "kind": "router",
+          "name": "R2",
+          "x": 420,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "s0"
+            },
+            {
+              "id": "g0",
+              "ip": "10.1.2.1",
+              "mask": "/25"
+            },
+            {
+              "id": "g1",
+              "ip": "10.1.2.129",
+              "mask": "/26"
+            }
+          ]
+        },
+        {
+          "id": "stu",
+          "kind": "pc",
+          "name": "Student PC",
+          "x": 60,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "10.1.1.200",
+              "mask": "/23"
+            }
+          ],
+          "gateway": "10.1.0.1"
+        },
+        {
+          "id": "staff",
+          "kind": "pc",
+          "name": "Staff PC",
+          "x": 580,
+          "y": 80,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "10.1.2.10",
+              "mask": "/25"
+            }
+          ],
+          "gateway": "10.1.2.1"
+        },
+        {
+          "id": "lab",
+          "kind": "pc",
+          "name": "Lab PC",
+          "x": 580,
+          "y": 240,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "10.1.2.140",
+              "mask": "/26"
+            }
+          ],
+          "gateway": "10.1.2.129"
+        }
+      ],
+      "links": [
+        {
+          "id": "l1",
+          "a": {
+            "device": "r1",
+            "iface": "s0"
+          },
+          "b": {
+            "device": "r2",
+            "iface": "s0"
+          }
+        },
+        {
+          "id": "l2",
+          "a": {
+            "device": "r1",
+            "iface": "g0"
+          },
+          "b": {
+            "device": "stu",
+            "iface": "eth0"
+          }
+        },
+        {
+          "id": "l3",
+          "a": {
+            "device": "r2",
+            "iface": "g0"
+          },
+          "b": {
+            "device": "staff",
+            "iface": "eth0"
+          }
+        },
+        {
+          "id": "l4",
+          "a": {
+            "device": "r2",
+            "iface": "g1"
+          },
+          "b": {
+            "device": "lab",
+            "iface": "eth0"
+          }
+        }
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "300 hosts need 9 host bits (2^9 - 2 = 510), so Students is a /23. 100 hosts need 7 bits (/25); 50 need 6 bits (/26); 2 need 2 bits (/30).",
+    "Students takes 10.1.0.0 to 10.1.1.255. Staff starts at 10.1.2.0, Labs at 10.1.2.128, and the link at 10.1.2.192.",
+    "A /30 has four addresses: .192 is the network, .193 and .194 are the hosts, .195 is the broadcast."
+  ],
+  "checks": [
+    {
+      "type": "net.answer",
+      "label": "Students subnet",
+      "id": "students",
+      "expected": "10.1.0.0/23",
+      "question": "Students (300 hosts), in CIDR form:"
+    },
+    {
+      "type": "net.answer",
+      "label": "Staff subnet",
+      "id": "staff",
+      "expected": "10.1.2.0/25",
+      "question": "Staff (100 hosts):"
+    },
+    {
+      "type": "net.answer",
+      "label": "Labs subnet",
+      "id": "labs",
+      "expected": "10.1.2.128/26",
+      "question": "Labs (50 hosts):"
+    },
+    {
+      "type": "net.answer",
+      "label": "Router link subnet",
+      "id": "link",
+      "expected": "10.1.2.192/30",
+      "question": "The R1 to R2 link (2 hosts):"
+    },
+    {
+      "type": "net.answer",
+      "label": "Addresses left over",
+      "id": "spare",
+      "expected": "60",
+      "question": "How many addresses of the /22 are still unallocated?"
+    },
+    {
+      "type": "net.interface",
+      "label": "R1 s0 in the link subnet",
+      "device": "r1",
+      "iface": "s0",
+      "subnet": "10.1.2.192/30"
+    },
+    {
+      "type": "net.interface",
+      "label": "R2 s0 in the link subnet",
+      "device": "r2",
+      "iface": "s0",
+      "subnet": "10.1.2.192/30"
+    },
+    {
+      "type": "net.noDuplicates",
+      "label": "No duplicate addresses"
+    },
+    {
+      "type": "net.ping",
+      "label": "R1 reaches R2 over the link",
+      "from": "r1",
+      "to": "10.1.2.194"
+    },
+    {
+      "type": "net.ping",
+      "label": "R2 reaches R1 over the link",
+      "from": "r2",
+      "to": "10.1.2.193"
+    }
+  ],
+  "realityNote": "Real plans also reserve space for growth and for management networks, and the link between routers is often a /31 on modern equipment. The student PCs would not reach the staff PCs until routes are added, which is the next course."
+}

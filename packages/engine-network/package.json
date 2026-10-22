@@ -1,0 +1,12 @@
+{
+  "name": "@cslab/engine-network",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Network engine (E3): IPv4 subnetting, a topology model with PCs, switches and routers, and ping tracing with explanations.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@cslab/lab-runtime": "*"
+  }
+}

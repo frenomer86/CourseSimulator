@@ -1,0 +1,155 @@
+{
+  "id": "computer-networking-ii-b1-static-routes",
+  "course": "computer-networking-ii",
+  "topic": "Static routes and default routes",
+  "unit": 1,
+  "topicIndex": 2,
+  "level": "beginner",
+  "engine": "E3",
+  "title": "Static routes between two sites",
+  "estimatedMinutes": 15,
+  "instructions": "## Two routers, no routes\n\nThe main campus (`192.168.1.0/24`, router R1) and the annex (`192.168.2.0/24`, router R2) are joined by the link `10.0.0.0/30`. Every interface and gateway is correct, but the routers only know their **directly connected** networks.\n\n## Do this\n\n1. Ping the annex server from PC1 and read where the packet stops.\n2. Click **R1** and add a static route to `192.168.2.0/24` via R2's link address.\n3. Ping again. Notice the request now arrives but the **reply** cannot get back: R2 has no route to the campus.\n4. Click **R2** and add the return route (a default route `0.0.0.0/0` via R1 is fine here).\n5. Press **Check my network**.",
+  "config": {
+    "editable": {
+      "addresses": false,
+      "routes": true,
+      "cables": false
+    }
+  },
+  "initialState": {
+    "topology": {
+      "devices": [
+        {
+          "id": "pc1",
+          "kind": "pc",
+          "name": "PC1",
+          "x": 60,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "192.168.1.10",
+              "mask": "255.255.255.0"
+            }
+          ],
+          "gateway": "192.168.1.1"
+        },
+        {
+          "id": "r1",
+          "kind": "router",
+          "name": "R1",
+          "x": 220,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "g0",
+              "ip": "192.168.1.1",
+              "mask": "/24"
+            },
+            {
+              "id": "s0",
+              "ip": "10.0.0.1",
+              "mask": "/30"
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "kind": "router",
+          "name": "R2",
+          "x": 420,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "g0",
+              "ip": "192.168.2.1",
+              "mask": "/24"
+            },
+            {
+              "id": "s0",
+              "ip": "10.0.0.2",
+              "mask": "/30"
+            }
+          ]
+        },
+        {
+          "id": "srv",
+          "kind": "server",
+          "name": "Annex server",
+          "x": 580,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "192.168.2.50",
+              "mask": "255.255.255.0"
+            }
+          ],
+          "gateway": "192.168.2.1"
+        }
+      ],
+      "links": [
+        {
+          "id": "l1",
+          "a": {
+            "device": "pc1",
+            "iface": "eth0"
+          },
+          "b": {
+            "device": "r1",
+            "iface": "g0"
+          }
+        },
+        {
+          "id": "l2",
+          "a": {
+            "device": "r1",
+            "iface": "s0"
+          },
+          "b": {
+            "device": "r2",
+            "iface": "s0"
+          }
+        },
+        {
+          "id": "l3",
+          "a": {
+            "device": "r2",
+            "iface": "g0"
+          },
+          "b": {
+            "device": "srv",
+            "iface": "eth0"
+          }
+        }
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "A static route says: \"for this network, hand the packet to this next-hop address\". The next hop must be on a subnet the router is directly connected to.",
+    "On R1: network 192.168.2.0/24 via 10.0.0.2.",
+    "On R2: network 192.168.1.0/24 via 10.0.0.1, or 0.0.0.0/0 via 10.0.0.1."
+  ],
+  "checks": [
+    {
+      "type": "net.ping",
+      "label": "PC1 reaches the annex server",
+      "from": "pc1",
+      "to": "srv"
+    },
+    {
+      "type": "net.ping",
+      "label": "The annex server reaches PC1",
+      "from": "srv",
+      "to": "pc1"
+    },
+    {
+      "type": "net.ping",
+      "label": "R1 reaches the annex LAN",
+      "from": "r1",
+      "to": "192.168.2.1"
+    }
+  ],
+  "realityNote": "On Cisco IOS the command is `ip route 192.168.2.0 255.255.255.0 10.0.0.2`, and `show ip route` lists connected routes with C and static ones with S. A packet with no matching route is dropped and the router sends back an ICMP \"destination unreachable\"."
+}

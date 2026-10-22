@@ -1,0 +1,127 @@
+{
+  "id": "computer-networking-i-b1-two-pcs-one-switch",
+  "course": "computer-networking-i",
+  "topic": "What a network is: hosts, links, switches",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "beginner",
+  "engine": "E3",
+  "title": "Two PCs and a switch",
+  "estimatedMinutes": 10,
+  "instructions": "## The smallest network\n\nTwo PCs are plugged into a switch, but neither has an address yet, so they cannot talk.\n\n## Do this\n\n1. Click **PC1** and give it the address `192.168.1.10` with mask `255.255.255.0`.\n2. Click **PC2** and give it a different address in the same subnet, for example `192.168.1.20`, with the same mask.\n3. Use the **Ping** tool to ping PC2 from PC1. Read the trace: the switch forwards the frame, PC2 answers.\n4. Press **Check my network**.\n\nA switch needs no IP address: it forwards frames by MAC address, not by IP.",
+  "config": {
+    "editable": {
+      "addresses": true,
+      "routes": false,
+      "cables": false
+    }
+  },
+  "initialState": {
+    "topology": {
+      "devices": [
+        {
+          "id": "pc1",
+          "kind": "pc",
+          "name": "PC1",
+          "x": 120,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "eth0"
+            }
+          ]
+        },
+        {
+          "id": "pc2",
+          "kind": "pc",
+          "name": "PC2",
+          "x": 520,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "eth0"
+            }
+          ]
+        },
+        {
+          "id": "sw1",
+          "kind": "switch",
+          "name": "Switch",
+          "x": 320,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "p1"
+            },
+            {
+              "id": "p2"
+            },
+            {
+              "id": "p3"
+            },
+            {
+              "id": "p4"
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "id": "l1",
+          "a": {
+            "device": "pc1",
+            "iface": "eth0"
+          },
+          "b": {
+            "device": "sw1",
+            "iface": "p1"
+          }
+        },
+        {
+          "id": "l2",
+          "a": {
+            "device": "pc2",
+            "iface": "eth0"
+          },
+          "b": {
+            "device": "sw1",
+            "iface": "p2"
+          }
+        }
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "Both PCs must share the first three numbers (192.168.1) and have a mask of 255.255.255.0.",
+    "The last number must be different on each PC, and between 1 and 254.",
+    "In the Ping tool choose From: PC1 and type PC2 or its address, then press ping."
+  ],
+  "checks": [
+    {
+      "type": "net.interface",
+      "label": "PC1 has an address in 192.168.1.0/24",
+      "device": "pc1",
+      "iface": "eth0",
+      "subnet": "192.168.1.0/24"
+    },
+    {
+      "type": "net.interface",
+      "label": "PC2 has an address in 192.168.1.0/24",
+      "device": "pc2",
+      "iface": "eth0",
+      "subnet": "192.168.1.0/24"
+    },
+    {
+      "type": "net.noDuplicates",
+      "label": "The two addresses are different"
+    },
+    {
+      "type": "net.ping",
+      "label": "PC1 can ping PC2",
+      "from": "pc1",
+      "to": "pc2"
+    }
+  ],
+  "realityNote": "On a real switch you would also see the link lights come on when the cable is plugged in, and `ipconfig` (Windows) or `ip addr` (Linux) shows the address you set. The first ping is often slow because the PC must first ask \"who has 192.168.1.20?\" (ARP) before it can send."
+}

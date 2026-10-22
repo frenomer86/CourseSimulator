@@ -1,0 +1,238 @@
+{
+  "id": "computer-networking-i-a1-troubleshoot-the-office",
+  "course": "computer-networking-i",
+  "topic": "Connectivity testing and a fault-finding procedure",
+  "unit": 8,
+  "topicIndex": 4,
+  "level": "advanced",
+  "engine": "E3",
+  "title": "Troubleshoot the office network",
+  "estimatedMinutes": 25,
+  "instructions": "## Nobody can reach the file server\n\nThe office has three PCs on a switch, a router R1, and a file server on `10.10.10.0/24` behind it. All three users say \"the server is down\", but the server itself is fine. There are **three separate faults**, one per PC.\n\n## Do this\n\nWork like a technician: ping the server from each PC, read the explanation, and fix only what is wrong. Check the cable, the address and mask, and the gateway, in that order (physical layer first).\n\nThe server and the router are correct; do not change them. Press **Check my network** when all three PCs reach the server.",
+  "config": {
+    "editable": {
+      "addresses": true,
+      "routes": false,
+      "cables": true
+    }
+  },
+  "initialState": {
+    "topology": {
+      "devices": [
+        {
+          "id": "pc1",
+          "kind": "pc",
+          "name": "PC1",
+          "x": 80,
+          "y": 60,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "192.168.1.10",
+              "mask": "255.255.255.0"
+            }
+          ],
+          "gateway": "192.168.1.1"
+        },
+        {
+          "id": "pc2",
+          "kind": "pc",
+          "name": "PC2",
+          "x": 80,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "192.168.2.11",
+              "mask": "255.255.255.0"
+            }
+          ],
+          "gateway": "192.168.1.1"
+        },
+        {
+          "id": "pc3",
+          "kind": "pc",
+          "name": "PC3",
+          "x": 80,
+          "y": 260,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "192.168.1.12",
+              "mask": "255.255.255.0"
+            }
+          ],
+          "gateway": "192.168.1.254"
+        },
+        {
+          "id": "sw1",
+          "kind": "switch",
+          "name": "Switch",
+          "x": 240,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "p1"
+            },
+            {
+              "id": "p2"
+            },
+            {
+              "id": "p3"
+            },
+            {
+              "id": "p4"
+            }
+          ]
+        },
+        {
+          "id": "r1",
+          "kind": "router",
+          "name": "R1",
+          "x": 400,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "g0",
+              "ip": "192.168.1.1",
+              "mask": "255.255.255.0"
+            },
+            {
+              "id": "g1",
+              "ip": "10.10.10.1",
+              "mask": "255.255.255.0"
+            }
+          ]
+        },
+        {
+          "id": "srv",
+          "kind": "server",
+          "name": "File server",
+          "x": 560,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "eth0",
+              "ip": "10.10.10.5",
+              "mask": "255.255.255.0"
+            }
+          ],
+          "gateway": "10.10.10.1"
+        }
+      ],
+      "links": [
+        {
+          "id": "l1",
+          "a": {
+            "device": "pc1",
+            "iface": "eth0"
+          },
+          "b": {
+            "device": "sw1",
+            "iface": "p1"
+          },
+          "broken": true
+        },
+        {
+          "id": "l2",
+          "a": {
+            "device": "pc2",
+            "iface": "eth0"
+          },
+          "b": {
+            "device": "sw1",
+            "iface": "p2"
+          }
+        },
+        {
+          "id": "l3",
+          "a": {
+            "device": "pc3",
+            "iface": "eth0"
+          },
+          "b": {
+            "device": "sw1",
+            "iface": "p3"
+          }
+        },
+        {
+          "id": "l4",
+          "a": {
+            "device": "sw1",
+            "iface": "p4"
+          },
+          "b": {
+            "device": "r1",
+            "iface": "g0"
+          }
+        },
+        {
+          "id": "l5",
+          "a": {
+            "device": "r1",
+            "iface": "g1"
+          },
+          "b": {
+            "device": "srv",
+            "iface": "eth0"
+          }
+        }
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "PC1: the dashed red cable has no link light. Click it.",
+    "PC2: compare its address with PC1 and the router. Is 192.168.2.11 on the 192.168.1.0/24 network?",
+    "PC3: the gateway must be an address that the router actually has. Click R1 to see."
+  ],
+  "checks": [
+    {
+      "type": "net.cable",
+      "label": "PC1's cable replaced",
+      "link": "l1",
+      "message": "PC1 still has a faulty cable. Click the dashed red line and replace it."
+    },
+    {
+      "type": "net.interface",
+      "label": "PC2 on the office subnet",
+      "device": "pc2",
+      "iface": "eth0",
+      "subnet": "192.168.1.0/24",
+      "not": [
+        "192.168.1.1",
+        "192.168.1.10",
+        "192.168.1.12"
+      ]
+    },
+    {
+      "type": "net.gateway",
+      "label": "PC3's gateway is the router",
+      "device": "pc3",
+      "subnet": "192.168.1.0/24"
+    },
+    {
+      "type": "net.ping",
+      "label": "PC1 reaches the file server",
+      "from": "pc1",
+      "to": "srv"
+    },
+    {
+      "type": "net.ping",
+      "label": "PC2 reaches the file server",
+      "from": "pc2",
+      "to": "srv"
+    },
+    {
+      "type": "net.ping",
+      "label": "PC3 reaches the file server",
+      "from": "pc3",
+      "to": "srv"
+    },
+    {
+      "type": "net.noDuplicates",
+      "label": "No duplicate addresses"
+    }
+  ],
+  "realityNote": "On a real desk you would use the same order: look at the link light, then `ipconfig /all`, then `ping` the gateway, then `ping` the server, then `tracert`. Most \"the server is down\" calls turn out to be one of these three faults on the client."
+}

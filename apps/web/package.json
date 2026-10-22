@@ -19,6 +19,7 @@
     "@cslab/engine-code": "*",
     "@cslab/engine-digital-logic": "*",
     "@cslab/engine-maths": "*",
+    "@cslab/engine-network": "*",
     "@cslab/engine-scenario": "*",
     "@cslab/engine-sql": "*",
     "@cslab/engine-visualiser": "*",

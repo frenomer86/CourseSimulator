@@ -1,0 +1,254 @@
+{
+  "id": "computer-networking-i-i1-subnet-a-slash-24",
+  "course": "computer-networking-i",
+  "topic": "Subnet masks, CIDR, network and broadcast addresses",
+  "unit": 3,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "engine": "E3",
+  "title": "Subnet a /24 for four departments",
+  "estimatedMinutes": 20,
+  "instructions": "## Four departments, one block\n\nA polytechnic has the block `192.168.10.0/24` and four departments of about 50 machines each: Admin, Science, Arts and the Library. One router, R1, has an interface for each department. The router interfaces are already addressed with the **first usable address** of each subnet.\n\n## Do this\n\n1. Work out the mask that splits the /24 into four equal subnets, and the four network addresses. The **Subnet calculator** tab can check your working. Type the answers on the right.\n2. Click each PC and give it an address in its own department's subnet, with the right mask and the router interface as gateway. Read the router's interface addresses to see which subnet each department is in.\n3. Ping from Admin to the Library PC, then press **Check my network**.",
+  "config": {
+    "editable": {
+      "addresses": true,
+      "routes": false,
+      "cables": false
+    }
+  },
+  "initialState": {
+    "topology": {
+      "devices": [
+        {
+          "id": "r1",
+          "kind": "router",
+          "name": "R1",
+          "x": 320,
+          "y": 160,
+          "interfaces": [
+            {
+              "id": "g0",
+              "ip": "192.168.10.1",
+              "mask": "/26"
+            },
+            {
+              "id": "g1",
+              "ip": "192.168.10.65",
+              "mask": "/26"
+            },
+            {
+              "id": "g2",
+              "ip": "192.168.10.129",
+              "mask": "/26"
+            },
+            {
+              "id": "g3",
+              "ip": "192.168.10.193",
+              "mask": "/26"
+            }
+          ]
+        },
+        {
+          "id": "admin",
+          "kind": "pc",
+          "name": "Admin PC",
+          "x": 100,
+          "y": 60,
+          "interfaces": [
+            {
+              "id": "eth0"
+            }
+          ]
+        },
+        {
+          "id": "science",
+          "kind": "pc",
+          "name": "Science PC",
+          "x": 540,
+          "y": 60,
+          "interfaces": [
+            {
+              "id": "eth0"
+            }
+          ]
+        },
+        {
+          "id": "arts",
+          "kind": "pc",
+          "name": "Arts PC",
+          "x": 100,
+          "y": 260,
+          "interfaces": [
+            {
+              "id": "eth0"
+            }
+          ]
+        },
+        {
+          "id": "library",
+          "kind": "pc",
+          "name": "Library PC",
+          "x": 540,
+          "y": 260,
+          "interfaces": [
+            {
+              "id": "eth0"
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "id": "l1",
+          "a": {
+            "device": "r1",
+            "iface": "g0"
+          },
+          "b": {
+            "device": "admin",
+            "iface": "eth0"
+          }
+        },
+        {
+          "id": "l2",
+          "a": {
+            "device": "r1",
+            "iface": "g1"
+          },
+          "b": {
+            "device": "science",
+            "iface": "eth0"
+          }
+        },
+        {
+          "id": "l3",
+          "a": {
+            "device": "r1",
+            "iface": "g2"
+          },
+          "b": {
+            "device": "arts",
+            "iface": "eth0"
+          }
+        },
+        {
+          "id": "l4",
+          "a": {
+            "device": "r1",
+            "iface": "g3"
+          },
+          "b": {
+            "device": "library",
+            "iface": "eth0"
+          }
+        }
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "Four subnets need two extra network bits: /24 becomes /26, which is 255.255.255.192.",
+    "A /26 holds 64 addresses, so the subnets start at .0, .64, .128 and .192.",
+    "The Admin PC can be 192.168.10.2 /26 with gateway 192.168.10.1; the Library PC can be 192.168.10.194 /26 with gateway 192.168.10.193."
+  ],
+  "checks": [
+    {
+      "type": "net.answer",
+      "label": "Subnet mask",
+      "id": "mask",
+      "expected": "255.255.255.192",
+      "question": "What subnet mask gives four equal subnets from a /24?"
+    },
+    {
+      "type": "net.answers",
+      "label": "Four network addresses",
+      "id": "nets",
+      "expected": [
+        "192.168.10.0",
+        "192.168.10.64",
+        "192.168.10.128",
+        "192.168.10.192"
+      ],
+      "question": "List the four network addresses, separated by commas."
+    },
+    {
+      "type": "net.answer",
+      "label": "Broadcast of the third subnet",
+      "id": "bcast",
+      "expected": "192.168.10.191",
+      "question": "What is the broadcast address of the third subnet?"
+    },
+    {
+      "type": "net.answer",
+      "label": "Usable hosts per subnet",
+      "id": "hosts",
+      "expected": "62",
+      "question": "How many usable host addresses does each subnet have?"
+    },
+    {
+      "type": "net.interface",
+      "label": "Admin PC addressed in its subnet",
+      "device": "admin",
+      "iface": "eth0",
+      "subnet": "192.168.10.0/26",
+      "not": [
+        "192.168.10.1"
+      ]
+    },
+    {
+      "type": "net.interface",
+      "label": "Science PC addressed in its subnet",
+      "device": "science",
+      "iface": "eth0",
+      "subnet": "192.168.10.64/26",
+      "not": [
+        "192.168.10.65"
+      ]
+    },
+    {
+      "type": "net.interface",
+      "label": "Arts PC addressed in its subnet",
+      "device": "arts",
+      "iface": "eth0",
+      "subnet": "192.168.10.128/26",
+      "not": [
+        "192.168.10.129"
+      ]
+    },
+    {
+      "type": "net.interface",
+      "label": "Library PC addressed in its subnet",
+      "device": "library",
+      "iface": "eth0",
+      "subnet": "192.168.10.192/26",
+      "not": [
+        "192.168.10.193"
+      ]
+    },
+    {
+      "type": "net.gateway",
+      "label": "Admin PC gateway",
+      "device": "admin",
+      "subnet": "192.168.10.0/26"
+    },
+    {
+      "type": "net.gateway",
+      "label": "Library PC gateway",
+      "device": "library",
+      "subnet": "192.168.10.192/26"
+    },
+    {
+      "type": "net.ping",
+      "label": "Admin reaches the Library",
+      "from": "admin",
+      "to": "library"
+    },
+    {
+      "type": "net.ping",
+      "label": "Science reaches Arts",
+      "from": "science",
+      "to": "arts"
+    }
+  ],
+  "realityNote": "A real router would use one physical interface and VLAN sub-interfaces rather than four cables, and the PCs would normally get their addresses from DHCP. The arithmetic is exactly the same."
+}
