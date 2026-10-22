@@ -1,0 +1,206 @@
+{
+  "id": "basic-electronics-i2-kirchhoff-two-loops",
+  "course": "basic-electronics",
+  "topic": "Kirchhoff's laws; node and mesh analysis",
+  "unit": 1,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "engine": "E8",
+  "title": "Two sources, two loops",
+  "estimatedMinutes": 20,
+  "instructions": "## Check your mesh analysis against the bench\n\nTwo supplies (V1 = 10 V on the left, V2 = 5 V on the right) feed a three-resistor network: R1 = 2 kΩ, R2 = 1 kΩ to ground from node `b`, R3 = 1 kΩ. Both sources have their positive terminal at the top.\n\n## Do this\n\n1. Solve the circuit on paper with node-voltage analysis at `b` (or two mesh equations).\n2. Measure V(b), and the currents through R1, R2 and R3 with the ammeter. Note the sign: a negative reading means current flows against the arrow (from the second node to the first).\n3. Answer the questions. Then confirm KCL at node b: the currents into b through R1 and R3 add up to the current out through R2.",
+  "config": {
+    "mode": "circuit",
+    "circuit": {
+      "components": [
+        {
+          "id": "V1",
+          "type": "V",
+          "value": 10,
+          "nodes": [
+            "a",
+            "0"
+          ],
+          "label": "V1 10 V"
+        },
+        {
+          "id": "R1",
+          "type": "R",
+          "value": 2000,
+          "nodes": [
+            "a",
+            "b"
+          ],
+          "label": "R1"
+        },
+        {
+          "id": "R2",
+          "type": "R",
+          "value": 1000,
+          "nodes": [
+            "b",
+            "0"
+          ],
+          "label": "R2"
+        },
+        {
+          "id": "R3",
+          "type": "R",
+          "value": 1000,
+          "nodes": [
+            "c",
+            "b"
+          ],
+          "label": "R3"
+        },
+        {
+          "id": "V2",
+          "type": "V",
+          "value": 5,
+          "nodes": [
+            "c",
+            "0"
+          ],
+          "label": "V2 5 V"
+        }
+      ]
+    },
+    "layout": {
+      "width": 520,
+      "height": 300,
+      "nodes": {
+        "0": [
+          240,
+          240
+        ],
+        "a": [
+          80,
+          60
+        ],
+        "b": [
+          240,
+          60
+        ],
+        "c": [
+          400,
+          60
+        ]
+      },
+      "parts": {
+        "V1": {
+          "a": [
+            80,
+            60
+          ],
+          "b": [
+            80,
+            240
+          ]
+        },
+        "R1": {
+          "a": [
+            80,
+            60
+          ],
+          "b": [
+            240,
+            60
+          ]
+        },
+        "R2": {
+          "a": [
+            240,
+            60
+          ],
+          "b": [
+            240,
+            240
+          ]
+        },
+        "R3": {
+          "a": [
+            400,
+            60
+          ],
+          "b": [
+            240,
+            60
+          ]
+        },
+        "V2": {
+          "a": [
+            400,
+            60
+          ],
+          "b": [
+            400,
+            240
+          ]
+        }
+      },
+      "wires": [
+        [
+          [
+            80,
+            240
+          ],
+          [
+            400,
+            240
+          ]
+        ]
+      ]
+    }
+  },
+  "initialState": {
+    "answers": {},
+    "measurements": []
+  },
+  "hints": [
+    "KCL at b: (10 − Vb)/2k + (5 − Vb)/1k = Vb/1k. Multiply by 2k: 10 − Vb + 10 − 2Vb = 2Vb, so 20 = 5Vb.",
+    "Vb = 4 V. I(R1) = (10 − 4)/2k = 3 mA, I(R3) = (5 − 4)/1k = 1 mA, I(R2) = 4 mA.",
+    "V2 supplies 1 mA and V1 supplies 3 mA; both deliver power here."
+  ],
+  "checks": [
+    {
+      "type": "hw.measured",
+      "label": "Measured V(b)",
+      "kind": "V",
+      "a": "b",
+      "b": "0"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Node voltage at b",
+      "id": "vb",
+      "expected": "V(b)",
+      "unit": "V",
+      "question": "What is the voltage at node b?"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Current through R1",
+      "id": "i1",
+      "expected": "I(R1)",
+      "unit": "A",
+      "question": "What current flows through R1 (from a to b)?"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Current through R3",
+      "id": "i3",
+      "expected": "I(R3)",
+      "unit": "A",
+      "question": "What current flows through R3 (from c to b)?"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Current through R2",
+      "id": "i2",
+      "expected": "I(R2)",
+      "unit": "A",
+      "question": "What current flows through R2 (from b to ground)?"
+    }
+  ],
+  "realityNote": "On a real bench you would measure with one meter at a time, and the readings would differ by a percent or so because of resistor tolerance and the meter's own resistance. Paper, simulator and bench should agree within that."
+}

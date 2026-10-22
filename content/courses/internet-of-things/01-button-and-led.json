@@ -1,0 +1,77 @@
+{
+  "id": "internet-of-things-b1-button-and-led",
+  "course": "internet-of-things",
+  "topic": "Arduino programming model: digital input and output",
+  "unit": 5,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "A button that lights an LED",
+  "estimatedMinutes": 10,
+  "instructions": "## Input in, output out\n\nA push button is wired to pin 2 (it reads HIGH while pressed) and an LED to pin 9. During the simulated run the button is pressed twice, as shown under the board.\n\n## Do this\n\nMake the LED light **while** the button is held and go off when it is released. Read the pin with `digitalRead(2)` in `loop()`, and keep the loop quick (a `delay(20)` is fine) so the sketch notices every press.",
+  "config": {
+    "mode": "board",
+    "board": {
+      "components": [
+        {
+          "kind": "led",
+          "pin": 9,
+          "label": "LED"
+        },
+        {
+          "kind": "button",
+          "pin": 2,
+          "label": "Push button",
+          "schedule": [
+            [
+              0,
+              0
+            ],
+            [
+              1000,
+              1
+            ],
+            [
+              2000,
+              0
+            ],
+            [
+              3000,
+              1
+            ],
+            [
+              4000,
+              0
+            ]
+          ]
+        }
+      ],
+      "runMs": 5000
+    },
+    "starter": "void setup() {\n  pinMode(9, OUTPUT);\n  pinMode(2, INPUT);\n}\n\nvoid loop() {\n  // read the button and copy its state to the LED\n  delay(20);\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "int pressed = digitalRead(2);",
+    "if (pressed == HIGH) digitalWrite(9, HIGH); else digitalWrite(9, LOW);",
+    "Or in one line: digitalWrite(9, digitalRead(2));"
+  ],
+  "checks": [
+    {
+      "type": "hw.ran",
+      "label": "The sketch runs without errors"
+    },
+    {
+      "type": "hw.source",
+      "label": "Reads pin 2",
+      "pattern": "digitalRead\\s*\\(\\s*2\\s*\\)"
+    },
+    {
+      "type": "hw.follows",
+      "label": "The LED follows the button",
+      "pin": 9,
+      "input": 2
+    }
+  ],
+  "realityNote": "A real button needs a pull-down resistor (or INPUT_PULLUP with the logic inverted) so the pin does not float, and it bounces for a few milliseconds on each press, which matters as soon as you count presses.",
+  "engine": "E8"
+}

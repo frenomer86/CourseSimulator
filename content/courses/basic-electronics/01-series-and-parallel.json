@@ -1,0 +1,208 @@
+{
+  "id": "basic-electronics-b1-series-and-parallel",
+  "course": "basic-electronics",
+  "topic": "Ohm's law, series and parallel combinations",
+  "unit": 1,
+  "topicIndex": 2,
+  "level": "beginner",
+  "engine": "E8",
+  "title": "Series and parallel with the multimeter",
+  "estimatedMinutes": 15,
+  "instructions": "## One source, three resistors\n\nA 12 V supply feeds R1 (1 kΩ) in series with R2 (3 kΩ) and R3 (6 kΩ), which are in parallel with each other.\n\n## Do this\n\n1. Work out the equivalent resistance and the total current on paper first.\n2. Set the multimeter to **Volts** and click node `n2` then `GND` to read the voltage across the parallel pair. Click `n1` then `n2` for the voltage across R1.\n3. Set it to **Amps** and click R1, R2 and R3 in turn. Check that the two branch currents add up to the total (Kirchhoff's current law).\n4. Answer the questions on the right. You may type values with prefixes, such as `4m` for 4 mA or `2k`.",
+  "config": {
+    "mode": "circuit",
+    "circuit": {
+      "components": [
+        {
+          "id": "V1",
+          "type": "V",
+          "value": 12,
+          "nodes": [
+            "n1",
+            "0"
+          ],
+          "label": "V1 12 V"
+        },
+        {
+          "id": "R1",
+          "type": "R",
+          "value": 1000,
+          "nodes": [
+            "n1",
+            "n2"
+          ],
+          "label": "R1"
+        },
+        {
+          "id": "R2",
+          "type": "R",
+          "value": 3000,
+          "nodes": [
+            "n2",
+            "0"
+          ],
+          "label": "R2"
+        },
+        {
+          "id": "R3",
+          "type": "R",
+          "value": 6000,
+          "nodes": [
+            "n2",
+            "0"
+          ],
+          "label": "R3"
+        }
+      ]
+    },
+    "layout": {
+      "width": 520,
+      "height": 300,
+      "nodes": {
+        "0": [
+          300,
+          240
+        ],
+        "n1": [
+          80,
+          60
+        ],
+        "n2": [
+          300,
+          60
+        ]
+      },
+      "parts": {
+        "V1": {
+          "a": [
+            80,
+            60
+          ],
+          "b": [
+            80,
+            240
+          ]
+        },
+        "R1": {
+          "a": [
+            80,
+            60
+          ],
+          "b": [
+            300,
+            60
+          ]
+        },
+        "R2": {
+          "a": [
+            300,
+            60
+          ],
+          "b": [
+            300,
+            240
+          ]
+        },
+        "R3": {
+          "a": [
+            420,
+            60
+          ],
+          "b": [
+            420,
+            240
+          ]
+        }
+      },
+      "wires": [
+        [
+          [
+            80,
+            240
+          ],
+          [
+            300,
+            240
+          ]
+        ],
+        [
+          [
+            300,
+            60
+          ],
+          [
+            420,
+            60
+          ]
+        ],
+        [
+          [
+            300,
+            240
+          ],
+          [
+            420,
+            240
+          ]
+        ]
+      ]
+    }
+  },
+  "initialState": {
+    "answers": {},
+    "measurements": []
+  },
+  "hints": [
+    "R2 and R3 in parallel: 1/(1/3k + 1/6k) = 2 kΩ. In series with R1 that is 3 kΩ total.",
+    "Total current = 12 V / 3 kΩ = 4 mA. It all flows through R1, so V(R1) = 4 mA × 1 kΩ = 4 V, leaving 8 V across the parallel pair.",
+    "I(R2) = 8 V / 3 kΩ = 2.67 mA and I(R3) = 8 V / 6 kΩ = 1.33 mA; they add to 4 mA."
+  ],
+  "checks": [
+    {
+      "type": "hw.measured",
+      "label": "Measured the voltage across the parallel pair",
+      "kind": "V",
+      "a": "n2",
+      "b": "0"
+    },
+    {
+      "type": "hw.measured",
+      "label": "Measured the current through R1",
+      "kind": "I",
+      "component": "R1"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Equivalent resistance",
+      "id": "req",
+      "expected": 3000,
+      "unit": "Ω",
+      "question": "What is the total resistance seen by the source?"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Total current",
+      "id": "itot",
+      "expected": "I(R1)",
+      "unit": "A",
+      "question": "What current does the source supply?"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Voltage across R1",
+      "id": "vr1",
+      "expected": "V(n1,n2)",
+      "unit": "V",
+      "question": "What is the voltage across R1?"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Current through R3",
+      "id": "ir3",
+      "expected": "I(R3)",
+      "unit": "A",
+      "question": "What current flows through R3?"
+    }
+  ],
+  "realityNote": "On a real bench the ammeter must be put in series, which means breaking the circuit; a voltmeter goes across, in parallel. Putting a meter set to amps across a source is the classic way to blow its fuse."
+}

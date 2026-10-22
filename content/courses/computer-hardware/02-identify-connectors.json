@@ -1,0 +1,108 @@
+{
+  "id": "computer-hardware-b2-identify-connectors",
+  "course": "computer-hardware",
+  "topic": "Connectors and cables: identifying, testing and replacing them",
+  "unit": 4,
+  "topicIndex": 6,
+  "level": "beginner",
+  "engine": "E8",
+  "title": "Identify the connectors",
+  "estimatedMinutes": 10,
+  "instructions": "## What plugs in where?\n\nA technician has to name a connector at a glance. Match each connector to what it carries or connects. Some options are distractors.",
+  "config": {
+    "mode": "match",
+    "match": {
+      "items": [
+        {
+          "id": "rj45",
+          "name": "RJ-45 (8P8C)",
+          "picture": "🔌",
+          "answer": "Wired Ethernet network cable"
+        },
+        {
+          "id": "usbc",
+          "name": "USB-C",
+          "picture": "⬭",
+          "answer": "Reversible USB data, power and video"
+        },
+        {
+          "id": "hdmi",
+          "name": "HDMI",
+          "picture": "▭",
+          "answer": "Digital video and audio to a monitor or TV"
+        },
+        {
+          "id": "sata",
+          "name": "SATA data (7-pin, L-shaped)",
+          "picture": "⌐",
+          "answer": "Hard disk or 2.5-inch SSD to the motherboard"
+        },
+        {
+          "id": "m2",
+          "name": "M.2 slot (M key)",
+          "picture": "═",
+          "answer": "NVMe SSD mounted flat on the board"
+        },
+        {
+          "id": "atx24",
+          "name": "24-pin ATX",
+          "picture": "▦",
+          "answer": "Main power from the PSU to the motherboard"
+        },
+        {
+          "id": "pcie8",
+          "name": "PCIe 8-pin (6+2)",
+          "picture": "▤",
+          "answer": "Extra power to a graphics card"
+        },
+        {
+          "id": "jack",
+          "name": "3.5 mm TRS jack",
+          "picture": "╾",
+          "answer": "Analogue headphones or microphone"
+        },
+        {
+          "id": "vga",
+          "name": "VGA (DE-15, blue)",
+          "picture": "⊞",
+          "answer": "Legacy analogue video to an old monitor or projector"
+        },
+        {
+          "id": "rj11",
+          "name": "RJ-11 (6P4C)",
+          "picture": "▯",
+          "answer": "Telephone line or DSL modem"
+        }
+      ],
+      "options": [
+        "Wired Ethernet network cable",
+        "Reversible USB data, power and video",
+        "Digital video and audio to a monitor or TV",
+        "Hard disk or 2.5-inch SSD to the motherboard",
+        "NVMe SSD mounted flat on the board",
+        "Main power from the PSU to the motherboard",
+        "Extra power to a graphics card",
+        "Analogue headphones or microphone",
+        "Legacy analogue video to an old monitor or projector",
+        "Telephone line or DSL modem",
+        "Keyboard and mouse (PS/2)",
+        "External hard disk (eSATA)"
+      ]
+    }
+  },
+  "initialState": {
+    "matches": {}
+  },
+  "hints": [
+    "RJ-45 is the wider 8-wire plug on network cables; RJ-11 is the narrower phone plug.",
+    "The 24-pin block is the biggest connector in a PC; the 6+2 pin plugs into the top edge of a graphics card.",
+    "M.2 drives have no cable at all: they screw flat onto the board."
+  ],
+  "checks": [
+    {
+      "type": "hw.matches",
+      "label": "Every connector matched to its purpose"
+    }
+  ],
+  "realityNote": "Shape prevents most wrong connections, but not all: a USB-C port may carry only power, or data, or video, depending on the device. Read the small symbols next to the port."
+}

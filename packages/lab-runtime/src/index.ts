@@ -64,6 +64,8 @@ export interface LabResult {
 export type CheckHandler<TState = unknown> = (
   state: TState,
   spec: CheckSpec,
+  /** The whole lab, for checks that need its config (for example a circuit or a parts list). */
+  lab: LabSpec<TState>,
 ) => CheckResult | Promise<CheckResult>;
 
 export class CheckRegistry<TState = unknown> {
@@ -92,7 +94,7 @@ export class CheckRegistry<TState = unknown> {
         continue;
       }
       try {
-        checks.push(await handler(state, check));
+        checks.push(await handler(state, check, spec));
       } catch (err) {
         checks.push({
           type: check.type,

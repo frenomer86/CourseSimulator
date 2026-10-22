@@ -1,0 +1,85 @@
+{
+  "id": "internet-of-things-i1-soil-moisture-monitor",
+  "course": "internet-of-things",
+  "topic": "Mini-project: a soil-moisture monitor",
+  "unit": 5,
+  "topicIndex": 5,
+  "level": "intermediate",
+  "title": "Soil moisture monitor with a pump relay",
+  "estimatedMinutes": 20,
+  "instructions": "## Water only when the soil is dry\n\nA capacitive soil-moisture probe on **A0** reads low when wet and high when dry (about 300 wet, 700 dry). A relay on pin **7** switches the irrigation pump. During the run the soil starts dry, becomes wet after two seconds, and dries out again after four.\n\n## Do this\n\n1. Read the probe every 200 ms.\n2. Switch the pump **on (pin 7 HIGH) when the reading is above 500** and off otherwise.\n3. Print `Moisture: <raw> pump ON|OFF` on the serial monitor each time you read.",
+  "config": {
+    "mode": "board",
+    "board": {
+      "components": [
+        {
+          "kind": "relay",
+          "pin": 7,
+          "label": "Pump relay"
+        },
+        {
+          "kind": "pot",
+          "pin": "A0",
+          "label": "Soil probe",
+          "schedule": [
+            [
+              0,
+              720
+            ],
+            [
+              2000,
+              310
+            ],
+            [
+              4000,
+              690
+            ]
+          ]
+        }
+      ],
+      "runMs": 6000
+    },
+    "starter": "const int PUMP = 7;\nconst int THRESHOLD = 500;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(PUMP, OUTPUT);\n}\n\nvoid loop() {\n  int moisture = analogRead(A0);\n  // decide, switch the pump, print\n  delay(200);\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "if (moisture > THRESHOLD) digitalWrite(PUMP, HIGH); else digitalWrite(PUMP, LOW);",
+    "Serial.print(\"Moisture: \"); Serial.print(moisture); Serial.println(moisture > THRESHOLD ? \" pump ON\" : \" pump OFF\");",
+    "The schedule is: 0–2 s dry (720), 2–4 s wet (310), 4–6 s dry (690)."
+  ],
+  "checks": [
+    {
+      "type": "hw.ran",
+      "label": "The sketch runs without errors"
+    },
+    {
+      "type": "hw.pinState",
+      "label": "Pump on while dry (at 1 s)",
+      "pin": 7,
+      "at": 1000,
+      "value": 1
+    },
+    {
+      "type": "hw.pinState",
+      "label": "Pump off while wet (at 3 s)",
+      "pin": 7,
+      "at": 3000,
+      "value": 0
+    },
+    {
+      "type": "hw.pinState",
+      "label": "Pump on again when dry (at 5 s)",
+      "pin": 7,
+      "at": 5000,
+      "value": 1
+    },
+    {
+      "type": "hw.serial",
+      "label": "Logs moisture and pump state",
+      "pattern": "Moisture: \\d+ pump (ON|OFF)",
+      "minLines": 10
+    }
+  ],
+  "realityNote": "Real probes drift with temperature and corrode if powered continuously; good designs power the probe only while reading and add hysteresis (switch on above 550, off below 450) so the pump does not chatter around the threshold. The next step is publishing the readings over MQTT.",
+  "engine": "E8"
+}

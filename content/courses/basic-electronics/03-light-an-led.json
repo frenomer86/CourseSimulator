@@ -1,0 +1,164 @@
+{
+  "id": "basic-electronics-i1-light-an-led",
+  "course": "basic-electronics",
+  "topic": "LED circuits and current limiting",
+  "unit": 3,
+  "topicIndex": 5,
+  "level": "intermediate",
+  "engine": "E8",
+  "title": "Light an LED without burning it",
+  "estimatedMinutes": 15,
+  "instructions": "## The resistor an LED cannot live without\n\nA red LED (forward drop about 2.0 V, rated 20 mA) is connected to 5 V through R1. With R1 too small the LED burns out; too large and it is dim.\n\n## Do this\n\n1. Choose R1 so that the LED current is between **10 mA and 20 mA** (aim for 15 mA). Use the slider or type a value.\n2. Confirm with the ammeter through D1. Measure the voltage across the LED: notice it stays near 2 V whatever the current.\n3. Answer: how much power does R1 dissipate at your chosen value?",
+  "config": {
+    "mode": "circuit",
+    "circuit": {
+      "components": [
+        {
+          "id": "V1",
+          "type": "V",
+          "value": 5,
+          "nodes": [
+            "p",
+            "0"
+          ],
+          "label": "V1 5 V"
+        },
+        {
+          "id": "R1",
+          "type": "R",
+          "value": 10,
+          "nodes": [
+            "p",
+            "n"
+          ],
+          "label": "R1"
+        },
+        {
+          "id": "D1",
+          "type": "LED",
+          "nodes": [
+            "n",
+            "0"
+          ],
+          "vf": 2,
+          "label": "D1 red LED"
+        }
+      ]
+    },
+    "adjustable": {
+      "R1": {
+        "min": 10,
+        "max": 2000,
+        "step": 10,
+        "unit": "Ω"
+      }
+    },
+    "layout": {
+      "width": 520,
+      "height": 300,
+      "nodes": {
+        "0": [
+          300,
+          240
+        ],
+        "p": [
+          80,
+          60
+        ],
+        "n": [
+          300,
+          60
+        ]
+      },
+      "parts": {
+        "V1": {
+          "a": [
+            80,
+            60
+          ],
+          "b": [
+            80,
+            240
+          ]
+        },
+        "R1": {
+          "a": [
+            80,
+            60
+          ],
+          "b": [
+            300,
+            60
+          ]
+        },
+        "D1": {
+          "a": [
+            300,
+            60
+          ],
+          "b": [
+            300,
+            240
+          ]
+        }
+      },
+      "wires": [
+        [
+          [
+            80,
+            240
+          ],
+          [
+            300,
+            240
+          ]
+        ]
+      ]
+    }
+  },
+  "initialState": {
+    "values": {
+      "R1": 10
+    },
+    "answers": {},
+    "measurements": []
+  },
+  "hints": [
+    "The resistor drops 5 V − 2 V = 3 V. R = V / I = 3 V / 0.015 A = 200 Ω.",
+    "Anything from 150 Ω to 300 Ω passes. 220 Ω is the common choice.",
+    "Power in R1 = V × I = 3 V × 0.015 A = 45 mW. Type 45m."
+  ],
+  "checks": [
+    {
+      "type": "hw.expr",
+      "label": "LED current between 10 and 20 mA",
+      "expr": "I(D1)",
+      "min": 0.01,
+      "max": 0.02,
+      "unit": "A",
+      "what": "The LED current"
+    },
+    {
+      "type": "hw.lit",
+      "label": "The LED is lit",
+      "id": "D1",
+      "lit": true
+    },
+    {
+      "type": "hw.measured",
+      "label": "Measured the LED current",
+      "kind": "I",
+      "component": "D1"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Power in R1",
+      "id": "p",
+      "expected": "P(R1)",
+      "tolerance": 0.1,
+      "unit": "W",
+      "question": "What power does R1 dissipate at your chosen value?"
+    }
+  ],
+  "realityNote": "Real LEDs have a slightly curved V-I characteristic rather than a fixed 2.0 V drop, and the drop depends on colour (red about 1.8 V, blue about 3.2 V). Always read the datasheet for the forward voltage and the maximum current."
+}

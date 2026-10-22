@@ -1,0 +1,52 @@
+{
+  "id": "embedded-systems-b2-pwm-fade",
+  "course": "embedded-systems",
+  "topic": "PWM for LED dimming and motor speed",
+  "unit": 2,
+  "topicIndex": 5,
+  "level": "beginner",
+  "title": "Fade an LED with PWM",
+  "estimatedMinutes": 15,
+  "instructions": "## Brightness without an analogue output\n\nA microcontroller pin is either HIGH or LOW, but switching it fast with a varying duty cycle (**pulse-width modulation**) makes an LED look dimmer or brighter. `analogWrite(pin, value)` sets the duty cycle from 0 (always off) to 255 (always on) on a PWM pin.\n\n## Do this\n\nFade the LED on pin 9 smoothly from off to full brightness and back down, repeatedly. Use a `for` loop (or a variable that counts up and down) with a short `delay(10)` between steps. The check wants at least 20 different levels and the value reaching both 0 and 255.",
+  "config": {
+    "mode": "board",
+    "board": {
+      "components": [
+        {
+          "kind": "led",
+          "pin": 9,
+          "label": "Green LED (PWM pin)"
+        }
+      ],
+      "runMs": 4000
+    },
+    "starter": "int brightness = 0;\nint step = 5;\n\nvoid setup() {\n  pinMode(9, OUTPUT);\n}\n\nvoid loop() {\n  // write brightness to pin 9, change it by step, reverse at the ends, wait 10 ms\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "analogWrite(9, brightness); then brightness = brightness + step;",
+    "When brightness reaches 0 or 255, reverse: step = -step;",
+    "delay(10) between steps gives a half-second fade each way."
+  ],
+  "checks": [
+    {
+      "type": "hw.ran",
+      "label": "The sketch runs without errors"
+    },
+    {
+      "type": "hw.pwm",
+      "label": "Pin 9 fades through many levels, from 0 to 255",
+      "pin": 9,
+      "minDistinct": 20,
+      "reachesMax": true,
+      "reachesMin": true
+    },
+    {
+      "type": "hw.source",
+      "label": "Uses analogWrite",
+      "contains": "analogWrite("
+    }
+  ],
+  "realityNote": "Only the pins marked with ~ on an Uno can do PWM (3, 5, 6, 9, 10, 11), at about 490 Hz or 980 Hz. The same trick drives a DC motor through a transistor or H-bridge, which cannot be done with a plain resistor.",
+  "engine": "E8"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "sensors-and-actuators-b1-servo-sweep",
+  "course": "sensors-and-actuators",
+  "topic": "RC servos and position control",
+  "unit": 5,
+  "topicIndex": 5,
+  "level": "beginner",
+  "title": "Sweep a servo",
+  "estimatedMinutes": 10,
+  "instructions": "## A motor that goes where you tell it\n\nAn RC servo on pin 9 moves to the angle you write (0 to 180 degrees). The `Servo` library hides the pulse timing: `myServo.attach(9)` then `myServo.write(angle)`.\n\n## Do this\n\nMake the servo sweep from 0° to 180° and back in steps of 10°, waiting 100 ms between steps so the horn can follow. The checks look for the servo reaching 0°, 90° and 180°.",
+  "config": {
+    "mode": "board",
+    "board": {
+      "components": [
+        {
+          "kind": "servo",
+          "pin": 9,
+          "label": "SG90 servo"
+        }
+      ],
+      "runMs": 5000
+    },
+    "starter": "#include <Servo.h>\n\nServo myServo;\n\nvoid setup() {\n  myServo.attach(9);\n}\n\nvoid loop() {\n  // sweep up, then down, 10 degrees at a time\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "for (int angle = 0; angle <= 180; angle += 10) { myServo.write(angle); delay(100); }",
+    "Then a second loop counting down from 180 to 0.",
+    "Servo is a class: declare it once outside setup() and loop()."
+  ],
+  "checks": [
+    {
+      "type": "hw.ran",
+      "label": "The sketch runs without errors"
+    },
+    {
+      "type": "hw.servo",
+      "label": "The servo reaches 0°, 90° and 180°",
+      "pin": 9,
+      "angles": [
+        0,
+        90,
+        180
+      ]
+    },
+    {
+      "type": "hw.source",
+      "label": "Uses the Servo library",
+      "contains": "myServo.write("
+    }
+  ],
+  "realityNote": "A hobby servo expects a 1 to 2 ms pulse every 20 ms; the library generates it with a timer. Servos draw a surge of current when they move, so power them from a separate 5 V supply with a common ground, not from the board's regulator.",
+  "engine": "E8"
+}

@@ -1,0 +1,141 @@
+{
+  "id": "computer-hardware-i1-bios-for-an-install",
+  "course": "computer-hardware",
+  "topic": "BIOS and UEFI settings: boot order, secure boot, TPM, virtualisation",
+  "unit": 5,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "engine": "E8",
+  "title": "Prepare the firmware for a Windows 11 install",
+  "estimatedMinutes": 10,
+  "instructions": "## The installer will not start\n\nA new PC must boot the Windows 11 installer from a USB stick, and the owner will run virtual machines on it later. Windows 11 refuses to install without **Secure Boot** and a **TPM 2.0**; a modern install also wants the SATA controller in **AHCI** mode.\n\n## Do this\n\nSet the firmware so that: the USB stick is first in the boot order, Secure Boot is enabled, the TPM is enabled, the SATA mode is AHCI, and CPU virtualisation (SVM / VT-x) is enabled. Leave Fast Boot off until the install has finished so the keyboard works in the installer.",
+  "config": {
+    "mode": "bios",
+    "bios": {
+      "settings": [
+        {
+          "key": "boot1",
+          "label": "Boot Option #1",
+          "options": [
+            "NVMe SSD",
+            "USB: SanDisk Installer",
+            "Network (PXE)"
+          ],
+          "help": "The first device the firmware tries."
+        },
+        {
+          "key": "secureboot",
+          "label": "Secure Boot",
+          "options": [
+            "Disabled",
+            "Enabled"
+          ],
+          "help": "Only signed boot loaders may run."
+        },
+        {
+          "key": "tpm",
+          "label": "Trusted Platform Module (fTPM)",
+          "options": [
+            "Disabled",
+            "Enabled"
+          ]
+        },
+        {
+          "key": "sata",
+          "label": "SATA Mode",
+          "options": [
+            "IDE",
+            "AHCI",
+            "RAID"
+          ]
+        },
+        {
+          "key": "svm",
+          "label": "CPU Virtualization (SVM / VT-x)",
+          "options": [
+            "Disabled",
+            "Enabled"
+          ]
+        },
+        {
+          "key": "fastboot",
+          "label": "Fast Boot",
+          "options": [
+            "Disabled",
+            "Enabled"
+          ],
+          "help": "Skips USB initialisation at boot."
+        },
+        {
+          "key": "csm",
+          "label": "CSM (legacy BIOS compatibility)",
+          "options": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      ]
+    }
+  },
+  "initialState": {
+    "settings": {
+      "boot1": "NVMe SSD",
+      "secureboot": "Disabled",
+      "tpm": "Disabled",
+      "sata": "IDE",
+      "svm": "Disabled",
+      "fastboot": "Enabled",
+      "csm": "Enabled"
+    }
+  },
+  "hints": [
+    "Secure Boot cannot be enabled while the CSM (legacy mode) is on; disable the CSM first.",
+    "Windows 11 requires TPM 2.0 and Secure Boot; the installer checks both.",
+    "Fast Boot skips USB initialisation, which is why keyboards sometimes do not work in the installer."
+  ],
+  "checks": [
+    {
+      "type": "hw.setting",
+      "label": "USB installer first in the boot order",
+      "key": "boot1",
+      "value": "USB: SanDisk Installer"
+    },
+    {
+      "type": "hw.setting",
+      "label": "CSM disabled (needed for Secure Boot)",
+      "key": "csm",
+      "value": "Disabled"
+    },
+    {
+      "type": "hw.setting",
+      "label": "Secure Boot enabled",
+      "key": "secureboot",
+      "value": "Enabled"
+    },
+    {
+      "type": "hw.setting",
+      "label": "TPM enabled",
+      "key": "tpm",
+      "value": "Enabled"
+    },
+    {
+      "type": "hw.setting",
+      "label": "SATA in AHCI mode",
+      "key": "sata",
+      "value": "AHCI"
+    },
+    {
+      "type": "hw.setting",
+      "label": "Virtualisation enabled",
+      "key": "svm",
+      "value": "Enabled"
+    },
+    {
+      "type": "hw.setting",
+      "label": "Fast Boot off during the install",
+      "key": "fastboot",
+      "value": "Disabled"
+    }
+  ],
+  "realityNote": "Every vendor arranges these menus differently and names them differently (SVM on AMD, VT-x on Intel; fTPM versus PTT). Changing the SATA mode after an operating system is installed can make it unbootable, so set it before installing."
+}

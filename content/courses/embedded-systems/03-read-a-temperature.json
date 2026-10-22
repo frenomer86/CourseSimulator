@@ -1,0 +1,52 @@
+{
+  "id": "embedded-systems-i1-read-a-temperature",
+  "course": "embedded-systems",
+  "topic": "Reading analog sensors with the ADC",
+  "unit": 4,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Read a temperature sensor through the ADC",
+  "estimatedMinutes": 15,
+  "instructions": "## From a voltage to degrees\n\nA TMP36 sensor on pin **A0** outputs 500 mV at 0 °C and rises 10 mV per degree. The board's 10-bit ADC reads 0 to 1023 for 0 to 5 V, so one count is about 4.9 mV. The sensor is currently at a room of about 25 °C.\n\n## Do this\n\n1. Read the raw value with `analogRead(A0)`.\n2. Convert it: voltage = raw × 5.0 / 1023; temperature = (voltage − 0.5) × 100.\n3. Print one line per second on the serial monitor in the form `Temp: 24.8 C` (use `Serial.print` and `Serial.println`).\n4. Start the serial port with `Serial.begin(9600)` in setup().",
+  "config": {
+    "mode": "board",
+    "board": {
+      "components": [
+        {
+          "kind": "tmp36",
+          "pin": "A0",
+          "label": "TMP36",
+          "value": 153
+        }
+      ],
+      "runMs": 4000
+    },
+    "starter": "void setup() {\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int raw = analogRead(A0);\n  // convert to volts, then to degrees, and print \"Temp: xx.x C\"\n  delay(1000);\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "float volts = raw * 5.0 / 1023.0;",
+    "float temp = (volts - 0.5) * 100.0;",
+    "Serial.print(\"Temp: \"); Serial.print(temp); Serial.println(\" C\");"
+  ],
+  "checks": [
+    {
+      "type": "hw.ran",
+      "label": "The sketch runs without errors"
+    },
+    {
+      "type": "hw.source",
+      "label": "Reads the ADC on A0",
+      "pattern": "analogRead\\s*\\(\\s*A0\\s*\\)"
+    },
+    {
+      "type": "hw.serial",
+      "label": "Prints the temperature near 25 °C every second",
+      "pattern": "Temp: 2[45]\\.\\d",
+      "minLines": 3,
+      "message": "The serial monitor should show lines like \"Temp: 24.8 C\", once a second."
+    }
+  ],
+  "realityNote": "The real ADC reading jitters by a few counts; averaging ten readings, or using the 1.1 V internal reference for more resolution, is standard practice. The TMP36 datasheet gives the 500 mV offset and 10 mV/°C slope.",
+  "engine": "E8"
+}

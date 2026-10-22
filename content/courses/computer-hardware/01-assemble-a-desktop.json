@@ -1,0 +1,343 @@
+{
+  "id": "computer-hardware-b1-assemble-a-desktop",
+  "course": "computer-hardware",
+  "topic": "Installing a CPU, cooler, memory, storage and power supply",
+  "unit": 2,
+  "topicIndex": 3,
+  "level": "beginner",
+  "engine": "E8",
+  "title": "Assemble a desktop that fits together",
+  "estimatedMinutes": 20,
+  "instructions": "## Build an AMD gaming desktop\n\nThe customer wants an **AMD Ryzen** build with a graphics card and an NVMe drive. The parts bin has more than you need, including some that do not fit: wrong sockets, the wrong memory generation, a cooler without the right bracket, and a power supply that is too small.\n\n## Do this\n\n1. Select a part, then click the slot it belongs in. The bench rejects parts that do not fit and tells you why.\n2. Fill every required slot: case, motherboard, CPU, cooler, memory, graphics card, NVMe drive and power supply.\n3. Choose a power supply with at least 25% headroom over the build's draw. The bench shows the running total.",
+  "config": {
+    "mode": "assembly",
+    "build": {
+      "parts": [
+        {
+          "id": "case1",
+          "kind": "case",
+          "name": "Mid-tower case",
+          "specs": {
+            "formFactors": "ATX,microATX,miniITX",
+            "gpuClearance": 330,
+            "psuForm": "ATX"
+          },
+          "price": 450
+        },
+        {
+          "id": "mb1",
+          "kind": "motherboard",
+          "name": "B650 (AMD AM5, DDR5, ATX)",
+          "specs": {
+            "socket": "AM5",
+            "ddr": "DDR5",
+            "formFactor": "ATX",
+            "m2": 2
+          },
+          "watts": 30,
+          "price": 1900
+        },
+        {
+          "id": "mb2",
+          "kind": "motherboard",
+          "name": "B760 (Intel LGA1700, DDR4, microATX)",
+          "specs": {
+            "socket": "LGA1700",
+            "ddr": "DDR4",
+            "formFactor": "microATX",
+            "m2": 1
+          },
+          "watts": 30,
+          "price": 1500
+        },
+        {
+          "id": "cpu1",
+          "kind": "cpu",
+          "name": "Ryzen 5 7600 (AM5, 65 W)",
+          "specs": {
+            "socket": "AM5",
+            "cores": 6
+          },
+          "watts": 65,
+          "price": 2600
+        },
+        {
+          "id": "cpu2",
+          "kind": "cpu",
+          "name": "Core i5-12400 (LGA1700, 65 W)",
+          "specs": {
+            "socket": "LGA1700",
+            "cores": 6
+          },
+          "watts": 65,
+          "price": 2200
+        },
+        {
+          "id": "cool1",
+          "kind": "cooler",
+          "name": "Tower air cooler (AM4/AM5/LGA1700)",
+          "specs": {
+            "sockets": "AM4,AM5,LGA1700"
+          },
+          "price": 350
+        },
+        {
+          "id": "cool2",
+          "kind": "cooler",
+          "name": "Old stock cooler (AM4 only)",
+          "specs": {
+            "sockets": "AM4"
+          },
+          "price": 0
+        },
+        {
+          "id": "ram1",
+          "kind": "ram",
+          "name": "2×16 GB DDR5-5600 (DIMM)",
+          "specs": {
+            "ddr": "DDR5",
+            "form": "DIMM"
+          },
+          "watts": 10,
+          "price": 1100
+        },
+        {
+          "id": "ram2",
+          "kind": "ram",
+          "name": "2×8 GB DDR4-3200 (DIMM)",
+          "specs": {
+            "ddr": "DDR4",
+            "form": "DIMM"
+          },
+          "watts": 8,
+          "price": 500
+        },
+        {
+          "id": "ram3",
+          "kind": "ram",
+          "name": "16 GB DDR5 SO-DIMM (laptop)",
+          "specs": {
+            "ddr": "DDR5",
+            "form": "SO-DIMM"
+          },
+          "watts": 5,
+          "price": 600
+        },
+        {
+          "id": "gpu1",
+          "kind": "gpu",
+          "name": "RTX 4060 (115 W, 240 mm)",
+          "specs": {
+            "length": 240,
+            "power": "1×8-pin"
+          },
+          "watts": 115,
+          "price": 4200
+        },
+        {
+          "id": "gpu2",
+          "kind": "gpu",
+          "name": "RX 7900 XT (300 W, 345 mm)",
+          "specs": {
+            "length": 345,
+            "power": "2×8-pin"
+          },
+          "watts": 300,
+          "price": 9800
+        },
+        {
+          "id": "ssd1",
+          "kind": "nvme",
+          "name": "1 TB NVMe M.2",
+          "specs": {
+            "interface": "PCIe 4.0"
+          },
+          "watts": 6,
+          "price": 850
+        },
+        {
+          "id": "hdd1",
+          "kind": "hdd",
+          "name": "2 TB SATA hard disk",
+          "specs": {
+            "interface": "SATA"
+          },
+          "watts": 8,
+          "price": 700
+        },
+        {
+          "id": "psu1",
+          "kind": "psu",
+          "name": "350 W bronze PSU",
+          "specs": {
+            "watts": 350,
+            "formFactor": "ATX"
+          },
+          "price": 400
+        },
+        {
+          "id": "psu2",
+          "kind": "psu",
+          "name": "650 W gold PSU",
+          "specs": {
+            "watts": 650,
+            "formFactor": "ATX"
+          },
+          "price": 950
+        },
+        {
+          "id": "psu3",
+          "kind": "psu",
+          "name": "500 W SFX PSU (small form factor)",
+          "specs": {
+            "watts": 500,
+            "formFactor": "SFX"
+          },
+          "price": 900
+        }
+      ],
+      "slots": [
+        {
+          "id": "case",
+          "label": "Case",
+          "accepts": [
+            "case"
+          ],
+          "required": true
+        },
+        {
+          "id": "mb",
+          "label": "Motherboard tray",
+          "accepts": [
+            "motherboard"
+          ],
+          "required": true
+        },
+        {
+          "id": "socket",
+          "label": "CPU socket",
+          "accepts": [
+            "cpu"
+          ],
+          "required": true
+        },
+        {
+          "id": "cooler",
+          "label": "Cooler mount",
+          "accepts": [
+            "cooler"
+          ],
+          "required": true
+        },
+        {
+          "id": "dimm",
+          "label": "DIMM slots A2/B2",
+          "accepts": [
+            "ram"
+          ],
+          "specs": {
+            "form": "DIMM"
+          },
+          "required": true
+        },
+        {
+          "id": "pcie16",
+          "label": "PCIe x16 slot",
+          "accepts": [
+            "gpu"
+          ],
+          "specs": {
+            "pcie": "x16"
+          },
+          "required": true
+        },
+        {
+          "id": "pcie1",
+          "label": "PCIe x1 slot",
+          "accepts": [
+            "gpu"
+          ],
+          "specs": {
+            "pcie": "x1"
+          }
+        },
+        {
+          "id": "m2",
+          "label": "M.2 slot",
+          "accepts": [
+            "nvme"
+          ],
+          "required": true
+        },
+        {
+          "id": "sata",
+          "label": "Drive bay (SATA)",
+          "accepts": [
+            "hdd",
+            "sata-ssd"
+          ]
+        },
+        {
+          "id": "psu",
+          "label": "PSU bay",
+          "accepts": [
+            "psu"
+          ],
+          "required": true
+        }
+      ]
+    }
+  },
+  "initialState": {
+    "placements": {}
+  },
+  "hints": [
+    "Start with the case and the motherboard; the bench checks every later part against them.",
+    "The Ryzen 5 7600 needs an AM5 board, which takes DDR5 DIMMs (not SO-DIMMs).",
+    "The RTX 4060 draws 115 W; with the CPU, board, memory and drive the build needs about 230 W, so the 350 W supply is enough with headroom. The RX 7900 XT would need the 650 W unit and does not fit the case anyway."
+  ],
+  "checks": [
+    {
+      "type": "hw.placed",
+      "label": "An AMD AM5 motherboard is fitted",
+      "slot": "mb",
+      "part": "mb1",
+      "message": "This build should use the AMD AM5 board."
+    },
+    {
+      "type": "hw.placed",
+      "label": "The Ryzen CPU is in the socket",
+      "slot": "socket",
+      "part": "cpu1"
+    },
+    {
+      "type": "hw.placed",
+      "label": "A cooler that fits AM5",
+      "slot": "cooler",
+      "part": "cool1"
+    },
+    {
+      "type": "hw.placed",
+      "label": "DDR5 DIMMs installed",
+      "slot": "dimm",
+      "part": "ram1"
+    },
+    {
+      "type": "hw.placed",
+      "label": "A graphics card in the x16 slot",
+      "slot": "pcie16",
+      "kind": "gpu"
+    },
+    {
+      "type": "hw.placed",
+      "label": "An NVMe drive in the M.2 slot",
+      "slot": "m2",
+      "kind": "nvme"
+    },
+    {
+      "type": "hw.buildValid",
+      "label": "Everything fits and the supply has headroom"
+    }
+  ],
+  "realityNote": "Real assembly adds the steps the bench cannot show: ground yourself against static, seat the CPU with zero force and lock the lever, apply a pea of thermal paste, push DIMMs until both latches click, and connect the 24-pin, CPU 8-pin and GPU power leads before the first power-on."
+}

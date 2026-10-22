@@ -1,0 +1,171 @@
+{
+  "id": "circuit-analysis-i1-thevenin-at-the-bench",
+  "course": "circuit-analysis",
+  "topic": "Thevenin and Norton equivalents",
+  "unit": 4,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "engine": "E8",
+  "title": "Find a Thevenin equivalent at the bench",
+  "estimatedMinutes": 15,
+  "instructions": "## Two measurements replace the whole network\n\nTerminals **A** (node `b`) and **GND** look into a 12 V source, R1 = 4 kΩ and R2 = 6 kΩ. A technician can find the Thevenin equivalent without any algebra: measure the open-circuit voltage, then switch off the source and measure the resistance.\n\n## Do this\n\n1. **Volts**: click `b` then `GND`. That is V_th.\n2. **Ohms**: click `b` then `GND`. The simulator zeroes the source (replaces it with a wire) exactly as the theory says. That is R_th.\n3. Confirm both on paper with the divider rule and the parallel formula, then answer. Finally, work out the current that would flow if A were shorted to ground (the Norton current).",
+  "config": {
+    "mode": "circuit",
+    "circuit": {
+      "components": [
+        {
+          "id": "V1",
+          "type": "V",
+          "value": 12,
+          "nodes": [
+            "a",
+            "0"
+          ],
+          "label": "V1 12 V"
+        },
+        {
+          "id": "R1",
+          "type": "R",
+          "value": 4000,
+          "nodes": [
+            "a",
+            "b"
+          ],
+          "label": "R1"
+        },
+        {
+          "id": "R2",
+          "type": "R",
+          "value": 6000,
+          "nodes": [
+            "b",
+            "0"
+          ],
+          "label": "R2"
+        }
+      ]
+    },
+    "layout": {
+      "width": 520,
+      "height": 300,
+      "nodes": {
+        "0": [
+          380,
+          240
+        ],
+        "a": [
+          80,
+          60
+        ],
+        "b": [
+          380,
+          60
+        ]
+      },
+      "parts": {
+        "V1": {
+          "a": [
+            80,
+            60
+          ],
+          "b": [
+            80,
+            240
+          ]
+        },
+        "R1": {
+          "a": [
+            80,
+            60
+          ],
+          "b": [
+            240,
+            60
+          ]
+        },
+        "R2": {
+          "a": [
+            240,
+            60
+          ],
+          "b": [
+            240,
+            240
+          ]
+        }
+      },
+      "wires": [
+        [
+          [
+            80,
+            240
+          ],
+          [
+            380,
+            240
+          ]
+        ],
+        [
+          [
+            240,
+            60
+          ],
+          [
+            380,
+            60
+          ]
+        ]
+      ]
+    }
+  },
+  "initialState": {
+    "answers": {},
+    "measurements": []
+  },
+  "hints": [
+    "V_th is the open-circuit voltage: 12 V × 6k/(4k + 6k) = 7.2 V.",
+    "With the source zeroed, R1 and R2 are in parallel from the terminals: 4k × 6k / 10k = 2.4 kΩ.",
+    "I_N = V_th / R_th = 7.2 V / 2.4 kΩ = 3 mA."
+  ],
+  "checks": [
+    {
+      "type": "hw.measured",
+      "label": "Measured the open-circuit voltage",
+      "kind": "V",
+      "a": "b",
+      "b": "0"
+    },
+    {
+      "type": "hw.measured",
+      "label": "Measured the resistance with the source off",
+      "kind": "R",
+      "a": "b",
+      "b": "0"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Thevenin voltage",
+      "id": "vth",
+      "expected": 7.2,
+      "unit": "V",
+      "question": "V_th between A and GND?"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Thevenin resistance",
+      "id": "rth",
+      "expected": 2400,
+      "unit": "Ω",
+      "question": "R_th between A and GND?"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Norton current",
+      "id": "in",
+      "expected": 0.003,
+      "unit": "A",
+      "question": "I_N, the short-circuit current from A to GND?"
+    }
+  ],
+  "realityNote": "Measuring R_th needs the source really switched off or disconnected; measuring ohms on a live circuit damages the meter. With dependent sources you cannot switch them off, so you use a test source instead, which is what the simulator does internally."
+}

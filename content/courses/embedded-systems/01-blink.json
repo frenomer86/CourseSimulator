@@ -1,0 +1,53 @@
+{
+  "id": "embedded-systems-b1-blink",
+  "course": "embedded-systems",
+  "topic": "GPIO output: driving an LED",
+  "unit": 2,
+  "topicIndex": 2,
+  "level": "beginner",
+  "title": "Blink: the first program on a microcontroller",
+  "estimatedMinutes": 10,
+  "instructions": "## Hello, world with an LED\n\nAn LED is wired to pin 13 of the board (the one with the built-in LED). Make it blink **once a second**: on for 500 ms, off for 500 ms.\n\n## Do this\n\n1. In `setup()`, set pin 13 as an output with `pinMode`.\n2. In `loop()`, switch it on with `digitalWrite(13, HIGH)`, wait with `delay(500)`, switch it off, wait again.\n3. Press **Upload and run** and read the pin timeline. The simulator runs five seconds of board time.",
+  "config": {
+    "mode": "board",
+    "board": {
+      "components": [
+        {
+          "kind": "led",
+          "pin": 13,
+          "label": "Red LED"
+        }
+      ],
+      "runMs": 5000
+    },
+    "starter": "// Blink the LED on pin 13 once a second.\n\nvoid setup() {\n  // configure pin 13 here\n}\n\nvoid loop() {\n  // switch on, wait, switch off, wait\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "pinMode(13, OUTPUT); goes in setup(), which runs once.",
+    "loop() runs again and again: digitalWrite(13, HIGH); delay(500); digitalWrite(13, LOW); delay(500);",
+    "Without a delay the LED toggles thousands of times a second and looks dimly on."
+  ],
+  "checks": [
+    {
+      "type": "hw.ran",
+      "label": "The sketch runs without errors"
+    },
+    {
+      "type": "hw.source",
+      "label": "Pin 13 is configured as an output",
+      "pattern": "pinMode\\s*\\(\\s*(13|LED_BUILTIN)\\s*,\\s*OUTPUT\\s*\\)",
+      "message": "Use pinMode(13, OUTPUT) in setup()."
+    },
+    {
+      "type": "hw.blink",
+      "label": "The LED blinks with a 1 s period",
+      "pin": 13,
+      "periodMs": 1000,
+      "tolerance": 0.15,
+      "dutyCycle": 0.5
+    }
+  ],
+  "realityNote": "On a real Uno the sketch is compiled by avr-gcc and flashed over USB; the built-in LED is on pin 13 through a small resistor. delay() blocks everything, which is why later labs replace it with millis().",
+  "engine": "E8"
+}
