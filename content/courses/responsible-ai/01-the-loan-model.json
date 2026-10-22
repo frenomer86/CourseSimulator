@@ -1,0 +1,246 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "responsible-ai-i1-the-loan-model",
+  "course": "responsible-ai",
+  "topic": "Fairness and bias",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "The loan model and the two districts",
+  "estimatedMinutes": 20,
+  "instructions": "## You review a credit model before launch\n\nA lender's model scores loan applications. The evaluation report splits results by district. Read it, decide whether the model is fair enough to launch, and say what should change.",
+  "config": {
+    "scenario": {
+      "start": "l1",
+      "nodes": [
+        {
+          "id": "l1",
+          "title": "The numbers",
+          "text": "Read the evaluation report.",
+          "evidence": [
+            {
+              "id": "report",
+              "kind": "data",
+              "title": "Evaluation by district",
+              "text": "Overall accuracy: 88%.\nDistrict A (urban): approval rate 62%, false rejection rate 8%.\nDistrict B (rural): approval rate 31%, false rejection rate 24%.\nTraining data: 85% of past loans came from District A. Feature list includes \"distance to nearest branch\" and \"mobile money transaction count\"."
+            }
+          ],
+          "choices": [
+            {
+              "id": "l1-1",
+              "text": "The model is fair: overall accuracy is high",
+              "next": "l2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Overall accuracy hides that rural applicants are wrongly rejected three times as often."
+            },
+            {
+              "id": "l1-2",
+              "text": "The model treats the districts differently: creditworthy rural applicants are rejected far more often",
+              "next": "l2",
+              "score": 2,
+              "flags": [
+                "l1-right"
+              ],
+              "feedback": "Correct. The false rejection rates differ sharply; that is the harm."
+            },
+            {
+              "id": "l1-3",
+              "text": "The data is wrong",
+              "next": "l2",
+              "score": 0,
+              "flags": [],
+              "feedback": "The data may be unrepresentative, but the numbers themselves are the finding."
+            }
+          ]
+        },
+        {
+          "id": "l2",
+          "title": "The cause",
+          "text": "What most likely produced the gap?",
+          "choices": [
+            {
+              "id": "l2-1",
+              "text": "Training data dominated by one district, and features that proxy for location rather than repayment",
+              "next": "l3",
+              "score": 2,
+              "flags": [
+                "l2-right"
+              ],
+              "feedback": "Correct. Representation and proxy features are the usual sources of this pattern."
+            },
+            {
+              "id": "l2-2",
+              "text": "Rural applicants are worse borrowers",
+              "next": "l3",
+              "score": 0,
+              "flags": [],
+              "feedback": "The false rejection rate says the model is wrong about creditworthy rural applicants."
+            },
+            {
+              "id": "l2-3",
+              "text": "Random chance",
+              "next": "l3",
+              "score": 0,
+              "flags": [],
+              "feedback": "A threefold difference on large groups is not chance."
+            }
+          ]
+        },
+        {
+          "id": "l3",
+          "title": "Which fairness measure?",
+          "text": "The lender's goal is that creditworthy applicants get the same chance regardless of district. Which measure matches that goal?",
+          "choices": [
+            {
+              "id": "l3-1",
+              "text": "Equal opportunity: equal true positive (or false rejection) rates across groups",
+              "next": "l4",
+              "score": 2,
+              "flags": [
+                "l3-right"
+              ],
+              "feedback": "Correct. The goal is about creditworthy people being treated alike."
+            },
+            {
+              "id": "l3-2",
+              "text": "Equal approval rates regardless of repayment",
+              "next": "l4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Demographic parity ignores whether applicants can repay; it may not be the right goal for lending."
+            },
+            {
+              "id": "l3-3",
+              "text": "Overall accuracy only",
+              "next": "l4",
+              "score": 0,
+              "flags": [],
+              "feedback": "It cannot see group differences."
+            }
+          ]
+        },
+        {
+          "id": "l4",
+          "title": "What to change",
+          "text": "Which action should come first?",
+          "choices": [
+            {
+              "id": "l4-1",
+              "text": "Collect more representative rural data, remove or audit proxy features, retrain, and re-evaluate by group before launch",
+              "next": "l5",
+              "score": 2,
+              "flags": [
+                "l4-right"
+              ],
+              "feedback": "Correct. Fix the data and features, then measure again."
+            },
+            {
+              "id": "l4-2",
+              "text": "Lower the threshold for everyone",
+              "next": "l5",
+              "score": 0,
+              "flags": [],
+              "feedback": "That changes volumes, not the gap."
+            },
+            {
+              "id": "l4-3",
+              "text": "Launch and monitor",
+              "next": "l5",
+              "score": 0,
+              "flags": [],
+              "feedback": "Launching a model known to harm a group is not responsible."
+            }
+          ]
+        },
+        {
+          "id": "l5",
+          "title": "Governance",
+          "text": "What should the launch decision require from now on? Before you choose, write the note you would send to the product owner.",
+          "prompts": [
+            {
+              "id": "note",
+              "label": "Note to the product owner",
+              "hint": "Two or three sentences: what the harm is and what must change before launch.",
+              "minWords": 25
+            }
+          ],
+          "choices": [
+            {
+              "id": "l5-1",
+              "text": "A documented evaluation by group, an explanation for rejected applicants, an appeal route, and monitoring after launch",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "l5-right"
+              ],
+              "feedback": "Correct. Accountability needs documentation, recourse and ongoing measurement."
+            },
+            {
+              "id": "l5-2",
+              "text": "Sign-off by the data scientist",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "One person cannot be the whole governance process."
+            },
+            {
+              "id": "l5-3",
+              "text": "A press release about fairness",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Statements are not controls."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Decision: do not launch yet",
+          "text": "You require representative data, a feature audit, group-level evaluation, explanations and an appeal route, with monitoring after launch.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Compare the false rejection rates, not the overall accuracy.",
+    "Features correlated with where someone lives can stand in for the district.",
+    "Fairness measures encode goals; pick the one that matches the lender's stated goal."
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.examined",
+      "label": "You read the evaluation report",
+      "evidence": [
+        "report"
+      ]
+    },
+    {
+      "type": "scenario.rubric",
+      "label": "Your note explains the harm and the remedy",
+      "prompt": "note",
+      "patterns": [
+        "reject",
+        "rural|district B|group",
+        "data|feature|proxy",
+        "retrain|re-evaluate|monitor|appeal"
+      ],
+      "required": 3,
+      "minWords": 25
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "Credit models are one of the most regulated uses of machine learning; group-level evaluation and the right to an explanation are written into several countries' rules and are arriving in African regulation."
+}

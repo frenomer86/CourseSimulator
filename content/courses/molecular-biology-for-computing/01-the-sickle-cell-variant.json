@@ -1,0 +1,239 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "molecular-biology-for-computing-b1-the-sickle-cell-variant",
+  "course": "molecular-biology-for-computing",
+  "topic": "Types of mutation; sickle cell disease",
+  "unit": 4,
+  "topicIndex": 3,
+  "level": "beginner",
+  "title": "The sickle cell variant, from DNA to disease",
+  "estimatedMinutes": 15,
+  "instructions": "## From one base to a disease\n\nYou are the bioinformatics intern at a teaching hospital in Kumasi. A child's beta-globin gene has been sequenced. Compare it with the reference, classify what you see, and advise the family. Examine the evidence before you choose.",
+  "config": {
+    "scenario": {
+      "start": "s1",
+      "nodes": [
+        {
+          "id": "s1",
+          "title": "The sequence",
+          "text": "The lab sends the sixth codon of the HBB gene. Reference: **GAG**. Patient: **GTG**. Look at the genetic code table, then classify the mutation.",
+          "evidence": [
+            {
+              "id": "code",
+              "kind": "document",
+              "title": "Genetic code (extract)",
+              "text": "GAG = glutamic acid (Glu), a charged, hydrophilic amino acid.\nGTG = valine (Val), a hydrophobic amino acid."
+            },
+            {
+              "id": "reads",
+              "kind": "data",
+              "title": "Aligned reads",
+              "text": "Reference  ...CCT GAG GAG...\nPatient    ...CCT GTG GAG...\nOne base differs at the second position of codon 6: A became T. Nothing inserted or deleted."
+            }
+          ],
+          "choices": [
+            {
+              "id": "s1-1",
+              "text": "A frameshift mutation",
+              "next": "s2",
+              "score": 0,
+              "flags": [],
+              "feedback": "No base was inserted or deleted, so the reading frame is unchanged."
+            },
+            {
+              "id": "s1-2",
+              "text": "A missense (non-synonymous) substitution",
+              "next": "s2",
+              "score": 2,
+              "flags": [
+                "s1-right"
+              ],
+              "feedback": "Correct. One base changed and the codon now encodes a different amino acid."
+            },
+            {
+              "id": "s1-3",
+              "text": "A silent (synonymous) substitution",
+              "next": "s2",
+              "score": 0,
+              "flags": [],
+              "feedback": "A silent change keeps the same amino acid; GAG to GTG changes Glu to Val."
+            },
+            {
+              "id": "s1-4",
+              "text": "A nonsense mutation",
+              "next": "s2",
+              "score": 0,
+              "flags": [],
+              "feedback": "A nonsense mutation creates a stop codon; GTG is valine."
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "The protein",
+          "text": "Why does one amino acid change make red cells sickle?",
+          "choices": [
+            {
+              "id": "s2-1",
+              "text": "Valine is hydrophobic, so deoxygenated haemoglobin molecules stick together into fibres that deform the cell",
+              "next": "s3",
+              "score": 2,
+              "flags": [
+                "s2-right"
+              ],
+              "feedback": "Correct. The hydrophobic patch lets HbS polymerise when oxygen is low."
+            },
+            {
+              "id": "s2-2",
+              "text": "The protein is no longer made at all",
+              "next": "s3",
+              "score": 0,
+              "flags": [],
+              "feedback": "HbS is made in normal amounts; its behaviour is the problem."
+            },
+            {
+              "id": "s2-3",
+              "text": "The gene is read in a different frame",
+              "next": "s3",
+              "score": 0,
+              "flags": [],
+              "feedback": "The frame is intact; only one amino acid differs."
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "title": "The family",
+          "text": "Both parents are carriers (one HbS allele each) and are well. They ask the chance that their next child has sickle cell disease.",
+          "choices": [
+            {
+              "id": "s3-1",
+              "text": "50%",
+              "next": "s4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Half the children would be carriers, but disease needs two HbS alleles."
+            },
+            {
+              "id": "s3-2",
+              "text": "25%",
+              "next": "s4",
+              "score": 2,
+              "flags": [
+                "s3-right"
+              ],
+              "feedback": "Correct. Autosomal recessive: AS × AS gives 1 in 4 SS."
+            },
+            {
+              "id": "s3-3",
+              "text": "100%",
+              "next": "s4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Only children who inherit HbS from both parents are affected."
+            }
+          ]
+        },
+        {
+          "id": "s4",
+          "title": "The malaria connection",
+          "text": "Why is the HbS allele common in Ghana despite the disease it causes when homozygous?",
+          "choices": [
+            {
+              "id": "s4-1",
+              "text": "Carriers are partly protected against severe malaria, so selection keeps the allele in the population",
+              "next": "s5",
+              "score": 2,
+              "flags": [
+                "s4-right"
+              ],
+              "feedback": "Correct. Heterozygote advantage, a classic case of balancing selection."
+            },
+            {
+              "id": "s4-2",
+              "text": "The mutation happens afresh at a high rate",
+              "next": "s5",
+              "score": 0,
+              "flags": [],
+              "feedback": "Mutation rates are tiny; selection maintains the allele."
+            },
+            {
+              "id": "s4-3",
+              "text": "It is harmless",
+              "next": "s5",
+              "score": 0,
+              "flags": [],
+              "feedback": "SS individuals have serious disease; without a benefit the allele would decline."
+            }
+          ]
+        },
+        {
+          "id": "s5",
+          "title": "The test",
+          "text": "The hospital wants a cheap newborn screening test. Which approach fits a district lab?",
+          "choices": [
+            {
+              "id": "s5-1",
+              "text": "Whole-genome sequencing of every newborn",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Far too costly for one known variant."
+            },
+            {
+              "id": "s5-2",
+              "text": "A targeted assay for the known base change, or haemoglobin electrophoresis",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "s5-right"
+              ],
+              "feedback": "Correct. A known single-base variant needs a targeted test; electrophoresis separates HbA from HbS by the charge Glu→Val removed."
+            },
+            {
+              "id": "s5-3",
+              "text": "Counting red cells under a microscope",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Sickled cells are visible only in crisis."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Case closed",
+          "text": "You classify the variant as the missense substitution c.20A>T (p.Glu6Val), explain the 25% risk, and recommend targeted screening.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Compare the codons base by base.",
+    "Glu is charged; Val is hydrophobic.",
+    "Draw the Punnett square for AS × AS."
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.examined",
+      "label": "You looked at the aligned reads before classifying",
+      "evidence": [
+        "reads"
+      ]
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "Ghana's newborn sickle cell screening in Kumasi has run since 1995 using haemoglobin electrophoresis; HBB c.20A>T is in every clinical variant database."
+}

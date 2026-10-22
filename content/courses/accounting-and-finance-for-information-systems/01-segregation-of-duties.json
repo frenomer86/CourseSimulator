@@ -1,0 +1,232 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "accounting-and-finance-for-information-systems-i1-segregation-of-duties",
+  "course": "accounting-and-finance-for-information-systems",
+  "topic": "Financial controls",
+  "unit": 9,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "The bank reconciliation that would not balance",
+  "estimatedMinutes": 20,
+  "instructions": "## You review a small company's cash controls\n\nThe cash book and the bank statement disagree. One clerk receives cash, records it and reconciles the bank. Work through the evidence, record the correct double entry, and recommend the controls an accounting system should enforce.",
+  "config": {
+    "scenario": {
+      "start": "a1",
+      "nodes": [
+        {
+          "id": "a1",
+          "title": "The difference",
+          "text": "The cash book shows GH₵48,200 at bank; the statement shows GH₵45,200.",
+          "evidence": [
+            {
+              "id": "cashbook",
+              "kind": "document",
+              "title": "Cash book (extract)",
+              "text": "Oct 3 Receipt Mensah Ltd +12,000\nOct 9 Payment Adom Supplies −7,500\nOct 15 Receipt Ofori (cash) +3,000\nOct 20 Rent −6,000\nBalance per books: 48,200"
+            },
+            {
+              "id": "statement",
+              "kind": "data",
+              "title": "Bank statement (extract)",
+              "text": "Oct 3 Credit Mensah Ltd 12,000\nOct 9 Debit Adom Supplies 7,500\nOct 20 Debit Rent 6,000\nBalance per bank: 45,200\n(No credit on or after Oct 15.)"
+            }
+          ],
+          "choices": [
+            {
+              "id": "a1-1",
+              "text": "A timing difference that will clear",
+              "next": "a2",
+              "score": 0,
+              "flags": [],
+              "feedback": "The receipt was cash and ten days have passed; timing differences clear in days."
+            },
+            {
+              "id": "a1-2",
+              "text": "A GH₵3,000 cash receipt was recorded in the books but never deposited at the bank",
+              "next": "a2",
+              "score": 2,
+              "flags": [
+                "a1-right"
+              ],
+              "feedback": "Correct. The books show it; the bank never received it."
+            },
+            {
+              "id": "a1-3",
+              "text": "A bank error",
+              "next": "a2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Every other item matches; the unmatched item is the cash receipt."
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "title": "The entry",
+          "text": "When the GH₵3,000 was received from the customer, the correct double entry was:",
+          "choices": [
+            {
+              "id": "a2-1",
+              "text": "Debit Cash 3,000; Credit Accounts Receivable (Ofori) 3,000",
+              "next": "a3",
+              "score": 2,
+              "flags": [
+                "a2-right"
+              ],
+              "feedback": "Correct. Cash increases with a debit; the customer's debt decreases with a credit."
+            },
+            {
+              "id": "a2-2",
+              "text": "Debit Accounts Receivable; Credit Cash",
+              "next": "a3",
+              "score": 0,
+              "flags": [],
+              "feedback": "That records money going out."
+            },
+            {
+              "id": "a2-3",
+              "text": "Debit Sales; Credit Cash",
+              "next": "a3",
+              "score": 0,
+              "flags": [],
+              "feedback": "The sale was recorded with the invoice; the receipt settles the receivable."
+            }
+          ]
+        },
+        {
+          "id": "a3",
+          "title": "The missing control",
+          "text": "One clerk receives, records and reconciles. Which control principle is missing?",
+          "choices": [
+            {
+              "id": "a3-1",
+              "text": "Segregation of duties",
+              "next": "a4",
+              "score": 2,
+              "flags": [
+                "a3-right"
+              ],
+              "feedback": "Correct. Handling, recording and checking must be separate people."
+            },
+            {
+              "id": "a3-2",
+              "text": "Depreciation policy",
+              "next": "a4",
+              "score": 0,
+              "flags": [],
+              "feedback": "That concerns fixed assets."
+            },
+            {
+              "id": "a3-3",
+              "text": "Budgeting",
+              "next": "a4",
+              "score": 0,
+              "flags": [],
+              "feedback": "A budget does not stop cash going astray."
+            }
+          ]
+        },
+        {
+          "id": "a4",
+          "title": "The system",
+          "text": "The company is adopting an accounting information system. Which configuration addresses the gap directly?",
+          "choices": [
+            {
+              "id": "a4-1",
+              "text": "Separate roles for cashier, bookkeeper and reviewer, an audit log of every entry, and a reconciliation approved by a second person",
+              "next": "a5",
+              "score": 2,
+              "flags": [
+                "a4-right"
+              ],
+              "feedback": "Correct. Role separation and audit trails are the system form of segregation of duties."
+            },
+            {
+              "id": "a4-2",
+              "text": "A faster computer",
+              "next": "a5",
+              "score": 0,
+              "flags": [],
+              "feedback": "Speed does not change who can do what."
+            },
+            {
+              "id": "a4-3",
+              "text": "Printing the cash book monthly",
+              "next": "a5",
+              "score": 0,
+              "flags": [],
+              "feedback": "A printout of the same person's entries proves nothing."
+            }
+          ]
+        },
+        {
+          "id": "a5",
+          "title": "Priorities",
+          "text": "Your report should recommend, in order:",
+          "choices": [
+            {
+              "id": "a5-1",
+              "text": "Only recover the amount",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "That treats the symptom; the gap remains."
+            },
+            {
+              "id": "a5-2",
+              "text": "Segregate duties now, reconcile monthly with independent review, bank all cash daily, then pursue the amount",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "a5-right"
+              ],
+              "feedback": "Correct. Controls first; the loss may be larger than one receipt."
+            },
+            {
+              "id": "a5-3",
+              "text": "Close the bank account",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "The bank account is the part that told the truth."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Report filed",
+          "text": "Your report identifies the undeposited receipt, the correct entry and the missing segregation of duties, and specifies the roles and approvals the new system must enforce.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Match each cash book line to the statement.",
+    "Receiving cash: debit Cash, credit the receivable.",
+    "Who could have caught this if three people shared the work?"
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.examined",
+      "label": "You compared the cash book with the bank statement",
+      "evidence": [
+        "cashbook",
+        "statement"
+      ]
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "The monthly bank reconciliation, done by someone other than the cashier, is the single control auditors ask about first in small organisations."
+}

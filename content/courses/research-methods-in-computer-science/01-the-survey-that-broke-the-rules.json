@@ -1,0 +1,225 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "research-methods-in-computer-science-b1-the-survey-that-broke-the-rules",
+  "course": "research-methods-in-computer-science",
+  "topic": "Ethics",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "The survey that broke the rules",
+  "estimatedMinutes": 15,
+  "instructions": "## You are on the departmental ethics committee\n\nA final-year student submits a project proposal: a survey of students' use of AI tools, with interviews. Read the proposal extract and decide what must change before it can run.",
+  "config": {
+    "scenario": {
+      "start": "r1",
+      "nodes": [
+        {
+          "id": "r1",
+          "title": "Consent",
+          "text": "Read the proposal extract.",
+          "evidence": [
+            {
+              "id": "proposal",
+              "kind": "document",
+              "title": "Proposal extract",
+              "text": "Method: a Google Form sent to all level 300 WhatsApp groups, collecting name, index number, programme and answers. Participation is compulsory for students in my hall. Interviews recorded on my phone. Data kept on my laptop. Results will name students with the most interesting answers so lecturers can follow up."
+            }
+          ],
+          "choices": [
+            {
+              "id": "r1-1",
+              "text": "Fine as it is",
+              "next": "r2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Several rules are broken: compulsion, identification, storage and disclosure."
+            },
+            {
+              "id": "r1-2",
+              "text": "Participation must be voluntary with informed consent, and nobody may be made to take part",
+              "next": "r2",
+              "score": 2,
+              "flags": [
+                "r1-right"
+              ],
+              "feedback": "Correct. Voluntary, informed consent is the first requirement of research with people."
+            },
+            {
+              "id": "r1-3",
+              "text": "Only the interviews need consent",
+              "next": "r2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Every data collection needs consent, including the form."
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "title": "Identification",
+          "text": "The form collects names and index numbers. What should change?",
+          "choices": [
+            {
+              "id": "r2-1",
+              "text": "Collect no identifiers unless they are needed; if interviews need contact, keep the key separate and anonymise the data",
+              "next": "r3",
+              "score": 2,
+              "flags": [
+                "r2-right"
+              ],
+              "feedback": "Correct. Minimise identifiers and separate them from the answers."
+            },
+            {
+              "id": "r2-2",
+              "text": "Keep the names; they make the data richer",
+              "next": "r3",
+              "score": 0,
+              "flags": [],
+              "feedback": "Names add risk, not insight, for this question."
+            },
+            {
+              "id": "r2-3",
+              "text": "Replace names with phone numbers",
+              "next": "r3",
+              "score": 0,
+              "flags": [],
+              "feedback": "Phone numbers identify people just as well."
+            }
+          ]
+        },
+        {
+          "id": "r3",
+          "title": "Disclosure",
+          "text": "The student plans to name students with \"interesting answers\" to lecturers. This is:",
+          "choices": [
+            {
+              "id": "r3-1",
+              "text": "A breach of confidentiality that could harm participants, and must be removed",
+              "next": "r4",
+              "score": 2,
+              "flags": [
+                "r3-right"
+              ],
+              "feedback": "Correct. Participants must not be exposed to consequences from what they told the researcher."
+            },
+            {
+              "id": "r3-2",
+              "text": "Acceptable if the lecturers agree",
+              "next": "r4",
+              "score": 0,
+              "flags": [],
+              "feedback": "The lecturers are not the ones at risk."
+            },
+            {
+              "id": "r3-3",
+              "text": "Acceptable if the answers are positive",
+              "next": "r4",
+              "score": 0,
+              "flags": [],
+              "feedback": "The participant decides what is disclosed, not the researcher."
+            }
+          ]
+        },
+        {
+          "id": "r4",
+          "title": "Storage",
+          "text": "Recordings on a personal phone and data on a laptop. What is required?",
+          "choices": [
+            {
+              "id": "r4-1",
+              "text": "Encrypted storage, access limited to the researcher and supervisor, and deletion of recordings once transcribed and anonymised",
+              "next": "r5",
+              "score": 2,
+              "flags": [
+                "r4-right"
+              ],
+              "feedback": "Correct. Secure storage and a retention plan are part of the protocol."
+            },
+            {
+              "id": "r4-2",
+              "text": "Nothing; it is the student's own device",
+              "next": "r5",
+              "score": 0,
+              "flags": [],
+              "feedback": "The data belongs to the participants' privacy, not the device owner."
+            },
+            {
+              "id": "r4-3",
+              "text": "Upload everything to a public drive for transparency",
+              "next": "r5",
+              "score": 0,
+              "flags": [],
+              "feedback": "Transparency applies to methods and aggregate results, not personal data."
+            }
+          ]
+        },
+        {
+          "id": "r5",
+          "title": "Sampling",
+          "text": "Only the student's hall WhatsApp groups receive the form. For a claim about \"level 300 students\", this is:",
+          "choices": [
+            {
+              "id": "r5-1",
+              "text": "A convenience sample with selection bias; the claim must be limited or the sampling improved",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "r5-right"
+              ],
+              "feedback": "Correct. The sample does not represent the population the claim is about."
+            },
+            {
+              "id": "r5-2",
+              "text": "A random sample",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Random sampling gives every member a known chance; hall groups do not."
+            },
+            {
+              "id": "r5-3",
+              "text": "Fine because WhatsApp is popular",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Popularity of the channel is not representativeness of the sample."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Decision: revise and resubmit",
+          "text": "The committee requires voluntary consent, no identifiers, no disclosure of individual answers, secure storage with deletion, and either a better sampling frame or a narrower claim.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Consent, anonymity, confidentiality, secure storage.",
+    "Collect only what the question needs.",
+    "A sample must come from the population the claim is about."
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.examined",
+      "label": "You read the proposal",
+      "evidence": [
+        "proposal"
+      ]
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "University ethics committees in Ghana review exactly these points, and the Data Protection Act applies to student research as much as to companies."
+}

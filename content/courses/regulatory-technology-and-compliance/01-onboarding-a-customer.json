@@ -1,0 +1,210 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "regulatory-technology-and-compliance-i1-onboarding-a-customer",
+  "course": "regulatory-technology-and-compliance",
+  "topic": "Know your customer and data protection",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Onboarding a customer by the book",
+  "estimatedMinutes": 15,
+  "instructions": "## You design the onboarding flow for a fintech app\n\nThe product team wants sign-up in under two minutes. Compliance wants KYC done properly and personal data handled lawfully. Make the decisions that satisfy both.",
+  "config": {
+    "scenario": {
+      "start": "k1",
+      "nodes": [
+        {
+          "id": "k1",
+          "title": "Identity",
+          "text": "Which identity check meets the KYC requirement for a full wallet in Ghana?",
+          "choices": [
+            {
+              "id": "k1-1",
+              "text": "Verify the Ghana Card number and details against the national identity register, with a liveness check of the selfie",
+              "next": "k2",
+              "score": 2,
+              "flags": [
+                "k1-right"
+              ],
+              "feedback": "Correct. Verification against an authoritative source, not just a photo of a card."
+            },
+            {
+              "id": "k1-2",
+              "text": "Ask the user to type their name and date of birth",
+              "next": "k2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Self-declared details verify nothing."
+            },
+            {
+              "id": "k1-3",
+              "text": "Skip identity for small wallets forever",
+              "next": "k2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Tiered limits can lower the burden for small wallets, but full wallets need verification."
+            }
+          ]
+        },
+        {
+          "id": "k2",
+          "title": "Tiering",
+          "text": "A market trader wants to start quickly and has no document on her. What is the lawful, usable path?",
+          "choices": [
+            {
+              "id": "k2-1",
+              "text": "A tier-1 wallet with low limits on a phone number, upgraded when her ID is verified",
+              "next": "k3",
+              "score": 2,
+              "flags": [
+                "k2-right"
+              ],
+              "feedback": "Correct. Risk-based tiers are how regulators balance inclusion and control."
+            },
+            {
+              "id": "k2-2",
+              "text": "Refuse her",
+              "next": "k3",
+              "score": 0,
+              "flags": [],
+              "feedback": "Financial inclusion is a regulatory goal too."
+            },
+            {
+              "id": "k2-3",
+              "text": "Give her a full wallet and verify later",
+              "next": "k3",
+              "score": 0,
+              "flags": [],
+              "feedback": "Full limits without verification defeat the control."
+            }
+          ]
+        },
+        {
+          "id": "k3",
+          "title": "Data minimisation",
+          "text": "The product team wants to collect contacts, location history and photos at sign-up \"for future features\". Under the Data Protection Act this is:",
+          "choices": [
+            {
+              "id": "k3-1",
+              "text": "Not allowed: collect only what the stated purpose needs, and ask again when a new purpose arises",
+              "next": "k4",
+              "score": 2,
+              "flags": [
+                "k3-right"
+              ],
+              "feedback": "Correct. Purpose limitation and data minimisation are core principles."
+            },
+            {
+              "id": "k3-2",
+              "text": "Fine if buried in the terms",
+              "next": "k4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Consent must be specific and informed."
+            },
+            {
+              "id": "k3-3",
+              "text": "Fine because the data stays in Ghana",
+              "next": "k4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Location of storage does not justify over-collection."
+            }
+          ]
+        },
+        {
+          "id": "k4",
+          "title": "Retention",
+          "text": "How long should KYC records be kept after an account closes?",
+          "choices": [
+            {
+              "id": "k4-1",
+              "text": "For the period the regulation requires, then deleted or anonymised",
+              "next": "k5",
+              "score": 2,
+              "flags": [
+                "k4-right"
+              ],
+              "feedback": "Correct. Retention follows the legal requirement, no shorter and no longer."
+            },
+            {
+              "id": "k4-2",
+              "text": "Forever, in case",
+              "next": "k5",
+              "score": 0,
+              "flags": [],
+              "feedback": "Indefinite retention breaches storage limitation."
+            },
+            {
+              "id": "k4-3",
+              "text": "Delete immediately",
+              "next": "k5",
+              "score": 0,
+              "flags": [],
+              "feedback": "Regulations require records for a set period."
+            }
+          ]
+        },
+        {
+          "id": "k5",
+          "title": "Automation",
+          "text": "Compliance currently checks every sign-up by hand and takes a day. What does RegTech change?",
+          "choices": [
+            {
+              "id": "k5-1",
+              "text": "Automated verification and rule checks with human review only for exceptions, and an audit trail of every decision",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "k5-right"
+              ],
+              "feedback": "Correct. Automate the routine, keep people for the edge cases, and log everything for the regulator."
+            },
+            {
+              "id": "k5-2",
+              "text": "Remove compliance from the flow",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "The obligation does not go away; its execution changes."
+            },
+            {
+              "id": "k5-3",
+              "text": "Hire more reviewers",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "That scales cost, not speed."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Flow approved",
+          "text": "Verified identity for full wallets, tiered limits for quick starts, minimal data, lawful retention and automated checks with an audit trail.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Verify against an authoritative source.",
+    "Tiered wallets balance inclusion and control.",
+    "Collect only what the stated purpose needs."
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "Bank of Ghana's tiered KYC for e-money and the Data Protection Act 843 are the two frameworks this flow has to satisfy at once; RegTech vendors sell exactly this combination."
+}

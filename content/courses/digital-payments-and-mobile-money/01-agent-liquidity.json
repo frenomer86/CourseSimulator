@@ -1,0 +1,232 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "digital-payments-and-mobile-money-i1-agent-liquidity",
+  "course": "digital-payments-and-mobile-money",
+  "topic": "Agent networks and interoperability",
+  "unit": 5,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "The agent who ran out of float",
+  "estimatedMinutes": 15,
+  "instructions": "## You manage a mobile money agent network\n\nAn agent in a market town keeps turning customers away. Read her weekly figures and decide how the network, the float, and interoperability should work.",
+  "config": {
+    "scenario": {
+      "start": "g1",
+      "nodes": [
+        {
+          "id": "g1",
+          "title": "The pattern",
+          "text": "Study the agent's week.",
+          "evidence": [
+            {
+              "id": "ledger",
+              "kind": "data",
+              "title": "Agent ledger, one week",
+              "text": "Mon: cash-in 9,200, cash-out 2,100\nTue: cash-in 8,800, cash-out 1,900\nWed: cash-in 9,500, cash-out 2,400\nThu: cash-in 3,100 (turned customers away from 11:00), cash-out 1,800\nFri: cash-in 2,200 (turned customers away), cash-out 2,000\nE-float on Monday morning: 30,000. Cash on hand on Monday morning: 5,000."
+            },
+            {
+              "id": "rules",
+              "kind": "policy",
+              "title": "How agent float works",
+              "text": "A cash-in moves e-float from the agent to the customer and cash from the customer to the agent. A cash-out does the reverse. The agent rebalances by depositing cash at a bank or super-agent to buy e-float, or withdrawing e-float as cash."
+            }
+          ],
+          "choices": [
+            {
+              "id": "g1-1",
+              "text": "She is running out of cash",
+              "next": "g2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Cash-ins bring cash in; she has more cash each day, not less."
+            },
+            {
+              "id": "g1-2",
+              "text": "She is running out of e-float: cash-ins far exceed cash-outs",
+              "next": "g2",
+              "score": 2,
+              "flags": [
+                "g1-right"
+              ],
+              "feedback": "Correct. About 7,000 of e-float leaves each day and only 2,000 returns; by Thursday it is gone."
+            },
+            {
+              "id": "g1-3",
+              "text": "Customers have stopped coming",
+              "next": "g2",
+              "score": 0,
+              "flags": [],
+              "feedback": "They came; she could not serve them."
+            }
+          ]
+        },
+        {
+          "id": "g2",
+          "title": "Rebalancing",
+          "text": "What should the agent do each day?",
+          "choices": [
+            {
+              "id": "g2-1",
+              "text": "Deposit the accumulated cash with a super-agent or bank to buy e-float before it runs out, ideally mid-morning",
+              "next": "g3",
+              "score": 2,
+              "flags": [
+                "g2-right"
+              ],
+              "feedback": "Correct. Rebalancing is the agent's core daily task in a cash-in heavy location."
+            },
+            {
+              "id": "g2-2",
+              "text": "Refuse cash-ins",
+              "next": "g3",
+              "score": 0,
+              "flags": [],
+              "feedback": "That turns away the business she is there for."
+            },
+            {
+              "id": "g2-3",
+              "text": "Wait for cash-outs to restore the float",
+              "next": "g3",
+              "score": 0,
+              "flags": [],
+              "feedback": "Cash-outs are a fraction of cash-ins here; the float will not recover on its own."
+            }
+          ]
+        },
+        {
+          "id": "g3",
+          "title": "Network design",
+          "text": "The nearest bank is 40 km away. As the network manager, what helps most?",
+          "choices": [
+            {
+              "id": "g3-1",
+              "text": "A super-agent or roaming rebalancing service in the town, and a float credit line for high-volume agents",
+              "next": "g4",
+              "score": 2,
+              "flags": [
+                "g3-right"
+              ],
+              "feedback": "Correct. Liquidity infrastructure close to agents is what makes rural networks work."
+            },
+            {
+              "id": "g3-2",
+              "text": "More agents in the same market",
+              "next": "g4",
+              "score": 0,
+              "flags": [],
+              "feedback": "They would all face the same float problem."
+            },
+            {
+              "id": "g3-3",
+              "text": "Higher customer fees",
+              "next": "g4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Fees do not create e-float."
+            }
+          ]
+        },
+        {
+          "id": "g4",
+          "title": "Interoperability",
+          "text": "A customer on another network wants to receive money from this agent's customers. Which arrangement makes that work?",
+          "choices": [
+            {
+              "id": "g4-1",
+              "text": "A central switch or bilateral links between providers that clear and settle transfers between wallets",
+              "next": "g5",
+              "score": 2,
+              "flags": [
+                "g4-right"
+              ],
+              "feedback": "Correct. Interoperability needs a switch and settlement rules between providers, in Ghana through GhIPSS."
+            },
+            {
+              "id": "g4-2",
+              "text": "The customer must open a wallet on every network",
+              "next": "g5",
+              "score": 0,
+              "flags": [],
+              "feedback": "That is the problem interoperability solves."
+            },
+            {
+              "id": "g4-3",
+              "text": "Agents swap cash informally",
+              "next": "g5",
+              "score": 0,
+              "flags": [],
+              "feedback": "That moves cash, not e-money, and creates risk for the agent."
+            }
+          ]
+        },
+        {
+          "id": "g5",
+          "title": "Measuring",
+          "text": "Which metric tells you an agent is under-floated before customers complain?",
+          "choices": [
+            {
+              "id": "g5-1",
+              "text": "The share of hours per day with e-float below a threshold, from transaction and balance logs",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "g5-right"
+              ],
+              "feedback": "Correct. Float availability is an operational KPI you can compute from the system."
+            },
+            {
+              "id": "g5-2",
+              "text": "The agent's years in business",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Experience does not show today's float."
+            },
+            {
+              "id": "g5-3",
+              "text": "The number of customers in the town",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Demand matters, but availability is what you can act on."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Plan agreed",
+          "text": "You arrange mid-morning rebalancing through a super-agent, a float line for the agent, and float-availability monitoring across the network.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Follow the e-float: every cash-in spends it.",
+    "Rebalancing converts the cash pile back into e-float.",
+    "Interoperability is a switch plus settlement rules."
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.examined",
+      "label": "You read the ledger and the float rules",
+      "evidence": [
+        "ledger",
+        "rules"
+      ]
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "Agent liquidity is the most studied operational problem in mobile money; providers track float-outs per agent per day and route rebalancing vans and super-agents by that data."
+}

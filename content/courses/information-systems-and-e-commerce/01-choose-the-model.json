@@ -1,0 +1,210 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "information-systems-and-e-commerce-b1-choose-the-model",
+  "course": "information-systems-and-e-commerce",
+  "topic": "E-commerce models",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Choose the e-commerce model",
+  "estimatedMinutes": 15,
+  "instructions": "## Three businesses, three models\n\nA consultancy asks you to classify three Ghanaian businesses going online and to pick revenue and payment arrangements for them.",
+  "config": {
+    "scenario": {
+      "start": "e1",
+      "nodes": [
+        {
+          "id": "e1",
+          "title": "The fabric seller",
+          "text": "A Makola fabric trader wants to sell cut lengths to individual customers across Ghana from her own site. Which model?",
+          "choices": [
+            {
+              "id": "e1-1",
+              "text": "B2C (business to consumer)",
+              "next": "e2",
+              "score": 2,
+              "flags": [
+                "e1-right"
+              ],
+              "feedback": "Correct. A business selling to individual consumers."
+            },
+            {
+              "id": "e1-2",
+              "text": "B2B",
+              "next": "e2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Her buyers are individuals, not businesses."
+            },
+            {
+              "id": "e1-3",
+              "text": "C2C",
+              "next": "e2",
+              "score": 0,
+              "flags": [],
+              "feedback": "She is a business, not a peer selling to peers."
+            }
+          ]
+        },
+        {
+          "id": "e2",
+          "title": "The packaging supplier",
+          "text": "A Tema packaging factory wants its retail customers (shops and supermarkets) to reorder cartons online with negotiated prices and credit terms. Which model?",
+          "choices": [
+            {
+              "id": "e2-1",
+              "text": "B2C",
+              "next": "e3",
+              "score": 0,
+              "flags": [],
+              "feedback": "The buyers are businesses with contracts."
+            },
+            {
+              "id": "e2-2",
+              "text": "B2B (business to business)",
+              "next": "e3",
+              "score": 2,
+              "flags": [
+                "e2-right"
+              ],
+              "feedback": "Correct. Negotiated prices, credit terms and bulk reorders are B2B features."
+            },
+            {
+              "id": "e2-3",
+              "text": "C2B",
+              "next": "e3",
+              "score": 0,
+              "flags": [],
+              "feedback": "Consumers are not involved."
+            }
+          ]
+        },
+        {
+          "id": "e3",
+          "title": "The second-hand phones",
+          "text": "A platform where students list used phones and other students buy them, the platform taking a small fee. Which model and revenue model?",
+          "choices": [
+            {
+              "id": "e3-1",
+              "text": "C2C marketplace with a transaction fee",
+              "next": "e4",
+              "score": 2,
+              "flags": [
+                "e3-right"
+              ],
+              "feedback": "Correct. Peers sell to peers; the platform earns a commission."
+            },
+            {
+              "id": "e3-2",
+              "text": "B2C with subscription",
+              "next": "e4",
+              "score": 0,
+              "flags": [],
+              "feedback": "The platform does not own the phones; the sellers are consumers."
+            },
+            {
+              "id": "e3-3",
+              "text": "B2B with advertising",
+              "next": "e4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Neither side is a business."
+            }
+          ]
+        },
+        {
+          "id": "e4",
+          "title": "Payments",
+          "text": "The fabric seller's customers mostly have no card. Which payment arrangement fits?",
+          "choices": [
+            {
+              "id": "e4-1",
+              "text": "Mobile money through a payment gateway, with cash on delivery as a fallback",
+              "next": "e5",
+              "score": 2,
+              "flags": [
+                "e4-right"
+              ],
+              "feedback": "Correct. Mobile money is the dominant online payment method in Ghana; COD covers the rest."
+            },
+            {
+              "id": "e4-2",
+              "text": "International cards only",
+              "next": "e5",
+              "score": 0,
+              "flags": [],
+              "feedback": "That excludes most customers."
+            },
+            {
+              "id": "e4-3",
+              "text": "Bank transfer with manual confirmation",
+              "next": "e5",
+              "score": 0,
+              "flags": [],
+              "feedback": "It works but does not scale; a gateway confirms automatically."
+            }
+          ]
+        },
+        {
+          "id": "e5",
+          "title": "Trust",
+          "text": "What matters most for the C2C phone marketplace to grow?",
+          "choices": [
+            {
+              "id": "e5-1",
+              "text": "Ratings, escrow or payment-on-delivery, and a dispute process",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "e5-right"
+              ],
+              "feedback": "Correct. In C2C the platform's product is trust between strangers."
+            },
+            {
+              "id": "e5-2",
+              "text": "A large advertising budget",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Adverts bring users once; trust keeps them."
+            },
+            {
+              "id": "e5-3",
+              "text": "Lower fees than competitors",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Fees matter less than the risk of being cheated."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Recommendations delivered",
+          "text": "B2C for the fabric trader with mobile money and COD, B2B portal with credit terms for the factory, and a C2C marketplace with escrow and ratings for the students.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Ask who sells and who buys.",
+    "Revenue models: sales, commission, subscription, advertising.",
+    "Payment methods must match what customers actually have."
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "Jumia, Tonaton and the mobile money gateways cover these three models in Ghana; the escrow-style \"pay on delivery\" option exists precisely because trust was the barrier."
+}

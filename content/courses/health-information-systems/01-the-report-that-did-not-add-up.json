@@ -1,0 +1,238 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "health-information-systems-i1-the-report-that-did-not-add-up",
+  "course": "health-information-systems",
+  "topic": "Data quality in health",
+  "unit": 6,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "The district report that did not add up",
+  "estimatedMinutes": 20,
+  "instructions": "## You are the district health information officer\n\nThe regional office has queried last month's malaria figures: confirmed cases entered in DHIS2 exceed the number of tests done. Examine the evidence, find the cause and fix the process, not just the number.",
+  "config": {
+    "scenario": {
+      "start": "q1",
+      "nodes": [
+        {
+          "id": "q1",
+          "title": "What is wrong?",
+          "text": "Regional query: \"Confirmed malaria cases (1,240) exceed tests performed (980) for Akyem West, October.\"",
+          "evidence": [
+            {
+              "id": "dhis",
+              "kind": "data",
+              "title": "DHIS2 entry for October",
+              "text": "Oda Hospital. Suspected: 1,900. Tests: 980. Confirmed: 1,240. Treated with ACT: 1,250."
+            },
+            {
+              "id": "tally",
+              "kind": "document",
+              "title": "Facility tally sheet",
+              "text": "RDT done: 760. Microscopy done: 220. Positive (RDT): 410. Positive (microscopy): 70. Treated: 1,250 (includes 770 treated on clinical judgement without a test)."
+            },
+            {
+              "id": "sop",
+              "kind": "policy",
+              "title": "Data element definitions",
+              "text": "\"Confirmed malaria case\" = positive by RDT or microscopy. Untested treated patients are reported as \"presumed\", never as \"confirmed\"."
+            }
+          ],
+          "choices": [
+            {
+              "id": "q1-1",
+              "text": "The tests count was under-entered; raise it to match",
+              "next": "q2",
+              "score": 0,
+              "flags": [],
+              "feedback": "The tally sheet confirms 980 tests; the cases figure is wrong."
+            },
+            {
+              "id": "q1-2",
+              "text": "Untested treated patients were entered as confirmed cases",
+              "next": "q2",
+              "score": 2,
+              "flags": [
+                "q1-right"
+              ],
+              "feedback": "Correct. 410 + 70 = 480 confirmed; the rest came from the treated-without-test group."
+            },
+            {
+              "id": "q1-3",
+              "text": "Some patients were confirmed twice",
+              "next": "q2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Confirmation needs a test."
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "title": "Which quality dimension?",
+          "text": "Which data quality dimension does this belong to?",
+          "choices": [
+            {
+              "id": "q2-1",
+              "text": "Timeliness",
+              "next": "q3",
+              "score": 0,
+              "flags": [],
+              "feedback": "The report arrived on time; the content is wrong."
+            },
+            {
+              "id": "q2-2",
+              "text": "Completeness",
+              "next": "q3",
+              "score": 0,
+              "flags": [],
+              "feedback": "Every field was filled."
+            },
+            {
+              "id": "q2-3",
+              "text": "Accuracy (validity against the definition)",
+              "next": "q3",
+              "score": 2,
+              "flags": [
+                "q2-right"
+              ],
+              "feedback": "Correct. The value does not match the data element's definition."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "title": "The fix",
+          "text": "What do you do first?",
+          "choices": [
+            {
+              "id": "q3-1",
+              "text": "Correct the entry to 480 confirmed and 770 presumed, with a note, and verify at the facility",
+              "next": "q4",
+              "score": 2,
+              "flags": [
+                "q3-right"
+              ],
+              "feedback": "Correct. Fix from the source document and keep an audit note."
+            },
+            {
+              "id": "q3-2",
+              "text": "Delete the October entry",
+              "next": "q4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Deleting data destroys the audit trail."
+            },
+            {
+              "id": "q3-3",
+              "text": "Ask the facility to re-count patients in the ward",
+              "next": "q4",
+              "score": 0,
+              "flags": [],
+              "feedback": "The counts exist; the classification is the problem."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "title": "Stop it happening again",
+          "text": "The same error happened twice this year. What prevents the third time?",
+          "choices": [
+            {
+              "id": "q4-1",
+              "text": "A DHIS2 validation rule (confirmed ≤ tests) flagged at entry, plus a refresher for the records officer",
+              "next": "q5",
+              "score": 2,
+              "flags": [
+                "q4-right"
+              ],
+              "feedback": "Correct. The rule catches it at entry; training fixes the understanding."
+            },
+            {
+              "id": "q4-2",
+              "text": "A warning letter",
+              "next": "q5",
+              "score": 0,
+              "flags": [],
+              "feedback": "Blame without a tool rarely changes data."
+            },
+            {
+              "id": "q4-3",
+              "text": "Hand-checking every facility monthly at the district",
+              "next": "q5",
+              "score": 0,
+              "flags": [],
+              "feedback": "That does not scale and is a month late."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "title": "The deeper problem",
+          "text": "770 patients were treated without a test. What does that tell the director?",
+          "choices": [
+            {
+              "id": "q5-1",
+              "text": "Nothing; treating on symptoms is normal",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Policy is test-and-treat."
+            },
+            {
+              "id": "q5-2",
+              "text": "Probably an RDT stock-out or staffing gap that needs a supply or supervision response",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "q5-right"
+              ],
+              "feedback": "Correct. The data problem revealed a service problem, which is what the system is for."
+            },
+            {
+              "id": "q5-3",
+              "text": "The facility is inventing patients",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "The tally sheet records real patients."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Query answered",
+          "text": "You reply with corrected figures, the cause, the new validation rule and a note that Oda Hospital needs RDT supplies.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Compare the confirmed figure with the positives on the tally sheet.",
+    "Accuracy is whether the value matches the definition.",
+    "The best fixes happen at the point of entry."
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.examined",
+      "label": "You read the tally sheet and the definitions",
+      "evidence": [
+        "tally",
+        "sop"
+      ]
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "DHIS2 validation rules and the WHO Data Quality Review toolkit formalise these checks; district officers in Ghana run them monthly before submission."
+}
