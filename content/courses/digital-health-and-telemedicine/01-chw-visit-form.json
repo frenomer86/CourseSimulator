@@ -1,0 +1,107 @@
+{
+  "engine": "E11",
+  "id": "digital-health-and-telemedicine-i1-chw-visit-form",
+  "course": "digital-health-and-telemedicine",
+  "topic": "Community health worker tools; offline data collection",
+  "unit": 4,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "title": "A community health worker visit form that works offline",
+  "estimatedMinutes": 25,
+  "instructions": "## Household visits where there is no network\n\nA community health worker records household visits for children under five: the child's name, a danger-sign checkbox and the outcome. Visits must be saved on the phone and sent to the district server when a signal appears. A child with danger signs must be **referred**.\n\n## Do this\n\n1. `Visit` screen (the start): an input `child`, a switch `danger` labelled \"Danger signs present\", a **Save visit** button, and a text showing \"{{visits}} visits saved\".\n2. Save visit: refuse an empty name (toast \"Enter the child's name\"). Otherwise queue the visit into `visits`, persist, and if the `danger` switch is on, show a dialog \"Refer to the nearest health facility now\" and set `referred` to \"yes\". Then try to sync `visits` to `/api/visits` with an offline-safe error handler (toast \"Saved on phone; will send when online\").\n3. A `Summary` screen with a list of `visits` and a **Back** button, reached from a **View visits** button.\n4. Load `visits` in Visit's onCreate so a relaunch keeps them.",
+  "config": {
+    "device": {
+      "endpoints": {
+        "/api/visits": {
+          "response": {
+            "ok": true
+          }
+        }
+      }
+    },
+    "starter": "{\n  \"start\": \"Visit\",\n  \"data\": {\n    \"visits\": []\n  },\n  \"screens\": {\n    \"Visit\": {\n      \"title\": \"Household visit\",\n      \"widgets\": [\n        {\n          \"type\": \"input\",\n          \"id\": \"child\",\n          \"hint\": \"Child's name\"\n        },\n        {\n          \"type\": \"switch\",\n          \"id\": \"danger\",\n          \"label\": \"Danger signs present\"\n        }\n      ]\n    }\n  }\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "A switch is read like an input in an if: { \"action\": \"if\", \"input\": \"danger\", \"equals\": \"true\", \"then\": [...] } — the emulator exposes switches as inputs with \"true\"/\"false\". Use \"key\" checks for data instead if you set a key first.",
+    "Order inside Save visit: if name empty → toast; else queue → persist → if danger → dialog + set → sync with onSuccess/onError.",
+    "View visits navigates to Summary; Summary has { \"type\": \"list\", \"from\": \"visits\" } and a Back button."
+  ],
+  "checks": [
+    {
+      "type": "mobile.valid",
+      "label": "The app is valid"
+    },
+    {
+      "type": "mobile.screen",
+      "label": "Visit has the name input and the danger switch",
+      "name": "Visit",
+      "widget": {
+        "type": "switch",
+        "id": "danger"
+      }
+    },
+    {
+      "type": "mobile.flow",
+      "label": "An empty name is refused",
+      "steps": [
+        "tap:Save visit"
+      ],
+      "toast": "child's name|enter the",
+      "list": {
+        "from": "visits",
+        "count": 0
+      }
+    },
+    {
+      "type": "mobile.flow",
+      "label": "A visit is saved offline without crashing",
+      "steps": [
+        "offline",
+        "type:child=Abena",
+        "tap:Save visit"
+      ],
+      "list": {
+        "from": "visits",
+        "count": 1
+      },
+      "toast": "phone|offline|online",
+      "noErrors": true,
+      "persisted": "visits"
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Danger signs trigger a referral dialog",
+      "steps": [
+        "type:child=Kwame",
+        "toggle:danger",
+        "tap:Save visit"
+      ],
+      "dialog": "refer",
+      "noErrors": true
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Summary lists the visits",
+      "steps": [
+        "type:child=Abena",
+        "tap:Save visit",
+        "tap:View visits"
+      ],
+      "screen": "Summary",
+      "text": "Abena"
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Visits survive a relaunch",
+      "steps": [
+        "offline",
+        "type:child=Yaw",
+        "tap:Save visit",
+        "kill"
+      ],
+      "text": "1 visits saved"
+    }
+  ],
+  "realityNote": "This is the shape of CommCare and Community Health Toolkit forms used by CHPS workers in Ghana: skip logic for danger signs, referral prompts, and an outbox that syncs over any signal. Patient data on a shared phone also needs a PIN lock and encryption, which the data protection unit covers."
+}

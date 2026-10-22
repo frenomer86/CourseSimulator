@@ -1,0 +1,91 @@
+{
+  "engine": "E11",
+  "id": "mobile-application-development-i3-permissions-done-right",
+  "course": "mobile-application-development",
+  "topic": "The permissions model; handling denial",
+  "unit": 2,
+  "topicIndex": 4,
+  "level": "intermediate",
+  "title": "Ask for permissions, and cope with no",
+  "estimatedMinutes": 15,
+  "instructions": "## The user can always say no\n\nA delivery app attaches a photo and a location to each delivery. Permissions must be declared in the manifest, requested when needed, and the app must keep working when the user refuses.\n\n## Do this\n\n1. Declare `\"permissions\": [\"camera\", \"location\"]`.\n2. `Home` has an **Attach photo** button that requests `camera`: on grant, set `photo` to \"photo attached\" and toast \"Photo attached\"; on denial, toast \"You can still deliver without a photo\".\n3. A **Get location** button requests `location`: on grant set `location` to \"5.6037, -0.1870\"; on denial toast \"Enter the address manually\" and navigate to a `Manual` screen with an input `address` and a **Use address** button that sets `location` from the input and goes back.\n4. Use the permission selectors under the phone to test both answers.",
+  "config": {
+    "device": {
+      "permissions": {
+        "camera": "deny",
+        "location": "deny"
+      }
+    },
+    "starter": "{\n  \"start\": \"Home\",\n  \"screens\": {\n    \"Home\": {\n      \"title\": \"Delivery\",\n      \"widgets\": [\n        {\n          \"type\": \"text\",\n          \"text\": \"Photo: {{photo}}\"\n        },\n        {\n          \"type\": \"text\",\n          \"text\": \"Location: {{location}}\"\n        }\n      ]\n    }\n  }\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "{ \"action\": \"requestPermission\", \"permission\": \"camera\", \"onGranted\": [...], \"onDenied\": [...] }",
+    "If a permission is not in \"permissions\", the system denies it without asking: the emulator logs it as undeclared.",
+    "Manual screen: input address, button Use address with set{key: location, from: address} and back."
+  ],
+  "checks": [
+    {
+      "type": "mobile.valid",
+      "label": "The app is valid and declares both permissions"
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Camera granted attaches the photo",
+      "steps": [
+        "tap:Attach photo"
+      ],
+      "permissions": {
+        "camera": "grant"
+      },
+      "text": "photo attached",
+      "toast": "attached",
+      "noErrors": true
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Camera denied is handled",
+      "steps": [
+        "tap:Attach photo"
+      ],
+      "permissions": {
+        "camera": "deny"
+      },
+      "toast": "without a photo",
+      "permission": {
+        "name": "camera",
+        "result": "denied"
+      },
+      "noErrors": true
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Location granted fills the location",
+      "steps": [
+        "tap:Get location"
+      ],
+      "permissions": {
+        "location": "grant"
+      },
+      "text": "5\\.6037",
+      "noErrors": true
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Location denied falls back to manual entry",
+      "steps": [
+        "tap:Get location",
+        "type:address=Oxford Street, Osu",
+        "tap:Use address"
+      ],
+      "permissions": {
+        "location": "deny"
+      },
+      "screen": "Home",
+      "text": "Oxford Street",
+      "toast": "manually",
+      "noErrors": true
+    }
+  ],
+  "realityNote": "Android 6 and later ask at run time, and from Android 11 the user can choose \"only this time\" or deny permanently, after which the request fails silently. Apps that refuse to work without a permission get uninstalled; apps that explain why they need it get granted."
+}

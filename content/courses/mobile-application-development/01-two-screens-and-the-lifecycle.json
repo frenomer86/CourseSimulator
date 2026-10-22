@@ -1,0 +1,102 @@
+{
+  "engine": "E11",
+  "id": "mobile-application-development-b1-two-screens-and-the-lifecycle",
+  "course": "mobile-application-development",
+  "topic": "Activities and their lifecycle; intents",
+  "unit": 2,
+  "topicIndex": 4,
+  "level": "beginner",
+  "title": "Two screens and the activity lifecycle",
+  "estimatedMinutes": 15,
+  "instructions": "## Watch the callbacks fire\n\nAn Android app is a stack of activities. The emulator on the right runs the app you describe in JSON and logs every lifecycle callback.\n\n## Do this\n\n1. Give the app a `Home` screen with a title, a text widget and a button **Open details** that navigates to a `Details` screen.\n2. Give `Details` a title, a text widget and a button **Back home** that goes back.\n3. In the emulator, tap Open details, press the Back button, press the Home button and Resume, and rotate the phone. Read the lifecycle log after each.\n4. Answer the questions about the order of callbacks.",
+  "config": {
+    "starter": "{\n  \"start\": \"Home\",\n  \"screens\": {\n    \"Home\": {\n      \"title\": \"Home\",\n      \"widgets\": [\n        {\n          \"type\": \"text\",\n          \"text\": \"Welcome\"\n        }\n      ]\n    }\n  }\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "A button: { \"type\": \"button\", \"text\": \"Open details\", \"onTap\": [{ \"action\": \"navigate\", \"to\": \"Details\" }] }",
+    "Back home: { \"action\": \"back\" }",
+    "Navigating pauses Home, creates/starts/resumes Details, then stops Home. Rotation destroys and recreates the current activity."
+  ],
+  "checks": [
+    {
+      "type": "mobile.valid",
+      "label": "The app is valid"
+    },
+    {
+      "type": "mobile.screen",
+      "label": "Home has an Open details button",
+      "name": "Home",
+      "widget": {
+        "type": "button",
+        "text": "open details"
+      }
+    },
+    {
+      "type": "mobile.screen",
+      "label": "Details has a Back home button",
+      "name": "Details",
+      "widget": {
+        "type": "button",
+        "text": "back"
+      }
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Tapping Open details shows Details with the right callbacks",
+      "steps": [
+        "tap:Open details"
+      ],
+      "screen": "Details",
+      "lifecycle": [
+        "Home.onPause",
+        "Details.onCreate",
+        "Details.onStart",
+        "Details.onResume",
+        "Home.onStop"
+      ],
+      "noErrors": true
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Back home returns to Home and destroys Details",
+      "steps": [
+        "tap:Open details",
+        "tap:Back home"
+      ],
+      "screen": "Home",
+      "lifecycle": [
+        "Details.onPause",
+        "Home.onStart",
+        "Home.onResume",
+        "Details.onStop",
+        "Details.onDestroy"
+      ]
+    },
+    {
+      "type": "mobile.answer",
+      "label": "First callback when a new activity opens",
+      "id": "q1",
+      "expected": "onPause of the current activity",
+      "options": [
+        "onPause of the current activity",
+        "onCreate of the new activity",
+        "onStop of the current activity"
+      ],
+      "question": "When Open details is tapped, which callback runs first?"
+    },
+    {
+      "type": "mobile.answer",
+      "label": "What rotation does",
+      "id": "q2",
+      "expected": "Destroys and recreates the activity",
+      "options": [
+        "Only calls onPause and onResume",
+        "Destroys and recreates the activity",
+        "Nothing until the user taps"
+      ],
+      "question": "What does rotating the phone do to the current activity by default?"
+    }
+  ],
+  "realityNote": "Real Android adds onRestart between onStop and onStart when an activity comes back, and the exact timing of onStop on the previous activity is after the new one is visible, exactly as the log shows. Configuration changes such as rotation recreate the activity unless you handle them."
+}

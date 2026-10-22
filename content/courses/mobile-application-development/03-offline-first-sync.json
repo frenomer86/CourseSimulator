@@ -1,0 +1,106 @@
+{
+  "engine": "E11",
+  "id": "mobile-application-development-i2-offline-first-sync",
+  "course": "mobile-application-development",
+  "topic": "Caching strategies and offline-first design; synchronisation",
+  "unit": 5,
+  "topicIndex": 4,
+  "level": "intermediate",
+  "title": "Offline-first: queue now, sync later",
+  "estimatedMinutes": 20,
+  "instructions": "## Mobile data comes and goes\n\nA field officer records farm visits where there is no signal. The app must never lose a visit or crash when the network is down.\n\n## Do this\n\n1. On `Home`: an input `farm`, a **Record visit** button, and a list showing `visits`.\n2. Record visit must **queue** the input into `visits` (the queue action stores it with `synced: false`), persist `visits`, then try a **sync** of `visits` to `/api/visits`. On success show a toast \"Synced\"; on error show \"Saved offline, will sync later\". Never leave a failed request unhandled.\n3. Add a **Sync now** button that runs the sync again (same success and error handling).\n4. Test with the emulator offline: record two visits, go online, tap Sync now.",
+  "config": {
+    "device": {
+      "endpoints": {
+        "/api/visits": {
+          "response": {
+            "ok": true
+          }
+        }
+      }
+    },
+    "starter": "{\n  \"start\": \"Home\",\n  \"data\": {\n    \"visits\": []\n  },\n  \"screens\": {\n    \"Home\": {\n      \"title\": \"Farm visits\",\n      \"onCreate\": [\n        {\n          \"action\": \"load\",\n          \"keys\": [\n            \"visits\"\n          ]\n        }\n      ],\n      \"widgets\": [\n        {\n          \"type\": \"input\",\n          \"id\": \"farm\",\n          \"hint\": \"Farm name\"\n        },\n        {\n          \"type\": \"list\",\n          \"from\": \"visits\",\n          \"empty\": \"No visits recorded\"\n        }\n      ]\n    }\n  }\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "{ \"action\": \"queue\", \"list\": \"visits\", \"from\": \"farm\" } then persist, then { \"action\": \"sync\", \"list\": \"visits\", \"url\": \"/api/visits\", \"onSuccess\": [...], \"onError\": [...] }",
+    "The onError list is what keeps the app from crashing: a toast is enough here.",
+    "After the sync succeeds the queued items are marked synced: true; look at the data panel."
+  ],
+  "checks": [
+    {
+      "type": "mobile.valid",
+      "label": "The app is valid"
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Recording while offline keeps the visit and tells the user",
+      "steps": [
+        "offline",
+        "type:farm=Kofi Mensah farm",
+        "tap:Record visit"
+      ],
+      "list": {
+        "from": "visits",
+        "count": 1
+      },
+      "toast": "offline|later",
+      "noErrors": true,
+      "request": {
+        "url": "/api/visits",
+        "ok": false
+      },
+      "persisted": "visits"
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Recording online syncs at once",
+      "steps": [
+        "type:farm=Ama Owusu farm",
+        "tap:Record visit"
+      ],
+      "toast": "synced",
+      "request": {
+        "url": "/api/visits",
+        "ok": true
+      }
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Sync now sends the queue when back online",
+      "steps": [
+        "offline",
+        "type:farm=Farm A",
+        "tap:Record visit",
+        "type:farm=Farm B",
+        "tap:Record visit",
+        "online",
+        "tap:Sync now"
+      ],
+      "toast": "synced",
+      "request": {
+        "url": "/api/visits",
+        "ok": true,
+        "count": 1
+      },
+      "list": {
+        "from": "visits",
+        "count": 2
+      },
+      "noErrors": true
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Visits survive a process kill while offline",
+      "steps": [
+        "offline",
+        "type:farm=Farm C",
+        "tap:Record visit",
+        "kill"
+      ],
+      "text": "Farm C",
+      "noErrors": true
+    }
+  ],
+  "realityNote": "Production apps do this with a local database (Room) as the single source of truth and WorkManager to retry the upload when connectivity returns, with conflict rules for records edited on two phones. The principle is the same: write locally first, sync in the background."
+}

@@ -22,6 +22,7 @@
     "@cslab/engine-digital-logic": "*",
     "@cslab/engine-hardware": "*",
     "@cslab/engine-maths": "*",
+    "@cslab/engine-mobile": "*",
     "@cslab/engine-network": "*",
     "@cslab/engine-scenario": "*",
     "@cslab/engine-shell": "*",

@@ -1,0 +1,77 @@
+{
+  "engine": "E11",
+  "id": "mobile-application-development-i1-notes-that-survive",
+  "course": "mobile-application-development",
+  "topic": "Saving state across configuration changes and process death; SharedPreferences and DataStore",
+  "unit": 5,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Notes that survive rotation and process death",
+  "estimatedMinutes": 20,
+  "instructions": "## Three places data can live\n\nA notes app loses everything when the phone rotates, and again when the system kills the process in the background. Fix both.\n\n## Do this\n\n1. On `Home`: an input `note`, a **Save** button that appends the input to the list `notes`, clears the input and shows a toast \"Saved\", and a list widget showing `notes`. Refuse to save an empty note (show a toast \"Write something first\").\n2. Set `\"retainState\": true` on Home so a half-typed note survives rotation (a ViewModel).\n3. After saving, **persist** the `notes` key (SharedPreferences), and **load** it in Home's `onCreate` so the notes come back after \"Kill process and relaunch\".\n4. Test every case in the emulator before checking.",
+  "config": {
+    "starter": "{\n  \"start\": \"Home\",\n  \"data\": {\n    \"notes\": []\n  },\n  \"screens\": {\n    \"Home\": {\n      \"title\": \"Notes\",\n      \"widgets\": [\n        {\n          \"type\": \"input\",\n          \"id\": \"note\",\n          \"hint\": \"Write a note\"\n        },\n        {\n          \"type\": \"button\",\n          \"text\": \"Save\",\n          \"onTap\": [\n            {\n              \"action\": \"append\",\n              \"list\": \"notes\",\n              \"from\": \"note\"\n            }\n          ]\n        },\n        {\n          \"type\": \"list\",\n          \"from\": \"notes\",\n          \"empty\": \"No notes yet\"\n        }\n      ]\n    }\n  }\n}\n"
+  },
+  "initialState": {},
+  "hints": [
+    "Wrap the save in an if: { \"action\": \"if\", \"input\": \"note\", \"notEmpty\": true, \"then\": [...], \"else\": [{ \"action\": \"toast\", \"text\": \"Write something first\" }] }",
+    "After append: { \"action\": \"persist\", \"keys\": [\"notes\"] } then { \"action\": \"clear\", \"id\": \"note\" } and the toast.",
+    "\"onCreate\": [{ \"action\": \"load\", \"keys\": [\"notes\"] }] on the Home screen restores the list after a kill."
+  ],
+  "checks": [
+    {
+      "type": "mobile.valid",
+      "label": "The app is valid"
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Saving a note adds it to the list and clears the input",
+      "steps": [
+        "type:note=Buy data bundle",
+        "tap:Save"
+      ],
+      "list": {
+        "from": "notes",
+        "count": 1
+      },
+      "toast": "saved",
+      "text": "Buy data bundle",
+      "noErrors": true
+    },
+    {
+      "type": "mobile.flow",
+      "label": "An empty note is refused",
+      "steps": [
+        "tap:Save"
+      ],
+      "list": {
+        "from": "notes",
+        "count": 0
+      },
+      "toast": "write something"
+    },
+    {
+      "type": "mobile.flow",
+      "label": "A half-typed note survives rotation",
+      "steps": [
+        "type:note=Draft text",
+        "rotate"
+      ],
+      "text": "Draft text",
+      "message": "After rotation the input is empty. Set \"retainState\": true on the Home screen."
+    },
+    {
+      "type": "mobile.flow",
+      "label": "Saved notes survive a process kill",
+      "steps": [
+        "type:note=Call Ama",
+        "tap:Save",
+        "kill"
+      ],
+      "text": "Call Ama",
+      "persisted": "notes",
+      "message": "After the kill the list is empty. Persist the notes when saving and load them in onCreate."
+    }
+  ],
+  "realityNote": "On Android the three layers are: a ViewModel for configuration changes, onSaveInstanceState for the system killing the activity, and DataStore or Room for anything that must outlive the process. Many real apps lose a user's typing on rotation because they handle only the last one."
+}
