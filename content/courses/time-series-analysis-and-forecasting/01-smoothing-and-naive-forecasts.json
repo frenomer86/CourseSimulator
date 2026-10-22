@@ -1,0 +1,78 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "time-series-analysis-and-forecasting-b1-smoothing-and-naive-forecasts",
+  "course": "time-series-analysis-and-forecasting",
+  "topic": "Benchmark forecasts and exponential smoothing",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Benchmarks and simple exponential smoothing",
+  "estimatedMinutes": 15,
+  "instructions": "## Four weeks of sales\n\nWeekly sales of airtime at a kiosk were **20, 24, 22, 26** (weeks 1 to 4).\n\n1. The naive forecast for week 5.\n2. The 3-week moving average forecast for week 5.\n3. Simple exponential smoothing with α = 0.5 and F₂ = 20: the forecast for week 3.\n4. The forecast for week 4.\n5. The forecast for week 5.\n6. The mean absolute error of the naive forecasts over weeks 2 to 4.",
+  "config": {
+    "tools": [
+      "stats"
+    ],
+    "data": "20, 24, 22, 26"
+  },
+  "hints": [
+    "Naive: next = last observed value.",
+    "F_{t+1} = α·y_t + (1 − α)·F_t.",
+    "Naive errors: |24−20|, |22−24|, |26−22|."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Naive forecast",
+      "id": "q1",
+      "expected": 26,
+      "question": "Naive forecast for week 5:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "3-week moving average",
+      "id": "q2",
+      "expected": 24,
+      "question": "Moving-average forecast for week 5:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "SES forecast for week 3",
+      "id": "q3",
+      "expected": 22,
+      "question": "Exponential smoothing forecast for week 3:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "SES forecast for week 4",
+      "id": "q4",
+      "expected": 22,
+      "question": "Forecast for week 4:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "SES forecast for week 5",
+      "id": "q5",
+      "expected": 24,
+      "question": "Forecast for week 5:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "MAE of the naive forecast",
+      "id": "q6",
+      "expected": 3.333,
+      "question": "Mean absolute error of the naive forecasts over weeks 2–4:",
+      "tolerance": 0.005
+    }
+  ],
+  "realityNote": "Any model you build must beat these benchmarks on held-out data or it is not worth its complexity; statsmodels fits the smoothing parameter α by minimising exactly the error you computed by hand."
+}

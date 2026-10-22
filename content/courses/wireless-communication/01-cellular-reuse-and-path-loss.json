@@ -1,0 +1,72 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "wireless-communication-i1-cellular-reuse-and-path-loss",
+  "course": "wireless-communication",
+  "topic": "Cellular concepts and system design",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Frequency reuse and free-space path loss",
+  "estimatedMinutes": 20,
+  "instructions": "## Planning a cellular network\n\nAn operator has **420** duplex channels and uses a cluster size of **N = 7**.\n\n1. Channels available per cell.\n2. The co-channel reuse ratio D/R = √(3N), to two decimals.\n3. The system capacity (simultaneous calls) with 100 cells.\n4. Channels per cell if the cluster size is reduced to N = 4.\n5. The free-space path loss at 1 km and 900 MHz, in dB: 20·log₁₀(d_km) + 20·log₁₀(f_MHz) + 32.44.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "20*log(x)/log(10) + 20*log(900)/log(10) + 32.44"
+    ]
+  },
+  "hints": [
+    "Channels per cell = total channels ÷ cluster size.",
+    "Capacity = cells × channels per cell.",
+    "20·log₁₀(900) ≈ 59.08."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Channels per cell (N = 7)",
+      "id": "q1",
+      "expected": 60,
+      "question": "Channels per cell with N = 7:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Reuse ratio D/R",
+      "id": "q2",
+      "expected": 4.58,
+      "question": "D/R = √(3N) for N = 7 (two decimals):",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Capacity with 100 cells",
+      "id": "q3",
+      "expected": 6000,
+      "question": "Simultaneous calls with 100 cells:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Channels per cell (N = 4)",
+      "id": "q4",
+      "expected": 105,
+      "question": "Channels per cell with N = 4:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Free-space path loss",
+      "id": "q5",
+      "expected": 91.53,
+      "question": "FSPL at 1 km, 900 MHz (dB):",
+      "tolerance": 0.05
+    }
+  ],
+  "realityNote": "Smaller clusters mean more capacity but more co-channel interference, which is why real plans use sectoring and measured path-loss models (Okumura–Hata) rather than free space; a 4G cell in Accra also reuses the same spectrum far more aggressively through OFDMA."
+}

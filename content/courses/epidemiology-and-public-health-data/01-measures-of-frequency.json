@@ -1,0 +1,69 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "epidemiology-and-public-health-data-b1-measures-of-frequency",
+  "course": "epidemiology-and-public-health-data",
+  "topic": "Measures of disease frequency and association",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Incidence, prevalence and relative risk",
+  "estimatedMinutes": 15,
+  "instructions": "## Counting disease in a district\n\nA district of **50,000** people recorded **400 new** cases of a disease in a year; **1,200** people had the disease at mid-year; **20** of the new cases died. In a cohort study, **30 of 300** exposed people and **10 of 500** unexposed people fell ill.\n\n1. The incidence rate per 1,000 per year.\n2. The point prevalence per 1,000 at mid-year.\n3. The case fatality as a percentage.\n4. The relative risk of exposure.\n5. The attributable risk per 100 exposed.",
+  "config": {
+    "tools": [
+      "plot"
+    ]
+  },
+  "hints": [
+    "Incidence = new cases / population at risk; prevalence = existing cases / population.",
+    "Relative risk = risk in exposed ÷ risk in unexposed = (30/300) ÷ (10/500).",
+    "Attributable risk = risk in exposed − risk in unexposed."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Incidence per 1,000",
+      "id": "q1",
+      "expected": 8,
+      "question": "Incidence per 1,000 per year:",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Prevalence per 1,000",
+      "id": "q2",
+      "expected": 24,
+      "question": "Point prevalence per 1,000:",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Case fatality",
+      "id": "q3",
+      "expected": 5,
+      "question": "Case fatality (%):",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Relative risk",
+      "id": "q4",
+      "expected": 5,
+      "question": "Relative risk:",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Attributable risk per 100",
+      "id": "q5",
+      "expected": 8,
+      "question": "Attributable risk per 100 exposed people:",
+      "tolerance": 0.01
+    }
+  ],
+  "realityNote": "District Health Information System (DHIS2) reports in Ghana compute exactly these per-1,000 and per-100,000 rates; the denominator (population at risk) is usually the hardest number to get right."
+}

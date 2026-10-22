@@ -1,0 +1,87 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "robot-kinematics-and-dynamics-i1-two-link-arm",
+  "course": "robot-kinematics-and-dynamics",
+  "topic": "Forward kinematics",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Forward kinematics of a two-link planar arm",
+  "estimatedMinutes": 20,
+  "instructions": "## Where is the hand?\n\nA planar arm has two links of length 1 m. Joint angles are θ₁ (shoulder, from the x axis) and θ₂ (elbow, relative to link 1). The end-effector is at x = cos θ₁ + cos(θ₁ + θ₂), y = sin θ₁ + sin(θ₁ + θ₂).\n\n1. Write x as an expression in a = θ₁ and b = θ₂ (radians).\n2. x and 3. y when θ₁ = 90° and θ₂ = −90°.\n4. x when θ₁ = θ₂ = 0.\n5. The maximum reach of the arm.\n6. For the hand at (1, 1), the size of the elbow angle |θ₂| in degrees.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "cos(x) + cos(x - pi/2)"
+    ]
+  },
+  "hints": [
+    "cos 90° = 0, cos 0° = 1, sin 90° = 1, sin 0° = 0.",
+    "Fully stretched, both cosines are 1: reach = 2.",
+    "Distance to (1, 1) is √2; the cosine rule gives cos θ₂ = (2 − 1 − 1)/(2·1·1) = 0, so θ₂ = ±90°."
+  ],
+  "checks": [
+    {
+      "type": "math.expr",
+      "label": "x as an expression",
+      "id": "q1",
+      "expected": "cos(a) + cos(a + b)",
+      "variables": [
+        "a",
+        "b"
+      ],
+      "domain": [
+        -3,
+        3
+      ],
+      "question": "x in terms of a (θ₁) and b (θ₂), in radians:"
+    },
+    {
+      "type": "math.number",
+      "label": "x at 90°, −90°",
+      "id": "q2",
+      "expected": 1,
+      "question": "x when θ₁ = 90° and θ₂ = −90°:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "y at 90°, −90°",
+      "id": "q3",
+      "expected": 1,
+      "question": "y when θ₁ = 90° and θ₂ = −90°:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "x fully stretched",
+      "id": "q4",
+      "expected": 2,
+      "question": "x when both angles are 0:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Maximum reach",
+      "id": "q5",
+      "expected": 2,
+      "question": "Maximum reach (m):",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Elbow angle for (1, 1)",
+      "id": "q6",
+      "expected": 90,
+      "question": "|θ₂| in degrees for the hand at (1, 1):",
+      "tolerance": 0.01
+    }
+  ],
+  "realityNote": "Industrial arms chain six of these transforms as 4×4 homogeneous matrices (Denavit–Hartenberg parameters); the elbow-up/elbow-down ambiguity in question 6 is the simplest case of multiple inverse-kinematics solutions."
+}

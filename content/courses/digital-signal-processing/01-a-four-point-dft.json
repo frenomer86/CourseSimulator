@@ -1,0 +1,80 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "digital-signal-processing-i1-a-four-point-dft",
+  "course": "digital-signal-processing",
+  "topic": "The discrete Fourier transform",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "A four-point DFT by hand",
+  "estimatedMinutes": 20,
+  "instructions": "## Frequencies in four samples\n\nThe signal x = [1, 0, −1, 0] was sampled at fs = 8000 Hz. Its DFT is X[k] = Σ x[n]·e^(−j2πkn/N) with N = 4.\n\n1. |X[0]| (the DC term).\n2. |X[1]|.\n3. The frequency resolution (bin spacing) in Hz.\n4. The frequency of bin k = 1 in Hz.\n5. The Nyquist frequency.\n6. How many samples one period of a 1 kHz tone occupies at this sampling rate.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "cos(2*pi*x/4)"
+    ]
+  },
+  "hints": [
+    "X[0] is simply the sum of the samples.",
+    "For k = 1 the twiddles are 1, −j, −1, j: X[1] = 1 − (−1)(−1)·… work it through: 1·1 + 0 + (−1)·(−1) + 0 = 2.",
+    "Bin spacing = fs / N; Nyquist = fs / 2."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "|X[0]|",
+      "id": "q1",
+      "expected": 0,
+      "question": "|X[0]|:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "|X[1]|",
+      "id": "q2",
+      "expected": 2,
+      "question": "|X[1]|:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Frequency resolution",
+      "id": "q3",
+      "expected": 2000,
+      "question": "Bin spacing fs / N (Hz):",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Frequency of bin 1",
+      "id": "q4",
+      "expected": 2000,
+      "question": "Frequency represented by bin 1 (Hz):",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Nyquist frequency",
+      "id": "q5",
+      "expected": 4000,
+      "question": "Nyquist frequency (Hz):",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Samples per period of 1 kHz",
+      "id": "q6",
+      "expected": 8,
+      "question": "Samples in one period of a 1 kHz tone at 8 kHz:",
+      "tolerance": 0.000001
+    }
+  ],
+  "realityNote": "x is one period of a 2 kHz cosine sampled four times, which is why all its energy sits in bins 1 and 3. A 1024-point FFT at 8 kHz gives bins 7.8 Hz apart, the resolution of a basic spectrum analyser app."
+}

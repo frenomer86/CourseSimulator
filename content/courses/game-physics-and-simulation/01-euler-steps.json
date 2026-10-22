@@ -1,0 +1,72 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "game-physics-and-simulation-b1-euler-steps",
+  "course": "game-physics-and-simulation",
+  "topic": "Numerical integration",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "One step of Euler integration",
+  "estimatedMinutes": 15,
+  "instructions": "## The simulation loop, one step at a time\n\nA ball is thrown straight up at **10 m/s** with g = 9.8 m/s² and a time step of **0.5 s**.\n\n1. Explicit Euler: y₁ = y₀ + v₀·dt, then v₁ = v₀ − g·dt. What is y₁?\n2. Semi-implicit (symplectic) Euler: update the velocity first, then y₁ = y₀ + v₁·dt. What is y₁?\n3. The exact height at t = 0.5 s (y = v₀t − ½gt²).\n4. The exact maximum height.\n5. The time to the apex.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "10*x - 4.9*x^2"
+    ]
+  },
+  "hints": [
+    "Explicit Euler uses the old velocity: 10 × 0.5 = 5.",
+    "Semi-implicit: v₁ = 10 − 4.9 = 5.1, so y₁ = 5.1 × 0.5.",
+    "Max height = v₀² / (2g); time to apex = v₀ / g."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Explicit Euler y₁",
+      "id": "q1",
+      "expected": 5,
+      "question": "y after one explicit Euler step (m):",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Semi-implicit Euler y₁",
+      "id": "q2",
+      "expected": 2.55,
+      "question": "y after one semi-implicit Euler step (m):",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Exact y(0.5)",
+      "id": "q3",
+      "expected": 3.775,
+      "question": "Exact height at t = 0.5 s (m):",
+      "tolerance": 0.001
+    },
+    {
+      "type": "math.number",
+      "label": "Maximum height",
+      "id": "q4",
+      "expected": 5.102,
+      "question": "Exact maximum height (m):",
+      "tolerance": 0.005
+    },
+    {
+      "type": "math.number",
+      "label": "Time to apex",
+      "id": "q5",
+      "expected": 1.0204,
+      "question": "Time to the apex (s):",
+      "tolerance": 0.001
+    }
+  ],
+  "realityNote": "Explicit Euler gains energy every step (the ball flies higher each bounce); semi-implicit Euler loses a little and stays stable, which is why most game engines use it, with a fixed time step so the physics is the same on every phone."
+}

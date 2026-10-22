@@ -1,0 +1,81 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "optimisation-for-machine-learning-b1-gradient-descent-steps",
+  "course": "optimisation-for-machine-learning",
+  "topic": "Gradient descent and its variants",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Three steps of gradient descent",
+  "estimatedMinutes": 15,
+  "instructions": "## Follow the slope downhill\n\nMinimise f(x) = (x − 3)² by gradient descent from x₀ = 0 with learning rate 0.25. Plot the function to see what you are doing.\n\n1. The gradient f′(x) as an expression.\n2. x₁, 3. x₂ and 4. x₃ after one, two and three steps.\n5. The minimiser the iterations converge to.\n6. The learning rate for which a single step lands exactly on the minimum.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "(x-3)^2"
+    ]
+  },
+  "hints": [
+    "x_{k+1} = x_k − η·f′(x_k) with f′(x) = 2(x − 3).",
+    "From 0: the gradient is −6, so x₁ = 0 − 0.25·(−6) = 1.5.",
+    "Each step halves the distance to 3; a step of η = 0.5 removes it entirely."
+  ],
+  "checks": [
+    {
+      "type": "math.expr",
+      "label": "The gradient",
+      "id": "q1",
+      "expected": "2*(x-3)",
+      "variables": [
+        "x"
+      ],
+      "question": "f'(x) for f(x) = (x − 3)²:"
+    },
+    {
+      "type": "math.number",
+      "label": "x₁",
+      "id": "q2",
+      "expected": 1.5,
+      "question": "x after one step:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "x₂",
+      "id": "q3",
+      "expected": 2.25,
+      "question": "x after two steps:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "x₃",
+      "id": "q4",
+      "expected": 2.625,
+      "question": "x after three steps:",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Minimiser",
+      "id": "q5",
+      "expected": 3,
+      "question": "Where does gradient descent converge?"
+    },
+    {
+      "type": "math.number",
+      "label": "One-step learning rate",
+      "id": "q6",
+      "expected": 0.5,
+      "question": "Learning rate that reaches the minimum in one step:",
+      "tolerance": 0.000001
+    }
+  ],
+  "realityNote": "For a quadratic with curvature 2 the step η = 1/2 is optimal and η > 1 diverges; deep networks have different curvature in every direction, which is why adaptive methods like Adam scale the step per parameter."
+}

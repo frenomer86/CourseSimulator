@@ -1,0 +1,72 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "financial-mathematics-b1-time-value-of-money",
+  "course": "financial-mathematics",
+  "topic": "Interest and the time value of money",
+  "unit": 1,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "The time value of money",
+  "estimatedMinutes": 20,
+  "instructions": "## A cedi today is worth more than a cedi next year\n\nWork each question by hand with the formulas, then check with the plotter if you like.\n\n1. GH₵1,000 invested at 10% compounded annually for 3 years.\n2. The present value of GH₵5,000 due in 2 years at 8% a year.\n3. The effective annual rate of 12% nominal, compounded monthly (as a percentage, two decimals).\n4. How many years money takes to double at 7% compound (two decimals).\n5. The monthly payment on a GH₵10,000 loan at 1% per month over 12 months.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "1000 * 1.1^x"
+    ]
+  },
+  "hints": [
+    "FV = PV·(1 + r)ⁿ; PV = FV / (1 + r)ⁿ.",
+    "Effective rate = (1 + 0.12/12)¹² − 1.",
+    "Payment = P·r / (1 − (1 + r)⁻ⁿ) with r = 0.01 and n = 12."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Future value",
+      "id": "q1",
+      "expected": 1331,
+      "question": "Value after 3 years (GH₵):",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Present value",
+      "id": "q2",
+      "expected": 4286.69,
+      "question": "Present value of GH₵5,000 due in 2 years at 8% (two decimals):",
+      "tolerance": 0.05
+    },
+    {
+      "type": "math.number",
+      "label": "Effective annual rate",
+      "id": "q3",
+      "expected": 12.68,
+      "question": "Effective annual rate for 12% nominal, monthly compounding (%):",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Doubling time",
+      "id": "q4",
+      "expected": 10.24,
+      "question": "Years to double at 7% compound (two decimals):",
+      "tolerance": 0.05
+    },
+    {
+      "type": "math.number",
+      "label": "Loan payment",
+      "id": "q5",
+      "expected": 888.49,
+      "question": "Monthly payment on GH₵10,000 at 1% per month for 12 months:",
+      "tolerance": 0.05
+    }
+  ],
+  "realityNote": "Ghanaian lenders quote monthly rates that look small; the effective annual rate (question 3) is what to compare. The rule of 72 (72 ÷ 7 ≈ 10.3 years) is the mental shortcut for question 4."
+}

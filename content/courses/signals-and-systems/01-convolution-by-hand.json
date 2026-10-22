@@ -1,0 +1,89 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "signals-and-systems-i1-convolution-by-hand",
+  "course": "signals-and-systems",
+  "topic": "Linear time-invariant systems and convolution",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Convolution and impulse responses",
+  "estimatedMinutes": 20,
+  "instructions": "## What an LTI system does to a signal\n\nFor discrete signals, the output is the convolution of the input with the impulse response.\n\n1. Convolve x = [1, 2, 1] with h = [1, 1]. Enter the result as a single row, e.g. `1 3 3 1`.\n2. The length of that output.\n3. The energy of x (sum of squares).\n4. The system y[n] = 0.5·y[n−1] + x[n]: its impulse response h[n] as an expression in n (for n ≥ 0).\n5. The value of that impulse response at n = 3.\n6. Is y[n] = x[n] + x[n−1] a linear system? Answer yes or no.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "0.5^x"
+    ]
+  },
+  "hints": [
+    "Slide h over x: y[0] = 1, y[1] = 1·1 + 2·1 = 3, y[2] = 2 + 1 = 3, y[3] = 1.",
+    "Length of a convolution: len(x) + len(h) − 1.",
+    "Feed an impulse in: y[0] = 1, y[1] = 0.5, y[2] = 0.25 … so h[n] = 0.5^n."
+  ],
+  "checks": [
+    {
+      "type": "math.matrix",
+      "label": "x * h",
+      "id": "q1",
+      "expected": [
+        [
+          1,
+          3,
+          3,
+          1
+        ]
+      ],
+      "question": "Enter the convolution of [1, 2, 1] with [1, 1] as one row."
+    },
+    {
+      "type": "math.number",
+      "label": "Output length",
+      "id": "q2",
+      "expected": 4,
+      "question": "How many samples does the output have?"
+    },
+    {
+      "type": "math.number",
+      "label": "Energy of x",
+      "id": "q3",
+      "expected": 6,
+      "question": "Energy of x = [1, 2, 1]:"
+    },
+    {
+      "type": "math.expr",
+      "label": "Impulse response h[n]",
+      "id": "q4",
+      "expected": "0.5^n",
+      "variables": [
+        "n"
+      ],
+      "domain": [
+        0,
+        8
+      ],
+      "question": "Impulse response h[n] of y[n] = 0.5·y[n−1] + x[n], as an expression in n:"
+    },
+    {
+      "type": "math.number",
+      "label": "h[3]",
+      "id": "q5",
+      "expected": 0.125,
+      "question": "The impulse response at n = 3:"
+    },
+    {
+      "type": "math.text",
+      "label": "Linearity",
+      "id": "q6",
+      "pattern": "^\\s*(yes|linear)",
+      "flags": "i",
+      "question": "Is y[n] = x[n] + x[n−1] linear? (yes/no)"
+    }
+  ],
+  "realityNote": "Every digital filter in a phone is a convolution with a stored impulse response; the FFT makes long convolutions cheap. The recursive system in question 4 is a one-pole IIR filter, the simplest smoothing filter there is."
+}

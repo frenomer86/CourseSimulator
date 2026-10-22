@@ -1,0 +1,61 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "telecommunication-systems-i1-erlang-traffic",
+  "course": "telecommunication-systems",
+  "topic": "Traffic engineering: Erlangs and blocking",
+  "unit": 7,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Traffic in Erlangs and the chance of a busy signal",
+  "estimatedMinutes": 20,
+  "instructions": "## Sizing the trunks\n\nA small exchange sees **120 calls per hour**, each lasting **3 minutes** on average, over **10 trunks**. The Erlang B formula gives the blocking probability B(E, N) = (Eᴺ/N!) ÷ Σₖ₌₀ᴺ (Eᵏ/k!).\n\n1. The offered traffic in Erlangs.\n2. The blocking probability with 10 trunks, as a percentage (two decimals).\n3. The carried traffic (offered × (1 − B)).\n4. The average trunk utilisation as a percentage.",
+  "config": {
+    "tools": [
+      "plot"
+    ]
+  },
+  "hints": [
+    "Erlangs = calls per hour × average holding time in hours = 120 × 3/60.",
+    "Compute the terms 6ᵏ/k! for k = 0…10 and sum them; the last term over the sum is B.",
+    "Utilisation = carried traffic ÷ trunks."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Offered traffic",
+      "id": "q1",
+      "expected": 6,
+      "question": "Offered traffic (Erlangs):",
+      "tolerance": 0.001
+    },
+    {
+      "type": "math.number",
+      "label": "Blocking probability",
+      "id": "q2",
+      "expected": 4.31,
+      "question": "Blocking probability with 10 trunks (%):",
+      "tolerance": 0.05
+    },
+    {
+      "type": "math.number",
+      "label": "Carried traffic",
+      "id": "q3",
+      "expected": 5.74,
+      "question": "Carried traffic (Erlangs):",
+      "tolerance": 0.02
+    },
+    {
+      "type": "math.number",
+      "label": "Trunk utilisation",
+      "id": "q4",
+      "expected": 57.4,
+      "question": "Average trunk utilisation (%):",
+      "tolerance": 0.2
+    }
+  ],
+  "realityNote": "Operators design for a grade of service of 1–2% blocking at the busy hour; here 10 trunks give 4.3%, so an 11th trunk would be added. The same formula sizes call-centre agents and cell-site channels."
+}

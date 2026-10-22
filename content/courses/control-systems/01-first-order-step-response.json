@@ -1,0 +1,80 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "control-systems-i1-first-order-step-response",
+  "course": "control-systems",
+  "topic": "Time response, stability and steady-state error",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Step response of a first-order system",
+  "estimatedMinutes": 20,
+  "instructions": "## Reading a response curve\n\nA heater is modelled as G(s) = 2 / (0.5s + 1). A unit step is applied at t = 0; the response is y(t) = 2(1 − e^(−2t)), which the plotter shows.\n\n1. The time constant τ in seconds.\n2. The final (steady-state) value.\n3. The time at which the response reaches 63.2% of its final value.\n4. The 2% settling time (use 4τ).\n\nNow put a different plant, G(s) = 10 / (s + 1), in a unity-feedback loop with a unit step reference.\n\n5. The steady-state error (use 1 / (1 + Kp) with Kp = G(0)).\n6. The closed-loop pole.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "2*(1-exp(-2*x))"
+    ]
+  },
+  "hints": [
+    "Write the denominator as τs + 1: τ = 0.5. The DC gain is the numerator, 2.",
+    "A first-order response reaches 63.2% at t = τ and 98% at t = 4τ.",
+    "Closed loop: 1 + G(s) = 0 → s + 1 + 10 = 0."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Time constant",
+      "id": "q1",
+      "expected": 0.5,
+      "question": "Time constant τ (s):",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Final value",
+      "id": "q2",
+      "expected": 2,
+      "question": "Steady-state value of y(t):",
+      "tolerance": 0.000001
+    },
+    {
+      "type": "math.number",
+      "label": "Time to 63.2%",
+      "id": "q3",
+      "expected": 0.5,
+      "question": "Time to reach 63.2% of the final value (s):",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Settling time",
+      "id": "q4",
+      "expected": 2,
+      "question": "2% settling time (s):",
+      "tolerance": 0.05
+    },
+    {
+      "type": "math.number",
+      "label": "Steady-state error",
+      "id": "q5",
+      "expected": 0.0909,
+      "question": "Steady-state error of the unity-feedback loop with G(s) = 10/(s+1):",
+      "tolerance": 0.001
+    },
+    {
+      "type": "math.number",
+      "label": "Closed-loop pole",
+      "id": "q6",
+      "expected": -11,
+      "question": "Closed-loop pole (a real number):",
+      "tolerance": 0.000001
+    }
+  ],
+  "realityNote": "Engineers identify τ and the gain from a recorded step test on the real plant before tuning a PID; the 10% steady-state error in question 5 is exactly what integral action in the controller removes."
+}

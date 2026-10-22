@@ -1,0 +1,64 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "cryptography-and-network-security-i1-rsa-by-hand",
+  "course": "cryptography-and-network-security",
+  "topic": "Public-key cryptography: RSA and Diffie-Hellman",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "RSA and Diffie-Hellman with small numbers",
+  "estimatedMinutes": 20,
+  "instructions": "## Toy keys, real arithmetic\n\nUse the **Euclid** tool for gcds, inverses and modular powers.\n\nRSA with p = 11, q = 13 and public exponent e = 7:\n1. n.\n2. φ(n).\n3. The private exponent d (the inverse of e modulo φ(n)).\n4. The ciphertext of the message m = 5 (c = mᵉ mod n).\n\nDiffie-Hellman with p = 23 and g = 5:\n5. Alice's public value A = g^a mod p for the secret a = 6.",
+  "config": {
+    "tools": [
+      "euclid"
+    ]
+  },
+  "hints": [
+    "φ(n) = (p − 1)(q − 1) = 10 × 12.",
+    "d satisfies 7·d ≡ 1 (mod 120); the extended Euclidean algorithm gives it.",
+    "Square and multiply: 5² = 25, 5⁴ = 625 mod 143 = 53, 5⁷ = 5⁴·5²·5."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "n",
+      "id": "q1",
+      "expected": 143,
+      "question": "n = p·q:"
+    },
+    {
+      "type": "math.number",
+      "label": "φ(n)",
+      "id": "q2",
+      "expected": 120,
+      "question": "φ(n):"
+    },
+    {
+      "type": "math.number",
+      "label": "d",
+      "id": "q3",
+      "expected": 103,
+      "question": "Private exponent d:"
+    },
+    {
+      "type": "math.number",
+      "label": "Ciphertext of 5",
+      "id": "q4",
+      "expected": 47,
+      "question": "c = 5⁷ mod 143:"
+    },
+    {
+      "type": "math.number",
+      "label": "Diffie-Hellman public value",
+      "id": "q5",
+      "expected": 8,
+      "question": "A = 5⁶ mod 23:"
+    }
+  ],
+  "realityNote": "Real RSA keys use 2048-bit primes and the same three operations; the toy key here falls to a calculator because 143 factors instantly. Diffie-Hellman in TLS now mostly uses elliptic curves for the same exchange."
+}

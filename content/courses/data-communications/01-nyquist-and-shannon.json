@@ -1,0 +1,68 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "data-communications-b1-nyquist-and-shannon",
+  "course": "data-communications",
+  "topic": "Signals, bandwidth and noise: Nyquist and Shannon limits",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "How fast can a channel go?",
+  "estimatedMinutes": 15,
+  "instructions": "## Two limits every link obeys\n\nA telephone channel has a bandwidth of **3 kHz**. Nyquist says a noiseless channel with L signal levels carries at most **2·B·log₂L** bits per second; Shannon says a noisy channel carries at most **B·log₂(1 + SNR)**.\n\n1. The Nyquist limit with 4 signal levels.\n2. The signal levels needed to reach 24 kbps by Nyquist.\n3. The SNR in dB when the signal power is 1000 times the noise power.\n4. The Shannon capacity with that SNR (to the nearest 10 bps).\n5. The bandwidth of a signal made of harmonics from 100 Hz to 900 Hz.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "3000 * log(1 + x) / log(2)"
+    ]
+  },
+  "hints": [
+    "2 × 3000 × log₂4 = 2 × 3000 × 2.",
+    "SNR in dB = 10·log₁₀(ratio); 10·log₁₀(1000) = 30.",
+    "log₂(1001) ≈ 9.967."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Nyquist limit with 4 levels",
+      "id": "q1",
+      "expected": 12000,
+      "question": "Maximum bit rate with 4 levels (bps):"
+    },
+    {
+      "type": "math.number",
+      "label": "Levels for 24 kbps",
+      "id": "q2",
+      "expected": 16,
+      "question": "How many signal levels are needed for 24 kbps?"
+    },
+    {
+      "type": "math.number",
+      "label": "SNR in dB",
+      "id": "q3",
+      "expected": 30,
+      "question": "SNR in decibels for a power ratio of 1000:"
+    },
+    {
+      "type": "math.number",
+      "label": "Shannon capacity",
+      "id": "q4",
+      "expected": 29900,
+      "question": "Shannon capacity at that SNR (bps):",
+      "tolerance": 60
+    },
+    {
+      "type": "math.number",
+      "label": "Bandwidth",
+      "id": "q5",
+      "expected": 800,
+      "question": "Bandwidth of a signal with harmonics from 100 Hz to 900 Hz (Hz):"
+    }
+  ],
+  "realityNote": "A V.34 modem on a real phone line reached about 33.6 kbps, just under the Shannon limit for the typical SNR of the copper loop. DSL got around it by using far more bandwidth than the 3 kHz voice band."
+}

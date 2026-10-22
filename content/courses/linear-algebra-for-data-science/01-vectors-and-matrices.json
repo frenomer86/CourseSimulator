@@ -1,0 +1,92 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "linear-algebra-for-data-science-i1-vectors-and-matrices",
+  "course": "linear-algebra-for-data-science",
+  "topic": "Matrix-vector and matrix-matrix multiplication",
+  "unit": 3,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Dot products, matrix products and inverses",
+  "estimatedMinutes": 20,
+  "instructions": "## The operations under every model\n\nWork these by hand, then confirm with the **Matrices** tool (it multiplies, transposes, inverts and takes determinants). Enter matrices row by row like `2 1; 4 3`.\n\n1. The dot product of (1, 2, 3) and (4, −5, 6).\n2. The length of (3, 4).\n3. The cosine similarity of (1, 0) and (1, 1), to three decimals.\n4. The product A·B for A = [[1, 2], [3, 4]] and B = [[0, 1], [1, 0]].\n5. The determinant of C = [[2, 1], [5, 3]].\n6. The inverse of C.",
+  "config": {
+    "tools": [
+      "matrix"
+    ],
+    "matrixA": "1 2; 3 4",
+    "matrixB": "0 1; 1 0"
+  },
+  "hints": [
+    "Dot product: multiply matching entries and add: 1·4 + 2·(−5) + 3·6.",
+    "Cosine similarity = dot product ÷ (product of lengths).",
+    "For a 2×2 matrix [[a, b], [c, d]] the inverse is (1/det) · [[d, −b], [−c, a]]."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Dot product",
+      "id": "q1",
+      "expected": 12,
+      "question": "What is (1, 2, 3) · (4, −5, 6)?"
+    },
+    {
+      "type": "math.number",
+      "label": "Length of (3, 4)",
+      "id": "q2",
+      "expected": 5,
+      "question": "What is the length (L2 norm) of (3, 4)?"
+    },
+    {
+      "type": "math.number",
+      "label": "Cosine similarity",
+      "id": "q3",
+      "expected": 0.7071,
+      "question": "Cosine similarity of (1, 0) and (1, 1), to three decimals:",
+      "tolerance": 0.001
+    },
+    {
+      "type": "math.matrix",
+      "label": "The product A·B",
+      "id": "q4",
+      "expected": [
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "question": "Enter A·B as rows, e.g. \"2 1; 4 3\"."
+    },
+    {
+      "type": "math.number",
+      "label": "Determinant of C",
+      "id": "q5",
+      "expected": 1,
+      "question": "What is det(C) for C = [[2, 1], [5, 3]]?"
+    },
+    {
+      "type": "math.matrix",
+      "label": "The inverse of C",
+      "id": "q6",
+      "expected": [
+        [
+          3,
+          -1
+        ],
+        [
+          -5,
+          2
+        ]
+      ],
+      "question": "Enter the inverse of C as rows."
+    }
+  ],
+  "realityNote": "numpy.dot, numpy.linalg.det and numpy.linalg.inv do these in one call, but inv is rarely what you want in practice: solving A x = b with numpy.linalg.solve is faster and more accurate than forming the inverse."
+}

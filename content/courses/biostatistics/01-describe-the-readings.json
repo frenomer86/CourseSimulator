@@ -1,0 +1,68 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "biostatistics-b1-describe-the-readings",
+  "course": "biostatistics",
+  "topic": "Describing biological data",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Describe a sample of blood pressure readings",
+  "estimatedMinutes": 15,
+  "instructions": "## Seven systolic readings\n\nA clinic recorded systolic blood pressure (mmHg) for seven patients: **118, 124, 131, 119, 128, 140, 122**.\n\nCompute by hand, then check with the **Statistics** tool:\n\n1. the mean,\n2. the median,\n3. the sample variance (divide by n − 1),\n4. the sample standard deviation,\n5. the standard error of the mean.",
+  "config": {
+    "tools": [
+      "stats"
+    ],
+    "data": "118, 124, 131, 119, 128, 140, 122"
+  },
+  "hints": [
+    "Sort the values to find the median: the middle one of seven.",
+    "Variance: sum of squared deviations from the mean, divided by 6.",
+    "Standard error = s / √n."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Mean",
+      "id": "q1",
+      "expected": 126,
+      "question": "Mean systolic pressure (mmHg):"
+    },
+    {
+      "type": "math.number",
+      "label": "Median",
+      "id": "q2",
+      "expected": 124,
+      "question": "Median:"
+    },
+    {
+      "type": "math.number",
+      "label": "Sample variance",
+      "id": "q3",
+      "expected": 59.667,
+      "question": "Sample variance (two decimals is fine):",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Sample standard deviation",
+      "id": "q4",
+      "expected": 7.724,
+      "question": "Sample standard deviation:",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Standard error",
+      "id": "q5",
+      "expected": 2.92,
+      "question": "Standard error of the mean:",
+      "tolerance": 0.01
+    }
+  ],
+  "realityNote": "With n = 7 the standard error is large: the clinic should not conclude much from this sample. Reporting the median with the interquartile range is safer when readings are skewed, which blood pressure often is."
+}

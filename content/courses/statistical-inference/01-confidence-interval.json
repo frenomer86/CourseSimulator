@@ -1,0 +1,81 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "statistical-inference-b1-confidence-interval",
+  "course": "statistical-inference",
+  "topic": "Interval estimation",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "A confidence interval for a mean",
+  "estimatedMinutes": 15,
+  "instructions": "## How sure are we about the average?\n\nA sample of **36** students has a mean exam score of **72** with a sample standard deviation of **9**. Use z = 1.96 for 95% confidence.\n\n1. The standard error of the mean.\n2. The margin of error.\n3. The lower and 4. the upper limit of the 95% confidence interval.\n5. The sample size needed to bring the margin of error down to 1 point (round up to a whole number).",
+  "config": {
+    "tools": [
+      "stats"
+    ]
+  },
+  "hints": [
+    "SE = s / √n = 9 / 6.",
+    "Margin = 1.96 × SE; the interval is mean ± margin.",
+    "n = (z·s / E)² = (1.96 × 9)²; round up."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Standard error",
+      "id": "q1",
+      "expected": 1.5,
+      "question": "Standard error of the mean:",
+      "tolerance": 0.001
+    },
+    {
+      "type": "math.number",
+      "label": "Margin of error",
+      "id": "q2",
+      "expected": 2.94,
+      "question": "Margin of error at 95%:",
+      "tolerance": 0.005
+    },
+    {
+      "type": "math.number",
+      "label": "Lower limit",
+      "id": "q3",
+      "expected": 69.06,
+      "question": "Lower limit of the interval:",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.number",
+      "label": "Upper limit",
+      "id": "q4",
+      "expected": 74.94,
+      "question": "Upper limit of the interval:",
+      "tolerance": 0.01
+    },
+    {
+      "type": "math.relation",
+      "label": "The interval is symmetric about the mean",
+      "expr": "(q3 + q4) / 2",
+      "equals": 72,
+      "using": [
+        "q3",
+        "q4"
+      ],
+      "tolerance": 0.02,
+      "question": "Your limits should average to the sample mean."
+    },
+    {
+      "type": "math.number",
+      "label": "Sample size for a margin of 1",
+      "id": "q5",
+      "expected": 312,
+      "question": "Sample size needed for a margin of error of 1 point:",
+      "tolerance": 0.5
+    }
+  ],
+  "realityNote": "With n = 36 the t distribution (t₃₅ = 2.03) would widen the interval slightly; software uses t by default. The interval says nothing about any one student: it is about where the population mean plausibly lies."
+}
