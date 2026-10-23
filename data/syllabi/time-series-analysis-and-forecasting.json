@@ -109,5 +109,403 @@
         "Capstone: a forecasting study on a Ghanaian series with model comparison and a written brief"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Looking at time series",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Describe the trend, seasonality and irregular variation you see in a monthly rainfall plot, and say how you would handle three missing months.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Plot monthly rainfall for 10 years as a time plot, a seasonal plot and a lag plot and describe what each reveals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Resample daily mobile money transactions to weekly and monthly totals with pandas and compute 7-day rolling means"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compare filling five missing months in a price series by interpolation, seasonal mean and forward fill, and measure the effect on later results"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Smoothing and decomposition",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compute a centred 12-month moving average by hand for six months of data and explain why the end points are lost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute 3, 5 and 12 point moving averages of a monthly series and plot them to see how window size changes smoothness"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Decompose a monthly series additively and multiplicatively, compare the residuals and decide which structure fits better"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Apply STL with different seasonal windows to a series with outliers, then compare robust and non-robust fits on the trend"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Adjustments and transformations",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Explain when a log transform stabilises a seasonal amplitude and when inflation adjustment is needed before analysis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Apply a log and a Box-Cox transform to a series with growing seasonal swings and compare the variance of each seasonal cycle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Adjust a monthly price series for inflation and for days in the month, and show how the apparent growth changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Decompose 20 years of monthly Tamale rainfall, estimate the seasonal peak month and test for a trend in the annual totals"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Benchmarks and exponential smoothing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compute naive, seasonal naive and drift forecasts for a short series by hand and check which has the smallest error.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Produce mean, naive, seasonal naive and drift forecasts for a 12-month holdout and compare their errors in a table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Fit simple exponential smoothing with alpha values 0.1 to 0.9 and pick the one with the lowest squared error, plotting the fits"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Compare Holt's linear and damped trend methods on a series that flattens, and show the damped version's forecasts stay realistic"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Seasonal smoothing and ETS",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Explain why prediction intervals from a trending model widen with the horizon, and interpret one interval for a manager.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Fit additive and multiplicative Holt-Winters models to monthly sales and choose the one with the lower holdout error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Fit all valid ETS error, trend and seasonal combinations to a series and rank them by AICc, then check the winner's residuals"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Simulate 1000 future paths from a fitted ETS model, compute empirical prediction intervals and compare coverage with the analytic ones"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Stationarity and autocorrelation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Read a correlogram and say whether the series is white noise, trending or seasonal, and what differencing you would apply.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Plot the ACF and PACF of white noise, a random walk and a seasonal series and describe what each pattern shows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Difference a trending series once and seasonally once, check the correlograms after each step and decide the order needed"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Run ADF and KPSS tests on six series, reconcile any disagreement between them and settle on a differencing plan with Ljung-Box checks"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "ARMA and ARIMA models",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Match four theoretical ACF and PACF sketches to AR(1), AR(2), MA(1) and ARMA(1,1) and explain the cues.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Simulate AR(1) with phi 0.8 and MA(1) with theta 0.6, then compare their sample correlograms with the theoretical shapes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Check stationarity and invertibility of five ARMA parameter sets by finding the roots of their polynomials relative to the unit circle"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Apply the Box-Jenkins identification steps to a differenced series, propose two candidate orders and justify them from the correlograms"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Fitting and forecasting with ARIMA",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compare AIC and BIC choices for three ARIMA orders and explain why they might disagree.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Fit five ARIMA orders to one series and tabulate AIC, AICc and BIC to pick the best order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Check the residuals of a fitted ARIMA with a correlogram, normality plot and Ljung-Box test, and refit if the checks fail"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Model monthly maize prices in Kumasi with ARIMA, forecast 12 months with intervals and compare the result against a naive benchmark"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Seasonal ARIMA and regression",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write the equation of a (1,1,1)(0,1,1)12 model in backshift notation and explain each term.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Fit a seasonal ARIMA to monthly electricity or rainfall data, read its coefficients and forecast the next 12 months"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Fit a regression with trend, seasonal dummies and Fourier terms and compare the fits for 2, 4 and 6 Fourier pairs by AICc"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Show spurious regression between two random walks, then fix it with differencing or ARIMA errors and test the lagged predictor properly"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Interventions and multiple seasonality",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Explain how holiday trading periods and a regulatory fee change would enter a model for mobile money volumes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Add a pulse dummy for a holiday and a step dummy for a tariff change to a regression, and read the estimated effects"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Fit weekly plus annual Fourier terms to daily data and compare the forecasts with a model that uses only weekly seasonality"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Forecast daily mobile money volumes with weekly and monthly patterns, handle holiday outliers and report 28-day forecast accuracy"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Evaluating forecasts",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Explain why MAPE misleads when values approach zero and what MASE does differently, using a small numerical example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute MAE, RMSE, MAPE and MASE for two forecast sets on a worked example and say which one ranks them differently and why"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Run rolling-origin cross-validation on a monthly series for three models and plot error by horizon for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Compare two models with the Diebold-Mariano test and test whether averaging their forecasts beats both, with prediction interval coverage"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Forecasting in practice in Ghana",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Pick one decision, such as when a farmer should plant, and say what forecast, horizon and accuracy would help.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Identify the rainy-season onset date each year from daily rainfall and plot how the date varies across 15 years"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Forecast weekly tomato prices from sparse market data using seasonal naive and ETS, and judge the results against a simple rule"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Forecast intermittent demand for spare parts with Croston's method, reconcile a two-level hierarchy of shops and compare against naive"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Machine learning, communication and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Draft a one-page brief for a non-specialist that states a forecast, its uncertainty and two scenarios, avoiding jargon.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Build lag features for a monthly series, fit a gradient boosting model and compare its holdout error with seasonal naive"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Plot a fan chart of forecast intervals and a base, high and low scenario, and write the caption a manager would understand"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Run a forecasting study on a Ghanaian series comparing four models by rolling-origin error and write a short brief with recommendations"
+        }
+      ]
+    }
   ]
 }

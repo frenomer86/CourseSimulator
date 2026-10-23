@@ -106,5 +106,400 @@
         "Capstone: reducing and visualising a multi-indicator dataset of Ghanaian districts with PCA"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Vectors, dot products and similarity",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Represent three customers as feature vectors, compute their pairwise cosine similarities by hand and say which two are most alike and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot two 2D vectors, their sum and a linear combination 2a minus b on the same axes, and read off the coordinates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compute dot products and angles for six pairs of vectors and verify the Cauchy-Schwarz and triangle inequalities on each pair"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Turn five short documents into word-count vectors, rank them by cosine similarity to a query, and explain a ranking that looks wrong"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Norms and NumPy",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a half-page explanation of when to prefer the L1 norm over the L2 norm for measuring distance between data points.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute L1, L2 and infinity norms of four vectors and draw the unit ball for each norm in the plane"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Use NumPy broadcasting to compute all pairwise distances among 100 points without loops, and check three entries by hand"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compare nearest neighbours of a query point under L1, L2 and infinity distances on a small data set and explain why the answers differ"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Span, bases and subspaces",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Decide by hand whether four given vectors in R3 are independent, and describe the subspace they span in words.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Test whether three given vectors are linearly independent by row reduction and state the dimension of their span"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Find the coordinates of a vector relative to a new basis and use the change-of-basis matrix to convert back and forth"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Find bases for the four fundamental subspaces of a 4 by 5 matrix and verify rank-nullity and the orthogonality of the subspaces"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Matrices as transformations",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Describe the effect of five given 2 by 2 matrices on the unit square and say which are invertible and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Apply rotation, scaling, shear and projection matrices to the unit square and plot each image"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Multiply two matrices using the row, column and outer-product views, and check that all three views give the same product"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Build the adjacency matrix of a road network between six market towns and use its powers to count routes of each length between towns"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Solving linear systems",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Solve a 3 by 3 system by hand with Gaussian elimination and describe its row picture and column picture.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Row reduce a 3 by 4 augmented matrix to reduced echelon form and read off the solution and any free variables"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Classify six systems as one solution, no solution or infinitely many, and give the general solution where it exists"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Find the intersection of three planes in each of the cases unique point, line and empty, and relate each to the rank of the matrix"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Factorisation and numerical issues",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Explain in a paragraph why an LU factorisation is cheaper than repeated elimination when the same matrix has many right-hand sides.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Compute an LU factorisation of a 3 by 3 matrix, then solve two different right-hand sides using the same factors"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Solve a nearly singular system, compute its condition number, and show how a tiny change in the data moves the answer a lot"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E7",
+          "title": "Set up and solve the linear system that mixes four feed ingredients to meet protein, fibre and cost targets, and test sensitivity to prices"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Inverses and determinants",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Prove that a matrix with a zero determinant has dependent columns, and give a 3 by 3 example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Find the inverse of a 3 by 3 matrix by Gauss-Jordan elimination and verify that the product with the original is the identity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Compute a determinant by cofactor expansion and by row operations and check that both methods agree on four matrices"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Time solving a 500 by 500 system by direct inversion and by a factorisation solver, and compare accuracy and speed"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Orthogonality and least squares",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Derive the normal equations from minimising the squared error for a straight line, and check the result on four data points by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Check orthogonality of vector pairs and compute the orthogonal complement of a line in the plane"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Project a vector onto a subspace using a projection matrix and verify that the error is orthogonal to the subspace"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Fit a plane to 30 noisy points by the normal equations, plot the residuals and explain what a large residual says about the data"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Orthonormal bases and trend fitting",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Describe why Gram-Schmidt applied to nearly parallel vectors loses accuracy, and suggest the remedy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Apply Gram-Schmidt to three vectors in R3 and verify that the resulting vectors are orthonormal"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Compute a QR factorisation and use it to solve a least squares problem, comparing the answer with the normal equations"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Fit linear and quadratic trends to monthly maize prices in Kumasi by least squares, compare residuals, and forecast the next three months with a caution"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Eigenvalues and eigenvectors",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Find the eigenvalues and eigenvectors of a 2 by 2 matrix by hand and describe in words what the matrix does along each eigenvector.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute the characteristic polynomial, eigenvalues and eigenvectors of a 2 by 2 matrix and plot the vectors that stay on their line"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Diagonalise a 3 by 3 matrix and use the diagonal form to compute its tenth power, verifying against repeated multiplication"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Use the spectral theorem on a symmetric matrix to classify a quadratic form as positive definite, then plot its level curves"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Markov chains and variation",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Describe the PageRank idea for a five-page web in your own words, including what the damping factor is for.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Find the steady state of a two-state weather Markov chain by solving for the eigenvector with eigenvalue one"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Implement the power method to find the dominant eigenvalue of a matrix, and chart how fast it converges for different eigenvalue gaps"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Compute the covariance matrix of a 3-feature data set, find its eigenvectors, and interpret the direction of greatest variation"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "The singular value decomposition",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Explain the geometry of the SVD of a 2 by 2 matrix as a rotation, a stretch and another rotation, with a sketch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute the SVD of a small matrix and verify the three factors multiply back to the original"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Compress a grayscale image with the SVD at ranks 5, 20 and 50 and report the storage and error for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Compute the pseudoinverse of a rank-deficient matrix from its SVD and use it to find the minimum-norm least squares solution"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "PCA and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Capstone report: explain the variables, how you centred and scaled them, how many components you kept and what each component means for Ghanaian districts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Run PCA on a small data set by the SVD and draw a scree plot of explained variance for each component"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Factorise a small ratings matrix into user and item factors and predict three missing ratings, checking the error on held-out entries"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Reduce a multi-indicator data set of Ghanaian districts to two principal components, plot the districts, and interpret the clusters and outliers"
+        }
+      ]
+    }
   ]
 }

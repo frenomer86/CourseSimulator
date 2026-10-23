@@ -110,5 +110,398 @@
         "Project presentation and code review"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Object-oriented foundations and SOLID design",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Review a short class hierarchy for a student fees system and write one paragraph naming which SOLID principle each class violates and how you would repair it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Write a Java Account class with encapsulated balance, a constructor and two subclasses, then print polymorphic results for five sample accounts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Rewrite a loop-based report of 20 student marks using streams, Optional and an immutable record, and check that the output matches the original"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Refactor a given fee calculator that breaks open-closed and single responsibility into composed classes, then add a new fee type without editing existing code"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Testing, Maven and packaging",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a short README for a small Java library explaining its Maven layout, how to run the tests and how to generate its documentation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write five JUnit-style tests for a Grade calculator class, run them and fix the one failing boundary case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Use a hand-written mock of a payment gateway interface to unit test a Checkout class for success, decline and timeout paths"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Draw a package and module dependency diagram for a three-layer student records project and justify which packages should be exported or hidden"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Interfaces, patterns and layered refactoring",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Choose two design patterns from this week and write a half-page comparison of when each is the right tool, using a school or market example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Define a Discount functional interface and apply three lambdas to a list of 10 prices, comparing the printed totals with hand calculations"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement Strategy and Factory so a fare calculator for tro-tro routes selects peak, off-peak or student pricing by name, and test all three"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Split a 150-line monolithic inventory program into UI, service and DAO layers using hand injection, keeping every original output identical"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "JavaFX controls, layouts and FXML",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Sketch on paper three screen layouts for a student records app and name the JavaFX layout pane you would choose for each region.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Model a JavaFX Stage, Scene and scene graph as Java classes and print the tree for a window with a root, one label and one button"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Design a login and registration form using GridPane inside BorderPane, labelling every control and drawing the nesting hierarchy as a diagram"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Write an FXML-style layout description and a CSS-like style table for a dashboard, then parse both to print a styled component tree"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Properties, bindings and a desktop client",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write a short design note listing the properties and observable collections a student records client needs and which views bind to each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Create a simple observable property class, bind two instances so one mirrors the other, and print the values after five changes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement an observable list with change listeners and use it to keep a total-marks label updated as 10 records are added and removed"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E5",
+          "title": "Design the SQL schema for an inventory system, load 20 sample items, and write the queries the desktop client's table view would use for search and low-stock alerts"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Events, threading and animation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Explain in a paragraph why long database calls on the UI thread freeze an application and sketch the Task and Service fix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Implement an event source, handler interface and lambda handlers for a Button class, and print the dispatch order for three registered handlers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Simulate a GUI thread with a background Task that processes 100 records in batches and posts progress updates without blocking the event loop"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Build a timeline of keyframes that animates a progress value from 0 to 100, then tune frame timing so the update count stays under a given budget"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Servlet container, requests and sessions",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Trace by hand the life of one GET request through a servlet container, listing which life-cycle methods run and in what order.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Write a minimal servlet class with init, service and destroy methods in a mock container and log the life-cycle calls for three requests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement doGet and doPost handlers for a registration form in the mock container, covering parameters, a redirect and a forward"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Add a session-tracking filter that counts visits per cookie, expires idle sessions after a limit, and prove it with a scripted sequence of 12 requests"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Servlet errors, logging and security",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Review a given servlet for input validation and output escaping flaws and list five fixes in order of risk.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Add input validation and HTML escaping to a comment servlet and show that a script tag submitted as input is rendered harmless"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Implement an error-handling filter that maps exceptions to error pages and writes structured log lines, then verify the log for four failing requests"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Simulate a file upload handler that enforces size and type limits and stores files under generated names, and test it with six crafted uploads"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "JDBC, DAO and MVC",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Draw the sequence of calls from a controller servlet through the model and DAO to the view for a product listing page.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E5",
+          "title": "Write the SQL for a students table, insert 10 rows and run parameterised queries mirroring a JDBC PreparedStatement, checking the row counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement a StudentDAO with find, save and delete over an in-memory store and a row-to-object mapper, and test it with 15 records"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E9",
+          "title": "Design the MVC structure for a library web app, assigning each controller, model class and view to a diagram and tracing a borrow request"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "SQL injection, concurrency and JPA",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a short explanation, for a junior developer, of why prepared statements stop SQL injection while string escaping often does not.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E5",
+          "title": "Exploit a deliberately vulnerable login query with a crafted string, then rewrite it with bound parameters and confirm the same input now fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E5",
+          "title": "Run two interleaved transactions that withdraw from one mobile money wallet, show a lost update, then fix it with a locking or isolation choice"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Map a Student and Course pair of tables to annotated entity classes in a mock ORM and compare the generated queries with hand-written JDBC"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "JavaBeans, scopes and shared state",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "List which data in a shopping cart application belongs to request, session and application scope and justify each choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Write a StudentBean following JavaBean conventions with getters, setters and serialisation, then round-trip it to a string and back"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Create a form bean with validation that maps request parameters to fields and returns error messages for six deliberately bad submissions"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Expose a race on a shared application-scope visit counter using multiple threads, then fix it with synchronisation and compare final counts over 1000 hits"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "JSP, EL, JSTL and modern alternatives",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a one-page comparison of server-rendered JSP pages and a REST API with a JavaScript front end for a clinic booking system.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Translate a small JSP page by hand into the servlet code it becomes, marking directives, scriptlets and expressions in the result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Replace scriptlets in a product list view with EL and JSTL-style loops and conditionals, and verify identical output for 8 products"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Build a custom tag that renders a formatted price in cedis and use it in a templated page with a shared header include in two languages"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Capstone web application and deployment",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Prepare a ten-minute project demo script and a review checklist that a classmate can use to code review your application.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E5",
+          "title": "Create the database schema and seed data for a student portal with users and roles, and write the CRUD and report queries the app needs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Write tests for the controller and DAO layers of the capstone app and report coverage, fixing any untested error path found"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.2",
+          "engine": "E12",
+          "title": "Deploy a packaged web application to a cloud VM with environment variables for the database URL, then recover from a deliberately bad configuration"
+        }
+      ]
+    }
   ]
 }

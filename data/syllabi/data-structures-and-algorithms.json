@@ -106,5 +106,400 @@
         "Introduction to NP-completeness and what to do when no fast algorithm is known"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "ADTs and asymptotic analysis",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Problem set: rank twelve functions by growth rate, prove two Big-O claims from the definition, and write the interface and invariants of a Stack ADT before any implementation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Plot n, n log n, n squared and 2 to the n for n up to 30 and order the four growth rates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Implement a templated C++ Stack class with a documented interface and invariant, and verify it with ten push and pop tests"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Count the primitive operations of three given functions in best, worst and average case, then confirm the counts by instrumenting the code on random inputs"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Analysing loops, recurrences and amortised cost",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Solve five recurrences with the master theorem, and justify by the accounting method why appending to a doubling array costs constant amortised time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Step through a nested loop in the visualiser, count executions of the inner statement for n = 8, and match the result to the formula"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E6",
+          "title": "Run 33 appends on a doubling dynamic array, track each resize and copy, and compute the amortised cost per append"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Time insertion sort and merge sort on random inputs from 1000 to 64000 elements, fit growth curves, and compare them with the predicted complexities"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Lists, stacks and queues",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Coding kata: implement a circular-buffer queue and use a stack to evaluate postfix expressions, with five tests each including empty and full edge cases.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Insert and delete nodes in a singly linked list in the visualiser, tracing pointer changes for the head, middle and tail"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Use a stack to check balanced brackets and evaluate postfix expressions in C++, with tests on ten valid and invalid strings"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement a circular-buffer queue and a deque, then benchmark them against std::list and std::vector for one million operations"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Recursion and proof of correctness",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Prove by induction that a recursive binary search is correct, and write the recurrence for the number of calls made by recursive Fibonacci.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Step through recursive factorial of 5 and watch the call stack grow and unwind, noting each frame's argument and return value"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Convert recursive Fibonacci to a memoised and an iterative version, and compare the number of calls and runtime for n = 35"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Write recursive solutions for generating all permutations, all subsets and Tower of Hanoi, and verify the counts for n up to 10"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Elementary and divide-and-conquer sorting",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Hand-trace insertion sort, merge sort and quicksort on the same eight values, and say which sorts are stable and in place.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Step through insertion sort on eight values and record the comparisons and shifts made at each pass"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Run quicksort on sorted, reversed and random arrays with first-element and median-of-three pivots, and compare the comparison counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement heapsort with a binary heap from scratch, verify it on 1000 random arrays against the library sort, and count comparisons"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Sorting lower bounds and choosing a sort",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Short essay: pick the best sort for four data sets (nearly sorted, huge integers, small range, records needing stability) and justify each choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Run counting sort on twenty small integers, show the count array and output placement, and explain why it is stable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement radix sort for 6-digit student ID numbers and compare its running time with std::sort on 100000 numbers"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Benchmark five sorts on sorted, reversed, random and many-duplicate inputs, then write a rule for choosing among them with measured evidence"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Searching and hash tables",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Problem set: insert a given key sequence into hash tables with chaining and linear probing, compute load factors, and count probes for successful and failed searches.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Run binary search on a sorted array of 31 values and count the comparisons for three keys, including one not present"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Insert twelve keys into a hash table using chaining, linear probing and double hashing, and compare the number of probes of each"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Build an open-addressing hash table with rehashing and measure how lookup time grows as load factor approaches 0.9, then add a Bloom filter in front"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Trees, BSTs and balanced trees",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Draw the trees after inserting a given sequence into a BST, an AVL tree and a 2-3 tree, and compare their heights.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Build a binary tree from eleven values and list its preorder, inorder, postorder and level-order traversals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Insert and delete keys in a binary search tree, including a node with two children, and trace the resulting structure"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E6",
+          "title": "Insert 20 ascending keys into a plain BST and an AVL tree, record every rotation, and compare tree heights and search costs"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Tries, augmented trees and ordered containers",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Design a phone-directory structure for a mobile money agent app, choosing between a trie, a std::map and a hash table and justifying the choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Insert eight words into a trie and trace the search for a prefix and for a word that is absent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Build the Huffman tree for a given character frequency table, derive the codes, and compute the compression ratio"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Implement a Fenwick tree for prefix sums, check it against a brute-force version on random updates, and compare query times for 100000 elements"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Graph representations and traversals",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Model a small tro-tro route network as a graph, run BFS and DFS by hand from a chosen start, and give the topological order of a course-prerequisite DAG.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Convert a seven-node weighted directed graph between adjacency matrix and adjacency list forms, and compare their memory use"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Run BFS and DFS from the same start on a ten-node graph, list visit orders, and find all connected components"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Implement topological sort and Tarjan's strongly connected components, and test them on a prerequisite graph containing one deliberate cycle"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Shortest paths, spanning trees and flow",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Solve a shortest-path and a minimum-spanning-tree problem on the same road network with a weighted edge list, and explain why the two answers differ.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E6",
+          "title": "Run Dijkstra's algorithm from one node of a six-node weighted graph and record the distance table after each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E6",
+          "title": "Build a minimum spanning tree of a ten-node cable network with Kruskal and union-find, then check it against Prim's tree"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Find cheapest tro-tro routes between towns with Dijkstra, then add a negative-cost promotion edge and show where Dijkstra fails and Bellman-Ford succeeds"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Greedy, divide-and-conquer and dynamic programming",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "For three problems decide whether greedy works, give a counter-example where it fails, and write the recurrence for the dynamic programming alternative.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E6",
+          "title": "Run greedy interval scheduling on nine activities and list the chosen set, then check no other schedule has more activities"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E6",
+          "title": "Fill the dynamic programming table for 0/1 knapsack with six items and recover the chosen items by backtracking"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Compute the fewest coins for a cedi amount with greedy and DP for a custom coin system, and find a system where greedy gives the wrong answer"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Randomised, backtracking and hard problems",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Short report: for N-queens and subset sum, describe the search tree, the pruning rule, and why subset sum is NP-complete but still solvable for small inputs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E6",
+          "title": "Solve 4-queens by backtracking in the visualiser and note every placement that is abandoned and the reason"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Compare deterministic and randomised quicksort on adversarial inputs over 100 runs, and report the mean and worst running time of each"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Solve subset sum with plain backtracking and with branch-and-bound pruning, and compare nodes explored on 25 random instances"
+        }
+      ]
+    }
   ]
 }

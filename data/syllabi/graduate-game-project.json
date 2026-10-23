@@ -1,0 +1,501 @@
+{
+  "slug": "graduate-game-project",
+  "description": "A studio-style team project in which students take a game from pitch to vertical slice to release candidate, run playtests, read telemetry and write a postmortem. In the lab they work through branching production cases, plan schedules and risks, and analyse test data.",
+  "modelledOn": [
+    "Schell, The Art of Game Design: A Book of Lenses",
+    "Fullerton, Game Design Workshop",
+    "Bethke, Game Development and Production",
+    "Game Accessibility Guidelines (community standard) and the postmortem format used in game industry magazines"
+  ],
+  "outcomes": [
+    "Write a concept pitch and scope plan with pillars, a cut list and a risk register for a game aimed at a stated audience.",
+    "Organise a team with clear roles, a sprint process and a version-controlled production pipeline.",
+    "Plan and run iterative prototypes and playtests, and turn observations and telemetry into design changes.",
+    "Define and deliver a vertical slice and pass milestone reviews against stated quality criteria.",
+    "Prepare a game for release with a quality, localisation and store-readiness checklist.",
+    "Write a postmortem, a technical report and a portfolio piece that record the project honestly and show individual contribution."
+  ],
+  "units": [
+    {
+      "title": "Concept pitch and scope control",
+      "weeks": "1-2",
+      "topics": [
+        "High concept, design pillars, target audience and a one-page pitch",
+        "Players and platforms in Ghana and West Africa: low-end Android, data costs, mobile money and offline play",
+        "Scope control: MoSCoW priorities, the cut list and feature freeze",
+        "Business models and monetisation: premium, ad-supported, in-app purchase and the ethics of each",
+        "Risk register, feasibility study and the game design document as a living document"
+      ]
+    },
+    {
+      "title": "Studio team roles and pipelines",
+      "weeks": "3",
+      "topics": [
+        "Roles: producer, designer, programmer, artist, audio, QA and community; how responsibilities overlap in a small team",
+        "Agile for games: sprints, backlogs, kanban boards, stand-ups and retrospectives",
+        "Production pipeline: version control for code and art, build automation and naming conventions",
+        "Team charter, communication with unreliable connectivity and resolving conflict",
+        "Estimating tasks and planning milestones with Gantt charts and critical path"
+      ]
+    },
+    {
+      "title": "Iterative prototyping",
+      "weeks": "4-5",
+      "topics": [
+        "Paper prototypes and greyboxing to test mechanics before art",
+        "Core loop analysis and the MDA framework of mechanics, dynamics and aesthetics",
+        "Throwaway prototypes versus evolutionary prototypes; deciding what to keep",
+        "Game feel and feedback: timing, animation, sound and screen response",
+        "Technical risk spikes: testing the hardest feature first"
+      ]
+    },
+    {
+      "title": "Playtesting and telemetry review",
+      "weeks": "6-7",
+      "topics": [
+        "Planning a playtest: goals, recruiting players, protocol and consent",
+        "Observation and questionnaires: think-aloud, interviews, usability scales and engagement surveys",
+        "Telemetry design: event schema, funnels, retention at day 1 and day 7, and privacy limits",
+        "Reading data to balance difficulty and economy, and detecting where players quit",
+        "Accessibility and inclusive design testing: colour, controls, text size and cognitive load"
+      ]
+    },
+    {
+      "title": "Vertical slice and milestone reviews",
+      "weeks": "8-9",
+      "topics": [
+        "Milestone ladder: concept, first playable, vertical slice, alpha, beta, release candidate",
+        "Defining the vertical slice and setting its quality bar",
+        "Running a milestone review: demo, metrics, risks and decisions to continue, cut or cancel",
+        "Sustainable pace: avoiding crunch, burn-down charts and cutting scope early",
+        "Integration, build stability and keeping the game always playable"
+      ]
+    },
+    {
+      "title": "Quality, localisation and platform readiness",
+      "weeks": "10",
+      "topics": [
+        "QA process: test plans, bug reporting, severity and priority, and triage meetings",
+        "Compatibility and performance on target devices, including low-memory phones",
+        "Localisation and internationalisation: English, French, Twi, Hausa and right-to-left text",
+        "Legal matters: licences for engines and assets, music rights, age ratings and children's data",
+        "Store listing, compliance checks and payment integration"
+      ]
+    },
+    {
+      "title": "Release preparation and postmortem",
+      "weeks": "11-12",
+      "topics": [
+        "Launch plan: store page, trailer, press kit, community channels and soft launch",
+        "Live operations: patching, event calendars and handling player support",
+        "Success metrics: downloads, retention, revenue per user and review scores",
+        "The postmortem format: what went right, what went wrong and what to change",
+        "Handling a failed launch, a critical bug or a negative public reaction"
+      ]
+    },
+    {
+      "title": "Technical report and portfolio",
+      "weeks": "13",
+      "topics": [
+        "Structure of a technical report: problem, design decisions, implementation, evaluation, limitations",
+        "Portfolio pieces: playable build, gameplay video, design breakdowns and a case study",
+        "Individual contribution statements and fair peer assessment",
+        "Final showcase: presenting to a panel and answering critical questions",
+        "Career pathways in African and global game studios, freelancing and funding"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Pitching a game",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write a one-page pitch for a game set in a Ghanaian market, with three pillars, the target player, platform limits and a first cut list.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Rank five game pitches against the given rubric for clarity of pillars and audience and justify the highest and lowest scores"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Choose the platform and feature set for a game aimed at players on 2 GB phones with expensive data, citing the evidence in the case"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Cut a 40-feature backlog to fit a 10-week team schedule using MoSCoW, defending each cut against producer and designer objections"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Business models and risk",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compare premium, ad-supported and in-app purchase models for your pitch, and list ten risks with probability, impact and an owner.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Build a risk register as a table of ten risks with probability, impact, score and mitigation, sorted by score"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Choose a monetisation model for a children's puzzle game and handle a case where the publisher requests loot boxes"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Model revenue for ad-supported and paid versions using download, retention and conversion estimates over 12 months and plot break-even"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Teams, process and pipelines",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write a team charter with roles and decision rules, set up a sprint board with the first 20 tasks, and draw the critical path to the first-playable milestone.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Assign a six-person team to the listed project tasks, making sure no role is overloaded or left without an owner"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E9",
+          "title": "Draw a Gantt chart for a 13-week project with dependencies and mark the critical path to the first-playable milestone"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E4",
+          "title": "Set up a repository with branches, a build script and a rule file for large art assets, then merge two conflicting changes from two artists"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Paper prototypes and core loops",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Paper-prototype your core loop, run it with two players, and write down which mechanics, dynamics and aesthetics each tester reported.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Evaluate three paper prototype test reports and decide for each whether to continue, change or drop the mechanic with reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Draw the core loop of a given mobile game with rewards and decision points and label the mechanics, dynamics and aesthetics"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Decide which of four prototypes to evolve, which to throw away and what to carry forward, justified by the test evidence and the schedule"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Game feel and technical spikes",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "List ten feedback effects for jumping and landing in your game, and design a one-day spike to test the riskiest technical feature.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Rate six versions of a jump described by timing and feedback settings for game feel and explain what makes the best one work"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E9",
+          "title": "Plan a two-day technical spike on multiplayer over weak networks, with the question, success test and fallback if it fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Run the spike case: interpret benchmark results on three phones, decide whether the feature is feasible and renegotiate scope with the producer"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Planning and running playtests",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a playtest plan for ten players with goals, tasks, consent text and a questionnaire, and define six telemetry events with their fields.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Pick suitable participants and a protocol from a case file for a playtest of a farming game and justify the choices"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute the mean and spread of a usability scale from 12 questionnaire responses and identify the weakest-rated aspect"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E5",
+          "title": "Design an event table for a mobile game and write SQL for day 1 and day 7 retention from a supplied log of 5,000 sessions"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "From data to design changes",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Use funnel data to find the level where most players quit, propose two design changes, and check the build against five accessibility guidelines.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Audit a game screen description against five accessibility guidelines and list the failures with a fix for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E5",
+          "title": "Query a level completion table to find where players quit and how long successful players spend on each level"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Tune an enemy health value using simulated win rates from 1,000 runs so the target win rate is 60 percent for novices"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Milestones and the vertical slice",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Define the vertical slice for your game, write its quality bar as ten checkable statements, and prepare the agenda for a milestone review.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Draw a milestone ladder for the project with entry and exit criteria at each rung and the weeks they are due"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Judge whether a described build meets the vertical slice quality bar and list the gaps that must close before the review"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Present a milestone review to a mock publisher, answering five hard questions on risk and budget, and score the decision to continue or cut"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Sustainable pace and stable builds",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Draw a burn-down chart from sprint data, show where scope must be cut, and set the rules that keep the main branch always playable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Plot a burn-down chart from sprint data and mark when the team would finish at the current pace"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Handle a case where the team faces a deadline with 30 percent of work left, choosing cuts instead of crunch and explaining it to the team"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E4",
+          "title": "Set up a build check that runs tests on every merge and blocks a deliberately broken commit from reaching the main branch"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Quality assurance, localisation and store readiness",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a test plan and a release checklist covering device compatibility, two translations, music licences, age rating and the store listing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Triage 20 bug reports by severity and priority and decide which five must be fixed before release"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Extract all strings from a small game into a table, translate to two languages and test that long text does not overflow the interface"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Resolve a licensing dispute over a music track and a children's data question before store submission, and score the release decision"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Launching and operating a game",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Prepare a launch plan with a soft-launch region, a community channel, a support process and the five metrics you will watch in the first month.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Assemble a launch checklist for a mobile game in Ghana and mark which items are done, late or missing from the case file"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Compute downloads, retention and revenue per user for the first 30 days from supplied data and compare with the targets"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Run a live-operations case: plan a patch, an event and a compensation for a server outage within the budget and player trust limits"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Postmortems and crisis handling",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write the postmortem for your own project in the what went right, what went wrong and what we will change format, with evidence for each point.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Sort the statements of a sample postmortem into went right, went wrong or change next time, and note any lacking evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E9",
+          "title": "Draw a cause-and-effect diagram of why a game launched late and mark the root cause and two contributing factors"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Respond to a launch day crash and a viral negative review thread, choosing actions in order and scored on honesty, speed and recovery"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Report, portfolio and showcase",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Produce a technical report outline, a portfolio page for your build, a fair contribution statement for each team member and a five-minute showcase script.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Lay out the sections of a technical report as an outline diagram and note the evidence each section needs from the project"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Assess fairness in a team case with uneven work and write contribution statements and a peer assessment that match the evidence"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Defend your project to a mock panel on design choices, results and limits, and respond to five critical questions scored on the rubric"
+        }
+      ]
+    }
+  ]
+}

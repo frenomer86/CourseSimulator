@@ -1,0 +1,514 @@
+{
+  "slug": "advanced-database-systems",
+  "description": "The internals of database engines at graduate depth: storage layout, indexes, query execution and optimisation, concurrency control, recovery, distribution, column stores and the NoSQL and NewSQL landscape. Students read query plans, simulate transactions and index structures, build small engine components and finish with a benchmarked research-style project.",
+  "modelledOn": [
+    "Garcia-Molina, Ullman and Widom, Database Systems: The Complete Book",
+    "Hellerstein, Stonebraker and Hamilton, Architecture of a Database System",
+    "Kleppmann, Designing Data-Intensive Applications"
+  ],
+  "outcomes": [
+    "Estimate the I/O cost of scans, index lookups and join algorithms and predict which one an optimiser will pick.",
+    "Implement and analyse B+ tree and LSM-tree operations, including node splits, compaction and write amplification.",
+    "Decide serialisability of schedules and explain how two-phase locking, timestamps and snapshot isolation prevent or permit anomalies.",
+    "Trace write-ahead logging and ARIES recovery through a crash and show the state of the database after each phase.",
+    "Compare partitioning, replication and distributed commit designs and state what each guarantees under failure.",
+    "Design, run and critically report a benchmark that compares two storage or execution designs."
+  ],
+  "units": [
+    {
+      "title": "DBMS architecture and storage management",
+      "weeks": "1-2",
+      "topics": [
+        "Layers of a DBMS: parser, optimiser, executor, access methods, buffer manager, storage and log manager",
+        "Pages, slotted-page layout, record formats and free-space management",
+        "Buffer pool replacement: LRU, clock, LRU-K and scan-resistant policies; sequential flooding",
+        "Row, column and hybrid (PAX) layouts; the disk and SSD I/O cost model"
+      ]
+    },
+    {
+      "title": "Indexing structures",
+      "weeks": "3",
+      "topics": [
+        "B+ trees: search, insertion with splits, deletion with merges, bulk loading and latch crabbing",
+        "Hash indexes: static, extendible and linear hashing",
+        "Log-structured merge trees: memtable, sorted runs, compaction strategies and write amplification",
+        "Bitmap indexes, Bloom filters and R-trees for spatial data",
+        "Index selection: clustered, covering, partial and composite indexes and the cost of maintenance"
+      ]
+    },
+    {
+      "title": "Query execution",
+      "weeks": "4",
+      "topics": [
+        "Iterator (Volcano), vectorised and compiled execution models",
+        "External merge sort and its I/O cost",
+        "Join algorithms: block nested loop, index nested loop, sort-merge and grace hash join, with cost formulae",
+        "Aggregation, duplicate elimination and set operators",
+        "Pipelining versus materialisation, and intra-query parallelism"
+      ]
+    },
+    {
+      "title": "Query optimisation",
+      "weeks": "5-6",
+      "topics": [
+        "Relational algebra equivalences, predicate and projection pushdown, and rule-based rewriting",
+        "Statistics: histograms, distinct counts, selectivity and cardinality estimation errors",
+        "Plan enumeration: System R dynamic programming, left-deep trees and interesting orders",
+        "Transformation-based optimisers: Cascades, memo structures and top-down search",
+        "Reading EXPLAIN output, hints, plan regressions and adaptive query processing"
+      ]
+    },
+    {
+      "title": "Transactions and concurrency control",
+      "weeks": "7-8",
+      "topics": [
+        "ACID, schedules, conflict serialisability and precedence graphs",
+        "Two-phase locking, strict 2PL, deadlock detection and prevention, and multigranularity locking",
+        "Timestamp ordering and optimistic concurrency control",
+        "Multiversion concurrency control, snapshot isolation, write skew and serialisable snapshot isolation",
+        "SQL isolation levels and anomalies: dirty read, lost update, non-repeatable read and phantom"
+      ]
+    },
+    {
+      "title": "Recovery and logging",
+      "weeks": "9",
+      "topics": [
+        "Steal and no-force buffer policies; the write-ahead logging rule",
+        "ARIES: analysis, redo and undo passes, compensation log records and fuzzy checkpoints",
+        "Shadow paging, copy-on-write and log-structured storage compared with update-in-place",
+        "Group commit, fsync cost and durability on SSDs and cloud disks",
+        "Backup, archive logs and point-in-time recovery"
+      ]
+    },
+    {
+      "title": "Distributed and replicated databases",
+      "weeks": "10-11",
+      "topics": [
+        "Partitioning: hash, range and consistent hashing; rebalancing and hot spots",
+        "Replication: leader-follower, multi-leader, quorum, and replication lag anomalies",
+        "Atomic commit: two-phase commit, its blocking problem and three-phase commit",
+        "Consensus for replicated logs: Paxos and Raft, leader election and log replication",
+        "Distributed transactions and globally consistent databases using synchronised clocks",
+        "Distributed query processing: shuffle, broadcast and co-located joins"
+      ]
+    },
+    {
+      "title": "Column stores, in-memory systems and NoSQL",
+      "weeks": "12",
+      "topics": [
+        "Column stores: compression (run-length, dictionary, bit-packing), late materialisation and zone maps",
+        "Vectorised execution with SIMD and in-memory databases: logging, snapshots and cache efficiency",
+        "NoSQL families (key-value, document, wide-column, graph) and BASE trade-offs",
+        "NewSQL and HTAP systems: distributed SQL with transactions, and mixed workloads",
+        "Choosing a data system: workload analysis and the TPC-C, TPC-H and YCSB benchmarks"
+      ]
+    },
+    {
+      "title": "Research methods and project",
+      "weeks": "13",
+      "topics": [
+        "Reading and critiquing a systems paper: claim, mechanism, evaluation and threats",
+        "Benchmark design: workloads, warm-up, throughput, latency percentiles and confidence intervals",
+        "Open problems: learned indexes, learned cardinality estimation and serverless databases",
+        "Project: implement and evaluate a storage or query-engine component and report the results"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Engine architecture and pages",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Draw the layers of a DBMS and trace a SELECT through them, then lay out ten variable-length records in a slotted page and update one so it grows.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E6",
+          "title": "Insert, delete and grow variable-length records in a slotted page, and record the slot directory and free space after each of eight operations"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E5",
+          "title": "Run a query with EXPLAIN on a three-table schema and label which component produced each part of the plan and which stages ran before execution"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Implement a slotted page with insert, delete and compaction, and test on 1,000 random operations that all live records remain readable"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Buffer management and layouts",
+      "topics": [
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Simulate LRU, clock and LRU-K on a trace that mixes a hot set with a large sequential scan, and count the hits for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Replay a page-reference trace of 40 requests through LRU and clock with a 4-frame pool and count hits and misses for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Generate a trace where a large scan follows a hot working set, run LRU and LRU-K, and show how sequential flooding hurts LRU hit rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute the I/O cost of scanning a 1 GB table in row and column layout when a query reads 2 of 20 columns, on HDD and SSD parameters"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "B+ trees, hashing and LSM trees",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Build a B+ tree of order 4 from 20 keys showing every split, then compare a B+ tree with an LSM tree for a write-heavy workload.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Insert 20 keys into a B+ tree of order 4, step through each node split, then delete five keys and show merges and redistributions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement an LSM tree with a memtable, flushing and size-tiered compaction, and measure write amplification over 100,000 inserts and updates"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Create composite, covering and partial indexes for a query set on a 100,000-row table and compare the plans and write costs of each choice"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Operators and join algorithms",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Compute the I/O cost of block nested loop, sort-merge and grace hash join for two relations of 1,000 and 200 pages with 50 buffer pages.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute the I/O cost of external merge sort for 10,000 pages with 100 buffer pages and plot the number of passes against buffer size"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E5",
+          "title": "Force a nested-loop, merge and hash join on the same query by changing settings, and compare estimated cost, actual time and rows examined"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Implement iterator-style scan, filter and hash-join operators, compose them into a plan, and compare their speed with a vectorised version on 1 million rows"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Equivalences, statistics and plan search",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Rewrite a five-table query using algebra equivalences, estimate selectivities from a histogram, and enumerate the left-deep plans System R would keep.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E5",
+          "title": "Rewrite a query by pushing selections below joins by hand, then compare its plan with the optimiser output and explain any difference"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E5",
+          "title": "Build a skewed table, compare the optimiser row estimates with actual rows for five predicates, and refresh statistics to see the estimates improve"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement System R dynamic programming for join ordering on five relations with given cardinalities and verify against brute-force enumeration of all orders"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Cascades, plans and regressions",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Given two EXPLAIN outputs before and after a statistics change, diagnose why the plan regressed and propose a fix with evidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E5",
+          "title": "Read three EXPLAIN ANALYZE outputs, mark the node with the largest estimation error and the node that dominates time, and explain each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Step through a memo-based search over join orders for three tables, recording the groups, the best expression per group and the pruned alternatives"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E5",
+          "title": "Diagnose a slow query with a bad cardinality estimate, apply three fixes (statistics, index, rewrite) and report the speed-up each gives"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Serialisability and locking",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw the precedence graph for four schedules, decide which are conflict serialisable, and trace strict 2PL on the one that deadlocks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Check six schedules for conflict serialisability by building the precedence graph and giving an equivalent serial order for each that passes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E5",
+          "title": "Run two interleaved transactions that update accounts in opposite order, produce a deadlock, and record the victim chosen and the lock waits"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Implement optimistic concurrency with validation, run 1,000 transactions at low and high conflict rates, and compare abort rates with a locking scheme"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "MVCC, snapshot isolation and anomalies",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Construct write skew on a two-doctor on-call rota under snapshot isolation, and show how a serialisable level or a locking read prevents it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E5",
+          "title": "Reproduce dirty read, lost update, non-repeatable read and phantom at each isolation level and fill a table of which anomalies each level allows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E5",
+          "title": "Demonstrate write skew with two sessions under snapshot isolation, then prevent it using serialisable mode and report the transaction that is aborted"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Implement a small multiversion store with snapshot reads and first-committer-wins, and test it with a workload that checks no lost update occurs"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Write-ahead logging and ARIES",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Run ARIES recovery on a given log with a crash after a checkpoint, writing the analysis tables and the redo and undo actions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Step through ARIES analysis, redo and undo on a 15-record log, tracking the dirty page table, transaction table and compensation records written"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E5",
+          "title": "Run committed and uncommitted updates, kill the engine mid-transaction, restart, and verify that only committed changes survive and explain by the log"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Measure commit throughput with fsync on every commit and with group commit across 1,000 transactions, and explain the gain and the durability risk"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Partitioning, replication and commit",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Design the partitioning and replication of a national ID database across three data centres and state what happens when one is lost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Implement consistent hashing with virtual nodes, add and remove a node, and count how many of 10,000 keys move compared with modulo hashing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E6",
+          "title": "Step through two-phase commit with a coordinator crash after the prepare phase and show which participants are blocked and why"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E5",
+          "title": "Set up a leader and two followers, create replica lag, and show a read-your-writes violation and a way to avoid it in routing"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Consensus and distributed queries",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Trace Raft leader election and log replication through a leader failure, then plan a distributed join on a table partitioned by region.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E6",
+          "title": "Run Raft with five nodes, kill the leader during replication, and record the election, term change and which entries were committed or lost"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E5",
+          "title": "Plan a join of an orders table partitioned by region with a small product table and compare broadcast and shuffle by bytes moved"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Evaluate a case for a globally distributed database for a pan-African bank, weighing consistency, latency, clock assumptions and regulation, and recommend a design"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Column stores, in-memory and NewSQL",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Choose among a row store, a column store, a key-value store and a NewSQL system for four workloads, justified with measured numbers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Apply run-length and dictionary encoding to a sorted column of 1 million values and compare space and scan speed with the raw column"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E5",
+          "title": "Run an analytical query on a row-oriented and a column-oriented layout of the same data and explain the time difference from the plans"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Run a YCSB-style workload with 95 percent reads and one with 50 percent writes on two stores, and compare throughput and 99th-percentile latency"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Research project and benchmark report",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Present the project: hypothesis, implementation, benchmark design, results with confidence intervals, and a critical discussion of threats to validity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Critique a systems paper from the reading list by rewriting its claim, listing the experiments that support it, and naming three threats to validity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Design a benchmark with warm-up, ten repetitions and percentile reporting for an index lookup, and compute means and 95 percent confidence intervals"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Implement and evaluate a storage or query component (for example a buffer policy, join operator or compaction rule) against a baseline and report results"
+        }
+      ]
+    }
+  ]
+}

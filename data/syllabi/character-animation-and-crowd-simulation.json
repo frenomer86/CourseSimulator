@@ -1,0 +1,501 @@
+{
+  "slug": "character-animation-and-crowd-simulation",
+  "description": "The mathematics and algorithms behind moving characters and crowds in games and film: skeletal animation, inverse kinematics, captured motion, blending, physics-based control and large-scale crowd models. Students implement each method in the lab, plot the results and judge how believable the motion looks.",
+  "modelledOn": [
+    "Parent, Computer Animation: Algorithms and Techniques",
+    "Lengyel, Mathematics for 3D Game Programming and Computer Graphics",
+    "Thalmann and Musse, Crowd Simulation",
+    "Millington, Artificial Intelligence for Games (movement chapters)"
+  ],
+  "outcomes": [
+    "Represent poses with quaternions and transform hierarchies, and skin a mesh to a skeleton with linear blend and dual quaternion methods.",
+    "Solve inverse kinematics problems with analytic, CCD, FABRIK and Jacobian methods and compare convergence and quality.",
+    "Clean, retarget and blend captured motion and combine clips with state machines and blend spaces.",
+    "Build a simple physics-based character controller with proportional-derivative joint control and balance reasoning.",
+    "Simulate crowds with flocking, velocity obstacles and social force models and relate them to measured pedestrian flow.",
+    "Design and run an evaluation of the believability of generated motion using objective metrics and a small perceptual study."
+  ],
+  "units": [
+    {
+      "title": "Skeletal animation and skinning",
+      "weeks": "1-2",
+      "topics": [
+        "Rotations in animation: Euler angles, gimbal lock, quaternions and spherical linear interpolation",
+        "Skeleton hierarchies, bind pose and forward kinematics with local and world transforms",
+        "Linear blend skinning, skinning weights and the candy-wrapper artefact",
+        "Dual quaternion skinning and corrective blend shapes",
+        "Keyframes and curves: linear, Catmull-Rom and Bezier interpolation, easing and curve editing"
+      ]
+    },
+    {
+      "title": "Inverse kinematics",
+      "weeks": "3",
+      "topics": [
+        "Analytic two-bone IK for arms and legs using the law of cosines",
+        "Cyclic coordinate descent and its convergence behaviour",
+        "FABRIK: forward and backward reaching for chains",
+        "Jacobian methods: pseudo-inverse, damped least squares and singularities",
+        "Joint limits, constraints, foot placement on uneven ground and look-at IK"
+      ]
+    },
+    {
+      "title": "Motion capture data and retargeting",
+      "weeks": "4",
+      "topics": [
+        "Capture technologies: marker-based optical, inertial suits and single-camera pose estimation from phone video",
+        "BVH and similar file formats; cleaning noise, filtering and gap filling",
+        "Retargeting motion between skeletons of different proportions",
+        "Time alignment and dynamic time warping of clips; motion editing",
+        "Root motion extraction and removing foot-skate"
+      ]
+    },
+    {
+      "title": "Animation blending and state machines",
+      "weeks": "5",
+      "topics": [
+        "Linear blending, additive animation and masks for upper and lower body",
+        "Blend trees and two-dimensional blend spaces for locomotion",
+        "Animation state machines, transitions, layers and cross-fades",
+        "Motion graphs and motion matching for responsive locomotion",
+        "Inertialisation and transition smoothing without cross-fade cost"
+      ]
+    },
+    {
+      "title": "Physics-based character control",
+      "weeks": "6-7",
+      "topics": [
+        "Rigid body dynamics for articulated figures; ragdolls and joint constraints",
+        "Proportional-derivative control of joints; gain tuning and stability",
+        "Balance: inverted pendulum models, centre of pressure and zero-moment point",
+        "Active ragdolls, hit reactions and blending between kinematic and simulated motion",
+        "Learning controllers: trajectory optimisation and reinforcement learning to imitate motion clips"
+      ]
+    },
+    {
+      "title": "Crowd steering and flocking models",
+      "weeks": "8-9",
+      "topics": [
+        "Boids: separation, alignment and cohesion; emergent flocking",
+        "Steering behaviours: seek, arrive, pursue, wander, obstacle avoidance and path following",
+        "Velocity obstacles, reciprocal velocity obstacles and ORCA collision avoidance",
+        "Social force model and its parameters",
+        "Navigation for crowds: navigation meshes, flow fields and potential fields"
+      ]
+    },
+    {
+      "title": "Crowd scale, density and behaviour",
+      "weeks": "10-11",
+      "topics": [
+        "Pedestrian dynamics: fundamental diagram, lane formation, bottlenecks and stop-and-go waves",
+        "Spatial hashing and parallel update for tens of thousands of agents",
+        "Rendering crowds: GPU skinning, instancing, level of detail and impostors",
+        "Group behaviour, roles and goals; emergency evacuation of a market or stadium",
+        "Calibrating a crowd model against video-derived trajectories"
+      ]
+    },
+    {
+      "title": "Evaluating believability and project",
+      "weeks": "12-13",
+      "topics": [
+        "Perceptual factors in motion: the uncanny valley, foot-skate visibility and timing thresholds",
+        "Objective motion metrics: pose error, jerk, smoothness, energy and collision counts",
+        "Designing a perceptual user study: stimuli, controls, rating scales and significance tests",
+        "Ablation and comparison of methods; reporting results with confidence intervals",
+        "Project: a character locomotion system plus a crowd scene, with an evaluation report"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Rotations, hierarchies and skinning",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Compose three joint rotations as quaternions, compute the world position of a fingertip through a four-bone arm, and explain the candy-wrapper artefact in a twisted forearm.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Rotate a vector by 90 degrees about two axes using Euler angles in both orders and compare with the quaternion product"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Code forward kinematics for a 4-bone arm from local transforms and print the world position of the hand for five poses"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement linear blend skinning for a bent tube with two bones, twist the elbow and measure how much the volume collapses"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Better skinning and animation curves",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compare linear blend and dual quaternion skinning on a twisted limb, and design a keyframe curve for a bouncing ball with easing at the contacts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Plot linear, Catmull-Rom and Bezier interpolation through six keyframes and note where each overshoots or looks stiff"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Interpolate between two rotations with linear lerp and slerp over 20 steps and plot the angular speed of each"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Implement dual quaternion skinning for the twisted tube and compare its volume and joint appearance with linear blend skinning"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Solving inverse kinematics",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Solve a 3-bone chain reaching a target with CCD, FABRIK and a damped least squares step, and compare the iterations each needs and what happens when the target is out of reach.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Solve a two-bone planar arm for ten targets using the law of cosines and plot both elbow-up and elbow-down solutions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement FABRIK for a 5-bone chain and report the iterations to reach within 1 cm for 20 random targets"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement a Jacobian damped least squares solver and show behaviour near a singularity with and without the damping term"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Motion capture data and retargeting",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Take a noisy walking clip, filter and gap-fill it, retarget it to a shorter skeleton, and list where foot-skate appears and how to remove it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Smooth a noisy joint-angle signal with a moving average and a low-pass filter and compare residual noise and lag"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Align two walking clips of different lengths with dynamic time warping and show the warping path on the cost grid"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Detect foot contacts in a clip from velocity and height, then fix the foot-skate with IK and report skating distance before and after"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Blending clips and state machines",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Design a locomotion state machine with idle, walk, run and jump, including the transition conditions and blend durations, and define a two-dimensional blend space for strafing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Step through a character state machine with a given input sequence and record the state and blend weights at each frame"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Blend walk and run clips by speed with a one-dimensional blend tree and check the foot phase stays synchronised across 100 speeds"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement a nearest-neighbour motion matching search over a pose database and measure response latency to a change in desired direction"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Ragdolls and joint control",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Tune the stiffness and damping of a PD controller on a single hinge, then explain why a standing character needs its centre of pressure under the support polygon.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Simulate a single joint with a PD controller for ten gain pairs and plot step responses, marking overshoot and settling time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Simulate a three-link ragdoll falling onto the floor with joint limits and check the energy never rises between frames"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Simulate a linear inverted pendulum, apply pushes of 20, 40 and 60 N, and find the ones recoverable by stepping to a new foot position"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Active ragdolls and learned control",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Describe how a character should blend from keyframed walking to ragdoll when hit, how to blend back, and how you would train a policy to imitate a clip.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Blend a keyframed pose and a simulated pose with a weight sweeping from 0 to 1 and plot joint angle error against the target pose"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Train a small neural network on joint-angle targets from a recorded gait and watch the loss fall across 50 epochs in the visualiser"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Use random search to tune PD gains of a two-link walker so it imitates a reference trajectory, and report the imitation error per generation"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Flocking and steering",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Implement the three boid rules for 200 agents, vary the weights, and describe which settings give a flock, a swarm and a scattered cloud.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Code boids with separation, alignment and cohesion for 100 agents and print the average nearest-neighbour distance every 50 steps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Add obstacle avoidance and path following to steering agents so 50 agents cross a field with 5 obstacles with zero collisions"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement ORCA-style avoidance for 40 agents swapping positions on a circle and compare collisions and travel time with simple repulsion"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Social forces and crowd navigation",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Describe the three terms of the social force model, and compare navigation with a flow field against individual path finding for 5,000 agents heading to one exit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Run A* on a navigation grid with obstacles for three start points and record nodes expanded and path length"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Compute a flow field from a goal using breadth-first search and move 500 agents along it, counting steps to reach the exit"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Implement the social force model for 100 agents in a corridor and tune parameters until two opposing streams form lanes"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Pedestrian dynamics and scaling up",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Measure flow against density in your simulated corridor, draw the fundamental diagram, and explain how spatial hashing reduces neighbour search cost from quadratic to linear.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Plot speed against density from a table of corridor measurements and fit a line to find the jam density"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Add a spatial hash grid to a crowd of 10,000 agents and compare neighbour search time against brute force"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Simulate a 1 m wide door with 300 agents, measure the flow rate and reproduce the faster-is-slower effect by raising desired speed"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Crowd behaviour, evacuation and calibration",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Plan an evacuation drill model for a market with three exits, and describe how to calibrate agent speeds from trajectories extracted from a phone video.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Simulate 200 agents evacuating a room with two exits and report the evacuation time and per-exit usage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Fit a mean and standard deviation for walking speed from 40 extracted trajectories and sample agent speeds from the fitted distribution"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compare evacuation time for a market with exits blocked at random and propose the one widening that reduces the 95th percentile the most"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Measuring motion quality",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Pick five objective metrics for a locomotion system, define a rating-scale study with two methods and twenty clips, and state the statistical test you would use.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute jerk, smoothness and pose error for two motion clips and tabulate which clip scores better on each metric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Analyse ratings from 20 participants for two methods using a paired test and report the p-value and effect size"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Plot rating against foot-skate distance from the given study data and estimate the threshold at which half of the viewers notice it"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project evaluation and reporting",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present your locomotion and crowd project with a comparison table, error bars and a candid account of where the motion still looks wrong.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Compute the mean and a 95 percent confidence interval of a motion metric over 30 clips and plot it with error bars"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Run an ablation that turns off IK foot correction, blending and PD control in turn and tabulate the change in each metric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Run your complete locomotion controller with a 2,000-agent crowd scene, report frame time and quality metrics, and defend one trade-off you made"
+        }
+      ]
+    }
+  ]
+}

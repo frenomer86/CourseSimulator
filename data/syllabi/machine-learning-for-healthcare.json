@@ -1,0 +1,521 @@
+{
+  "slug": "machine-learning-for-healthcare",
+  "description": "Machine learning methods for clinical data and the specific ways that health data defeats naive modelling: missing and biased records, irregular signals, causal questions, subgroup harm and dataset shift. Students build and evaluate clinical risk models, signal and text pipelines and causal analyses in notebooks, then judge regulation and deployment in Ghanaian and wider African health settings.",
+  "modelledOn": [
+    "Hastie, Tibshirani and Friedman, The Elements of Statistical Learning",
+    "Hernan and Robins, Causal Inference: What If",
+    "Steyerberg, Clinical Prediction Models",
+    "WHO guidance on ethics and governance of artificial intelligence for health"
+  ],
+  "outcomes": [
+    "Prepare clinical records for modelling, naming the sources of missingness, bias and label error and choosing sound cohort definitions.",
+    "Build and evaluate risk and survival models with discrimination, calibration and decision-curve analysis on a time-respecting split.",
+    "Process physiological signals, medical images and clinical text with appropriate models and judge their failure modes.",
+    "Estimate treatment effects from observational data using propensity, doubly robust and target-trial approaches, and state the assumptions required.",
+    "Audit a model for subgroup performance, dataset shift and uncertainty, and design monitoring for it after deployment.",
+    "Assess a clinical AI product against regulatory, validation and ethical requirements and plan its deployment in a low-resource health system."
+  ],
+  "units": [
+    {
+      "title": "Clinical data and its quirks",
+      "weeks": "1-2",
+      "topics": [
+        "Sources and structure: electronic records, registries, claims and device data; FHIR resources and standard vocabularies (ICD, SNOMED CT, LOINC)",
+        "Defining cohorts, outcomes and index times; computable phenotypes",
+        "Missing data: MCAR, MAR and informative missingness; imputation and missingness indicators",
+        "Irregular sampling, measurement bias and why a lab test being ordered is itself a signal",
+        "Selection and time-related biases: immortal time, leakage and look-ahead",
+        "Privacy and governance: de-identification, consent, and the Ghana Data Protection Act"
+      ]
+    },
+    {
+      "title": "Risk stratification and prediction",
+      "weeks": "3-4",
+      "topics": [
+        "Supervised models for clinical risk: regularised logistic regression, gradient boosting and sparse score cards",
+        "Time-to-event modelling: Kaplan-Meier, Cox regression and censoring",
+        "Discrimination: ROC and precision-recall analysis, and their dependence on prevalence",
+        "Calibration: reliability curves, calibration slope and recalibration",
+        "Decision-curve analysis and net benefit; choosing thresholds from clinical cost",
+        "Study design: temporal and site-wise splits, sample size and overfitting; imbalance handling",
+        "Early warning scores and maternal-risk triage tools used in low-resource clinics"
+      ]
+    },
+    {
+      "title": "Physiological time series",
+      "weeks": "5-6",
+      "topics": [
+        "ECG, photoplethysmography and EEG: acquisition, noise sources and filtering",
+        "QRS detection and heart-rate variability features",
+        "Irregular ICU and ward vital-sign series: alignment, imputation and windowing",
+        "Sequence models: one-dimensional convolutions, recurrent networks and transformers for signals",
+        "Hidden Markov and state-space models for physiological state tracking",
+        "Alarm fatigue, anomaly detection and low-cost wearable sensing in rural settings"
+      ]
+    },
+    {
+      "title": "Medical images",
+      "weeks": "7",
+      "topics": [
+        "Convolutional networks for chest X-ray and retinal image classification; transfer learning",
+        "Segmentation with encoder-decoder networks and Dice overlap",
+        "Label scarcity, weak labels and annotation disagreement between clinicians",
+        "Explanation by saliency maps and its limits",
+        "Screening deployments: tuberculosis radiology and diabetic retinopathy in district hospitals"
+      ]
+    },
+    {
+      "title": "Clinical text and language models",
+      "weeks": "8",
+      "topics": [
+        "Clinical text properties: abbreviations, negation, templates and copy-paste",
+        "Named-entity recognition, negation and temporal relations; automatic ICD coding",
+        "Word embeddings and transformer encoders pre-trained on clinical text",
+        "Large language models for summarisation and question answering; hallucination and safety evaluation",
+        "Low-resource languages and code-switching: Twi, Ewe and Hausa in health communication",
+        "Evaluating text models: reader studies, error taxonomies and privacy leakage"
+      ]
+    },
+    {
+      "title": "Causal inference with observational data",
+      "weeks": "9-10",
+      "topics": [
+        "Potential outcomes, confounding and directed acyclic graphs; adjustment sets",
+        "Propensity scores: matching, weighting and overlap diagnostics",
+        "Doubly robust estimation and targeted learning",
+        "Target-trial emulation and guarding against immortal-time and selection bias",
+        "Instrumental variables, regression discontinuity and difference-in-differences",
+        "Heterogeneous treatment effects: meta-learners and causal forests",
+        "Treatment policies and off-policy evaluation; reinforcement learning for sepsis and dosing, and its risks"
+      ]
+    },
+    {
+      "title": "Fairness, robustness and dataset shift",
+      "weeks": "11",
+      "topics": [
+        "Subgroup performance and fairness criteria: equalised odds, calibration within groups, and their incompatibility",
+        "Sources of bias: label proxies, unequal access to care and under-represented populations",
+        "Covariate, label and concept shift; temporal drift and site transfer",
+        "Detecting shift and monitoring model performance without labels",
+        "Uncertainty quantification and conformal prediction; deferral to clinicians",
+        "Interpretable and explainable models in clinical practice"
+      ]
+    },
+    {
+      "title": "Regulation, validation and deployment",
+      "weeks": "12-13",
+      "topics": [
+        "Software as a medical device: risk classes, regulators and the Ghana Food and Drugs Authority position",
+        "Validation ladder: retrospective, silent-mode and prospective studies; reporting guidelines for prediction models and AI trials",
+        "Workflow integration, human factors and alert fatigue",
+        "Monitoring and updating deployed models; change control",
+        "Privacy-preserving learning: federated learning and differential privacy across hospitals",
+        "Ethics, accountability and consent; liability when a model errs",
+        "Project: a clinical prediction study, from cohort definition to a deployment and monitoring plan"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Clinical data sources and cohorts",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Define a cohort, index time and outcome for 30-day readmission from a described record system, and say which codes and tests you would use for the phenotype.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Parse a FHIR-style JSON bundle of patient records into a table of encounters, diagnoses and lab results, and report counts per resource type"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Build a cohort from synthetic visit records using inclusion, exclusion and index-date rules, and draw the attrition counts at each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Compare mean imputation, multiple imputation and missingness indicators on a lab dataset with informative missingness, and report the effect on a model's AUROC"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Bias, leakage and privacy",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Find three leakage or bias problems in a described study design, and write the de-identification steps needed to share a clinic dataset under Ghana law.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Show that lab test ordering predicts the outcome independent of the result, and quantify its effect on a risk model on synthetic data"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Find and remove the leaking features and immortal-time errors from a given feature table, and report how performance changes after correction"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Prepare a clinic dataset for sharing in a case file: choose identifiers to remove, check re-identification risk and justify against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Building clinical risk models",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Fit a logistic regression and a gradient-boosted model to predict diabetes complications, plot ROC and precision-recall curves, and fit a Cox model with censored follow-up.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Train a regularised logistic regression on a synthetic clinic dataset and report coefficients as odds ratios with confidence intervals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Estimate Kaplan-Meier survival curves for two treatment groups, with censoring, and compare them with a log-rank test"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Compare ROC and precision-recall curves for the same model at 2 percent and 20 percent prevalence, and explain why AUROC barely moves"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Calibration, utility and study design",
+      "topics": [
+        "2.5",
+        "2.6",
+        "2.7"
+      ],
+      "exercise": "Check calibration of a risk score on a new hospital, compute net benefit at three thresholds, and design a temporal validation split for a sepsis model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Plot a reliability curve for a model, compute calibration slope and intercept, and recalibrate on a new site's data"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Compute net benefit across thresholds from 1 to 40 percent and plot a decision curve for the model against treating all and none"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Compare a random split with a temporal split on a drifting dataset and measure the optimism of the random split"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "ECG and signal processing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Filter a noisy ECG, detect R peaks, compute heart rate and heart-rate variability, and decide how to window and align ICU vital signs for a model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Apply a band-pass filter to a noisy ECG and a notch filter for mains noise, and plot the signal before and after"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement a QRS detector with derivative, squaring and moving-window integration, and measure sensitivity and precision against annotated beats"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Resample irregular vital signs to hourly windows with last-value carry-forward and masks, and compare imputation methods by downstream error"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Sequence models and monitoring",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Train a one-dimensional convolutional network on ECG segments, fit a hidden Markov model to vital-sign states, and propose an alarm policy that reduces false alarms.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Step a one-dimensional convolution and a recurrent network over an ECG window in the visualiser, and describe what each layer extracts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Fit a two-state hidden Markov model to heart-rate series from stable and deteriorating patients, and decode the most likely state sequence"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Design an alarm rule with persistence and context, replay 48 hours of ward data, and compare alarms per patient-day and missed events"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Medical image learning",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Fine-tune a pre-trained network for chest X-ray triage on a small labelled set, measure inter-reader disagreement, and discuss where a tuberculosis screening tool would fail in a district hospital.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Fine-tune a pre-trained image classifier on 500 labelled X-ray patches and report sensitivity at 90 percent specificity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute Dice and intersection-over-union for predicted and reference masks on 20 images, and rank cases by error"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Generate saliency maps for correct and wrong predictions, and check whether the highlighted regions match the clinical finding"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Clinical text and language models",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Extract medications and negated findings from ten free-text notes, evaluate a summarisation model for hallucinated facts, and compare performance in English and a local language.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Write a rule-based negation detector for clinical sentences, and measure precision and recall on 100 labelled mentions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Train a text classifier on note embeddings to assign diagnosis codes, and compare it with a bag-of-words baseline on macro F1"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Review summaries from a language model against source notes in a case file, mark hallucinations and omissions, and set a safety rule for use"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Confounding and propensity methods",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Draw a DAG for a treatment-outcome question, choose the adjustment set, and compare crude, regression-adjusted, propensity-weighted and doubly robust estimates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Draw a DAG for the effect of a drug on recovery, list confounders and colliders, and name the minimal adjustment set"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Estimate treatment effects by inverse-probability weighting on a synthetic dataset with known truth, and check covariate balance after weighting"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement a doubly robust estimator, then break the outcome model and then the propensity model, and show when it stays unbiased"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Target trials, instruments and treatment policies",
+      "topics": [
+        "6.5",
+        "6.6",
+        "6.7"
+      ],
+      "exercise": "Emulate a target trial from records with eligibility, time zero and follow-up stated, and explain when an instrument or a difference-in-differences design is credible.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Estimate an effect with an instrumental variable on simulated data with unmeasured confounding and compare it with the naive estimate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Fit a causal forest or meta-learner to find which patients benefit most, and test whether the discovered subgroups hold in held-out data"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.7",
+          "engine": "E6",
+          "title": "Walk through a dosing policy evaluated off-policy from logged data, and identify where importance weights explode and the estimate becomes unreliable"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Fairness, shift and uncertainty",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Audit a risk model across age, sex and facility type, test it on a shifted site, and add a conformal prediction layer that defers uncertain cases.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Compute AUROC, calibration and false-negative rate per subgroup for a trained model, and flag the groups with a significant gap"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Train on one hospital and test on another, detect covariate shift with a classifier two-sample test, and apply reweighting"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Add split conformal prediction to a classifier, check 90 percent coverage on test data, and report the rate of deferrals to clinicians"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Regulation and validation",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Classify a sepsis-alert product as a medical device, list the evidence a regulator would expect, and plan a silent-mode evaluation followed by a prospective study.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Classify an AI triage tool by risk class and list the regulatory evidence required, using a case file and the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Plan a silent-mode pilot of a model in a regional hospital, choose success criteria, and decide go or no-go from interim results"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Simulate a deployed model with a rising false-alert rate, build a monitor that detects the drift, and show how late it fires"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Privacy-preserving learning, ethics and project",
+      "topics": [
+        "8.5",
+        "8.6",
+        "8.7"
+      ],
+      "exercise": "Compare central, federated and differentially private training for a multi-hospital model, and present your clinical prediction study with its validation and monitoring plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Train a model across three simulated hospitals with federated averaging, and compare it with pooled and single-site models on accuracy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Add noise for differential privacy to a trained model's statistics and plot accuracy against the privacy budget"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Decide accountability and consent in a case where a deployed model contributes to a missed diagnosis, and defend the position against the rubric"
+        }
+      ]
+    }
+  ]
+}

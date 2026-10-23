@@ -110,5 +110,399 @@
         "Project: an event-driven application with files, classes and a GUI"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "First programs: values, types and input",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Trace by hand the values of every variable in a short program that computes a trader's change in cedis and write down the final output.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a program that stores the price and quantity of three items, computes the total in cedis and prints it with two decimals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Read a name and a mobile money amount with input, convert types correctly and print a formatted receipt using f-strings"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Debug a given program that mixes strings and numbers and gives wrong totals, fix all five type errors and explain each one in comments"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Modules and Pythonic style",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Rewrite a poorly named 15-line script using PEP 8 naming, comments and docstrings, and explain each change in one line.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Use the math module to compute the area and circumference of five circles and print them rounded to one decimal place"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Use random and time to simulate 1000 dice rolls, time the loop, and report the frequency of each face"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Refactor a given 40-line unit conversion script into documented functions with PEP 8 style while keeping its output identical"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Conditions, loops and functions",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write pseudocode and then Python for a fare calculator that charges by distance with a student discount, and test it on six trips.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Write a grade program with if, elif and else that maps marks to letter grades and test the boundaries at 39, 40, 69 and 70"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Print a multiplication table and the prime numbers up to 100 using nested loops, with break and continue, and check against known values"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Write a function with default and keyword arguments that computes loan repayments, and test it for ten parameter combinations"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Recursion and exceptions",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain on paper the call stack of a recursive factorial of 5, showing each call and return.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Step through recursive Fibonacci of 5 and count the repeated calls, then draw the call tree"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Write a recursive binary search and a recursive Sierpinski drawing function and test them on given inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Build an input validation loop that accepts only a valid Ghana phone number or age with try, except and finally, and test it on 12 bad inputs"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Strings, lists, dictionaries and sets",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Count the most common words in a paragraph by hand for the first two sentences and compare with your program's output.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Slice and transform a string to extract initials, reverse a word and detect a palindrome for six given words"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Use list comprehensions to filter and transform a list of 20 exam scores and compute the pass list and the average"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Count word frequencies in a paragraph with a dictionary, group the words by length with sets and print the top five"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Files, data formats and aliasing",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Predict the output of a short program that copies a list in three ways and explain why changes appear or do not appear in the original.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Trace the memory diagram of a list assigned to two names, then copied, and note which edits affect which variable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Read a CSV of 30 exam results, compute each student's average and write the ranking to a new file"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Read a JSON file of sales records, find the best-selling product by month, handle missing fields, and write a summary JSON"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Algorithms, analysis and command-line tools",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compare binary search with linear search for 1000 items by counting the maximum steps in each and explain the difference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Step through insertion sort on a list of eight numbers and write the list after each pass"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Time linear search, binary search and sorted lookups on lists of 1000, 10000 and 100000 items and plot the growth against big-O predictions"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Extract phone numbers and dates from a messy block of text with regular expressions, then test on 15 tricky strings and report any misses"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Classes and inheritance",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw a class diagram for a bank account system with a savings and a current account and list the methods each class needs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Write a Student class with attributes and methods, create five objects and print each with a method"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Add __str__, __eq__ and __lt__ to a Money class and use them to sort and compare a list of 8 amounts"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Build a class hierarchy of vehicles with polymorphic fare methods, then rewrite one part with composition and compare which design is easier to extend"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Data structures as classes and testing",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a short test plan listing ten cases for a Stack class, covering empty, full and normal behaviour.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Implement a Stack class with push, pop and peek, then use it to check balanced brackets in six strings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Implement a linked list and watch it step by step as you insert, delete and reverse nodes, checking the pointers after each operation"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Write unit tests for a bank account class covering deposits, overdrafts and invalid input, and fix the bugs the tests reveal"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Graphics, images and charts",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Describe how you would blur an image in plain language, listing exactly which pixels are averaged for a given pixel.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Draw a spiral and a recursive tree with turtle graphics from given parameters and check the shapes against the expected picture"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Load a small grid of grayscale pixel values and apply invert, brightness and a 3x3 blur, printing the result matrix"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Draw a text bar chart of rainfall for 12 months without a library, then reproduce it with matplotlib and compare"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Networking and web clients",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Draw the sequence of messages for a client fetching a web page from a server, marking where TCP and HTTP each begin.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Write a simple echo server and client that exchange five messages over a socket in the simulated environment"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Fetch a JSON exchange rate response, parse it, and print cedi values for three currencies, handling a failed request gracefully"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Build a small chat server with threads that serves two clients, then find and fix a blocking call that freezes one of them"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "GUI programming with tkinter",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Sketch a layout for a to-do application on paper and write down which widgets and layout manager you would use for each region.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Build a tkinter-style window with a label, an entry and a button that prints the entry text when clicked"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Write a temperature converter with separate conversion functions and GUI code, then test the functions without opening a window"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Build a to-do list application where the data model is separate from the interface, with add, delete and save to file features"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Event-driven programming and project",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a project plan with milestones for an event-driven application and a test list of at least eight user actions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Wire three buttons to callbacks that change a counter and a label, and print the order of events for a scripted click sequence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Build a drawing program that responds to mouse and key events with undo and a timer that clears the canvas, and test eight event sequences"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Build and demonstrate an event-driven application with classes, file storage and a GUI, supported by at least 10 passing unit tests"
+        }
+      ]
+    }
   ]
 }

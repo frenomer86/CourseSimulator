@@ -1,0 +1,505 @@
+{
+  "slug": "game-ai",
+  "description": "How game characters sense, move, decide, plan and learn within a strict frame budget. Students implement steering, A* pathfinding, behaviour trees, utility and planning systems, influence maps and tree search for classic games such as Oware, then test the results with bots.",
+  "modelledOn": [
+    "Millington, AI for Games",
+    "Buckland, Programming Game AI by Example",
+    "Rabin (ed.), Game AI Pro (collected chapters)",
+    "Browne et al., A Survey of Monte Carlo Tree Search Methods"
+  ],
+  "outcomes": [
+    "Implement kinematic and steering behaviours and combine them into believable group movement.",
+    "Implement and compare A*, hierarchical and navigation-mesh pathfinding on game maps and justify heuristic choices.",
+    "Design character decision making with finite state machines, behaviour trees, utility systems and goal-oriented planning.",
+    "Build tactical analysis tools such as influence maps and cover selection for squad behaviour.",
+    "Implement minimax, alpha-beta and Monte Carlo tree search for turn-based games.",
+    "Evaluate game AI with automated playtesting, profiling and simple learning agents."
+  ],
+  "units": [
+    {
+      "title": "Foundations of game AI",
+      "weeks": "1",
+      "topics": [
+        "Game AI versus academic AI: believability, fun and fairness over optimality; the sense-think-act loop",
+        "AI architecture inside a game loop: frame budgets, time slicing, scheduling and level of detail",
+        "Difficulty and fairness: randomness, rubber-banding and dynamic difficulty adjustment",
+        "World knowledge and perception: blackboards, sight and hearing models, memory of the player"
+      ]
+    },
+    {
+      "title": "Steering and movement",
+      "weeks": "2-3",
+      "topics": [
+        "Kinematic movement: seek, flee, arrive and wander",
+        "Steering behaviours: velocity matching, align, face, pursue and evade",
+        "Delegated steering: path following, separation and obstacle avoidance",
+        "Flocking with boids and crowd simulation",
+        "Combining behaviours: weighted blending, priority arbitration and steering pipelines",
+        "Predicting motion: projectile aiming and jump planning"
+      ]
+    },
+    {
+      "title": "Pathfinding",
+      "weeks": "4-5",
+      "topics": [
+        "Graph representations of game worlds: tile grids, waypoint graphs and navigation meshes",
+        "Dijkstra's algorithm and A*: open and closed lists, admissible and consistent heuristics",
+        "Heuristic design and tie-breaking; weighted A*, IDA* and memory limits",
+        "Hierarchical pathfinding and jump point search for large maps",
+        "Navigation meshes: generation and the funnel algorithm for smooth paths",
+        "Dynamic worlds: D* Lite, replanning and local avoidance with reciprocal velocity obstacles"
+      ]
+    },
+    {
+      "title": "Decision making",
+      "weeks": "6",
+      "topics": [
+        "Decision trees and their authoring limits",
+        "Finite state machines: hierarchical and pushdown variants, transitions and state explosion",
+        "Behaviour trees: sequence, selector, decorator and parallel nodes with a blackboard",
+        "Rule-based systems and fuzzy logic for graded decisions",
+        "Utility-based AI: response curves, scoring and action selection"
+      ]
+    },
+    {
+      "title": "Goal-oriented behaviour and planning",
+      "weeks": "7-8",
+      "topics": [
+        "Goal-oriented behaviour: goals, insistence and discontent",
+        "Goal-oriented action planning: STRIPS-style actions with preconditions and effects, searched with A*",
+        "Hierarchical task networks and task decomposition",
+        "Plan execution: monitoring, invalidation and replanning",
+        "Comparing FSM, behaviour tree, utility and planner designs for authoring cost and emergent behaviour"
+      ]
+    },
+    {
+      "title": "Tactical and strategic AI",
+      "weeks": "9",
+      "topics": [
+        "Waypoint tactics and cover point selection",
+        "Influence maps: propagation, decay and terrain analysis",
+        "Tactical pathfinding with danger costs",
+        "Coordinated action: squads, formations and strategy layers in real-time strategy games",
+        "The AI director: pacing and encounter generation in survival and shooter games"
+      ]
+    },
+    {
+      "title": "Adversarial search and Monte Carlo tree search",
+      "weeks": "10-11",
+      "topics": [
+        "Minimax and alpha-beta pruning with move ordering",
+        "Evaluation functions, iterative deepening and transposition tables",
+        "Expectimax for games with dice, such as Ludo and backgammon",
+        "Monte Carlo tree search and UCT: selection, expansion, simulation and backpropagation",
+        "Case study: AI for Oware (Ayo) and Ludo, comparing search depth with simulation count"
+      ]
+    },
+    {
+      "title": "Learning agents and AI testing",
+      "weeks": "12-13",
+      "topics": [
+        "Reinforcement learning in games: Q-learning on a grid world and function approximation",
+        "Imitation learning from player traces and behaviour cloning",
+        "Neuroevolution and genetic algorithms for tuning agents",
+        "Automated playtesting: bots, coverage of game states and balance metrics",
+        "Debugging, visualising and profiling AI; determinism and replay for reproducible bugs",
+        "Player modelling and the ethics of adaptive difficulty and engagement design"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What game AI is",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Pick a game you know and write a half-page analysis of its AI: what the characters sense, what they decide, and where the designers cheat to keep it fun.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Review a case of a stealth game enemy that feels unfair, decide which sensing and reaction rules to change and score your choices against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E6",
+          "title": "Step an AI scheduler through ten agents with a 2 millisecond frame budget and record which agents get time-sliced and delayed"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement dynamic difficulty adjustment for an endless runner using a rolling success rate and show how the spawn rate responds over 200 rounds"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Kinematic movement and basic steering",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Derive the arrive behaviour with a slowing radius and explain in writing how the radii and time-to-target change the final approach.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Implement seek, flee and arrive for a point agent and plot its trajectory to a moving target for three slowing radii"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement pursue and evade by predicting the target position and compare the capture time against plain seek over 50 random starts"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Build path following with separation and obstacle avoidance for five agents crossing a marketplace map and report the number of collisions"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Groups, blending and prediction",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Describe how you would tune boid weights to get a convincing crowd leaving a stadium, and list two failure modes of weighted blending.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement boids with separation, alignment and cohesion for 50 agents and measure how flock spread changes as each weight varies"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Combine seek, avoidance and separation with a priority arbiter, compare it with weighted blending and report where each gets stuck"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Compute the launch angle and speed that hit a moving target under gravity, and test the aimer on 30 random target paths"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Grids, graphs and A*",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Prove that Manhattan distance is admissible on a 4-connected grid and show by example when it stops being admissible with diagonal moves.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Step Dijkstra and then A* on a 10 by 10 grid, recording open and closed lists and comparing the number of nodes expanded"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Compare Manhattan, Euclidean and octile heuristics on three maps with walls and report nodes expanded and path cost for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement weighted A* and plot path cost against nodes expanded for weights from 1 to 5 on a 64 by 64 map"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Large maps and navigation meshes",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Choose a pathfinding stack for a large open-world city map with moving vehicles, and justify each layer against the memory and time budget.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Build a two-level abstraction of a 40 by 40 map and compare hierarchical search with flat A* on path length and nodes expanded"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Apply the funnel algorithm to a corridor of triangles to turn a jagged centre-line path into a smooth shortest path"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Implement replanning when a door closes mid-route using D* Lite and compare its work with rerunning A* from scratch"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Decision making architectures",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Model a guard character in three ways, as a finite state machine, a behaviour tree and a utility system, and compare how each handles a new behaviour.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Draw and step a hierarchical state machine for a patrol-chase-search guard and list the transitions that cause flip-flopping"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement a behaviour tree with selector, sequence and decorator nodes for a shopkeeper character and log which nodes succeed each tick"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Build a utility system for a farm-sim worker with response curves for hunger, distance and urgency and tune it to avoid oscillation"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Goals and planning",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write STRIPS-style actions for a character who must cook a meal, with preconditions and effects, and hand-trace the plan found.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Implement goal-oriented behaviour with insistence values for a villager and report the discontent score of each choice as the day proceeds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Search a small action set with A* over world states to find a plan that reaches a goal, and view the plan graph"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Decompose a compound task into primitive tasks with a hierarchical task network and compare plan length and search effort against flat planning"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Execution, replanning and design trade-offs",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compare FSM, behaviour tree, utility and planner approaches for a game of your choice in a decision table covering authoring cost, debugging and emergent behaviour.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Execute a plan step by step while an event invalidates a precondition, and show when the agent should replan rather than continue"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Add plan monitoring to a planner so it detects an invalidated step, replans and logs the number of replans over 100 randomised runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Choose an AI architecture for a given game brief in a case, justify the trade-offs and score your choice against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Tactical and strategic AI",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Sketch the influence maps that a strategy-game AI would keep to decide where to expand, defend and attack, and say how often each should update.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Score candidate cover points by exposure to a threat and distance to the agent, then pick and justify the best point"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Compute an influence map from unit positions with propagation and decay on a 30 by 30 grid and mark the frontier between two teams"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E6",
+          "title": "Run tactical pathfinding where cell cost includes danger from the influence map and compare the route with the shortest path"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Minimax and alpha-beta",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Show by hand how alpha-beta prunes a given game tree for good and bad move ordering and state the best-case complexity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Step minimax and then alpha-beta on a game tree of depth 4 and count nodes saved by pruning for two move orderings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Write an evaluation function for Oware using seeds in store, mobility and captures, and pit depth-4 search against a random mover"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E6",
+          "title": "Evaluate a Ludo-style position with expectimax over dice outcomes and compare the chosen move with the minimax choice"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Monte Carlo tree search",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Explain how the UCT exploration constant changes search behaviour and design an experiment to choose it for a game of Oware.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E6",
+          "title": "Run four iterations of MCTS by hand on a small tic-tac-toe position, recording selection, expansion, simulation and backpropagation counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Implement UCT for a connect-style game and plot win rate against the number of simulations from 100 to 5,000"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Compare alpha-beta and MCTS agents at equal time budgets in Oware over 100 games and report win rates with confidence intervals"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Learning agents",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Compare reinforcement learning, imitation learning and evolution as ways to produce a racing-game opponent, listing the data and compute each needs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Train a tabular Q-learning agent on a 6 by 6 grid world with traps and plot episode return across 2,000 episodes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Clone behaviour from 500 recorded player moves in a platform game with a decision tree and measure agreement with the player on held-out moves"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Evolve the weights of a small controller for a lander game with a genetic algorithm and report fitness per generation"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Testing, profiling and ethics",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Prepare a playtesting and AI quality plan for a mobile game: bots to run, metrics to track, performance limits and a policy on adaptive difficulty.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Run 1,000 bot games of a card game with random and greedy bots and flag any strategy that wins more than 60 percent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E6",
+          "title": "Profile an AI update loop, find the slowest agents in the frame timeline and propose time slicing to hold a 4 millisecond budget"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Decide in a case whether a game should adapt difficulty or spending prompts to a player's behaviour, and score your reasoning against the rubric"
+        }
+      ]
+    }
+  ]
+}

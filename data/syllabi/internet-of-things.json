@@ -119,5 +119,401 @@
         "Capstone: an end-to-end IoT system from sensor to cloud dashboard, with a cost and power budget"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "IoT architecture, sensors and addressing",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Draw a layered IoT reference architecture for a smart water meter and list the sensor, signal conditioning and network technology at each layer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E8",
+          "title": "Connect a temperature sensor and a relay to a microcontroller on the bench and show the ADC reading switching the relay at 30 degrees"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E3",
+          "title": "Assign IPv6 addresses to six constrained nodes and a border router in the network simulator and verify that packets reach every node"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw an architecture diagram for a smart streetlight system mapping things, gateway, platform and application to a reference model and noting the data flows"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Characteristics and lab kit",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Short comparison: choose between Arduino, ESP32 and Raspberry Pi for three IoT scenarios and justify each choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E8",
+          "title": "Blink an LED and read a button on a simulated ESP32 board and note which pins and peripherals the board offers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Simulate 50 sensors sharing a link with intermittent connectivity and record how many readings are lost and the data volume per hour"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E8",
+          "title": "Pick a board and sensors for a battery-powered cold-room monitor, wire the circuit in the simulator and check its current budget"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "IoT communication technologies",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compare four wireless technologies in a table of range, data rate, power and cost, and explain MQTT QoS levels in your own words.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E8",
+          "title": "Publish a temperature reading to an MQTT topic from a simulated sensor and subscribe to it from a second client, checking the payload"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Select the radio technology for a farm sensor network from LoRaWAN, Zigbee, BLE and NB-IoT given range, battery and cost evidence, scored on a rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E3",
+          "title": "Compare UDP and TCP for a 10-second sensor reporting interval on a lossy wireless link in the simulator and report packet loss and overhead"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Choosing protocols and securing them",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Short design: pick a protocol stack for a soil sensor and write down how devices will authenticate to the broker.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Run an MQTT broker with three clients, set a retained message and test last will, observing each client's view of the topics"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Choose between MQTT and CoAP for a battery-powered sensor by measuring bytes sent and radio on-time for each over 100 readings"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E3",
+          "title": "Add TLS and client certificates to an IoT link in the simulator and show a device with a wrong certificate is rejected"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Sensor networks and M2M",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Draw a clustered sensor network on paper, choose cluster heads and estimate the energy saved over direct transmission.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E3",
+          "title": "Build a four-hop sensor network topology in the simulator and trace one reading from the farthest node to the sink"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E3",
+          "title": "Configure a gateway that translates between a local sensor protocol and MQTT to the cloud, and verify values arrive in the right topics"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E3",
+          "title": "Fail a relay node in a sensor network, observe the effect on delivery and add redundant paths so delivery stays above 95 percent"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Interoperability",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Write a one-page note on how you would integrate a thermometer from vendor A and a humidity sensor from vendor B into one dashboard.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Encode a temperature reading as JSON, CBOR and SenML and compare the byte sizes of each representation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E8",
+          "title": "Register a device with a LwM2M-style object model and read its resources from a client, checking the units and data types"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E8",
+          "title": "Integrate two sensors using different payload formats through a gateway that normalises them to one schema, and test with malformed input"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Arduino and ESP32 programming",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Program a threshold alarm: read a sensor, compare to a limit, drive a buzzer and publish the state, and write a brief test plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E8",
+          "title": "Read a potentiometer and dim an LED with PWM using setup and loop, and add a timer interrupt that blinks a second LED"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E8",
+          "title": "Read an I2C temperature sensor and an analog soil sensor, show both on an LCD and drive a relay when the soil is too dry"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E8",
+          "title": "Send soil moisture readings to an MQTT broker over Wi-Fi, reconnect after a network drop and handle an over-the-air update message"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Power and the soil moisture project",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Mini-project report: a soil-moisture monitor with a circuit diagram, code description, power budget and test results.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Measure the current of a sensor node in sleep and active states and calculate battery life for a 2000 mAh cell"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Size a solar panel and battery so that a field sensor reporting every 15 minutes survives five cloudy days in the simulator"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E8",
+          "title": "Build a soil-moisture monitor that samples hourly, publishes to MQTT and sleeps between readings, and meet a one-month battery target"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Raspberry Pi and edge processing",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Document a Raspberry Pi gateway design with broker, database and dashboard, and list how you will manage it remotely.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E8",
+          "title": "Control an LED and read a button on Raspberry Pi GPIO with Python and log each press with a timestamp"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E8",
+          "title": "Run an MQTT broker and a local database on a Raspberry Pi gateway and show a dashboard with the last 100 readings"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Filter and aggregate noisy sensor data at the edge and train a small classifier that flags abnormal readings, reporting precision and recall"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "SDN for IoT",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Short essay: explain how an SDN controller could prioritise alarm traffic over routine telemetry in a smart building.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E3",
+          "title": "Install flow rules on a simulated OpenFlow switch to forward sensor traffic to a gateway and watch the flow table counters change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E3",
+          "title": "Write flow rules that give alarm packets priority over telemetry and block an unknown device, then verify with test traffic"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E3",
+          "title": "Build an SDN-managed IoT network with 20 sensors, reroute traffic around a failed link and measure the recovery time"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "IoT data, cloud and analytics",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Design a data pipeline and retention plan for 1,000 sensors reporting every minute, and estimate the storage per year.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E12",
+          "title": "Create a storage bucket and load a day of sensor readings as time-stamped files, then list and read back the readings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E12",
+          "title": "Provision three devices on a managed IoT service, add a rule that triggers an alert at a threshold and check the notification"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Detect anomalies in a stream of temperature data with a rolling z-score and use them to predict a failing pump within the margin of error"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Fog computing for an intermittent farm",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Design a fog layer for a farm with intermittent Internet, specifying what runs on devices, the fog node and the cloud.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E12",
+          "title": "Expose two physical sensors as virtual sensors through a cloud service and read both through a single API call"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E3",
+          "title": "Compare round-trip latency and Internet bandwidth when sensor data is processed on a local fog node and when sent to the cloud"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E12",
+          "title": "Design and test a farm deployment where a fog node buffers data during a six-hour outage and syncs it without loss when the link returns"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Applications, security and the capstone",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4"
+      ],
+      "exercise": "Capstone deliverable: system architecture, power and cost budget, security analysis and test results for an end-to-end IoT system.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.2",
+          "engine": "E8",
+          "title": "Build a soil-moisture irrigation controller that switches a valve from sensor readings and logs each event, and verify it with simulated dry and wet soil"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.3",
+          "engine": "E3",
+          "title": "Defend an IoT network against a simulated Mirai-style scan by changing default credentials, disabling unused services and adding an ACL, then retest"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.4",
+          "engine": "E12",
+          "title": "Build an end-to-end IoT system from sensor to cloud dashboard and keep monthly cost and power within a stated budget under a 30-day simulation"
+        }
+      ]
+    }
   ]
 }

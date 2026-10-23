@@ -1,0 +1,501 @@
+{
+  "slug": "advanced-research-design-and-empirical-methods",
+  "description": "A doctoral research seminar on designing, running and defending empirical studies of information systems and interactive systems: quantitative, qualitative and mixed methods, experiments with people, survey instruments, interviews, structural models and telemetry. Students critique published studies, simulate studies and analyses in the lab, work through ethics cases, and prepare a research proposal.",
+  "modelledOn": [
+    "Creswell and Creswell, Research Design: Qualitative, Quantitative and Mixed Methods Approaches",
+    "Hair et al., A Primer on Partial Least Squares Structural Equation Modeling",
+    "Lazar, Feng and Hochheiser, Research Methods in Human-Computer Interaction",
+    "Hevner, March, Park and Ram, Design Science in Information Systems Research"
+  ],
+  "outcomes": [
+    "Justify a research design by relating a research question, philosophical stance, theory and method, and name the threats to its validity.",
+    "Design and analyse a controlled experiment or user study, including sampling, power analysis, measures and appropriate statistical models.",
+    "Develop, pilot and validate a survey instrument and test a structural model with it.",
+    "Plan and analyse qualitative studies, code data reliably and combine them with quantitative evidence in a mixed-methods design.",
+    "Design telemetry and analytics studies and apply causal reasoning to observational data.",
+    "Prepare an ethics application and a preregistered, reproducible research proposal, and critique published studies against reporting standards."
+  ],
+  "units": [
+    {
+      "title": "Foundations of research design",
+      "weeks": "1-2",
+      "topics": [
+        "Philosophical positions: positivism, interpretivism, critical research and pragmatism; ontology and epistemology",
+        "Research questions, constructs and hypotheses; theory building and theory testing in information systems and games research",
+        "Design science research: artefacts, rigour and relevance, and evaluation strategies",
+        "Systematic literature reviews: search protocols, PRISMA, snowballing and the basics of meta-analysis",
+        "Validity and reliability: internal, external, construct and statistical conclusion validity; threats to validity"
+      ]
+    },
+    {
+      "title": "Experiments, playtesting and user studies",
+      "weeks": "3-4",
+      "topics": [
+        "Experimental designs: between-subjects, within-subjects, factorial, Latin square, quasi-experiments and A/B tests",
+        "Sampling and recruitment, including African settings; power analysis and sample size",
+        "Playtesting and usability sessions: think-aloud protocols, session scripts, observation and biometric measures",
+        "Standard measures: SUS, NASA-TLX, game experience and flow scales, UEQ, and behavioural metrics",
+        "Pilot studies, remote and low-connectivity studies, and sources of bias (experimenter, order, novelty)"
+      ]
+    },
+    {
+      "title": "Survey and questionnaire design",
+      "weeks": "5",
+      "topics": [
+        "Item writing, response scales, Likert and ordinal data, and question order effects",
+        "Construct definition and scale development: content validity, expert panels and pilot testing",
+        "Sampling frames, response rates, non-response bias, common method bias; translation and cultural adaptation into Twi and Ewe",
+        "Reliability and validity statistics: Cronbach's alpha, omega, exploratory and confirmatory factor analysis",
+        "Mobile and offline survey collection and data quality control"
+      ]
+    },
+    {
+      "title": "Quantitative analysis and structural models",
+      "weeks": "6-8",
+      "topics": [
+        "Hypothesis testing, effect sizes, confidence intervals, multiple comparisons and Bayesian alternatives",
+        "ANOVA, repeated measures, non-parametric tests and mixed-effects models",
+        "Regression: linear and logistic models, moderation and mediation",
+        "Structural equation modelling: path models, covariance-based versus PLS-SEM and fit indices",
+        "Worked structural models: technology acceptance (TAM, UTAUT) and information systems success models",
+        "Assumptions, outliers, missing data, p-hacking and preregistration of analyses"
+      ]
+    },
+    {
+      "title": "Telemetry and analytics studies",
+      "weeks": "9",
+      "topics": [
+        "Event logging design: instrumentation, schemas and privacy by design",
+        "Behavioural metrics: retention, funnels, churn, engagement and learning analytics",
+        "Analysing logs: sequence mining, clustering user or player types and survival analysis",
+        "Process mining on information system and ERP audit trails",
+        "Causal inference from observational data: difference-in-differences, propensity scores and online experiments"
+      ]
+    },
+    {
+      "title": "Qualitative and mixed methods",
+      "weeks": "10-11",
+      "topics": [
+        "Interviews: structured and semi-structured protocols, probing, recording, and theoretical saturation",
+        "Ethnography, field observation, diary studies, focus groups and case study research",
+        "Coding and analysis: open, axial and selective coding, thematic analysis, grounded theory and inter-coder agreement with Cohen's kappa",
+        "Mixed-methods designs: sequential explanatory, sequential exploratory and convergent; integrating evidence",
+        "Quality in qualitative research: trustworthiness, reflexivity, positionality and decolonial approaches"
+      ]
+    },
+    {
+      "title": "Ethics approval and consent",
+      "weeks": "12",
+      "topics": [
+        "Principles of research ethics: respect, beneficence and justice; how ethics review boards work",
+        "Informed consent: capacity, language and literacy, oral consent, and children and vulnerable groups",
+        "Data protection: the Ghana Data Protection Act, anonymisation, pseudonymisation, storage and retention",
+        "Ethics of games and persuasive technology: deception, dark patterns, harm in play studies and participant compensation",
+        "Community engagement, benefit sharing and researcher safety"
+      ]
+    },
+    {
+      "title": "Reporting, replication and the proposal",
+      "weeks": "13",
+      "topics": [
+        "Structure of a research paper: reporting results and following reporting standards",
+        "Open science: preregistration, registered reports, open data, code and materials",
+        "Reproducibility and the replication crisis; meta-research and publication bias",
+        "Writing the research proposal and the qualifying paper: defending design choices to reviewers"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Paradigms, theory and design science",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Read two published studies on mobile money adoption, one positivist and one interpretivist, and write a critique comparing their questions, assumptions, evidence and what each can claim.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Classify the stance (positivist, interpretivist, critical or pragmatic) of eight research abstracts and justify each from their questions and methods."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Turn a vague topic about game-based learning into a research question, constructs and testable hypotheses, and be scored on clarity and testability."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Evaluate a design science study of a clinic scheduling system, judging its rigour, relevance and evaluation, and recommend how to strengthen the claims."
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Literature review and validity",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Draft a search protocol and inclusion criteria for a systematic review on telemedicine adoption in West Africa, and list the biases the protocol is meant to control.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Name the threat to internal, external, construct or conclusion validity in each of ten short study descriptions."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Screen 30 abstracts against inclusion criteria, record reasons for exclusion in a PRISMA flow, and resolve disagreements with a second reviewer."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Pool effect sizes from eight studies with a random-effects meta-analysis, produce a forest plot and funnel plot, and discuss publication bias."
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Experimental design, sampling and power",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Design an experiment to test whether adaptive difficulty improves retention in a mobile learning game, choosing design, randomisation, sample size and outcome measure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Choose between-subjects, within-subjects or factorial designs for six study scenarios and justify each with order effects and cost."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Run power analyses for a two-group comparison across effect sizes 0.2, 0.5 and 0.8, and plot sample size against power."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Simulate an A/B test 5000 times under no true effect and under a small effect, and report the false positive rate and power under peeking."
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Playtesting, measures and field logistics",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write the session protocol for a playtest with ten participants in a school computer lab, including script, consent, tasks, measures and data capture.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Score twenty SUS questionnaires, compute the mean and confidence interval, and interpret it against the standard benchmark."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Run a simulated think-aloud session on a prototype, record the usability problems found, and rate their severity."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Plan a remote study for rural participants with intermittent connectivity, address bias and data loss, and be scored on feasibility and validity."
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Survey instruments and measurement",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Develop a ten-item scale for trust in mobile money agents: define the construct, write items, plan translation and pilot testing, and state how you will assess reliability and validity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Rewrite ten flawed survey items that are leading, double-barrelled or ambiguous, and explain each fix."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Compute Cronbach's alpha and item-total correlations for a 12-item scale on 200 responses, and drop items that harm reliability."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Run exploratory then confirmatory factor analysis on survey data, report loadings and fit indices, and decide whether the intended factor structure holds."
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Hypothesis testing, effect sizes and mixed models",
+      "topics": [
+        "4.1",
+        "4.2"
+      ],
+      "exercise": "Take a published usability study with only p-values reported, recompute effect sizes and confidence intervals from its tables, and say how the conclusions change.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Run a t-test and Mann-Whitney test on two groups of task times, report effect sizes with confidence intervals, and state which test fits."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Analyse a repeated-measures experiment with three conditions using ANOVA, check sphericity, and run corrected post-hoc comparisons."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Fit a mixed-effects model with random intercepts for participants and levels, and compare its conclusions with a naive ANOVA on the same data."
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Regression, mediation and structural equation models",
+      "topics": [
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Specify a path model for perceived usefulness, ease of use, trust and intention to use a mobile banking app, draw it, and state every hypothesis it implies.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Fit a logistic regression predicting app retention from three predictors and interpret the odds ratios with confidence intervals."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Test a mediation model with bootstrapped indirect effects on 300 cases and a moderation by user age, and report both results."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Estimate a PLS-SEM path model on survey data, report path coefficients, bootstrapped significance, R-squared and discriminant validity checks."
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Acceptance models and credible analysis",
+      "topics": [
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Write a preregistration for a UTAUT study: hypotheses, sample, exclusion rules, planned tests and what would count as a failed hypothesis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Handle missing data in a survey set by listwise deletion and multiple imputation, and compare the regression results from the two."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Fit a UTAUT model to simulated adoption data and report which hypotheses are supported, with effect sizes and model fit."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Demonstrate p-hacking by testing 20 outcomes and 4 subgroups on null data, then show how correction and preregistration restore a valid false positive rate."
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Telemetry, logs and causal evidence",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Design the telemetry plan for a learning app used in schools with unreliable networks: events, schema, sampling, privacy safeguards and the questions it can answer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Compute a retention curve and a signup funnel from an event log of 5000 sessions and identify the biggest drop-off."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Cluster players by behavioural features from game logs, choose the cluster count by silhouette score, and interpret each type."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Estimate the effect of a new feature using difference-in-differences and propensity matching on observational data, and compare it with a randomised benchmark."
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Interviews, fieldwork and coding",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write a semi-structured interview guide for district health staff on electronic record use, run a pilot interview, and revise the guide from what went wrong.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Conduct a simulated interview, choose follow-up probes at each branch, and be scored on neutrality and depth of the answers elicited."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Code 30 interview excerpts into themes with a codebook and compute Cohen's kappa against a second coder's labels."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Analyse ethnographic field notes from a market trader mobile-money case, build themes and a memo, and defend them against a sceptical reviewer."
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Mixed methods and quality in qualitative work",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Design a sequential explanatory mixed-methods study of why players abandon a game, stating how the interview phase will explain the survey results and how you will integrate them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Match six research questions to convergent, sequential explanatory or sequential exploratory mixed-methods designs and explain each choice."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Write a reflexivity statement and an audit trail for a qualitative study, and critique another student's for trustworthiness gaps."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Integrate survey scores and coded interview themes for 40 participants in a joint display, and identify cases where the two sources disagree."
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Ethics, consent and data protection",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write the ethics application for a study of children playing a learning game in rural schools: risks, consent and assent, data handling, compensation and the withdrawal procedure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Rewrite a consent form in plain language and an oral consent script for participants with low literacy, and check what must be disclosed."
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Plan data protection for an interview study: identifiers, pseudonymisation, storage, retention and sharing, checked against a legal checklist."
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Judge a study that deceives players about a loot box experiment, decide on approval conditions and debrief, and be scored on ethical reasoning."
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Reporting, replication and the research proposal",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present your research proposal as a short paper: question, theory, design, sample, measures, analysis plan, ethics and threats to validity, and respond to reviewer questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Audit a published paper against a reporting checklist and list the missing items that prevent replication."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Reproduce the analysis of a shared dataset from its code and report any discrepancy with the published numbers."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Defend your research proposal in a simulated review panel, answer scripted challenges on design and validity, and be scored on rigour and clarity."
+        }
+      ]
+    }
+  ]
+}

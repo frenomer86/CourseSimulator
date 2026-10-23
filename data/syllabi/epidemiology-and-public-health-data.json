@@ -107,5 +107,401 @@
         "Project: an outbreak or surveillance analysis with a model, a map and a situation report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Measuring disease frequency",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "From a district's monthly malaria counts and population, calculate incidence risk, incidence rate, prevalence and case fatality rate, and describe the cases by person, place and time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute incidence and prevalence from a provided table of 12 months of malaria cases and population, and plot both over time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Calculate crude, age-specific and case fatality rates from a district mortality table and rank the age groups by rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Simulate a population followed for 5 years with a constant hazard and show that prevalence approximates incidence times average duration"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Standardisation and burden of disease",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Directly standardise the mortality rates of two regions to a standard population, explain why crude rates mislead, and compute DALYs for a small illustrative case set.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Draw population pyramids for two districts from census counts and describe how their age structures differ"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Directly standardise the death rates of two regions to a standard population and compare crude and adjusted rate ratios"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Compute exact confidence intervals for district malaria rates, plot them with a caterpillar chart, and flag districts significantly above the national rate"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Measures of association and screening",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "From a two-by-two table of well water use and diarrhoea, calculate the risk ratio, odds ratio and attributable fraction with confidence intervals, and draw a DAG for one possible confounder.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Calculate risk difference, relative risk and odds ratio from a given two-by-two table and state in words what each means"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Run a chi-squared test and compute the odds ratio with its 95 percent interval for three exposure tables and compare their significance"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Compute predictive values of a malaria rapid test at 5, 20 and 50 percent prevalence and plot how positive predictive value changes"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Descriptive, cohort and case-control studies",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Choose the best observational design for three research questions (rare cancer, common exposure, quick survey), and justify each choice with strengths and biases.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Calculate person-time and incidence rates for exposed and unexposed groups in a cohort table and compute the rate ratio"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Analyse a matched case-control dataset on a risk factor for typhoid, calculate the odds ratio, and interpret it in plain language"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Analyse a cross-sectional survey extract by weighting to the sampling frame, tabulating prevalence by region, and flagging results with wide intervals"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Trials, bias and confounding",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Appraise a bed net cluster trial summary for bias and confounding, and compute the sample size needed per arm to detect a halving of incidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Randomly assign 40 participants to two arms with a seeded generator and check the arms are balanced on age and sex"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Stratify a table by age to reveal confounding, compute crude and Mantel-Haenszel adjusted odds ratios, and explain the difference"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Estimate by simulation the power of a two-arm trial for sample sizes 50 to 400 and plot power against sample size"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Public health surveillance systems",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Map the flow of a weekly cholera report from a community health post through the district to the national level, noting who acts on it and the delay at each step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Classify ten patient presentations against the IDSR case definitions and decide which must be reported immediately versus weekly"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E5",
+          "title": "Build a weekly reporting table of districts and diseases, aggregate it to regional and national totals with SQL, and find missing reports"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Select the right surveillance type (passive, sentinel, event-based) for three outbreak scenarios and defend the choice against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Detecting aberrations and evaluating surveillance",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compute sensitivity and timeliness of a surveillance system from a validation table, and design a community health volunteer reporting scheme for a rural district.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Plot weekly counts with a 4-week moving average and mark the weeks that exceed the mean plus two standard deviations"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Apply an epidemic threshold to 5 years of weekly meningitis counts and list which weeks and districts crossed the alert threshold"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Evaluate a surveillance system against a gold-standard register by computing sensitivity, positive predictive value and median reporting delay"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Outbreak investigation methods",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Build a line list of 25 cases from narrative reports, apply a case definition, and draw an epidemic curve to infer the likely outbreak type.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Plot an epidemic curve from a 30-case line list by day of onset and say whether it looks point source or propagated"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Apply suspected, probable and confirmed case definitions to a case list and decide who should be counted at each stage"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Work the first five steps of an outbreak investigation scenario, choosing evidence to collect and decisions to make, scored against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Analysing and controlling outbreaks",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Calculate food-specific attack rates for a wedding gastroenteritis outbreak, identify the likely vehicle, and propose control measures and criteria for declaring the outbreak over.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Calculate attack rates for each food at a function from a table and identify the food with the highest relative risk"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Plan contact tracing in a Lassa fever cluster scenario, deciding which contacts to follow and when to release them"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Investigate a simulated cholera outbreak in a coastal community from alert to control, weighing evidence and costs, and finish with a rubric score"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Compartmental models",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write the SIR equations for a measles outbreak in a school, compute R0 from contact and recovery rates, and derive the vaccination coverage needed for herd immunity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Solve an SIR model for a school with 500 pupils and plot susceptible, infectious and recovered curves over 60 days"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Compute R0 and the herd immunity threshold for three beta values and show the effect on peak infections on one chart"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Fit an SIR model to a 15-week incidence series by least squares, estimate beta and the reproduction number, and plot the fit with residuals"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Stochastic models and intervention modelling",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Compare a vaccination campaign at 60 and 80 percent coverage using your SEIR model, and write a short paragraph on what uncertainties limit its forecasts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Add a vaccinated compartment to an SIR model and plot the epidemic at 0, 40 and 80 percent coverage on the same axes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Run 200 stochastic SIR simulations from one infectious case, and estimate the proportion that die out early versus produce a major outbreak"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Build an SEIR model with isolation, vary three parameters over plausible ranges, and plot the spread of outcomes as scenario bands"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Mapping health data",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Explain why a choropleth of raw case counts misleads, redraw the plan using rates per 1000, and describe how to test whether a cluster of cases is real.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Plot district cholera rates per 100000 as a ranked bar chart and flag districts with fewer than 10 cases as unreliable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Plot the cases from Snow's cholera data against pump locations and identify the pump with the most surrounding cases"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compute distance from each village to the nearest clinic, estimate the share of the population beyond 5 km, and map the access gaps"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Communicating epidemiological findings",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Prepare a one-page situation report for a district health director from a given outbreak dataset, with one chart, one table, one map description, and a clear recommendation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Redraw a misleading chart with a truncated axis and raw counts as an honest rates chart with uncertainty bars"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Decide how to publish a village-level HIV table to avoid disclosing individuals, applying small-number suppression, and score against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Analyse a provided outbreak dataset end to end by building an epidemic curve, an SEIR fit and a district rate table, and summarise it"
+        }
+      ]
+    }
   ]
 }

@@ -105,5 +105,400 @@
         "Reading a signal on an oscilloscope: amplitude, period, frequency, phase, DC offset"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Charge, current, voltage and resistor networks",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Problem set: compute current, voltage and power for ten resistor networks, including a series-parallel network and a divider, and check the power balance (supplied equals absorbed) in each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E2",
+          "title": "Build a 9 V battery with three series resistors, predict each voltage drop with the divider rule, then measure all three with the virtual multimeter"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E2",
+          "title": "Build a series-parallel network of five resistors, predict total current and power in each part by hand, then confirm that supplied power equals the sum absorbed"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E2",
+          "title": "Debug a given eight-resistor ladder whose measured node voltages disagree with the schematic, locate the wrong resistor value by node-voltage analysis and correct it"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Network theorems, instruments and the ideal op-amp",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Reduce a bridge circuit to a Thevenin equivalent on paper, then write a half-page lab note listing which instrument settings you would use to verify it on a bench.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E2",
+          "title": "Measure a 5 V rail and a 1 kHz square wave with the virtual multimeter and oscilloscope, and record the readings in a table with units"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E2",
+          "title": "Find the Thevenin equivalent of a two-source network by simulation, then load it with ten resistor values and plot power to confirm maximum power transfer"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E2",
+          "title": "Design an ideal op-amp stage that turns a 0 to 1 V sensor signal into 0 to 5 V, then verify gain and output limits in the simulator"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Semiconductor physics and the p-n junction",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Short written exercise: compute intrinsic carrier concentration of silicon at 300 K and 350 K, explain the change, and sketch the band diagrams of n-type and p-type silicon.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot the intrinsic carrier concentration of silicon against temperature from 250 K to 400 K and read off the values at 300 K and 350 K"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute electron and hole concentrations for silicon doped with 1e16 per cm3 donors at 300 K, then repeat for acceptors and compare the majority carriers"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Calculate the built-in potential and depletion width of a p-n junction for three doping pairs, plot them, and explain which doping gives the narrowest depletion region"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Diode characteristics and rectifiers",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Problem set: solve three diode circuits with the ideal, constant-drop and piecewise models, compare answers, and design a Zener regulator for a 5.1 V load drawing 10 to 40 mA.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E2",
+          "title": "Trace the V-I curve of a silicon diode from -2 V to 1 V and mark the knee voltage and the reverse-bias region"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E2",
+          "title": "Build a bridge rectifier with a smoothing capacitor driven by a 12 V AC source and measure ripple voltage for three capacitor values"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E2",
+          "title": "Design a Zener regulator for a 9 V input and 5.1 V load from 10 to 40 mA, then measure line and load regulation across the whole range"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Power supplies, clippers and diode datasheets",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Reading exercise: from two diode datasheets pick the better part for a 230 V mains bridge rectifier, justifying each choice with PIV, forward current and recovery time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E2",
+          "title": "Build a diode clipper that limits a 5 V peak sine to 2.7 V and view input and output together on the oscilloscope"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E2",
+          "title": "Assemble transformer, bridge, filter capacitor and an LM7805 regulator, then measure output voltage while load current steps from 0 to 500 mA"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E2",
+          "title": "Choose the diode for a 230 V rectifier from three datasheet extracts, then simulate the circuit to verify peak inverse voltage and current stay inside the limits"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Bipolar transistors: operation and configurations",
+      "topics": [
+        "4.1",
+        "4.2"
+      ],
+      "exercise": "Problem set: given measured base, collector and emitter currents for six transistors, compute alpha and beta and state the operating region of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E2",
+          "title": "Plot collector current against collector-emitter voltage for four base currents and label the cut-off, active and saturation regions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E2",
+          "title": "Measure the input resistance and voltage gain of a common-emitter stage, then compare them with a common-collector stage built on the same transistor"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E2",
+          "title": "Given a transistor stage that clips its output, identify which configuration and region of operation is wrong from the waveforms, and redesign it to be undistorted"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Biasing and the small-signal amplifier",
+      "topics": [
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Design exercise: choose resistors for a voltage-divider biased common-emitter stage at 2 mA collector current with 12 V supply, then predict the small-signal gain.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E2",
+          "title": "Bias an NPN transistor with a fixed-bias resistor, read the Q-point, and mark it on the DC load line"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E2",
+          "title": "Design a voltage-divider bias network for a 2 mA collector current and show that the Q-point barely moves when beta changes from 100 to 300"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E2",
+          "title": "Build a common-emitter amplifier with voltage gain near -50, measure gain, input and output resistance, and explain any difference from the hybrid-pi prediction"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Transistor switches and MOSFETs",
+      "topics": [
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Calculate the base resistor, flyback diode and supply for switching a 12 V relay with a 5 V microcontroller pin, and state the worst-case current that the pin must supply.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E8",
+          "title": "Wire an NPN transistor and base resistor to an Arduino pin to switch an LED, and compute the base resistor value first"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E8",
+          "title": "Drive a 12 V relay and a small DC motor from Arduino pins using a transistor and flyback diode, and verify that the pin current stays below 20 mA"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E2",
+          "title": "Plot the drain current against gate voltage for an NMOS device, extract the threshold voltage, and build a MOSFET switch that turns on fully at 5 V"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Operational amplifier circuits and limits",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Problem set: design amplifiers with gains of -10 and +11 and a three-input summer, state the output at given inputs and the saturation point for a 12 V supply.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E2",
+          "title": "Build an inverting amplifier of gain -10, apply a 0.2 V sine, and check that the output amplitude and phase match the prediction"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E2",
+          "title": "Build a first-order active low-pass filter with a 1 kHz cut-off and plot its gain at ten frequencies to confirm the roll-off"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E2",
+          "title": "Drive a non-inverting amplifier of gain 100 over increasing frequency and amplitude, find the gain-bandwidth limit and slew-rate limit, and explain each failure"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Digital circuits and logic families",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Short report comparing TTL and CMOS on noise margin, power and speed, with a table of the datasheet values you used and a worked noise-margin calculation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E2",
+          "title": "Plot the transfer characteristic of a CMOS inverter and mark VIL, VIH, VOL and VOH to calculate both noise margins"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E2",
+          "title": "Build CMOS NAND and NOR gates from transistors and verify all four input combinations in the truth table, then estimate dynamic power at 1 MHz"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E2",
+          "title": "Interface a 3.3 V sensor output to a 5 V logic input using open-collector gates and a pull-up, then test it at every logic level and edge"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Capacitors, inductors and RLC resonance",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Calculations on paper: time constant of an RC and an RL circuit, phasor impedance of a series RLC at three frequencies, and resonance frequency, Q and bandwidth.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E2",
+          "title": "Charge a capacitor through a 10 kOhm resistor from a 5 V step, read the time constant from the scope trace and compare it with RC"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute and plot the impedance magnitude and phase of a series RL circuit from 10 Hz to 100 kHz using complex numbers"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E2",
+          "title": "Build a series RLC circuit that resonates at 10 kHz, measure its resonance, Q and bandwidth, and retune it to a 2 kHz bandwidth"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Frequency response and second-order transients",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Sketch asymptotic Bode plots for a first-order low-pass and a second-order system, and write which damping ratio gives each of the three transient types.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E2",
+          "title": "Sweep a first-order RC low-pass filter and read the cut-off frequency at -3 dB from the Bode plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Plot Bode magnitude and phase for cascaded high-pass and low-pass sections, and report the resulting band-pass gain, centre frequency and bandwidth"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E2",
+          "title": "Tune the resistor of a series RLC circuit to produce underdamped, critically damped and overdamped step responses, and measure the overshoot of each"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Signals and measurements on the oscilloscope",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Exercise: for five given waveforms (sine, square, triangle, sawtooth, pulse train) compute the RMS value, period, frequency and DC offset by hand, then check them in the simulator.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E2",
+          "title": "Read amplitude, period, frequency and DC offset from a given scope trace of an offset sine wave, and record all four values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Compute the RMS value of square, triangle and sine waves numerically and check each against its closed-form formula to within 1 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Sample a 50 Hz sine at five different rates, plot the sampled signals, and find the lowest rate at which the original frequency can still be recovered"
+        }
+      ]
+    }
   ]
 }

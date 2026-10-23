@@ -1,0 +1,513 @@
+{
+  "slug": "logic-and-formal-methods",
+  "description": "Propositional and predicate logic, proof, automated reasoning and the formal methods that use them to show programs and systems correct. Students build truth-table and proof tools, write SAT encodings, prove loops correct with invariants and model-check small concurrent systems.",
+  "modelledOn": [
+    "Huth and Ryan, Logic in Computer Science",
+    "Baier and Katoen, Principles of Model Checking",
+    "Gries, The Science of Programming",
+    "Jackson, Software Abstractions: Logic, Language, and Analysis"
+  ],
+  "outcomes": [
+    "Translate specifications into propositional and first-order logic and decide validity, satisfiability and entailment.",
+    "Construct natural-deduction proofs and explain soundness and completeness of a proof system.",
+    "Encode combinatorial problems for a SAT solver and explain how DPLL and conflict-driven clause learning search.",
+    "Prove small programs correct using Hoare triples, weakest preconditions, loop invariants and variants.",
+    "Specify a concurrent system as a transition system, state properties in LTL and CTL, and check them by model checking.",
+    "Write and refine a formal specification of a small system and judge where formal methods are worth their cost."
+  ],
+  "units": [
+    {
+      "title": "Propositional logic",
+      "weeks": "1-2",
+      "topics": [
+        "Syntax and semantics; truth tables, tautologies, contradictions and satisfiability",
+        "Logical equivalence and entailment; the standard laws and substitution",
+        "Normal forms: negation, conjunctive and disjunctive; conversion algorithms",
+        "Structure-preserving transformation to linear-size CNF with fresh variables",
+        "Modelling with propositional logic: access policies, product configurations, circuit constraints"
+      ]
+    },
+    {
+      "title": "Predicate logic",
+      "weeks": "3-4",
+      "topics": [
+        "Syntax: terms, predicates, quantifiers, free and bound variables, substitution",
+        "Semantics: structures, interpretations, models and validity",
+        "Translating English specifications into first-order formulas; common quantifier mistakes",
+        "Equivalences, prenex normal form and Skolemisation",
+        "Equality, theories and the undecidability of first-order validity",
+        "Finite model finding and counter-model search for specifications"
+      ]
+    },
+    {
+      "title": "Natural deduction and proof",
+      "weeks": "5",
+      "topics": [
+        "Natural deduction rules for propositional logic: introduction and elimination, assumptions and discharge",
+        "Natural deduction rules for quantifiers and equality",
+        "Soundness and completeness of natural deduction; semantic versus syntactic consequence",
+        "Semantic tableaux and sequent calculus as proof search",
+        "Mechanised proof: tactics, structural induction and a first look at a proof assistant"
+      ]
+    },
+    {
+      "title": "SAT solving and decision procedures",
+      "weeks": "6-7",
+      "topics": [
+        "Resolution and refutation completeness",
+        "The DPLL algorithm: unit propagation, pure literals and backtracking",
+        "Conflict-driven clause learning: implication graphs, learned clauses, watched literals and restarts",
+        "Encoding problems as SAT: graph colouring, timetabling, Sudoku and pigeonhole",
+        "Satisfiability modulo theories: equality with uninterpreted functions, congruence closure, linear arithmetic",
+        "SAT and SMT in practice: configuration checking, bounded verification and test generation"
+      ]
+    },
+    {
+      "title": "Hoare logic and program correctness",
+      "weeks": "8",
+      "topics": [
+        "Programs as state transformers; assertions, preconditions and postconditions",
+        "Hoare triples and the rules for assignment, sequence, conditional and while",
+        "Weakest preconditions and strongest postconditions; the wp calculus",
+        "Partial versus total correctness; soundness of Hoare logic",
+        "Verification conditions and mechanised checking of annotated programs",
+        "Arrays, aliasing and a first look at separation logic"
+      ]
+    },
+    {
+      "title": "Loop invariants and termination",
+      "weeks": "9",
+      "topics": [
+        "Finding invariants: generalising postconditions, replacing constants by variables",
+        "Worked invariants: integer division, GCD, linear search, binary search, insertion sort",
+        "Termination: variants and well-founded orderings",
+        "Strengthening invariants and common invariant mistakes",
+        "Design by contract: pre- and postconditions, class invariants and runtime assertion checking"
+      ]
+    },
+    {
+      "title": "Temporal logic and model checking",
+      "weeks": "10-11",
+      "topics": [
+        "Transition systems and Kripke structures; modelling concurrent systems and interleaving",
+        "Safety, liveness and fairness properties",
+        "Linear temporal logic: syntax, semantics and typical specification patterns",
+        "Computation tree logic and CTL*; comparing LTL and CTL expressiveness",
+        "Explicit-state model checking: CTL labelling by fixpoint iteration, and Buchi automata for LTL",
+        "Symbolic model checking with BDDs and bounded model checking with SAT",
+        "State-space explosion, partial-order reduction, abstraction and counterexample interpretation"
+      ]
+    },
+    {
+      "title": "Specification languages and refinement",
+      "weeks": "12-13",
+      "topics": [
+        "Model-based specification: state, invariants and operations with pre- and postconditions",
+        "Relational specification and bounded analysis with an Alloy-style tool",
+        "Specifying concurrent and distributed protocols in a TLA+-style language",
+        "Refinement: data refinement, simulation relations and stepwise development",
+        "Formal methods in industry: railways, avionics, smart cards and mobile-money transaction logic",
+        "Cost, benefit and limits of formal methods; lightweight formal methods in everyday practice"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Propositional logic: syntax, semantics, equivalence",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Build the truth table for a three-variable formula, prove two equivalences with algebraic laws, and convert a formula to CNF and DNF by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Generate truth tables for four given formulas in the logic tool and classify each as a tautology, contradiction or contingent formula"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Test whether five pairs of formulas are equivalent and whether a given set of premises entails a conclusion, using truth tables"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Write a program that converts any formula to negation normal form and CNF, and check it against truth tables on 20 random formulas"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Linear-size CNF encoding and modelling",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Encode an access policy for a clinic records system as a propositional formula, and apply the fresh-variable CNF transformation to a formula with five operators.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Apply the fresh-variable CNF transformation to a nested formula, list the clauses, and verify that the result is equisatisfiable with the original"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Model a product configuration with six options and four constraints as propositional logic, then list all valid configurations by satisfying assignments"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Write a checker for a role-based access policy as a formula, and find a user who is allowed to approve and pay the same invoice"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "First-order syntax, semantics and translation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Translate eight English sentences about students and courses into first-order logic, then give a structure that satisfies one formula and falsifies another.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Mark free and bound variables in six formulas and compute the result of substituting a term for a variable, avoiding capture"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Evaluate quantified formulas over a small finite structure of 4 elements with two relations, and report the truth value of each"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Review a draft contract-style specification for a mobile money transfer with quantifiers, find the ambiguity in two clauses, and rewrite them precisely"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Normal forms, equality and decidability",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Convert a formula to prenex form and Skolemise it, and explain in a paragraph why no program can decide validity of every first-order sentence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Convert three formulas to prenex normal form, then Skolemise each and state which variables the Skolem functions depend on"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Search all structures of size up to 4 for a model of a given set of axioms with a script, and report a counter-model for a false claim"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Step through a rewriting system that decides equality in a small theory, and show a case where the process fails to terminate"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Natural deduction and proof",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Prove five sequents in natural deduction, one with quantifiers, and prove by structural induction that reversing a list twice returns the original list.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Build natural-deduction proofs for three propositional sequents in the proof checker, with every assumption discharged and every rule step accepted"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Prove a quantified sequent such as 'for all x, P(x) and Q(x)' implies 'for all x, P(x)' using the quantifier rules correctly"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Run a semantic tableau on a formula, close or leave open each branch, and read a counter-model from an open branch"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Resolution and DPLL",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Refute a small clause set by resolution, then run DPLL by hand on a ten-clause formula, showing each unit propagation and each backtrack.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Derive the empty clause from an unsatisfiable set of six clauses by resolution, drawing the proof tree and listing each resolvent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Trace DPLL on a 12-clause formula in the visualiser, noting each decision, unit propagation and backtrack until the formula is solved"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement DPLL with unit propagation, then add clause learning on conflict, and compare decision counts on 10 benchmark formulas"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Encoding problems and SMT",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Encode a four-colouring of a map of Ghana's regions as SAT, write the constraints for a 4 by 4 Sudoku, and decide a small formula with equality and a function symbol.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Encode graph colouring of a ten-node map as CNF, solve it with the bundled solver, and decode the model into a valid colouring"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Encode a weekly exam timetable with room, invigilator and clash constraints as SAT, and prove one extra constraint makes it unsatisfiable"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Use congruence closure to decide whether a given set of equalities and disequalities over f and g terms is satisfiable"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Hoare logic and weakest preconditions",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Prove three small programs correct with Hoare rules, compute the weakest precondition of a conditional and a loop-free fragment, and distinguish partial from total correctness.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Prove a Hoare triple for a swap of two variables by applying the assignment and sequence rules step by step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Compute weakest preconditions backward through a program with assignments and a conditional, and simplify the resulting formula"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Generate verification conditions for an annotated absolute-value and maximum program and check them with a theorem prover or solver"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Loop invariants and termination",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Find the invariant and variant for integer division by repeated subtraction and for binary search, and prove each loop correct and terminating.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Write down an invariant for a GCD loop, prove it holds initially and is preserved, and show it gives the postcondition on exit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Step through insertion sort in the visualiser and state the loop invariant on the sorted prefix after every outer iteration"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Annotate a binary search with an invariant and variant, check it with runtime assertions on 1000 random arrays, and find the bug in a faulty version"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Transition systems and temporal logic",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Model two processes sharing a flag as a transition system, then write LTL and CTL formulas for mutual exclusion, absence of starvation and reachability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Draw the state graph of two interleaved processes with a shared variable and count the reachable states and transitions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Classify given properties as safety or liveness and find a counterexample trace in a faulty traffic-light model"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Write LTL formulas for six English requirements about a lift controller and check them on a given set of infinite traces"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Model checking algorithms",
+      "topics": [
+        "7.5",
+        "7.6",
+        "7.7"
+      ],
+      "exercise": "Label the states of a small Kripke structure for EG, AU and EU by fixpoint iteration, and explain how bounded model checking uses a SAT solver.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E6",
+          "title": "Run the CTL labelling algorithm on a 10-state structure, showing the set of states satisfying each subformula at each iteration"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E6",
+          "title": "Check the classic two-process flag-and-turn mutual exclusion algorithm for safety and liveness in the model checker, and read the counterexample for a broken variant"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.7",
+          "engine": "E1",
+          "title": "Implement explicit-state reachability with a hash set for a token-ring model, measure how states grow with the number of processes, and report the explosion"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Model-based and relational specification",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Specify a bank-account or mobile-money wallet system with state, an invariant and three operations, and use bounded analysis to find an invariant-breaking sequence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Write a set-based specification of a library loan system with invariant and operations, and check that each operation preserves the invariant on examples"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Specify a small file system as relations, assert that no directory is its own ancestor, and examine the counterexamples the bounded analysis finds"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E6",
+          "title": "Model a two-phase commit protocol as a state machine, check that no node commits while another aborts, and examine a counterexample with a lost message"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Refinement, industry practice and project",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Refine an abstract set-based specification of a queue into an array-based design, argue why the refinement holds, and present your formal-methods project and a cost-benefit view.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Define an abstraction function from a concrete ring-buffer queue to an abstract sequence, and verify the simulation conditions for each operation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Judge in a case file whether formal methods are worth it for a mobile-money ledger, a ward stock tracker and a rail signalling controller, and defend the choices"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Write property-based tests and assertions for an executable specification, and compare what they catch against what a model checker catches on the same model"
+        }
+      ]
+    }
+  ]
+}

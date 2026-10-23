@@ -103,5 +103,398 @@
         "Why this matters: cryptography, scheduling, timetabling at a university"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Strings, languages and proof techniques",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Problem set: list the strings of a small language, apply union, concatenation and star to two languages, and prove one claim by induction and one by contradiction.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "List all strings of length up to 3 over the alphabet 0,1 and identify those that belong to a given language"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute the union, concatenation and star (up to length 4) of two small languages, and check closure under each operation"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Prove with diagonalisation that the set of infinite binary sequences is uncountable, and show the construction on a given list of sequences"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Finite automata",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Design DFAs for three languages (ending in 01, even number of zeros, divisible by 3) and convert one NFA to a DFA using the subset construction.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Build a DFA that accepts binary strings ending in 01 and run it on eight test strings in the visualiser"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Convert an NFA with epsilon moves to an equivalent DFA by the subset construction and verify they agree on twenty strings"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Build the product DFA for the intersection of two languages and test it on strings that satisfy one language but not the other"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Minimisation and applications of automata",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Minimise a given 8-state DFA by table-filling, then design a vending-machine or protocol controller as an automaton and test it with five input sequences.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Minimise a 6-state DFA by marking distinguishable pairs and draw the resulting automaton"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Design a DFA for a vending machine that accepts coins of 1 and 2 cedis up to 5 and dispenses, and test eight coin sequences"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Use the Myhill-Nerode classes to find the minimum number of states for a given language and prove no smaller DFA can exist"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Regular expressions and the pumping lemma",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Convert a regular expression to an NFA by Thompson's construction and back to an expression by state elimination, then prove one language is not regular.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Write regular expressions for three languages, and test each with five accepted and five rejected strings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Convert a regular expression to an NFA by Thompson's construction and then eliminate states to recover an equivalent expression"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Prove with the pumping lemma that the language of equal numbers of a and b is not regular, choosing the string and the pumping case"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Decision problems and practical regular expressions",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write and test a pattern for Ghana phone numbers and Ghana Card ID formats, and give an algorithm to decide emptiness and equivalence of two DFAs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Decide whether a given DFA accepts any string by checking reachability of an accepting state, and explain the check"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Write regular expressions that validate Ghana phone numbers and Ghana Card IDs and test them on 30 valid and invalid strings"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Decide equivalence of two DFAs by building their product automaton and searching for a distinguishing string, and test it on three pairs"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Context-free grammars",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Design grammars for balanced brackets, arithmetic expressions and palindromes, show a parse tree for each, and demonstrate ambiguity in one grammar.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Derive a given string by leftmost and rightmost derivations in a grammar and draw its parse tree"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Write a grammar for arithmetic expressions with precedence and test it on ten strings including nested brackets"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Convert a grammar with epsilon and unit productions to Chomsky normal form step by step, and check the language is unchanged"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Membership and non-context-free languages",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Run the CYK algorithm by hand on a three-rule grammar and a five-letter string, and use the pumping lemma to show that a to the n, b to the n, c to the n is not context-free.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Fill the CYK table for a 5-letter string with a Chomsky normal form grammar and decide membership"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement the CYK algorithm in code, test it on 20 strings against a known grammar, and report the running time growth"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Prove with the pumping lemma for context-free languages that a to the n, b to the n, c to the n is not context-free"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Pushdown automata",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Construct a PDA for the language of palindromes and convert a grammar for balanced brackets into an equivalent PDA, tracing both on test strings.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Run a PDA for a to the n, b to the n on six strings and watch the stack contents during each run"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Design a PDA that accepts by empty stack for balanced brackets and test it on ten strings, including invalid ones"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Convert a context-free grammar into an equivalent PDA, run both on twenty strings, and explain any strings where they would disagree"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Turing machines",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Design a Turing machine that increments a binary number and one that checks for equal numbers of a and b, giving the full transition table of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Run a Turing machine that flips every bit of a binary string, watching the tape, head and state at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Design and test a Turing machine that adds one to a binary number, including the carry past the left end"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E6",
+          "title": "Design a decider for the language of equal numbers of a and b on a single-tape machine, and compare its step count with a two-tape design"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Church-Turing thesis and universal machines",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Explain in a note why a universal Turing machine corresponds to a stored-program computer, and encode one small machine as a string a universal machine could read.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Simulate a counter machine that adds two numbers and show its equivalence to the Turing machine doing the same task"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Encode a small Turing machine as a string and trace a universal machine simulating one step of it"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Evaluate three terms in the lambda calculus by beta reduction, encode Church numerals for addition, and compare the model with a Turing machine"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Decidability and undecidability",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Prove the halting problem is undecidable, then show by reduction that the emptiness problem for Turing machines is undecidable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Build the diagonal table for a given list of languages and find a language not on the list"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E6",
+          "title": "Trace the diagonal argument for the halting problem on a small list of programs and explain the contradiction it produces"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Prove by reduction from the halting problem that the equivalence of two Turing machines is undecidable, and explain what Rice's theorem adds"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Complexity classes and NP-completeness",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Show a polynomial-time verifier for subset sum, reduce 3-SAT to clique on a small formula, and explain what a polynomial reduction proves.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Verify a proposed Hamiltonian path in a small graph in polynomial time and explain the verifier's steps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Reduce a small 3-SAT formula to a graph clique problem and check that a satisfying assignment gives a clique of the required size"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Prove NP-completeness of independent set by reduction from a known NP-complete problem, and check the construction on a small instance"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Coping with hard problems",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Short essay: choose a timetabling or routing problem and describe an approximation, a heuristic and an exact method, saying what each guarantees.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E6",
+          "title": "Solve a small SAT instance by backtracking and count the assignments tried before a solution or a failure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Implement a 2-approximation for vertex cover on random graphs and compare its size with the optimum found by brute force"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Build a timetable for a small department with a heuristic and an exact search, and compare quality and time as the problem grows"
+        }
+      ]
+    }
   ]
 }

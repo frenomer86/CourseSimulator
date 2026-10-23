@@ -107,5 +107,401 @@
         "Capstone: a complete, checked business model with a short report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Structuring data in a sheet",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Redesign a messy trader's notebook table into a clean one-table-per-subject layout and list every change you made and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E5",
+          "title": "Convert a table with merged cells and blank rows into one record per row and check the record count equals the original entries"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E5",
+          "title": "Format a column of prices in cedis, a date column and a percentage column, and fix five cells stored as text"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E5",
+          "title": "Turn a range into a structured table with named columns and a named range, then write three formulas using those names"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Validation and importing",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Build an input sheet for a market trader's daily sales with validated entries and write the rules in a short guide.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E5",
+          "title": "Add drop-down lists and a rule rejecting negative quantities to a sales sheet, and test with five bad entries"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E5",
+          "title": "Import a CSV of 300 sales rows, split a combined name and phone column, remove duplicates and report the rows before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E5",
+          "title": "Build the running dataset for a trader's daily sales log with validation, then sort and filter to answer five questions about it"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Formulas and functions",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Explain why a formula copied down gives wrong totals when a reference is not locked, with one corrected example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Build a multiplication table using one formula with mixed references and copy it across and down, checking three cells by hand"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Use SUM, AVERAGE, MEDIAN, MIN, MAX, COUNT, COUNTA and ROUND on a column of weekly sales and report the results with correct rounding"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E5",
+          "title": "Clean 50 phone numbers with TRIM, LEFT, MID and CONCAT into +233 form, and build full names with TEXTJOIN"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Dates, dynamic arrays and auditing",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Audit a given workbook with five formula errors and write the cause and fix for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Compute due dates, working days and ages for 20 loan records using DATE, EOMONTH, NETWORKDAYS and DATEDIF"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Use FILTER, SORT, UNIQUE and SEQUENCE to list the top five customers and the distinct products sold, with live updating"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E5",
+          "title": "Find and fix errors such as #REF, #N/A and #DIV/0 in a workbook using trace precedents and evaluate formula, noting the cause of each"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Logic and conditional summaries",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Write the formulas and the expected results for a commission scheme using IFS, SUMIFS and a lookup.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Compute a grade and pass flag from marks using IF, IFS and AND, and handle blanks with IFERROR"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E5",
+          "title": "Use SUMIFS, COUNTIFS, AVERAGEIFS and MAXIFS to summarise sales by region, product and month"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E5",
+          "title": "Look up prices with VLOOKUP, INDEX/MATCH and XLOOKUP, and show a case where VLOOKUP breaks after a column is inserted"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Lookups for bands and invoices",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Build a tax calculator and a fee table for mobile money transfers and test it with edge amounts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E5",
+          "title": "Find a mobile money fee from a tier table using an approximate-match lookup and test with amounts at each tier boundary"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compute income tax from a bracketed table using a lookup and a cumulative method and verify with three worked salaries"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E5",
+          "title": "Build a price list and invoice that pulls prices and tax by product code across sheets and handles unknown codes with a clear message"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Pivot tables",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Produce a pivot summary of district health data and write three sentences saying what a manager should do about it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E5",
+          "title": "Create a pivot table of sales by product and month and answer three questions from it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E5",
+          "title": "Summarise sales as sum, count and percent of total, and group dates by month and quarter and ages into bands"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E5",
+          "title": "Cross-tabulate district health data by region, month and condition with slicers, refresh after adding new rows, and explain the changes"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Charts and dashboards",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Redraw two misleading charts honestly and explain what each original hid.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Choose and draw the right chart for six data questions and say why each alternative would mislead"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Correct a truncated axis, 3-D pie and cherry-picked range in three charts and compare the impressions before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E5",
+          "title": "Build a one-page sales dashboard with four charts, slicers, conditional formatting and sparklines that all update from one table"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Statistics and forecasting",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Analyse a year of cocoa prices or rainfall, describe the trend and seasonal pattern, and give a forecast with its limits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute the mean, median, mode, standard deviation and quartiles of 40 daily sales and describe the skew"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Build a frequency table with FREQUENCY and COUNTIFS for 100 maize prices and draw the histogram"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Fit a trend with SLOPE and INTERCEPT, check it with LINEST, and forecast three months of cocoa prices with a moving average for comparison"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "What-if analysis",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Describe the best, worst and expected case for a small bakery and the decision each would trigger.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Build a one-variable data table showing profit at different prices and a two-variable table of price and volume"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E5",
+          "title": "Set up a scenario manager with best, worst and expected cases for a bakery and compare the results in a summary"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Use goal seek to find the break-even volume and the price giving a profit of 5000 cedis, and verify by hand"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Optimisation and financial functions",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compare two loan offers using PMT, total interest and NPV and recommend one.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Build a loan schedule with PMT showing interest and principal each month and verify the final balance reaches zero"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Use Solver to maximise profit for a product mix under labour and material limits and interpret the shadow prices"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Compare three investments using NPV and IRR at 18 percent, find where the ranking by NPV and IRR disagree, and explain why"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Financial models and spreadsheet risk",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Document the assumptions of a chop bar model on one page and list five checks that would catch an error.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E5",
+          "title": "Reorganise a model into separate input, calculation and output sheets with an assumptions table and trace one result to its inputs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Build a monthly cash-flow forecast for a chop bar with revenue, costs and profit and loss, and test a 20 percent fall in sales"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E5",
+          "title": "Find the seeded errors in a given model with consistency checks, totals that must agree and range tests, and quantify each error's effect"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Protecting, presenting and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Present your capstone model's key findings and recommendation to a non-technical owner in five minutes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E5",
+          "title": "Protect formula cells, leave input cells open, add a version log and share the workbook so a colleague can change only inputs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Turn a model's results into a one-page summary chart and three plain-language recommendations for an owner"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E5",
+          "title": "Build a complete business model for a small business with inputs, scenarios, error checks and dashboard, and pass a review checklist"
+        }
+      ]
+    }
   ]
 }

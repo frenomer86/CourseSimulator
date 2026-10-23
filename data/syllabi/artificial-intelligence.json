@@ -118,5 +118,401 @@
         "Ethics and society: bias, fairness, explainability, safety, jobs, AI policy in Ghana and the AU"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What AI is: agents and environments",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Write a PEAS description and agent-type classification for a crop-disease detection app used by farmers in northern Ghana, then argue in half a page whether it passes any useful version of the Turing test.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Set up Python with NumPy, run a provided script that prints a 3x3 grid state, and confirm the printed array matches the expected output"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Code a simple reflex vacuum agent for a two-room world and record its performance measure over 20 steps from each starting state"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Compare a reflex agent and a model-based agent in a partially observable grid with random dirt, and report which scores higher over 100 runs"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Problem formulation and uninformed search",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Formulate a delivery route between five Accra locations as a search problem (states, actions, costs, goal test) and hand-trace BFS and uniform-cost search on it, showing frontier contents at each step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Run breadth-first search on a given 8-puzzle start state in the visualiser and record the order of the first 10 expanded nodes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Compare DFS, iterative deepening and uniform-cost search on a weighted route graph and tabulate nodes expanded and path cost for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Formulate a new sliding-tile variant with a custom goal state, then show which uninformed method solves it within a 5000-node budget"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Informed and local search",
+      "topics": [
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Prove that Manhattan distance is admissible for the 8-puzzle, then design and justify a second heuristic and argue whether it dominates the first.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Step through A* on a small grid map with the Manhattan heuristic and list f, g and h values for the first eight expanded nodes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Run A* on 5 random 8-puzzle instances with misplaced-tiles and Manhattan heuristics and compare nodes expanded to show which dominates"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement simulated annealing for an 8-queens board, tune the cooling schedule, and report success rate over 50 random starts versus plain hill climbing"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Planning and uncertain environments",
+      "topics": [
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write STRIPS actions and a goal for a mobile-money agent delivering cash to a customer, then produce a forward-search plan by hand and note where partial observability would break it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Use the visualiser to forward-search a three-block blocks-world STRIPS problem and write out the resulting four-step plan with each action's preconditions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Code a breadth-first STRIPS planner for a blocks-world with four blocks and verify its plan reaches the goal from a given start state"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Build a belief-state search for a sensorless vacuum agent in a three-room world and show a conformant plan that reaches a clean state"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Constraint satisfaction problems",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Model a weekly exam timetable for four courses and three rooms as a CSP, list variables, domains and constraints, and solve it by hand with MRV and forward checking.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Encode the Australia-style map colouring problem with three colours as a CSP in Python and check a hand-found solution satisfies every constraint"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement AC-3 on a 4x4 sudoku-like CSP and report which domains shrink before any backtracking begins"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Compare plain backtracking, MRV with forward checking, and min-conflicts on N-queens for N from 8 to 40, reporting runtime for each"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Game trees and adversarial search",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Compute minimax values by hand for a given three-ply game tree, mark the branches alpha-beta prunes, and explain how move ordering changes the count of pruned nodes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Run minimax on a provided two-ply tic-tac-toe tree in the visualiser and write the backed-up value at each node"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Run alpha-beta on a given depth-4 tree with good and bad move ordering and compare the number of leaves evaluated in each case"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Build an Oware player with depth-limited alpha-beta and a custom evaluation function, then measure its win rate against a random player over 100 games"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Propositional and first-order logic",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Encode a small rule base for deciding whether a market trader qualifies for a microloan as propositional Horn clauses, convert one rule to CNF, and prove a query by resolution.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Build a truth table for three propositional sentences and decide by model checking whether the first entails the third"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Run forward and backward chaining on a ten-rule Horn knowledge base and compare which facts each method derives for the query"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement DPLL and test it on 20 random 3-SAT instances with ratios near 4.3 clauses per variable, plotting solve time against ratio"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "First-order inference and knowledge representation",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Draw a semantic network for a small Ghanaian family-and-clan domain, then write five Prolog-style rules for relations such as uncle and cousin and trace one query by unification.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Unify five given pairs of first-order terms in the rules tool and record the substitution or the failure reason for each pair"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Run backward chaining on a family-relations rule base and trace the proof tree for the query grandparent(kofi, X)"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Extend a given animal ontology with three new classes and rules, and show a query that fails under closed-world but succeeds under open-world reading"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Probability, Bayesian networks and decisions",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Build a small Bayesian network for malaria diagnosis from fever, rapid-test result and rainy season, compute a posterior by enumeration, and decide whether to treat using expected utility.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Apply Bayes rule to a rapid malaria test with given sensitivity and prevalence and compute the posterior probability of disease after a positive result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Code inference by enumeration for a five-node Bayesian network and verify two posteriors against hand calculation within 0.001"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Build a crop advisory decision network with rainfall forecast and compute the value of perfect information for a planting decision under given costs"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Markov decision processes and reinforcement learning",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Write the MDP for a small shop deciding weekly stock levels, state the Bellman equation for it, and perform two sweeps of value iteration by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Run value iteration on a 4x3 grid-world and record the utility of each cell after iterations 1, 2 and convergence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Implement tabular Q-learning on a grid-world with a pit and goal and plot episode return over 500 episodes"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Train a Q-learning inventory agent with random demand and compare its average profit against a fixed reorder-point policy over 200 simulated weeks"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Introduction to machine learning",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Given a small table of 14 farm records, compute information gain by hand for two attributes, choose the root of an ID3 tree, and discuss how overfitting would show up on new records.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Build an ID3 decision tree on the provided play-or-not dataset in the visualiser and record the information gain at the root split"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Train k-nearest neighbours and logistic regression on a provided dataset, report accuracy, precision and recall on a held-out test split, and compare"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Implement k-means from scratch, choose k using the elbow method on a customer dataset, and show how three random initialisations change the result"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Artificial neural networks",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Explain in one page why a single perceptron cannot learn XOR, show a two-layer network that can, and note two risks of deploying a large language model in a Ghanaian clinic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E6",
+          "title": "Train a perceptron on the AND and OR datasets in the visualiser and record the weights after each epoch until convergence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E6",
+          "title": "Train a two-hidden-unit network on XOR with sigmoid activations and watch the loss curve to find a learning rate that converges in under 2000 epochs"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Train a small network on a handwritten digits subset, report test accuracy, and diagnose overfitting by comparing training and validation curves"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Bio-inspired algorithms and AI ethics",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4"
+      ],
+      "exercise": "Write a one-page policy brief on bias and fairness in a mobile-money fraud detector, referring to current Ghanaian and African Union AI policy directions, with two concrete safeguards.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.3",
+          "engine": "E6",
+          "title": "Run Conway's Game of Life on a glider and a blinker in the visualiser and record the pattern after 4 generations"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.1",
+          "engine": "E1",
+          "title": "Implement a genetic algorithm that solves a small class timetable with 6 courses and 4 slots, and plot best fitness per generation"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.2",
+          "engine": "E1",
+          "title": "Apply ant colony optimisation to a 12-town travelling salesman instance and compare tour length with a nearest-neighbour baseline over 20 runs"
+        }
+      ]
+    }
   ]
 }

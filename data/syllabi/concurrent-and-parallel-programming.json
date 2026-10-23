@@ -1,0 +1,499 @@
+{
+  "slug": "concurrent-and-parallel-programming",
+  "description": "How to write programs that do many things at once without corrupting data, deadlocking or running slower than the sequential version. Students run threaded programs, step through interleavings and measure speed-up in the browser lab.",
+  "modelledOn": [
+    "Herlihy and Shavit, The Art of Multiprocessor Programming",
+    "Goetz et al., Java Concurrency in Practice",
+    "Grama, Gupta, Karypis and Kumar, Introduction to Parallel Computing",
+    "Mattson, Sanders and Massingill, Patterns for Parallel Programming"
+  ],
+  "outcomes": [
+    "Identify data races, race conditions and deadlocks in a program and repair them with the right synchronisation primitive.",
+    "Design thread-safe programs using locks, semaphores, monitors, channels and actors, and justify the choice.",
+    "Explain a memory model and use atomic operations and memory orderings correctly.",
+    "Implement and reason about the linearizability of simple lock-free structures such as a stack and a queue.",
+    "Decompose a problem into data-parallel and task-parallel pieces and predict its speed-up using Amdahl's law and the work-span model.",
+    "Test and measure concurrent programs with stress tests, schedule exploration and profiling."
+  ],
+  "units": [
+    {
+      "title": "Threads and shared memory",
+      "weeks": "1-2",
+      "topics": [
+        "Processes, threads and the thread life cycle; creating threads, joining and thread pools",
+        "Shared memory, stacks and heaps per thread, and the cost of context switches",
+        "Concurrency versus parallelism; interleavings and nondeterministic execution",
+        "Thread-safe design by confinement, immutability and thread-local state",
+        "Futures, promises and async/await compared with explicit threads"
+      ]
+    },
+    {
+      "title": "Races, locks and deadlock",
+      "weeks": "3-4",
+      "topics": [
+        "Data races versus race conditions; critical sections; mutual exclusion and Peterson's algorithm",
+        "Mutexes, spin locks, reentrant locks and read-write locks",
+        "Semaphores, monitors and condition variables; spurious wake-ups",
+        "Classic problems: producer-consumer, readers-writers and dining philosophers",
+        "Deadlock: the four Coffman conditions, lock ordering, detection and recovery; livelock and starvation"
+      ]
+    },
+    {
+      "title": "Message passing and actors",
+      "weeks": "5",
+      "topics": [
+        "Channels and communicating sequential processes: bounded buffers, select and goroutine-style programs",
+        "The actor model: mailboxes, no shared state, supervision trees and let-it-crash",
+        "MPI-style message passing: send, receive, broadcast, scatter, gather and reduce",
+        "Shared memory versus message passing: ordering, latency and programming trade-offs",
+        "Deadlock, unbounded queues and backpressure in message-passing systems"
+      ]
+    },
+    {
+      "title": "Memory models and atomics",
+      "weeks": "6-7",
+      "topics": [
+        "Sequential consistency, store buffers and why hardware and compilers reorder memory operations",
+        "The happens-before relation; the Java memory model and C++ memory orders (relaxed, acquire, release, seq_cst)",
+        "Atomic operations: compare-and-swap, fetch-and-add, load-linked/store-conditional and test-and-set",
+        "Volatile, fences and the broken double-checked locking idiom",
+        "Cache coherence with MESI, false sharing and padding"
+      ]
+    },
+    {
+      "title": "Lock-free and wait-free structures",
+      "weeks": "8",
+      "topics": [
+        "Progress guarantees: blocking, obstruction-free, lock-free and wait-free",
+        "The Treiber stack and the Michael-Scott queue",
+        "The ABA problem; tagged pointers, hazard pointers and epoch-based reclamation",
+        "Linearizability as a correctness condition and finding linearization points",
+        "Concurrent hash maps and skip lists: striped locks versus lock-free designs"
+      ]
+    },
+    {
+      "title": "Data parallelism and task parallelism",
+      "weeks": "9-10",
+      "topics": [
+        "Decomposition patterns: data, task and pipeline parallelism; work-stealing schedulers",
+        "Parallel map, reduce and prefix scan (Blelloch scan)",
+        "Fork-join divide and conquer: parallel merge sort and quicksort, sequential cut-offs",
+        "Parallel loops and OpenMP-style directives; the SIMT model of GPUs",
+        "Parallel graph traversal and MapReduce-style batch processing"
+      ]
+    },
+    {
+      "title": "Speed-up and scalability",
+      "weeks": "11-12",
+      "topics": [
+        "Speed-up, efficiency and Amdahl's law",
+        "Gustafson's law, strong and weak scaling, and isoefficiency",
+        "The work-span model, parallelism and Brent's bound",
+        "Granularity, load imbalance, contention and synchronisation overhead",
+        "Profiling parallel programs: lock contention, idle threads and memory bandwidth limits"
+      ]
+    },
+    {
+      "title": "Verification and project",
+      "weeks": "13",
+      "topics": [
+        "Testing concurrent code: stress tests, randomised schedules and race detectors such as ThreadSanitizer",
+        "Model checking small concurrent algorithms by exhaustive interleaving exploration",
+        "Project: parallelise a batch of mobile-money transaction records or crop-image tiles and report speed-up",
+        "Course review: choosing between locks, atomics, messages and data-parallel libraries"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Threads, interleavings and shared state",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write a program that starts eight threads incrementing one counter 100000 times each, predict the final value, run it ten times and explain every discrepancy using the idea of an interleaving.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Create four threads that each print their id and join them; run five times and record how the output order changes."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Step through all interleavings of two threads executing read-increment-write on one counter and list which interleavings lose an update."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Measure thread creation and context-switch cost by ping-ponging a token between two threads one million times, then compare with a thread pool of fixed size."
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Safe designs without locks and asynchronous programming",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Take a mutable shared class and redesign it three ways (confined to one thread, immutable, thread-local) then compare the code that results and where each design breaks down.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Make a shared record immutable and show that two threads reading it concurrently never see a half-updated value."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Fetch twenty simulated mobile-money balances concurrently with futures and async/await, and compare total time with a sequential loop."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Refactor a global request counter and cache into thread-local accumulators merged at the end, and prove with a test that totals stay exact."
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Races and mutual exclusion",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Prove that Peterson's algorithm gives mutual exclusion for two threads, then state exactly which memory-ordering assumption the proof needs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Protect the shared counter from last week with a mutex and confirm that 800000 increments always produce exactly 800000."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Build a read-mostly cache guarded first by a mutex and then by a read-write lock, and compare throughput at 90 percent reads."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement a bounded blocking queue with a monitor and condition variables, then show a version using if instead of while failing under spurious wake-ups."
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Classic problems and deadlock",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Draw the resource-allocation graph for a four-philosopher deadlock, then give two different fixes (lock ordering and an arbiter) and argue about fairness for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Run the producer-consumer visualisation with a buffer of size 3 and mark the steps where the producer or consumer must block."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Reproduce a deadlock where two threads transfer money between accounts in opposite order, then remove it by ordering locks by account number."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement dining philosophers for five threads with three different strategies and measure starvation by counting meals per philosopher over ten seconds."
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Channels, actors and message passing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Model a simple mobile-money transfer service three ways (locks, channels, actors) and write a half-page comparison of correctness arguments, ordering guarantees and failure handling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Connect a producer and a consumer with a bounded channel of size 5 and print the order in which messages are handled."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Write a bank-account actor that owns its balance and handles deposit and withdraw messages one at a time, with no locks anywhere."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Build a three-stage pipeline over channels, make a slow final stage cause an unbounded queue, and fix it with bounded buffers and backpressure."
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Memory models and atomic operations",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Work through the store-buffer litmus test by hand: list every outcome allowed under sequential consistency and then the extra outcome a store buffer permits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Replace the lock on the shared counter with an atomic fetch-and-add and verify the final total over ten runs."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Step through the classic two-thread store-buffer litmus test and mark which reads can return zero when stores are delayed in buffers."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Implement a publish-subscribe flag using release and acquire orderings, then weaken it to relaxed and explain the happens-before edge that disappears."
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Fences, double-checked locking and the cache",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Explain in writing why double-checked locking is broken without volatile or acquire-release semantics, and write the corrected singleton initialisation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Write a lazily initialised singleton with a lock and then with a thread-safe static holder, and confirm one instance across eight threads."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E6",
+          "title": "Trace a cache line through MESI states as two cores alternately write adjacent counters, and count the invalidations."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Demonstrate false sharing with per-thread counters in an array, then add padding and report the change in runtime for eight threads."
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Lock-free stacks, queues and linearizability",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "For the Treiber stack, mark the linearization point of push and pop, and construct an interleaving that triggers the ABA problem when nodes are recycled.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Classify five given algorithms as blocking, obstruction-free, lock-free or wait-free by stepping through a thread that is suspended at the worst moment."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement a Treiber stack with compare-and-swap and test it with four pushing and four popping threads, checking no value is lost or duplicated."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Step through an ABA interleaving on a lock-free stack with recycled nodes, then fix it with a version-tagged pointer and re-run the trace."
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Parallel decomposition, reduce, scan and fork-join",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Decompose three problems (image blur, word count, route search) into data, task or pipeline parallelism and justify each choice by the data dependencies.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Sum an array of one million numbers with a parallel reduce over four chunks and check it equals the sequential sum."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Trace a Blelloch prefix scan on 8 elements through the up-sweep and down-sweep and confirm the output equals the running sums."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write a fork-join parallel merge sort, tune the sequential cut-off size and plot runtime against cut-off for one million elements."
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Parallel loops, GPUs and graph traversal",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Explain how a GPU kernel adding two vectors maps threads to elements, then describe what goes wrong when threads in one warp take different branches.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Parallelise a loop that squares ten thousand sensor readings across worker processes and verify the results match the sequential loop."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Run level-synchronous parallel BFS on a 12-node road graph and list the frontier handled by each thread at every level."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Implement a MapReduce word count over a text corpus of Ghanaian news headlines with a combiner, and compare shuffle volume with and without it."
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Amdahl, Gustafson and scaling",
+      "topics": [
+        "7.1",
+        "7.2"
+      ],
+      "exercise": "A program is 8 percent serial. Compute the Amdahl speed-up limit and the speed-up at 4, 16 and 64 cores, then reinterpret the same program under Gustafson's law.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Compute and plot Amdahl speed-up for serial fractions 5, 10 and 25 percent from 1 to 64 cores and read off the limits."
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Time a parallel sum on 1, 2, 4 and 8 workers, compute speed-up and efficiency, and estimate the serial fraction from the data."
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Measure strong scaling with a fixed problem and weak scaling with a growing problem for the same kernel, and explain the difference between the two curves."
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Work, span, overheads and profiling",
+      "topics": [
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compute the work, span and parallelism of parallel merge sort and of a sequential-merge variant, and predict which scales to more cores.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E6",
+          "title": "Draw the task dag for a fork-join sum over 8 elements and read off its work, span and parallelism."
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Vary chunk size for a parallel loop over uneven-cost tasks, record idle time per worker, and pick the chunk size with the best balance."
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Profile a lock-heavy program, identify the contended lock from wait times, and redesign it with striped locks to double throughput on eight threads."
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Testing, model checking and the project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present the project: the sequential baseline, the parallel design, the correctness argument and the measured speed-up with an honest explanation of the gap to the ideal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Run a stress test of a thread-safe queue with random delays for 10000 operations and report any lost or duplicated items."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Exhaustively explore the interleavings of a two-thread flag-based lock and show one that violates mutual exclusion in the broken version."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Parallelise a batch of one million mobile-money transaction records into per-region totals, prove correctness against the sequential result, and report speed-up on 1 to 8 workers."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,507 @@
+{
+  "slug": "information-systems-theory-and-digital-innovation",
+  "description": "A graduate seminar on the theories that explain how information systems are built, adopted and transform organisations and societies. Students read and critique foundational theory, model systems and ecosystems in diagrams, argue positions in branching case studies, and develop a theory-grounded research proposal on an African digital innovation.",
+  "modelledOn": [
+    "Laudon and Laudon, Management Information Systems",
+    "Rogers, Diffusion of Innovations",
+    "Hevner, March, Park and Ram, Design Science in Information Systems Research",
+    "Association for Information Systems, curriculum guidelines for graduate information systems programmes"
+  ],
+  "outcomes": [
+    "Explain the core subject matter of information systems and the main philosophical and methodological positions used to study it.",
+    "Analyse a case through socio-technical, structuration and affordance lenses and justify the choice of lens.",
+    "Apply and critique adoption theories (diffusion, TAM, UTAUT, task-technology fit) and design a survey instrument to test one.",
+    "Model a digital innovation or platform ecosystem in terms of layered architecture, generativity, boundary resources and governance.",
+    "Evaluate how IT changes organisations and societies, using evidence on value, change management, inequality and sustainability.",
+    "Write a research proposal that poses a question, positions it in the literature, and chooses a justified method."
+  ],
+  "units": [
+    {
+      "title": "Foundations of the IS discipline",
+      "weeks": "1-2",
+      "topics": [
+        "The identity of the field: the IT artefact, its context and its relation to computer science and management",
+        "Philosophy of science for IS research: positivism, interpretivism and critical realism",
+        "What counts as theory: theories of analysis, explanation, prediction and design",
+        "Research designs: case study, survey, experiment, action research and design science",
+        "Reading and critiquing a paper: construct validity, rigour versus relevance, and contribution"
+      ]
+    },
+    {
+      "title": "Socio-technical systems",
+      "weeks": "3-4",
+      "topics": [
+        "The socio-technical tradition: joint optimisation of social and technical subsystems",
+        "Technology affordances and constraints; sociomateriality",
+        "Structuration theory and the appropriation of technology in use",
+        "Actor-network theory: translation, inscription and the agency of artefacts",
+        "Information systems success models: system quality, use, satisfaction and net benefit",
+        "A failure case study: a public-sector records or health information system in Africa"
+      ]
+    },
+    {
+      "title": "Technology adoption and acceptance",
+      "weeks": "5",
+      "topics": [
+        "Diffusion of innovations: adopter categories, S-curves and the influence of networks",
+        "The technology acceptance model: perceived usefulness, ease of use and extensions",
+        "UTAUT and task-technology fit",
+        "Resistance, workarounds and non-adoption, with mobile money agents and e-government as cases",
+        "Measuring adoption: survey design, reliability and an introduction to structural equation models"
+      ]
+    },
+    {
+      "title": "Digital innovation and generativity",
+      "weeks": "6-7",
+      "topics": [
+        "Digitisation, digitalisation and digital transformation: what is new about digital innovation",
+        "Layered modular architecture and recombination of digital components",
+        "Generativity: leverage, adaptability, ease of mastery and unprompted change",
+        "Processes of digital innovation: convergence, combinatorial innovation, lean experimentation and effectuation",
+        "Open innovation: hackathons, innovation hubs and open data in African cities",
+        "Frugal innovation and leapfrogging: when mobile-first alters the path of development"
+      ]
+    },
+    {
+      "title": "Platforms and ecosystems",
+      "weeks": "8-9",
+      "topics": [
+        "Platform architecture: core, complements and boundary resources (APIs, SDKs)",
+        "Platform governance: openness, control and rules of participation",
+        "Ecosystems: complementors, value capture and co-opetition",
+        "Platform strategy: envelopment, multi-homing and entry barriers",
+        "Digital public infrastructure: national identity, payment rails and data exchange layers",
+        "Power, dependency and failure on platforms: app stores and gig work"
+      ]
+    },
+    {
+      "title": "IT and organisational change",
+      "weeks": "10-11",
+      "topics": [
+        "Strategic alignment of business and IT",
+        "The business value of IT: resource-based view, dynamic capabilities and complementary assets",
+        "Change management models: unfreeze-change-refreeze and staged change programmes",
+        "Digital transformation strategy and IT governance frameworks",
+        "Work, skills and power: automation, remote work and algorithmic management",
+        "Enterprise system implementation: lessons from ERP projects"
+      ]
+    },
+    {
+      "title": "Socioeconomics of digital technology",
+      "weeks": "12",
+      "topics": [
+        "The digital divide: access, skills and outcomes",
+        "Digital labour, platform work and the informal economy",
+        "Data, privacy and surveillance: data protection regimes and the governance of personal data",
+        "Information and communication technologies for development: capability approach and evidence on mobile money",
+        "Sustainability: e-waste, energy use and green IS"
+      ]
+    },
+    {
+      "title": "Research seminar: proposal and critique",
+      "weeks": "13",
+      "topics": [
+        "Forming a research question and positioning it in the literature",
+        "Theory-driven analysis of a case",
+        "Drafting a research proposal with design, sampling and ethics",
+        "Peer review and revision"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What is information systems?",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Write a 500-word argument that the IT artefact is or is not the core of the discipline, and classify a given paper as positivist, interpretivist or critical.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw a diagram placing the IT artefact between people, tasks and organisation, and mark where computer science and management studies each stop"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Take the role of a reviewer in a scenario, reading three paper abstracts and deciding the philosophical stance of each, scored on justification"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Respond to a scenario where a hospital board rejects interview evidence, defending when interpretive evidence is a valid basis for a decision"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Theory and research design",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Choose a research design for the question why mobile money agents stop operating, justify it against alternatives and critique the validity of one sample paper.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw a theory diagram with constructs, propositions and boundary conditions for the claim that perceived trust raises mobile money use"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Select the most suitable research design for three scenarios (a pilot app, a national survey, a system build) and defend each choice"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Critique a mock paper in a scenario with planted flaws in sampling, measurement and inference, and score the flaws you detect"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Socio-technical design and affordances",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Analyse the rollout of an electronic patient record in a district hospital with a socio-technical lens and an affordance lens, and compare what each reveals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E9",
+          "title": "Draw a socio-technical map of a district hospital records system with people, tasks, technology and structure, and mark two points of misfit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "List the affordances and constraints of a messaging app for a farmer co-operative and map each to a goal of a user group"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Advise as consultant in a scenario where staff use a records system in ways the designers did not expect, applying structuration ideas"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Actor-network theory, success and failure",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Reconstruct why a national land records system failed by mapping actors and interests, and score the system on a success model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Map the human and non-human actors of a ride-hailing service as an actor-network and mark where translation breaks down"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Score a system on quality, use, satisfaction and net benefit from survey data and compute correlations between the dimensions"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Investigate a failed public-sector information system in a scenario, gathering evidence, assigning causes and recommending a recovery plan"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Adoption and acceptance theories",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Design a short questionnaire to test whether perceived usefulness and ease of use predict adoption of a digital payment terminal among market traders.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Plot an S-curve from yearly adoption counts of a mobile service, estimate the inflection year and classify adopter groups"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Analyse a supplied survey with regression to test whether usefulness and ease of use predict intention, and report reliability coefficients"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Lead the introduction of a new system in a scenario where staff resist, choosing responses and scoring on adoption and trust"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Digital innovation and generativity",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Show with a layered architecture diagram how a mobile money service builds on devices, networks, services and content, and rate its generativity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Classify five examples as digitisation, digitalisation or digital transformation and defend each classification with evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Draw the layered architecture of a mobile money service and mark which layers allow third parties to recombine components"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Decide in a scenario whether to open your payment API to outside developers, weighing generativity against control and risk"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Processes and settings of innovation",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compare the open innovation of a hackathon, a hub and a frugal design for the same rural health problem, and judge which fits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Run a lean experiment in a scenario for a school-fees payment app, choosing tests and pivots, scored on learning speed and cost"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Plan a community hackathon in a scenario with limited budget and mixed partners, scored on outcomes, inclusion and follow-through"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E9",
+          "title": "Contrast a frugal and a conventional design for a solar-powered vaccine fridge monitor, with cost, features and constraints in a diagram"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Platform architecture, governance and ecosystems",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Analyse the architecture and rules of a payment platform, identify its boundary resources, and decide how its governance affects complementors.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Draw the platform core, complementors and boundary resources of an app store, marking who controls each interface"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Set governance rules for a new farmers marketplace in a scenario, trading off openness, quality and platform revenue"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Negotiate revenue sharing between a platform and three complementors in a scenario, scored on ecosystem health and platform value"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Platform strategy, public infrastructure and power",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Evaluate a proposed national identity and payments layer as digital public infrastructure, and assess dependency risks for small developers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Defend a platform from envelopment by a larger rival in a scenario, selecting strategic responses and scoring each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E9",
+          "title": "Draw the layers of a national digital identity and payment infrastructure with data flows, and mark where privacy and lock-in risks sit"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Respond in a scenario where an app store changes fees and rules overnight, balancing negotiation, diversification and compliance"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Strategy, value and change",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Assess how well the IT strategy of a regional bank aligns with its business strategy, estimate the sources of IT value, and plan a change programme.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Draw a strategic alignment diagram for a regional bank, marking the gaps between business strategy, IT strategy and operations"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Test whether IT spending relates to profit in a supplied firm dataset and discuss which complementary assets could explain the pattern"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Plan a change programme in a scenario for a ministry moving to paperless processes, scored on engagement, speed and stability"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Transformation, work and enterprise systems",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Review an ERP implementation case, identify the three decisions that most shaped its outcome, and discuss the effects of automation on the staff roles.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E9",
+          "title": "Map a digital transformation strategy for a utility company with governance roles, decision rights and an IT control framework"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Redesign jobs in a scenario where a call centre introduces algorithmic scheduling, weighing efficiency, fairness and staff well-being"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Steer an ERP implementation in a scenario with scope creep, data migration issues and a deadline, scored on cost, quality and adoption"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Digital divides, labour, privacy and development",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a policy brief on one socioeconomic effect of digital technology in Ghana, using at least two theoretical lenses and evidence from the readings.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute access, skills and outcomes indicators by region from a supplied survey and chart the three divides side by side"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Decide in a scenario how to handle a data breach affecting a school fees platform, scored on legal duties, notification and trust"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Weigh competing evidence on the effects of mobile money on household welfare in a scenario and recommend a policy with stated uncertainty"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Research proposal and peer review",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present and defend a research proposal on a digital innovation, with a question, theory, method, sampling and ethics plan, and review a peer proposal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Draw a concept map of the literature around your research question and mark the gap your proposal addresses"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E9",
+          "title": "Draw the design of your study as a timeline with data collection, analysis steps, ethics approvals and deliverables"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Act as proposal reviewer in a scenario, scoring a mock proposal on question, theory, method and feasibility, and writing the review"
+        }
+      ]
+    }
+  ]
+}

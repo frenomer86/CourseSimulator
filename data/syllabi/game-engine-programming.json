@@ -115,5 +115,403 @@
         "Packaging as a progressive web app and documenting the engine's architecture"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Engine layers and the game loop",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Draw the layer diagram of a small 2D engine and write one sentence on what each layer may and may not depend on.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a game loop with requestAnimationFrame that moves a square across a canvas and shows its frame count on screen"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement a fixed time step with an accumulator and run it at 30 and 144 Hz displays to show the physics gives identical results"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Reproduce the spiral of death by making update slower than the step, then add a frame clamp and interpolation to fix it"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Frame pacing and engine start-up",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a half-page note on why average frame rate hides stutter and which two measurements you would report instead.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Measure frame time for 300 frames and print the average, the worst frame and the percentage of frames over 16.7 ms"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Build a debug overlay showing FPS, frame time graph and entity count, toggled by a key, and log engine start-up and shut-down steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compare the frame pacing of a loop with and without vsync-aware timing under a simulated load, and chart the jitter for each"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "2D rendering, sprites and tile maps",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Sketch the layer order of a market scene with ground, stalls, characters and signs, and justify the draw order and any sorting rule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Draw layered sprites on a canvas with translation, rotation and scaling, and sort them so characters pass behind and in front of stalls"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Animate a character from a sprite sheet with an animation state machine for idle, walk and jump, driven by keyboard input"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Load a tile map from a JSON file with three layers, draw only the visible tiles, and measure the draw count against drawing the full map"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Cameras, WebGL batching and effects",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Explain in writing how reducing draw calls speeds up a renderer, using the numbers from your batching test.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Add a camera that follows the player with a dead zone and screen shake, and keep the pixel scale correct at two window sizes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Write a WebGL textured-quad shader and draw 1000 sprites in one batched call, then compare frame time with 1000 separate draw calls"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Build a scene graph with parent-child transforms, a render queue sorted by layer, and a particle emitter, then profile 5000 particles"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Input handling",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Design a control scheme for a platformer on both keyboard and touch, listing each action, its input and its on-screen target size.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Read keyboard, mouse and touch events and display the current state of each input on screen with a live readout"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Map raw inputs to named actions with rebinding, and add an input buffer so a jump pressed 100 ms early still registers"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Record a play session as timestamped inputs, replay it deterministically on a fixed step, and verify that both runs end in the same state"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Game object architecture",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a short argument for or against deep inheritance trees for game objects, using one example of a flying, shooting, burning enemy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Refactor a three-level inheritance hierarchy of enemies into composed components and show a new enemy type built without a new class"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Build a minimal entity-component-system with entity ids, component stores and a movement system, and run it on 1000 entities"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Compare an array-of-objects layout with a structure-of-arrays layout for 100000 entities and measure the update time of each"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Patterns, messaging and saving",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Pick three patterns from the course, and for each explain the problem it solves in your game and the cost it adds.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement an object pool for bullets and an observer for score events, and show that pooled bullets never allocate during play"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Add an event bus between collision, audio and scoring systems so none depends directly on another, and demonstrate hot reloading of a script"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Serialise all entities and components to JSON, reload the saved state, and check that a replay from the save matches the original run"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Collision detection geometry",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Prove by hand that two circles overlap exactly when the distance between centres is less than the sum of radii, then extend the idea to boxes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Implement circle and axis-aligned box intersection tests and display overlapping shapes in a different colour"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement the separating axis test for convex polygons and a ray cast, and visualise the axis that separates two non-colliding shapes"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Add a quadtree broad phase to 2000 moving circles and measure how many pair tests it avoids compared with testing every pair"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Fast objects and collision performance",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write a short report on how collision layers keep a platformer simple, listing the layers and masks for player, enemies, coins and walls.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Set up collision layers and masks so coins collide only with the player, and a trigger zone that logs when the player enters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Fire a fast bullet through a thin wall to show tunnelling, then fix it with a swept test and verify that all hits register"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E7",
+          "title": "Plot broad-phase time against entity count for grid, quadtree and sweep and prune, and choose the best method for 500 and for 5000 entities"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Audio",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Describe the audio design for a market arcade game: the sound list, which sounds can overlap, and which one may interrupt another.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Load and play a sound with the Web Audio API after a user gesture, with gain and stereo pan controls driven by sliders"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write a sound manager with channels, priorities and pooling that limits simultaneous sounds and crossfades between two music tracks"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Generate sound effects procedurally with oscillators and envelopes, position them in stereo by on-screen location, and keep them in step with gameplay"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Resources, assets and debugging tools",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a plan for loading assets on a slow mobile connection, stating which assets load first, which are lazy and what the player sees meanwhile.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Write a resource manager that loads an image once, caches it, counts references and unloads it when no scene uses it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Build scene transitions with a loading screen that shows real progress while three asset bundles load in sequence"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Add a service worker that caches the game for offline play, then test an update that replaces the cache without breaking a running session"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Performance on low-end phones",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Create a performance budget table for an entry-level Android phone covering frame time, memory, download size and start-up time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Record a browser performance profile of your game for ten seconds and identify the three functions that use the most time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Remove per-frame allocations from a particle system using preallocated arrays, then show the garbage-collection pauses disappear in the profile"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Implement adaptive quality that lowers resolution and particle count when frame time exceeds budget, and test it under a simulated slow CPU"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Integration and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Capstone report: document the architecture, the frame-time and memory results on a low-end device, and the three biggest lessons from building the game.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Connect the loop, renderer, input and collision modules into one engine skeleton that runs a moving player with a camera and a solid wall"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Build a complete level of an Ananse story platformer with enemies, collectibles, sound and a win condition running at 60 frames per second"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Meet a budget of 16 ms per frame and 100 MB of memory on a throttled device, documenting each optimisation and its measured effect"
+        }
+      ]
+    }
   ]
 }

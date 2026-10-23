@@ -1,0 +1,513 @@
+{
+  "slug": "robot-learning",
+  "description": "How robots acquire skills from demonstrations, rewards and models, and how those skills are made to work on real hardware safely. Students implement imitation, policy-gradient and model-based learning in small simulated tasks, train perception for grasping, test sim-to-real transfer, and evaluate policies with proper statistics.",
+  "modelledOn": [
+    "Sutton and Barto, Reinforcement Learning: An Introduction",
+    "Siciliano and Khatib (eds.), Springer Handbook of Robotics",
+    "Kober, Bagnell and Peters, Reinforcement Learning in Robotics: A Survey",
+    "Published lecture notes and survey papers on deep reinforcement learning and imitation learning for robotics"
+  ],
+  "outcomes": [
+    "Formulate a robot task as a Markov decision process with states, actions, rewards and a data budget.",
+    "Implement behavioural cloning, DAgger and a policy-gradient method and explain their failure modes.",
+    "Learn dynamics models and plan with them using model predictive control, and relate model error to performance.",
+    "Train visual models for grasping and visuomotor control and assess their robustness.",
+    "Design sim-to-real transfer with randomisation and system identification, and add safety constraints to learning.",
+    "Evaluate robot policies with statistically sound protocols and report successes, failures and costs honestly."
+  ],
+  "units": [
+    {
+      "title": "Foundations of robot learning",
+      "weeks": "1",
+      "topics": [
+        "The robot learning problem: sensing, acting, MDPs and POMDPs",
+        "Kinematics, dynamics and configuration space in brief",
+        "Data in robotics: demonstrations, rollouts, datasets and the cost of real-world data",
+        "Reinforcement learning recap: value functions, Bellman equations, temporal difference learning and Q-learning"
+      ]
+    },
+    {
+      "title": "Imitation learning",
+      "weeks": "2-3",
+      "topics": [
+        "Behavioural cloning and covariate shift",
+        "DAgger and interactive imitation learning",
+        "Inverse reinforcement learning and maximum-entropy IRL",
+        "Adversarial imitation learning (GAIL)",
+        "Learning from teleoperation and video; action chunking and diffusion policies",
+        "Dynamic movement primitives"
+      ]
+    },
+    {
+      "title": "Policy gradient methods",
+      "weeks": "4-5",
+      "topics": [
+        "REINFORCE, baselines and variance reduction",
+        "Actor-critic methods and generalised advantage estimation",
+        "Trust-region methods: TRPO and PPO",
+        "Off-policy continuous control: DDPG, TD3 and SAC",
+        "Reward design, shaping, sparse rewards, curricula and exploration"
+      ]
+    },
+    {
+      "title": "Model-based reinforcement learning",
+      "weeks": "6-7",
+      "topics": [
+        "Learning dynamics models: deterministic and probabilistic ensembles",
+        "Planning with models: model predictive control, cross-entropy method and MPPI",
+        "Dyna-style methods and model-based policy optimisation",
+        "Latent world models, compounding error and model bias",
+        "Links to optimal control: LQR and iterative LQR"
+      ]
+    },
+    {
+      "title": "Deep perception for manipulation",
+      "weeks": "8",
+      "topics": [
+        "Visual features: convolutional and transformer encoders, pretrained representations",
+        "Object pose, keypoints and grasp detection",
+        "End-to-end visuomotor policies",
+        "Depth, point clouds and tactile sensing",
+        "Language-conditioned and vision-language-action policies"
+      ]
+    },
+    {
+      "title": "Sim-to-real transfer",
+      "weeks": "9-10",
+      "topics": [
+        "Physics simulators and the reality gap",
+        "Domain randomisation of dynamics, visuals and sensors",
+        "System identification, domain adaptation and real-to-sim",
+        "Residual policies and fine-tuning on hardware",
+        "Low-cost and open-source arms and mobile robots for local labs"
+      ]
+    },
+    {
+      "title": "Safe learning",
+      "weeks": "11",
+      "topics": [
+        "Constrained MDPs and Lagrangian methods",
+        "Safe exploration, control barrier functions and shielding",
+        "Uncertainty estimation: ensembles, Bayesian methods and conformal prediction",
+        "Human oversight, emergency stops, failure modes and safety standards"
+      ]
+    },
+    {
+      "title": "Evaluation on real robots",
+      "weeks": "12",
+      "topics": [
+        "Metrics: success rate, confidence intervals and sample efficiency",
+        "Experimental protocols: randomised initial conditions, seeds and blind trials",
+        "Benchmarks, reproducibility and reporting failures",
+        "Generalisation tests and distribution shift",
+        "Costs: data collection, compute budgets and hardware wear"
+      ]
+    },
+    {
+      "title": "Project",
+      "weeks": "13",
+      "topics": [
+        "Problem selection and baselines",
+        "Training and evaluation pipeline",
+        "Write-up: results, ablations and limitations",
+        "Project presentation and critique"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Foundations of robot learning",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Formulate a pick-and-place task as an MDP, list its observations, actions and reward, and estimate how many real trials a learning approach would need.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Run Q-learning on a small grid world, step through the value updates, and show how the learned policy changes with discount and learning rate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute forward kinematics of a 2-link arm with matrices, solve inverse kinematics for 5 targets, and plot the reachable workspace"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Define a gym-style environment for a 2-link arm reaching a target, with reward and termination, and test a random policy for 100 episodes"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Behavioural cloning and interactive imitation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Explain why a cloned policy drifts away from the demonstrations, and show how DAgger corrects it with expert relabelling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Clone a policy from 20 demonstrations in a driving grid task and watch the errors accumulate along a rollout"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement DAgger for a lane-following task, run 5 iterations, and compare success rate and expert queries with plain cloning"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Recover a reward function from 30 expert trajectories on a grid world using maximum-entropy IRL and test it on a new layout"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Adversarial imitation, demonstrations and primitives",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compare imitation from teleoperation with learning from video, and fit a movement primitive to a demonstrated reach.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Fit a dynamic movement primitive to a demonstrated reach, change the goal and duration, and plot the generalised trajectories"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Train a small GAIL agent on a 2D navigation task and compare its returns with behavioural cloning for 10, 50 and 200 demonstrations"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Train a policy that predicts chunks of 8 future actions from demonstrations of a pushing task and compare it with single-step prediction"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Policy gradients and actor-critic",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive the policy gradient estimator, show how a baseline reduces variance, and describe the clipping in PPO.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Implement REINFORCE on a cart-pole task, plot learning curves with and without a baseline over 10 seeds, and compare their variance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Step through an actor-critic update on a short rollout, showing the value estimate, advantage and policy parameter change at each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement PPO with a clipped objective on a reaching task and sweep the clip range to find where training becomes unstable"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Off-policy methods and reward design",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Choose between on-policy and off-policy learning for a real arm with a limited trial budget, and design a shaped reward that avoids exploits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Train SAC on a pendulum swing-up task and compare sample efficiency with PPO over 5 seeds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Write a sparse and a shaped reward for a block-pushing task, train with each, and report the exploit that the shaped reward invites"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Build a curriculum that increases the target distance over training in a reaching task and compare it with training on the hardest case"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Learning dynamics models",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Explain how an ensemble separates model uncertainty from noise, and describe the receding-horizon loop of model predictive control.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Fit a neural dynamics model on 5,000 transitions of a pendulum and plot one-step and 20-step prediction error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Plan with the cross-entropy method over the learned model for a reaching task and compare the success rate with a random shooting planner"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement a Dyna-style loop that mixes real and model rollouts, and plot return against real environment steps against model-free SAC"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "World models and optimal control",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Show how model errors compound over a long rollout, and derive the LQR solution for a linearised pendulum.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compute the LQR gain for a linearised cart-pole using matrices, simulate the closed loop from a small perturbation, and plot the state"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Roll a learned model and the true system forward from the same state, plot the divergence, and find the horizon beyond which the model misleads"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Train a small latent dynamics model from images of a pushing task and plan in latent space, then report failures caused by model error"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Perception for manipulation",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compare end-to-end visuomotor control with a perceive-then-plan pipeline for grasping, and discuss when language conditioning helps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Step a small convolutional network over an image of objects and see the activations and the predicted grasp point and angle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Train a grasp success classifier on 2,000 labelled grasp crops, plot precision against recall, and choose a threshold for a gripper that must rarely drop items"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Train a visuomotor policy on rendered images with spatial softmax keypoints and compare it with a pretrained feature encoder on held-out scenes"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "The reality gap and domain randomisation",
+      "topics": [
+        "6.1",
+        "6.2"
+      ],
+      "exercise": "List the sources of the reality gap for a wheeled robot, and choose randomisation ranges that cover reality without making the task impossible.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Simulate a mobile robot with two friction values and compare the same controller trajectories to identify which parameters drive the gap"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Train a reaching policy with narrow and wide randomisation of mass and friction and test both on a held-out perturbed simulator"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E8",
+          "title": "Run a policy trained in simulation on a small servo arm or wheeled board, log the tracking error, and list which randomised parameter was missing"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "System identification, adaptation and low-cost hardware",
+      "topics": [
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Fit unknown physical parameters from logged data, then fine-tune a policy with residual correction on hardware.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Estimate mass and damping of a simulated mass-spring system from noisy logs by least squares and compare predicted and observed motion"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Add a residual policy on top of a fixed controller, train it on perturbed dynamics, and show tracking error with and without the residual"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E8",
+          "title": "Build a pan-tilt camera with two servos and a Raspberry Pi, train it to centre a target with learned control, and measure its error"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Safe learning",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Write a constrained MDP for a delivery robot near people, add a safety filter, and describe how uncertainty triggers a stop.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Train a policy with a Lagrangian cost constraint on a navigation task and plot return against constraint violations as the limit is tightened"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Add a shield that blocks unsafe actions in a grid navigation task, step through where it intervenes, and report the effect on reward"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Use an ensemble of policies to estimate uncertainty on test states, and stop the robot above a threshold, reporting missed and false stops"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Evaluating robot policies",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Plan a trial protocol for comparing two grasping policies on a real arm with 50 trials each, and report intervals, failures and costs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute success rates with 95 percent confidence intervals for two policies over 50 trials each and decide if the difference is significant"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Design a randomised initial condition schedule for 40 trials, run it against two policies in simulation, and detect order effects"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Test a trained policy on shifted lighting, object sizes and friction, and plot success against the size of each shift"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Present a robot learning project with baseline, method, evaluation protocol, ablation and an honest list of failure cases.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Implement a baseline controller and a learned policy for your chosen task and report the baseline's success rate over 100 episodes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Run an ablation removing one component of your method, with 5 seeds each, and plot the results with confidence intervals"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E6",
+          "title": "Replay 5 failed rollouts in the visualiser, classify the cause of each failure, and propose a fix for the most common cause"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,505 @@
+{
+  "slug": "advanced-deep-learning",
+  "description": "A graduate course on the methods that power modern deep learning, from the optimisation of deep networks to transformers, generative models, self-supervised learning, large-scale training, interpretability and deep reinforcement learning. Students implement and ablate each method at small scale, read recent papers critically and finish by reproducing a published result under a compute budget.",
+  "modelledOn": [
+    "Goodfellow, Bengio and Courville, Deep Learning",
+    "Prince, Understanding Deep Learning",
+    "Sutton and Barto, Reinforcement Learning: An Introduction",
+    "Recent proceedings of the major machine learning conferences (reading list)"
+  ],
+  "outcomes": [
+    "Analyse the optimisation behaviour of deep networks and choose optimisers, schedules, initialisation and normalisation with justification.",
+    "Derive and implement the attention mechanism and the transformer, and explain its computational cost and efficient variants.",
+    "Derive the training objectives of VAEs, GANs and diffusion models and evaluate generated samples.",
+    "Apply self-supervised, contrastive and parameter-efficient methods to settings with scarce labels, such as low-resource African languages.",
+    "Estimate memory, compute and communication costs of distributed training and apply compression for deployment on constrained devices.",
+    "Critique a recent paper, design ablations with multiple seeds and report a reproduction honestly."
+  ],
+  "units": [
+    {
+      "title": "Optimisation of deep networks",
+      "weeks": "1-2",
+      "topics": [
+        "Loss landscapes: saddle points, sharp versus flat minima and mode connectivity",
+        "SGD, momentum and Nesterov acceleration; Adam and AdamW; learning-rate schedules and warm-up",
+        "Initialisation and normalisation: Xavier and He schemes, batch normalisation, layer normalisation, signal propagation",
+        "Residual connections and trainability; gradient clipping and exploding gradients",
+        "Generalisation: implicit regularisation, weight decay, dropout and double descent",
+        "Hyperparameter search, seeds and reproducible training runs"
+      ]
+    },
+    {
+      "title": "Attention and transformer architectures",
+      "weeks": "3-4",
+      "topics": [
+        "Sequence models revisited: recurrent networks, vanishing gradients, LSTM and GRU",
+        "Scaled dot-product and multi-head attention; sinusoidal and rotary positional encodings",
+        "The transformer encoder and decoder; masking, residual stream and feed-forward blocks",
+        "Pretraining objectives (causal and masked language modelling) and subword tokenisation including African languages",
+        "Vision transformers and multimodal models",
+        "Cost of attention: quadratic scaling, KV caching and efficient attention such as FlashAttention and sparse variants"
+      ]
+    },
+    {
+      "title": "Generative models: VAE, GAN and diffusion",
+      "weeks": "5-6",
+      "topics": [
+        "Latent variable models, the evidence lower bound and the VAE with the reparameterisation trick",
+        "Autoregressive and normalising-flow models as exact-likelihood generators",
+        "Generative adversarial networks: minimax objective, mode collapse and Wasserstein GAN",
+        "Diffusion models: forward noising, denoising score matching and DDPM sampling",
+        "Conditioning, classifier-free guidance and evaluating generators with FID, likelihood and human evaluation"
+      ]
+    },
+    {
+      "title": "Self-supervised and contrastive learning",
+      "weeks": "7",
+      "topics": [
+        "Pretext tasks and masked autoencoders",
+        "Contrastive objectives: InfoNCE, SimCLR and MoCo, and the mutual information bound",
+        "Non-contrastive methods such as BYOL and collapse avoidance",
+        "Transfer and fine-tuning: adapters, LoRA and other parameter-efficient methods",
+        "Few-shot and low-resource learning for African languages and satellite imagery"
+      ]
+    },
+    {
+      "title": "Scaling, efficiency and distributed training",
+      "weeks": "8-9",
+      "topics": [
+        "Scaling laws and compute-optimal training",
+        "Data, tensor and pipeline parallelism; ZeRO sharding; the communication cost of all-reduce",
+        "Mixed precision, gradient checkpointing and memory accounting for parameters, activations and optimiser state",
+        "Compression: quantisation, pruning and knowledge distillation for edge devices",
+        "Mixture-of-experts models and conditional computation",
+        "Cost, energy and carbon accounting of training and inference"
+      ]
+    },
+    {
+      "title": "Interpretability and robustness",
+      "weeks": "10",
+      "topics": [
+        "Attribution methods: saliency, integrated gradients, SHAP and sanity checks for explanations",
+        "Probing and mechanistic interpretability: circuits, attention heads and sparse autoencoders",
+        "Adversarial examples: FGSM, PGD, adversarial training and certified defences",
+        "Distribution shift, calibration and out-of-distribution detection",
+        "Safety evaluation, red teaming and failure analysis of deployed models"
+      ]
+    },
+    {
+      "title": "Deep reinforcement learning",
+      "weeks": "11-12",
+      "topics": [
+        "Markov decision processes recap; policy gradients, REINFORCE and baselines",
+        "Actor-critic methods: A2C and PPO with clipped objectives",
+        "Value-based deep RL: DQN, experience replay, target networks and double DQN",
+        "Continuous control with DDPG and SAC",
+        "Model-based and offline reinforcement learning; reinforcement learning from human feedback"
+      ]
+    },
+    {
+      "title": "Research methods and project",
+      "weeks": "13",
+      "topics": [
+        "Reading and critiquing a recent paper: claims, evidence, baselines and ablations",
+        "Experiment tracking, seeds and statistical rigour in deep learning comparisons",
+        "Reproducing a published result under a fixed compute budget",
+        "Writing and presenting the reproduction report"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Loss landscapes and optimisers",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Derive the update rules of momentum and Adam, then explain in a page why AdamW decouples weight decay and when that matters.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Implement SGD, momentum and Adam from scratch and compare their loss curves on a two-layer network for the same learning-rate budget"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Propagate activations through a 20-layer network under poor and He initialisation and watch the signal variance explode or vanish"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Interpolate linearly between two trained solutions, plot the loss along the path and test whether a low-loss path connects them"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Trainability and generalisation",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Design a hyperparameter study for a small network with a fixed budget, and write the protocol you will follow to make the result reproducible.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Train networks of depth 10, 30 and 60 with and without residual connections and plot gradient norms per layer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Reproduce a double descent curve by fitting random-feature models of increasing width on a noisy regression task"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Run a random search of 30 configurations with 3 seeds each and report which differences exceed seed noise"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Sequence models and the attention mechanism",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Derive scaled dot-product attention, explain the role of the square root of the key dimension and count the parameters of one transformer block.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Unroll an RNN over 50 steps, record the gradient magnitude per step and show the vanishing gradient, then repeat with an LSTM"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Step single-head attention by hand on a 4-token sentence, showing scores, softmax weights and the weighted value sum"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement a small decoder-only transformer with causal masking and train it on a character corpus to below 1.6 nats per character"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Pretraining, tokenisation and efficient attention",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compare byte-pair encoding on English and on a Ghanaian language text sample and discuss what tokenisation costs low-resource languages.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Train a byte-pair tokenizer on a Twi or Ewe text sample and compare tokens per word with an English tokenizer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Patch an image into tokens, add position embeddings and verify the shape flow through a minimal vision transformer encoder"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Measure attention time and memory against sequence length from 256 to 4,096, then add KV caching to autoregressive decoding and report the speed-up"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Latent variable models and likelihood generators",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive the evidence lower bound, show the two terms of the VAE loss and explain what posterior collapse is and how to avoid it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Train a VAE on small digit images, plot the latent space and interpolate between two digits to inspect the decoder"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Fit an autoregressive pixel model and a single-layer flow to the same 2D data and compare their log-likelihoods"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Train a GAN on a 2D mixture of eight Gaussians, observe mode collapse and mitigate it with a Wasserstein loss"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Diffusion models and evaluating generators",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Compare VAE, GAN and diffusion models in a table covering sample quality, diversity, speed and training stability, with one citation per claim.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement the forward noising process and train a small denoiser on 2D data, then sample with DDPM and plot the trajectories"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Apply classifier-free guidance at several scales on a conditional toy model and measure the trade-off between fidelity and diversity"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Compute FID-style Frechet distance between real and generated feature sets for three generators and discuss when the metric misleads"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Self-supervised, contrastive and efficient fine-tuning",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Plan a pretraining and fine-tuning pipeline for a speech or text task in a low-resource African language, listing data, objective, compute and evaluation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Pretrain a small masked autoencoder on unlabelled images, then train a linear probe and compare with training from scratch on 100 labels"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Implement the InfoNCE loss with in-batch negatives, train with two augmentations and plot probe accuracy against batch size"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Add LoRA adapters to a pretrained classifier, compare trainable parameter count and accuracy with full fine-tuning"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Scaling laws and parallel training",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Estimate memory and time for training a 1 billion parameter model on 8 GPUs, listing parameters, gradients, optimiser state and activations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Fit a power law to loss against parameter count for five small models and extrapolate to predict loss at ten times the size"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Simulate data, tensor and pipeline parallelism on a 4-device cluster and compare communication volume per step"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Compute the memory budget of a transformer with and without mixed precision and checkpointing, then check your estimate against a measured run"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Compression and efficient deployment",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write a deployment memo for running a language model on a low-cost phone with intermittent connectivity, justifying the compression choices you make.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Apply post-training 8-bit and 4-bit quantisation to a small model and report accuracy, size and latency at each precision"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Route tokens through a four-expert mixture layer, show the load per expert and add a balancing loss to remove imbalance"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Estimate energy and carbon cost of training and serving a model using given power and grid figures, and propose a cheaper schedule"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Interpretability and robustness",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Choose two interpretability methods and two robustness tests for a medical imaging classifier, and state what evidence would change your decision to deploy it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Compute integrated gradients for a classifier and run a randomisation sanity check to see whether the attribution truly depends on the model"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Craft FGSM and PGD adversarial images against a small CNN and measure robust accuracy before and after adversarial training"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Detect out-of-distribution inputs with a max-softmax score and energy score, then report AUROC and calibration error under a covariate shift"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Policy gradients and actor-critic",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Derive the policy gradient theorem with a baseline and explain why the baseline lowers variance without adding bias.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Implement REINFORCE on a small control task, add a value baseline and compare the variance of the gradient estimates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Implement PPO with the clipped objective and plot returns for three clip ranges across five seeds"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Train a DQN with experience replay and target network on a grid task and ablate each component to see the effect on stability"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Continuous control, model-based and offline RL",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Discuss in a short essay how reinforcement learning from human feedback differs from standard RL and what can go wrong with a learned reward.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Implement a soft actor-critic agent on a pendulum task and compare sample efficiency with a deterministic policy gradient baseline"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Fit a learned dynamics model to logged transitions and plan with random shooting, comparing performance with a model-free agent"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Train a reward model from 200 pairwise preferences and use it to fine-tune a small policy, then audit for reward hacking"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Research methods and reproduction project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Submit a reproduction report: the claim, your setup, results with seeds and intervals, ablations, and an honest discussion of what did and did not reproduce.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Read a recent paper and write a structured critique listing its claims, baselines, missing ablations and threats to validity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Set up experiment tracking for a training script, run five seeds and report the mean and a bootstrap interval for the headline metric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Reproduce one table entry of a published result at reduced scale within a four-hour budget and explain every deviation"
+        }
+      ]
+    }
+  ]
+}

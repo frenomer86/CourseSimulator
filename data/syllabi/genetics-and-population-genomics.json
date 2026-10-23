@@ -1,0 +1,513 @@
+{
+  "slug": "genetics-and-population-genomics",
+  "description": "How traits are inherited, how allele frequencies change in populations, and how genomic data is used to map genes and predict traits. In the lab students simulate crosses and populations, test Hardy-Weinberg and structure, and run a small association study and polygenic score from scratch.",
+  "modelledOn": [
+    "Griffiths et al., Introduction to Genetic Analysis",
+    "Hartl and Clark, Principles of Population Genetics",
+    "Lynch and Walsh, Genetics and Analysis of Quantitative Traits (selected chapters)",
+    "Hamilton, Population Genetics"
+  ],
+  "outcomes": [
+    "Predict offspring ratios for Mendelian, sex-linked and quantitative traits and test them with chi-square statistics.",
+    "Estimate recombination fractions, map distances and LOD scores from crosses and pedigrees.",
+    "Test Hardy-Weinberg proportions and model the effects of drift, selection, mutation and migration on allele frequencies.",
+    "Describe and compute population structure with F-statistics, principal components and admixture models.",
+    "Run, quality-control and interpret a genome-wide association scan, including multiple-testing and stratification corrections.",
+    "Build and evaluate a polygenic score and explain its limits across ancestries."
+  ],
+  "units": [
+    {
+      "title": "Mendelian inheritance",
+      "weeks": "1",
+      "topics": [
+        "Mendel's laws, monohybrid and dihybrid crosses, Punnett squares and chi-square goodness of fit",
+        "Dominance, codominance, incomplete dominance, epistasis, penetrance and expressivity",
+        "Sex-linked and mitochondrial inheritance; X inactivation",
+        "Genes, alleles and variants at the molecular level: SNPs, indels and copy-number variants",
+        "Worked cases from West Africa: sickle cell (HbS), G6PD deficiency and malaria protection",
+        "Probability rules in genetics: product, sum and binomial rules, and Bayes' rule for risk"
+      ]
+    },
+    {
+      "title": "Quantitative inheritance",
+      "weeks": "2",
+      "topics": [
+        "Polygenic traits, the normal distribution and the additive model of genotype effects",
+        "Variance components: genetic, environmental, additive, dominance and epistatic variance",
+        "Broad-sense and narrow-sense heritability; parent-offspring regression and twin studies",
+        "The breeder's equation and response to selection in crops and livestock such as cassava, cocoa and cattle",
+        "Genotype-by-environment interaction and reaction norms"
+      ]
+    },
+    {
+      "title": "Pedigrees and linkage analysis",
+      "weeks": "3-4",
+      "topics": [
+        "Pedigree notation and recognising autosomal dominant, autosomal recessive and X-linked patterns",
+        "Recombination, genetic distance, Haldane and Kosambi mapping functions",
+        "Three-point test crosses, gene order and interference",
+        "LOD scores and parametric linkage analysis",
+        "Carrier risk in pedigrees with Bayesian updating",
+        "Variation in recombination rate: hotspots and sex differences"
+      ]
+    },
+    {
+      "title": "Allele frequencies and Hardy-Weinberg equilibrium",
+      "weeks": "5",
+      "topics": [
+        "Allele and genotype frequencies; the Hardy-Weinberg principle and its assumptions",
+        "Testing equilibrium: chi-square and exact tests, and genotyping error as a cause of deviation",
+        "Inbreeding coefficient, identity by descent and consanguinity",
+        "Multiple alleles and X-linked loci; estimating frequencies by expectation-maximisation (ABO blood groups)",
+        "Non-random mating: assortative mating and its effect on genotype frequencies"
+      ]
+    },
+    {
+      "title": "Drift, selection and the coalescent",
+      "weeks": "6-7",
+      "topics": [
+        "Genetic drift in the Wright-Fisher model; fixation probability and effective population size",
+        "Natural selection: fitness, selection coefficient and heterozygote advantage (sickle cell as balanced polymorphism)",
+        "Mutation-selection balance, migration and gene flow; the island model",
+        "Neutral theory and the site frequency spectrum",
+        "Coalescent theory: genealogies, time to the most recent common ancestor and simulation",
+        "Detecting selection: Tajima's D, extended haplotype homozygosity and Fst outlier scans"
+      ]
+    },
+    {
+      "title": "Population structure and ancestry",
+      "weeks": "8-9",
+      "topics": [
+        "Wright's F-statistics, Fst and isolation by distance",
+        "Principal component analysis of genotype matrices",
+        "Model-based clustering and admixture proportions; choosing the number of clusters",
+        "Admixture and local ancestry; African genetic diversity, the Bantu expansion and the out-of-Africa gradient",
+        "Linkage disequilibrium: D, r-squared, haplotype blocks and LD decay",
+        "Limits and ethics of genetic ancestry testing"
+      ]
+    },
+    {
+      "title": "QTL mapping and genome-wide association",
+      "weeks": "10-11",
+      "topics": [
+        "QTL mapping in crosses: interval mapping, LOD thresholds and permutation tests",
+        "GWAS design and single-variant regression for quantitative and case-control traits",
+        "Quality control: call rate, minor allele frequency, Hardy-Weinberg filters and relatedness",
+        "Multiple testing: Bonferroni, genome-wide significance and false discovery rate; Manhattan and QQ plots",
+        "Confounding by stratification: genomic control, principal components and mixed models",
+        "Fine mapping, imputation and reference panels, including the under-representation of African ancestries"
+      ]
+    },
+    {
+      "title": "Heritability and polygenic scores",
+      "weeks": "12-13",
+      "topics": [
+        "SNP heritability and the missing heritability problem",
+        "Constructing polygenic scores: clumping, thresholding and effect-size shrinkage",
+        "Evaluating prediction: R-squared, AUC, calibration and portability across ancestries",
+        "Genetic correlation, pleiotropy and an introduction to Mendelian randomisation",
+        "Ethics and governance of genomic research in Africa: consent, data sharing and benefit sharing",
+        "Capstone: a reproducible pipeline from simulated cohort to association scan to polygenic score"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Mendel, molecular variants and probability",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Predict the offspring of a dihybrid cross, test the ratio with chi-square, and work out the chance that two HbAS parents have a child with sickle cell disease.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Simulate 1000 offspring of a monohybrid cross with Monte Carlo and test the 3:1 ratio against a chi-square goodness-of-fit statistic"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Compute the chance that two HbAS carrier parents have a child with sickle cell disease, then across a family of four children using the binomial rule"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E7",
+          "title": "Use Bayes' rule to compute the probability that a test-positive person carries a rare variant, given prevalence, sensitivity and specificity, and plot it against prevalence"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Quantitative traits and heritability",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain why height-like traits are bell-shaped, decompose a trait's variance into parts, and predict the response to selection from a heritability estimate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot the distribution of a trait controlled by 1, 3 and 10 additive loci in 1000 simulated plants, and describe how its shape approaches normal"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Estimate narrow-sense heritability of cassava yield from a table of parent and offspring values by regressing offspring on the mid-parent value"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Simulate five generations of truncation selection on a trait of heritability 0.3 and compare the observed response with the breeder's equation prediction"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Pedigrees, recombination and map distance",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Classify five pedigrees by inheritance mode, convert recombinant counts into map distances, and deduce gene order from a three-point cross.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Classify five given pedigrees as autosomal dominant, autosomal recessive or X-linked in a counselling scenario, listing the evidence that rules out the other modes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute recombination fractions from backcross counts, convert to map distance with Haldane and Kosambi functions, and plot the difference up to 50 cM"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Count recombinants from three-point cross data, deduce gene order and the interference coefficient, and check the answer with a simulation of double crossovers"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "LOD scores, carrier risk and recombination variation",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compute a LOD score for a small family, update a woman's carrier risk with Bayes' rule, and explain why recombination rates differ between sexes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compute LOD scores for a two-generation pedigree at recombination fractions from 0.0 to 0.5 in steps of 0.05, and plot the curve to find its maximum"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Write code that updates a counselee's carrier risk from a pedigree using prior, conditional and joint probabilities, and check it against your hand calculation"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Simulate crossover positions with a hotspot at 30 cM over 5000 meioses, then estimate the local recombination fraction and total map length"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Hardy-Weinberg equilibrium and inbreeding",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compute allele frequencies for ABO blood groups from phenotype counts, test a SNP for Hardy-Weinberg proportions, and compute F from a village sample.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Count genotypes from 200 individuals at one SNP, compute allele frequencies and expected Hardy-Weinberg counts, and run the chi-square test with one degree of freedom"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Estimate ABO allele frequencies from phenotype counts with an expectation-maximisation loop, and verify the estimates sum to one and fit Hardy-Weinberg"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Implement an exact Hardy-Weinberg test for 20 SNPs with small counts, flag deviations after multiple-testing correction, and suggest genotyping error or a real cause"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Genetic drift and natural selection",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Predict from theory how long drift takes to fix an allele in populations of size 20 and 200, and find the equilibrium of a heterozygote-advantage locus.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Simulate 20 Wright-Fisher populations of size 50 starting at allele frequency 0.5 and plot the trajectories to see fixation and loss"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Iterate the selection recursion for the HbS allele with fitness values you set, find the equilibrium frequency and compare it with the analytic formula"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Simulate an island model with mutation, migration and drift, and find the migration rate at which populations stop diverging, comparing with the 4Nm = 1 rule"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Neutral theory, coalescent and selection scans",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Sketch a coalescent genealogy for six sampled genes, compute expected coalescence times, and explain how a selective sweep changes Tajima's D.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Simulate neutral allele frequencies in a large sample and compute the site frequency spectrum, comparing it with the expected 1/i shape"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Simulate 1000 coalescent genealogies for 10 samples, estimate the mean time to the most recent common ancestor, and compare it with theory"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Compute Tajima's D and Fst per window along a simulated chromosome with one sweep, and locate the sweep from the outlier windows"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "F-statistics, PCA and admixture",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compute Fst between three populations, interpret a PCA plot of genotypes, and explain how admixture proportions are estimated and how K is chosen.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute Fst between three simulated populations at 50 SNPs, rank loci by differentiation, and plot the distribution of values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Run PCA on a genotype matrix of 100 individuals from three groups, plot PC1 against PC2, and report the variance explained by each component"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement a simple admixture model by expectation-maximisation, run it for K from 1 to 5, and choose K using cross-validation error"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Linkage disequilibrium, admixture and ancestry ethics",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Compute LD between SNP pairs, estimate the admixture proportion of a hybrid population, and explain what a commercial ancestry report can and cannot say.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Compute D and r-squared for SNP pairs from haplotype counts, and plot LD decay against distance to find where r-squared falls below 0.2"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Estimate the admixture proportion of a hybrid population from allele frequencies in two source groups by least squares, with a bootstrap confidence interval"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Respond to a community request to explain a commercial ancestry report in a scenario, covering what the inference can and cannot say and consent for reuse"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "QTL mapping and single-variant association",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Locate a QTL in an F2 cross from marker data, run a single-SNP regression, and list the quality-control filters applied before an association scan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Run single-marker regression of a trait on 5 markers in an F2 cross, plot LOD against position, and locate the QTL peak"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Run per-SNP linear regression for 1000 SNPs and 500 individuals with one planted causal variant, and report the top hit's effect size, standard error and p-value"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Apply call-rate, minor allele frequency and Hardy-Weinberg filters and a relatedness check to a messy genotype file, reporting how many variants and samples each step removes"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Multiple testing, stratification and fine mapping",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Read a Manhattan and QQ plot, explain genomic inflation, and decide which loci in a results table pass genome-wide significance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Draw a Manhattan plot and QQ plot from a supplied results table, mark the 5e-8 line, and list loci passing Bonferroni and FDR thresholds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Show inflated test statistics in a GWAS with hidden population structure by computing lambda, then correct it by adding the first two principal components"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Fine-map a locus with 30 SNPs in strong LD by computing posterior inclusion probabilities and a 95 percent credible set, then repeat with a smaller reference panel"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "SNP heritability and building polygenic scores",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Compare heritability estimated from twins and from SNPs, build a polygenic score by clumping and thresholding, and explain why accuracy drops across ancestries.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute heritability from monozygotic and dizygotic twin correlations with Falconer's formula and compare it with a supplied SNP-based estimate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Build a polygenic score with clumping and p-value thresholding on a training cohort, and test its R-squared in a held-out set of 500 individuals"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Compare score accuracy in a target set of different ancestry from the training set, quantify the drop in R-squared, and explain it through allele frequencies and LD"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Pleiotropy, ethics and the capstone pipeline",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Estimate a genetic correlation, critique a consent form for a community genomics study, and assemble a reproducible pipeline from simulated cohort to polygenic score.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Review a consent form for a community genomic study in a scenario, mark where it fails to explain data sharing, return of results and withdrawal, and suggest plain-language fixes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Estimate the genetic correlation between two simulated traits, and a Mendelian randomisation causal effect from three genetic instruments using the Wald ratio"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Assemble a reproducible pipeline that simulates a cohort, runs quality control, an association scan and a polygenic score, and writes one report recording every seed"
+        }
+      ]
+    }
+  ]
+}

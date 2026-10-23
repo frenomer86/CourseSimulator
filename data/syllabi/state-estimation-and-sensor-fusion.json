@@ -1,0 +1,521 @@
+{
+  "slug": "state-estimation-and-sensor-fusion",
+  "description": "How to estimate the hidden state of a moving system from noisy sensors: Bayes filters, Kalman filters and their nonlinear extensions, particle filters, localisation, mapping, smoothing with factor graphs and multi-sensor fusion. Students derive the filters, implement them from scratch and test consistency on simulated and recorded sensor data.",
+  "modelledOn": [
+    "Thrun, Burgard and Fox, Probabilistic Robotics",
+    "Barfoot, State Estimation for Robotics",
+    "Bar-Shalom, Li and Kirubarajan, Estimation with Applications to Tracking and Navigation"
+  ],
+  "outcomes": [
+    "Derive the Kalman filter from Bayesian recursion and implement linear, extended and unscented filters for a given state-space model.",
+    "Implement and tune particle filters, choosing proposal distributions and resampling schemes that avoid weight degeneracy.",
+    "Model inertial, satellite-navigation, range and camera sensors, calibrate their errors and reject outliers.",
+    "Solve localisation, mapping and pose-graph problems as filtering or nonlinear least-squares estimation on a factor graph.",
+    "Fuse multiple sensors loosely and tightly coupled, and evaluate estimator consistency and accuracy with NEES, NIS and trajectory error."
+  ],
+  "units": [
+    {
+      "title": "Probability and estimation foundations",
+      "weeks": "1",
+      "topics": [
+        "Random vectors, the Gaussian distribution, covariance and Mahalanobis distance",
+        "Bayesian estimation: ML and MAP estimates and the Cramer-Rao bound",
+        "Least squares: linear, weighted and recursive least squares",
+        "State-space models: discrete and continuous time, observability and controllability",
+        "Noise models: white and coloured noise, random walk and Allan variance"
+      ]
+    },
+    {
+      "title": "Bayes filters",
+      "weeks": "2",
+      "topics": [
+        "Recursive Bayesian estimation: prediction and update",
+        "The discrete Bayes (histogram) filter and grid localisation",
+        "The Markov assumption, motion models and measurement models",
+        "Hidden Markov models: the forward algorithm and Viterbi decoding",
+        "Information form and the idea of filter consistency"
+      ]
+    },
+    {
+      "title": "Kalman and extended Kalman filters",
+      "weeks": "3-4",
+      "topics": [
+        "Kalman filter derivation: prediction, innovation, gain and the Joseph form",
+        "Steady-state gain, the Riccati equation and alpha-beta filters",
+        "Tuning Q and R; consistency tests with NEES, NIS and innovation whiteness",
+        "Numerical issues: square-root and UD factorisation filters",
+        "Extended Kalman filter: linearisation, Jacobians and failure modes",
+        "Information filter and continuous-time Kalman-Bucy filter"
+      ]
+    },
+    {
+      "title": "Unscented and particle filters",
+      "weeks": "5-6",
+      "topics": [
+        "The unscented transform, sigma points and the unscented Kalman filter",
+        "Linearisation error compared across EKF, UKF and cubature filters",
+        "Particle filters: importance sampling, the SIR filter and weight degeneracy",
+        "Resampling schemes: multinomial, systematic and stratified; effective sample size",
+        "Rao-Blackwellised particle filters, Gaussian-sum filters and ensemble Kalman filters",
+        "Data association: gating, nearest neighbour and joint probabilistic data association"
+      ]
+    },
+    {
+      "title": "Sensor models and calibration",
+      "weeks": "7",
+      "topics": [
+        "Inertial sensors: accelerometer and gyroscope bias, scale factor, noise and random walk",
+        "Satellite navigation, wheel odometry, magnetometer and barometer error characteristics",
+        "Range and vision sensors: lidar, radar, ultrasonic and camera reprojection models",
+        "Calibration: intrinsic and extrinsic parameters and time synchronisation",
+        "Outlier rejection: chi-square gating, RANSAC and robust loss functions"
+      ]
+    },
+    {
+      "title": "Localisation and mapping",
+      "weeks": "8-9",
+      "topics": [
+        "Wheeled-robot motion models: odometry, unicycle and bicycle",
+        "Monte Carlo localisation and Markov localisation",
+        "Attitude estimation: quaternions, complementary filter and strapdown inertial navigation",
+        "EKF-SLAM: landmark maps, observability and inconsistency",
+        "FastSLAM and occupancy-grid mapping",
+        "Visual and lidar odometry: scan matching with ICP and loop closure"
+      ]
+    },
+    {
+      "title": "Smoothing and factor graphs",
+      "weeks": "10-11",
+      "topics": [
+        "Filtering versus smoothing: the RTS smoother and fixed-lag smoothing",
+        "MAP estimation as nonlinear least squares: Gauss-Newton and Levenberg-Marquardt",
+        "Factor graphs, Bayes nets, variable elimination and sparsity",
+        "Pose graph optimisation and bundle adjustment",
+        "Incremental smoothing, marginalisation and sliding-window estimators",
+        "State on manifolds: SO(3) and SE(3), perturbations and Lie group updates"
+      ]
+    },
+    {
+      "title": "Multi-sensor fusion",
+      "weeks": "12",
+      "topics": [
+        "Loosely versus tightly coupled GNSS/INS fusion",
+        "Visual-inertial odometry and the error-state Kalman filter",
+        "Distributed fusion: covariance intersection and track-to-track fusion",
+        "Fault detection: innovation monitoring and integrity checks",
+        "Case: fusing low-cost sensors for an agricultural drone or a vehicle tracker in Accra"
+      ]
+    },
+    {
+      "title": "Project and research",
+      "weeks": "13",
+      "topics": [
+        "Designing an estimator for a platform: state definition, models and tuning",
+        "Evaluation: RMSE, absolute and relative trajectory error, ground truth and benchmarks",
+        "Recent research: learned and differentiable filters and deep sensor fusion",
+        "Open problems and project defence"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Gaussians, least squares and state-space models",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Fit a line and a polynomial by recursive least squares, set up a constant-velocity state-space model, and check its observability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot the covariance ellipse of a 2D Gaussian from a given covariance matrix and compute the Mahalanobis distance of three points"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement recursive least squares for a drifting sensor offset and plot the estimate and its variance against the batch solution"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Compute the Allan variance of a recorded gyroscope log and identify the white noise and bias instability coefficients from the plot"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Recursive Bayes, grids and hidden Markov models",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Implement a grid Bayes filter for a robot in a corridor of doors and decode a hidden Markov model with Viterbi.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Step through a histogram filter for a robot in a one-dimensional corridor and record the belief after each move and measurement"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Code a grid localisation filter in a 2D map with a noisy range sensor and report the time to localise over ten runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement the forward algorithm and Viterbi decoding for a three-state hidden Markov model, and validate them against brute-force enumeration"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "The Kalman filter",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive the Kalman filter, apply it to tracking a minibus from noisy GPS positions, and tune the noise matrices with consistency tests.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Perform two predict-update cycles of a scalar Kalman filter by hand and check the gain and variance values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Implement a constant-velocity Kalman filter on simulated GPS data and plot the estimate, error and three-sigma bounds"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Run 100 Monte Carlo trials of a tracking filter, compute average NEES and NIS and tune Q and R until the filter is consistent"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Numerics and the extended Kalman filter",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compare the plain and Joseph covariance updates under poor conditioning, and build an extended Kalman filter for bearing-only tracking.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Compute the Jacobian of a range and bearing measurement model at a given state and linearise the model around it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Show covariance losing positive definiteness in a badly conditioned problem, and fix it with the Joseph form and square-root updates"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Implement an EKF for bearing-only tracking, find initial conditions that make it diverge, and propose a fix with evidence"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Unscented transform and particle filter basics",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Propagate a Gaussian through a strong nonlinearity with linearisation, sigma points and sampling, and compare the resulting means and covariances.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Generate sigma points for a 2D Gaussian and push them through a polar-to-Cartesian transform, then compare with Monte Carlo samples"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Compare EKF and UKF on a turning-vehicle model with strong nonlinearity, and plot the RMSE of each over 50 runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement a bootstrap particle filter for a nonlinear benchmark model, vary the particle count, and plot the error against run time"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Resampling, advanced filters and data association",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compare resampling schemes, and build a tracker for multiple targets with gating and nearest-neighbour association.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Watch weights collapse in a particle filter without resampling and note the effective sample size at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement multinomial and systematic resampling, compare their variance on a test problem, and set an adaptive resampling threshold"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Track three crossing targets in clutter with gating and global nearest-neighbour association and report track switches and missed tracks"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Sensor models, calibration and outliers",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Build error models for an IMU and a GNSS receiver from recorded data, calibrate a camera or a gyroscope, and filter outliers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Estimate the bias and noise of a stationary accelerometer log and generate a synthetic log with the same statistics"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Calibrate a gyroscope and a magnetometer on the hardware bench from static and rotation recordings and compare errors before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Fit a line to range data with 30 percent outliers using least squares, RANSAC and a robust loss, and compare the three errors"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Motion models, Monte Carlo localisation and attitude",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Localise a wheeled robot with a particle filter, and estimate a phone's orientation by fusing gyroscope and accelerometer readings.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Simulate odometry for a unicycle model with wheel noise and plot how position error grows over a 100-metre path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement Monte Carlo localisation on an occupancy map with lidar readings and report the pose error after the robot has moved 20 metres"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Fuse gyroscope and accelerometer data using a complementary filter and an EKF on a quaternion state, and compare drift and noise"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "SLAM and odometry",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Run EKF-SLAM and a grid-mapping robot on a simulated site, and use scan matching to estimate motion between lidar frames.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Build an occupancy grid from a robot's known poses and lidar scans and mark the free, occupied and unknown cells"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Align two lidar scans with iterative closest point and report the estimated rotation and translation error against ground truth"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Run EKF-SLAM over repeated loops, show the covariance becoming overconfident, and demonstrate loop closure effects on the map"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Smoothing and nonlinear least squares",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Smooth a trajectory with the RTS smoother, then solve the same problem as nonlinear least squares and draw its factor graph.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Apply a forward Kalman filter and a backward RTS pass to a track and compare the filtered and smoothed errors"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Solve a range-only localisation problem with Gauss-Newton and Levenberg-Marquardt and compare their convergence from poor starts"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E9",
+          "title": "Draw the factor graph for a 10-pose trajectory with odometry, a prior and two loop closures, and write its sparse information matrix"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Pose graphs, manifolds and incremental smoothing",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Optimise a pose graph with loop closures, update the state on a manifold, and compare batch and sliding-window solutions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Compose and invert 2D and 3D rigid transforms, and check the results against the group properties"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Optimise a 2D pose graph with 100 poses and 5 loop closures, then plot the trajectory before and after the optimisation"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Implement a sliding-window estimator with marginalisation and compare its accuracy and run time with the full batch smoother"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Multi-sensor fusion and fault detection",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Fuse GNSS, inertial and wheel sensors for a vehicle tracker with a tight and a loose design, and inject sensor faults.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Fuse a GNSS position and an inertial prediction by weighted averaging and see how the weight changes the error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Build an error-state Kalman filter for an inertial unit corrected by GNSS and plot the position error through a 30-second outage"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Add innovation-based fault detection to the fusion filter, inject a GNSS jump, and report detection delay and false alarm rate"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Estimator design, evaluation and research",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Design, tune and evaluate an estimator for a chosen platform, then critique one recent learned-filter paper and defend the project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E7",
+          "title": "Compute RMSE and absolute trajectory error for an estimate against ground truth and explain what each metric hides"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Write the state, process model and measurement model for a chosen platform and run the filter on the supplied data log"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Compare a trained neural network state estimator with a tuned Kalman filter on shifted noise conditions and report where each fails"
+        }
+      ]
+    }
+  ]
+}

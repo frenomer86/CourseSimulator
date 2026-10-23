@@ -112,5 +112,401 @@
         "Parallel speed-up, Amdahl again, and writing a parallel program that scales"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Computer evolution and performance",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Problem set: compute CPI, execution time and MIPS for three programs on two machines, show why MIPS can mislead, and apply Amdahl's law to a 40 percent speed-up of one part.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute execution time from instruction count, CPI and clock rate for three programs on two machines and decide which machine is faster for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Plot overall speed-up against the fraction of a program sped up by 10 times using Amdahl's law, and read off the fraction needed for a speed-up of 3"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compare a phone core and a server core on performance per watt from supplied figures, and decide which design suits a solar-powered field office"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Von Neumann machine, buses and interconnects",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Trace the fetch, decode, execute and interrupt phases of three instructions at register-transfer level, writing PC, MAR, MBR and IR values after every step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step through the fetch-decode-execute cycle for a load, an add and a store, and record the PC and accumulator after each instruction"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Trace a four-instruction program at register-transfer level, writing the register and bus contents at each micro-step, and check them against the visualiser"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Simulate two bus masters competing for one shared bus under fixed-priority and round-robin arbitration, and find which policy starves a device"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Instruction sets and RISC-V",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Write RISC-V assembly for an array sum and a recursive factorial, annotate each instruction's format and addressing mode, and trace the stack through the procedure calls.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Step through a six-instruction RISC-V program that adds two registers and stores the result, and note each register value"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Encode ten RISC-V instructions into 32-bit machine words by hand, decode them in the visualiser, and identify the format of each"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Write RISC-V code for a procedure that sums an array and calls a helper, and show the stack frame and return address at each call"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "ISAs compared, toolchain and floating point",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compile a short C function by hand into pseudo-assembly for a RISC and a CISC machine, count instructions and bytes, and write what the assembler and linker do next.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Convert 5.75 and -0.15625 into IEEE 754 single precision by hand and verify each bit pattern with the converter"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Add two IEEE 754 numbers of different exponents step by step, showing alignment, addition and normalisation, and compare the result with the exact sum"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Translate a small C loop to assembly, assemble it to machine words and load it, then trace its execution and count instructions executed"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Registers and the datapath",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Draw a single-cycle datapath with control signals for add, load, store and branch, and fill a table of control-signal values for each instruction type.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Run a short program in the register-level simulator and watch the flag register change after an add, a subtract and a compare"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Set the control signals of a single-cycle datapath by hand for add, load, store and branch instructions, and confirm each runs correctly"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Convert a single-cycle design into a multi-cycle design with a finite state controller, then compare cycles per instruction for a given program mix"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Control unit design and microprogramming",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Design a microprogram for three instructions with a horizontal and a vertical microinstruction format, and compare control-store size for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Step through the micro-operations of an add instruction in a hardwired control unit and name the control signals asserted in each cycle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E6",
+          "title": "Write microinstructions for load, add and branch in a small control store, run them in the visualiser, and verify the micro-program counter sequencing"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E6",
+          "title": "Trace a supplied nine-instruction program on the simulated datapath, find the instruction whose control word is faulty, and correct it"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Pipelining and hazards",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Pipeline diagram exercise: draw the five-stage timing for a given ten-instruction sequence with and without forwarding, and count the stall cycles in each case.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Run five independent instructions through the five-stage pipeline and compute speed-up against a non-pipelined machine"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Run a code sequence with data hazards, switch forwarding on and off, and count stall cycles caused by the load-use dependency"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Compare static not-taken prediction with a two-bit predictor on a loop-heavy trace, and report misprediction rate and the cycles lost to each branch"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Exceptions and deeper pipelines",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Explain in a short note why exceptions are hard in a pipeline, and give an example where two instructions in flight both raise exceptions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Trigger an arithmetic overflow exception in the pipeline simulator and note which instructions are flushed and which complete"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Raise an exception in a middle instruction and verify the pipeline keeps a precise state, listing the registers that must be preserved"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Compare a 5-stage and a 14-stage pipeline on a branch-heavy program using supplied stage delays, and decide where deeper stops helping"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Superscalar, out-of-order and speculative execution",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Classify every dependency (true, anti, output) in a given eight-instruction sequence and show which renamed registers remove the false ones.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Identify true, anti and output dependencies in a six-instruction code sequence and mark each on a dependency graph"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E6",
+          "title": "Run a code sequence through Tomasulo's algorithm in the visualiser, tracking reservation stations, renaming and commit order from the reorder buffer"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Walk through a bounds-check-bypass speculation example, show how a cache timing difference leaks a value, and propose two mitigations with their cost"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Memory hierarchy and cache design",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Problem set: for a 16 KB cache with given block size, split addresses into tag, index and offset, simulate 20 accesses, and compute the hit rate and average access time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Simulate a direct-mapped cache on 16 given addresses and mark each as a hit or a miss with the reason"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Run the same address trace on direct-mapped and 4-way caches with LRU replacement and compare hit rates and the conflict misses removed"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E6",
+          "title": "Tune a blocked matrix multiplication by choosing a tile size against a simulated two-level cache, and minimise average memory access time"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Virtual memory and cache coherence",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Worked examples: translate five virtual addresses with a two-level page table and a TLB, noting hits, misses and page faults, then explain the protection check.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E6",
+          "title": "Translate six virtual addresses to physical addresses with a single-level page table and mark each TLB hit, miss or page fault"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E6",
+          "title": "Trace twelve memory references through a TLB and two-level page table with a limited frame pool and count page faults under FIFO replacement"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E6",
+          "title": "Trace a MESI protocol with three cores reading and writing one shared line, record each state change, and count the bus transactions needed"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Input/output, storage and RAID",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Compare programmed I/O, interrupt-driven I/O and DMA for moving a 4 KB block, with a table of CPU cycles used by each approach.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E6",
+          "title": "Transfer a block of 64 bytes with programmed I/O and with DMA, and compare the number of CPU cycles spent on each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Compute usable capacity, fault tolerance and write cost for RAID 0, 1, 5 and 6 on six 2 TB disks, and tabulate the results"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E6",
+          "title": "Handle a burst of device interrupts with nested priorities and a limited stack, and find the interrupt-masking policy that avoids lost events"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Parallel processing and multicore",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Short report: for a program with a measured serial fraction, predict speed-up on 2, 4, 8 and 16 cores with Amdahl's law and explain why real runs fall short.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E6",
+          "title": "Classify ten processors and workloads into SISD, SIMD, MISD or MIMD, and run a vector add on a simulated SIMD unit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E6",
+          "title": "Compare coarse-grained, fine-grained and simultaneous multithreading on a program with long memory stalls and compute the utilisation of the issue slots"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E1",
+          "title": "Write a parallel sum with threads, measure speed-up on 1 to 8 workers, and explain the gap from ideal speed-up using measured overheads"
+        }
+      ]
+    }
   ]
 }

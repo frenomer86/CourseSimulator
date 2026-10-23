@@ -1,0 +1,507 @@
+{
+  "slug": "human-robot-interaction",
+  "description": "A graduate course on how people work, live and communicate with robots, covering trust, interaction design, teleoperation, social robots, safety and the design of studies with human participants. Students model interaction flows in the diagram studio and make design, ethics and study decisions in scored scenarios.",
+  "modelledOn": [
+    "Goodrich and Schultz, Human-Robot Interaction: A Survey",
+    "Bartneck et al., Human-Robot Interaction: An Introduction",
+    "Lazar, Feng and Hochheiser, Research Methods in Human-Computer Interaction",
+    "ISO 10218 and ISO/TS 15066 on collaborative robot safety"
+  ],
+  "outcomes": [
+    "Analyse an interaction scenario in terms of human factors, workload, trust and levels of autonomy.",
+    "Design and document multimodal robot interactions, including dialogue, motion legibility and accessibility needs.",
+    "Specify a teleoperation or shared-autonomy architecture that copes with latency and weak networks.",
+    "Plan a human-participant study with hypotheses, design, sample size, consent and analysis.",
+    "Carry out a hazard and ethics review of a robot deployment in a health, farm or factory setting.",
+    "Select and justify evaluation metrics, and critique published HRI studies."
+  ],
+  "units": [
+    {
+      "title": "Foundations of human-robot interaction",
+      "weeks": "1-2",
+      "topics": [
+        "Scope of HRI: roles of operator, collaborator, bystander and supervisor",
+        "Robot types and levels of autonomy",
+        "Human perception, attention, workload and situation awareness",
+        "Mental models and anthropomorphism",
+        "Context: robots in Ghanaian farms, clinics, mines and factories"
+      ]
+    },
+    {
+      "title": "Human factors and trust",
+      "weeks": "3-4",
+      "topics": [
+        "Trust models: calibration, over-trust and under-trust",
+        "Measuring trust: questionnaires and behavioural measures",
+        "Transparency, explanation, legibility and predictability",
+        "Failure, apology and trust repair",
+        "Workload measurement with NASA-TLX",
+        "Automation bias and complacency"
+      ]
+    },
+    {
+      "title": "Interaction design for robots",
+      "weeks": "5-6",
+      "topics": [
+        "Interaction modalities: speech, gesture, gaze, touch and screens",
+        "Design process: personas, scenarios, storyboards and Wizard of Oz",
+        "Dialogue and multimodal interfaces; low-resource languages such as Twi, Ewe and Hausa",
+        "Behaviour design: motion legibility, proxemics, lights and sounds",
+        "Specifying interaction flows with state charts and process diagrams",
+        "Accessibility and inclusive design"
+      ]
+    },
+    {
+      "title": "Teleoperation and shared autonomy",
+      "weeks": "7-8",
+      "topics": [
+        "Teleoperation architectures; latency, bandwidth and bilateral control",
+        "Telepresence, displays and haptic feedback",
+        "Shared control and arbitration; inferring operator intent",
+        "Supervisory control, handover and takeover",
+        "Operator interfaces for field robots over weak networks",
+        "Supervising multiple robots"
+      ]
+    },
+    {
+      "title": "Social robots",
+      "weeks": "9",
+      "topics": [
+        "Social cues, emotion expression and turn-taking",
+        "Companion, educational and health-care robots",
+        "The uncanny valley and appearance design",
+        "Interaction with children and older adults",
+        "Long-term interaction and the novelty effect"
+      ]
+    },
+    {
+      "title": "Study design with human participants",
+      "weeks": "10-11",
+      "topics": [
+        "Research questions, hypotheses and variables",
+        "Within-subject and between-subject designs; counterbalancing",
+        "Sample size, power and recruitment bias",
+        "Informed consent, ethics review and data protection",
+        "Analysis: t-tests, ANOVA, non-parametric tests and effect sizes",
+        "Qualitative methods: interviews and thematic analysis"
+      ]
+    },
+    {
+      "title": "Safety and ethics",
+      "weeks": "12",
+      "topics": [
+        "Collaborative robot safety standards and power and force limiting",
+        "Hazard analysis for HRI: HAZOP and FMEA",
+        "Privacy, surveillance, deception and dependence",
+        "Responsibility, liability and labour displacement in Africa",
+        "Guidelines and regulation for robots in public spaces"
+      ]
+    },
+    {
+      "title": "Evaluation metrics and project",
+      "weeks": "13",
+      "topics": [
+        "Task metrics: success, time, errors and neglect tolerance",
+        "Subjective metrics: usability scales, fluency and godspeed-style questionnaires",
+        "Team performance and human-robot fluency",
+        "Critiquing a study and presenting an evaluation plan"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Roles, autonomy levels and context",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.5"
+      ],
+      "exercise": "Pick a robot used in Ghana, such as a spraying drone or hospital delivery robot, and list its human roles and the level of autonomy at each task.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw a role diagram of a farm drone deployment showing operator, supervisor, bystander and owner, and the information each needs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Assign a level of autonomy to each of six tasks in a hospital delivery robot case and justify the human role retained"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Assess whether a robot proposal fits a rural clinic, weighing power, connectivity, language, maintenance and community acceptance with the evidence given"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Perception, workload and mental models",
+      "topics": [
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Explain how situation awareness fails for an operator watching four camera feeds, and describe two mental models people may form of a talking robot that differ from how it works.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Identify the situation awareness level lost in each of five operator errors in a robot incident case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Interview scripted users about a service robot, extract their mental models, and list where each mismatches the robot's real behaviour"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Redesign an operator display to cut workload, showing before and after layouts, the information hierarchy and the rationale for each change"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Trust, measurement and transparency",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Describe one situation of over-trust and one of under-trust with a hospital robot, choose a trust questionnaire and one behavioural measure, and explain what the robot could show to make its behaviour more predictable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Classify five operator behaviours in a case as over-trust, under-trust or calibrated, and cite the evidence for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Score a trust questionnaire from 20 participants and compare reliable and unreliable robot conditions using the mean and confidence interval"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Choose what explanations a robot gives at each decision in a branching case, and compare trust and task outcome across three transparency levels"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Failure, workload and automation bias",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Plan how a delivery robot should respond after it drops a package, calculate NASA-TLX scores for two interfaces, and describe two safeguards against automation bias.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Compute weighted NASA-TLX workload scores for two interface versions from participant ratings and state which is less demanding"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Select apology, explanation and corrective action after a robot error in a branching case, and compare trust recovery across strategies"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Design checks that reduce automation bias in a robot-assisted inspection case, and test them against scripted false alarms and misses"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Modalities, design process and dialogue",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Create a persona and storyboard for a market information robot, run a Wizard of Oz session script, and list five phrases in Twi or Ewe the robot must understand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Choose modalities for five interaction needs of a noisy-market robot, and draw a table of benefits and risks for each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Draw a storyboard of six frames and a persona for a school reading robot, marking the points to test in a Wizard of Oz session"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Design the dialogue plan for a health-information robot serving speakers of several local languages, handling misrecognition and fallback with evidence from test logs"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Behaviour design, interaction flows and accessibility",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Specify a greeting interaction as a state chart, choose approach distances and light cues for a corridor robot, and review the design against the needs of a wheelchair user and a visually impaired person.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E9",
+          "title": "Draw a state chart for a greeting and guiding interaction with at least six states and the events that move between them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Select approach path, speed and signal cues for a corridor robot passing people in a branching case, and compare comfort scores"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Audit a service robot design against four accessibility personas, rank the barriers found and propose a prioritised redesign within a budget"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Teleoperation, latency and telepresence",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Estimate the maximum stable control delay for teleoperating a rover over a mobile data link, compare video and map-based displays, and describe how blending improves a novice operator's results.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Plot task completion time against control delay from 0 to 2 seconds using given data, and mark where a move-and-wait strategy begins"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Compare camera-only, map and combined displays for a remote inspection case, and decide which supports each task under packet loss"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Blend operator joystick commands with an obstacle-avoiding autonomous controller using an arbitration weight, and measure collisions for several weights"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Supervisory control and field interfaces",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Design the handover protocol between autonomy and a human for a mining inspection robot, plan the interface for a weak 3G link, and estimate how many robots one operator can supervise.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Draw a handover sequence diagram between a robot, an operator and a supervisor, with the cues and time limits for takeover"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E9",
+          "title": "Design a low-bandwidth operator interface with data priorities, compression choices and fallback states for a link that drops intermittently"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E7",
+          "title": "Estimate how many robots one operator can supervise from neglect time and interaction time, and test sensitivity to three workload levels"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Social robots",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Propose a social robot for a primary school or care home, justify its appearance and behaviours, and plan how to detect whether the novelty effect inflates early results.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Map eight social cues, such as gaze, nodding and pauses, to the conversational function each serves in a turn-taking diagram"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Adapt a robot's speech, pace and feedback for a child and an older adult in a branching case, and compare engagement and comfort scores"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Analyse a ten-week engagement dataset for a school robot, fit a decay curve and judge how much of early engagement is novelty"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Hypotheses, designs and sampling",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write a testable hypothesis for whether a robot's voice affects compliance, choose a within- or between-subject design with counterbalancing, and compute the sample size for a medium effect.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Turn three vague research questions into testable hypotheses, naming the independent, dependent and control variables for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E9",
+          "title": "Draw a counterbalanced within-subject study schedule for 24 participants and three robot conditions, and check order effects are balanced"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compute the required sample size for a two-group comparison at several effect sizes and power levels, and plot cost against detectable effect"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Ethics, statistics and qualitative analysis",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Prepare a consent form and data protection plan for a study in a rural clinic, analyse a two-condition dataset with the correct test and effect size, and code six interview excerpts into themes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Review a study plan in a case, find five consent and data protection problems, and rewrite the plan to fix them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Choose between a t-test and a non-parametric test for a given dataset, run it, and report the effect size and confidence interval"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Code twelve interview excerpts about robot acceptance into themes, check agreement with a second coder, and write the thematic summary"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Safety, hazards and ethics",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Run an FMEA on a collaborative arm in a bottling plant, check its force limits against a standard table, and write an ethics statement on a monitoring robot in a workplace.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Check whether the measured contact forces of a collaborative robot stay below allowed limits for each body region in a table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E9",
+          "title": "Build an FMEA table for six failure modes of a hospital delivery robot, scoring severity, occurrence and detection, and rank them by risk number"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Decide whether to deploy a classroom monitoring robot in a branching case, weighing privacy, consent and benefit, and justify the safeguards chosen"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Evaluation metrics and study critique",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write an evaluation plan for a hospital delivery robot with task, subjective and team metrics, and critique a published HRI study for validity threats.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute success rate, mean task time and error count per condition from a trial log, and plot them with error bars"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Score usability scale responses from 15 participants and compare two robot versions with an appropriate test"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Critique a described HRI study for five validity threats, then propose design changes and a metric set that would strengthen its conclusions"
+        }
+      ]
+    }
+  ]
+}

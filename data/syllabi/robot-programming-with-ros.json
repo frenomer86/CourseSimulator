@@ -116,5 +116,405 @@
         "Capstone: a simulated delivery robot that perceives an obstacle, plans around it and reports status over an action"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Robots, ROS and the first node",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Draw the sense-plan-act loop for a robot that follows a line, naming the sensors, the computation and the actuators.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "Step through a sense-plan-act loop for a robot approaching a wall and mark where a reactive controller would respond faster than a planner"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Create a workspace and a package in the browser environment, build it, and run a first node that prints a message every second"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Split a single-script robot controller into three communicating processes, then simulate one process crashing and show how the rest of the system behaves"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Nodes, topics and messages",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Sketch the computation graph of a robot with a camera, a controller and a motor driver, labelling nodes and topics.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Write two nodes in different namespaces, read a parameter in each and print the full resolved node names"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Write a publisher of distance readings and two subscribers, a logger and an obstacle warning, and verify both receive all 20 messages"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Choose standard message types for a sensor, a velocity command and a diagnostic report, and write nodes that exchange all three correctly"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Custom messages and graph inspection",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write a short note explaining why changing a message definition can break old recorded data and how you would version it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E6",
+          "title": "Inspect a running graph to list its topics, echo one message stream and measure its publish rate in the visualiser"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Define a custom battery status message, publish it from one node and subscribe to it in another, then check the decoded fields"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Show the effect of queue size and publish rate on a slow subscriber, count dropped and stale messages, and tune settings to cut loss below 1 percent"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Services and actions",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "List five robot interactions and decide in a table whether each should be a topic, a service or an action, with a reason.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Write a service that returns the current battery level and a client that calls it three times, with a timeout on the third call"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Write an action server that moves a simulated robot to a goal with periodic feedback, and a client that prints progress and the final result"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Draw and test the goal state machine of a navigate action, including a cancel request mid-way and a new goal pre-empting the old one"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Poses and the frame tree",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Convert a rotation of 90 degrees about the z axis into a rotation matrix and a quaternion by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Convert five Euler angle triples into quaternions and rotation matrices with a script, and check that rotating a test vector gives the same result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Draw the frame tree for a mobile robot with base, odometry, map, lidar and camera frames, and mark the parent and child of each link"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Broadcast a moving transform from odometry and look up the pose of the base in the map frame at three past timestamps"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Transforms, calibration and diagnosis",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Write the steps you would follow to find why two sensor readings do not line up in the same frame.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Add a static transform for a lidar mounted 20 cm forward and 15 cm up and check one reading point in the base frame"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Transform a laser scan of 10 points and a detected object from the sensor frame into the map frame and verify against hand calculation"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E6",
+          "title": "Find and repair a disconnected frame tree and a reversed parent-child pair in a given broken robot model, then confirm a lookup now succeeds"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Simulation, URDF and sensors",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a half-page argument for when simulation is enough and when real hardware tests are needed for a delivery robot.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Write a URDF description of a two-wheeled robot with links, joints and collision geometry, and print its link tree"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Add a simulated lidar and camera with noise to a robot model, record 100 readings and compute their mean and spread"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Drive a simulated robot in a square by publishing velocity commands, then measure the drift in pose and tune the commands to close the loop"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Perception pipelines",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Draw the stages and data types of a perception pipeline that finds a box on a table from a camera and a depth sensor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Order six perception pipeline stages from raw stream to decision and label the data type that flows between each pair"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Convert an image message to a pixel array, apply a threshold to find a coloured object, and report its bounding box"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Filter and downsample a simulated point cloud, segment the floor plane, and report how many points remain on the object"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Object localisation and synchronisation",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write a short note explaining why two sensors with slightly different clocks produce wrong fused positions and how matching helps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Detect an object in a camera image and publish its pose as a stamped message in the camera frame"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Synchronise image and lidar messages with approximate time matching, test with a 30 ms offset and count the matched pairs"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E6",
+          "title": "Visualise a lidar scan, a detected object and the frame tree together, find the frame error that offsets the object, and fix it"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Launch files, parameters and replay",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Write a launch description listing the nodes, parameters and remappings needed to start a simulated robot with a different speed limit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Write a launch file that starts three nodes, remaps a topic and sets a parameter, and check each node receives the right value"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Move robot settings into a configuration file, load it for two robot profiles and verify the behaviours differ as intended"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Record a 30 second message log from a simulated drive, replay it to a perception node and use it as a repeatable regression test"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Multi-robot launches and lifecycle",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Explain why bringing up a motor driver before its sensors are ready can be dangerous, and how a managed start sequence prevents it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Launch two simulated robots under separate namespaces and verify their topics and frames do not collide"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E6",
+          "title": "Bring up a managed node through its configure, activate and shutdown states and print the transition log"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Design a start-up order for a camera, lidar, localisation and navigation stack using managed nodes, and test a failure in one dependency"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Debugging and observability",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a checklist of the first five things to check when a robot stops responding to velocity commands.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Add info, warning and error log messages with context to a node, filter them by level and find the cause of a seeded fault"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E6",
+          "title": "Diagnose six faults in a simulated system, such as no messages, wrong frame, clock mismatch and queue overflow, and name the cause of each"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E6",
+          "title": "Measure end-to-end latency and throughput along a four-node pipeline, find the bottleneck node and cut latency below a given target"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Capstone: a delivery robot",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a design note for a delivery robot that lists its nodes, interfaces, frames and failure behaviour, and a test plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Compose nodes for driving, sensing and reporting into one launchable behaviour in the simulator and run it for a full 60 second test"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E6",
+          "title": "Implement a state machine or behaviour tree that coordinates drive, sense and act, and test it with five scripted obstacle cases"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Build a simulated delivery robot that perceives an obstacle, plans around it and reports status over an action, and show that it passes five trials"
+        }
+      ]
+    }
   ]
 }

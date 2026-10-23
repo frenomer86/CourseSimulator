@@ -1,0 +1,507 @@
+{
+  "slug": "electric-machines-and-drives",
+  "description": "How electric motors convert energy and how robots drive them: DC, brushless and stepper motors, H-bridges, closed-loop control, servos, batteries and gearing. Students model motors, simulate drives on the circuit bench, and build and tune a small motor controller on the hardware bench.",
+  "modelledOn": [
+    "Chapman, Electric Machinery Fundamentals",
+    "Mohan, Undeland and Robbins, Power Electronics: Converters, Applications and Design",
+    "Franklin, Powell and Emami-Naeini, Feedback Control of Dynamic Systems"
+  ],
+  "outcomes": [
+    "Derive the equivalent-circuit and torque-speed model of a DC motor and identify its parameters from measurements.",
+    "Select between brushed, brushless and stepper motors for a given torque, speed and cost requirement.",
+    "Design an H-bridge PWM drive with correct dead time, flyback protection and current limiting.",
+    "Tune cascaded current, speed and position loops and judge them by step response.",
+    "Compute a battery and power budget for a mobile robot and choose a gear ratio that matches motor and load."
+  ],
+  "units": [
+    {
+      "title": "Energy conversion and electromechanics",
+      "weeks": "1-2",
+      "topics": [
+        "Magnetic circuits: flux, reluctance, Faraday's law and the Lorentz force",
+        "Torque production and back-EMF as the two faces of one coupling",
+        "Power flow and losses: copper, iron and friction; efficiency maps",
+        "Mechanical load models: constant torque, viscous, fan and inertial loads; the torque-speed plane",
+        "Sizing a motor for a duty cycle: peak, continuous and RMS torque"
+      ]
+    },
+    {
+      "title": "DC motor models",
+      "weeks": "3-4",
+      "topics": [
+        "The permanent-magnet DC motor equivalent circuit: armature resistance, inductance, torque and back-EMF constants",
+        "Torque-speed and current-speed lines; stall torque and no-load speed",
+        "Electromechanical transfer function: electrical and mechanical time constants",
+        "Separately excited, shunt, series and compound DC machines",
+        "Speed control by armature voltage and by field weakening",
+        "Parameter identification from no-load and locked-rotor tests"
+      ]
+    },
+    {
+      "title": "Brushless, stepper and AC motors",
+      "weeks": "5-6",
+      "topics": [
+        "Stepper motors: variable reluctance, permanent magnet and hybrid; full, half and microstepping",
+        "Stepper torque-speed behaviour: resonance, missed steps and current chopping",
+        "Brushless DC motors: construction, Hall-sensor commutation and the six-step sequence",
+        "Sensorless commutation by back-EMF and an introduction to field-oriented control",
+        "Induction and synchronous motors: rotating field, slip and the V/f relation",
+        "Choosing a motor type for a robot joint, wheel, pump or conveyor"
+      ]
+    },
+    {
+      "title": "H-bridges and power electronics",
+      "weeks": "7",
+      "topics": [
+        "Power MOSFETs and IGBTs as switches: gate drive, conduction and switching losses",
+        "The H-bridge: four-quadrant operation, braking and shoot-through with dead time",
+        "PWM generation: duty cycle, frequency choice and average voltage",
+        "Inductive loads: flyback diodes, current ripple and voltage spikes",
+        "Motor driver ICs, current sensing, overcurrent and thermal protection"
+      ]
+    },
+    {
+      "title": "Motor drive control",
+      "weeks": "8-9",
+      "topics": [
+        "Open-loop drives: voltage-frequency control and stepper pulse trains",
+        "Closed-loop speed control with a PI controller",
+        "Cascaded current and speed loops; loop bandwidths",
+        "Feedback sensing: optical encoders, quadrature decoding, tachometers and Hall sensors",
+        "PID tuning: Ziegler-Nichols, step-response methods and anti-windup",
+        "Current limiting, dynamic braking and regenerative braking"
+      ]
+    },
+    {
+      "title": "Servo systems",
+      "weeks": "10",
+      "topics": [
+        "Servo architecture: hobby servo PWM protocol versus an industrial servo drive",
+        "Position control loop: step response, overshoot, settling time and steady-state error",
+        "Motion profiles: trapezoidal and S-curve acceleration limits",
+        "Multi-axis coordination for a robot arm and a differential-drive base",
+        "Friction, backlash and disturbance compensation; feedforward"
+      ]
+    },
+    {
+      "title": "Batteries and power budgets",
+      "weeks": "11-12",
+      "topics": [
+        "Battery chemistries: lead-acid, Li-ion and LiFePO4; capacity, C-rate and energy density",
+        "Discharge curves, internal resistance, state of charge and Peukert's effect",
+        "Battery management: cell balancing, protection and charge profiles",
+        "Power budget of a mobile robot: duty cycles, peak currents and runtime estimates",
+        "Solar charging and off-grid operation for a field robot in Ghana",
+        "Regulated rails: DC-DC conversion for logic, sensors and motors"
+      ]
+    },
+    {
+      "title": "Gearing and transmission",
+      "weeks": "13",
+      "topics": [
+        "Gear ratio, torque-speed trade and reflected inertia",
+        "Efficiency, backlash and wear in spur, helical and worm gears",
+        "Planetary and harmonic drives; gear trains",
+        "Belts, chains, lead screws and linear actuators",
+        "Matching motor and load: the optimum gear ratio and thermal limits"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Magnetics, torque and back-EMF",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Compute the force on a 0.1 m conductor carrying 5 A in a 0.8 T field, show that torque constant and back-EMF constant are numerically equal in SI units, and list the loss terms in a motor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot the back-EMF of a motor against speed from 0 to 3000 rpm for a given constant and read the voltage at 1500 rpm"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Given measured input power and shaft power at six loads, compute and plot efficiency and find the load where efficiency peaks"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute reluctance and flux for a gapped iron core at three gap lengths and show how the air gap dominates the magnetic circuit"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Loads and motor sizing",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Size a motor for a market-stall conveyor that lifts 20 kg at 0.2 m/s with a 40 percent duty cycle, giving peak and RMS torque and the continuous rating needed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Plot the torque-speed curves of a constant-torque load and a fan load on one graph and mark where each meets a motor line"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Compute RMS torque for a four-phase duty cycle of accelerate, run, decelerate and rest, and check it against a motor continuous rating"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Choose between three catalogue motors for a given load profile by checking peak torque, RMS torque, speed and cost, and justify the pick"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "The permanent-magnet DC motor",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Derive the transfer function from armature voltage to speed, compute the electrical and mechanical time constants from given parameters, and sketch the step response.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Plot the torque-speed and current-speed lines of a given DC motor and read off stall torque, stall current and no-load speed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E2",
+          "title": "Model a DC motor as a resistor, inductor and back-EMF source in the bench, apply 12 V, and record the start-up current spike"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Simulate the speed step response for three rotor inertias and compare each mechanical time constant with the value derived by hand"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "DC machine types, speed control and identification",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "From a no-load test and a locked-rotor test on a small motor, compute armature resistance, torque constant and viscous friction, and predict its speed at 8 V under a given load.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E2",
+          "title": "Vary the armature voltage of a simulated motor from 2 to 12 V in steps and plot steady speed against voltage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E8",
+          "title": "Measure the no-load current and speed of a small DC motor at two supply voltages with a sensor and derive its torque constant"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Compare the torque-speed curves of shunt and series motors in a plot and explain why a series motor suits starting heavy loads"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Stepper motors",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "For a 200-step motor with a 1.8 degree step, compute step rate for 300 rpm in full and 1/16 microstepping, and explain why torque falls as step rate rises.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E8",
+          "title": "Drive a stepper motor with a full-step sequence from an Arduino and count steps to turn the shaft exactly one revolution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E8",
+          "title": "Compare full, half and 1/8 microstepping on the same motor by recording smoothness and the maximum step rate before stalling"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E8",
+          "title": "Ramp the step rate of a loaded stepper until it misses steps, plot the pull-out curve, and add acceleration to extend it"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Brushless and AC motors, and choosing a motor type",
+      "topics": [
+        "3.3",
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write the six-step commutation table for a three-phase BLDC motor given the Hall sensor codes, and rank brushed, brushless and stepper motors for a drone, a wheelchair and a 3D printer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Fill the six-step commutation table from Hall sensor states and plot the three phase currents over one electrical cycle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E2",
+          "title": "Simulate a three-phase inverter driving a BLDC motor in six-step mode and measure back-EMF zero crossings for sensorless timing"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Select and justify a motor type for three robot scenarios in a case study, scored on torque, noise, cost, efficiency and drive complexity"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "H-bridges and motor drivers",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Draw the current paths in an H-bridge for forward drive, coast and brake, calculate the dead time needed for given switching times, and size the MOSFET for a 5 A motor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E2",
+          "title": "Drive a DC motor model with PWM at 20, 50 and 80 percent duty and record the average voltage and resulting speed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E2",
+          "title": "Build an H-bridge from four MOSFETs and reverse the motor, then provoke shoot-through and measure the current spike"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E2",
+          "title": "Remove the flyback diodes from an H-bridge driving an inductive load, record the voltage spike, and restore a safe design with clamping"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Speed control loops",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Design a PI speed controller for a motor with a 50 ms mechanical time constant to reach a setpoint within 0.2 s without overshoot, and explain why the current loop must be faster.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Apply a proportional gain to a simulated motor speed loop and read the steady-state error for gains of 1, 5 and 20"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Code a PI speed controller for a first-order motor model and tune it for under 5 percent overshoot and 0.3 s settling"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Build an inner current loop and an outer speed loop in code and show the response when the load torque steps up mid-run"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Feedback sensors, tuning and braking",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compute the speed resolution of a 500-count encoder read at 100 Hz, tune a PID with the Ziegler-Nichols step method, and compare dynamic and regenerative braking energy flows.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Read a quadrature encoder on an Arduino, turn the shaft by hand, and confirm direction and count for one full revolution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Tune a PID speed loop using the Ziegler-Nichols method on a simulated motor and compare its step response with a hand-tuned PI"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Add anti-windup to a saturating speed controller, then show with and without it how a long stall affects recovery of the setpoint"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Servo systems and motion profiles",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Generate a trapezoidal motion profile for a 90 degree move with limits on speed and acceleration, and predict the tracking error caused by friction without feedforward.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E8",
+          "title": "Drive a hobby servo with 1.0, 1.5 and 2.0 ms pulses from an Arduino and record the angle reached for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Code a trapezoidal motion profile with speed and acceleration limits and plot position, velocity and acceleration for a 90 degree move"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Simulate a position servo with Coulomb friction and backlash, measure the limit cycle, and reduce it with feedforward and a dead-band"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Battery behaviour and management",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "From a datasheet discharge curve, estimate capacity at 0.2C and 1C for a 2000 mAh Li-ion cell, and list the protections a battery pack needs before it is mounted on a robot.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Convert battery ratings from mAh and voltage to watt-hours for four chemistries and rank them by energy per kilogram"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Plot voltage against state of charge for a cell at two C-rates and read the usable capacity before the cut-off voltage"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E2",
+          "title": "Model a battery as a source with internal resistance, simulate a motor start-up current spike, and show how the voltage dip resets the controller"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Power budgets, solar charging and regulated rails",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Build a power budget table for a field robot with two drive motors, a sensor mast and a radio, then size the solar panel and battery for six hours of operation in Tamale sunlight.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Fill a power budget for a robot with five loads, compute average current and estimate runtime from a 5 Ah battery"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E8",
+          "title": "Power a microcontroller and a servo from one battery through two regulated rails and measure the rail dip when the servo moves"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Size a solar panel and battery for a field robot using hourly sunshine data for northern Ghana and test that the budget balances over a week"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Gearing and matching motor to load",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "For a wheel driven through a gearbox, compute the gear ratio that maximises acceleration given motor inertia and wheel inertia, and check the motor stays below its thermal limit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute output torque and speed through gear ratios 1:5, 1:20 and 1:100 for a given motor, including a 90 percent efficiency per stage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Convert motor rotation to linear travel for a lead screw and a belt drive, and compare speed, force and resolution for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Find the optimum gear ratio for a given load inertia, plot acceleration against ratio, and verify the chosen motor stays within thermal limits"
+        }
+      ]
+    }
+  ]
+}

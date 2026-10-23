@@ -104,5 +104,398 @@
         "Capstone: a complete analysis of a public health dataset with a statistical analysis plan and report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Study designs and sources of bias",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Read three short study summaries (a district malaria survey, a case-control study of anaemia, a bed-net trial) and classify each design, naming its main bias and one confounder.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Classify 15 variables from a clinic register as categorical, ordinal, discrete or continuous and draw the population-to-sample diagram for a district survey"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Simulate a randomised trial of 200 patients with block randomisation in code and check that both arms balance on age and sex"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Simulate a cohort where age confounds the link between charcoal cooking and cough, then show the crude and age-adjusted risk ratios differ"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Sampling and research ethics",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a one-page sampling plan for a health survey in three regions, justifying stratification and clusters, and list the consent steps for illiterate participants.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Draw simple random samples of 50 households from a list of 500 and compare the sample mean household size with the true value over 20 repeats"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compare stratified and cluster sampling of 40 villages across three regions by coding both and comparing estimate spread over 1000 repeated samples"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Audit a described trial against a CONSORT checklist in a notebook, flag five missing items and compute how many of 25 items are reported"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Describing health data",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Take a table of weekly malaria cases by district and write a half-page descriptive summary with one graph and the key measures of frequency and association.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Compute mean, median, standard deviation and quartiles for 30 child weights and plot a box plot and histogram"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Calculate prevalence, incidence rate and cumulative incidence of malaria by district from case counts and person-time, then rank districts in a bar chart"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Build a 2x2 table from a cohort and compute risk difference, risk ratio and odds ratio; show when the odds ratio overstates the risk ratio"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Probability and diagnostic tests",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Solve a problem set on conditional probability and Bayes theorem, then evaluate a rapid diagnostic test for malaria using microscopy as the reference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Apply Bayes theorem to compute the probability of disease given a positive test for prevalence 5 percent, and verify with 10000 simulated people"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute sensitivity, specificity, PPV, NPV and likelihood ratios from a 2x2 table of RDT against microscopy and plot the ROC curve for five cut-offs"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Model the number of sickle cell trait carriers among 20 sampled people with a binomial and weekly case counts with a Poisson; fit and check both against given data"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Normal distribution and sampling distributions",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Explain in a short note why the sample mean is approximately normal even for skewed data, using your own simulation plots as evidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Standardise 40 birth weights to z-scores and use the normal curve to find the proportion below 2.5 kg and the 90th percentile"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Simulate the sampling distribution of the mean for samples of 5, 30 and 100 from a skewed income distribution and plot all three histograms"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Test log and square-root transformations on skewed hospital stay data and choose the one giving the best normal Q-Q plot, justifying with a numerical check"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Confidence intervals and hypothesis tests",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write up a two-sample comparison of blood pressure between two clinics, stating hypotheses, test choice, p-value, confidence interval and clinical meaning.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute the standard error and a 95 percent confidence interval for a sample mean and for a proportion of 60 positives out of 200"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Simulate 1000 trials under a true null effect at alpha 0.05 and count type I errors, then repeat with a real effect to estimate type II error"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Compare two skewed groups of recovery times with a t-test and Mann-Whitney test, report both p-values and say which test fits and why"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Categorical tests, ANOVA and power",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Plan a trial of a new antimalarial: choose the outcome, test, effect size and required sample size, and write one paragraph defending the numbers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Test association between bed-net use and malaria in a 2x2 table with chi-squared and Fisher exact tests and explain which applies when counts are small"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Run one-way ANOVA on haemoglobin across four regions, follow with Tukey comparisons, and report which pairs differ with adjusted p-values"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Compute the sample size per arm for an antimalarial trial at 80 and 90 percent power, then plot power against sample size for three effect sizes"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Linear and logistic regression",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Fit and interpret a logistic model for anaemia in pregnancy with three risk factors, and write the odds ratios in plain language for a midwife.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Fit a least-squares line to 25 pairs of age and systolic pressure, report the slope, R squared and plot the residuals to check assumptions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Fit a multiple regression of birth weight on gestational age, maternal age and a categorical rural indicator, and compare adjusted and crude coefficients"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Fit a logistic regression for anaemia in pregnancy, convert coefficients to odds ratios with confidence intervals and check calibration in risk deciles"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Count models and model building",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Choose between a Poisson and negative binomial model for clinic visit counts, and write a short critique of an over-fitted prediction model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Fit a Poisson model for monthly malaria cases per district with population as an offset and report rate ratios for two covariates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Detect collinearity among five predictors using variance inflation factors, then compare a full model and a reduced model on held-out data"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Analyse repeated blood pressure readings on 30 patients with a random-intercept model and compare its standard errors with a naive pooled regression"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Survival data and the Cox model",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Summarise a small survival dataset with a Kaplan-Meier plot, a log-rank test and a Cox model, and explain each result to a clinician.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Mark censored and event times on a timeline for 12 patients and compute the survival probability at each event time by hand"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Estimate Kaplan-Meier curves for two treatment arms, plot them with confidence bands and run a log-rank test on the difference"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Fit a Cox model with age and sex, report hazard ratios, and test the proportional hazards assumption with Schoenfeld residuals on a dataset where it is violated"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Applied survival analysis",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a methods and results paragraph for a cohort of patients on antiretroviral therapy, covering censoring, competing risks and time-varying exposure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Distinguish death and loss to follow-up as competing events in a small cohort table and compute cumulative incidence for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Estimate 12-month survival of children with sickle cell disease from cohort data with censoring and compare groups by hydroxyurea use"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Reanalyse a cohort with a time-varying covariate (starting treatment mid-follow-up) and show how ignoring it creates immortal time bias"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Multiple testing and genomics statistics",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Explain in a short essay why testing 20 subgroups yields a false finding, and how Bonferroni and Benjamini-Hochberg change the conclusions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Simulate 100 independent tests of true null hypotheses at alpha 0.05 and count false positives, then compute the family-wise error rate for 20 tests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Apply Bonferroni, Holm and Benjamini-Hochberg corrections to 50 given p-values and compare the number of discoveries from each"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Simulate a GWAS on 5000 variants with 5 true signals, draw the Manhattan and QQ plots and apply the 5e-8 threshold to see which signals survive"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Bayesian methods, meta-analysis and reproducibility",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Pool five small studies of a treatment effect, interpret the heterogeneity, and write a data management plan for a health dataset.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Combine a Beta prior with 12 positives out of 80 tests to get a posterior prevalence and plot prior, likelihood and posterior with a 95 percent credible interval"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Run fixed and random effects meta-analysis on six study results, draw the forest plot and report I squared heterogeneity"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Complete a scripted analysis of a district health dataset with a pre-written analysis plan, rerunnable from raw data to final tables and report"
+        }
+      ]
+    }
   ]
 }

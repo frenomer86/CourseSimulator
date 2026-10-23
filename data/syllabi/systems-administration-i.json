@@ -111,5 +111,400 @@
         "Documentation, change control and disaster recovery planning for a small institution"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Windows Server roles and a first installation",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Compare Desktop Experience and Server Core for a small office server in a short table covering footprint, tools and risk.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E4",
+          "title": "List the roles a small office server hosts and choose an edition and installation type for three given organisations, justifying each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E4",
+          "title": "Name a server, set a static address, apply updates and verify the configuration with PowerShell commands on a fresh virtual server"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E3",
+          "title": "Build a virtual lab network with an internal switch, a server and two clients, and check connectivity before and after a snapshot rollback"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Management surfaces and storage",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a short note explaining when you would use Server Manager, Windows Admin Center or PowerShell for the same task.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Perform the same task, adding a local user, in the graphical tools and in PowerShell, and compare the steps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Create a volume on a new virtual disk, format it with NTFS, and verify the size and free space with PowerShell"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Build a mirrored storage space from three virtual disks, fail one disk and show the data is still readable, then replace the disk"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Active Directory structure",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw a forest with two domains and one tree, marking the trust relationships and the global catalogue servers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E4",
+          "title": "Draw and label a single-forest, two-domain AD structure and state what the global catalogue holds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E4",
+          "title": "Inspect the FSMO roles and replication partners of a small domain, move one role between two domain controllers and confirm the change"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E4",
+          "title": "Design organisational units and delegate password reset rights to a help desk group, then test the rights with a delegated account"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Designing and building a domain",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write an AD naming standard for users, computers and groups for a university and justify each rule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E4",
+          "title": "Promote a virtual server to a domain controller and join a client machine, then verify the join with PowerShell"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E4",
+          "title": "Create the OU structure for faculties, departments, labs, staff and students and move 20 sample accounts into the right OUs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E4",
+          "title": "Redesign a given flat AD of 200 accounts into a delegated OU hierarchy and justify the split between staff, students and service accounts"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Authentication, privilege and auditing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Explain in a paragraph why a domain administrator should not log on to ordinary workstations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E4",
+          "title": "Trace the Kerberos ticket steps for a user opening a file share and mark the ticket granting ticket and service ticket"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E4",
+          "title": "Inspect the access token and group SIDs of a signed-in user and explain which permission entries grant or deny access to a folder"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E4",
+          "title": "Configure a fine-grained password policy and lockout for administrators, then test it with seven wrong password attempts and audit the logon events"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Users, groups and bulk administration",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Draw the AGDLP nesting for a lab folder that students read and lecturers modify.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Create a user from a template with a home folder and profile path, then verify its attributes with PowerShell"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E4",
+          "title": "Apply AGDLP by placing users in global groups, nesting them in a domain local group and granting that group access to a shared folder"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E4",
+          "title": "Write a PowerShell script that creates 50 accounts from a CSV, puts them in groups, disables leavers and reports errors from bad rows"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "File sharing, quotas and DFS",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Work out the effective permission for a user who has different share and NTFS permissions, and explain the rule used.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E4",
+          "title": "Create a shared folder and set share and NTFS permissions so that students read and staff write, then test with two accounts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E4",
+          "title": "Apply a quota and a file screen that blocks video files on a student home drive, and generate a usage report"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E4",
+          "title": "Set up a DFS namespace with two folder targets and replication, then fail one server and confirm users still reach the files"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Printing and folder redirection",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a one-page plan for deploying printers to 100 lab computers by Group Policy, covering drivers and queues.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E4",
+          "title": "Install a print server role, add a shared printer with a driver and deploy it to a group of clients by policy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E4",
+          "title": "Redirect users' Documents folders to a server share and verify that files appear on the server after logging on from another computer"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E4",
+          "title": "Configure offline files for a laptop user, disconnect from the network, edit a document, reconnect and resolve a sync conflict"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Group Policy fundamentals",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Predict which of three policies applies to a computer in a nested OU and explain the order of processing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E4",
+          "title": "Create a GPO, link it to an OU and verify with a test account that the setting applies"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E4",
+          "title": "Create GPOs for password rules, desktop restrictions and a drive map, link them correctly and test with a student and a staff account"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Deploy software and a logon script by policy to security-group-filtered computers, then test two machines and confirm which receives each setting"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Group Policy troubleshooting",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a troubleshooting flow that starts with gpresult output and ends with the cause of a policy not applying.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E4",
+          "title": "Run gpupdate and gpresult on a client and read which GPOs applied and which were denied, and why"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E4",
+          "title": "Predict and verify the outcome of conflicting GPOs with enforcement, blocking and loopback processing on a lab computer"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E4",
+          "title": "Set up a central store for administrative templates, then diagnose a GPO that does not apply because of a security filtering error"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Network services: firewall, DHCP and DNS",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Explain in a paragraph how a Windows client finds a domain controller using DNS service records.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E3",
+          "title": "Configure addressing and firewall rules on a server so that file sharing works but remote desktop is limited to the admin subnet, and test both"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E3",
+          "title": "Set up a DHCP scope with reservation and options for a lab VLAN, then confirm leases and a failover partner"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E4",
+          "title": "Diagnose a client that cannot join the domain by checking SRV records with nslookup, running dcdiag and repairing a missing DNS entry"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Certificates, identity and updates",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Draw the sequence of auto-enrolment of a certificate to a domain computer, from template to issued certificate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E4",
+          "title": "Set up an enterprise CA and a template, then enrol a computer and verify the issued certificate in its store"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E4",
+          "title": "Configure an update server that approves patches for a test group first, then for all computers, and check report status"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Plan a hybrid identity for a university with on-premises AD and cloud services, choosing sign-in method and handling an outage in the scenario"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Monitoring, recovery and operations",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Prepare a one-page disaster recovery plan for a small institution, covering what is backed up, how often and who restores it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E4",
+          "title": "Use event logs, performance counters and Task Scheduler to find why a server slows down every night at 02:00"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E4",
+          "title": "Back up a domain controller, delete an OU, then restore it with an authoritative restore and confirm users reappear"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E4",
+          "title": "Write a PowerShell script that checks disk space and failed logons on three servers remotely and emails a report, then test failure handling"
+        }
+      ]
+    }
   ]
 }

@@ -101,5 +101,395 @@
         "Presentation to a non-technical audience"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Decision support and warehouse architecture",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Contrast an operational mobile-money transaction system with a decision-support warehouse for the same company, and draw the flow from sources through staging and ETL to data marts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E5",
+          "title": "Run the same sales question against a provided operational schema and a warehouse table, and compare query complexity and result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw an architecture diagram with three source systems, a staging area, an ETL step, a warehouse and two data marts, labelling metadata stores"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E5",
+          "title": "Write staging-to-warehouse SQL that loads cleaned orders, rejects rows violating three listed rules into an error table, and reconcile row counts"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Dimensional modelling and requirements",
+      "topics": [
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Interview a classmate playing a supermarket manager, record five business questions, and turn them into a declared grain, a list of facts and dimensions, and a bus matrix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E5",
+          "title": "Create a sales fact table at the grain of one product per receipt line with date, product and store dimensions, and load ten rows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E5",
+          "title": "Implement a Type 2 slowly changing customer dimension, apply two address changes, and query the customer history as of a chosen date"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Run a requirements interview scenario with a telecom business user, choose the right grain and measures, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Cubes, schemas and OLAP queries",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "For a three-dimension sales cube, list all cuboids in the lattice, then show by hand which roll-up, drill-down, slice and dice moves answer four given questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E5",
+          "title": "Write queries performing a roll-up from month to year and a slice on one region over a provided star schema and check the totals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Use GROUP BY ROLLUP and CUBE on a sales star schema to produce subtotals, and check the grand total equals the base table sum"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E5",
+          "title": "Convert a star schema to a snowflake by normalising the product dimension, compare query plans for the same report, and explain the trade-off"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Building and tuning the warehouse",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Propose a monthly refresh and partitioning strategy for a 500 million row sales fact table, with the materialised cuboids you would precompute and the data quality checks run at each load.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Load a provided CSV into a staging table with Python, transform it into a dimension table, and verify the final row count"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E5",
+          "title": "Create a materialised summary table for monthly sales by region and compare the query plan and cost with and without it"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E5",
+          "title": "Write data quality checks for completeness, duplicates and referential integrity on a warehouse load and identify planted defects in a given batch"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "The data mining process and tools",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Map a customer churn project for a Ghanaian telecom to the six CRISP-DM phases, listing the deliverable and one risk at each phase.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Load a provided dataset with pandas, print summary statistics and class counts, and identify two columns that will need cleaning"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Draw a process diagram of the KDD steps for a loan-default mining project and annotate the tool used at each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Build a scikit-learn pipeline chaining imputation, scaling and a classifier, and compare it with the same steps coded by hand on one dataset"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Understanding, cleaning and integrating data",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Inspect a messy health-facility visits table, list every quality problem found, choose a fix for each missing value, outlier and inconsistency, and justify the choices.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Compute the mean, median and standard deviation of each numeric column in a dataset and draw a box plot to spot outliers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Impute missing values three ways (mean, median, nearest neighbour) on a dataset and compare the effect on the column's distribution"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Merge two customer tables with inconsistent names and IDs using entity matching, then test attribute redundancy with a correlation matrix"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Data reduction and transformation",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Normalise a small income and age table by min-max and z-score by hand, then explain when each is preferable and what discretisation would lose.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Apply min-max and z-score normalisation to a numeric column and confirm the new range and mean and standard deviation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Run PCA on a 10-attribute dataset, choose components explaining 90 percent of variance, and plot the first two components coloured by class"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Discretise a numeric attribute with equal-width, equal-frequency and entropy-based binning, then compare downstream decision tree accuracy for each"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Frequent itemsets and association rules",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "For a 10-transaction basket table, hand-run two passes of Apriori with minimum support 30 percent, and compute support, confidence and lift for two derived rules.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Compute support, confidence and lift for three given rules from a small basket table and say which is most interesting"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement Apriori with candidate pruning on a basket dataset and report how many candidates the pruning step removes at each level"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Build an FP-tree for a given dataset, mine it, and compare runtime and itemsets found against Apriori at three support thresholds"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Association rules in practice",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Take five association rules mined from a mobile-money dataset, classify each as useful, trivial or misleading, and explain with lift and a plausible lurking variable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Mine rules from a supermarket dataset with mlxtend at minimum support 5 percent and list the top five by lift"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Mine rules at the product category level and at the item level, and compare which rules appear only at the higher level"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Identify a misleading high-confidence rule in a given dataset using lift and conviction, and show with a contingency table why it is spurious"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Classification and prediction",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compute the information gain and Gini index for two candidate splits on a small loan table, choose the root, and describe how pruning and ensembles reduce overfitting.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Grow a decision tree on the provided weather dataset in the visualiser and note the attribute chosen at each level and its gain"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Train naive Bayes, k-nearest neighbours and a random forest on one dataset and compare their test accuracy in a single table"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Fit linear, polynomial and decision tree regression to housing prices in Accra and compare their errors on held-out data"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Evaluating and tuning models",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "From a given confusion matrix for a fraud detector, compute accuracy, precision, recall and F1, and explain why accuracy misleads when fraud is 1 percent of cases.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Compute a confusion matrix, precision, recall and F1 from provided predictions and draw the ROC curve for the classifier scores"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Plot learning curves for a decision tree at depths 1 to 12, locate the overfitting point, and add regularisation to improve validation score"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Handle a 1 percent fraud dataset with class weights and resampling, and compare recall and precision under 5-fold cross-validation for each approach"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Cluster analysis",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Run two iterations of k-means by hand on eight 2D points with k = 2, then explain when DBSCAN would succeed where k-means fails.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Cluster a provided 2D customer dataset with k-means for k = 3 and plot the points coloured by cluster with centroids marked"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Build a dendrogram for 12 points with single and average linkage, cut at three clusters, and compare the memberships"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compare k-means and DBSCAN on a crescent-shaped dataset using silhouette scores, tune eps and min points, and flag outliers"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Advanced topics, ethics and capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a five-minute summary of the capstone findings to a non-technical manager, with two charts, one recommendation and one limitation, and a note on data protection obligations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Build a user-based recommender for a small ratings table and list the top three recommendations for one chosen user"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Work through a profiling case where a lender mines customer data, decide what to use and withhold, and score against the data protection rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E5",
+          "title": "Build a star schema for a provided retail dataset, run three OLAP reports, then mine one association rule set and one classifier on it"
+        }
+      ]
+    }
   ]
 }

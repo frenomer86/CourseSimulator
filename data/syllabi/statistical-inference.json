@@ -120,5 +120,408 @@
         "Capstone: a full inferential analysis of a public Ghanaian dataset with a written report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Sampling and sampling distributions",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Compare simple random and cluster sampling for a district household survey, listing what bias each could introduce through the sampling frame.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Draw simple random and stratified samples from a population table of 500 households and compare their mean income with the true mean"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Simulate the sampling distribution of the mean for samples of size 5, 30 and 100 and verify that the standard error shrinks as predicted"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Show how a biased sampling frame shifts survey estimates by simulating sampling from only households near a main road"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Central limit theorem and derived distributions",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Explain in a paragraph when the central limit theorem works poorly, using skewed data with a small sample as the example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Plot the sampling distribution of the mean for a skewed population at several sample sizes and note when it looks normal"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Plot chi-square, t and F densities for several degrees of freedom and read off the critical values used for a 5 percent test"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Simulate 5000 household surveys in a district, record each estimate, and report the spread of the estimates and the coverage of the true value"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Point estimation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Derive the maximum likelihood estimator for the rate of a Poisson variable and compare it with the method of moments.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Find method of moments estimators for the mean and variance of a normal sample and check them on a data set of 30 values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Write the log-likelihood of an exponential sample, maximise it numerically, and compare the estimate with the analytic one"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Check the asymptotic normality of a maximum likelihood estimator and the Cramer-Rao bound by simulation across several sample sizes"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Confidence intervals",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Explain to a district health officer what a 95 percent confidence interval does and does not mean, using a repeated-sampling picture.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute a 95 percent confidence interval for a mean with unknown variance from a sample of 25 values using the t distribution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compare Wald and Wilson intervals for a proportion at several sample sizes and report their actual coverage by simulation"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Estimate malaria test positivity at ten clinics with confidence intervals, adjust for different sample sizes, and decide which clinics truly differ"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Hypothesis testing basics",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Work out the power of a one-sided z test by hand for three effect sizes and describe how sample size changes the answer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Carry out a one-sided z test on a sample mean, state the rejection region, and compute the p-value"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Draw a power curve for a t test with three sample sizes and find the sample size that gives 80 percent power for a given effect"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Construct the likelihood ratio test for a normal mean and show its link to the confidence interval for the same data"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Standard tests and multiple testing",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Write a short note on how p-hacking arises, with a numeric example of testing twenty outcomes and reporting only the one that is significant.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Perform z and t tests for a mean, a proportion and a variance on given samples and state each conclusion in plain words"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Run 100 tests on pure noise, count the false positives, and then apply Bonferroni, Holm and Benjamini-Hochberg corrections"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Simulate p-hacking by testing many subgroups, measure the rate of false discoveries, and show how preregistration changes it"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Two samples and ANOVA",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Choose the right test for five study designs and explain the assumptions you would check for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Run a Welch two-sample t test and a paired t test on given data, and check normality with a Q-Q plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Build a one-way ANOVA table by hand from group totals and confirm the F statistic and its p-value"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Follow a significant ANOVA with Tukey's HSD, find which treatment pairs differ, and report effect sizes with intervals"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Designed experiments",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Design a randomised block experiment for comparing three seed varieties on four farms, and explain how blocking improves precision.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Compute Cohen's d and eta squared for given group data and describe the size of each effect"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Analyse a two-way ANOVA with interaction on a crop data set and interpret an interaction plot"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Analyse maize yields across fertiliser treatments in a field trial, check assumptions, run post hoc tests and write the conclusions with intervals"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Categorical data analysis",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compute expected counts and a chi-square statistic by hand for a two-by-two table, then check with software.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Test whether observed counts of births by day fit a uniform pattern with a chi-square goodness-of-fit test"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Run a chi-square test of independence on a table of treatment and outcome, and inspect the standardised residuals"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Compute relative risk and odds ratio with confidence intervals for a clinic data set, and demonstrate Simpson's paradox by stratifying"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Regression",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Interpret the coefficients of a fitted regression in plain words and state what the model cannot say about causes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Fit a simple linear regression by least squares to 20 points, plot the line and report R squared"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute confidence intervals for the slope and mean response and a prediction interval, and explain why the prediction interval is wider"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Examine residual and Q-Q plots of a faulty model, find which assumption fails, and apply a transformation that fixes it"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Diagnostics and market modelling",
+      "topics": [
+        "7.5",
+        "7.6",
+        "7.7"
+      ],
+      "exercise": "Write a one-page memo to a trader explaining which factors move tomato prices and which conclusions the data cannot support.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Compute leverage and Cook's distance for a small data set and identify the most influential point"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Review a case that claims causation from a regression, list the confounders and omitted variables, and score the claim against a rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.7",
+          "engine": "E1",
+          "title": "Model tomato prices at Kumasi Central Market against season, rainfall and transport cost, check multicollinearity, and report the best model"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Non-parametric methods and resampling",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Explain when a rank test is preferable to a t test and what you give up by using it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Run a Wilcoxon signed-rank and a Mann-Whitney test on small skewed samples and compare their p-values with those of t tests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Compute bootstrap standard errors and percentile intervals for a median of 40 values using 5000 resamples"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Show by simulation where the bootstrap fails for the maximum of a sample, and explain why with the sampling distribution"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Choosing methods and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Capstone report: state the question, design, methods, assumptions, results and limits of an analysis of a public Ghanaian dataset.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Choose the correct method for eight research questions using a decision guide, giving the design and data type that led to each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Compute weighted estimates and design effects for a survey with unequal selection probabilities and non-response, and compare them with unweighted ones"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E1",
+          "title": "Carry out a complete inferential analysis of a public Ghanaian dataset with checks, interval estimates, multiple testing control and a reproducible script"
+        }
+      ]
+    }
   ]
 }

@@ -108,5 +108,397 @@
         "Project: a complete database-driven application (e-commerce shop, school portal or booking system) deployed and demonstrated"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "PHP basics and project structure",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Draw the path of an HTTP request through a web server, PHP and back to the browser, and label where your code runs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Write a PHP script that prints the server time and a greeting based on the hour, then change the hour to test all branches"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write PHP functions using arrays, strings and loops to produce a price list with VAT and a sorted summary for 10 products"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Organise a project into a public folder, templates, config and a Composer-style autoloader, and check that classes load from the right paths"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Database setup and version control",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a README that lets a classmate recreate your database and run the project from a fresh checkout.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E5",
+          "title": "Create a database, a user with limited privileges and a products table, import a schema and check that the privileges work as intended"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Initialise a repository, make four commits on a branch, merge it and resolve one deliberate conflict in a PHP file"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E5",
+          "title": "Write an import script that loads a messy product file into a normalised schema and reports rejected rows with the reason for each"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Templates, superglobals and a multi-page site",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "List the superglobals you used this week and give one safe use and one unsafe use of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Create a layout template with header, footer and content partials, and escape a user-supplied name with htmlspecialchars to show a script tag stays inert"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Build a contact page that reads GET and POST values, shows server and cookie information, and tests a missing parameter"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Build a four-page site with shared navigation, active link highlighting and a custom error page, and check every link resolves"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "HTTP, cookies and sessions",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Explain in a paragraph why a session ID in a cookie needs Secure, HttpOnly and SameSite flags.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Send correct status codes and content type for a JSON response, a download and a not-found page, and inspect the headers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Set and read a cookie with expiry and security flags, show it expires, and display the header values in the browser tools"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Build a session-based flash message and post-redirect-get flow for a form, and prove a page refresh does not resubmit the form"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Forms and validation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a list of validation rules for a Ghana phone number, an email and a date of birth, with two valid and two invalid examples each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Build a registration form that redisplays entered values and shows error messages next to each field when validation fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Validate email, Ghana phone numbers, ranges and required fields with filter_var and regular expressions, testing 20 inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement whitelist validation for a sort and filter parameter set, and show that tampered values are rejected rather than sanitised"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Uploads and form protection",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Draft a policy for accepting profile photo uploads, listing size, type, naming, storage and scanning rules.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Write an upload handler that checks size and type, stores files under random names outside the web root, and test it with six files"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Add CSRF tokens to a form, show a forged request is rejected, and test with a missing, wrong and valid token"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Add a honeypot field and rate limiting to a sign-up form, then simulate 50 bot submissions and report how many were blocked"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "PDO, schema design and data access",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Draw an entity relationship diagram for a school portal with users, posts, products and orders, with keys and relationship types.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Connect to a database with PDO using exception mode and fetch the rows of a table into an HTML table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E5",
+          "title": "Design and create the schema for a shop with users, products and orders, add foreign keys and load sample data, then query a customer's order history"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Build a repository class with find, create, update and delete methods, use transactions for checkout, and test a failure midway to confirm rollback"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Security: SQL injection, XSS and OWASP",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Review a page against a security checklist and write the five most important fixes in order of risk.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E5",
+          "title": "Exploit a deliberately vulnerable login query with a crafted input to bypass authentication, and record the SQL that was actually executed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E5",
+          "title": "Rewrite the vulnerable queries with prepared statements and parameter binding, and confirm that ten attack strings fail"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Find and fix a stored cross-site scripting hole in a comment page with output escaping and a content security policy, then retest with attack payloads"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "CRUD pages, routing and search",
+      "topics": [
+        "7.1",
+        "7.2"
+      ],
+      "exercise": "Sketch the URL structure and page list for a product management section of a shop and which HTTP method each uses.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Build list, detail, create, edit and delete pages for products behind a front controller that routes five URLs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E5",
+          "title": "Add pagination, search, sort and filter to a product list using safe queries, and check page counts for 53 rows with 10 per page"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E5",
+          "title": "Write an optimised listing query with a combined filter, sort and pagination, and compare its query plan with and without an index"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Soft deletes, audit fields and MVC",
+      "topics": [
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Explain why a school portal might use soft deletes and what risks they bring.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E5",
+          "title": "Add soft deletes with a deleted_at column and audit fields to a table, then write queries that hide, list and restore removed rows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Reorganise a small page-script project into models, views and controllers, and show a new page needs changes in only one controller and one view"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compare your hand-made MVC structure with the conventions of a framework, then add a new feature to your project in both styles"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Authentication and authorisation",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Describe a password reset flow step by step and list two ways each step can be attacked.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Hash a password with password_hash, verify it with password_verify, and show two identical passwords give different hashes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Build registration, email verification, login, logout and remember-me for a school portal, and test each with valid and invalid cases"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Add role-based access for admin, lecturer and student, brute-force lockout and session regeneration, then run a scripted attack that must fail"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Hosting, deployment and HTTPS",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3"
+      ],
+      "exercise": "Compare shared hosting, a VPS and a platform service for a school website in Ghana on cost, control and skills needed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Choose a hosting plan and domain for a small business in a case, weighing cost, support and local availability, and score the decision"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E4",
+          "title": "Deploy a PHP project to a server using Git, set environment configuration and file permissions, and fix a permission error that breaks uploads"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E4",
+          "title": "Enable HTTPS with a certificate, redirect HTTP, harden PHP settings and turn error display off, then verify with checks from the outside"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Operations and final project",
+      "topics": [
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Write the runbook for your project: how to back it up, restore it, read its logs and apply an update safely.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.4",
+          "engine": "E4",
+          "title": "Schedule database and code backups, rotate logs and restore a backup to a new server to prove it works"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.5",
+          "engine": "E5",
+          "title": "Seed and test the database for the final project with realistic data of 100 rows per table and check all reports run correctly"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E1",
+          "title": "Deliver a complete database-driven application, such as a shop, school portal or booking system, with authentication, security tests and a deployed demo"
+        }
+      ]
+    }
   ]
 }

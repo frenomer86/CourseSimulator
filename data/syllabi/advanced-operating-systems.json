@@ -1,0 +1,505 @@
+{
+  "slug": "advanced-operating-systems",
+  "description": "A graduate study of how modern kernels manage memory, CPUs, storage and isolation at scale, and how performance is measured and tuned. Students trace kernel mechanisms in the step visualiser, run experiments in a Linux virtual machine, and complete a small measurement or implementation project.",
+  "modelledOn": [
+    "Arpaci-Dusseau and Arpaci-Dusseau, Operating Systems: Three Easy Pieces",
+    "Love, Linux Kernel Development",
+    "Gregg, Systems Performance",
+    "Bovet and Cesati, Understanding the Linux Kernel"
+  ],
+  "outcomes": [
+    "Trace a system call, interrupt and page fault through a kernel and explain the cost of each step.",
+    "Evaluate page replacement, multicore scheduling and I/O scheduling policies using workload traces and measurements.",
+    "Explain crash consistency in journaling and copy-on-write file systems and test durability assumptions.",
+    "Compare full, paravirtual and hardware-assisted virtualisation with containers in isolation strength and overhead.",
+    "Use namespaces, cgroups and seccomp to build and limit an isolated process environment.",
+    "Diagnose a performance problem with a systematic method and report results with sound experimental design."
+  ],
+  "units": [
+    {
+      "title": "Kernel structure and system calls",
+      "weeks": "1-2",
+      "topics": [
+        "Kernel architectures: monolithic, microkernel, exokernel and unikernel",
+        "The system call path: traps, mode switches and the fast-call mechanism",
+        "Observing the kernel: strace, ftrace and perf",
+        "Interrupts, exceptions and deferred work (softirqs, tasklets, work queues)",
+        "Loadable modules and extending the kernel with eBPF",
+        "Kernel synchronisation: spinlocks, RCU and memory barriers"
+      ]
+    },
+    {
+      "title": "Virtual memory and paging policies",
+      "weeks": "3-4",
+      "topics": [
+        "Multi-level page tables, the TLB and huge pages",
+        "Page replacement: LRU approximations, Clock and working-set policies",
+        "Demand paging, the page cache, copy-on-write and memory-mapped files",
+        "NUMA placement and kernel allocators (buddy and slab)",
+        "Thrashing, swap, the out-of-memory killer and memory cgroups",
+        "Measuring the memory system: page-fault rates and TLB miss cost models"
+      ]
+    },
+    {
+      "title": "Scheduling in multicore systems",
+      "weeks": "5-6",
+      "topics": [
+        "Per-CPU run queues, load balancing and fair schedulers (CFS and EEVDF)",
+        "Real-time scheduling: rate-monotonic, EDF, priority inversion and inheritance",
+        "Cache affinity, NUMA-aware scheduling and work stealing",
+        "Scalability laws, lock contention and lock-free structures",
+        "Energy-aware scheduling: DVFS and heterogeneous cores"
+      ]
+    },
+    {
+      "title": "File systems and storage stacks",
+      "weeks": "7-8",
+      "topics": [
+        "The VFS layer, inodes, extents and directory structures",
+        "Crash consistency: journaling, soft updates, log-structured and copy-on-write designs",
+        "Block layer, I/O schedulers and NVMe queues",
+        "Flash storage: translation layers, garbage collection and wear levelling",
+        "RAID, replication and erasure coding",
+        "Durability semantics: fsync, write barriers and common application bugs"
+      ]
+    },
+    {
+      "title": "Virtualisation and hypervisors",
+      "weeks": "9-10",
+      "topics": [
+        "Formal virtualisation requirements: sensitive versus privileged instructions, trap-and-emulate and binary translation",
+        "Hardware support: VT-x, AMD-V and nested page tables",
+        "Paravirtual devices: virtio and SR-IOV",
+        "Memory overcommit: ballooning, page sharing and live migration",
+        "Hypervisor designs (KVM, Xen) and virtualisation security including side channels"
+      ]
+    },
+    {
+      "title": "Containers and isolation",
+      "weeks": "11",
+      "topics": [
+        "Namespaces: PID, mount, network, user and UTS",
+        "Control groups v2: CPU, memory and I/O limits",
+        "Reducing attack surface: capabilities, seccomp filters and Linux security modules",
+        "Union file systems, image layers and copy-on-write containers",
+        "Stronger sandboxes: user-space kernels and microVMs"
+      ]
+    },
+    {
+      "title": "Kernel bypass and performance tuning",
+      "weeks": "12",
+      "topics": [
+        "The cost of the kernel network stack: copies, interrupts and context switches",
+        "Polling and zero-copy I/O: io_uring and DPDK-style user-space networking",
+        "RDMA and programmable NICs overview",
+        "Performance methodology: the USE method, flame graphs and latency percentiles",
+        "Tuning: CPU pinning, IRQ affinity, huge pages and tail latency"
+      ]
+    },
+    {
+      "title": "Systems research project",
+      "weeks": "13",
+      "topics": [
+        "Choosing a mechanism to measure or build",
+        "Experiment design: microbenchmarks, noise control and statistics",
+        "Reading a systems paper critically",
+        "Writing up results in paper style"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Kernel architectures and the system call path",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Compare a monolithic kernel and a microkernel for a file read request, then trace a read system call with strace and list each user-to-kernel transition and its approximate cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E4",
+          "title": "Run strace on a small program that reads a file and list the system calls made, with their return values and counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E4",
+          "title": "Use perf to profile a program making many small system calls and report the share of time spent in kernel mode"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E6",
+          "title": "Step through a trap into the kernel in the visualiser, recording the registers saved, the mode switch and the return path for a write call"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Interrupts, extensions and kernel synchronisation",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Explain how an interrupt splits into top and bottom halves, describe when RCU beats a reader-writer lock, and sketch an eBPF program that counts system calls per process.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Read /proc/interrupts before and after generating disk and network traffic, and explain which counters grew and why"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.6",
+          "engine": "E6",
+          "title": "Simulate two cores updating a shared counter with and without a spinlock, and count lost updates over 1000 operations"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Load a tracing program that counts system calls per process for 30 seconds, and identify the heaviest caller from its output"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Page tables, replacement and the page cache",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Walk a virtual address through a four-level page table, compare LRU, Clock and working-set on a reference string, and explain what copy-on-write does after fork.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Translate five virtual addresses through a multi-level page table and TLB in the visualiser, recording hits, misses and page faults"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Run LRU, Clock and FIFO on a 40-reference string with 4 frames and compare faults, then show a case of Belady's anomaly"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E4",
+          "title": "Fork a process that touches a large array, watch page faults and memory use with /proc, and confirm that copy-on-write copies pages only on writes"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "NUMA, allocators and memory pressure",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Estimate the effective memory access time with a given TLB hit rate and page-fault rate, and describe how the kernel decides which process the OOM killer ends.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E6",
+          "title": "Compute effective access time for three TLB hit rates and fault rates, and plot how a small fault rate dominates the result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Simulate buddy allocation and freeing for a request trace, and report external fragmentation after 30 operations"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E4",
+          "title": "Limit a container's memory with a cgroup, run a memory hog, observe thrashing and the OOM kill in the logs, and explain the sequence"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Fair and real-time schedulers",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compute virtual runtime for three tasks with different weights under a fair scheduler, test a task set for schedulability under rate-monotonic and EDF, and describe a priority inversion with inheritance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Simulate a fair scheduler for three tasks with different nice values and plot the CPU share each receives over 100 ticks"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Check a four-task set for schedulability under rate-monotonic and EDF, then draw the timelines and identify any missed deadline"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Simulate work stealing across four cores with uneven task queues, and compare finish time and cache misses with a static assignment"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Scalability and energy-aware scheduling",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Fit a universal scalability model to measured throughput at 1 to 16 threads, and explain why a lock-free counter can still scale poorly.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Plot speedup against core count for serial fractions of 5 and 20 percent and read off the maximum speedup in each case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E4",
+          "title": "Benchmark a mutex-protected counter and an atomic counter with 1, 2, 4 and 8 threads, and chart the throughput curves"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Schedule a mixed task set on big and little cores under an energy budget, and compare total energy and deadline misses for two policies"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "File system structure and crash consistency",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Draw the on-disk layout of an extent-based file system, replay a journal after a crash at three points, and explain how a copy-on-write design avoids journaling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Create files of increasing size, inspect their inodes and extents with stat and a file mapping tool, and record the block layout"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Crash a journaling file system model at three points of an update and replay the journal to show which updates survive"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Compare FIFO, deadline and elevator I/O scheduling on a request trace, and report average latency and throughput for each"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Flash, redundancy and durability",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compute write amplification for a flash translation layer under random writes, compare RAID 5 and a 4+2 erasure code on capacity and failure tolerance, and find the fsync mistake in a given program.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compute usable capacity and failures tolerated for RAID 0, 1, 5, 6 and a 4+2 erasure code on six equal disks"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Simulate a flash translation layer with garbage collection under random writes and plot write amplification against free space"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E4",
+          "title": "Write a small program that saves a file, then fix its missing fsync of the file and the directory, and demonstrate the difference with a simulated power cut"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Classic and hardware-assisted virtualisation",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Explain why some instruction sets cannot be trap-and-emulated, show how nested page tables shorten address translation, and compare an emulated disk with a virtio disk.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Step a trap-and-emulate monitor through a guest privileged instruction and record the traps taken and the host state changes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Count memory references needed for a TLB miss under shadow paging and under nested page tables for a four-level guest"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E4",
+          "title": "Benchmark disk throughput in a guest with an emulated device and a virtio device, and explain the gap using exit counts"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Overcommit, migration and hypervisor security",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Plan a live migration of a 16 GB guest over a 1 Gbit/s link with a given dirty rate, and argue whether a cloud provider should enable page sharing between tenants.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute total migration time and downtime for pre-copy live migration of a 16 GB guest at three dirty page rates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Simulate memory ballooning among three guests with changing demand and report which guest swaps when the host runs short"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Assess a multi-tenant hosting scenario for side-channel risk, choose isolation controls under a cost limit and justify each trade-off"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Namespaces, cgroups and sandboxes",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Build a minimal container by hand with namespaces, a cgroup limit, a root file system and a seccomp filter, and compare its attack surface with a microVM.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E4",
+          "title": "Start a shell in new PID, mount and network namespaces and show that it sees only its own processes and interfaces"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Place a CPU-bound process in a cgroup limited to 20 percent of one core and verify the limit with top over one minute"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E4",
+          "title": "Apply a seccomp filter that blocks five dangerous system calls in a container and show each blocked call failing while the application still runs"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Kernel bypass and performance methodology",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Apply the USE method to a slow web server, read a flame graph, and estimate the per-packet cost saved by moving from interrupts to polling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E4",
+          "title": "Apply the USE method to CPU, memory, disk and network on a loaded machine, and record utilisation, saturation and errors for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Compare blocking reads with an asynchronous submission-queue interface on 10,000 small file reads, and report throughput and CPU use"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E4",
+          "title": "Pin threads, set interrupt affinity and enable huge pages on a latency benchmark, and report the 50th, 99th and 99.9th percentile before and after"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project, experiment design and paper reading",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a short experiment on one kernel mechanism, with a hypothesis, a controlled setup, repeated runs, confidence intervals and a critique of a related paper.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E4",
+          "title": "Run a microbenchmark 30 times, discard warm-up runs and report the mean, median and standard deviation with a plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E6",
+          "title": "Implement a page replacement or scheduling policy in the visualiser and compare it with two baselines on three workloads"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Test whether a claimed speedup in a given paper holds with the supplied raw data, using a significance test and confidence interval"
+        }
+      ]
+    }
+  ]
+}

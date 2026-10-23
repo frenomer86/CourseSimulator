@@ -1,0 +1,503 @@
+{
+  "slug": "mathematical-statistics",
+  "description": "The theory behind statistical inference: probability foundations, optimal estimation, likelihood and Bayes methods, hypothesis testing, asymptotics, high-dimensional statistics and non-parametric methods. Students prove core results on paper and then test them with simulation studies in the maths lab and code runner.",
+  "modelledOn": [
+    "Casella and Berger, Statistical Inference",
+    "Lehmann and Casella, Theory of Point Estimation",
+    "van der Vaart, Asymptotic Statistics",
+    "Wainwright, High-Dimensional Statistics: A Non-Asymptotic Viewpoint"
+  ],
+  "outcomes": [
+    "Prove and apply convergence results, the law of large numbers and the central limit theorem to statistical estimators.",
+    "Derive sufficient statistics, optimal unbiased estimators and information bounds for standard models.",
+    "Construct maximum likelihood and Bayes estimators, compute them numerically and compare them under a loss function.",
+    "Derive most powerful and likelihood-based tests and confidence regions, and prove their error properties.",
+    "Establish consistency and asymptotic normality of estimators, including under model misspecification.",
+    "Analyse high-dimensional and non-parametric procedures with concentration inequalities and verify claims by simulation."
+  ],
+  "units": [
+    {
+      "title": "Probability foundations for inference",
+      "weeks": "1",
+      "topics": [
+        "Probability spaces, random variables and expectation as an integral",
+        "Modes of convergence: almost sure, in probability, in L^p and in distribution; Slutsky's lemma",
+        "The law of large numbers and the central limit theorem via characteristic functions",
+        "Inequalities: Markov, Chebyshev, Hoeffding and Jensen",
+        "Statistical models, exponential families and identifiability"
+      ]
+    },
+    {
+      "title": "Point estimation theory",
+      "weeks": "2-3",
+      "topics": [
+        "Sufficiency, the factorisation theorem and minimal sufficiency",
+        "Completeness, the Rao-Blackwell theorem and the Lehmann-Scheffe theorem",
+        "Fisher information and the Cramer-Rao lower bound",
+        "Method of moments, bias-variance trade-off and mean squared error",
+        "Decision theory: loss, risk, admissibility and minimax estimators"
+      ]
+    },
+    {
+      "title": "Maximum likelihood and Bayes estimation",
+      "weeks": "4-5",
+      "topics": [
+        "Likelihood, score function and maximum likelihood estimators; invariance",
+        "Numerical maximisation: Newton-Raphson, Fisher scoring and the EM algorithm",
+        "Bayes estimators, conjugate priors and Bayes risk",
+        "Empirical Bayes and the James-Stein shrinkage estimator",
+        "Objective priors, Jeffreys prior and the Bernstein-von Mises theorem"
+      ]
+    },
+    {
+      "title": "Hypothesis testing and confidence regions",
+      "weeks": "6-7",
+      "topics": [
+        "Neyman-Pearson lemma and most powerful tests",
+        "Uniformly most powerful tests, monotone likelihood ratio and unbiased tests",
+        "Likelihood ratio, Wald and score tests; Wilks' theorem",
+        "Confidence sets, pivots and test inversion",
+        "p-values, multiple testing and false discovery rate",
+        "Bayes factors and Bayesian testing"
+      ]
+    },
+    {
+      "title": "Asymptotic theory",
+      "weeks": "8",
+      "topics": [
+        "Consistency of the maximum likelihood estimator and its asymptotic normality",
+        "The delta method and variance-stabilising transformations",
+        "M-estimators, the sandwich variance and misspecified models",
+        "Asymptotic relative efficiency and local asymptotic normality",
+        "U-statistics and the empirical distribution function: Glivenko-Cantelli theorem"
+      ]
+    },
+    {
+      "title": "High-dimensional statistics",
+      "weeks": "9-10",
+      "topics": [
+        "Concentration of measure: sub-Gaussian and sub-exponential variables",
+        "Sparse linear regression: the lasso, oracle inequalities and the restricted eigenvalue condition",
+        "Covariance estimation and random matrix theory (Marchenko-Pastur law)",
+        "Minimax lower bounds: Le Cam and Fano methods",
+        "Multiple testing in high dimensions; knockoffs for variable selection",
+        "Phase transitions when p exceeds n"
+      ]
+    },
+    {
+      "title": "Non-parametric methods",
+      "weeks": "11-12",
+      "topics": [
+        "The empirical distribution, the DKW inequality and the Kolmogorov-Smirnov test",
+        "Rank tests: Wilcoxon, Mann-Whitney and Kruskal-Wallis; Hodges-Lehmann estimators",
+        "Kernel density estimation: bias, variance and bandwidth selection",
+        "Non-parametric regression: local polynomials, splines and convergence rates",
+        "Permutation tests, exact inference and conformal prediction"
+      ]
+    },
+    {
+      "title": "Simulation studies and research practice",
+      "weeks": "13",
+      "topics": [
+        "Designing a Monte Carlo study to compare estimators: replications, metrics and error bars",
+        "Reading a statistical-theory paper: assumptions, main theorem, proof sketch and limits",
+        "Writing a rigorous proof and a clear technical report",
+        "Project: derive, prove and simulate the properties of an estimator for an applied problem"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Probability tools and convergence",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Prove the weak law of large numbers by Chebyshev, state Slutsky's lemma and use the central limit theorem to approximate a binomial tail probability for a sample of polling data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Overlay the standardised sample mean distribution for n = 5, 30 and 200 from a skewed distribution on the normal curve and compare quantiles"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Simulate convergence in probability and in distribution for a sample maximum and show with 10000 trials that they are different"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Check Hoeffding's bound against simulated tail frequencies for sums of bounded variables and report how loose the bound is"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Sufficiency and unbiased estimation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Show that the sample sum is sufficient and complete for a Poisson model, derive the minimum variance unbiased estimator of e^(-lambda) by Rao-Blackwell, and check against the Cramer-Rao bound.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Use the factorisation theorem to identify a sufficient statistic for three given families and write each likelihood in factored form"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute the Fisher information and Cramer-Rao bound for the exponential rate parameter and compare with the variance of the sample mean"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Simulate a crude unbiased estimator and its Rao-Blackwellised version for a Poisson probability and show the variance reduction over 5000 runs"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Risk, shrinkage and decisions",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compare the sample mean, a shrinkage estimator and a constant for a normal mean under squared error loss, plotting risk against the true mean and discussing admissibility and minimax.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Compute the bias, variance and mean squared error of two variance estimators (divide by n and by n-1) and plot the MSE against sample size"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Plot the risk functions of three estimators of a normal mean on a grid and identify which are dominated"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Simulate the James-Stein estimator in 10 dimensions and show that its total squared error beats the sample mean for every true mean tried"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Maximum likelihood in practice",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "Derive the maximum likelihood estimators for a gamma shape and rate, explain why there is no closed form, and fit them to rainfall data with Newton-Raphson and EM.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Derive and plot the log-likelihood of an exponential sample and mark the maximum and the Fisher information at the maximum"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement Newton-Raphson and Fisher scoring for a Poisson regression and compare the number of iterations to converge"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Fit a two-component Gaussian mixture to market-price data with the EM algorithm and show the log-likelihood rising at every iteration"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Bayes estimators and shrinkage",
+      "topics": [
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Derive the posterior mean for a beta-binomial model, compare its risk with the maximum likelihood estimator under squared error, and explain empirical Bayes for clinic-level rates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Compute the posterior mean and Bayes risk for a Beta prior and binomial data and compare against the MLE for small samples"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Estimate the prior from 50 clinic-level counts using empirical Bayes and compare shrunken rates with raw rates in a mean squared error simulation"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Compute the Jeffreys prior for a Poisson rate and check by simulation that credible intervals have near-nominal frequentist coverage as n grows"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Most powerful tests",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Use the Neyman-Pearson lemma to construct the most powerful test for a normal mean, plot its power curve and show the likelihood ratio, Wald and score tests for a binomial proportion.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Derive the most powerful size 0.05 test between two normal means, and plot its power as the difference between the means grows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Compute likelihood ratio, Wald and score statistics for a binomial proportion and compare their actual sizes at n = 10, 30 and 100"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Find a uniformly most powerful test for an exponential rate using monotone likelihood ratio and plot its power function"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Confidence sets, p-values and Bayes factors",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Invert a family of tests to build a confidence interval, then compute p-values, adjust for 20 tests with false discovery rate control, and compare the result with a Bayes factor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Check the coverage of Wald, likelihood ratio and exact binomial intervals over a grid of true proportions with 10000 simulations each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Simulate 1000 tests with 10 percent true effects, apply Bonferroni and a step-up procedure, and compare false discovery proportion and power"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E7",
+          "title": "Compute the Bayes factor for a point null versus a normal alternative and show how it depends on the prior width"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Asymptotics of estimators",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Prove the asymptotic normality of a maximum likelihood estimator in the regular case, apply the delta method to a ratio of means, and compute the sandwich variance when the model is wrong.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Apply the delta method to the log odds of a proportion and compare the approximate standard error with simulation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Simulate MLEs for a Weibull shape across n = 20 to 2000 and check that the standardised error approaches a normal distribution"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Fit a Poisson model to overdispersed data, compare model-based and sandwich standard errors, and show which gives correct coverage"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Concentration and sparse regression",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "State the oracle inequality for the lasso, explain the role of the restricted eigenvalue condition and simulate support recovery as the number of predictors grows.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Plot the tail of a sub-Gaussian and a sub-exponential variable and compare with Chernoff bounds for a sum of 100 terms"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Simulate sparse regression with n = 100 and p = 500, run the lasso over a lambda grid and plot the support recovery rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Generate sample covariance matrices for p/n = 0.5 and plot the eigenvalue histogram against the Marchenko-Pastur density"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Lower bounds, testing and phase transitions",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Derive a minimax lower bound for estimating a sparse normal mean by a two-point argument, and simulate when variable selection with knockoffs controls false discoveries.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Compute the Le Cam two-point bound for estimating a normal mean from n observations and compare with the risk of the sample mean"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Run a knockoff-style variable selection on simulated data with 200 predictors and measure the false discovery proportion against its target"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Simulate the success probability of sparse recovery over a grid of sample size and sparsity and plot the phase transition curve"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Empirical distributions and rank tests",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Use the empirical distribution and the DKW inequality to build a confidence band, then compare the Wilcoxon rank-sum test with the t-test on heavy-tailed data and tune a kernel density bandwidth.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Plot an empirical distribution function for 30 observations with a DKW confidence band and apply the Kolmogorov-Smirnov test against a fitted normal"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Compare the power of the t-test and the Wilcoxon test for a location shift under normal and heavy-tailed data over 5000 simulations"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Estimate a density with a Gaussian kernel, choose the bandwidth by cross-validation and compare with the rule-of-thumb bandwidth on mixture data"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Smoothing, permutation and conformal inference",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Fit a local polynomial regression to a noisy dataset, relate the bandwidth to the bias-variance trade-off and the convergence rate, and build a conformal prediction interval with guaranteed coverage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Fit local linear regressions with five bandwidths and plot bias, variance and mean squared error against bandwidth on simulated data"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Run a permutation test for a difference in means with 10000 shuffles and compare its p-value with the exact and the t-test values"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Build split conformal intervals for a regression model and check that 90 percent coverage holds across 1000 repeated splits"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Simulation study, proof writing and project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a project in which you derive an estimator, prove consistency and asymptotic normality, and report a Monte Carlo study of its finite-sample bias, variance and coverage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Design a Monte Carlo study comparing three estimators over four sample sizes with 5000 replications and report bias, variance and Monte Carlo error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Derive the asymptotic variance of your project estimator and plot it beside the simulated variance across sample sizes"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Reproduce one theorem from a statistical-theory paper by simulation, stating its assumptions and one case where they fail"
+        }
+      ]
+    }
+  ]
+}

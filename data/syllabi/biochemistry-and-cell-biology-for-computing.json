@@ -1,0 +1,511 @@
+{
+  "slug": "biochemistry-and-cell-biology-for-computing",
+  "description": "The chemistry and cell biology a computing student needs before bioinformatics: proteins, enzymes, metabolism, membranes, the cell cycle and gene regulation. In the lab students fit enzyme kinetics, simulate pathways and signalling, and interpret the data that wet-lab techniques produce.",
+  "modelledOn": [
+    "Nelson and Cox, Lehninger Principles of Biochemistry",
+    "Alberts et al., Molecular Biology of the Cell",
+    "Berg, Tymoczko and Stryer, Biochemistry"
+  ],
+  "outcomes": [
+    "Describe the structure of amino acids and proteins and explain how sequence determines folding and function.",
+    "Fit Michaelis-Menten and inhibition models to enzyme data and interpret the kinetic parameters.",
+    "Trace carbon and energy through glycolysis, the citric acid cycle and oxidative phosphorylation, and model a small pathway as a system of equations.",
+    "Explain membrane transport, cell signalling, the cell cycle and the origins of cancer in terms of molecular mechanisms.",
+    "Model gene regulation with simple dynamical and Boolean networks and interpret the output of common laboratory assays."
+  ],
+  "units": [
+    {
+      "title": "Chemistry of life",
+      "weeks": "1",
+      "topics": [
+        "Atoms, covalent and non-covalent bonds; water as solvent and hydrogen bonding",
+        "Acids, bases, pH and buffers; the Henderson-Hasselbalch equation",
+        "Functional groups and the four classes of biomolecule: carbohydrates, lipids, proteins, nucleic acids",
+        "Thermodynamics of reactions: free energy, enthalpy, entropy and equilibrium constants",
+        "Coupled reactions and the role of ATP as an energy currency"
+      ]
+    },
+    {
+      "title": "Amino acids, proteins and structure",
+      "weeks": "2-3",
+      "topics": [
+        "The 20 amino acids: side-chain classes, charge, pKa and isoelectric point",
+        "The peptide bond, backbone angles and the Ramachandran plot",
+        "Levels of structure: primary, secondary (alpha helix, beta sheet), tertiary and quaternary",
+        "Protein folding, the hydrophobic effect, chaperones and misfolding diseases",
+        "Haemoglobin and myoglobin: oxygen binding, cooperativity and sickle cell disease",
+        "Protein databases and formats: UniProt entries and PDB files as data"
+      ]
+    },
+    {
+      "title": "Enzymes and kinetics",
+      "weeks": "4-5",
+      "topics": [
+        "How enzymes lower activation energy; active sites, cofactors and specificity",
+        "Michaelis-Menten kinetics: derivation, Km, Vmax and kcat",
+        "Linearised plots versus non-linear least-squares curve fitting",
+        "Competitive, uncompetitive and non-competitive inhibition; drug action",
+        "Allosteric enzymes, the Hill equation and feedback regulation",
+        "Enzyme assays: progress curves, initial rates, replicates and error bars"
+      ]
+    },
+    {
+      "title": "Metabolism and energy flow",
+      "weeks": "6-7",
+      "topics": [
+        "Catabolism and anabolism; the major pathways as a network",
+        "Glycolysis: ten steps, regulation by phosphofructokinase, net ATP and NADH",
+        "Pyruvate oxidation and the citric acid cycle",
+        "Electron transport and oxidative phosphorylation; the proton gradient and ATP synthase",
+        "Gluconeogenesis, glycogen and fat metabolism; hormonal control by insulin and glucagon",
+        "Pathways as stoichiometric matrices; steady state and an introduction to flux balance"
+      ]
+    },
+    {
+      "title": "Membranes, transport and cell signalling",
+      "weeks": "8",
+      "topics": [
+        "Membrane structure: the fluid mosaic, lipid bilayers and membrane proteins",
+        "Passive diffusion, facilitated transport and active transport; the sodium-potassium pump",
+        "Membrane potential: the Nernst and Goldman equations; the action potential",
+        "Receptors, G proteins, kinase cascades and second messengers",
+        "Signalling as an information network: amplification, feedback and crosstalk"
+      ]
+    },
+    {
+      "title": "Cell structure, the cell cycle and cancer",
+      "weeks": "9-10",
+      "topics": [
+        "Prokaryotic and eukaryotic cells; organelles and the cytoskeleton",
+        "The cell cycle: phases, cyclins, CDKs and checkpoints",
+        "Mitosis and meiosis; chromosomes, crossing over and the origin of genetic variation",
+        "Apoptosis and the control of cell number",
+        "Cancer: oncogenes, tumour suppressors (p53, RB) and the multi-hit model",
+        "Cancer in Ghana and Africa: cervical, breast and liver cancer, screening and vaccination"
+      ]
+    },
+    {
+      "title": "Gene expression and its regulation",
+      "weeks": "11-12",
+      "topics": [
+        "The central dogma; DNA structure, replication and repair",
+        "Transcription in bacteria and the lac operon as a switch",
+        "Eukaryotic transcription: promoters, enhancers, transcription factors and chromatin",
+        "RNA processing: capping, splicing, polyadenylation and alternative splicing",
+        "Translation: the genetic code, ribosomes, tRNA and mutations",
+        "Epigenetics: DNA methylation and histone modification",
+        "Gene regulatory networks: Boolean and differential-equation models of switches and oscillators"
+      ]
+    },
+    {
+      "title": "Laboratory techniques and the data they produce",
+      "weeks": "13",
+      "topics": [
+        "Spectrophotometry and the Beer-Lambert law; standard curves",
+        "PCR and quantitative PCR: amplification curves, Ct values and relative expression",
+        "Gel electrophoresis and Western blotting: reading bands and sizing fragments",
+        "Sequencing, microarrays and mass spectrometry: what each assay measures and its noise",
+        "Experimental design: controls, replicates, batch effects and reproducibility"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Chemistry of life and energy",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Calculate the pH of a phosphate buffer from the Henderson-Hasselbalch equation, then use delta-G values to decide whether ATP hydrolysis can drive a given reaction.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot pH against added base for a weak acid with the maths lab, mark the pKa and buffering region, and read off the pH after adding 5 mmol base"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute delta-G from standard free energy and concentrations for a reaction at 37 C, and plot how the sign of delta-G changes with product concentration"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E6",
+          "title": "Step through two coupled reactions where ATP hydrolysis drives an unfavourable step, and compute the combined delta-G and equilibrium shift"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Amino acids and the peptide backbone",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw a tripeptide at pH 7, compute its net charge and isoelectric point, and classify each residue as polar, non-polar, acidic or basic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute net charge across pH 1 to 13 for a given peptide from side-chain pKa values and find its isoelectric point from the plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Plot phi and psi angles for 30 residues of a given structure on a Ramachandran plot and flag residues in disallowed regions"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Walk through a protein fold in the visualiser, labelling primary to quaternary structure, and count helices, strands and hydrogen bonds for a given domain"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Folding, haemoglobin and protein data",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Explain why a single glutamate-to-valine change causes sickle cell disease, and describe the information stored in a PDB file header and ATOM records.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Parse a given PDB file with a short script, count residues per chain, and report the centre of mass and secondary-structure content"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Fit the Hill equation to oxygen saturation data for haemoglobin and myoglobin and compare the Hill coefficients and P50 values"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Work through a clinical case of a child with suspected sickle cell disease: choose tests, interpret electrophoresis evidence and counsel the family on inheritance"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Enzyme catalysis and Michaelis-Menten",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive the Michaelis-Menten equation from the steady-state assumption and use a Lineweaver-Burk plot and a non-linear fit to estimate Km and Vmax from the same data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Plot reaction velocity against substrate for given Km and Vmax values, and read the velocity at Km, at 10 Km and at 0.1 Km"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Fit Michaelis-Menten parameters to 12 noisy rate measurements by Lineweaver-Burk and by non-linear least squares, and compare both estimates with the true values"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Write a script that fits Km and Vmax by non-linear least squares with bootstrap confidence intervals, and show how noise inflates linearised-plot error"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Inhibition, allostery and assays",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Identify the type of inhibition from a pair of double-reciprocal plots, and explain why an enzyme assay must measure initial rates only.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Overlay Lineweaver-Burk lines with and without inhibitor, classify the inhibition type from how the intercepts move, and report Ki"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Extract initial rates from five progress curves where substrate depletes, and show the error from using a late time point instead"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Simulate an allosteric enzyme with feedback inhibition by its end product, and plot how the pathway output responds to a step change in substrate"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Metabolism overview and glycolysis",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write the net equation of glycolysis, list where ATP is spent and made, and say which step phosphofructokinase controls and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Step through the ten reactions of glycolysis, recording the ATP and NADH balance after each step and the net yield per glucose"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Simulate glycolysis as ordinary differential equations with phosphofructokinase feedback, and plot metabolite levels as glucose supply doubles"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Trace the carbons of labelled glucose through pyruvate oxidation and one turn of the citric acid cycle, and tabulate where each carbon ends up"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Oxidative phosphorylation and metabolic control",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Calculate the ATP yield per glucose with realistic P/O ratios, and explain how insulin and glucagon switch liver metabolism between storage and release.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute the proton-motive force from a pH difference and membrane potential, and estimate ATP produced per NADH and FADH2"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Manage a case of a diabetic patient at a rural clinic: read glucose readings, decide insulin timing around meals, and justify the choices against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E7",
+          "title": "Write the stoichiometric matrix for a five-reaction pathway, solve for steady-state fluxes, and check mass balance for each metabolite"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Membranes, transport and signalling",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compute the equilibrium potential of potassium and sodium from their concentrations, and trace a signal from a hormone binding a G-protein-coupled receptor to a cell response.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Calculate Nernst potentials for K, Na and Cl from given concentrations, then use the Goldman equation to predict resting membrane potential"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Simulate the sodium-potassium pump and a leak channel in a cell model and watch concentrations and membrane voltage reach steady state"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Model a two-step kinase cascade with feedback as differential equations, and plot response against dose to show amplification and saturation"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Cells, organelles and the cell cycle",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Draw the cell cycle with its checkpoints, say which cyclin-CDK pair drives each transition, and count chromosomes and DNA content at each stage of mitosis and meiosis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Step through the cell cycle in the visualiser, marking checkpoints, and report what happens if the G1/S checkpoint fails to arrest a damaged cell"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compute the number of distinct gametes and the chance of a given chromosome combination in meiosis for an organism with n pairs of chromosomes"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Fit a growth model to cell counts from a dividing culture and estimate the doubling time and fraction of cells in each phase"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Apoptosis and cancer",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Explain how loss of p53 lets damaged cells survive, and write a short brief on the case for HPV vaccination and cervical screening in Ghana.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Trace p53 response to DNA damage in a pathway diagram and predict the outcome of mutations in p53, MDM2 or RB"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Fit a multi-hit model to age-incidence data for a cancer and estimate the number of rate-limiting mutations from the log-log slope"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Run a screening-programme scenario for cervical cancer in a district: allocate limited tests, interpret results and balance coverage against follow-up capacity"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "DNA, transcription and regulation in bacteria",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Describe the steps from a DNA sequence to a mature mRNA, and explain how the lac operon senses glucose and lactose.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Write a function to transcribe a DNA sequence to mRNA and find the reverse complement, and test it on three given genes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Model the lac operon as a switch using equations for repressor, inducer and enzyme levels, and plot the response across lactose concentrations"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Implement splicing of a pre-mRNA from given exon boundaries, then enumerate the isoforms from skipping each internal exon"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Translation, epigenetics and regulatory networks",
+      "topics": [
+        "7.5",
+        "7.6",
+        "7.7"
+      ],
+      "exercise": "Translate a short mRNA using the codon table, classify the effect of three point mutations, and sketch a Boolean network for a two-gene toggle switch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Translate a given mRNA in all three reading frames, find the open reading frame, and classify each of five mutations as silent, missense or nonsense"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.7",
+          "engine": "E6",
+          "title": "Run a Boolean network of five genes from every initial state, and list the attractors and the states that lead to each"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.7",
+          "engine": "E7",
+          "title": "Simulate a repressilator of three genes as differential equations, vary the Hill coefficient, and find the parameter range that sustains oscillations"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Laboratory techniques, data and project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Plan an experiment to compare gene expression in treated and untreated cells, listing controls, replicates and the assay data you will analyse; then present the lab data project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Build a standard curve from absorbance readings using the Beer-Lambert law and calculate the concentration of three unknown samples with their error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Analyse a qPCR plate: find Ct values, normalise to a reference gene and compute fold change with the delta-delta Ct method"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Review a flawed experiment in a case file: find missing controls, a batch effect and pseudoreplication, and rewrite the design to fix each"
+        }
+      ]
+    }
+  ]
+}

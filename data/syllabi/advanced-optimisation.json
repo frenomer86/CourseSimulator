@@ -1,0 +1,514 @@
+{
+  "slug": "advanced-optimisation",
+  "description": "A graduate course in convex and large-scale optimisation: duality, first-order and second-order methods, proximal and interior-point algorithms, stochastic and distributed training, non-convex landscapes, and an applied strand of prescriptive analytics for real operational decisions. Students derive convergence rates, implement solvers from scratch, and then use them on scheduling, network design and uncertainty problems.",
+  "modelledOn": [
+    "Boyd and Vandenberghe, Convex Optimization",
+    "Nocedal and Wright, Numerical Optimization",
+    "Bertsimas and Tsitsiklis, Introduction to Linear Optimization"
+  ],
+  "outcomes": [
+    "Recognise convex problems, derive KKT conditions and the dual, and interpret dual variables as prices.",
+    "Derive and verify convergence rates for gradient, accelerated, proximal, stochastic and interior-point methods.",
+    "Implement first-order, proximal and interior-point solvers and compare them empirically on conditioning and scale.",
+    "Analyse non-convex training landscapes and reason about distributed and communication-limited optimisation.",
+    "Formulate mixed-integer, stochastic and robust models for operational decisions and combine them with forecasts into prescriptive pipelines.",
+    "Reproduce and critique a published optimisation result using a fair benchmarking protocol."
+  ],
+  "units": [
+    {
+      "title": "Convexity and duality",
+      "weeks": "1-2",
+      "topics": [
+        "Convex sets, cones and the separating hyperplane theorem",
+        "Convex functions: first- and second-order conditions and operations that preserve convexity",
+        "Convex problem classes: LP, QP, SOCP and SDP, and modelling in disciplined convex programming",
+        "Optimality conditions: KKT conditions and constraint qualifications",
+        "Lagrangian duality: dual function, weak and strong duality, and dual variables as shadow prices",
+        "Duality in practice: LP duality with complementary slackness, and the support vector machine dual"
+      ]
+    },
+    {
+      "title": "Gradient and Newton-type methods",
+      "weeks": "3",
+      "topics": [
+        "Gradient descent: step sizes, L-smoothness and the O(1/k) rate; linear rate under strong convexity",
+        "Line search: backtracking, Armijo and Wolfe conditions",
+        "Newton and quasi-Newton methods: BFGS and limited-memory BFGS",
+        "Conjugate gradient for quadratics; conditioning and preconditioning",
+        "Momentum and acceleration: heavy ball, accelerated gradient and the O(1/k^2) lower bound"
+      ]
+    },
+    {
+      "title": "Proximal and splitting methods",
+      "weeks": "4-5",
+      "topics": [
+        "The proximal operator and Moreau envelope; soft thresholding",
+        "Proximal gradient, ISTA and FISTA for the lasso",
+        "Subgradient methods for nonsmooth problems and their rates",
+        "ADMM and Douglas-Rachford splitting",
+        "Mirror descent and Bregman divergences",
+        "Conditional gradient methods for constrained problems with simple linear oracles"
+      ]
+    },
+    {
+      "title": "Interior-point methods",
+      "weeks": "6",
+      "topics": [
+        "Barrier functions and the central path",
+        "Primal-dual path-following for linear programs: Newton steps on the perturbed KKT system",
+        "Self-concordance and the polynomial complexity of interior-point methods",
+        "Simplex versus interior point in practice: warm starts, sparsity and solver behaviour"
+      ]
+    },
+    {
+      "title": "Stochastic and large-scale optimisation",
+      "weeks": "7-8",
+      "topics": [
+        "Stochastic gradient descent: unbiased estimates, diminishing steps and the noise floor",
+        "Mini-batches, learning-rate schedules and adaptive methods (AdaGrad, RMSProp, Adam)",
+        "Variance reduction: SVRG and SAGA",
+        "Coordinate descent and randomised methods",
+        "Online convex optimisation: regret and online gradient descent"
+      ]
+    },
+    {
+      "title": "Non-convex optimisation",
+      "weeks": "9",
+      "topics": [
+        "Non-convex landscapes: local minima, saddle points and the strict saddle property",
+        "Escaping saddle points: perturbed gradient descent and the role of noise",
+        "The PL condition, over-parameterisation and benign landscapes (matrix factorisation)",
+        "Global heuristics (simulated annealing, evolutionary search) and convex relaxations compared"
+      ]
+    },
+    {
+      "title": "Optimisation for distributed training",
+      "weeks": "10",
+      "topics": [
+        "Data-parallel SGD: synchronous all-reduce, stragglers and scaling efficiency",
+        "Asynchronous SGD with stale gradients; local SGD and federated averaging",
+        "Communication reduction: gradient compression, quantisation, sparsification and error feedback",
+        "Model and pipeline parallelism; large-batch training with warm-up and layer-wise rates"
+      ]
+    },
+    {
+      "title": "Prescriptive analytics: models for decisions",
+      "weeks": "11-12",
+      "topics": [
+        "Mixed-integer modelling at scale: big-M constraints, strong formulations, branch and cut",
+        "Decision models for operations: workforce scheduling, network design and routing with column generation",
+        "Stochastic programming: two-stage recourse, scenario trees and sample average approximation",
+        "Robust optimisation: uncertainty sets and robust counterparts",
+        "Predict-then-optimise: how forecast errors propagate into decisions, and decision-focused learning",
+        "Deploying prescriptive models: solver interfaces, what-if analysis, and cases in electricity dispatch and mobile money agent cash rebalancing"
+      ]
+    },
+    {
+      "title": "Research methods in optimisation",
+      "weeks": "13",
+      "topics": [
+        "Reproducing a result from the optimisation literature",
+        "Benchmarking methodology: performance profiles, fair step-size tuning and statistical reporting",
+        "Open problems in large-scale and non-convex optimisation",
+        "Writing and presenting a short technical report"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Convex sets and functions",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Prove that the intersection of convex sets is convex, test three functions for convexity with the Hessian, and write a small portfolio problem as a QP.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot two convex sets in the plane, find a separating line between them and verify that the line separates sampled points"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute the Hessian eigenvalues of five functions at 50 sampled points and classify each as convex, concave or neither"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Pose a least-squares portfolio problem with a budget constraint as a QP, solve it with a solver and verify feasibility and optimality"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "KKT conditions and duality",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Derive the dual of an LP, verify strong duality and complementary slackness on an example, and interpret each dual variable as a price.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Solve a small constrained quadratic by KKT conditions by hand and confirm the answer numerically with a solver"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Solve an LP and its dual numerically, confirm equal optimal values, and interpret the dual prices of three binding constraints"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Solve the SVM dual on a 2D dataset, recover the primal weights and show which points are support vectors by complementary slackness"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Gradient, Newton and accelerated methods",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Prove the O(1/k) rate of gradient descent for smooth convex functions, and compare gradient descent, momentum and BFGS on an ill-conditioned quadratic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Run gradient descent on a quadratic with condition numbers 10 and 1000 and plot the error curves against the predicted linear rate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement BFGS with backtracking line search and compare iterations with gradient descent on the Rosenbrock function"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Implement accelerated gradient and conjugate gradient, then compare convergence on a quadratic with condition number 10000"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Proximal operators and ISTA",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive the proximal operator of the L1 norm, show soft thresholding, and compare the convergence rates of subgradient descent, ISTA and FISTA on a lasso problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Plot the proximal operator of the L1 norm and the indicator of a box, and check each against a numerical minimisation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement ISTA and FISTA for a lasso problem with 200 features and plot the objective gap against iteration for both"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Run subgradient descent with three step-size rules on a hinge-loss problem and compare the best-so-far objective with the theoretical bound"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "ADMM, mirror descent and conditional gradient",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write the ADMM updates for a consensus lasso, and compare mirror descent on the simplex with projected gradient descent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement ADMM for the lasso and plot primal and dual residuals against iteration for three penalty parameters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Run mirror descent with entropy on the probability simplex for a linear objective and compare iterates with Euclidean projection"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Implement conditional gradient on a nuclear-norm ball for matrix completion on a small ratings matrix and report the rank of each iterate"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Interior-point methods",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Trace three iterations of a primal-dual interior-point method on a small LP, then compare iteration counts with the simplex method on growing problems.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Plot the log-barrier objective of a 2D LP for several barrier parameters and trace the central path to the optimal vertex"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Implement a primal-dual path-following solver for LPs in standard form and verify it against a library solver on 5 random problems"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Compare simplex and interior-point solve times on sparse LPs with 100 to 5000 variables and explain where each method wins"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Stochastic gradient methods",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Show that SGD with a constant step converges to a noise ball, and compare SGD, mini-batch SGD, Adam and SVRG on logistic regression.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Run SGD on a least-squares problem with constant and diminishing steps and plot the gap to show the noise floor"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Train logistic regression with SGD, momentum and Adam over three learning rates and report which settings diverge or stall"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Implement SVRG and SAGA for a finite-sum problem and compare the number of gradient evaluations needed against SGD for a given accuracy"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Coordinate and online methods",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Derive the regret bound of online gradient descent, and implement randomised coordinate descent for a sparse regression problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Implement cyclic and random coordinate descent for the lasso and compare epochs to reach a target gap on a sparse dataset"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Simulate online gradient descent on 1000 rounds of adversarial linear losses and plot regret against the square root bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Implement an expert-weighting algorithm over 5 forecasters, measure its regret against the best one, and tune the learning rate"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Non-convex landscapes",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Characterise the critical points of a two-layer toy network and a matrix factorisation problem, and compare gradient descent from many random starts with annealing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Plot a two-variable non-convex function, mark minima and saddle points using Hessian eigenvalues, and trace gradient descent from five starts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Compare plain and perturbed gradient descent from a saddle point and report the iterations each needs to escape"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Solve a travelling-route problem with simulated annealing under three cooling schedules and compare with a convex relaxation bound"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Distributed and federated optimisation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Estimate the speed-up of data-parallel training for different link speeds, and evaluate how gradient compression trades communication for accuracy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Simulate synchronous data-parallel SGD on 1, 2, 4 and 8 workers with a straggler model and plot scaling efficiency"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Simulate federated averaging over 20 clinics with non-identical data and compare local steps of 1, 5 and 20 on accuracy"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Add top-k sparsification with and without error feedback to distributed SGD and compare accuracy at 1, 10 and 1 percent communication"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Integer models and decision models for operations",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Model a nurse roster for a district hospital with demand, rest and fairness constraints, solve it as a mixed-integer program, and tighten the formulation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Formulate a facility-location problem with big-M constraints, solve it, then tighten the formulation and compare node counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Build and solve a weekly shift schedule for 12 staff with coverage, rest and fairness constraints and report the cost of fairness"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Solve a two-stage inventory problem under 50 demand scenarios and compare the stochastic solution with the mean-value solution"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Robust, predictive and deployed prescriptive models",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Compare a nominal, a stochastic and a robust plan for electricity dispatch with uncertain demand, and design a deployment with a what-if interface.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Solve a robust transport problem with a budget of uncertainty on demand and plot cost against the protection level"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build a predict-then-optimise pipeline for a store and measure the regret from forecast error against an oracle plan"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Rebalance cash across 15 mobile money agents with a daily optimisation model and test it on simulated demand to report stock-outs"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Research project: reproduce and critique",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Reproduce one figure from a paper on stochastic or proximal methods, benchmark fairly, report where it does not hold, and present a short technical report.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Reproduce the main comparison of a chosen optimisation paper on its stated dataset and report the discrepancy from the published numbers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E7",
+          "title": "Draw performance profiles for four solvers on 30 test problems with a fixed step-size tuning budget and rank them"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Design an experiment that probes one open question from your project, run it with 5 seeds and report effects with confidence intervals"
+        }
+      ]
+    }
+  ]
+}

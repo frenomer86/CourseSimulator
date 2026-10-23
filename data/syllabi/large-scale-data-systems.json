@@ -1,0 +1,509 @@
+{
+  "slug": "large-scale-data-systems",
+  "description": "How data is stored, processed, streamed and served across clusters, from MapReduce to feature stores. Students write dataflow jobs, run cluster experiments in the cloud console, tune queries on the database engine and benchmark systems with proper methodology.",
+  "modelledOn": [
+    "Kleppmann, Designing Data-Intensive Applications",
+    "Karau, Konwinski, Wendell and Zaharia, Learning Spark",
+    "The original MapReduce and Google File System research papers"
+  ],
+  "outcomes": [
+    "Express batch analytics as MapReduce and dataflow jobs and reason about shuffle cost, skew and fault recovery.",
+    "Choose file formats, storage engines and partitioning schemes for a given access pattern.",
+    "Build stream processing pipelines with correct windowing, state and delivery semantics.",
+    "Explain cluster resource management, data-parallel training and feature store design for machine learning platforms.",
+    "Design and run a sound benchmark and use scalability laws and cost models to justify an architecture."
+  ],
+  "units": [
+    {
+      "title": "MapReduce and dataflow engines",
+      "weeks": "1-2",
+      "topics": [
+        "The MapReduce model: map, shuffle, sort and reduce; combiners",
+        "Fault tolerance: task re-execution, stragglers and speculative execution",
+        "Algorithms in MapReduce: word count, inverted index, reduce-side and map-side joins",
+        "Dataflow DAG engines: resilient datasets, lineage and lazy evaluation",
+        "Spark-style transformations: narrow and wide dependencies, partitioning and shuffle cost",
+        "Data skew: salting, broadcast joins and adaptive partitioning"
+      ]
+    },
+    {
+      "title": "Distributed file systems and column stores",
+      "weeks": "3-4",
+      "topics": [
+        "Distributed file system design: name node, blocks, replication and rack awareness",
+        "Object stores versus distributed file systems",
+        "File formats: row versus columnar, Parquet-style encodings (dictionary, run-length), predicate pushdown",
+        "Log-structured merge trees and wide-column stores",
+        "Partitioning, sharding and bloom filters",
+        "Table formats and the lakehouse: snapshots, ACID on object storage"
+      ]
+    },
+    {
+      "title": "Stream processing and message queues",
+      "weeks": "5-6",
+      "topics": [
+        "Log-based message queues: partitions, offsets, consumer groups and retention",
+        "Delivery semantics: at-most-once, at-least-once and exactly-once with idempotence",
+        "Event time, processing time, windows and watermarks",
+        "Stateful stream processing and checkpoints",
+        "Stream joins and change data capture",
+        "Backpressure, throughput and latency trade-offs",
+        "Case study: real-time fraud scoring on a mobile money transaction stream"
+      ]
+    },
+    {
+      "title": "Cluster resource managers",
+      "weeks": "7",
+      "topics": [
+        "Two-level resource managers and application masters",
+        "Running data jobs on container orchestrators",
+        "Fair, capacity and dominant-resource schedulers",
+        "Data locality and gang scheduling",
+        "Multi-tenancy: quotas, queues and preemption"
+      ]
+    },
+    {
+      "title": "Feature stores and ML training platforms",
+      "weeks": "8-9",
+      "topics": [
+        "The ML pipeline from raw data to a deployed model",
+        "Feature stores: offline and online stores, point-in-time correctness",
+        "Data-parallel training: parameter servers, ring all-reduce and gradient synchronisation",
+        "Model and pipeline parallelism and memory limits",
+        "Experiment tracking, hyperparameter search and reproducibility",
+        "Training-serving skew and how to prevent it"
+      ]
+    },
+    {
+      "title": "Serving, caching and cost control",
+      "weeks": "10-11",
+      "topics": [
+        "Online serving: latency budgets, batching and tail latency",
+        "Caching layers: in-memory stores, invalidation strategies and hit-rate modelling",
+        "Model serving rollouts: shadow, canary and rollback",
+        "Cost models for storage, compute and network; spot capacity and autoscaling",
+        "Query acceleration: materialised views, pre-aggregation and indexing",
+        "Capacity planning from growth forecasts"
+      ]
+    },
+    {
+      "title": "Benchmarking big data workloads",
+      "weeks": "12",
+      "topics": [
+        "Workload characterisation: access patterns, skew and arrival rates",
+        "Benchmark suites: TPC-H style analytics and YCSB-style key-value workloads",
+        "Methodology: warm-up, repetitions, percentiles and confidence intervals",
+        "Scalability analysis: speedup, strong and weak scaling, Amdahl's law and the universal scalability law",
+        "Profiling bottlenecks and reporting results honestly"
+      ]
+    },
+    {
+      "title": "End-to-end pipeline project",
+      "weeks": "13",
+      "topics": [
+        "Designing an ingest-to-serve pipeline for a national dataset",
+        "Failure injection and recovery testing",
+        "Comparative evaluation of two design alternatives",
+        "Project report and architecture defence"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "MapReduce model and algorithms",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write the map and reduce functions for an inverted index over 1,000 news articles, describe what moves across the network, and show how a combiner reduces it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Implement word count with map, shuffle and reduce functions in code and run it on a 10-line text to check the counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement a reduce-side join of orders and customers, then rewrite it as a map-side join with a broadcast table and compare data moved"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E12",
+          "title": "Run a job on a small cluster, kill one worker mid-run and slow another, and show how task re-execution and speculation restore progress"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Dataflow engines and skew",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Mark each step of a Spark-style job as a narrow or wide dependency, count the shuffles, and propose a fix for a join where one key holds 60 percent of rows.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Write a transformation chain in a notebook, print its lineage, and mark which steps trigger a shuffle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Recompute a lost partition from lineage by deleting one cached partition and show the result is identical after recomputation"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Generate a skewed key distribution, time a join, then apply key salting and a broadcast join and compare the runtime of each"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Distributed storage and file formats",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compute the storage and read cost of a 1 TB table in row and columnar formats when a query touches 3 of 40 columns, and explain how dictionary and run-length encoding shrink it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E12",
+          "title": "Write a large file to a distributed store, list its blocks and replicas by node and rack, and record the placement"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Store the same table as CSV and in a columnar format, query three columns, and compare file size and scan time"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E12",
+          "title": "Compare listing and reading 10,000 small files on an object store against one large file and explain the cost per request"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "LSM trees, partitioning and lakehouse tables",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Trace writes through a memtable, flushes and compactions in an LSM tree, and choose a partition key for a call-detail table to avoid hot partitions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Step through inserts into a memtable, flush to sorted files, and compaction, and record the files present after each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Implement a bloom filter, load 10,000 keys, and measure false positive rate against bit-array size and number of hash functions"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E5",
+          "title": "Partition a transactions table by date and by region, run the same query on both layouts, and compare the rows scanned"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Message logs, delivery semantics and event time",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain how a duplicate message arises under at-least-once delivery and design an idempotent consumer, then compute tumbling and sliding window counts for a late-arriving event.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Publish 100 messages to a partitioned log, read them with two consumers in a group, and show which partition each reads"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Crash a consumer before it commits an offset, observe duplicates, then make processing idempotent so the final count is exact"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Compute tumbling window counts on out-of-order events with a watermark and measure how many late events are dropped for three lateness bounds"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Stateful streams, joins and backpressure",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6",
+        "3.7"
+      ],
+      "exercise": "Design a fraud-scoring stream for mobile money that joins each transfer with a customer profile, keeps per-account state, and meets a 200 ms latency target at a given load.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Keep a running per-account total in a stream job, take a checkpoint, restart it, and confirm the totals continue unchanged"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Join a transaction stream with a slowly changing customer table using a change feed, and show the join reflects an update"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.7",
+          "engine": "E12",
+          "title": "Scale a fraud-scoring stream job under rising load, observe backpressure, and tune partitions and parallelism to keep latency under 200 ms"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Cluster resource management",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Allocate a 100-core cluster among three teams with capacity queues, simulate a burst job, and explain when preemption is justified and what it costs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E12",
+          "title": "Submit three jobs to a shared cluster and record which containers each got on which nodes and how long they waited"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Simulate FIFO, fair and capacity scheduling on a mixed job trace and compare mean waiting time and utilisation"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Add data locality to a scheduler simulation, measure the fraction of local tasks versus waiting delay, and tune the delay parameter"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "ML pipelines, feature stores and data-parallel training",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Show how joining features without point-in-time logic leaks the future into training, and compute the communication volume of parameter-server versus ring all-reduce for 8 workers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Run a pipeline of ingest, feature creation, training and evaluation on a small dataset and record the output of each stage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Build features with a point-in-time join and again with a naive join, and show the inflated accuracy that leakage causes"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Step through ring all-reduce for 4 workers, count the messages and bytes per step, and compare with a central parameter server"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Large models, experiments and skew",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Decide whether a model that does not fit one GPU needs model or pipeline parallelism, set up an experiment log for a hyperparameter search, and find a training-serving skew in a given pipeline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Log parameters, metrics and the data version for five training runs and use the log to reproduce the best run exactly"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Run random search and grid search on the same budget and compare the best validation score each finds"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Compare feature values computed in the training pipeline and the online service for 100 rows, find the mismatch, and fix its cause"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Serving latency, caching and rollouts",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Model the hit rate of an LRU cache for a Zipf-distributed request pattern, compute the mean latency saved, and plan a canary rollout with rollback criteria for a new model version.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Add an LRU cache in front of a slow lookup function, replay 1,000 requests, and report hit rate and mean latency"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E12",
+          "title": "Increase request rate on a model server with and without batching, and compare median and 99th percentile latency"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E12",
+          "title": "Route 5 percent of traffic to a new model version, compare error and latency with the old, and roll back when the rule is breached"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Cost, query acceleration and capacity planning",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Estimate the monthly bill for a 50 TB analytics platform under on-demand and spot compute, and show how a materialised summary table changes cost and query time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Estimate monthly storage, compute and network cost for a described pipeline with the pricing calculator and list the biggest line item"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E5",
+          "title": "Create a pre-aggregated summary table for a daily revenue query, compare the query plans and timings before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E7",
+          "title": "Fit a growth curve to 18 months of data volume, project capacity for 24 months ahead, and decide when to add nodes"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Benchmark design and scalability analysis",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a benchmark plan for comparing two storage engines under a read-heavy skewed workload, with warm-up, repetitions and the statistics you will report.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Run a benchmark ten times, discard the warm-up runs, and report median, 95th percentile and a confidence interval"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E5",
+          "title": "Run a set of analytic queries at two data sizes on the database engine and report the time for each query with the plan"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Fit Amdahl's law and the universal scalability law to measured speedups for 1 to 32 workers and explain where each model fails"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Pipeline project and defence",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a pipeline for ingesting national health facility reports, with storage layout, processing, serving, failure handling and measured results for two design options.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Draw an ingest-to-serve pipeline for facility reports labelling storage formats, processing stages, queues and the serving layer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Kill a processing node and a message broker in your pipeline in turn, record what is lost or delayed, and fix the gaps"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Run two designs for the same pipeline under the same load and report throughput, latency and cost per million records"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,501 @@
+{
+  "slug": "hardware-and-embedded-security",
+  "description": "How attackers break the hardware under software and how designers defend it: roots of trust, secure boot, side channels, fault injection, trusted execution and physical tampering. Students attack and harden simulated microcontrollers, sensors and IoT nodes on the hardware bench.",
+  "modelledOn": [
+    "Anderson, Security Engineering (chapters on tamper resistance and side channels)",
+    "Mangard, Oswald and Popp, Power Analysis Attacks",
+    "Arm Platform Security Architecture (PSA Certified) threat models",
+    "ETSI EN 303 645 consumer IoT security baseline"
+  ],
+  "outcomes": [
+    "Build a threat model for an embedded device that states attacker capabilities, assets and the attack surface.",
+    "Design and verify a secure boot chain with signed firmware, rollback protection and locked debug ports.",
+    "Carry out timing and power-analysis attacks on simulated traces and recover key material, then apply masking or constant-time countermeasures.",
+    "Explain how glitching and other fault attacks bypass checks and select countermeasures that detect or tolerate faults.",
+    "Partition a system between trusted and untrusted worlds and assess the limits of trusted execution environments.",
+    "Secure an IoT sensor network end to end, covering identity, communication, updates and data integrity."
+  ],
+  "units": [
+    {
+      "title": "Threat models and the hardware attack surface",
+      "weeks": "1",
+      "topics": [
+        "Adversary models: remote, local and physical attackers, their budgets and skills",
+        "Anatomy of an embedded device: microcontroller, flash, SRAM, peripherals, buses and debug ports",
+        "Supply chain threats: counterfeit chips, hardware trojans and tampered firmware at the factory",
+        "Security evaluation schemes: Common Criteria, FIPS 140-3 and PSA Certified levels",
+        "Case studies: prepaid electricity meters, smart-card payment terminals and point-of-sale devices in Ghana"
+      ]
+    },
+    {
+      "title": "Hardware root of trust",
+      "weeks": "2-3",
+      "topics": [
+        "Immutable boot ROM, one-time-programmable fuses and device identity",
+        "Secure elements and the TPM 2.0: platform configuration registers, measured boot and remote attestation",
+        "Key storage and provisioning; hardware key hierarchies; physically unclonable functions",
+        "True random number generators: entropy sources, conditioning and health tests",
+        "Cryptographic accelerators and constant-time engines"
+      ]
+    },
+    {
+      "title": "Secure boot and firmware integrity",
+      "weeks": "4-5",
+      "topics": [
+        "Chain of trust from ROM to bootloader to operating system with ECDSA or RSA signature checks",
+        "Secure firmware update: signed images, rollback protection, A/B partitions and over-the-air delivery",
+        "Firmware analysis: dumping flash, unpacking images, string and entropy analysis, finding hard-coded keys",
+        "Debug interface risks: JTAG, SWD and UART; lock bits and debug authentication",
+        "Memory protection on microcontrollers: MPU, stack canaries, W^X and return-oriented attacks on embedded code"
+      ]
+    },
+    {
+      "title": "Side-channel attacks",
+      "weeks": "6-7",
+      "topics": [
+        "Timing attacks on password comparison, RSA exponentiation and table-lookup AES; constant-time coding",
+        "Simple power analysis of square-and-multiply and PIN verification",
+        "Differential and correlation power analysis of the AES first round with the Hamming-weight model",
+        "Cache attacks (Prime+Probe, Flush+Reload) and transient execution attacks (Spectre, Meltdown)",
+        "Electromagnetic and acoustic leakage; countermeasures: masking, hiding and shuffling"
+      ]
+    },
+    {
+      "title": "Fault injection",
+      "weeks": "8",
+      "topics": [
+        "Fault methods: voltage and clock glitching, electromagnetic and laser fault injection",
+        "Fault effects: skipped instructions, corrupted branches and bypassing a secure boot check",
+        "Differential fault analysis of AES and the Bellcore attack on RSA-CRT",
+        "Rowhammer and other memory fault attacks",
+        "Countermeasures: redundant computation, double checks, glitch sensors and error-detecting codes"
+      ]
+    },
+    {
+      "title": "Trusted execution environments",
+      "weeks": "9-10",
+      "topics": [
+        "Arm TrustZone: secure and non-secure worlds, secure monitor calls and memory partitioning",
+        "Enclaves and confidential computing: Intel SGX, AMD SEV and remote attestation",
+        "Attacks on TEEs: controlled-channel, transient execution and interface bugs",
+        "Memory encryption, integrity trees and hardware isolation with RISC-V PMP and capability hardware (CHERI)",
+        "Partitioning a design: what belongs in the trusted world, minimising the trusted computing base"
+      ]
+    },
+    {
+      "title": "Physical and tamper attacks",
+      "weeks": "11",
+      "topics": [
+        "Tamper resistance, evidence, detection and response: meshes, sensors, potting and key zeroisation",
+        "Invasive and semi-invasive attacks: decapsulation, microprobing and imaging",
+        "Board-level attacks: bus sniffing on SPI and I2C flash, cold-boot and PCB probing",
+        "Payment terminal and ATM skimmer attacks; PCI PTS requirements",
+        "Anti-counterfeiting: authentication tokens, secure supply chains and device cloning defences"
+      ]
+    },
+    {
+      "title": "Securing IoT devices and sensors",
+      "weeks": "12-13",
+      "topics": [
+        "IoT threat modelling: STRIDE on the sensor-gateway-cloud chain; OWASP IoT top ten and ETSI EN 303 645",
+        "Secure communication on constrained devices: DTLS, TLS with pre-shared keys, MQTT over TLS and LoRaWAN key management",
+        "Device identity, onboarding and credential management; default passwords and the Mirai botnet",
+        "Sensor data integrity and spoofing: GPS spoofing, ADC injection and signal-level attacks",
+        "Capstone: design and secure a solar-powered farm sensor network from chip to cloud"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Attack surface of embedded devices",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a one-page threat model for a prepaid electricity meter: assets, attacker types (customer, installer, remote), entry points and the three highest-risk attacks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E8",
+          "title": "Label the flash, SRAM, UART, SPI and debug header on a virtual microcontroller board and list which ones an attacker with physical access can reach."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E8",
+          "title": "Rank five attacker profiles against a sensor node by required skill, cost and access, and mark which assets each can reach."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E8",
+          "title": "Inspect a delivered board for supply chain tampering by comparing its flash contents and chip markings with a reference, and report every deviation found."
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Roots of trust and attestation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw the key hierarchy of a device with a unique fused key, a boot key and per-application keys, and explain what a cloned device would still lack.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E8",
+          "title": "Blow a simulated fuse that stores the boot public key hash and show the boot ROM rejecting an image signed by a different key."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E8",
+          "title": "Extend PCR registers through a three-stage measured boot and verify the final value against the expected quote."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Simulate a ring-oscillator physically unclonable function for 20 devices, measure uniqueness and reliability, and decide whether the response is usable as a key."
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Randomness and cryptographic hardware",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain how a weak random number generator in a key-generating device can be recovered by an attacker who sees only public keys.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Run the repetition-count and frequency health tests on 10000 bits from a good and a biased noise source and report which fails."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Sample the ADC noise on a virtual microcontroller, condition it with a hash and check the output passes simple randomness tests."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Compare cycle counts of a software AES using table lookups and a constant-time version, and show which one leaks the key index timing."
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Chain of trust and firmware updates",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "Design the update flow for a remote weather station with an unreliable link: how images are signed, how rollback is blocked and what happens if power fails mid-update.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E8",
+          "title": "Boot a virtual board with a valid signed image, then flip one byte of the image and confirm secure boot refuses it."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E8",
+          "title": "Apply a signed update with a version counter, then try to install the older vulnerable image and show the rollback check blocking it."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E8",
+          "title": "Implement an A/B partition update that survives power loss at each of five points in the install sequence, with the device always bootable."
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Firmware analysis and debug interfaces",
+      "topics": [
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Given a firmware dump from a smart plug, list the steps from extraction to finding a hard-coded credential, and propose how the vendor should have prevented it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E4",
+          "title": "Run strings and an entropy scan on a firmware image in the terminal and locate the hard-coded Wi-Fi password."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E8",
+          "title": "Connect to the UART console of a virtual router board, read the boot log, find the root shell and then disable it with a lock bit."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Step through a stack overflow on a microcontroller without an MPU, then show how a stack canary and W^X stop the same exploit."
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Timing and power analysis",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Explain in words why the power consumption of an S-box output depends on the key byte, and work the correlation by hand for a four-trace toy example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Recover a 4-character PIN from a comparison function by measuring its response time per guess, one character at a time."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Read a power trace of square-and-multiply modular exponentiation and recover the private exponent bits from the long and short peaks."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Run correlation power analysis on 500 simulated AES traces, plot correlation per key guess for byte 0 and recover the key byte."
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Cache, transient and electromagnetic leakage",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Describe how first-order Boolean masking removes the dependency between leaked values and the key, and why second-order attacks still work.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Step through a Flush+Reload probe on a shared cache line and decide from hit and miss times whether the victim accessed it."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Trace a speculative out-of-bounds read in a bounds-check bypass and identify which cache line reveals the secret byte."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Add first-order masking to the simulated AES S-box and rerun correlation power analysis to show the attack on 500 traces now fails."
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Fault injection and countermeasures",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "For a signature check written as a single if statement, describe how a clock glitch could skip it, and redesign the check with redundancy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E8",
+          "title": "Apply a voltage glitch of varying width to a virtual microcontroller and record at which widths the instruction is skipped or corrupted."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E8",
+          "title": "Sweep glitch offset and width against a PIN check loop to find the setting that bypasses the failed-attempt counter."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Mount the Bellcore attack on an RSA-CRT signature with one faulty output, factor the modulus with a gcd and verify the recovered primes."
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "TrustZone and enclaves",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compare TrustZone-style worlds and SGX-style enclaves in a table: what each protects, what it trusts and one real attack class against each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Step a secure monitor call from the normal world into the secure world and back, noting which registers and memory regions change."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E8",
+          "title": "Verify a remote attestation report for a simulated enclave and reject a report whose measurement does not match the expected hash."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E6",
+          "title": "Observe the page-access sequence of an enclave in a controlled-channel attack and infer which branch of a secret-dependent function was taken."
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Memory isolation and trusted computing base design",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Take a smart-meter firmware with 40 modules and decide which belong in the trusted world, arguing for the smallest trusted computing base that still protects the keys and tariff logic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E8",
+          "title": "Configure RISC-V PMP regions so user code can read the sensor buffer but not the key region, then test a violating access."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Walk a memory read through an integrity tree and show how a tampered DRAM block is detected by a hash mismatch."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E8",
+          "title": "Partition a smart-meter design into secure and non-secure code, move only the signing routine into the secure side, and measure the change in trusted code size."
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Tamper resistance and physical attacks",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compare tamper-evident, tamper-resistant and tamper-responsive designs for a card payment terminal and decide which suits a rural agent kiosk with no staff on site.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E8",
+          "title": "Wire a case switch and light sensor to a virtual board and make it zeroise a stored key when the enclosure is opened."
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E8",
+          "title": "Sniff an SPI flash read on a simulated board bus, reconstruct the transferred bytes and recover a stored token."
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Investigate a card skimmer incident at a petrol station terminal, decide on evidence and containment, and score the response against a rubric."
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "IoT threat modelling, communication and identity",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Apply STRIDE to a soil-moisture sensor reporting through a gateway to a cloud dashboard and list one threat and one mitigation per element.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E8",
+          "title": "Build a sensor, gateway and cloud diagram for a farm moisture node and mark the trust boundaries and data flows to protect."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E8",
+          "title": "Publish sensor readings over MQTT with and without TLS, capture the traffic, and show what an eavesdropper sees in each case."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E8",
+          "title": "Scan 50 simulated devices for default credentials, show how a Mirai-style worm spreads, then give each device a unique credential and re-scan."
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Sensor integrity and capstone",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present the capstone design review for a solar-powered farm sensor network: threat model, root of trust, update path, protocol choices and the residual risks left.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E8",
+          "title": "Add a plausibility range check and a signed timestamp to a temperature reading and test it against an injected out-of-range value."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E8",
+          "title": "Spoof a soil sensor by injecting voltage on the ADC pin, detect it with a redundant second sensor, and report the detection threshold used."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E8",
+          "title": "Harden a five-node solar sensor network with unique device keys, signed updates, encrypted telemetry and a tamper switch, then test it against a scripted attacker."
+        }
+      ]
+    }
+  ]
+}

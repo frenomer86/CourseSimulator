@@ -110,12 +110,413 @@
     },
     {
       "title": "Testing for real users",
-      "weeks": "14",
+      "weeks": "13",
       "topics": [
         "Usability and accessibility testing",
         "Localisation testing for local languages, number and currency formats",
         "Mobile testing across low-end devices and Android versions",
         "Capstone: a complete test suite and quality report for a seeded-fault application"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why and what we test",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Pick a famous software failure, state the fault, the error and the failure and say which test level could have caught it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Run a buggy discount function, identify the fault, the error state and the visible failure, then fix it and rerun the test"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a test oracle for a sorting function using properties and a trusted reference, and run it on 10 inputs including an empty list"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Estimate how many tests exist at unit, service and UI levels for a given project, time each level and propose a better balance"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Black-box test design",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Design test cases for a grade-to-letter function using equivalence classes and boundaries, and count the cases you need.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Derive equivalence classes and boundary values for an age-based ticket price function and run the resulting tests, reporting any failures"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Build a decision table for a loan eligibility rule with four conditions, reduce redundant rules and write a test for each remaining rule"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Draw a state machine for an ATM session, derive tests covering all transitions and find an invalid transition the code wrongly allows"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Combinatorial and experience-based testing",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Test mobile money limits by listing fee bands, daily caps and reversal rules, and show your boundary tests for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Generate a pairwise test set for four parameters with three values each and compare its size with the 81 exhaustive combinations"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Run a timed exploratory session on a seeded checkout function, log the charter and findings and classify each defect"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Write a test suite for a transfer function with limits, fee bands and reversals, and find at least four seeded defects with it"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Structural coverage",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw the control-flow graph of a function with two decisions and compute its cyclomatic complexity and basis paths.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Draw the control-flow graph of a 12-line function and mark which statements and branches each of 3 given tests covers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Compute the cyclomatic complexity of a function with loops and conditions and write one test per basis path, then confirm coverage"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Design a minimal MC/DC test set for a decision with four conditions and show that a branch-coverage set misses an independent effect"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Data flow, mutation and coverage limits",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Explain why 100 percent statement coverage can coexist with undetected bugs, using one function and its test suite.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "List the definitions and uses of each variable in a short function and write tests covering all def-use pairs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Create 10 mutants of a function with simple operator changes, run your tests and compute the mutation score"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Take a suite with 100 percent line coverage, find surviving mutants, add assertions to kill them and report the score improvement"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Unit and integration testing",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Choose which dependencies of a payment service to fake, stub or use for real and defend each choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Write six parameterised unit tests for a fee calculation function using arrange-act-assert and run them with a test runner"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Replace a real SMS gateway with a stub and a spy, test a notification service and verify it sends exactly one message per payment"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E4",
+          "title": "Spin up a database in a container, write integration tests against it with seeded data and compare their speed and fidelity with mocks"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Service and end-to-end testing",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Write a consumer contract for one API call and say what breaks if the provider renames a field.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Write a consumer contract for a price lookup API and verify a provider stub passes, then rename a field and confirm the check fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Find the cause of a flaky test that depends on timing, fix it with explicit waiting and run it 50 times without failure"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E4",
+          "title": "Throttle a test environment to simulate 2G latency and packet loss, run a checkout flow and report which timeouts and retries fail"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Test-driven development and legacy code",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Perform three red-green-refactor cycles on a string calculator kata and record your tests after each cycle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Implement FizzBuzz by red-green-refactor in six small cycles, committing a failing test before each change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Write property-based tests for a reverse and a sort function with generators and let the tool find a counterexample for a buggy version"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Add characterisation tests to an untested 60-line legacy function, then refactor it safely and confirm all tests still pass"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Performance testing",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Describe the workload model for a payment service on salary day, with arrival rate, mix of requests and the target percentiles.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Time 1000 calls to an endpoint stub and report the mean, median, 95th and 99th percentile latency and the error rate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Run load and stress tests with 10, 50 and 200 virtual users and plot throughput against latency to find the saturation point"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Fit a queueing model to measured results, predict the capacity needed for a month-end peak and justify the safety margin you choose"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Security testing and reporting",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Pick five test cases from the web testing guide for a login page and describe the expected safe behaviour for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E4",
+          "title": "Check a sample web app for missing security headers and weak cookie settings and report each finding with its fix"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Fuzz a parsing function with 1000 random and mutated inputs, collect the crashing inputs and group them by root cause"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Write a combined performance and security findings report for a seeded service and have it scored on severity, evidence and advice"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Test management and automation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Write entry and exit criteria for a release test and a bug report that a developer can reproduce in one attempt.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Rewrite five poor bug reports with steps, expected and actual results, environment and severity, and have them scored"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Build a risk-based test plan for a payments release, rank areas by risk and choose where to spend limited test time"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Set up a CI pipeline in the lab VM that runs unit and regression tests on each commit and selects only tests affected by a change"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Quality models and metrics",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Pick three quality characteristics from ISO 25010 for a health app and choose a metric and target for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute defect density and escaped defect rate for four releases from given data and plot the trend"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Fit a reliability growth model to weekly failure counts, estimate remaining failures and decide when testing could stop"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Judge a case where speed, security and usability trade off, set quality targets from ISO 25010 and defend them to a board"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Process improvement, special testing and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6",
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a quality report for your capstone with coverage, mutation score, defects found and remaining risks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.6",
+          "engine": "E7",
+          "title": "Calculate deployment frequency, lead time, change failure rate and time to restore from a log of 30 releases"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Test a currency and date formatting function for Ghanaian cedi and local formats and report the cases where output is wrong"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Build a full test suite for a seeded-fault application, find at least eight faults and report coverage, mutation score and residual risk"
+        }
       ]
     }
   ]

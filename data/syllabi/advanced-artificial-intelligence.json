@@ -1,0 +1,505 @@
+{
+  "slug": "advanced-artificial-intelligence",
+  "description": "A graduate course on the reasoning side of AI: search at scale, constraint and logic solvers, automated planning, probabilistic and symbolic knowledge, and agents built on foundation models. Students implement solvers and planners, visualise their search behaviour, and finish with a small research-style project.",
+  "modelledOn": [
+    "Russell and Norvig, Artificial Intelligence: A Modern Approach",
+    "Ghallab, Nau and Traverso, Automated Planning and Acting",
+    "Biere et al., Handbook of Satisfiability",
+    "Koller and Friedman, Probabilistic Graphical Models"
+  ],
+  "outcomes": [
+    "Analyse and implement heuristic, adversarial and sampling-based search, and explain their optimality and complexity guarantees.",
+    "Model problems as constraint satisfaction, SAT or SMT instances and explain how modern solvers prune the search space.",
+    "Formulate planning domains in PDDL and compare state-space, relaxation-based and hierarchical planners.",
+    "Perform exact and approximate inference in probabilistic models and make decisions by maximum expected utility.",
+    "Build and query a knowledge graph with ontologies, and explain how symbolic and neural methods can be combined.",
+    "Design, test and critique a tool-using foundation-model agent, and report a small experiment with ablations."
+  ],
+  "units": [
+    {
+      "title": "Search at scale",
+      "weeks": "1-2",
+      "topics": [
+        "A* optimality, admissible and consistent heuristics, pattern databases",
+        "IDA*, beam search and memory-bounded search",
+        "Local search: hill climbing, simulated annealing and genetic algorithms",
+        "Monte Carlo tree search and the UCT rule",
+        "Alpha-beta pruning, move ordering and transposition tables",
+        "Stochastic and imperfect-information games; counterfactual regret minimisation"
+      ]
+    },
+    {
+      "title": "Constraint satisfaction and SAT/SMT solving",
+      "weeks": "3-4",
+      "topics": [
+        "CSP formulation, backtracking with MRV, and arc consistency (AC-3)",
+        "Global constraints, symmetry breaking and min-conflicts local search",
+        "Propositional SAT: CNF, DPLL and unit propagation",
+        "Conflict-driven clause learning: watched literals, restarts and VSIDS",
+        "SMT: theories of arithmetic, arrays and bit-vectors; DPLL(T)",
+        "Applications: timetabling, configuration and bounded verification"
+      ]
+    },
+    {
+      "title": "Automated planning",
+      "weeks": "5",
+      "topics": [
+        "STRIPS and PDDL; state-space versus plan-space planning",
+        "Delete-relaxation heuristics (h-add, h-FF) and landmarks",
+        "Graphplan and planning as satisfiability",
+        "HTN and temporal planning; replanning and execution monitoring"
+      ]
+    },
+    {
+      "title": "Probabilistic reasoning and decision theory",
+      "weeks": "6-7",
+      "topics": [
+        "Bayesian networks, d-separation and exact inference by variable elimination",
+        "Approximate inference: likelihood weighting, Gibbs sampling and particle filters",
+        "Hidden Markov models and dynamic Bayesian networks",
+        "Utility theory, decision networks and the value of information",
+        "Markov decision processes: value iteration and policy iteration"
+      ]
+    },
+    {
+      "title": "Knowledge graphs and ontologies",
+      "weeks": "8",
+      "topics": [
+        "RDF triples, RDFS, OWL and SPARQL queries",
+        "Description logics: subsumption, consistency and tableau reasoning",
+        "Knowledge graph embeddings and link prediction (TransE style)",
+        "Building graphs from text: entity linking and relation extraction",
+        "Domain ontologies for African health and agriculture; quality and bias"
+      ]
+    },
+    {
+      "title": "Neuro-symbolic methods",
+      "weeks": "9-10",
+      "topics": [
+        "Limits of purely neural and purely symbolic systems",
+        "Logic as differentiable constraints: fuzzy logic and logic tensor networks",
+        "Probabilistic logic programming and Markov logic",
+        "Learned heuristics for search, SAT and planning",
+        "Neuro-symbolic concept learning and visual reasoning",
+        "Evaluation: systematic generalisation and explainability"
+      ]
+    },
+    {
+      "title": "Foundation-model agents",
+      "weeks": "11-12",
+      "topics": [
+        "Language models as policies: prompting and reason-act loops",
+        "Tool use, function calling and retrieval-augmented generation",
+        "Agent memory, planning and reflection; pairing a model with a classical planner",
+        "Multi-agent orchestration and debate",
+        "Evaluating agents: benchmarks, failure modes, hallucination and cost",
+        "Safety, misuse, sandboxing and guardrails"
+      ]
+    },
+    {
+      "title": "Research project",
+      "weeks": "13",
+      "topics": [
+        "Choosing a problem, baselines and a hypothesis",
+        "Experimental protocol, ablations and statistical reporting",
+        "Writing a conference-style report and reviewing a peer report",
+        "Reproducibility and open problems in reasoning systems"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Heuristic and local search",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Prove that a consistent heuristic is admissible, build a pattern database heuristic for the 8-puzzle, and compare A*, IDA* and beam search by nodes expanded and memory used.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "Run A* on an 8-puzzle with Manhattan distance and misplaced-tile heuristics and compare nodes expanded and solution length for five start states"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Implement IDA* and beam search for the 15-puzzle, then compare memory, nodes expanded and solution quality on ten instances"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Solve a 50-city travelling salesman instance with simulated annealing and a genetic algorithm, tuning cooling and mutation to compare tour length and runtime"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Adversarial and sampling-based search",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Show how move ordering changes alpha-beta node counts, explain the UCT selection rule, and compute one round of counterfactual regret minimisation on a small matrix game.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E6",
+          "title": "Run alpha-beta on a game tree with and without move ordering and count the pruned nodes in each run"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Implement Monte Carlo tree search with UCT for tic-tac-toe, play 200 games against a random player and report the win rate against the iteration budget"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Implement regret matching for rock-paper-scissors with an exploitable opponent and show the average strategy converging to the equilibrium over 10,000 rounds"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Constraint satisfaction and basic SAT",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Model a school timetable as a CSP, apply AC-3 by hand to a small map-colouring instance, and run DPLL with unit propagation on a ten-clause formula.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Colour the regions of Ghana with four colours as a CSP, applying AC-3 and MRV, and record each domain reduction and backtrack"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Solve 8-queens and a 20-queen instance with backtracking and min-conflicts, comparing steps taken, and add a symmetry-breaking constraint to cut the search"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement DPLL with unit propagation and pure literal rules, then measure its runtime on random 3-SAT near the 4.26 clause ratio"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Clause learning, SMT and applications",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Explain on a small conflict how clause learning produces a new clause and a backjump, and encode a lecture timetable with room, lecturer and time constraints as an SMT problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Trace a CDCL solver on a small formula, writing down each decision, propagation, conflict, learned clause and backjump level"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Encode a 4x4 Sudoku and a small exam timetable as SAT clauses, solve them with a provided solver and check every constraint"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Express a bounded loop property over bit-vectors as an SMT query, find a counterexample for an overflow bug and prove the fixed version safe"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Classical and hierarchical planning",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Write a PDDL domain for delivering medicines between clinics by truck, compute the h-FF value of its start state, and decompose the task as an HTN method set.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Write STRIPS operators for a blocks world, then step a forward search to find a plan for a four-block goal and list the states visited"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Compute the h-add and h-FF values of an initial state by building the relaxed planning graph, and compare them with the true plan length"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Encode a six-step logistics plan as a SAT problem with fixed horizon, solve it, and find the shortest horizon that yields a plan"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Bayesian networks and inference",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Build a Bayesian network for malaria diagnosis from symptoms and test results, answer three queries with variable elimination, and run particle filtering on a hidden Markov model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute the posterior probability of malaria given fever and a positive rapid test in a five-node network using variable elimination"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Estimate a posterior with likelihood weighting and Gibbs sampling, then plot error against sample count and compare with the exact answer"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement a particle filter to track a hidden state in a noisy sensor model, and compare its error with the exact forward algorithm over 200 steps"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Decision networks and MDPs",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compute the expected utility of three crop-planting actions under uncertain rainfall, the value of perfect information, and solve a 4x3 grid MDP by value and policy iteration.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute the expected utility of three planting decisions under two rainfall states and the value of perfect weather information"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E6",
+          "title": "Run value iteration on a 4x3 grid world with noisy moves and show the value table and policy at iterations 1, 5 and convergence"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Compare value iteration with policy iteration on a 100-state random MDP across discount factors and report iterations and runtime to a fixed tolerance"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Knowledge graphs and ontologies",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Model crops, diseases and treatments for Ghanaian farmers as an OWL ontology, query it with SPARQL, and discuss whose knowledge the graph includes and omits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Write 20 RDF triples about crops and pests, load them in a query engine and answer four SPARQL queries with filters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Add class axioms to the crop ontology, run a reasoner to infer new subclass and type facts, and find one logical inconsistency"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Train a small TransE embedding on a 200-triple graph, hold out 20 triples and report mean rank and hits at 3 for link prediction"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Why combine neural and symbolic methods",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Collect three tasks where a neural net alone fails and three where a rule system alone fails, then write a fuzzy-logic rule as a differentiable loss and a small ProbLog program.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Train a small network on an arithmetic-rule task, test it on out-of-range inputs and record where it fails while a rule system succeeds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Add a differentiable logic penalty for a rule such as mutual exclusion to a classifier loss, and compare rule violations before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write a probabilistic logic program for a disease spread network, query marginals and compare them with a hand-built Bayesian network"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Learned search and neuro-symbolic evaluation",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Compare a learned heuristic with a hand-crafted one in the 15-puzzle, and write a short critique of a published neuro-symbolic result, covering what the generalisation test does and does not show.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Train a small network to predict distance-to-goal on 8-puzzle states and use it as the heuristic in A*, comparing node counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Build a pipeline that extracts shapes from small images with a neural classifier and answers counting questions with a symbolic program"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Test systematic generalisation by training on short compositions and testing on longer ones, and report the accuracy drop for neural and hybrid models"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Language model agents and tools",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Design a reason-act agent that answers questions about a market-price database using a search tool and a calculator, and decide when to hand planning to a classical planner.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Write a reason-act loop with a scripted model stub that calls a calculator tool, and log each thought, action and observation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Build a retrieval step over 50 short documents, wire it into an agent and measure answer accuracy with and without retrieval"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Have a language model produce PDDL for a delivery task, validate it with a planner and compare success against free-form step lists"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Multi-agent systems, evaluation and safety",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Evaluate an agent on twenty tasks, classify its failures, estimate cost per success, and write a threat model for its tools covering prompt injection and data leaks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Run an agent on 20 scripted tasks, record success and failure type for each, and tabulate failure categories with their counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Orchestrate a planner, a worker and a checker agent on a small task set and compare success against a single agent"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Craft five prompt-injection attacks against a tool-using agent, measure how many succeed, then add guardrails and report the remaining failures"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project, ablations and open problems",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a four-page report on a small research question with a baseline, ablations and error bars, and review a peer's report using a conference rubric.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Pick a reasoning task, implement a simple baseline and report its score on a fixed test set with the exact setup recorded"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Run an ablation of two components over five random seeds and report mean results with standard deviations for each configuration"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Re-run a classmate's experiment from their report alone, document any missing details and compare your numbers with theirs"
+        }
+      ]
+    }
+  ]
+}

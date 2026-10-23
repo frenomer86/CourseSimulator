@@ -97,5 +97,397 @@
         "Project: a simulated arm or mobile robot that completes a pick-and-place or delivery task"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Degrees of freedom and rotations",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Problem set: compute the degrees of freedom of four mechanisms with Grubler's formula and compose three rotation matrices by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Count the degrees of freedom of a planar four-bar linkage and a six-axis arm using Grubler's formula and check each result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compose a rotation of 30 degrees about Z and 45 about X in fixed and then moving frames, and show the results differ"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Convert one orientation between roll-pitch-yaw, axis-angle and quaternion, and show a gimbal lock case where two Euler angles collapse"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Homogeneous transforms and frames",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Chain three coordinate frames on paper and find the position of a gripper point in the base frame.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Build a 4x4 homogeneous transform from a rotation and translation and use it to map three points between frames"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Compute the skew-symmetric matrix of an angular velocity, form the rotation with the exponential map and check it is orthogonal"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Visualise a chain of three frames in the browser, apply transform sequences and verify the end frame against your hand calculation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "DH parameters and exponentials",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Assign DH frames to a three-link arm on a sketch, write the parameter table and compare with the product of exponentials form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Fill in the DH table for a planar two-link arm and write the two transform matrices for given joint angles"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Assign frames and the DH table for a three-joint arm with an offset, then multiply the matrices to get the end-effector pose"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute forward kinematics of a 3R arm with the product of exponentials and check it agrees with the DH result to six decimals"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Forward kinematics and workspace",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compute the end-effector position of a SCARA and a six-axis arm for given joint values and sketch their workspaces.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Compute and plot the end-effector position of a planar two-link arm for joint angles of 0, 45 and 90 degrees"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Program forward kinematics for a SCARA robot and a six-axis arm and check the pose against hand calculations for three configurations"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Sample the joint space of a three-link planar arm to plot its reachable workspace and identify its dexterous region and holes"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Inverse kinematics",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Solve inverse kinematics of a two-link arm analytically for a target, identifying both elbow solutions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Solve a planar two-link arm for a target at (1.2, 0.8) analytically and verify both elbow-up and elbow-down solutions with forward kinematics"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Solve inverse kinematics for a three-link arm with Newton-Raphson and with damped least squares and compare iterations to converge"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Find all inverse kinematics solutions of a spherical-wrist arm by decoupling position and orientation, and test unreachable and singular targets"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Redundancy and the picking arm",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Describe how a fruit-picking arm should choose among solutions with joint limits and obstacles in the way.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Choose among several inverse kinematics solutions of a two-link arm by joint limits and minimum joint motion from the current pose"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Reach ten camera-detected targets with a planar arm, handle unreachable ones and report the position error at each"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Resolve the redundancy of a four-link planar arm by minimising joint motion while avoiding a joint limit and compare two secondary objectives"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "The Jacobian and singularities",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Derive the Jacobian of a two-link arm by hand and find its singular configurations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute the 2x2 Jacobian of a planar two-link arm at three configurations and map a joint velocity to end-effector velocity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute the Jacobian of a three-link arm column by column and check it against a numerical derivative of forward kinematics"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Plot the manipulability ellipse of a two-link arm across its workspace and find the configurations where the determinant is zero"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Resolved-rate control and statics",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compute the joint torques needed to hold a 2 kg load with a two-link arm using the Jacobian transpose.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compute joint torques needed to apply a 10 N force at the end effector of a two-link arm in a given pose"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Move a three-link arm's end effector along a line using resolved-rate control with the pseudo-inverse and plot the tracking error"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Compare the pseudo-inverse and damped least squares controllers while the arm passes near a singularity and report the joint velocities"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Mass properties and Lagrangian dynamics",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Derive the equations of motion for a two-link arm by the Euler-Lagrange method and compare with the standard form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute the centre of mass and inertia tensor of a composite link with the parallel axis theorem for a uniform rod and a box"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Derive the kinetic and potential energy of a two-link arm and obtain its equations of motion with the Euler-Lagrange equations"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Implement recursive Newton-Euler for a three-link arm, verify it against the Lagrangian result and compare the operation counts"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Manipulator equation and joint control",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Tune a PD controller with gravity compensation for a two-link arm and explain what computed-torque control adds.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Compute the mass matrix, Coriolis and gravity terms of a two-link arm at a given state and verify the symmetry of the mass matrix"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Simulate the free fall of a two-link arm under gravity with two integrators and compare energy drift at 1 ms and 10 ms steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Compare PD with gravity compensation and computed-torque control on a two-link arm following a step command with friction and report the error"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Trajectory planning",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Plan a three-point trajectory for a pick-and-place task and check velocity and acceleration against joint limits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Fit a cubic polynomial between two joint positions with zero end velocities and plot the position, velocity and acceleration"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Interpolate three via points with a cubic spline and find where the acceleration exceeds a joint limit"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Plan a straight-line task-space move with quaternion slerp for the orientation and check the joint trajectory stays within limits"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Mobile robot kinematics",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Derive the differential-drive kinematics equations and calculate the radius of curvature for given wheel speeds.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute the velocity and turning radius of a differential-drive robot from left and right wheel speeds and simulate a 10-second path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Simulate wheel-encoder odometry with small noise and plot how position error grows over a 50-metre square path"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Compare the kinematic models of a car-like and a mecanum platform and find which can move sideways, then plan a parking manoeuvre for one"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Path following and the pick-and-place project",
+      "topics": [
+        "7.5",
+        "7.6",
+        "7.7"
+      ],
+      "exercise": "Project plan: specify the task, robot model, controller and test cases for a simulated farm or delivery robot.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Implement pure pursuit for a differential-drive robot along a waypoint path and plot the tracking error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Make a farm robot drive between crop rows and turn at the end of each row with a go-to-goal controller and report the row-end overshoot"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.7",
+          "engine": "E1",
+          "title": "Complete a simulated pick-and-place or campus delivery task with kinematics, a controller and a trajectory, and report success over 20 randomised runs"
+        }
+      ]
+    }
   ]
 }

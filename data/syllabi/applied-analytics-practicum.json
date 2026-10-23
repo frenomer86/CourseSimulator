@@ -1,0 +1,487 @@
+{
+  "slug": "applied-analytics-practicum",
+  "description": "A capstone practicum in which teams carry an analytics problem for a real or realistic client from scoping to deployment hand-over. Students rehearse every stage in the lab with client scenarios, data pipelines and models, then deliver a final report and a stakeholder presentation.",
+  "modelledOn": [
+    "CRISP-DM 1.0: Step-by-step data mining guide",
+    "Provost and Fawcett, Data Science for Business",
+    "Sculley et al., Hidden Technical Debt in Machine Learning Systems",
+    "Data Protection Act, 2012 (Act 843) of Ghana and the guidance of the Data Protection Commission"
+  ],
+  "outcomes": [
+    "Translate a client's business need into a scoped analytics question with success metrics, risks and a project plan.",
+    "Assess data access, quality, privacy and ethics requirements and build a documented, lawful data pipeline.",
+    "Develop baseline and improved models with leakage-free evaluation designed around the client's costs.",
+    "Audit models for subgroup performance, uncertainty and interpretability before recommending action.",
+    "Communicate findings to technical and non-technical decision makers in writing and in a live presentation.",
+    "Plan deployment hand-over, monitoring and retraining so the client can operate the solution."
+  ],
+  "units": [
+    {
+      "title": "Scoping an analytics problem with a client",
+      "weeks": "1",
+      "topics": [
+        "Eliciting needs: turning a business question into an analytics question and agreeing what a decision will look like",
+        "Success metrics, baselines, feasibility and cost-benefit of the proposed analysis",
+        "Project charter, scope boundaries, assumptions, risks and the stakeholder map",
+        "Team roles, working agreements and a reproducible repository with version control",
+        "Planning the term: work breakdown, Gantt chart, milestones and sprint cadence"
+      ]
+    },
+    {
+      "title": "Data access, governance and ethics",
+      "weeks": "2-3",
+      "topics": [
+        "Data inventory, data sharing agreements and negotiating access with the data owner",
+        "Ghana Data Protection Act principles, lawful basis and consent; anonymisation, pseudonymisation and k-anonymity",
+        "Ethics review: risk-benefit assessment, vulnerable groups and community consent",
+        "Data quality audit: missingness, collection bias, provenance and a data dictionary",
+        "Building the data pipeline in SQL: staging, cleaning, joining and lineage documentation",
+        "Secure handling: encryption, access control, audit logs and retention policy"
+      ]
+    },
+    {
+      "title": "Exploratory analysis and baseline models",
+      "weeks": "4-5",
+      "topics": [
+        "Profiling and exploratory analysis: distributions, segments and sanity checks against domain knowledge",
+        "Feature engineering and avoiding target leakage",
+        "Baseline models: client heuristics, regression and shallow trees, and the benchmark they set",
+        "Evaluation design: temporal and spatial splits and metrics aligned to the client's costs",
+        "Mid-project review: presenting early findings and re-scoping with the client"
+      ]
+    },
+    {
+      "title": "Iterative modelling and validation",
+      "weeks": "6-8",
+      "topics": [
+        "Model iteration: feature sets, tuning, ensembles and a disciplined experiment log",
+        "Validation: cross-validation, temporal backtesting and calibration of predicted probabilities",
+        "Fairness and subgroup performance audits across region, gender and income group",
+        "Error analysis, uncertainty quantification and sensitivity to assumptions",
+        "Interpretability for stakeholders: feature importance, partial dependence and case-level explanations",
+        "Decision-focused evaluation: cost matrices, expected value and planning an A/B pilot"
+      ]
+    },
+    {
+      "title": "Communicating findings to decision makers",
+      "weeks": "9",
+      "topics": [
+        "Narrative structure for different audiences: board, programme officers and field staff",
+        "Visual design for decisions: dashboards, uncertainty displays and avoiding misleading charts",
+        "Writing the executive summary and the technical appendix",
+        "Handling disagreement and stating limitations without losing credibility"
+      ]
+    },
+    {
+      "title": "Deployment hand-over and monitoring",
+      "weeks": "10-11",
+      "topics": [
+        "Deployment options: batch scoring, API and dashboard, and fitting into workflows with weak connectivity",
+        "Packaging for hand-over: environment capture, containers, documentation and a model card",
+        "Monitoring: data drift, performance decay, alerts and retraining triggers",
+        "Operating cost, support, runbooks and training of client staff",
+        "Post-deployment evaluation and tracking benefits against the original success metrics"
+      ]
+    },
+    {
+      "title": "Final report and stakeholder presentation",
+      "weeks": "12-13",
+      "topics": [
+        "Structure of the final report: problem, data, methods, results, recommendations and limitations",
+        "The reproducibility package: code, data access notes, environment and a one-command rebuild",
+        "Presentation rehearsal, anticipating questions and handling live Q&A",
+        "Reflection, peer assessment and lessons learned for the next team",
+        "Professional practice: reporting negative or inconclusive results honestly"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Scoping and planning the engagement",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a two-page project charter for a client brief, covering the question, success metrics, scope, risks, team roles and a milestone plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Interview a simulated rural bank manager in a branching scenario, choose which questions to ask and score the resulting problem statement against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Draw a 13-week Gantt chart with milestones, dependencies and a critical path for a client analytics project"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Compute the expected net benefit of a loan default model under three accuracy levels and decide the minimum performance worth building"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Data access, privacy and ethics",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draft a data sharing agreement and an ethics checklist for a project using patient visit records from a regional health directorate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Negotiate data access with a hesitant data owner in a case, choose concessions and score the agreement against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E5",
+          "title": "Pseudonymise a customer table with salted hashes and generalise ages and districts until the table is 5-anonymous, then verify it with a query"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Review a proposed survey of schoolchildren in a case, identify the ethical risks, set consent rules and defend your decisions"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Data quality and the pipeline",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Document a data dictionary and lineage diagram for a pipeline that joins mobile-money transactions, customer records and agent locations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Profile a messy transactions table with SQL, count nulls, duplicates and impossible values and write the data quality report"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Build a staging, cleaning and mart pipeline in SQL for three source tables and test it with row-count reconciliation checks"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E4",
+          "title": "Apply file permissions, an encrypted archive and an access log to a project data folder and demonstrate that an unauthorised user is blocked"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Exploration, features and baselines",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Present three exploratory findings with one chart each and, for each, say whether the client can act on it and what you would check next.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Profile a clinic visit dataset in Python, plot distributions by district and list five questions to take back to the client"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Find and remove a leaking feature from a loan default dataset and show how the validation score drops to a realistic value"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Build the client's current rule as a baseline, then a logistic regression and a small tree, and report the gain over the rule"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Evaluation design and mid-project review",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Prepare and rehearse a ten-minute mid-project review that states what has been learned, what has changed in scope and what decision you need from the client.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Design a time-based split for a monthly sales forecast, compare it with a random split and show the optimism of the random split"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Choose a threshold for a fraud alert model by minimising a cost matrix supplied by the client and plot cost against threshold"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Handle a mid-project review in which the client changes the goal, decide what to descope and score your response against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Modelling iterations and validation",
+      "topics": [
+        "4.1",
+        "4.2"
+      ],
+      "exercise": "Keep an experiment log of at least eight modelling runs with the hypothesis, change, result and decision for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Run a grid of eight feature sets and models for a crop-yield task and record each result in an experiment log table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Backtest a model over six rolling monthly windows and report how performance varies from window to window"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Check the calibration of predicted default probabilities with a reliability plot and apply isotonic recalibration to fix them"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Fairness, errors and uncertainty",
+      "topics": [
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Write an audit note on whether a credit model performs equally for women and men, urban and rural customers, and propose a response to any gap.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Compute recall and false-positive rate by region and gender for a classifier and flag gaps larger than five percentage points"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Build bootstrap intervals for the headline metric and test how the result changes under three different missing-data assumptions"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Decide in a case what to do when a model is accurate overall but fails for one district, and score your decision against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Interpretation and decisions",
+      "topics": [
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Explain your best model to a district officer in one page without technical terms, and give the decision rule you recommend.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Compute permutation importance and partial dependence for a health facility model and write the plain-language reading of the top three drivers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Compute the expected value of acting on the model scores with the cost matrix and compare with the client's current policy"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E7",
+          "title": "Plan an A/B pilot by calculating sample size and power needed to detect a five percent improvement in repayment"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Communicating findings",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Produce a one-page executive summary and a three-slide outline for the board, then revise them after peer feedback.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Choose the story structure for a board briefing in a case and score the draft against an audience-fit rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Redraw a misleading chart with a truncated axis and hidden uncertainty into an honest one and list each change"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Respond to a hostile question about model limits in a stakeholder meeting case and score your reply against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Deployment and packaging",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Choose a deployment option for a client with weak connectivity and no data engineers, and write the hand-over checklist that supports it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Pick a deployment option for a district health office with weak connectivity in a case and score the trade-offs against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Package a scoring script with pinned dependencies and a container build file, run it from a clean machine and write the README"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Detect data drift in monthly feature distributions with a population stability index and set an alert threshold that avoids false alarms"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Operations, handover and benefits tracking",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a runbook that lets the client's staff retrain the model, check its health and roll back a bad release.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E9",
+          "title": "Draw a monitoring and retraining flow diagram showing triggers, owners and escalation for the client's scoring service"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Cost one year of running the model, including compute, staff time and retraining, and compare it with the benefit estimate"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Track a benefit metric before and after launch with a simple difference-in-differences against a comparison group and report the effect"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Final report and reproducibility",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.5"
+      ],
+      "exercise": "Submit the full draft final report with a reproducibility package that a peer team can rebuild with a single command.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Assemble the sections of a final report in a case, order them for the client, and score the structure against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Build a one-command script that recreates the results from raw data in a fresh environment and checks the output hash"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Decide how to report an inconclusive result to a client who hoped for a positive finding, and score your decision against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Presentation and reflection",
+      "topics": [
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Deliver a fifteen-minute stakeholder presentation followed by questions, and complete a reflection and peer assessment.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Rehearse a stakeholder presentation in a case with three audience types, choose what to cut and score the plan against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Answer ten likely questions in a mock Q&A, deciding for each what to admit, what to defer and what to show"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Write a structured reflection on a team conflict case, identify what went wrong and score your lessons against the rubric"
+        }
+      ]
+    }
+  ]
+}

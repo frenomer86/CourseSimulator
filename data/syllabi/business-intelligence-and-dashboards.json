@@ -116,5 +116,404 @@
         "Capstone: an end-to-end BI solution with schema, pipeline, dashboard and governance plan"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "From operational data to decisions",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Short written exercise: for a pharmacy chain, list five operational (OLTP) questions and five analytical (OLAP) questions, classify each as descriptive, diagnostic, predictive or prescriptive, and sketch where the data should live.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E5",
+          "title": "Run one OLTP-style lookup and one aggregate query on a sales database and explain in two sentences why the second is an analytical workload"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Sort twelve manager questions into descriptive, diagnostic, predictive and prescriptive analytics and choose the evidence each would need, scored on a rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw an architecture diagram for a retail BI platform with sources, staging, warehouse, two data marts and a lake, and justify one Inmon versus Kimball choice"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Requirements and KPI trees",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Interview-style exercise: turn three vague goals from a manager into answerable questions, then build a KPI tree linking them to operations and a balanced scorecard.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Question a stakeholder in a branching interview to turn the vague goal 'improve service' into three measurable questions, scoring each for clarity and answerability"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Classify 12 metrics for a mobile money operator as KPIs or plain metrics and as leading or lagging, and set a SMART target for four of them"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E9",
+          "title": "Draw a KPI tree that links daily agent operations to a balanced scorecard and a strategic goal, and mark which nodes are leading indicators"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Defining KPIs precisely",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write full KPI definition cards (formula, grain, filters, owner, target, frequency, source) for five KPIs and describe how each could be gamed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Write a SQL query that implements the KPI 'active agent' with an explicit formula, grain and 30-day filter, and check the result for one region"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Predict how call-centre staff will game a 'calls closed per hour' KPI, choose a better balanced set of indicators and score the redesign on a rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E5",
+          "title": "Implement active agents, float availability, transaction value and churn as queries over a mobile money table, and reconcile your totals to a supplied control figure"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Designing a star schema",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Design a star schema on paper for a hospital outpatient visit process: declare business process and grain, then list dimensions, facts and measure additivity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E5",
+          "title": "Declare the business process, grain, dimensions and facts for a supermarket till system, then create the fact table and one dimension table in SQL"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E5",
+          "title": "Create a star and an equivalent snowflake schema for the same sales data, load both and compare the join count and result of a monthly revenue query"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E5",
+          "title": "Classify ten measures as additive, semi-additive or non-additive, then write queries showing that summing account balances across dates gives a wrong answer"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Dimensions, history and the pharmacy schema",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Prepare a bus matrix for a pharmacy chain and a dimension design note explaining which attributes need history and which do not.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Build a bus matrix of four business processes against conformed dimensions for a pharmacy chain and mark the conformed date, product and branch dimensions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E5",
+          "title": "Apply SCD type 1 and type 2 to a customer dimension after an address change and show with queries how each affects last year's sales by region"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E5",
+          "title": "Design, load and query a sales star schema for pharmacies across Ghana's regions, answering five management questions and checking totals against the source system"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Extraction and cleansing",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Profile a messy export from a branch system, list its quality problems, and describe the cleaning rules and the extraction method you would use.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E5",
+          "title": "Run a full extract and an incremental extract using a last-modified timestamp from a source table and verify the incremental load picks up only changed rows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E5",
+          "title": "Profile a branch sales table for duplicates, missing values and inconsistent unit codes, then write cleaning queries and show before and after row counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E5",
+          "title": "Transform a staged table into a dimension with lookups, surrogate keys and SCD type 2 handling, then aggregate a fact table and check reconciliation"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Pipelines, testing and weak connectivity",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Design an ELT pipeline for twenty branches uploading when the network allows, specifying schedule, tests and what happens on a failed or repeated upload.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Draw a pipeline diagram showing sources, staging area, load and a nightly schedule, and mark which steps follow ELT rather than ETL"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E5",
+          "title": "Write row-count, reconciliation and data quality rule checks for a daily load and add audit columns recording load time and batch number"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E5",
+          "title": "Make a branch upload idempotent so a batch sent three times loads once, and prove with counts after replaying a failed partial upload"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "OLAP and analytical SQL",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Answer ten management questions against a sales warehouse using slice, dice, roll-up and window functions, and justify an aggregate table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E5",
+          "title": "Perform a slice, a dice and a drill-down from year to month on a sales fact table and record the SQL for each operation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E5",
+          "title": "Write a query using ROLLUP for regional subtotals and window functions for running totals and month-over-month change in revenue"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E5",
+          "title": "Create a materialised summary of monthly sales, compare query plans with and without it, and add a calculated year-to-date measure that stays correct after refresh"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Designing dashboards",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Sketch three dashboards (strategic, operational, analytical) for a mobile money operator and annotate the audience, decision and chart choices for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Match four dashboard requests to strategic, operational or analytical types and choose the right audience and refresh frequency, scored on a rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E9",
+          "title": "Lay out a one-screen operational dashboard on a wireframe with a visual hierarchy, bullet graphs and sparklines, and place the most urgent KPI top left"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Critique a cluttered dashboard full of gauges, pick the chart for each KPI showing target, variance and trend, and justify every replacement"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Interactivity and the district health dashboard",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Test a dashboard prototype with two classmates, record where they struggle, and write the three changes you will make next.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E9",
+          "title": "Mock up filters, a drill-through and a low-bandwidth mobile layout for a district dashboard, listing which elements load first on a slow connection"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Run a usability test scenario on a dashboard, interpret the observer notes, and choose the three most important fixes with a rubric-scored justification"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E5",
+          "title": "Build the queries behind a district health dashboard of immunisation coverage and stock-outs and flag districts below 80 percent coverage with a stock-out"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Self-service analytics",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Write a one-page governed self-service policy: certified data sets, sandbox rules, training, and how conflicting numbers are resolved.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Decide which of eight data sets should be certified for self-service and which stay in a sandbox, and defend each decision on a rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E5",
+          "title": "Create views that give business users plain-named measures and dimensions for sales data, then answer three questions without writing a join"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Investigate a case where two departments report different revenue totals, find the cause in the evidence provided and recommend a governance fix"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Reporting to decision makers",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a one-page board report in answer-first format on a purchasing variance, including commentary on the movement and a stated data limitation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Reorder the parts of a management report so the answer comes first, followed by evidence and a recommended action, and score the result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E5",
+          "title": "Query actual against budget cocoa purchasing by month, flag exceptions beyond 10 percent and draft a one-line commentary explaining each flagged movement"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Present findings on cocoa purchasing to a licensed buying company's board, choose what to show, how to state uncertainty and which action to recommend"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Data governance and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Capstone deliverable: schema diagram, ETL description, dashboard sketch and a governance plan with roles, quality measures and a privacy section.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Assign owners, stewards and custodians to six data sets in a case file and decide the agenda for a first data governance council meeting"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E5",
+          "title": "Measure completeness, uniqueness and validity of a customer table with SQL queries, then fix the records that fail and report the improvement"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E5",
+          "title": "Build an end-to-end mini solution: star schema, load script with quality checks, three dashboard queries and row-level access views, then document the governance plan"
+        }
+      ]
+    }
   ]
 }

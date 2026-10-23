@@ -1,0 +1,505 @@
+{
+  "slug": "scientific-workflows-and-reproducible-data-pipelines",
+  "description": "How to turn an analysis into a pipeline that anyone can rerun and trust: command-line tooling, workflow engines, containers, cluster and cloud execution, provenance, large file formats and automated tests. Students build a malaria-genome surveillance style pipeline step by step, run it at scale on simulated cluster and cloud resources, and prove that a second run reproduces the first.",
+  "modelledOn": [
+    "Wilson et al., Good Enough Practices in Scientific Computing",
+    "Koster and Rahmann, Snakemake: a scalable bioinformatics workflow engine",
+    "Wilkinson et al., The FAIR Guiding Principles for scientific data management and stewardship",
+    "Docker and OCI image specification documentation"
+  ],
+  "outcomes": [
+    "Compose shell tools and scripts to process large text and tabular files in streaming fashion, safely and in parallel.",
+    "Express an analysis as a dependency graph in a workflow engine with parameters, retries and resumable execution.",
+    "Package a pipeline environment in a container and pin all versions so that a rebuild reproduces the same result.",
+    "Run workflows on a batch scheduler and on cloud resources, sizing resources and estimating speed-up and cost.",
+    "Record provenance and metadata so that a dataset meets FAIR principles, and verify reproduction using checksums.",
+    "Choose file formats and indexes for large data, and test and release a pipeline with automated continuous integration."
+  ],
+  "units": [
+    {
+      "title": "Command-line tools at scale",
+      "weeks": "1-2",
+      "topics": [
+        "Shell fundamentals: pipes, redirection, exit codes, quoting and globbing",
+        "Text-stream tools for tabular and sequence files: grep, sed, awk, cut, sort, uniq and join",
+        "Robust shell scripts: strict mode, functions, argument parsing and static checking",
+        "Parallelism in the shell: background jobs, xargs -P and GNU parallel",
+        "Streaming versus loading into memory; I/O-bound versus CPU-bound work and measuring with time"
+      ]
+    },
+    {
+      "title": "Project structure and environments",
+      "weeks": "3",
+      "topics": [
+        "Version control for analysis projects: branches, tags and handling large data files",
+        "Project layout, configuration files and parameter separation",
+        "Environment and dependency management: virtual environments, lock files and version pinning",
+        "Reusable code: packaging, command-line entry points and logging"
+      ]
+    },
+    {
+      "title": "Workflow engines and dependency graphs",
+      "weeks": "4-5",
+      "topics": [
+        "Dependency graphs and incremental builds with make-style rules",
+        "Rule-based workflow engines: wildcards, targets, config and sample sheets",
+        "Dataflow workflow engines: channels, processes and scatter-gather",
+        "Portable workflow descriptions: tool wrappers and common standards",
+        "Failure handling: retries, checkpoints, idempotent steps and resuming runs",
+        "Design patterns and a case study: a malaria parasite genome surveillance pipeline"
+      ]
+    },
+    {
+      "title": "Containers for reproducible environments",
+      "weeks": "6",
+      "topics": [
+        "Images, layers, Dockerfiles and the build cache",
+        "Reproducible builds: pinned versions, base-image choice, image digests and multi-stage builds",
+        "Containers inside pipelines: bind mounts, user permissions and rootless runtimes on clusters",
+        "Registries, software bills of materials and vulnerability scanning",
+        "Environment capture compared: container images versus package-manager environments"
+      ]
+    },
+    {
+      "title": "Cluster scheduling and cloud execution",
+      "weeks": "7-8",
+      "topics": [
+        "Batch schedulers: queues, partitions, job scripts, job arrays and dependencies",
+        "Resource requests, fair-share and backfill scheduling; measuring CPU and memory efficiency",
+        "Shared file systems versus object storage; data locality and staging",
+        "Cloud execution: virtual machines, spot capacity and autoscaling batch pools",
+        "Cloud storage, access control and cost per sample",
+        "Scaling out: speed-up, Amdahl's law and bottleneck analysis"
+      ]
+    },
+    {
+      "title": "Provenance, metadata and FAIR data",
+      "weeks": "9",
+      "topics": [
+        "Provenance: what was run, on what input, by whom, and the PROV model",
+        "Metadata standards, controlled vocabularies and schema validation of sample sheets",
+        "The FAIR principles: persistent identifiers, licences, access and reuse",
+        "Data management plans, consent and data sovereignty in African genomics projects",
+        "Checksums, immutable data and content addressing to verify reproduction"
+      ]
+    },
+    {
+      "title": "Large file formats and indexing",
+      "weeks": "10-11",
+      "topics": [
+        "Sequence and variant formats: FASTA, FASTQ, SAM/BAM/CRAM, VCF and GFF; block compression",
+        "Indexing for random access: tabix-style indexes, BAM indexes, Bloom filters and k-mer indexes",
+        "Columnar and chunked array formats: Parquet, Arrow, HDF5 and Zarr",
+        "Sorting, merging and external-memory processing of files larger than memory",
+        "Compression trade-offs: gzip, zstd and reference-based compression",
+        "Validating and converting formats inside a pipeline"
+      ]
+    },
+    {
+      "title": "Testing, continuous integration and release",
+      "weeks": "12-13",
+      "topics": [
+        "Unit tests for pipeline scripts and small test datasets",
+        "Regression and end-to-end tests: golden outputs and tolerance for numerical drift",
+        "Continuous integration for pipelines: triggers, caching and matrix builds",
+        "Monitoring, logging and failure reports for long runs",
+        "Capstone: release an end-to-end reproducible pipeline with documentation and a verified second run"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The shell as a data tool",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Count variants per chromosome in a VCF-like file with a pipeline of grep, cut, sort and uniq, then wrap it in a script that fails safely on bad input.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E4",
+          "title": "Use pipes and redirection to count lines, unique values and the most common ID in a tab-separated sample file, and check the counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E4",
+          "title": "Use awk and sort to compute per-sample mean read depth from a table and join it with a sample sheet by ID"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E4",
+          "title": "Write a bash script with strict mode and argument checks that filters a FASTQ file by length, and test it with bad inputs"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Parallel and streaming processing",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Process 24 sample files in parallel with a bounded number of workers, measure the speed-up and explain why it stops growing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Run a counting command over 20 files with xargs -P at 1, 2, 4 and 8 workers and record the elapsed time of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Compare a streaming pipeline with one that loads a large file into memory and report time and peak memory for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Write a Python generator that streams a large FASTQ file, computes GC content per read and compares memory use with a list-based version"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Project structure and environments",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Set up a repository for an analysis with configuration, pinned dependencies, a command-line entry point and a tag marking the version used for a report.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E4",
+          "title": "Create a repository, commit a script and a small data file, ignore large outputs, and tag a release you can return to"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E4",
+          "title": "Create a virtual environment, install pinned package versions, freeze them to a lock file, and rebuild the environment elsewhere"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Turn an analysis script into a command-line tool with arguments, logging levels and a config file, and run it on two datasets"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Dependency graphs and rule-based workflows",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Write the dependency graph for a three-step read-filter-count pipeline, run it incrementally after changing one file, and show which steps rerun.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E4",
+          "title": "Write a Makefile for a three-step pipeline, run it, change one input and show that only the downstream steps rerun"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Write a small rule-based engine that expands wildcards over a sample sheet, builds the DAG and prints the execution order"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement scatter-gather over 8 chunks of a file with a merge step and verify the merged output equals the unsplit result"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Portable workflows, failure and patterns",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Take a pipeline that fails halfway, add retries and checkpoints so it resumes, and map it to a portable description.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Make three pipeline steps idempotent and add a resume mode that skips completed steps after a forced failure in step two"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Describe a tool wrapper for a read aligner with inputs, outputs, parameters and container image, and draw the workflow graph"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Build a pipeline from reads to a variant count table for 6 samples, injecting a failing sample, and show the run completes for the others"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Containers for reproducible environments",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a Dockerfile for the pipeline with pinned versions, rebuild it, and show that the output checksum is identical across two builds.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Write a Dockerfile for a small analysis script, build it, run it and show how a layer is reused when only the script changes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E4",
+          "title": "Pin the base image by digest and package versions, build twice, and compare the output checksums of the two containers"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E4",
+          "title": "Run the container with a mounted data directory as a non-root user and fix the file permission errors in the outputs"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Batch schedulers and job scripts",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write a job array script for 30 samples with memory and time requests, and compare job efficiency for two resource settings.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E4",
+          "title": "Write a job array style script that runs 20 sample jobs with a bounded number in flight and a dependent merge job"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Schedule a mix of long and short jobs with first-come and backfill policies in the scheduler visualiser and compare waiting times"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Compare staging data once to local disk against reading from shared storage in a simulation of 50 jobs, reporting total I/O time"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Cloud execution and scaling",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Run the pipeline on a pool of cloud workers, estimate the cost per sample, and find the Amdahl limit on speed-up for your workflow.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E12",
+          "title": "Launch an autoscaling worker pool, submit 100 tasks, and record the number of workers and the finishing time as load changes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E12",
+          "title": "Store input in a bucket with read-only access for workers and write-only for results, then report storage and compute cost per sample"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E7",
+          "title": "Measure speed-up at 1 to 32 workers with a 10 percent serial fraction, fit Amdahl's law and name the bottleneck"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Provenance, FAIR and reproduction",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Add provenance and metadata to a finished run, publish it with an identifier and licence in a mock repository, and verify an independent rerun by checksum.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E4",
+          "title": "Compute checksums of all pipeline outputs, store them in a manifest, rerun and verify that every file matches"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Validate a sample sheet against a schema with required fields and controlled vocabularies and report every error with its row"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Decide in a scenario how to share genome data collected from patients across a regional network, scored on consent, sovereignty and reuse"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Sequence formats and indexes",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Inspect FASTQ, SAM and VCF records by hand, build an index for random access to a sorted file, and compare row and columnar storage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E4",
+          "title": "Extract the fields of five SAM records with cut and awk, decode the flag bits, and count mapped and unmapped reads"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Build a byte-offset index on a sorted variant file and retrieve a genomic region without scanning the whole file"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Store a 1 million row table as CSV and in a columnar format, and compare size and query time for a single-column filter"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Large data, compression and conversion",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Sort and merge a file larger than memory using chunks, choose a compression format for archive versus working data, and add validation to conversion.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E4",
+          "title": "Sort a large file by splitting into sorted chunks and merging them, and check the result with sort -c"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E4",
+          "title": "Compress a sequence file with two compressors at three levels and chart size against time to pick one for archive and one for working storage"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Convert a table between formats with a validation step that stops on an invalid record and reports its position and the reason"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Testing and continuous integration",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write unit and end-to-end tests for the pipeline using a tiny test dataset, and configure continuous integration that runs them on every change.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Write unit tests for a read-trimming function covering empty, short and boundary-length reads, and run them to a pass"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Create a golden output for a small dataset and an end-to-end test that compares a new run with a numerical tolerance"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E4",
+          "title": "Add a continuous integration configuration that runs tests and the container build on a branch, and trigger a failing and a passing run"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Monitoring, release and capstone",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Release the pipeline with documentation, a changelog, a container and a verified second run on a fresh environment, and present the reproducibility evidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Add structured logging and a failure report to the pipeline, run it with an injected bad sample, and read the cause from the report"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E4",
+          "title": "Clone the repository to a clean directory, rebuild the container, run the pipeline and verify the output checksums against the manifest"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E12",
+          "title": "Run the released pipeline on a clean cloud environment with a fresh bucket and compare cost, time and outputs with your local run"
+        }
+      ]
+    }
+  ]
+}

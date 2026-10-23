@@ -8,9 +8,31 @@ export interface SyllabusUnit {
   topics: string[];
 }
 
+/** One suggested simulation task for a week, at one of the three lab levels. `topic` is a "unit.topic" ref. */
+export interface ScheduleTask {
+  level: LabSpec['level'];
+  topic: string;
+  engine: string;
+  title: string;
+}
+
+/** One teaching week: its syllabus topics as 1-based "unit.topic" refs, an exercise idea and simulation tasks. */
+export interface ScheduleWeek {
+  week: number;
+  title: string;
+  topics: string[];
+  exercise: string;
+  tasks: ScheduleTask[];
+}
+
+export type Tier = 'bachelor' | 'master' | 'phd';
+export const TIER_ORDER: Tier[] = ['bachelor', 'master', 'phd'];
+export const TIER_LABEL: Record<Tier, string> = { bachelor: "Bachelor's", master: "Master's", phd: 'Doctoral' };
+
 export interface Course {
   slug: string;
   title: string;
+  level: Tier;
   area: string;
   year: number;
   semester: number;
@@ -22,6 +44,18 @@ export interface Course {
   modelledOn?: string[];
   outcomes?: string[];
   syllabus?: SyllabusUnit[];
+  /** Number of teaching weeks; the schedule itself is loaded with loadSchedule. */
+  weeks?: number;
+}
+
+/** One level of a programme: the award, its core courses, an elective pool and the non-course milestones. */
+export interface ProgrammeLevel {
+  award: string;
+  years: number | string;
+  core: string[];
+  electives: string[];
+  electivesRequired: number;
+  milestones: string[];
 }
 
 /** A programme of study: an ordered list of courses. A course can belong to several programmes. */
@@ -32,7 +66,9 @@ export interface Programme {
   outcomes: string[];
   /** Programmes the platform added beyond the ones first asked for. */
   recommended: boolean;
+  /** The bachelor's courses: core first, then electives. */
   courses: string[];
+  levels?: Record<Tier, ProgrammeLevel>;
 }
 
 interface CatalogueFile {
@@ -60,7 +96,31 @@ export function programmeBySlug(slug: string): Programme | undefined {
 
 /** The programmes that include a course, in catalogue order. */
 export function programmesForCourse(slug: string): Programme[] {
-  return PROGRAMMES.filter((p) => p.courses.includes(slug));
+  return PROGRAMMES.filter((p) => programmeCourses(p).includes(slug));
+}
+
+/** Every course a programme uses, across all its levels. */
+export function programmeCourses(p: Programme): string[] {
+  if (!p.levels) return p.courses;
+  const levels = p.levels;
+  return [...new Set(TIER_ORDER.flatMap((t) => [...levels[t].core, ...levels[t].electives]))];
+}
+
+/* Weekly schedules live in data/syllabi/<slug>.json and load per course, so the catalogue bundle stays small. */
+const scheduleModules = import.meta.glob('@data/syllabi/*.json', { import: 'schedule' }) as Record<
+  string,
+  () => Promise<ScheduleWeek[] | undefined>
+>;
+
+export async function loadSchedule(slug: string): Promise<ScheduleWeek[] | undefined> {
+  const entry = Object.entries(scheduleModules).find(([file]) => file.endsWith(`/${slug}.json`));
+  return entry ? entry[1]() : undefined;
+}
+
+/** A schedule ref ("2.3") resolved to its topic text. */
+export function topicByRef(course: Course, ref: string): string | undefined {
+  const [u, t] = ref.split('.').map(Number);
+  return course.syllabus?.[u - 1]?.topics[t - 1];
 }
 
 export function coursesByArea(): Array<{ area: string; name: string; courses: Course[] }> {

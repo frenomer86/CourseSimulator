@@ -1,0 +1,531 @@
+{
+  "slug": "foundations-of-biomedical-and-health-informatics",
+  "description": "The core ideas of biomedical and health informatics: how clinical data becomes information and knowledge, how records and standards move it between systems, and how decision support, public health and research use it. In the lab students work through clinical and policy scenarios and build small databases, queries and exchange messages.",
+  "modelledOn": [
+    "Shortliffe and Cimino (eds.), Biomedical Informatics: Computer Applications in Health Care and Biomedicine",
+    "Hersh, Health Informatics: Practical Guide",
+    "HL7 FHIR specification and ISO/TC 215 health informatics standards",
+    "WHO, Global Strategy on Digital Health"
+  ],
+  "outcomes": [
+    "Define the scope of biomedical and health informatics and place real activities within its sub-fields.",
+    "Describe how clinical data is captured, coded, stored and quality-checked in health information systems.",
+    "Use terminologies and exchange standards such as ICD, SNOMED CT, HL7 v2 and FHIR to represent and move clinical information.",
+    "Evaluate clinical decision support and predictive models for validity, safety and fairness.",
+    "Apply privacy law, security controls and ethical frameworks to health data decisions.",
+    "Plan, procure and evaluate a digital health intervention for a resource-limited district."
+  ],
+  "units": [
+    {
+      "title": "The field: scope, history and health systems",
+      "weeks": "1",
+      "topics": [
+        "Definitions and sub-fields: biomedical, clinical, public health, consumer and translational informatics",
+        "History: from paper records and literature databases to electronic records, expert systems and genomics",
+        "Health systems and their information needs: primary care compounds, referral, insurance and Ghana's routine reporting systems",
+        "Informatics roles and competencies: clinical informatics lead, health data analyst, interoperability engineer",
+        "Socio-technical view of health IT and why implementations fail",
+        "Global digital health strategy and the burden of disease in Africa"
+      ]
+    },
+    {
+      "title": "Clinical data, information and knowledge",
+      "weeks": "2",
+      "topics": [
+        "Data, information, knowledge and wisdom; data types: structured, free text, images, signals, genomic and patient-generated",
+        "The clinical encounter and workflow; problem-oriented and SOAP notes",
+        "Data quality: completeness, accuracy, timeliness, missingness and bias",
+        "Clinical coding practice: ICD-10, ICD-11 and procedure codes",
+        "Test performance for informaticians: sensitivity, specificity, predictive values, ROC and prevalence effects",
+        "Evidence sources: guidelines, evidence-based medicine and systematic reviews"
+      ]
+    },
+    {
+      "title": "Health records and information systems",
+      "weeks": "3-4",
+      "topics": [
+        "Electronic health record architecture: patient index, orders, results, documentation and pharmacy",
+        "Open-source and low-resource systems for records and aggregate reporting, such as OpenMRS and DHIS2",
+        "Departmental systems (laboratory, imaging, pharmacy) and patient identity matching",
+        "Usability, human factors, alert fatigue and workflow redesign",
+        "Implementation and change management: training, go-live, downtime procedures and rollback",
+        "Clinical data modelling in relational databases: encounters, observations and patient timelines",
+        "Routine health information systems: facility reporting, indicators, data warehouses and dashboards"
+      ]
+    },
+    {
+      "title": "Standards, terminologies and interoperability",
+      "weeks": "5",
+      "topics": [
+        "Terminologies: SNOMED CT, LOINC, RxNorm and UMLS; mapping local terms",
+        "HL7 version 2 messages and segments; clinical document architecture",
+        "FHIR: resources, REST API, profiles, bundles and SMART apps",
+        "DICOM, IHE profiles and openEHR archetypes",
+        "Interoperability levels, health information exchange and national architecture; patient matching",
+        "Ontologies and knowledge graphs in biomedicine"
+      ]
+    },
+    {
+      "title": "Decision support and artificial intelligence",
+      "weeks": "6-7",
+      "topics": [
+        "Clinical decision support: rules, alerts, order sets and the five rights",
+        "Probabilistic reasoning: Bayesian diagnosis, likelihood ratios, decision trees and utilities",
+        "Machine learning for clinical prediction: risk scores, validation, calibration and fairness",
+        "Natural language processing, imaging AI and large language models in clinical settings: errors and safety",
+        "Regulation, local validation and dataset shift for imported models",
+        "Explainability and clinician trust"
+      ]
+    },
+    {
+      "title": "Public health, consumer and research informatics",
+      "weeks": "8-9",
+      "topics": [
+        "Surveillance: notifiable disease reporting, syndromic surveillance, epidemic curves and outbreak detection",
+        "Mobile health: community health workers, SMS and USSD, telemedicine and wearables",
+        "Consumer informatics: patient portals, health literacy and personal records",
+        "Research informatics: trial data management, electronic case report forms, CDISC and common data models",
+        "Translational informatics and genomic medicine",
+        "Health economics of digital interventions: cost-effectiveness and budget impact"
+      ]
+    },
+    {
+      "title": "Privacy, security and ethics",
+      "weeks": "10-11",
+      "topics": [
+        "Privacy law and consent: Ghana's Data Protection Act, HIPAA and GDPR compared",
+        "Security controls: role-based access, audit trails, break-glass access and encryption",
+        "De-identification: k-anonymity and its limits for small populations",
+        "Ethical frameworks: autonomy, beneficence, non-maleficence and justice; data sovereignty and community consent",
+        "Breach response, risk assessment and cross-border data",
+        "Equity, the digital divide and inclusive design"
+      ]
+    },
+    {
+      "title": "Strategy, procurement and evaluation",
+      "weeks": "12-13",
+      "topics": [
+        "Digital health strategy, governance and decision rights",
+        "Enterprise architecture and maturity models for health information exchange",
+        "Procurement and vendor selection with weighted criteria",
+        "Sustainability, donor funding and handover to national ownership",
+        "Evaluating health IT: pragmatic and stepped-wedge trials, usability scales and cost-effectiveness",
+        "Capstone: an informatics solution for a district with weak connectivity"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Defining the field and mapping the health system",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Place twelve everyday health IT activities in informatics sub-fields, trace a patient referral across levels of care, and name three reasons a hospital system might fail.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Sort ten example activities into clinical, public health, consumer and biomedical informatics in a scenario quiz and justify each placement"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Map the stakeholders and information flows of a referral from a community health compound to a district hospital, and spot two points where information is lost"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Design an evaluation plan for a new patient-registration system in a scenario, choosing outcomes, comparators and a socio-technical risk list"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Clinical data, coding and evidence",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compute predictive values for a malaria rapid test at two prevalences, assign ICD-10 codes to ten diagnoses, and grade the quality of a clinic dataset.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Compute sensitivity, specificity, positive and negative predictive value for a malaria rapid test from a 2x2 table, then recompute at a lower prevalence"
+        },
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Find the best evidence for a clinical question in a scenario by choosing sources, judging study design and summarising the strength of the recommendation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Write SQL to map 30 local diagnosis terms to ICD-10 codes with a lookup table, report unmapped terms and count cases per code"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E5",
+          "title": "Profile a messy clinic dataset in SQL for completeness, duplicate patients and impossible values, and report a data quality score by field"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Electronic records, identity and data models",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.6"
+      ],
+      "exercise": "Sketch the modules of a small hospital record system, design its patient and encounter tables, and match duplicate patients across two clinic lists.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Draw the architecture of a small hospital record system showing registration, orders, results, pharmacy and billing modules and the data each exchanges"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E5",
+          "title": "Design a relational schema for patients, encounters, diagnoses, medications and lab results, load sample rows, and query one patient's timeline"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E5",
+          "title": "Match duplicate patient records across two clinic tables using name, birth date and phone similarity, and report precision and recall against a gold list"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Usability, implementation and routine reporting",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.7"
+      ],
+      "exercise": "Critique a prescribing screen, write a go-live plan for a rural clinic, and build a monthly outpatient indicator from facility records.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Review a prescribing screen in a scenario, find usability flaws against heuristics, and propose changes that reduce alert fatigue"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.7",
+          "engine": "E5",
+          "title": "Build a monthly outpatient indicator report from facility records using a star schema, with a rate per 1000 population and a district comparison"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Plan the go-live of a records system at a rural clinic covering training, downtime procedures, data migration and rollback, and respond to three simulated problems"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Terminologies, messages and exchange standards",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Map local terms to standard codes, read an HL7 v2 lab message and a FHIR bundle, and design the exchange between a lab, a hospital and a national platform.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E5",
+          "title": "Map ten local clinical concepts to codes in a supplied terminology table, resolve ambiguous terms, and measure how many map exactly"
+        },
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Parse a pipe-delimited HL7 v2 lab result message into segments and fields, and rebuild it as JSON"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Parse a FHIR bundle of Patient and Observation resources, flag hypertensive blood pressure readings, and build a valid new Observation resource"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Design the data exchange between a lab system, a hospital record and a national reporting platform in a scenario, choosing standards and resolving identity conflicts"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Clinical decision support and predictive models",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write alert rules for drug interactions, compute the expected value of treat versus refer, and check a risk model for calibration and subgroup fairness.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E5",
+          "title": "Write SQL rules that fire alerts for drug-allergy conflicts and duplicate orders on a sample medication table, and count the false alerts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Build a decision tree for treat or refer with probabilities and utilities, compute expected value, and test how the answer changes as test accuracy varies"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Train a risk model for maternal complication on synthetic records, report AUC and calibration, and check performance separately for urban and rural subgroups"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Language, imaging AI, regulation and trust",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Extract medication names from short notes, decide whether to deploy an imported risk model, and judge the quality of model explanations shown to clinicians.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Judge the explanations a prediction tool shows to clinicians in a scenario and decide which are useful, misleading or missing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Extract medication names and doses from 20 short clinical notes using rules and regular expressions, and measure precision and recall"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Decide whether to deploy an imported risk model in a district hospital after reviewing local validation data, drift, regulation and clinician feedback"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Surveillance and mobile health",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Plot an epidemic curve, set an outbreak alert threshold, and design an SMS reporting flow for community health workers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Plot an epidemic curve from weekly cholera case counts, compute a 4-week moving average, and decide in which week an alert threshold was first crossed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Implement a CUSUM outbreak detector on 3 years of weekly counts, tune its threshold for one false alarm a year, and report detection delay"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Design an SMS and USSD reporting flow for community health workers in a scenario with poor coverage, handling errors, duplicates and data costs"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Research informatics, genomics and economics",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Design a case report form with validation rules, map source data to a common model, and compare the cost-effectiveness of an SMS reminder programme.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E5",
+          "title": "Design a case report form as a database table with validation rules, enter 20 records, and run queries that find out-of-range and missing values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E5",
+          "title": "Transform source records into a common observational data model layout, then write one cohort query for patients with diabetes who started metformin"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E7",
+          "title": "Build a cost-effectiveness comparison of an SMS reminder programme with standard care using a decision model, and report cost per extra patient retained with sensitivity ranges"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Privacy law, access control and de-identification",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Check a research data request against the data protection law, specify role-based access for a clinic, and measure the k-anonymity of a released table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Decide whether a consent form and sharing request for a research dataset meet the national data protection law, marking each gap in a scenario"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E5",
+          "title": "Implement role-based access and an audit log table in SQL for doctors, nurses and clerks, and test that each role sees only permitted data"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E5",
+          "title": "De-identify a 5,000-row patient table by generalising age and location, measure the k-anonymity achieved, and report the information lost"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Ethics, breach response and equity",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Apply the four ethics principles to a vendor data request, plan the first 72 hours after a breach, and review a telemedicine plan for who it excludes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Apply the four ethics principles to a case where a vendor wants hospital data to train a product, and record the decision with reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Respond to a simulated breach of a clinic's records by deciding on containment, notification, evidence preservation and patient communication within the legal deadline"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Assess a planned telemedicine rollout for equity in a scenario, identify who is excluded by cost, language, device or literacy, and revise the plan"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Governance, architecture and procurement",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write a decision-rights table for a regional digital health programme, sketch a target architecture, and score three vendor proposals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Draft governance roles and a decision-rights table for a regional digital health programme, and identify who approves a change to a national reporting form"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Score three vendor proposals for a hospital records system against weighted criteria including local support, total cost, openness and standards, and justify the pick"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Design the target architecture for a regional health information exchange with identity service, terminology service and shared record, and show integration points"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Sustainability, evaluation and the district capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Analyse a stepped-wedge rollout, write a five-year sustainability plan, and present an informatics solution for a district to a mock committee.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Analyse a stepped-wedge rollout table of a clinic reminder system, compute outcome rates before and after for each cluster, and describe the effect"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Build a five-year sustainability plan for a donor-funded system covering recurrent costs, local skills, hosting and handover to the ministry"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Design an informatics solution for a district with weak connectivity covering needs, data flow, standards, privacy, training and evaluation, and present it to a mock committee"
+        }
+      ]
+    }
+  ]
+}

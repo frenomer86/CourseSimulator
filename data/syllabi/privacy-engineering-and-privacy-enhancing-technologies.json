@@ -1,0 +1,543 @@
+{
+  "slug": "privacy-engineering-and-privacy-enhancing-technologies",
+  "description": "Designing systems that collect and use personal data without exposing people, from threat modelling and anonymisation to differential privacy, anonymous communication, secure computation and private machine learning. In the lab students implement the techniques, attack them, and measure what privacy they actually deliver.",
+  "modelledOn": [
+    "Dwork and Roth, The Algorithmic Foundations of Differential Privacy",
+    "Hoepman, Privacy Is Hard and Seven Other Myths (privacy design strategies)",
+    "Deng et al., a privacy threat analysis framework (LINDDUN)",
+    "Evans, Kolesnikov and Rosulek, A Pragmatic Introduction to Secure Multi-Party Computation"
+  ],
+  "outcomes": [
+    "Model privacy threats in a system using data flow diagrams, adversary models and a structured threat taxonomy.",
+    "Measure re-identification risk and apply k-anonymity and its refinements, and demonstrate their weaknesses.",
+    "Implement differential privacy mechanisms, track a privacy budget and explain the privacy-utility trade-off.",
+    "Explain and simulate anonymous communication, secret-sharing based computation and private set intersection.",
+    "Train models with federated learning and differential privacy, and attack them with membership inference.",
+    "Audit and compare privacy guarantees and choose a technology for a given use case with reasons."
+  ],
+  "units": [
+    {
+      "title": "Privacy concepts, law and identifiability",
+      "weeks": "1",
+      "topics": [
+        "Privacy as contextual integrity and informational self-determination; taxonomy of privacy harms",
+        "Legal frameworks: Ghana's Data Protection Act, comparable African laws and the GDPR; lawful bases and data subject rights",
+        "Principles: purpose limitation, data minimisation, storage limitation and privacy by design",
+        "Direct and quasi-identifiers, linkage attacks and re-identification",
+        "Data protection impact assessments"
+      ]
+    },
+    {
+      "title": "Privacy threat modelling",
+      "weeks": "2",
+      "topics": [
+        "LINDDUN threat categories: linkability, identifiability, detectability, disclosure, unawareness and non-compliance",
+        "Data flow diagrams, trust boundaries and adversary models (honest-but-curious, malicious, global passive)",
+        "Privacy risk assessment: likelihood, impact and prioritisation",
+        "Privacy design strategies and patterns: minimise, hide, separate, aggregate, inform, control",
+        "Worked threat model of a mobile-money or health application"
+      ]
+    },
+    {
+      "title": "Anonymisation and privacy-preserving data release",
+      "weeks": "3-4",
+      "topics": [
+        "k-anonymity, l-diversity and t-closeness; generalisation, suppression and Mondrian partitioning",
+        "Attacks on anonymised data: homogeneity, background knowledge and composition",
+        "Pseudonymisation, tokenisation and the pitfalls of hashing identifiers",
+        "Synthetic data: generation methods and privacy leakage",
+        "Releasing statistics: cell suppression, query auditing and reconstruction attacks",
+        "Data sharing agreements, data trusts and secure research enclaves"
+      ]
+    },
+    {
+      "title": "Differential privacy",
+      "weeks": "5-6",
+      "topics": [
+        "Definition: epsilon and delta, neighbouring datasets, sensitivity, post-processing and composition",
+        "Mechanisms: randomised response, Laplace, Gaussian and exponential mechanisms",
+        "Privacy budget accounting: basic and advanced composition, zero-concentrated and Renyi accounting",
+        "Local versus central models; frequency estimation under local privacy and the shuffle model",
+        "Differentially private learning: per-example clipping, noise multiplier and DP-SGD",
+        "Deployment practice: choosing epsilon, census and telemetry examples, and open-source libraries"
+      ]
+    },
+    {
+      "title": "Anonymous communication",
+      "weeks": "7",
+      "topics": [
+        "Identifiers and metadata at the network layer; anonymity sets and entropy metrics",
+        "Mix networks, onion routing and hidden services; circuit construction",
+        "Crowds, DC-nets and message batching",
+        "Attacks: traffic correlation, website fingerprinting, intersection and Sybil attacks",
+        "Blind signatures, anonymous credentials and private information retrieval"
+      ]
+    },
+    {
+      "title": "Secure multi-party computation basics",
+      "weeks": "8",
+      "topics": [
+        "Adversary models: semi-honest and malicious; ideal functionality and simulation",
+        "Secret sharing: additive and polynomial sharing; secure addition and multiplication with Beaver triples",
+        "Garbled circuits and oblivious transfer",
+        "Private set intersection and homomorphic encryption (Paillier and the idea of BFV and CKKS)",
+        "Trusted execution environments and confidential computing: assumptions and costs",
+        "Applications: cross-bank fraud analytics, private statistics and salary studies"
+      ]
+    },
+    {
+      "title": "Federated learning and privacy",
+      "weeks": "9-10",
+      "topics": [
+        "Federated averaging, client sampling, non-identical data and communication cost",
+        "Attacks: gradient inversion, membership inference, model inversion and memorisation",
+        "Secure aggregation and differentially private federated learning",
+        "Machine unlearning and the right to erasure",
+        "Cross-device learning on phones with low connectivity and cross-silo learning among hospitals",
+        "Fairness versus privacy trade-offs"
+      ]
+    },
+    {
+      "title": "Evaluating privacy guarantees",
+      "weeks": "11-12",
+      "topics": [
+        "Empirical privacy audits: membership inference, shadow models and auditing differential privacy",
+        "Risk and utility metrics: prosecutor and journalist risk, information loss and the privacy-utility frontier",
+        "Comparing guarantees: syntactic versus semantic privacy, assumptions and threat-model mapping",
+        "Implementation pitfalls: floating-point attacks on noise samplers and budget leaks",
+        "Red-teaming, bug bounties and certification of privacy claims",
+        "Transparency documents: privacy notices, model cards and impact reports"
+      ]
+    },
+    {
+      "title": "Privacy engineering in practice",
+      "weeks": "13",
+      "topics": [
+        "The privacy engineering lifecycle from requirements to operations",
+        "Choosing a privacy-enhancing technology: a decision guide by data location, trust and accuracy needs",
+        "Cost, performance and governance of deploying privacy-enhancing technologies",
+        "Project: privacy architecture for a health or payments data product"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Privacy concepts, law and re-identification",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Show with a linkage experiment that quasi-identifiers re-identify people, classify ten processing activities by lawful basis, and outline a DPIA.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Link a provided anonymised health table to a public list by postcode, birth year and sex, and count how many records are uniquely re-identified"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Classify ten data processing activities by lawful basis, purpose and data subject right in a scenario, and flag two that break purpose limitation"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Run a data protection impact assessment for a mobile-money credit scoring pilot in a scenario, listing data flows, risks, necessity tests and mitigations"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Threat modelling for privacy",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Draw a data flow diagram of a school-fees app, apply LINDDUN to it, and rank the top three threats with design strategies to address them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Draw a data flow diagram of a school-fees payment app with trust boundaries, and label each flow with the personal data it carries"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Apply LINDDUN to a ride-hailing app in a scenario, listing at least one threat in each category with a concrete example"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Threat-model a mobile-money app against honest-but-curious operator and global passive observer adversaries, rank threats by risk, and choose strategies for the top three"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "k-anonymity and its failures",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Anonymise a table to k = 5, attack it with background knowledge, and show why hashed phone numbers are not anonymous.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Compute k-anonymity and l-diversity of a 1,000-row table, then generalise age bands and postcodes until k is 5 and report the suppressed rows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Mount a homogeneity and a background-knowledge attack on a 5-anonymous table and show which sensitive values an attacker can infer for named people"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Reverse unsalted hashed phone numbers by brute force, then compare keyed hashing and tokenisation on the same number space"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Synthetic data, statistics release and sharing",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Release a table of counts safely, test whether synthetic data leaks membership, and list the clauses a data sharing agreement needs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Release a table of counts with small cells suppressed, then recover a suppressed cell from row and column totals to see why suppression alone fails"
+        },
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Draft the key clauses of a data sharing agreement for a research partnership in a scenario covering purpose, retention, onward transfer and breach notice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Generate synthetic data from the marginals of a patient table, then run a membership inference test to measure whether training records are detectably closer"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Reconstruct a hidden binary column from 200 noisy subset-sum queries using least squares, and report how noise size changes accuracy"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Differential privacy: definitions and mechanisms",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Prove the Laplace mechanism satisfies epsilon-differential privacy, run randomised response on a sensitive survey, and track a budget over repeated queries.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Apply randomised response to a sensitive survey of 2,000 simulated people, estimate the true proportion, and plot error against the coin probability"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Implement the Laplace mechanism for counts and means with clipping, and check empirically that outputs on neighbouring datasets differ by at most e^epsilon"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Track a privacy budget over 20 repeated queries using basic composition and zero-concentrated accounting, and show how many more queries the tighter accounting allows"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Local privacy, private learning and deployment",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Estimate app-category frequencies under local privacy, train a model with clipped noisy gradients, and justify an epsilon for a mobility data release.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Simulate local differential privacy with unary encoding for 10 app categories, aggregate reports from 10,000 users, and compare estimated with true frequencies"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Train a logistic regression with per-example gradient clipping and Gaussian noise in the style of DP-SGD, and chart accuracy against epsilon from 0.5 to 8"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Choose epsilon, granularity and neighbouring definition for releasing weekly mobility counts to a ministry in a scenario, and defend the utility-privacy trade-off"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Anonymity networks and their attacks",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compute the entropy of an anonymity set, simulate a mix network, and explain how an observer who sees both ends of an onion circuit can link its users.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute anonymity set sizes and entropy for a user population described by browser attributes, and find which attribute reduces anonymity the most"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Simulate a three-hop mix network with batching and random delay, and measure how the batch threshold changes sender-receiver linkability"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Issue and verify a blind RSA signature on a token with toy keys, and show the signer cannot link it to the issuing session"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Run a correlation attack on simulated traffic traces entering and leaving an onion-routing network, and measure its accuracy as padding and noise increase"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Secure multi-party computation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Sum private salaries with additive secret sharing, evaluate a garbled AND gate, and compare MPC, homomorphic encryption and a trusted enclave for joint fraud detection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Split three private salaries into additive shares among three parties, compute their sum without revealing any single value, and verify the result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement 1-out-of-2 oblivious transfer with toy parameters and use it to evaluate a garbled AND gate, checking all four input cases"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Compute a private set intersection of two hospitals' patient identifier lists with a Diffie-Hellman based protocol, and compare its cost with plain hashing"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Evaluate whether banks should use MPC, homomorphic encryption or a trusted enclave for joint fraud detection, comparing trust assumptions, cost and regulation"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Federated learning and its attacks",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compare federated and central training on skewed data, run a membership inference attack, and show how secure aggregation hides individual updates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Simulate federated averaging across 10 clients with identical and skewed local data, and compare global accuracy after 20 rounds with central training"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Run a loss-threshold membership inference attack on a small overfit classifier, and report attack accuracy before and after regularisation"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Implement pairwise-mask secure aggregation for five clients, show the server sees only masked updates, and handle one client dropping out"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Unlearning, deployment and fairness",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Decide how to honour an erasure request for training data, plan a federated round for phones on slow networks, and measure who bears the accuracy cost of privacy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Handle an erasure request in a scenario where a person's data trained a deployed model, and decide between deletion, retraining and approximate unlearning"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Measure accuracy for majority and minority subgroups as DP noise increases in a trained classifier, and plot the gap to see who pays for privacy"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Design a cross-device federated round for phones on slow networks with 30 percent dropout, choosing client fraction, rounds and compression, and simulate the result"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Measuring and comparing privacy",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Audit a claimed epsilon empirically, plot risk against information loss for three generalisation levels, and recommend a technology for a ministry data-sharing proposal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute prosecutor and journalist re-identification risk for a table, add an information-loss measure, and plot risk against loss for three generalisation levels"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Audit a differentially private counting mechanism by running it on neighbouring datasets, estimating privacy loss from a million samples, and checking the claimed epsilon"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Compare k-anonymity, differential privacy and secure computation for a ministry data-sharing proposal in a scenario, map each to its threat model, and recommend one with caveats"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Implementation pitfalls, red teams and transparency",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Exploit a flawed noise sampler, red-team a privacy-preserving release within a query budget, and write a plain-language privacy notice and model card.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Write a plain-language privacy notice and a one-page model card for a prediction service, then check them against a list of transparency requirements"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Exploit floating-point rounding in a naive Laplace sampler to distinguish neighbouring datasets, then fix it with a discrete mechanism"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Red-team a provided privacy-preserving release by attempting linkage, reconstruction and membership attacks within a query budget, and write a findings report with severity ratings"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Choosing and deploying privacy technologies",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Choose a technology for five use cases with a decision guide, cost the options, and present a privacy architecture for a national health data platform.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Pick a privacy-enhancing technology for five use cases in a scenario using a decision guide on data location, trust and accuracy needs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E7",
+          "title": "Estimate runtime, bandwidth and accuracy cost of secure aggregation, DP noise and a trusted enclave for a one-million-user analytics job from supplied benchmarks"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Present a privacy architecture for a national health data platform to a mock review board, defend the threat model, technology choices and residual risks, and revise after objections"
+        }
+      ]
+    }
+  ]
+}

@@ -110,5 +110,398 @@
         "Capstone: a policy brief or ethical analysis presented and defended"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Legal system and key statutes",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Draw a map of the Ghanaian sources of law and match five computing problems to the statute and regulator that handle each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Place four internet disputes in the right court or authority and identify which source of law applies, from a scored scenario"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Match ten technology situations to the correct Ghanaian Act and section family, such as electronic transactions, data protection or cybersecurity"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Choose the correct regulator and first reporting step for a telecom outage, a data leak and an online fraud, with evidence cited for each"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Electronic contracts and signatures",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Review the terms and conditions of a delivery app and list three clauses you consider unfair, with the reason.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Decide whether a binding contract was formed in three click-wrap and browse-wrap cases and justify each with offer, acceptance and notice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Resolve a dispute where an automated agent accepted a mistaken price, apply contract principles and be scored on the remedy chosen"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Assess the evidential weight of an electronic signature and an email chain in a scored scenario, and choose what proof to present"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Consumer protection and online commerce",
+      "topics": [
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Write a short advice note for a small online seller on disclosure, refunds and mobile money rules.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Identify the consumer protection breaches in an online listing from six marked clues and choose the correct remedy for the buyer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Decide platform liability for a counterfeit product sold on a marketplace and choose the notice and takedown steps that satisfy the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Evaluate a proposed digital services tax on mobile payments, weigh effects on users and government, and defend a recommendation"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Cybercrime law and investigation",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain how the Cybersecurity Act and the Electronic Transactions Act would apply to a described phishing campaign.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Classify eight incidents into offence categories such as unauthorised access, fraud or identity theft, and cite the evidence for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Compare how Ghanaian law, the Budapest Convention and the Malabo Convention each treat a cross-border intrusion in a case study"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Preserve and present digital evidence in a seized-phone case, choosing steps that keep chain of custody and admissibility, scored by rubric"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Fraud cases and organisational duties",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write an incident brief for a mobile-money fraud ring, covering victims, offences, evidence and the response by the operator.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Investigate a romance fraud report by ordering evidence, identifying the offences and recommending the reporting route"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Respond to a SIM-box fraud case, decide which operator controls and legal steps to take, and be scored on loss reduced and lawful conduct"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Lead the response to a ransomware attack on a critical service, balance the payment decision, reporting duties and recovery, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Copyright, patents and licences",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Choose the right licence for a student-built health app and explain how that choice affects what others can do with the code.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Decide infringement and fair dealing in four copying scenarios involving software, databases and images under copyright rules"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Choose the right protection for a new algorithm, brand name and customer list between patent, trade secret and trademark"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Audit a project's dependencies, find a licence clash between GPL and a proprietary release, and choose the fix that keeps it lawful"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Digital rights and ownership",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a short opinion on who owns code written by a student intern and by a freelancer, with a clause you would add to each agreement.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Respond to a piracy complaint about a local film streaming site, identify the treaty and statute that apply, and choose the enforcement steps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Settle an ownership dispute over code written by an employee, a contractor and a student, citing the contract terms that decide each"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Decide who holds rights in AI-generated content in a case study, weigh the competing positions, and defend a recommended approach"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Software contracts",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Read an annotated software development contract and write a list of five clauses you would negotiate, with replacement wording.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Choose the correct contract form for a SaaS subscription, a bespoke build and an outsourcing deal, and justify each with the risks transferred"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Identify risky clauses in a contract on liability cap, indemnity and termination and pick the amendment that protects the client"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Negotiate a software contract over several rounds, trading scope, price and service levels, and be scored on outcomes for both sides"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Privacy, governance and expression",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Write a balanced one-page analysis of a proposal to use facial recognition at a public market.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Assess a facial recognition deployment against privacy rights, decide whether it is proportionate, and justify using the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Respond to a government order to shut down social media during an election, weigh rights and security, and score the argument"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Judge a defamation claim over a social media post and a platform's moderation decision, citing the elements of the claim and defences"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Data protection laws compared",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compare how Ghana's Act 843 and the GDPR would handle the same data breach and the same cross-border transfer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Register a data controller and respond to a data subject access request under Act 843, with steps and deadlines scored"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Run a GDPR-style impact assessment for a health app, choose lawful basis and transfer safeguards, and list the risks found"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Compare the response to one data breach under Ghanaian, GDPR, POPIA and CCPA rules, and identify the strictest obligation"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Information access and compliant design",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a privacy notice for a school results portal in plain language, covering what is collected, why and for how long.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Draft and handle a Right to Information request for a public contract, deciding which parts may be withheld and why"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Design data minimisation and retention rules for an e-commerce system and choose which fields to drop, with reasons"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Lead the response to a breach in a compliant system, deciding who to notify, what to say and by when, scored against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Society, work and environment",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a short essay on whether a bank should replace tellers with automation, weighing workers, customers and the bank.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Advise a company on automating a department, balancing efficiency and job loss, and choose a retraining and transition plan"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Plan a digital inclusion intervention for a rural district, choose between connectivity, devices and training, and justify with the evidence"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Decide how a university should dispose of 200 old computers, comparing e-waste routes for cost, environment and data security"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Ethical theories and professional practice",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Prepare a policy brief on an ethical issue of your choice and a two-minute defence of its recommendation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Analyse a dilemma about a delivery app's tracking of riders using utilitarian, duty-based and virtue ethics, and compare the conclusions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Decide whether an engineer should blow the whistle on an unsafe release under a professional code, and choose the first steps to take"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Analyse a Ghanaian data breach in the style of the Therac-25 case, identify the failures and assign responsibility with a scored report"
+        }
+      ]
+    }
   ]
 }

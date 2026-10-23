@@ -1,0 +1,507 @@
+{
+  "slug": "digital-transformation-and-innovation-management",
+  "description": "How organisations use digital technology to change their strategy, products and ways of working, and how new ventures are built and measured. Students diagnose cases, model business processes and platforms in the diagram studio, and make decisions in branching scenarios scored against a rubric.",
+  "modelledOn": [
+    "Rogers, Digital Transformation Playbook",
+    "Ries, The Lean Startup",
+    "Osterwalder and Pigneur, Business Model Generation",
+    "Cagan, Inspired: How to Create Tech Products Customers Love"
+  ],
+  "outcomes": [
+    "Assess an organisation's digital maturity and propose a business model change using a canvas and recognised model patterns.",
+    "Plan and govern a change programme, with stakeholder analysis, adoption drivers and a communication plan.",
+    "Apply design thinking, lean experiments and agile delivery to take an idea from problem to tested prototype.",
+    "Analyse a platform business, including network effects, governance and ecosystem partners.",
+    "Build a financial and non-financial case for a digital initiative and track its value with metrics.",
+    "Present a prioritised transformation roadmap to an executive audience and defend its assumptions."
+  ],
+  "units": [
+    {
+      "title": "Digital strategy and business models",
+      "weeks": "1-2",
+      "topics": [
+        "Digital technologies as drivers of transformation: mobile money, cloud, data and AI",
+        "Digital maturity models and readiness assessment",
+        "Business Model Canvas and value proposition design",
+        "Digital business model patterns: freemium, subscription, marketplace and pay-as-you-go",
+        "Aligning IT and business strategy: strategy maps and capability maps",
+        "Case studies: digital change in African banking, agriculture and logistics"
+      ]
+    },
+    {
+      "title": "Change management and adoption",
+      "weeks": "3-4",
+      "topics": [
+        "Eight-step change model and the unfreeze-change-refreeze view of change",
+        "Stakeholder analysis: power-interest grid and communication plans",
+        "Technology acceptance: TAM, UTAUT and the diffusion of innovations curve",
+        "Resistance to change, digital skills gaps and training programmes",
+        "Transformation governance: steering committees, transformation office and RACI charts"
+      ]
+    },
+    {
+      "title": "Innovation processes and design thinking",
+      "weeks": "5-6",
+      "topics": [
+        "Types of innovation: incremental, radical, disruptive and open innovation",
+        "Design thinking stages: empathise, define, ideate, prototype, test",
+        "User research: interviews, personas and journey maps",
+        "Lean startup: minimum viable product, build-measure-learn and pivots",
+        "Idea portfolios: impact-effort matrix and stage-gate funnels",
+        "Agile delivery and DevOps as enablers of continuous innovation"
+      ]
+    },
+    {
+      "title": "Platform and ecosystem strategies",
+      "weeks": "7",
+      "topics": [
+        "Platform versus pipeline businesses; two-sided markets and network effects",
+        "Platform governance, open APIs and open banking",
+        "Ecosystem orchestration: partners, complementors, mobile network operators and fintechs",
+        "The chicken-and-egg problem: bootstrapping and pricing each side",
+        "Platform risks: lock-in, multi-homing, regulation and data protection"
+      ]
+    },
+    {
+      "title": "Digital product management",
+      "weeks": "8-9",
+      "topics": [
+        "Product lifecycle and the product manager role",
+        "Product vision, roadmaps and OKRs",
+        "Backlog prioritisation: MoSCoW, RICE scoring and satisfaction-based feature classification",
+        "Product analytics: funnels, retention cohorts and A/B tests",
+        "Pricing and monetisation of digital products",
+        "Scaling, technical debt, product-market fit signals and sunsetting"
+      ]
+    },
+    {
+      "title": "Technology entrepreneurship and startups",
+      "weeks": "10-11",
+      "topics": [
+        "Opportunity recognition and problem-solution fit",
+        "Founding teams, equity splits and legal forms of business in Ghana",
+        "Financing: bootstrapping, grants, angel and venture capital, crowdfunding",
+        "Unit economics: customer acquisition cost, lifetime value, burn rate and runway",
+        "Pitching: the pitch deck and investor questions",
+        "Startup ecosystems in Africa: hubs, incubators and accelerators"
+      ]
+    },
+    {
+      "title": "Measuring the value of digital initiatives",
+      "weeks": "12",
+      "topics": [
+        "Business case: cost-benefit analysis, NPV, IRR and payback period",
+        "Balanced scorecard and KPIs for digital initiatives",
+        "Benefits realisation management and value tracking",
+        "Risk, scenario analysis and real options",
+        "Digital ethics, inclusion and sustainability impact"
+      ]
+    },
+    {
+      "title": "Capstone: building a transformation roadmap",
+      "weeks": "13",
+      "topics": [
+        "Diagnosing an organisation: maturity scores and pain points",
+        "Building a prioritised roadmap and initiative portfolio",
+        "Presenting the case to an executive board",
+        "Review and reflection on the course cases"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Digital drivers, maturity and strategy alignment",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.5"
+      ],
+      "exercise": "Pick a Ghanaian organisation, list the digital technologies that threaten or help it, score its maturity on a five-dimension model and draw a strategy map linking IT capabilities to business goals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Read a short case on a mobile money rollout and choose, for five decisions, the technology driver that best explains the change, scoring against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Assess a regional bank's digital maturity from interview evidence across five dimensions, justify each score and pick the two weakest areas to fix first"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Draw a capability map and strategy map for a cooperative, then show which IT capabilities are missing for three stated strategic goals"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Business models and patterns",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.6"
+      ],
+      "exercise": "Fill in a Business Model Canvas for an agritech startup, then redesign its revenue model using two other patterns and compare the effect on customers and costs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Complete the nine blocks of a Business Model Canvas for a mobile airtime reseller and check that each customer segment has a value proposition"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Choose between freemium, subscription and pay-as-you-go pricing for a farm advisory app in a branching case and justify each choice with the evidence given"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Evaluate a bank's plan to launch agent banking, weigh three competing business model options and defend the recommendation against a board challenge"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Leading change",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Map a failed system rollout onto the eight change steps to find which were skipped, and build a power-interest grid and communication plan for a hospital moving to electronic records.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Read a case of a stalled ERP rollout and order the eight change steps, marking which step the project skipped and why it mattered"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Build a power-interest grid for twelve stakeholders of a district hospital system and write a one-line engagement approach for each quadrant"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Use adoption survey evidence to explain why nurses reject a new app, apply TAM and UTAUT constructs, and choose interventions within a fixed training budget"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Adoption, skills and governance",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Draft a training and support plan for a digital skills gap in a district assembly, and write a RACI chart and steering committee terms of reference for the transformation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E9",
+          "title": "Draw a RACI chart for six activities of a payroll system migration with exactly one accountable person per activity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Respond to staff resistance in a branching case, choosing training, incentives and communication steps, and compare final adoption scores across two attempts"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Design the governance structure for a bank-wide transformation, resolve a conflict between two directors, and justify decision rights in the rubric"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Innovation types and design thinking",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Classify six real products by innovation type, then interview two potential users about an everyday transport problem and turn the findings into a persona and a journey map.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Classify eight product launches as incremental, radical or disruptive, and explain each answer using the evidence in the case notes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Turn six interview notes about trotro commuting into a persona and a journey map, marking the three largest pain points"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Run a design thinking project in a branching case, deciding at each stage what to research and prototype, and defend how you reframed the problem"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Lean experiments, prioritisation and agile delivery",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write the riskiest assumption for a market-price app, design a minimum viable product test with a pass mark, and rank ten ideas with an impact-effort matrix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E9",
+          "title": "Place ten product ideas on an impact-effort matrix and mark the quick wins, big bets and ideas to drop"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Choose experiments for three assumptions of a startup, read the results and decide for each whether to persevere, pivot or stop"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E9",
+          "title": "Draw a delivery pipeline from idea to release with sprint cadence and automated testing, and mark where each step shortens feedback time"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Platforms and ecosystems",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Draw the ecosystem of a mobile money platform with its participants and money and data flows, then propose a plan to attract merchants first and users second, and list three platform risks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Draw a two-sided market diagram for a ride-hailing platform, label the cross-side network effects and give one example of a same-side effect"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E9",
+          "title": "Map the ecosystem of a mobile money service with banks, agents and developers, and trace how a merchant payment flows through it"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Bootstrap a marketplace in a branching case by choosing which side to subsidise, setting prices and comparing growth after ten simulated months"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Product management foundations",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write a product vision and quarterly OKRs for a school fees payment app, and prioritise a backlog of twelve features using RICE scores.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Draw the lifecycle of a digital product from idea to retirement and mark which decisions a product manager owns at each stage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Set a product vision and three OKRs with measurable key results in a branching case, and revise them after a mid-quarter shock"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Score twelve backlog features with RICE, test how the ranking changes when reach estimates move by twenty percent, and report which choices are stable"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Analytics, pricing and scaling",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Read a funnel and retention table for a savings app, pick one improvement experiment, set its sample size and success criterion, and choose a price for a premium tier.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute the conversion rate at each step of a sign-up funnel from given counts and find the step with the largest drop-off"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Set prices for three tiers of a digital service in a branching case, observe demand responses and defend the revenue-maximising choice"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Analyse an A/B test with a two-proportion test and confidence interval, decide whether to ship, and state what extra data would change your mind"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Opportunities, founders and ecosystems",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.6"
+      ],
+      "exercise": "Interview a small trader about a daily problem, write a problem statement with evidence, and draft a founder agreement covering roles, equity and vesting under a registered company form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Compare five opportunity ideas against evidence of customer pain and willingness to pay, and pick the one with the best problem-solution fit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Negotiate an equity split among three cofounders with unequal contributions in a branching case, and test its fairness over a later funding round"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E9",
+          "title": "Map the startup ecosystem of a Ghanaian city with hubs, funders, universities and regulators, and mark the gap that most limits startup growth"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Financing, unit economics and pitching",
+      "topics": [
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compute customer acquisition cost, lifetime value and runway for a delivery startup, choose a financing route, and prepare a five-minute pitch with a ten-slide outline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Compute CAC, LTV and the LTV to CAC ratio for a startup from a monthly table and state whether the model is viable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Choose between grants, angel money and a bank loan for a seed-stage startup in a branching case and compare dilution and risk"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Pitch to a simulated investor panel, answer six hard questions on market size, margins and competition, and improve the pitch after feedback"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Measuring and proving value",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Build a five-year business case with NPV and payback for a digital land registry project, define a balanced scorecard, and list three ethical risks and mitigations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute NPV, payback period and IRR for a five-year cash flow table of a digital project at a ten percent discount rate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E9",
+          "title": "Build a balanced scorecard with four perspectives and two KPIs each for a mobile health programme, linking each KPI to a strategic objective"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Run a scenario analysis on a digital initiative with Monte Carlo cost and benefit ranges, and report the chance that NPV is negative"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Capstone: transformation roadmap",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Diagnose a case organisation, build a three-year roadmap with prioritised initiatives, value estimates and risks, and present it in ten minutes to a mock board.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Score a case company on maturity dimensions from evidence in documents and interviews, and list its five most important pain points"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Draw a three-year roadmap with eight initiatives, dependencies and milestones, and mark the critical path using the diagram tools"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Present the roadmap to a simulated executive board, handle objections on cost, risk and staffing, and refine the plan against the scoring rubric"
+        }
+      ]
+    }
+  ]
+}

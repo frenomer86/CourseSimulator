@@ -121,5 +121,403 @@
         "Capstone: a complete project with a model card and fairness audit"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What learning from data means",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Short problem set: classify five tasks as supervised, unsupervised or reinforcement, and compute the empirical risk of two hypotheses on a given dataset.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Load a small tabular dataset with pandas, split features and labels, and label each of five problem statements as supervised or unsupervised"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Compute the empirical squared error of three candidate lines on a ten-point dataset and pick the best, then check it on held-out points"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Set up a notebook that logs three experiments with parameters and metrics, rerun one with a fixed seed and show the results reproduce exactly"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Linear regression",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Derive the normal equations, solve a small example by hand, and compare closed form with gradient descent on a crop yield dataset.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Fit a line to 20 points with the closed-form least squares solution and with gradient descent and compare the coefficients"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Fit polynomial regression of degree 1 to 12 with ridge and lasso penalties and plot validation error against complexity to show the bias-variance trade-off"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Predict house prices in Accra from tabular features with feature scaling and regularisation, then report test RMSE against a mean baseline"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Classifiers",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Compare four classifiers on a small two-class dataset in a table of accuracy, training time and interpretability, and justify a choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Train a logistic regression on two features, plot its decision boundary and compute the probability for three new points"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Train an SVM with linear and RBF kernels on non-separable data and show how the margin and boundary change with the C parameter"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Evaluate k-nearest neighbours for dimension 2 to 100 on random data and show how accuracy and distances degrade with dimension"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Evaluation and overfitting",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Evaluate a spam classifier on an imbalanced dataset and write a short note on why accuracy alone misleads.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Split data into train, validation and test sets and run 5-fold cross-validation, reporting mean and spread of the accuracy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Compute precision, recall, F1 and AUC for a classifier on a 5 percent positive dataset and plot ROC and precision-recall curves"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Plot learning curves for two models, diagnose which is underfitting and which is overfitting, and fix each, including one data leakage bug"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Model selection and honest reporting",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a results section comparing two models with a significance test and an honest statement of limitations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Tune a model with grid search and random search at the same budget and compare the best scores found"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Estimate generalisation error with nested cross-validation and show the plain cross-validation score is optimistic after tuning"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Compare two classifiers over 10 cross-validation folds with a paired test and report effect size, confidence interval and whether the difference is real"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Decision trees and forests",
+      "topics": [
+        "5.1",
+        "5.2"
+      ],
+      "exercise": "Build a decision tree by hand with information gain for a ten-row dataset and compare it with a random forest on a larger one.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Compute entropy and information gain for each candidate split on a ten-row dataset and step the tree growth one split at a time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Grow a decision tree with Gini impurity, then prune it by depth and plot training and test accuracy to find the best size"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Train a random forest and report out-of-bag error, comparing it with a single tree and a bagged ensemble of 100 trees"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Boosting and interpretation",
+      "topics": [
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Explain in a page why boosting reduces bias and bagging reduces variance, with a diagram.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Train a gradient boosting model for an increasing number of trees and plot the training and validation error for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Compare random forest, gradient boosting and a stacked ensemble on the same tabular task and report accuracy, time and size"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Explain a boosted model's predictions with permutation importance, partial dependence and SHAP values and say which features matter locally"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Neural networks and backpropagation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Derive the gradients for a two-layer network by hand and check them numerically.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Step a perceptron through its updates on the AND and XOR data and observe which one it cannot learn"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement a two-layer network and backpropagation in NumPy and verify each gradient against a finite difference check"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Compare SGD, momentum and Adam with different learning rates and initialisations on the same network and plot the loss curves"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Regularisation, CNNs and leaf diseases",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Short report on the training choices you made for a leaf disease classifier and the evidence they helped.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Train a network on a small dataset with and without dropout, weight decay and early stopping, and compare validation accuracy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Fine-tune a pretrained convolutional model on a small image dataset and compare it with training the same architecture from scratch"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Train a cassava leaf disease classifier with augmentation, report per-class precision and recall, and explain the confusions seen"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Unsupervised learning",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Cluster customer data of a mobile money agent with k-means and write what each cluster means for the business.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Run k-means with k from 2 to 8 on a two-dimensional dataset and use an elbow plot and silhouette score to pick k"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute PCA from the covariance matrix of a small dataset, plot the principal axes and report the variance explained by each component"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Build a matrix factorisation recommender on a ratings table, evaluate it with a held-out RMSE and describe how it behaves for new users"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Features and pipelines",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a reproducible pipeline specification for a loan default model, listing preprocessing, model, evaluation and deployment checks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Encode categorical variables, scale numbers and impute missing values with a scikit-learn pipeline and check no test data leaks into fitting"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Build TF-IDF features for 1,000 customer complaints and train a classifier to tag each complaint, then inspect the highest-weight words"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Package a trained model in a versioned pipeline, serve it behind a small function call API and test it with malformed inputs"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Theory and advanced topics",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Short reflection: when would you choose reinforcement or active learning over supervised learning, and what are the risks of large language models?",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E7",
+          "title": "Compute a PAC-style sample size bound for a finite hypothesis class and plot how it changes with the error and confidence parameters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E6",
+          "title": "Run Q-learning on a small gridworld for 500 episodes and watch the value table and learned policy change at each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Compare random sampling with uncertainty-based active learning for labelling a pool of 1,000 examples and plot accuracy against labels used"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Ethics, bias and the capstone",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4",
+        "10.5"
+      ],
+      "exercise": "Capstone deliverable: a complete project report with a model card, fairness audit and limitations section.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E1",
+          "title": "Measure demographic parity and equal opportunity of a credit scoring model for two groups and report the gap in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.2",
+          "engine": "E1",
+          "title": "Write a model card and datasheet for a classifier, filling in intended use, data sources, metrics by group and known failure cases"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.5",
+          "engine": "E1",
+          "title": "Complete an end-to-end project on an African dataset, run a fairness audit, mitigate the largest gap and report the effect on accuracy"
+        }
+      ]
+    }
   ]
 }

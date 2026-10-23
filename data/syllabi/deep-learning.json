@@ -105,5 +105,399 @@
         "Capstone: a deep learning project on an African dataset with a model card and compute budget report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Neurons, activations and losses",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Short problem set: compute the forward pass and loss of a 2-3-1 network by hand, plot four activation functions with their gradients, and explain why cross-entropy suits classification.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E6",
+          "title": "Step through a small network's forward pass with sigmoid and ReLU hidden units and record each neuron's output for the input (0.5, -1)"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Train a two-layer perceptron on the XOR data, show a single linear layer cannot solve it, and plot the learned decision boundary"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Compare mean squared error and cross-entropy for a three-class classifier on the same data, plot both loss curves and explain which trains faster and why"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Autodiff and PyTorch",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Derive the gradient of a small expression graph by hand, then verify it with your own autodiff and with PyTorch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Trace reverse-mode differentiation through the graph of f(x,y)=x*y+sin(x) at (2,3), recording each node's value and gradient"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Implement a scalar autodiff class with add, multiply, tanh and backward, and verify its gradients against finite differences to six decimals"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Write a PyTorch module, dataset and data loader for a regression task, and show broadcasting errors by deliberately mismatching tensor shapes and fixing them"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Initialisation, normalisation and optimisers",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Run a controlled experiment comparing initialisations, normalisation layers and optimisers on one small network, and summarise the results in a table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Train a ten-layer network with zero, small-random, Xavier and He initialisation and plot gradient norms at each layer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Add batch normalisation and residual connections to a deep network that fails to train, and show the training loss now falls"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Compare SGD with momentum, Adam and AdamW with a warm-up schedule on the same task and report epochs needed to reach a target loss"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Regularisation and debugging training",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write a one-page training debugging checklist and apply it to a given network whose loss does not fall.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Train a small network that overfits, then add dropout and weight decay in turn and compare validation loss for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Increase the width of a network on a small dataset across ten sizes and plot test error to observe double descent"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Debug a faulty training script with a planted bug by overfitting a single batch, inspecting gradient norms and fixing the cause"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Convolutional networks",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compute the output size and parameter count for a small CNN by hand, and compare it with a fully connected network on the same images.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Slide a 3x3 filter over a 6x6 image with stride 1 and 2 and record each output feature map, then compute the receptive field"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Build a small LeNet-style and a ResNet-style network for an image task and compare accuracy, parameter count and training time"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Train a U-Net-style segmentation model on synthetic shapes and evaluate it with intersection over union against a threshold baseline"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Interpreting CNNs and leaf diseases",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Short report: use saliency or Grad-CAM to check whether a leaf classifier looks at the lesion or the background.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Compute a saliency map for a trained classifier on three images and describe which regions drive each prediction"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement Grad-CAM for a small CNN and show it exposes a classifier that relies on the background rather than the leaf"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Fine-tune a small CNN on cassava leaf images with augmentation for phone photos, then report per-class recall and the confusion matrix"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Recurrent networks and embeddings",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Short exercise: unroll an RNN for four steps on paper and explain how gradients vanish, then examine word embeddings for a Ghanaian language.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Unroll a simple recurrent network over a four-token sequence and record the hidden state at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Train a vanilla RNN and an LSTM on a sequence task that needs memory of 30 steps and compare accuracy and gradient norm"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Train a character-level tokeniser and embeddings on a small Twi corpus and inspect nearest neighbours to see where low-resource data limits quality"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Attention and the transformer",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Hand-calculate scaled dot-product attention for three tokens, then draw an annotated diagram of a transformer encoder block.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Compute attention weights for three tokens with scaled dot-product attention and check each row of weights sums to one"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement multi-head attention with positional encodings in PyTorch and unit-test that the output shape and causal mask are correct"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Pretrain a tiny transformer with masked language modelling and then with next-token prediction on the same text and compare behaviour"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Vision transformers, scale and translation",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write a half-page cost estimate of training a transformer for English to a Ghanaian language, including parameters, tokens and hardware time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Split an image into patches, embed them and show how a vision transformer turns a 32x32 image into a token sequence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Estimate parameters, FLOPs and memory for models of three sizes and plot validation loss against compute from a supplied scaling table"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Train a small encoder-decoder transformer for English to Twi translation on a toy parallel corpus and evaluate it with BLEU and chrF"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Autoencoders and GANs",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Short problem set: derive the ELBO for a VAE with a Gaussian prior and explain why GAN training is unstable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Train a plain autoencoder on small digit images and plot the two-dimensional latent space coloured by class"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Implement a variational autoencoder with the reparameterisation trick and generate new samples by decoding random latent vectors"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Train a small GAN on a two-dimensional mixture of Gaussians and diagnose mode collapse, then try one fix and compare the sample coverage"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Diffusion, decoding and synthetic media",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Short essay: list three harms of synthetic media in a Ghanaian election and one technical and one social defence for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Add noise to a small image in ten forward diffusion steps and plot how the signal-to-noise ratio falls at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Implement greedy, beam, top-k and nucleus sampling for a small language model and compare diversity and repetition on the same prompt"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Evaluate a generative model with an inception-style score and nearest-neighbour memorisation checks, and report where each measure misleads"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Transfer learning and efficient models",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a compute plan for fine-tuning a large pretrained model on a free GPU with 12 GB of memory and a four-hour session limit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Fine-tune a pretrained image classifier twice, once as a frozen feature extractor and once with unfrozen layers, and compare accuracy and time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Add a LoRA adapter to a small pretrained model, count trainable parameters against full fine-tuning and compare task accuracy"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compress a trained classifier by 8-bit quantisation and magnitude pruning, then plot accuracy against model size and latency for each setting"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Responsible deployment and capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Capstone deliverable: a short model card and compute budget report for a deep learning project on an African dataset.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Measure accuracy of a face or speech classifier separately for each subgroup in a labelled dataset and report the largest gap"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Craft an adversarial perturbation that flips a classifier's decision, then measure robustness after adversarial training and under a distribution shift"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Complete a deep learning pipeline on a small African dataset and write a model card with fairness checks and a compute and energy budget"
+        }
+      ]
+    }
   ]
 }

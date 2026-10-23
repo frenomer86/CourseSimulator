@@ -1,0 +1,507 @@
+{
+  "slug": "advanced-cloud-architecture-and-virtualisation",
+  "description": "A graduate study of how clouds are built and run: hypervisors, cluster schedulers, isolation, elasticity, storage and the economics of operating at scale. Students design and break architectures in the cloud console, measure them with queueing and cost models, and defend their trade-offs in a design review.",
+  "modelledOn": [
+    "Barroso, Clidaras and Holzle, The Datacenter as a Computer",
+    "Burns, Beda and Hightower, Kubernetes: Up and Running and the Kubernetes design documents",
+    "Well-Architected Framework guidance from the major public cloud providers"
+  ],
+  "outcomes": [
+    "Explain how hypervisors and containers virtualise CPU, memory and I/O, and compare their performance and isolation.",
+    "Analyse cluster scheduling policies for fairness, utilisation and packing efficiency.",
+    "Design a multi-tenant architecture with defined isolation boundaries and a documented threat model.",
+    "Build and evaluate autoscaling policies using queueing models and control theory against realistic workloads.",
+    "Produce a costed multi-region cloud architecture with SLOs, failure modes and a justified set of trade-offs."
+  ],
+  "units": [
+    {
+      "title": "Hypervisors and resource virtualisation",
+      "weeks": "1-2",
+      "topics": [
+        "CPU virtualisation: trap-and-emulate, binary translation and hardware-assisted virtualisation",
+        "Memory virtualisation: shadow page tables, nested paging, ballooning and page sharing",
+        "I/O virtualisation: emulated devices, virtio and SR-IOV passthrough",
+        "Containers versus VMs: namespaces, cgroups, microVMs and unikernels",
+        "Live migration: pre-copy, post-copy and downtime analysis",
+        "VM placement as bin packing and the economics of overcommit"
+      ]
+    },
+    {
+      "title": "Cluster scheduling and orchestration",
+      "weeks": "3-4",
+      "topics": [
+        "Orchestrator architecture: API server, state store, scheduler, kubelet and controllers",
+        "Scheduling algorithms: filter and score, bin packing, affinity, taints and tolerations",
+        "Fairness and priority: dominant resource fairness, queues, preemption",
+        "Monolithic, two-level and shared-state schedulers; scaling to thousands of nodes",
+        "Declarative reconciliation loops, operators and custom resources",
+        "Cluster networking: overlays, service discovery and service meshes"
+      ]
+    },
+    {
+      "title": "Multi-tenancy and isolation",
+      "weeks": "5",
+      "topics": [
+        "Tenant threat models: noisy neighbours, side channels and escape attacks",
+        "Isolation mechanisms: hypervisor, user-space kernels, microVMs, seccomp and capabilities",
+        "Network isolation: virtual private clouds, security groups and microsegmentation",
+        "Resource isolation: quotas, cgroup limits, QoS classes and rate limiting",
+        "Tenancy models for SaaS: silo, pool and bridge; tenant-aware identity and metering"
+      ]
+    },
+    {
+      "title": "Autoscaling and elasticity control",
+      "weeks": "6-7",
+      "topics": [
+        "Workload modelling: arrival processes, burstiness and diurnal patterns",
+        "Queueing models for capacity: M/M/1, M/M/c and Little's law",
+        "Reactive autoscaling: threshold rules, target tracking and cooldown",
+        "Control-theoretic autoscaling: PID, delay, oscillation and stability",
+        "Predictive autoscaling with time-series forecasts",
+        "Serverless scaling: cold starts, concurrency limits and scale to zero"
+      ]
+    },
+    {
+      "title": "Cloud storage architecture",
+      "weeks": "8-9",
+      "topics": [
+        "Object, block and file storage: interfaces, performance and use cases",
+        "Replication versus erasure coding; durability and availability arithmetic",
+        "Consistency models: eventual, causal and strong; quorum reads and writes",
+        "Distributed block storage and data placement across failure domains",
+        "Caching tiers and content delivery networks",
+        "Backup and disaster recovery: RPO, RTO and recovery drills"
+      ]
+    },
+    {
+      "title": "Cost and performance engineering",
+      "weeks": "10-11",
+      "topics": [
+        "Pricing models: on-demand, reserved, spot; committed use and break-even analysis",
+        "The FinOps cycle: tagging, showback, chargeback and unit economics",
+        "Performance models: Amdahl's law, the universal scalability law and tail latency",
+        "Right-sizing and benchmarking instance families",
+        "Data gravity: egress charges, region choice and placement",
+        "Service level objectives, error budgets and capacity planning"
+      ]
+    },
+    {
+      "title": "Edge and multi-cloud design",
+      "weeks": "12",
+      "topics": [
+        "Edge and fog computing: latency budgets and cloudlets",
+        "Hybrid and multi-cloud: portability, lock-in and abstraction costs",
+        "Global traffic management: DNS steering, anycast and geo-replication",
+        "Data sovereignty and Africa-region design under constrained connectivity",
+        "Failure domains, blast radius and chaos engineering"
+      ]
+    },
+    {
+      "title": "Architecture review and design project",
+      "weeks": "13",
+      "topics": [
+        "Reviewing against the pillars: reliability, security, cost, performance and operations",
+        "Designing a national e-service platform for Ghana",
+        "Failure injection and trade-off analysis of the design",
+        "Presenting and defending an architecture decision"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "CPU, memory and I/O virtualisation",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Explain why x86 originally could not be trapped-and-emulated, how nested paging removes the cost of shadow page tables, and when SR-IOV beats virtio.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E4",
+          "title": "Check the virtualisation extensions and hypervisor flags on a Linux VM, then list which guest instructions need trapping"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E12",
+          "title": "Overcommit memory on three VMs sharing one host in the console, trigger ballooning, and record the guest slowdown"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E12",
+          "title": "Compare disk and network throughput of emulated, virtio and passthrough devices on the same instance, and explain the differences"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Containers, migration and placement",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Compute downtime for pre-copy live migration of an 8 GB VM with a given dirty rate, and pack 40 VMs onto the fewest hosts with and without 1.5x CPU overcommit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Create a process in its own namespace with a memory limit through cgroups and show it is confined"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E12",
+          "title": "Live-migrate a running VM between hosts under write load and measure total migration time and downtime"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Code first-fit-decreasing and best-fit VM placement for 200 VMs, compare hosts used, and add an overcommit ratio to see the risk"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Orchestrator architecture and scheduling",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Trace what happens from submitting a pod to it running, and apply dominant resource fairness to three tenants with different CPU and memory demands.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E4",
+          "title": "Deploy a three-replica workload on a small cluster and list which component created, scheduled and started each pod"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E4",
+          "title": "Use node affinity and taints to force a database pod onto a labelled node and show an unschedulable pod's reason"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement dominant resource fairness for three users with CPU and memory demands and compare the allocation with plain CPU fair-share"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Scheduler designs, reconciliation and networking",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compare monolithic, two-level and shared-state schedulers on scheduling latency and conflict rate, and write a controller loop in pseudocode that keeps five replicas running.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E4",
+          "title": "Delete a pod owned by a deployment and watch the controller recreate it, noting the events in order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E3",
+          "title": "Trace a packet from a pod to a service across two nodes in an overlay network and record each encapsulation step"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Simulate a shared-state scheduler with optimistic concurrency, measure the conflict rate as load grows, and compare with a single scheduler"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Multi-tenancy and isolation",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write a threat model for a SaaS platform hosting rival schools' records on shared infrastructure, and choose silo, pool or bridge tenancy for each layer with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E12",
+          "title": "Set CPU and memory quotas on two tenants sharing a host and show one tenant's load no longer slows the other"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E12",
+          "title": "Place two tenants in separate virtual networks with security groups and prove with connection tests that they cannot reach each other"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Respond to a case where a tenant sees another's data, trace the isolation failure from the evidence, and choose containment and redesign steps"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Workload models and reactive autoscaling",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Fit a Poisson arrival rate to hourly request counts for a mobile money API, use M/M/c to find servers for a 200 ms mean response, and compare with a threshold rule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E12",
+          "title": "Configure an autoscaling group on 60 percent CPU target and drive load up and down to see instances added and removed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute mean response time with M/M/c for 1 to 10 servers at a given arrival rate and plot the knee as utilisation nears one"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Generate a bursty diurnal request trace, replay it against threshold autoscaling, and report SLO violations and instance-hours"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Control-theoretic, predictive and serverless scaling",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Explain why a scaling loop with a five-minute start-up delay oscillates, and design a predictive policy that pre-warms capacity before a daily salary-day peak.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.6",
+          "engine": "E12",
+          "title": "Invoke a serverless function after idle periods and record cold-start versus warm latency for ten calls"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Simulate a PID-controlled instance count with a start-up delay, and find gains that avoid oscillation after a load step"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Forecast the next hour of load with a seasonal model, drive a predictive scaler, and compare its cost and violations with reactive scaling"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Storage types, durability and consistency",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compute annual durability for 3-way replication versus a 10+4 erasure code given a disk failure rate and repair time, and decide which consistency model a ledger needs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E12",
+          "title": "Store the same data in an object bucket, a block volume and a file share, and compare latency and access method for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Compute the probability of data loss for replication and erasure coding as disk failure rates and repair times vary"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Step through quorum reads and writes with N=5 across partitions and find settings of R and W that give strong or only eventual consistency"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Data placement, caching and disaster recovery",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Place replicas across racks and zones so that losing any one zone loses no data, size a CDN cache for a 5 percent hot set, and write an RPO and RTO plan for a hospital system.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E12",
+          "title": "Put a content delivery cache in front of a bucket and compare latency and origin load for the first and later requests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Implement hash-based data placement across zones and check that losing any single zone leaves every object readable"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E12",
+          "title": "Fail a primary region during a drill, restore from replicated backups, and measure achieved RPO and RTO against a stated target"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Pricing, FinOps and performance models",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compute the break-even utilisation for reserved against on-demand instances, tag a bill by team and product, and apply the universal scalability law to measured throughput.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E12",
+          "title": "Price a fixed workload on on-demand, reserved and spot instances in the calculator and tabulate the monthly cost of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E12",
+          "title": "Tag resources by team in a sample account, produce a showback report, and find three untagged cost items to assign"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Fit the universal scalability law to throughput measured at 1 to 32 nodes and predict the node count where adding more reduces throughput"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Right-sizing, data gravity and SLOs",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Right-size a fleet from utilisation traces, estimate the monthly egress bill of serving video from the wrong region, and compute the error budget for a 99.9 percent SLO.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.6",
+          "engine": "E7",
+          "title": "Compute allowed downtime per month for 99, 99.9 and 99.99 percent availability and the error budget left after two incidents"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Benchmark a workload on three instance families, compute cost per request for each, and pick the cheapest that meets latency"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E12",
+          "title": "Compare serving a dataset from a nearby region against a cheaper distant one, including egress and replication charges, and justify the choice"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Edge, multi-cloud and resilience",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Design traffic steering for a service with users in Accra, Lagos and Nairobi, state which data must stay in-country, and list the failure domains whose loss you can survive.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E12",
+          "title": "Configure a load balancer across two zones, take one down, and confirm users are served by the other"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E3",
+          "title": "Compare round-trip latency from a clinic to a distant region and to an edge site over a lossy link, and decide which runs the inference"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E12",
+          "title": "Inject zone, database and dependency failures in sequence into a three-tier design, record the blast radius of each, and fix the worst weakness"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Architecture review and design project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a national e-service architecture to a review panel with its cost model, SLOs, failure analysis and the three trade-offs you made, then answer questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Draw an architecture diagram for a given web service and mark where each pillar of the review checklist is addressed or missing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Build the core of a national service across two zones with autoscaling, storage and identity roles, then estimate its monthly bill"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Defend your design to a review panel scenario, answering challenges on cost, resilience and data residency, and revise a decision in response"
+        }
+      ]
+    }
+  ]
+}

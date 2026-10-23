@@ -1,0 +1,501 @@
+{
+  "slug": "generative-ai-and-large-language-models",
+  "description": "How large language models and diffusion models are built, aligned, evaluated, served and governed, taught with the maths and the engineering at graduate depth. Students implement small transformers and samplers, build retrieval and tool-using systems, evaluate them and cost their deployment in the browser lab.",
+  "modelledOn": [
+    "Jurafsky and Martin, Speech and Language Processing (transformer and large language model chapters)",
+    "Goodfellow, Bengio and Courville, Deep Learning",
+    "The original transformer paper (Attention Is All You Need) and the scaling-law and alignment research literature",
+    "Huyen, Designing Machine Learning Systems"
+  ],
+  "outcomes": [
+    "Implement a small decoder-only transformer with tokenisation, attention and sampling, and explain each component mathematically.",
+    "Explain pre-training data, scaling laws and distributed training, and estimate the compute needed for a given model and dataset.",
+    "Apply supervised fine-tuning, parameter-efficient adaptation and preference optimisation, and describe their failure modes.",
+    "Design retrieval-augmented and tool-using systems and measure their accuracy, grounding and robustness to prompt injection.",
+    "Evaluate generative models with benchmarks, judges and human studies, and report uncertainty and contamination risks.",
+    "Cost, optimise and govern the deployment of a model, including safety evaluation, misuse risks and regulatory duties."
+  ],
+  "units": [
+    {
+      "title": "Language models and the transformer",
+      "weeks": "1-2",
+      "topics": [
+        "Language modelling: n-grams, cross-entropy and perplexity",
+        "Tokenisation: byte-pair encoding, SentencePiece and the token cost of Twi, Ewe and Hausa text",
+        "Self-attention and the transformer: multi-head attention, rotary position encodings and layer normalisation",
+        "Decoder-only models: the causal mask, the next-token objective and the key-value cache",
+        "Decoding: greedy, beam, temperature, top-k and nucleus sampling; constrained and structured decoding"
+      ]
+    },
+    {
+      "title": "Pre-training at scale",
+      "weeks": "3-4",
+      "topics": [
+        "Data pipelines: crawling, deduplication, quality filtering, licensing and consent, low-resource languages",
+        "Scaling laws: compute-optimal training and the debate over emergent abilities",
+        "Optimisation: AdamW, learning rate schedules, mixed precision, gradient clipping and loss spikes",
+        "Distributed training: data, tensor and pipeline parallelism, ZeRO and fully sharded training",
+        "Mixture-of-experts, state-space models and other alternatives to dense attention"
+      ]
+    },
+    {
+      "title": "Instruction tuning and alignment",
+      "weeks": "5-6",
+      "topics": [
+        "Supervised fine-tuning on instruction data and chat templates",
+        "Parameter-efficient fine-tuning: LoRA, QLoRA and adapters",
+        "Reinforcement learning from human feedback: Bradley-Terry reward models and PPO",
+        "Direct preference optimisation, learning from AI feedback and constitutional methods; reward hacking and sycophancy",
+        "Reasoning models: chain of thought, verifier-based reinforcement learning and test-time compute"
+      ]
+    },
+    {
+      "title": "Prompting, retrieval and tool use",
+      "weeks": "7-8",
+      "topics": [
+        "In-context learning: few-shot prompting, chain of thought and self-consistency",
+        "Embeddings and vector search: dense retrieval, HNSW approximate nearest neighbours and chunking",
+        "Retrieval-augmented generation: pipeline design, reranking, citations and failure modes",
+        "Tool use and function calling: JSON schemas, the ReAct loop and multi-step planning",
+        "Agents in practice: memory, long-context limits, context engineering and prompt injection"
+      ]
+    },
+    {
+      "title": "Diffusion and multimodal generation",
+      "weeks": "9",
+      "topics": [
+        "Generative model families: autoregressive models, VAEs, GANs and normalising flows",
+        "Diffusion models: forward noising, denoising score matching, DDPM sampling and classifier-free guidance",
+        "Latent diffusion and text conditioning by cross-attention",
+        "Vision-language models and CLIP contrastive pre-training; speech recognition and synthesis",
+        "Video and audio generation, synthetic data and watermarking"
+      ]
+    },
+    {
+      "title": "Evaluation and benchmarking",
+      "weeks": "10",
+      "topics": [
+        "Intrinsic and extrinsic evaluation: perplexity, BLEU and ROUGE and their limits",
+        "Benchmarks for knowledge, reasoning and code (pass@k); contamination and saturation",
+        "LLM-as-judge and human preference arenas; inter-annotator agreement and judge bias",
+        "Hallucination and factuality measurement; calibration of confidence",
+        "Evaluating for local languages and tasks; statistical significance and confidence intervals"
+      ]
+    },
+    {
+      "title": "Serving, cost and efficiency",
+      "weeks": "11",
+      "topics": [
+        "Inference mechanics: prefill and decode, memory-bound decoding, KV-cache size, continuous batching and paged attention",
+        "Quantisation (int8, int4, GPTQ and AWQ), pruning and distillation",
+        "Speculative decoding, FlashAttention and tensor-parallel serving",
+        "Cost modelling: tokens, GPU hours and utilisation; cloud versus on-device; autoscaling endpoints",
+        "Small models at the edge: phones, low bandwidth and offline use"
+      ]
+    },
+    {
+      "title": "Safety, misuse and governance",
+      "weeks": "12-13",
+      "topics": [
+        "Harms: bias, toxicity, privacy leakage, memorisation and copyright",
+        "Adversarial behaviour: jailbreaks, prompt injection, data poisoning and red-teaming",
+        "Misuse: disinformation, fraud and deepfakes; watermarking and content provenance",
+        "Governance: AI regulation, model cards, audits and responsible release; the African Union data and AI strategies",
+        "Project: build and evaluate a retrieval-augmented assistant for farmer advisory or health information"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Language models, tokens and attention",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Derive the scaled dot-product attention formula and explain why the scaling factor is needed using the variance of the dot product.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Train a bigram model on a small Twi text corpus and compute its perplexity on a held-out passage."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Implement byte-pair encoding, train 200 merges on mixed English and Twi text, and compare tokens per sentence between the two languages."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Step through one attention head on a five-token sentence, show the query-key score matrix and softmax weights, and verify the output vectors by hand."
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Decoder-only models and decoding",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Explain why caching keys and values makes generation linear rather than quadratic per token, and compute the cache memory for a given model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Sample from a fixed next-token distribution with temperature 0.5, 1.0 and 1.5 and report how the entropy of the samples changes."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Implement a causal mask and a tiny one-layer transformer forward pass in NumPy, and check no position attends to later tokens."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Implement top-k, nucleus sampling and constrained decoding to a JSON grammar, then count how often each method produces valid output over 200 samples."
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Data and scaling laws",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Given a compute budget of 1e22 floating-point operations, use a scaling law to choose model size and token count, and state the assumptions behind your choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Deduplicate a corpus of 1000 documents with exact hashing and then near-duplicate shingling, and report how many each method removes."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Fit a power law to loss versus compute for five small training runs and extrapolate the loss for a run ten times larger."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Build a quality filter with a classifier and rules for web text in Ghanaian languages, measure its precision and recall, and note what it wrongly removes."
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Optimisation, distributed training and architectures",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compute the GPU memory needed for a 7-billion-parameter model with mixed-precision AdamW, and show how ZeRO sharding divides it across 8 devices.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Compare learning rate schedules (constant, cosine and warmup) on a small network and note which avoids early divergence."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Plan a data-parallel training job on a simulated GPU cluster, estimate time and cost for each cluster size, and find the point where communication dominates."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Implement a top-2 mixture-of-experts layer with a load-balancing loss, train on a toy task, and report expert utilisation with and without the loss."
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Instruction tuning and parameter-efficient adaptation",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "Show that LoRA with rank 8 on a 4096 by 4096 weight matrix trains under one percent of the parameters, and discuss what capacity is lost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Format 20 farmer question and answer pairs with a chat template and mask the loss to the answer tokens only."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement a LoRA layer on a small network, train only the low-rank matrices on a new task, and compare accuracy with full fine-tuning."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E12",
+          "title": "Cost a fine-tuning run for a 7-billion-parameter model on rented GPUs with full tuning versus QLoRA, and pick the cheapest option meeting a memory limit."
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Preference learning and reasoning",
+      "topics": [
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Derive the direct preference optimisation loss from the RLHF objective and explain what it removes from the training pipeline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Fit a Bradley-Terry reward model to 50 pairwise preference labels and check it ranks held-out pairs correctly."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Compute the DPO loss for four preference pairs by hand and in code, and show how the loss changes with the beta parameter."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Compare single-sample answers with self-consistency over 10 sampled chains of thought on 30 arithmetic problems and report accuracy and token cost."
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "In-context learning, embeddings and retrieval",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Design the chunking, embedding and reranking choices for a retrieval assistant over 2000 pages of agricultural extension guides, and say how you would measure retrieval quality.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Embed 30 short documents with a given embedding table, run cosine nearest-neighbour search for five queries, and report the top-3 matches."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Step through a HNSW search on a small graph and compare the number of distance computations with brute force."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Build a retrieval-augmented pipeline with reranking and citations over a small guide, and measure answer correctness with and without retrieval on 25 questions."
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Tool use, agents and prompt injection",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a threat model for an agent that can read email and send mobile money payments, listing the injection paths and the permission limits you would impose.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Define a JSON schema for a weather lookup tool, parse a model call against it, and run the tool to return its result."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement a ReAct loop with a calculator and a search tool, run it on 10 questions, and log where it picks the wrong tool."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Defend a tool-using assistant against a scripted prompt injection hidden in a retrieved web page, choosing mitigations and being scored on what leaks."
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Diffusion and multimodal models",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Derive why the DDPM training objective reduces to predicting the noise added at a random step, and contrast the sampling cost with a GAN.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Apply the forward noising process to a 2D point set at five time steps and plot how the distribution approaches a Gaussian."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Train a tiny denoiser on a 2D ring dataset and sample from it with 50 reverse steps, then compare with 10 steps."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Compute a CLIP-style contrastive loss for a batch of eight image and text embeddings and show which pairs are retrieved correctly."
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Evaluating generative systems",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Design an evaluation for a Twi-to-English assistant: tasks, metrics, human raters, sample size and how you would detect benchmark contamination.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Score five machine translations against references with BLEU and ROUGE, and find one pair where the metrics disagree with a human reading."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Compute pass@1 and pass@10 for a code generator from 20 samples per problem using the unbiased estimator."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compare an LLM judge with human labels on 100 outputs using Cohen's kappa and check position bias by swapping answer order."
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Inference, compression and cost",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Estimate tokens per second, memory use and cost per thousand requests for serving a 13-billion-parameter model, then show how 4-bit quantisation changes each figure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Calculate the KV-cache memory for batch sizes 1, 8 and 32 at 4096 context and find the batch where a 24 GB GPU runs out."
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Quantise a weight matrix to int8 and int4 with per-channel scales and measure the output error against the full-precision layer."
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E12",
+          "title": "Size and autoscale a model endpoint for a daily traffic curve, compare on-demand and reserved GPUs, and meet a latency target at lowest monthly cost."
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Harms, attacks and misuse",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write a red-team plan for a health information chatbot: harm categories, test prompts, severity ratings and the release criteria you would set.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Measure bias in a toy text classifier by comparing scores for sentences differing only in a name or region, and report the gap."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Run a red-team session on a scripted assistant, record which jailbreak categories succeed, and rate each by severity."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Implement a green-list watermark for sampled text and measure its detection rate and false positives on watermarked and human-written passages."
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Governance and the retrieval assistant project",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present the project: the assistant, its retrieval corpus, the evaluation results with confidence intervals, a model card and the risks you would disclose before release.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Complete a model card for a classroom assistant, and decide which risks and limitations to disclose to its users."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Advise a ministry on whether to deploy a chatbot for health queries under a draft regulation, and be scored on risk reasoning."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build and evaluate a retrieval-augmented farmer advisory assistant on 40 questions, reporting accuracy, citation correctness and failures with confidence intervals."
+        }
+      ]
+    }
+  ]
+}

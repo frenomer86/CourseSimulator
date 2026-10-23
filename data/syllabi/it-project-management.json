@@ -119,5 +119,402 @@
         "Capstone: a full project plan (charter, WBS, schedule, budget, risk register, communications plan) for a real IT project"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Projects, life cycles and why they fail",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Pick a failed public IT project, identify which of the triple constraints broke first, and map its lifecycle onto the five process groups, naming two warning signs missed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw the five process groups as a diagram and place ten given project activities in the correct group"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Work a scenario where the sponsor asks for a faster launch at the same budget, choose trade-offs on the triple constraint, and score against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Diagnose a failing school management system rollout, choosing which causes to investigate first, and score against the failure-analysis rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Choosing an approach and tools",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Recommend predictive, agile or hybrid delivery for three given projects (a payroll upgrade, a mobile-money app, a hospital system) and defend each with project characteristics.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Match six project descriptions to predictive, agile or hybrid approaches and justify each choice in one sentence against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Enter a 12-task project into the Gantt tool with dates and dependencies, and export the resulting schedule"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Advise a client whose requirements keep changing on moving from waterfall to a hybrid approach, weighing cost and risk, and score the decision"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Charter, plan and project closure",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Write a one-page project charter for a farmer-cooperative SMS price service, including objectives, success measures, assumptions and the sponsor's authority.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Select the correct components for a charter in a branching scenario, rejecting items that belong in the plan, and score against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Handle three change requests through an integrated change control process, approving or rejecting each with its schedule and cost impact"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Draw a closure process flow covering acceptance, handover, contract closure and lessons learned for a software project, with owners at each step"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Scope and requirements",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Write ten user stories with acceptance criteria for a clinic appointment app and build a three-level work breakdown structure for the same project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Build a three-level work breakdown structure for a school website project and check that each work package has a clear deliverable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Interview a simulated stakeholder to gather requirements for a market traders app, choosing questions wisely, and score the coverage achieved"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Respond to scope creep requests during a build, accepting or declining each with justification, and compare final cost and schedule outcomes"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Activities, estimates and critical path",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "For a 10-activity network with durations, draw the precedence diagram, run forward and backward passes by hand, and state the critical path and total float of each activity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Draw a precedence diagram from a table of eight activities with predecessors and mark the lead and lag between two of them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E9",
+          "title": "Run the critical path method on a 10-activity network, record early and late times and float, and highlight the critical path"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Estimate durations for five tasks using analogous, three-point and bottom-up methods and compare the resulting project end dates"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "PERT, Gantt and agile planning",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Use PERT three-point estimates to find the probability of finishing a project within 40 days, then show how crashing the critical path shortens it and at what cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E9",
+          "title": "Draw a Gantt chart for a 12-task website launch with milestones and a baseline, and note the date of the last task"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Compute expected duration and variance of each PERT activity and find the probability of finishing within a stated deadline"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E7",
+          "title": "Forecast release dates for a 120-point backlog from three sprints of velocity data, and show the range with Monte Carlo simulation"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Cost, budget and earned value",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Prepare a cedi budget for a university records system, with contingency and management reserves, and calculate CPI, SPI and EAC at the project's midpoint from given figures.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Calculate PV, EV, AC, CV, SV, CPI and SPI for a project at week 8 from a table and state whether it is over budget and behind"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Estimate the effort of a 20-function-point application using a simple COCOMO relationship and give the cost range in cedis"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Forecast EAC and TCPI for a project at 40 percent complete under three scenarios and recommend whether to re-baseline"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Quality management",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Create a Pareto chart and a cause-and-effect diagram for a list of defects reported in a student portal's first month, and propose two preventive actions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Draw a Pareto chart from a table of 80 defects by category and identify the two categories causing most of the problems"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E9",
+          "title": "Draw a cause-and-effect diagram for slow response in a payroll system with at least five causes across four categories"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Plot a control chart of weekly defect counts, identify out-of-control points, and recommend when to act on them or investigate further"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Resources, teams and procurement",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Build a RACI matrix for six deliverables and five roles on a hospital software project, and analyse a team conflict using Tuckman's stages.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Build a RACI matrix for six deliverables and five roles and check that each deliverable has exactly one accountable person"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Manage a team in conflict over responsibilities, choosing interventions at each stage, and score the outcome against the team rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Choose between three vendor bids and an in-house build using cost, risk and contract type, and defend your choice against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Communication management",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Draw up a communications matrix for a project with a sponsor, district officers and users, and write a one-page status report in plain language for a non-technical sponsor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Build a communications matrix for five stakeholder groups listing information needed, frequency, channel and owner"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Choose what to include in a weekly status report from the project data and the audience, and score the clarity against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Deliver bad news about a delayed launch to a sponsor in a branching scenario, choosing wording and options, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Risk identification and analysis",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3"
+      ],
+      "exercise": "Build a risk register with ten risks for a mobile banking app, score probability and impact, rank them, and compute the expected monetary value for the top three.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E7",
+          "title": "Score eight risks for probability and impact, place them in a matrix, and list the three highest ranked in a risk register"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E7",
+          "title": "Compute expected monetary values for two decision tree branches on build versus buy and recommend the option with the better expected value"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E7",
+          "title": "Run a Monte Carlo simulation of a 6-task schedule with triangular durations and report the 80 percent confidence completion date"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Risk responses and common IT risks",
+      "topics": [
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "For five common IT risks including load-shedding and poor connectivity, choose a response strategy, define a trigger and a contingency plan, and name an owner.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Select avoid, mitigate, transfer or accept for six risks in a scenario and justify each choice against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.5",
+          "engine": "E9",
+          "title": "Add risk response tasks into a Gantt chart for a data-centre project, including a generator backup, and recheck the schedule impact"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E10",
+          "title": "Manage a project through a vendor failure, a power outage and a requirements change, balancing reserves, and compare final outcomes"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Stakeholders, ethics and capstone planning",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4"
+      ],
+      "exercise": "Complete and present a project plan pack for a real IT project, including charter, WBS, schedule, budget, risk register and communications plan, with a note on ethical duties.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E9",
+          "title": "Place twelve stakeholders on a power-interest grid and list the engagement approach for each quadrant"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.3",
+          "engine": "E10",
+          "title": "Respond to a request from a manager to hide a security flaw before launch, choosing actions, and score against the ethics rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.4",
+          "engine": "E9",
+          "title": "Produce a WBS, precedence network with critical path, and Gantt chart for a capstone project and check all three agree on dates"
+        }
+      ]
+    }
   ]
 }

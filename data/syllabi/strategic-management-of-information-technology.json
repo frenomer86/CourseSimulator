@@ -1,0 +1,502 @@
+{
+  "slug": "strategic-management-of-information-technology",
+  "description": "How senior IT leaders align technology with business strategy: investment and portfolio decisions, sourcing and vendors, cloud strategy, disruptive technology, organisation and governance, enterprise architecture and digital transformation. Students work through branching case studies with evidence and scoring, build business cases and architecture roadmaps, and price cloud options in the console.",
+  "modelledOn": [
+    "Ward and Peppard, Strategic Planning for Information Systems",
+    "Ross, Weill and Robertson, Enterprise Architecture as Strategy",
+    "The Open Group, TOGAF Standard and ArchiMate Specification, with COBIT governance guidance"
+  ],
+  "outcomes": [
+    "Analyse an organisation with industry and capability frameworks and derive an IT strategy aligned with its business goals.",
+    "Build and defend an IT business case using NPV, IRR, total cost of ownership, risk adjustment and a benefit realisation plan.",
+    "Evaluate sourcing, vendor and cloud options against cost, risk, lock-in and exit criteria.",
+    "Assess disruptive technologies and choose between experiment, partner and ignore with explicit evidence.",
+    "Design an IT organisation and governance model with decision rights, roles and risk and compliance controls.",
+    "Produce a target enterprise architecture, gap analysis and phased transformation roadmap for a real-sized organisation."
+  ],
+  "units": [
+    {
+      "title": "IT strategy and business alignment",
+      "weeks": "1-2",
+      "topics": [
+        "Industry analysis and value chain: the five forces model, resource-based view and where IT creates advantage",
+        "Strategic alignment models: business strategy, IT strategy and the alignment maturity assessment",
+        "IT strategy formulation: vision, capability assessment, principles and roadmap",
+        "Measuring IT value: balanced scorecard, KPIs and the productivity paradox",
+        "Digital strategy in Africa: leapfrogging, mobile money platforms and fintech ecosystems"
+      ]
+    },
+    {
+      "title": "IT investment, portfolio and business cases",
+      "weeks": "3-4",
+      "topics": [
+        "Business case methods: cost-benefit analysis, NPV, IRR, payback and total cost of ownership",
+        "Risk-adjusted valuation: sensitivity and scenario analysis, real options and optimism bias",
+        "IT portfolio management: classification, scoring models and project selection under budget limits",
+        "Benefit realisation: benefit mapping, ownership, tracking and post-implementation review",
+        "Funding and budgeting models: chargeback, showback, project versus product funding"
+      ]
+    },
+    {
+      "title": "Sourcing, vendors and cloud strategy",
+      "weeks": "5-6",
+      "topics": [
+        "Make, buy or partner: transaction cost economics and core versus context activities",
+        "Outsourcing models: insourcing, offshoring, managed services and co-sourcing; governance of the relationship",
+        "Vendor selection: RFI and RFP, weighted scoring, due diligence and reference checks",
+        "Contracts and service level agreements, exit clauses, escrow and lock-in",
+        "Cloud adoption strategy: IaaS, PaaS and SaaS choices, multi-cloud, data residency and sovereignty",
+        "Cloud cost governance: FinOps, reserved capacity, tagging and unit economics"
+      ]
+    },
+    {
+      "title": "Disruptive technologies and innovation",
+      "weeks": "7",
+      "topics": [
+        "Disruptive innovation theory, S-curves and the technology adoption lifecycle",
+        "Horizon scanning: technology radar, hype cycle and weak signals",
+        "AI, blockchain, IoT and low-code as strategic options: experiment, partner or wait",
+        "Innovation management: labs, pilots, stage gates and fail-fast learning",
+        "Platform strategy and network effects: two-sided markets and agent networks"
+      ]
+    },
+    {
+      "title": "Organisational design and IT governance",
+      "weeks": "8",
+      "topics": [
+        "IT organisation models: centralised, federated and decentralised; the CIO role and the CDO role",
+        "Governance frameworks: COBIT, ISO/IEC 38500, decision rights and steering committees",
+        "Talent, culture and change management: stakeholder analysis, the eight-step change model and ADKAR",
+        "Product and platform operating models: agile at scale, DevOps and team topologies",
+        "IT risk, compliance and ethics: Ghana data protection and cyber security obligations"
+      ]
+    },
+    {
+      "title": "Enterprise architecture",
+      "weeks": "9-10",
+      "topics": [
+        "Purpose of enterprise architecture and its four domains: business, data, application and technology",
+        "Frameworks: TOGAF architecture development method, Zachman, and ArchiMate modelling",
+        "Baseline and target architecture, gap analysis and migration roadmap",
+        "Integration patterns: service-oriented architecture, APIs, event-driven design and enterprise service bus",
+        "Architecture governance: principles, standards, compliance reviews and technical debt",
+        "Capability maps, value streams and application portfolio rationalisation (TIME model)"
+      ]
+    },
+    {
+      "title": "Digital transformation",
+      "weeks": "11-12",
+      "topics": [
+        "Transformation frameworks: customer experience, operations and business model change; digital maturity models",
+        "Legacy modernisation: the six Rs of migration, strangler pattern and replatforming",
+        "Data as a strategic asset: data strategy, analytics operating model and data governance roles",
+        "Running a transformation programme: roadmap, change impact, communications, KPIs and funding",
+        "Why programmes fail: scope, culture and vendor causes; case study of e-government and national digital identity"
+      ]
+    },
+    {
+      "title": "Capstone: strategy for an organisation",
+      "weeks": "13",
+      "topics": [
+        "Diagnose the case organisation: SWOT, capability gaps and stakeholder map",
+        "Target architecture and phased transformation roadmap",
+        "Business case, funding plan and risk register",
+        "Board presentation and defence of the recommendation"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Strategy analysis and alignment",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Apply five forces and a value chain to a Ghanaian rural bank, then identify three places where IT could create advantage and rank them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Analyse a rural bank case with the five forces, choose the two forces most affected by mobile money, and justify your strategic response using the evidence given"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Score the alignment maturity of a hospital group on six criteria from interview evidence and recommend two actions to move it up a level"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw an IT capability map for a regional distributor, shade capabilities as strong, adequate or weak, and derive a prioritised list of strategic initiatives"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Measuring value and digital strategy",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Build a balanced scorecard for an IT department with two measures in each perspective, and critique a measure that could be gamed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Choose KPIs for an IT department scorecard from a set of fifteen candidates, rejecting those that are vanity or easily gamed, and justify the final eight"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Evaluate a fintech partnership proposal from a mobile network operator, weighing platform effects, regulation and dependence, and recommend terms to negotiate"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Map the ecosystem of a mobile money service (agents, banks, regulator, merchants) with the flows of money and data, and identify the strategic choke point"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Business cases and valuation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Complete a five-year business case for a new patient records system with costs, benefits, NPV, IRR and payback, then test it with a sensitivity table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute NPV, IRR and payback for a five-year project with given cash flows at a 15 percent discount rate and decide whether to proceed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Vary benefit delivery and cost overrun by 20 percent in a sensitivity table, run 1,000 Monte Carlo trials, and report the probability that NPV is negative"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Select projects from a list of twelve proposals under a fixed budget using a scoring model, then defend your choice against a senior sponsor challenge"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Benefit realisation and funding",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Create a benefit map linking a new e-ticketing system to measurable outcomes, owners and dates, and plan the post-implementation review.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Draw a benefit map from enabling changes to business benefits for a university registration system, assigning an owner and a measure to each benefit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Review a delivered project that met scope and budget but delivered little value, identify why benefits were not realised, and propose recovery actions"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Compare chargeback, showback and central funding for allocating a shared IT budget across five departments, and show who wins or loses in each"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Sourcing and vendor selection",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Decide which of six IT activities to keep, outsource or share, using core versus context and transaction cost reasoning, and score three vendor bids.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Classify six IT activities as core or context and choose make, buy or partner for each, recording the transaction-cost reasoning behind it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Score four vendors against weighted criteria, test how the ranking changes when the weights move by 10 percent, and report the robust choice"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Negotiate a managed service arrangement in a branching case, choosing scope, governance structure and measures, and see how the vendor responds to each move"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Contracts, cloud strategy and cost",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compare a three-year on-premises, single-cloud and multi-cloud plan for a bank on cost, resilience and lock-in, with an exit plan for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Review a draft service contract for faulty SLA clauses (credit caps, exclusions, no exit assistance) and propose five revisions with reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E12",
+          "title": "Price the same workload on three deployment patterns in the cloud console, and tabulate monthly cost, data egress and the effort to move away"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E12",
+          "title": "Apply tagging, right-sizing and reserved capacity to a running estate in the console, and report the monthly saving and the unit cost per customer"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Disruption and innovation strategy",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Place five technologies on a technology radar for a Ghanaian insurer, and propose one pilot with stage gates, budget, and criteria to stop or scale.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Analyse why an incumbent lost to a low-end entrant using disruption theory, and identify the point when a different response would have worked"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Decide among experiment, partner or wait for blockchain, generative AI and IoT sensors in a supply chain case, justifying each by evidence and risk"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E9",
+          "title": "Draw the two sides of a platform for farmers and buyers, mark the network effects and the chicken-and-egg problem, and plan the launch sequence"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Organisation, governance and change",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Design the IT organisation and decision rights for a national retailer, including a steering committee, and plan the change programme for it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Choose between centralised, federated and decentralised IT for a group with five subsidiaries, justify the choice, and state the cost of the alternative"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Draw the governance structure with decision rights for five IT decisions (principles, architecture, investment, security, sourcing) as a matrix"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Handle a data breach and regulatory inquiry case as the CIO, choosing disclosure, containment and governance actions, and review the outcome score"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Enterprise architecture frameworks",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Model the baseline architecture of a university in ArchiMate-style layers, define a target, and list the gaps with the work needed to close each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Draw the business, application and technology layers of a bank branch operation and the links between them, using standard architecture notation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Work through the phases of the TOGAF method on a case, deciding at each phase what deliverable and stakeholder sign-off you need"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E9",
+          "title": "Produce a baseline, a target and a gap table for a logistics firm, then group the gaps into three migration phases with dependencies"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Integration, governance and portfolio rationalisation",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Rationalise an application portfolio of 40 systems using the TIME model, and design an integration approach for the ones that remain.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E9",
+          "title": "Design the integration of a hospital information system, a lab system and a mobile money payer using APIs and events, and justify each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E7",
+          "title": "Score 40 applications on business value and technical health, plot them on the TIME quadrants, and decide tolerate, invest, migrate or eliminate for each group"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Run an architecture review board meeting on a project that breaks two principles, decide approve, conditionally approve or reject, and justify"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Digital transformation and modernisation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Assess the digital maturity of a district assembly, then choose a migration approach (rehost, replatform, refactor, retire) for each of its ten systems.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Score an organisation on a digital maturity model from interview evidence and name the three weakest dimensions and the first action for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E12",
+          "title": "Move a legacy application to the cloud in the console by rehosting, then by replatforming, and compare effort, downtime, risk and monthly cost"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Define a data strategy for a national health insurer, assigning data owners and stewards and choosing the three analytics use cases to fund first"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Running a transformation programme",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Build a three-year transformation roadmap with milestones, funding, change impact and KPIs, and write a risk list of the five most likely failures.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E9",
+          "title": "Build a Gantt-style three-year roadmap with six initiatives, dependencies and decision gates, and mark the critical path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Analyse an e-government programme that overran by 200 percent, classify the failure causes, and rank the three that were most avoidable"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Lead the change communications for a staff transition to a new system, picking messages and channels for five stakeholder groups and reading their reactions"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Capstone: IT strategy and board defence",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Deliver the strategy report and a 10-minute board presentation with an architecture diagram, roadmap, business case and risk register, then answer questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Diagnose the capstone organisation with a SWOT and stakeholder map, selecting the four strategic issues the board must decide"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Produce the target architecture diagram and a gap-based roadmap in three phases for the capstone organisation, labelling dependencies"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Complete the capstone business case with NPV, IRR and a sensitivity analysis, and a risk register scored by likelihood and impact"
+        }
+      ]
+    }
+  ]
+}

@@ -101,5 +101,395 @@
         "Case study: the Linux kernel and how to contribute; the future of operating systems"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What an OS does and its structures",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Compare monolithic, microkernel and layered OS designs in a short table of trade-offs, and say which best fits a small embedded device.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E6",
+          "title": "Trace a system call from user mode to kernel mode in a step visualiser, labelling the trap, the mode switch and the return"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "List five resources an OS virtualises for a process (CPU, memory, files) and explain what would break if one were not virtualised"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Compare how xv6, Linux and Windows structure their kernels, and justify which structure a student OS project should copy and why"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Shell, system programming and xv6",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a short program design (on paper) for a shell that forks a child, execs a command and waits for it, noting where errors can occur.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Write a C program that forks a child process, has it exec a command, and the parent waits for and reports the exit status"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Build a two-process pipeline with a pipe so one process's output becomes another's input, matching the behaviour of a shell pipe"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E6",
+          "title": "Build and boot xv6 in the emulator, step through the first few lines of kernel code executed after boot, and identify where the first process starts"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Processes, threads and scheduling",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw a Gantt chart by hand for FCFS, SJF and round robin scheduling of five given processes, and compute the average waiting time for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step through a process's states from creation to termination in the visualiser and identify the event that causes each transition"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Compare FCFS, SJF and round robin scheduling on the same five processes and determine which gives the lowest average waiting time"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E4",
+          "title": "Create three pthreads that increment a shared counter without synchronisation, show the final count is wrong, then fix it with a lock"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Advanced scheduling and xv6",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain, with a worked example, why a multilevel feedback queue can starve a long process, and propose a fix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Simulate rate-monotonic and earliest-deadline-first scheduling for three periodic tasks and determine which one meets all deadlines"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Implement a round robin scheduler in xv6 and measure the turnaround and response time for a set of test processes"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Compare the Linux CFS virtual runtime mechanism with multilevel feedback queues on a scenario with one interactive and one batch process"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Synchronisation",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Work through the dining philosophers problem on paper, show where a naive solution deadlocks, and describe the fix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E4",
+          "title": "Implement a producer-consumer solution with a semaphore and a shared buffer, and show it does not lose or duplicate items under load"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Trace a race condition on a shared counter step by step in the visualiser, showing the exact interleaving that produces a wrong result"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Apply the banker's algorithm to decide whether a requested resource allocation is safe, and show the unsafe state it would have avoided"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Concurrency bugs and IPC",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Compare shared memory and message passing for two cooperating processes, and state which is easier to reason about and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E4",
+          "title": "Build two processes that communicate over a named pipe and a socket, and compare the setup each required"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E4",
+          "title": "Find and fix an atomicity violation in a given multi-threaded program that updates two related variables without a single lock"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Find and fix an ordering violation where one thread reads a flag before another thread that should set it first has run, visible as an intermittent failure"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Memory management",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Work a paging address-translation example by hand for a given page size and page table, converting three logical addresses to physical ones.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Step through address translation for a given logical address using a two-level page table and identify the frame it maps to"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Compare first-fit and best-fit allocation on the same sequence of memory requests and show which leaves less fragmentation"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Simulate a TLB with a given hit rate and compute the effective memory access time, then show the effect of doubling the hit rate"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Virtual memory and xv6",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compare FIFO, LRU and optimal page replacement on the same reference string and compute the page faults each produces.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Run FIFO, LRU and optimal replacement on the same page reference string and compare the number of page faults for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Simulate a demand-paging system under increasing load and identify the point where thrashing begins from the page fault rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E4",
+          "title": "Implement lazy allocation for a memory region in xv6 so pages are only mapped on first access, and confirm it with a test program"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "File systems",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compare FAT, ext4 and NTFS on how each stores file metadata and handles large files, and recommend one for a low-power field device.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E4",
+          "title": "Create files and directories in a simulated Linux shell, inspect permissions and hard and soft links, and explain what each permission bit controls"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Trace how an inode and its direct and indirect blocks locate the data of a file larger than the direct blocks can address"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E4",
+          "title": "Simulate a crash during a file write with and without journaling enabled, and show journaling prevents the file system from being left inconsistent"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Storage performance and reliability",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compute the seek pattern and total head movement for FCFS, SSTF and SCAN disk scheduling on the same sequence of requests.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Compare FCFS, SSTF and SCAN disk scheduling on the same request queue and compute the total head movement for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Simulate an SSD's flash translation layer handling writes and show why random writes behave differently from a spinning disk"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Compute the usable capacity and fault tolerance of RAID 0, 1 and 5 for the same four disks, and recommend one for a small file server"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "I/O systems",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Compare polling, interrupt-driven and DMA-based I/O for transferring a large file, with a table of CPU involvement for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E4",
+          "title": "Trace an interrupt-driven I/O request from the device raising an interrupt to the driver completing the transfer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Write a simple character device driver in a simulated kernel and confirm a user program can read and write through it"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E4",
+          "title": "Measure the CPU time saved by moving a large data transfer from polling to DMA in the simulated I/O subsystem"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Protection, virtualisation and containers",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Compare a type 1 hypervisor, a type 2 hypervisor and containers for isolating three untrusted applications, and recommend one with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Trigger a simulated buffer overflow in a vulnerable program and show how address-space randomisation and a stack canary would have stopped it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Compare trap-and-emulate virtualisation with paravirtualisation for a guest OS instruction, and explain why paravirtualisation needs a modified guest"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E4",
+          "title": "Launch two containers sharing a kernel but isolated by namespaces and cgroups, and show one cannot see the other's processes or exceed its memory limit"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Multiprocessor and mobile operating systems",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a short comparison of Android's and iOS's app lifecycle and permission models, and explain one security trade-off each design makes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E6",
+          "title": "Simulate scheduling five threads across two CPU cores with processor affinity and measure the effect of cache coherence traffic"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E11",
+          "title": "Trace an Android app's lifecycle from launch through background to being killed for memory, and state what state is lost at each transition"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E4",
+          "title": "Investigate a described Linux kernel contribution workflow and explain, step by step, how a patch moves from a mailing list to the mainline kernel"
+        }
+      ]
+    }
   ]
 }

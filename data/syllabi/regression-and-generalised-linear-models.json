@@ -1,0 +1,505 @@
+{
+  "slug": "regression-and-generalised-linear-models",
+  "description": "The statistical modelling toolkit behind most applied data work, from least squares to generalised linear and mixed-effects models. Students derive the estimators, fit and diagnose models on African health, agriculture and economic data, and quantify prediction error with cross-validation and the bootstrap.",
+  "modelledOn": [
+    "James, Witten, Hastie and Tibshirani, An Introduction to Statistical Learning",
+    "Kutner, Nachtsheim, Neter and Li, Applied Linear Statistical Models",
+    "Agresti, Foundations of Linear and Generalized Linear Models",
+    "Gelman and Hill, Data Analysis Using Regression and Multilevel/Hierarchical Models"
+  ],
+  "outcomes": [
+    "Derive the least squares estimator in matrix form and state the assumptions behind its inference.",
+    "Fit, interpret and test simple and multiple regression models including categorical predictors and interactions.",
+    "Diagnose violations such as non-constant variance, influential points and collinearity, and apply remedies.",
+    "Select and regularise models using information criteria, ridge, lasso and cross-validation.",
+    "Fit logistic, Poisson and other generalised linear models and interpret coefficients, deviance and overdispersion.",
+    "Model clustered data with random effects and quantify uncertainty with the bootstrap."
+  ],
+  "units": [
+    {
+      "title": "Simple linear regression",
+      "weeks": "1-2",
+      "topics": [
+        "Least squares for one predictor: normal equations and the geometric view as projection",
+        "Properties of the estimators: unbiasedness, variance and the Gauss-Markov theorem",
+        "Inference: t-tests, confidence and prediction intervals, the ANOVA table and R-squared",
+        "Correlation versus regression, regression to the mean and the hazards of extrapolation",
+        "Transformations: log-log models and elasticities, Box-Cox"
+      ]
+    },
+    {
+      "title": "Multiple linear regression",
+      "weeks": "3-4",
+      "topics": [
+        "Matrix formulation: the estimator (X'X)^-1 X'y, the hat matrix and degrees of freedom",
+        "Partial coefficients, adjusted R-squared and the F-test for nested models",
+        "Categorical predictors, dummy coding and interaction terms",
+        "Polynomial terms, splines and basis expansions",
+        "Confounding, omitted-variable bias and Simpson's paradox"
+      ]
+    },
+    {
+      "title": "Diagnostics and remedies",
+      "weeks": "5",
+      "topics": [
+        "Residual plots for linearity, constant variance, normality and independence",
+        "Leverage, Cook's distance, DFFITS and influential observations",
+        "Multicollinearity: variance inflation factors and condition numbers",
+        "Heteroscedasticity: Breusch-Pagan test, weighted least squares and robust sandwich standard errors",
+        "Autocorrelated errors and the Durbin-Watson test"
+      ]
+    },
+    {
+      "title": "Model selection and regularisation",
+      "weeks": "6",
+      "topics": [
+        "Best subset and stepwise selection; AIC, BIC and Mallows' Cp",
+        "Ridge regression: shrinkage, bias-variance trade-off and the closed form",
+        "Lasso and elastic net: sparsity, the geometry of the penalty and coordinate descent",
+        "Choosing the penalty by cross-validation and the one-standard-error rule",
+        "Principal components regression and partial least squares"
+      ]
+    },
+    {
+      "title": "Logistic regression and classification",
+      "weeks": "7-8",
+      "topics": [
+        "Binary responses, odds and the logit link; maximum likelihood fitted by iteratively reweighted least squares",
+        "Interpreting coefficients as odds ratios; Wald and likelihood-ratio tests",
+        "Deviance, goodness of fit and the Hosmer-Lemeshow test",
+        "Classification performance: confusion matrix, ROC curve, AUC, calibration and threshold choice",
+        "Multinomial and ordinal logistic regression",
+        "Separation, sparse data and rare events"
+      ]
+    },
+    {
+      "title": "Generalised linear models",
+      "weeks": "9-10",
+      "topics": [
+        "The exponential family and GLM framework: linear predictor, link and variance function",
+        "Poisson regression for counts; offsets for exposure and rate models",
+        "Overdispersion: quasi-Poisson and negative binomial regression",
+        "Binomial grouped data and gamma regression for positive skewed outcomes",
+        "Iteratively reweighted least squares for the general GLM and its convergence",
+        "Residuals, deviance and checking the link and variance assumptions"
+      ]
+    },
+    {
+      "title": "Mixed-effects and hierarchical models",
+      "weeks": "11",
+      "topics": [
+        "Clustered and repeated data: intraclass correlation and why ordinary least squares understates error",
+        "Random intercepts and slopes; REML estimation and best linear unbiased predictors",
+        "Partial pooling and shrinkage in hierarchical models of clinics, schools or villages",
+        "Generalised linear mixed models and model comparison",
+        "Longitudinal data: growth curves and missing observations"
+      ]
+    },
+    {
+      "title": "Resampling, prediction error and reporting",
+      "weeks": "12-13",
+      "topics": [
+        "Cross-validation: k-fold, leave-one-out shortcut for linear models and nested cross-validation",
+        "The bootstrap: case and residual resampling, percentile and BCa intervals",
+        "Prediction error: optimism, bias-variance decomposition and expected prediction error",
+        "Reproducible workflow and communicating uncertainty to non-statisticians",
+        "Capstone analysis of a real dataset such as cocoa yields, malaria incidence or household survey spending"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Least squares and inference for one predictor",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Derive the least squares slope and intercept, prove they are unbiased and compute a 95 percent confidence interval for the slope from a small table of data by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Fit a line to ten rainfall and maize yield pairs by the normal equations, plot residuals and verify that they sum to zero"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Fit a simple regression in R, read the ANOVA table and check that R-squared equals the squared correlation and F equals t squared"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Simulate 5,000 samples to show the slope estimator is unbiased, compare its variance with theory and see how it shrinks with n"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Correlation, regression to the mean and transformations",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Explain regression to the mean using exam scores or repeated clinic measurements, and write a paragraph on why extrapolating a fitted line is risky.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Simulate two exam scores with correlation 0.5 and show that the top decile falls back toward the mean on retest"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Fit a log-log model of household food spending on income, interpret the slope as an elasticity and compare residuals with the untransformed fit"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Choose a Box-Cox transformation for skewed hospital stay lengths by profile likelihood and judge the improvement with residual plots"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Matrix form of multiple regression",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Show that the hat matrix is symmetric and idempotent, and use it to explain leverage and the degrees of freedom of the fit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute beta from (X'X)^-1 X'y for a 12-row, 3-predictor dataset using the matrix tools and check the residuals are orthogonal to the columns of X"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Compare nested models with the F-test and adjusted R-squared on a crop-yield dataset and explain which predictors earn their place"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute the hat matrix of a design, plot leverage values and find which row can move the fitted line the most"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Categorical predictors, interactions and confounding",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Using a worked example, explain how omitting a confounder can reverse the sign of a coefficient, and state what a regression can and cannot say about causation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Fit a model of farm income with region as a dummy-coded factor, interpret each coefficient and plot predicted means with intervals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Fit polynomial and cubic spline terms to the age and height relationship of children and choose the flexibility by an F-test"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Build a dataset exhibiting Simpson's paradox with two clinics and show the reversed slopes in pooled and stratified regressions"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Diagnostics: residuals, influence, collinearity",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Given a fitted model and its four diagnostic plots, write a short diagnosis of each violation you can see and propose a remedy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Produce the four standard residual plots for a fitted housing price model and name the assumption each one checks"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Add one extreme point to a dataset, compute Cook's distance and DFFITS, and show how the slope changes when it is removed"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Detect heteroscedasticity with the Breusch-Pagan test on income data, then compare ordinary, weighted and robust standard errors"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Model selection and regularisation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compare subset selection, ridge and lasso on one dataset in a table of test error, number of variables and stability, and say which you would trust.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Run best subset and forward stepwise selection on eight predictors and compare AIC, BIC and Cp in choosing the model size"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute ridge estimates for a range of penalties on correlated predictors and plot the coefficient paths to see the shrinkage"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Fit the lasso with ten-fold cross-validation on 40 predictors, report which coefficients are zero and compare the test error with ridge"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Logistic regression",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Interpret a logistic regression of loan default on income and mobile-money usage, giving odds ratios with intervals and a plain-language reading of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Do two iterations of iteratively reweighted least squares for a tiny logistic problem by hand and compare with the fitted values from code"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Fit a logistic model of malaria status on bed net use and age, report odds ratios with intervals and test a coefficient by Wald and likelihood ratio"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Compare nested logistic models by deviance, run the Hosmer-Lemeshow test and say whether the fit is adequate"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Classification performance and extensions",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Choose a decision threshold for a clinic screening model by weighing the cost of a missed case against the cost of an unnecessary follow-up, and justify it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Compute the confusion matrix, ROC curve and AUC for a fitted classifier and mark the threshold that maximises Youden's index"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Fit a multinomial model of transport mode choice for commuters and interpret one coefficient as a relative risk ratio"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Reproduce complete separation in a small dataset, observe the failing estimates and fix it with a Firth-type penalty"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "The GLM framework and Poisson regression",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Show that the normal, binomial and Poisson distributions belong to the exponential family and identify the canonical link for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Write the Poisson and Bernoulli distributions in exponential-family form and read off the canonical link and variance function"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Fit a Poisson model of clinic visit counts with a population offset and interpret the rate ratio for a district-level covariate"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Test for overdispersion in a count dataset, compare quasi-Poisson and negative binomial fits and explain the effect on standard errors"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Further GLMs and checking",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Choose a GLM family and link for four outcomes (counts, proportions, claim sizes, binary events) and justify each with a data example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Fit a gamma GLM with log link to insurance claim sizes and compare predictions with a log-transformed linear model"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Implement iteratively reweighted least squares for a Poisson GLM in code and verify it matches the library fit to six decimals"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Plot deviance and Pearson residuals for a fitted GLM and use a link test to decide whether to change the link function"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Mixed-effects and hierarchical models",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Analyse test scores from pupils nested in schools in a short report that compares pooled, unpooled and partially pooled estimates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Compute the intraclass correlation for pupil scores within schools and show how ignoring clustering shrinks the standard errors"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Fit a random intercept and random slope model for repeated child growth measurements and compare it with a fixed-effects fit"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Show partial pooling by plotting each village's estimate under no pooling, complete pooling and the hierarchical model"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Cross-validation, bootstrap and prediction error",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Explain in a page why training error is optimistic, how cross-validation estimates test error and when the bootstrap interval can fail.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Implement k-fold cross-validation and the leave-one-out shortcut for a linear model and check the two give identical errors"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Build percentile and BCa bootstrap intervals for a regression slope with skewed errors and compare with the t-based interval"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Estimate squared bias and variance of a polynomial fit at several degrees by simulation and plot the resulting error curve"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Reporting and capstone analysis",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Deliver a reproducible analysis of a real dataset, including model choice, diagnostics, uncertainty and a half-page summary for a non-statistician.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Produce a reproducible notebook for a regression analysis with figures, a diagnostics section and a coefficient table with intervals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Model cocoa yield per farm from rainfall, fertiliser and farm size, choose between candidate models by cross-validation and justify the choice"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Compare a GLM with a regularised model on a malaria incidence dataset and report test performance with bootstrap intervals and a recommendation"
+        }
+      ]
+    }
+  ]
+}

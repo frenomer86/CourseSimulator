@@ -1,0 +1,511 @@
+{
+  "slug": "advanced-topics-in-theoretical-computer-science",
+  "description": "A doctoral research seminar on current themes in theoretical computer science: convex hierarchies, spectral graph theory, hardness of approximation, average-case complexity, lower bounds, algebraic and geometric methods, and quantum computation. Students read and critique recent papers, test claims on small instances in the maths lab and write a research proposal.",
+  "modelledOn": [
+    "Arora and Barak, Computational Complexity: A Modern Approach",
+    "O'Donnell, Analysis of Boolean Functions",
+    "Kushilevitz and Nisan, Communication Complexity",
+    "Nielsen and Chuang, Quantum Computation and Quantum Information"
+  ],
+  "outcomes": [
+    "Formulate relaxations of combinatorial problems as linear and semidefinite programs and analyse their rounding and integrality gaps.",
+    "Use eigenvalue methods to bound expansion, mixing and cut quality in graphs.",
+    "Read a hardness-of-approximation or average-case reduction and reproduce its key gap-preserving step.",
+    "Prove and compare lower bounds in communication and query models using rank, fooling-set, polynomial and information arguments.",
+    "Analyse small quantum circuits and algorithms and relate quantum complexity classes to classical ones.",
+    "Critique a recent paper, state an open problem precisely and write a research proposal with a feasible first result."
+  ],
+  "units": [
+    {
+      "title": "Semidefinite programming hierarchies",
+      "weeks": "1-2",
+      "topics": [
+        "Linear and semidefinite programming: duality, feasibility and the ellipsoid method; integrality gaps",
+        "Random-hyperplane rounding for MAX-CUT and the 0.878 approximation guarantee",
+        "The sum-of-squares hierarchy: levels, moment matrices and pseudo-expectations",
+        "Sum-of-squares proofs and the Positivstellensatz; degree and size trade-offs",
+        "Applications and limits: planted clique, sparse principal components and sum-of-squares lower bounds"
+      ]
+    },
+    {
+      "title": "Spectral methods and expansion",
+      "weeks": "3",
+      "topics": [
+        "The graph Laplacian: eigenvalues, eigenvectors and the Rayleigh quotient",
+        "Cheeger's inequality and spectral partitioning",
+        "Expander graphs, the expander mixing lemma and Ramanujan graphs",
+        "Random walks: mixing time, conductance and hitting times",
+        "Higher-order spectral methods: small-set expansion and spectral clustering of networks"
+      ]
+    },
+    {
+      "title": "Hardness of approximation",
+      "weeks": "4-5",
+      "topics": [
+        "Gap problems and gap-preserving reductions; approximation classes",
+        "The PCP theorem: statement, proof overview via gap amplification and what it says about NP",
+        "Label Cover and parallel repetition",
+        "Fourier analysis on the Boolean cube, the long code and dictator testing",
+        "Optimal inapproximability of 3-variable linear equations and 3-SAT",
+        "The Unique Games Conjecture and its consequences for MAX-CUT and vertex cover"
+      ]
+    },
+    {
+      "title": "Average-case complexity",
+      "weeks": "6",
+      "topics": [
+        "Distributional problems, average-case reductions and the class DistNP",
+        "Planted clique and computational-statistical gaps",
+        "Worst-case to average-case reductions: lattices and learning with errors",
+        "The low-degree method and statistical query lower bounds as evidence of hardness",
+        "Random constraint satisfaction: satisfiability thresholds and the clustering of solutions"
+      ]
+    },
+    {
+      "title": "Communication and query complexity",
+      "weeks": "7-8",
+      "topics": [
+        "Deterministic communication complexity: rectangles, fooling sets and the rank bound",
+        "Randomised protocols, public versus private coins and the minimax principle",
+        "Set disjointness: lower bounds by information complexity and discrepancy",
+        "Decision tree complexity, sensitivity, block sensitivity and certificate complexity",
+        "The polynomial method and approximate degree",
+        "Lifting theorems and streaming lower bounds from communication"
+      ]
+    },
+    {
+      "title": "Algebraic and geometric methods",
+      "weeks": "9-10",
+      "topics": [
+        "Randomised polynomial identity testing and derandomisation",
+        "Algebraic circuits, the VP versus VNP question and matrix multiplication exponents",
+        "The polynomial method in combinatorics: cap sets and finite-field Kakeya",
+        "Metric embeddings and the random projection lemma; dimension reduction",
+        "Error-correcting codes: Reed-Solomon, list decoding and locally decodable codes",
+        "Convex geometry: isoperimetry, volume computation and random walks on convex bodies"
+      ]
+    },
+    {
+      "title": "Quantum computation and information",
+      "weeks": "11-12",
+      "topics": [
+        "Qubits, gates, circuits and measurement; the density matrix formalism",
+        "Oracle algorithms: the constant-versus-balanced problem and hidden XOR mask problem",
+        "Quantum search and its optimality via the adversary and polynomial methods",
+        "The quantum Fourier transform, phase estimation and the factoring algorithm",
+        "BQP, QMA and the relation of quantum classes to classical classes",
+        "Entanglement, Bell inequalities, the no-cloning theorem and nonlocal games",
+        "Quantum error correction, stabiliser codes and fault-tolerance thresholds"
+      ]
+    },
+    {
+      "title": "Research practice in theory",
+      "weeks": "13",
+      "topics": [
+        "Reading a recent paper: extracting the main theorem, technique and what is new",
+        "Writing a critique and a proof sketch that a peer can verify",
+        "Using computation to test conjectures: small-case search, counterexamples and numerical experiments",
+        "Stating an open problem precisely and surveying partial results",
+        "Research proposal: question, related work, approach, a feasible first result and risks"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Linear and semidefinite relaxations",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write the SDP relaxation of MAX-CUT, give its dual, and show by hand that random-hyperplane rounding cuts an edge with probability the angle over pi.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Solve the linear programming relaxation of vertex cover on a 6-vertex graph and show the half-integral solution beats the integer optimum"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Round a given SDP solution for MAX-CUT on a 10-vertex graph with 200 random hyperplanes and plot the cut-value distribution against the optimum"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Compute the integrality gap of the SDP for MAX-CUT on odd cycles of length 5 to 31 and compare with the approximation guarantee"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "The sum-of-squares hierarchy",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Prove that x squared minus 2x plus 1 is a sum of squares, build the level-2 moment matrix for two variables, and read one recent sum-of-squares lower bound paper and summarise its construction.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Express three univariate non-negative polynomials as sums of squares using the symbolic algebra tool and verify by expansion"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Build the level-2 moment matrix for a 3-variable Boolean problem and check positive semidefiniteness of a pseudo-expectation candidate"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Test whether a degree-4 sum-of-squares certificate exists for a small planted-clique instance and report which constraints fail"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Eigenvalues, expansion and mixing",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compute the Laplacian spectrum of a path, a cycle and a random 3-regular graph, check Cheeger's inequality on each, and bound the mixing time of a lazy walk.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute the Laplacian eigenvalues of a path, a cycle and a complete graph on 8 vertices and relate the second value to connectivity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Partition a 30-vertex graph by the sign of the second eigenvector and compare conductance with the Cheeger bounds"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Generate random 3-regular graphs with 50 to 500 vertices, measure the second eigenvalue and compare it with the Ramanujan bound"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Gap problems, PCPs and Label Cover",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Give a gap-preserving reduction from 3-SAT to a gap version of independent set, and explain in a page how gap amplification drives the PCP theorem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Build the clause-to-triangle graph from a small 3-SAT formula and relate the satisfiable fraction to the largest independent set"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Play the Label Cover game on a small bipartite instance with two label sets and find the best strategy by exhaustive search"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Simulate parallel repetition of a game with 2 rounds, 3 rounds and 4 rounds, and plot how the best winning probability decays"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Fourier analysis, long codes and Unique Games",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compute the Fourier expansion of majority on 3 bits, prove a dictator test accepts dictators with probability 1, and describe what the Unique Games Conjecture would imply for vertex cover.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compute the Fourier coefficients of majority and parity on 3 and 5 bits and verify Parseval's identity numerically"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Run a dictator test with 3 queries on all 5-variable Boolean functions and tabulate the acceptance probability of dictators versus others"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Reproduce the gap between the best SDP value and the best cut on random instances and compare it with the Unique Games prediction for MAX-CUT"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Average-case hardness and random constraints",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Plant a clique of size k in a random graph on n vertices, find the smallest k at which spectral methods recover it, and compare this with the information-theoretic threshold.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Plant a clique of size 12 in a random graph on 100 vertices and show the clique vertices have higher degree on average"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Estimate the satisfiability threshold of random 3-SAT by solving 100 formulas at each clause density from 3.5 to 5.0"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Find the clique size at which a spectral algorithm starts recovering a planted clique in graphs of size 200, 400 and 800, and fit the trend"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Communication complexity lower bounds",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Prove the equality function needs n bits deterministically using a fooling set, then give a randomised public-coin protocol with O(log n) bits and its error bound.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Build the communication matrix of equality and greater-than on 4-bit inputs and compute the rank and a fooling set"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Simulate the fingerprint protocol for equality with random primes and measure the error rate against the bound over 10,000 trials"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Compute the discrepancy of set disjointness on 4 bits by exhaustive rectangle search and compare it with the claimed lower bound"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Query complexity and lifting",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compute sensitivity and block sensitivity for the OR and a 4-bit function you design, relate them to degree, and state what a lifting theorem transfers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute sensitivity, block sensitivity and certificate complexity for all 3-bit Boolean functions and tabulate the largest gaps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Find the exact and approximate degree of OR and parity on 4 bits with the symbolic tool and compare with their query costs"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Build the lifted function of a small gadget on 3-bit inputs, compute its communication matrix rank and compare with the query degree"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Polynomials, algebraic circuits and the polynomial method",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Test whether two determinant expressions are equal with randomised evaluation over a finite field, and explain the cap set bound proof idea in a page.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Test two polynomial expressions for equality at random points over a prime field and estimate the error probability against the degree bound"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Compare the cost of the schoolbook and a faster 2 by 2 block matrix product recursion by counting multiplications for sizes 2 to 64"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Compute the largest cap set in the 3-dimensional space over three elements by search and compare with the polynomial method bound"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Geometry, codes and convex bodies",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Project a 1000-dimensional point set to 50 dimensions randomly, measure distance distortion, and decode a Reed-Solomon codeword with two errors.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Project 200 points from 1000 to 50 dimensions with a random Gaussian matrix and plot the distribution of pairwise distance ratios"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Encode a message with a Reed-Solomon code over a small field, flip two symbols and decode the original by solving the syndrome equations"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Estimate the volume of a convex body in 10 dimensions by a random walk and compare against the known value with error bars"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Quantum circuits and algorithms",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Trace a 3-qubit circuit by hand, run the constant-or-balanced algorithm and quantum search on 8 items, and estimate the number of iterations needed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Apply Hadamard and controlled-NOT matrices to a two-qubit state and print the amplitude vector and measurement probabilities"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Simulate quantum search on 16 items and plot success probability against the number of iterations to show the optimum near 3"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Simulate phase estimation for a 3-qubit unitary and use the quantum Fourier transform to read out the eigenphase with its error"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Quantum complexity, entanglement and error correction",
+      "topics": [
+        "7.5",
+        "7.6",
+        "7.7"
+      ],
+      "exercise": "Show a CHSH game strategy beating the classical bound of 75 percent, and describe the three-qubit bit-flip code with its syndrome measurements.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Simulate the CHSH game with the best classical strategy and with a shared entangled state, and compare winning rates over 10,000 rounds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.7",
+          "engine": "E1",
+          "title": "Simulate the three-qubit bit-flip code with random single errors and show the syndrome identifies and fixes each one"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E9",
+          "title": "Draw the known containments between BPP, BQP, NP and PSPACE as a diagram, labelling what is proved and what is conjectured, with a reference for each"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Critique, open problems and proposals",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present a critique of one recent paper from the course reading list, state one open problem precisely, and submit a two-page proposal with a first result you can test computationally.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Lay out a recent paper's argument as a dependency diagram of lemmas and mark the step you find least convincing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Search all graphs on up to 7 vertices for a counterexample to a conjecture from the reading list and report the search outcome"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Run a numerical experiment supporting the first result of your proposal, plot it with error bars and state what it does not prove"
+        }
+      ]
+    }
+  ]
+}

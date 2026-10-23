@@ -1,0 +1,523 @@
+{
+  "slug": "advanced-wireless-and-mobile-systems",
+  "description": "Graduate treatment of wireless communication from channel physics to 5G, massive MIMO, mobility, IoT and satellite links. Students derive link budgets and capacity results, simulate fading and multi-cell networks, and design coverage for rural African settings.",
+  "modelledOn": [
+    "Tse and Viswanath, Fundamentals of Wireless Communication",
+    "Goldsmith, Wireless Communications",
+    "Dahlman, Parkvall and Skold, 5G NR: The Next Generation Wireless Access Technology"
+  ],
+  "outcomes": [
+    "Compute link budgets and apply path-loss, shadowing and fading models to predict coverage and outage.",
+    "Derive and simulate bit error rate, capacity and diversity gain for modulation, coding and OFDM links in fading channels.",
+    "Analyse random-access and scheduling protocols for throughput, delay and fairness under contention.",
+    "Explain 5G architecture and evaluate multi-antenna precoding, beamforming and handover performance in a multi-cell simulation.",
+    "Design and evaluate a rural coverage, IoT or satellite network against energy, capacity and cost constraints."
+  ],
+  "units": [
+    {
+      "title": "Wireless channel models and fading",
+      "weeks": "1-2",
+      "topics": [
+        "Link budget: free-space, log-distance and two-ray path loss, Friis equation and shadowing",
+        "Large-scale models: Okumura-Hata and COST-231 for urban and rural cells in Africa",
+        "Small-scale fading: Rayleigh and Rician, Doppler spread, coherence time and coherence bandwidth",
+        "Multipath, delay spread and intersymbol interference; the tapped delay line model",
+        "Capacity: Shannon, ergodic and outage capacity in fading channels",
+        "Diversity: selection, maximal ratio combining, Alamouti coding and diversity order"
+      ]
+    },
+    {
+      "title": "Modulation, coding and OFDM",
+      "weeks": "3",
+      "topics": [
+        "Bit error rate of BPSK, QPSK and M-QAM in AWGN and in Rayleigh fading",
+        "Channel coding: convolutional, turbo, LDPC and polar codes; coding gain",
+        "OFDM: cyclic prefix, subcarrier orthogonality and peak-to-average power ratio; SC-FDMA",
+        "Link adaptation: adaptive modulation and coding and hybrid ARQ",
+        "Channel estimation with pilots and frequency-domain equalisation"
+      ]
+    },
+    {
+      "title": "MAC protocols and spectrum access",
+      "weeks": "4",
+      "topics": [
+        "ALOHA, slotted ALOHA and CSMA/CA throughput; hidden and exposed terminals",
+        "IEEE 802.11 DCF and the Bianchi saturation model; 802.11ax OFDMA",
+        "Scheduling: round robin, max C/I and proportional fair",
+        "Cognitive radio and dynamic spectrum access; TV white space",
+        "Spectrum policy: licensed, unlicensed and shared bands in Africa"
+      ]
+    },
+    {
+      "title": "Cellular architecture, 5G and beyond",
+      "weeks": "5-6",
+      "topics": [
+        "Cell structure: frequency reuse, SINR, sectorisation and interference",
+        "LTE evolved packet core and the 5G core service-based architecture",
+        "5G NR physical layer: numerology, frame structure and bandwidth parts",
+        "5G use cases: eMBB, URLLC, mMTC and network slicing",
+        "Open RAN, small cells and heterogeneous networks",
+        "Rural coverage and fixed wireless access economics",
+        "Beyond 5G: reconfigurable surfaces, terahertz bands and integrated sensing and communication"
+      ]
+    },
+    {
+      "title": "Massive MIMO and beamforming",
+      "weeks": "7",
+      "topics": [
+        "MIMO channel model, spatial multiplexing and SVD-based capacity",
+        "Precoding: zero-forcing, MMSE and multi-user MIMO",
+        "Massive MIMO: channel hardening, pilot contamination and TDD reciprocity",
+        "Beamforming: array factor, beam steering and millimetre-wave beam management",
+        "Hybrid analogue-digital beamforming"
+      ]
+    },
+    {
+      "title": "Mobility management and handover",
+      "weeks": "8",
+      "topics": [
+        "Mobility models: random waypoint and Gauss-Markov",
+        "Handover: hysteresis, time-to-trigger, the A3 event and ping-pong effects",
+        "Location management: tracking areas and paging",
+        "Mobile IP and mobility anchoring in the 5G core",
+        "Handover failure analysis for high-speed vehicles and trains"
+      ]
+    },
+    {
+      "title": "Wireless sensor and IoT networks",
+      "weeks": "9-10",
+      "topics": [
+        "Low-power wide-area networks: LoRa spreading factors, duty cycle limits, LoRaWAN and NB-IoT",
+        "Short-range links: Bluetooth Low Energy, IEEE 802.15.4, Zigbee and 6LoWPAN",
+        "Energy models, duty cycling and sensor MAC protocols: S-MAC and B-MAC",
+        "Routing in sensor networks: RPL, LEACH and directed diffusion",
+        "Energy harvesting and precision-agriculture deployment design",
+        "Localisation and time synchronisation: RSSI, time of arrival and trilateration"
+      ]
+    },
+    {
+      "title": "Satellite and non-terrestrial links",
+      "weeks": "11-12",
+      "topics": [
+        "Orbits: GEO, MEO and LEO; Kepler's laws, visibility windows and Doppler",
+        "Satellite link budget: EIRP, G/T and rain fade",
+        "LEO constellations: handover between satellites, inter-satellite links and latency",
+        "Satellite access: DVB-S2, VSAT and MF-TDMA; TCP over satellite paths",
+        "High-altitude platforms, drones and non-terrestrial networks in 5G",
+        "Connecting remote communities: satellite versus terrestrial options"
+      ]
+    },
+    {
+      "title": "Research methods and project",
+      "weeks": "13",
+      "topics": [
+        "Reading wireless research: channel measurement and testbed papers",
+        "Simulation methodology: Monte Carlo of fading channels and confidence intervals",
+        "Project: design and evaluate a rural coverage or IoT network",
+        "Open problems: spectrum scarcity, energy efficiency and wireless security"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Path loss and propagation models",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Compute the link budget and coverage radius of a 900 MHz rural cell in northern Ghana using two empirical models and compare the answers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute free-space and log-distance path loss at five distances and find the maximum range for a given transmit power and receiver sensitivity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Apply the Okumura-Hata model for urban, suburban and rural areas at 900 MHz and plot received power against distance for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Simulate Rayleigh fading with Doppler spread, measure level crossing rate and fade duration, and compare them with theory"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Multipath, capacity and diversity",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Derive the outage capacity of a Rayleigh channel and show by simulation how diversity combining steepens the error curve.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Convolve a transmitted pulse train with a three-tap multipath channel and identify where intersymbol interference corrupts the symbols"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Estimate ergodic and 10 percent outage capacity of a Rayleigh channel by Monte Carlo and compare with the Shannon capacity at average SNR"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Simulate BPSK with selection, maximal ratio combining and Alamouti coding, and fit the diversity order from the slope of each BER curve"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Modulation, coding and OFDM",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Build an OFDM link with a cyclic prefix and link adaptation, and plot its throughput against SNR in a multipath channel.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot the theoretical bit error rate of BPSK, QPSK and 16-QAM against SNR in AWGN and read off the SNR needed for a BER of 0.001"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement an OFDM transmitter and receiver with a cyclic prefix and show it removes intersymbol interference in a two-tap channel"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Design an adaptive modulation and coding table with SNR thresholds that maximises throughput at a block error rate target of 10 percent"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Random access, scheduling and spectrum",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Evaluate the throughput of slotted ALOHA and CSMA/CA, then compare schedulers for users with different channel qualities.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Plot the throughput of ALOHA and slotted ALOHA against offered load and mark the maximum value of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Simulate round robin, max C/I and proportional fair scheduling for ten users and compare total throughput and Jain fairness"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E3",
+          "title": "Simulate 802.11 contention with 5 to 50 stations and compare the measured saturation throughput with the Bianchi model prediction"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Cellular structure and the 5G system",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Calculate SINR and capacity across a cell layout under different reuse factors and sketch the 5G core control flow for a session set-up.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute SINR at the cell edge for reuse factors 1, 3 and 7 on a hexagonal layout and convert each to spectral efficiency"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E3",
+          "title": "Model a 5G core with access and mobility, session and user plane functions and trace the messages for a session establishment"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Compute the slot length, subcarrier spacing and resource grid size for several 5G numerologies and choose one for a latency target"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Slicing, small cells and rural coverage",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6",
+        "4.7"
+      ],
+      "exercise": "Design a rural fixed wireless service for ten villages, comparing macro-cell and small-cell options by cost per user.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Match six services to eMBB, URLLC or mMTC slices in a case and justify the required bandwidth, latency and reliability for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E3",
+          "title": "Add small cells to a congested macro cell in the simulator and measure the change in user throughput and handover count"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E7",
+          "title": "Compute the cost per subscriber of covering a district with towers of different heights and spectrum bands, and find the break-even take-up rate"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "MIMO, precoding and beamforming",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compare zero-forcing and MMSE precoding for a multi-user downlink and show channel hardening as the antenna count grows.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute the singular values of a 2 by 2 channel matrix and the capacity gain of spatial multiplexing over a single antenna"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Simulate zero-forcing and MMSE precoding for four users and compare the sum rate at low and high SNR"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Simulate massive MIMO with 16 to 256 antennas and pilot reuse, and show channel hardening and the sum-rate loss from pilot contamination"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Mobility models and handover",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Tune handover parameters for a rail corridor to minimise ping-pong and failure, using a mobility model and a two-cell simulator.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E3",
+          "title": "Move a user between two cells and record the signal levels at which handover triggers with three different hysteresis settings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Generate random waypoint and Gauss-Markov traces, measure the average handover rate for each, and explain the difference"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E3",
+          "title": "Optimise hysteresis and time-to-trigger for a user at 120 km/h to keep handover failures below 1 percent with few ping-pong events"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "LPWAN and short-range IoT",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Plan a LoRaWAN network for a farm with 500 soil sensors, checking duty cycle limits, spreading factors and battery life.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute the airtime, maximum message rate under a 1 percent duty cycle and receiver sensitivity for each LoRa spreading factor"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Model a sensor node with sleep, listen and transmit states, and compute battery life for three duty cycle settings"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.1",
+          "engine": "E3",
+          "title": "Simulate 500 LoRa nodes with random access around one gateway and find the spreading factor assignment that maximises delivery ratio"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Sensor routing, energy and localisation",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Compare LEACH clustering with direct transmission for network lifetime and design an energy-harvesting node for a solar-powered sensor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Locate a node by trilateration from three noisy range measurements and plot the position error as noise grows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E3",
+          "title": "Compare multi-hop routing with direct transmission in a sensor field and record when the first node dies in each"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Size a solar panel and battery for a sensor node under a measured cloud-cover profile so it never runs out of energy over a year"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Orbits, link budgets and LEO constellations",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Compute a satellite downlink budget with rain fade and compare the latency of a geostationary link with a low-orbit constellation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute the orbital period, altitude and round-trip delay for GEO, MEO and LEO satellites and compare the three"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Complete a downlink budget with EIRP, path loss, rain fade and G/T, and find the link margin and the maximum data rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Simulate a LEO pass over Accra, computing visibility windows, Doppler shift and handover times between two satellites"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Satellite access, NTN and remote connectivity",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Recommend satellite, terrestrial or hybrid backhaul for a remote island community, using capacity, latency and cost evidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E3",
+          "title": "Run a TCP transfer over a 600 ms delay link and observe how window size limits throughput, then raise the window to compensate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Compare coverage radius, capacity and latency of a high-altitude platform, a drone relay and a tower for a flood-affected district"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Work a connectivity case for three remote communities, choosing technology and scoring the plan on cost, resilience and sustainability"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Research methods and project",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Reproduce one published wireless result by simulation, report it with confidence intervals, and present the project design for review.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Read a short testbed paper excerpt and answer questions on its measurements, assumptions and the limits of its conclusions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Run a fading channel simulation with enough trials to bound the BER estimate error and report the 95 percent confidence interval"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E3",
+          "title": "Evaluate the project coverage or IoT design in the network simulator under peak load and a base station failure, and report the margins"
+        }
+      ]
+    }
+  ]
+}

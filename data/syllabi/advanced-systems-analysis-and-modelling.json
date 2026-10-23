@@ -1,0 +1,509 @@
+{
+  "slug": "advanced-systems-analysis-and-modelling",
+  "description": "Postgraduate systems analysis: systems and soft-systems thinking, feasibility and business cases, process, data and object-oriented modelling, the step to design, and a critical comparison of development methodologies. Students model real organisational problems in the diagram studio, defend their analysis in stakeholder scenarios, and write a consultancy report.",
+  "modelledOn": [
+    "Dennis, Wixom and Roth, Systems Analysis and Design",
+    "Checkland and Scholes, Soft Systems Methodology in Action",
+    "Object Management Group, UML 2.5 and BPMN 2.0 specifications",
+    "Valacich and George, Modern Systems Analysis and Design"
+  ],
+  "outcomes": [
+    "Frame an ill-structured organisational problem with systems and soft-systems methods and identify stakeholders and their concerns.",
+    "Assess feasibility and build a financial and risk-based business case for an information system.",
+    "Produce consistent process, data and object-oriented models and verify them against each other.",
+    "Translate analysis models into architecture and design decisions, weighing quality-attribute trade-offs.",
+    "Compare development methodologies and justify a choice for a given project context.",
+    "Write and defend a systems analysis report for a real organisation, including model validation and a change plan."
+  ],
+  "units": [
+    {
+      "title": "Systems thinking and soft systems methods",
+      "weeks": "1",
+      "topics": [
+        "General systems theory: boundaries, environment, feedback loops and emergence",
+        "Soft systems methodology: rich pictures, CATWOE and root definitions",
+        "Hard versus soft problems; wicked problems and the limits of optimisation",
+        "Stakeholder analysis: power-interest grids, concerns and conflicts",
+        "Sociotechnical systems: people, process and technology, with examples from cooperatives and market associations in Ghana"
+      ]
+    },
+    {
+      "title": "Investigation, feasibility and project selection",
+      "weeks": "2",
+      "topics": [
+        "Requirements elicitation: interviews, observation, workshops and questionnaires",
+        "Feasibility dimensions: technical, economic, operational, schedule and legal",
+        "Economic analysis: net present value, payback period, return on investment and sensitivity analysis",
+        "Project selection and portfolio scoring against strategic criteria",
+        "Risk identification and the business case document"
+      ]
+    },
+    {
+      "title": "Process and logic modelling",
+      "weeks": "3-4",
+      "topics": [
+        "Levelled data flow diagrams: context diagram, decomposition and balancing",
+        "BPMN 2.0: pools, lanes, events, gateways and message flow",
+        "Process analysis: bottlenecks, cycle time and queueing with Little law",
+        "Decision tables, decision trees and structured English for business rules",
+        "Process redesign: business process re-engineering, lean waste removal and automation candidates",
+        "Exceptions and compensation in workflows; process simulation"
+      ]
+    },
+    {
+      "title": "Data modelling",
+      "weeks": "5-6",
+      "topics": [
+        "Entity-relationship and extended ER models: generalisation, weak entities and cardinality",
+        "Normalisation to third normal form and Boyce-Codd normal form",
+        "From conceptual to logical to physical data models",
+        "Data dictionary and the CRUD matrix linking processes to data",
+        "Data quality, master data, migration and legacy-system integration",
+        "Dimensional models for management reporting"
+      ]
+    },
+    {
+      "title": "Object-oriented analysis with UML",
+      "weeks": "7-8",
+      "topics": [
+        "Use case modelling: actors, scenarios, extend and include relationships",
+        "Class diagrams: associations, aggregation, composition, generalisation and OCL constraints",
+        "Interaction diagrams: sequence and communication diagrams",
+        "Activity and state machine diagrams for behaviour",
+        "Domain models, CRC cards and responsibility assignment patterns",
+        "Consistency checking across models: traceability from use case to class to table"
+      ]
+    },
+    {
+      "title": "From analysis to design",
+      "weeks": "9",
+      "topics": [
+        "Architecture styles: layered, service-oriented, microservices and event-driven",
+        "Mapping analysis models to design: classes to tables, use cases to services",
+        "User interface prototyping and usability evaluation",
+        "Non-functional requirements and quality-attribute trade-offs",
+        "Build, buy or outsource: package selection, ERP and open-source options"
+      ]
+    },
+    {
+      "title": "Development methodologies compared",
+      "weeks": "10-11",
+      "topics": [
+        "Plan-driven methods: waterfall and the V-model",
+        "Iterative methods: prototyping, spiral and the unified process",
+        "Agile methods: Scrum, Kanban and extreme programming",
+        "DevOps and continuous delivery as an operating model",
+        "Selecting and tailoring a methodology: project size, risk, regulation and team skills",
+        "Methodologies in context: public sector tendering versus a mobile money start-up"
+      ]
+    },
+    {
+      "title": "Enterprise perspective, validation and change",
+      "weeks": "12-13",
+      "topics": [
+        "Enterprise architecture frameworks: Zachman and TOGAF layers",
+        "System dynamics: stock-and-flow diagrams, feedback loops and simulation of policy effects",
+        "Verification and validation of models: walkthroughs, inspection and animation",
+        "Implementation: change management, training, conversion strategies and post-implementation review",
+        "Capstone: analysis report and defence for a real organisation"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Soft systems and stakeholders",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Draw a rich picture of a market traders cooperative that wants a digital ledger, write root definitions with CATWOE and place six stakeholders on a power-interest grid.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw a rich picture of a district hospital outpatient department showing actors, concerns, conflicts and information flows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Work a cooperative case in the scenario engine, choosing CATWOE elements from interview evidence and scoring root definitions against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Resolve conflicting stakeholder demands in a school fees system case, ranking concerns and justifying which are met, deferred or refused"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Feasibility, elicitation and the business case",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Prepare an interview guide, compute NPV and payback for a mobile money agent system over five years, and write a one-page business case.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Compute NPV, payback period and return on investment for a clinic records system from a cash flow table and recommend go or no go"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Interview a simulated stakeholder panel, select questions to uncover hidden requirements and score the completeness of the requirement list you capture"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Assess three competing projects with scoring, risk and sensitivity analysis, and defend the portfolio choice when the budget covers only two"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Data flow, BPMN and process analysis",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw a context diagram and level 1 DFD for a licence renewal service, model it in BPMN, and find its bottleneck from timing data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Draw a context diagram and level 1 data flow diagram for a vehicle licence renewal office and run the balancing check"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Model a loan approval with a pool for each party, two gateways and a timer event in BPMN, and validate against the structural rules"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Apply Little law and an M/M/1 queue to measured arrival and service times, find the bottleneck step and predict waiting time after adding a clerk"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Business rules and process redesign",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Convert a policy paragraph into a decision table, remove contradictions, and propose a redesigned process with waste and automation marked.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Write a decision table for a mobile money transaction limit policy and verify each rule combination is complete and exclusive"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E9",
+          "title": "Redraw a paper-based permit process as a leaner BPMN model, marking removed hand-offs and counting expected days saved"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Simulate a workflow with rework loops by Monte Carlo and compare mean completion time with and without a redesigned exception path"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Entity-relationship modelling and normalisation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Model a farm cooperative with an ER diagram including a generalisation, normalise a messy order table to BCNF and write the physical schema.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Draw an ER diagram for a farmers cooperative with members, plots, deliveries and payments, labelling keys and cardinalities"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E5",
+          "title": "Normalise a single order table with repeating groups to third normal form and check the decomposition is lossless by joining it back"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E5",
+          "title": "Turn a conceptual model with a subtype hierarchy into three alternative relational designs and compare their queries and storage on sample data"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Data dictionary, quality and reporting models",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Produce a CRUD matrix tying processes to entities, find the data quality problems in a legacy extract and sketch a star schema for monthly reports.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Build a CRUD matrix between six processes and five entities and flag entities that are never created or never read"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E5",
+          "title": "Profile a legacy customer table with SQL to find duplicates, nulls and invalid phone formats, and write the clean-up queries"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E5",
+          "title": "Design a star schema for district sales reporting and load sample data, then write three management queries against it and check totals"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Use cases, class diagrams and interactions",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write use case descriptions for a school fees portal, derive a class diagram with an OCL constraint, and draw a sequence diagram for payment.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Draw a use case diagram for an online school fees portal with three actors, and write one full scenario description"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Derive a class diagram from the portal use cases, with multiplicities and one OCL constraint, and check each noun has a purpose"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E9",
+          "title": "Draw sequence diagrams for the payment use case with a failure path and verify every message maps to a class operation"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Behaviour models and model consistency",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Model the life cycle of a fee payment as a state machine, assign responsibilities with CRC cards, and trace one requirement through all models.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E9",
+          "title": "Draw a state machine for a fee payment moving from pending through confirmed, failed and refunded, with guards on transitions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E9",
+          "title": "Create CRC cards for six classes in a library system and walk three scenarios to find missing responsibilities"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E9",
+          "title": "Check a given set of DFD, ER, class and sequence models for five planted inconsistencies and list which model needs to change in each case"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "From analysis to design",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Choose an architecture for a national health claims system, map analysis models to design, and justify a build-or-buy decision using weighted criteria.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Draw a layered architecture for a school portal, placing each analysis class in a layer and marking its interfaces"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Resolve a conflict between performance, cost and security requirements in a claims system case and score the trade-off argument"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Evaluate three ERP options for a mid-sized cooperative on cost, fit, local support and lock-in, and defend the recommendation to a panel"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Plan-driven and iterative methods",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compare waterfall, spiral and Scrum on one project with changing requirements, and compute how late defect discovery raises cost under each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Draw the V-model and map each development phase to its test level for a payroll system"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E9",
+          "title": "Plan three spiral iterations for a risky mobile money integration on a Gantt chart, showing the risk addressed in each"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Run a case where a sponsor demands fixed scope and dates; choose and defend a delivery method and contract form, scored by rubric"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Choosing and tailoring a methodology",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a methodology recommendation memo for two contrasting projects, a tax authority system and a mobile money start-up app, naming the practices adopted.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E9",
+          "title": "Draw a delivery pipeline from commit to production for a small team, labelling automated tests and approval gates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Select a methodology for four projects of different size, risk and regulation using a decision matrix and check against expert answers"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Tailor a methodology for a public tender with legal milestones and agile delivery, resolving conflicts between contract rules and iteration"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Enterprise architecture and system dynamics",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Place an existing system in the TOGAF layers, build a stock-and-flow model of backlog in a licensing office, and validate it against recorded data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Map a ministry service into business, data, application and technology layers on an enterprise architecture diagram"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Simulate a stock-and-flow model of case backlog with arrivals and processing, and show the effect of hiring staff over 24 months"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Validate a set of models through a simulated walkthrough with users, recording defects found and deciding which are severe enough to rework"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Change management and capstone defence",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present the capstone analysis report, including the business case, models, selected methodology and change plan, and answer a panel on the weakest assumption.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Choose a conversion strategy (parallel, phased, direct) for a payroll replacement and justify it against the risks in the case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Plan training and resistance handling for a clinic system rollout, scoring the plan against the change management rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Defend the capstone analysis before a simulated board, responding to challenges on cost, risk, user acceptance and model validity"
+        }
+      ]
+    }
+  ]
+}

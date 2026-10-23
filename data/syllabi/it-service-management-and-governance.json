@@ -125,5 +125,407 @@
         "Presenting findings to an IT steering committee"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Services, value and the four dimensions",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Choose a service at a bank, a university and a mobile operator and, for each, write its utility, its warranty and one cost and risk it carries.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Decide whether a described IT offering has acceptable utility and warranty for a given customer, and name the missing element if it fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Map a described outage across the four dimensions of service management and decide which dimension most needs attention to prevent recurrence"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Argue, for a university IT department, whether it should operate as a cost centre or a service provider, and defend the choice against a counter-argument"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "The service value system",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Pick two of the seven guiding principles and show, with a short example, how each would change a real IT decision.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Apply two guiding principles to resolve a described conflict between a quick fix and a proper solution, and justify the chosen path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Map a described value stream (from a request to a delivered service) onto the service value chain activities, and name any activity that was skipped"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Design a service catalogue entry for a described IT offering, including what is in and out of scope, and spot a catalogue gap in a client's current list"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Service desk and incident management",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Write the first three questions a service desk agent should ask for an incident report, and explain how they set impact and urgency.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Log, categorise and prioritise five incoming incident reports by impact and urgency, and decide which should escalate immediately"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Choose the best service desk structure (local, centralised, virtual, follow-the-sun) for a described multi-branch bank, with reasons"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Run the communication plan for a major incident during a service outage, deciding what to tell customers, staff and management and when"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Request fulfilment and handling an outage",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Design a self-service portal menu for three common requests at a mobile operator, and explain how each cuts load on the service desk.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Design a self-service request flow and a knowledge base entry for a common request, and estimate the first-contact resolution it would enable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Triage a queue of mixed incidents and requests by priority and route each to the right team, explaining any reordering from arrival order"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Handle a mobile money service outage reported on a public holiday, deciding who to call, what to communicate and in what order, scored on a rubric"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Problem management",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Perform a five-whys analysis on a recurring service failure of your choosing and state the root cause the first why would have missed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Build an Ishikawa diagram for a recurring service failure, sorting likely causes into categories, and identify the most probable root cause"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Decide whether three described situations are incidents, problems or known errors, and choose the matching workaround or fix for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Run a blameless post-incident review for a described failure, separating contributing factors from blame and producing two concrete follow-up actions"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Change, release and configuration management",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Classify five proposed IT changes as standard, normal or emergency, and explain what approval each would need before going ahead.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Classify five proposed changes as standard, normal or emergency, route each to the right approval, and flag one that was miscategorised"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Assess the risk and impact of a proposed change and decide whether it can proceed inside a stated freeze period, with reasons"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Plan a core banking system upgrade with minimal downtime, sequencing change approval, release steps and a rollback point, scored on a rubric"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Configuration management and DevOps integration",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Sketch a configuration item dependency map for a simple three-tier application and explain which change would be riskiest to make.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E9",
+          "title": "Draw a configuration management database dependency map for a described application stack and mark the single point of failure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Decide how a change advisory board process should adapt for a team doing frequent automated deployments, without losing proper oversight"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Plan a release through build, test, deployment and early life support for a described update, and name the gate that would have caught a described defect"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Service level management",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a service level agreement clause with a measurable availability target and a response time target for an internet connectivity service.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Draft an SLA and a matching operational level agreement for a described internal service, checking the targets are consistent with each other"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Evaluate a proposed SLA from an internet provider serving a low-bandwidth region, flagging any target that looks unrealistic for the stated conditions"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Write an SLA with a measurable availability target and response time for a stated service, and justify the numbers against the business need"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Corporate and IT governance",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Explain, with an example, the difference between governance and management, and where the boundary sits in a described decision.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Decide whether five described activities are governance or management, and justify any that are harder to classify"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Apply a COBIT 2019 governance objective to a described weakness and name the component (process, structure or policy) most in need of change"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Evaluate a described IT decision against the ISO/IEC 38500 evaluate, direct and monitor cycle, and identify which stage was skipped"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Standards, strategy and e-government",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a short note comparing what ITIL, COBIT and ISO/IEC 20000 each contribute to running IT well, and where they overlap.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Map a described organisation's current practices against ITIL, COBIT and ISO/IEC 20000 and recommend which standard to formalise first"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Prioritise three competing IT investment proposals for a steering committee using a described portfolio governance method"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Assess the governance of a described public e-government service in Ghana and recommend one accountability improvement"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Risk, controls and audit",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Build a risk register entry for one IT risk you consider likely at a Ghanaian bank, with likelihood, impact, treatment and an owner.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Identify, assess and propose a treatment for three IT risks in a described organisation, and place each on a risk register"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Decide whether a described control is preventive, detective or corrective, and recommend a missing control for a described gap"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Plan an IT audit for a described system, including evidence to collect and tests of controls, and draft one finding"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Metrics, scorecards and improvement",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Design a one-page service reporting dashboard for management showing three metrics from the operational level up to the strategic level.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Choose three critical success factors for a described IT department and the KPI that would show progress on each, from the operational up to the strategic level"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Choose the right metric (availability, MTTR, MTBF, first-contact resolution, satisfaction) to diagnose three described service complaints"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Assess a described organisation's continual improvement maturity and recommend the single highest-value next step, supported by two metrics from its scorecard"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Maturity assessment and the governance capstone",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4"
+      ],
+      "exercise": "Write a one-page service improvement plan for a simulated organisation, naming its three weakest practices, a prioritised action for each and the metric that would show improvement.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E10",
+          "title": "Assess the service management maturity of a simulated organisation against a described maturity model and justify the level assigned"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.3",
+          "engine": "E10",
+          "title": "Produce a service improvement plan with three prioritised actions and the metric that would show each has worked"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.2",
+          "engine": "E10",
+          "title": "Run a governance and audit review of a simulated organisation against COBIT objectives, producing a prioritised improvement plan and a summary for a steering committee, scored on a capstone rubric"
+        }
+      ]
+    }
   ]
 }

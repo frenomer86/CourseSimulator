@@ -1,0 +1,507 @@
+{
+  "slug": "enterprise-architecture-and-integration",
+  "description": "How organisations describe, govern and connect their business, application, data and technology layers, and how separate systems are integrated through APIs, messaging and services. Students model architectures, build and test integrations, and plan the modernisation of a legacy estate.",
+  "modelledOn": [
+    "The Open Group, TOGAF Standard (architecture development method)",
+    "Hohpe and Woolf, Enterprise Integration Patterns",
+    "Newman, Building Microservices"
+  ],
+  "outcomes": [
+    "Describe an organisation using business, application, data and technology layers and capture them in an architecture modelling notation.",
+    "Analyse an application portfolio and recommend which systems to keep, integrate, replace or retire.",
+    "Design and test integrations using REST APIs, message queues and publish-subscribe, choosing patterns for a stated reliability need.",
+    "Compare monolithic, service-oriented and microservice designs and handle distributed data consistency with sagas and idempotency.",
+    "Produce a gap analysis, transition architecture and roadmap, and defend it before an architecture review board."
+  ],
+  "units": [
+    {
+      "title": "Enterprise architecture frameworks and layers",
+      "weeks": "1",
+      "topics": [
+        "Why enterprise architecture: strategy alignment, business capabilities and value streams",
+        "Frameworks: the TOGAF architecture development method, Zachman and government architecture frameworks; tailoring a framework",
+        "Architecture layers: business, application, data and technology",
+        "Modelling with ArchiMate: elements, relationships and viewpoints",
+        "Architecture principles, building blocks and the architecture repository"
+      ]
+    },
+    {
+      "title": "Application and data architecture",
+      "weeks": "2-3",
+      "topics": [
+        "Application portfolio analysis: the TIME model, rationalisation and dependency maps",
+        "Layered, hexagonal and modular-monolith styles; coupling and cohesion",
+        "Data architecture: master data, reference data, ownership and stewardship",
+        "Canonical data models, data dictionaries and cross-system data flows",
+        "The enterprise systems landscape: ERP, CRM, HR and finance and each system of record",
+        "Single source of truth and data quality at integration points"
+      ]
+    },
+    {
+      "title": "Integration fundamentals and APIs",
+      "weeks": "4-5",
+      "topics": [
+        "Integration styles: file transfer, shared database, remote procedure call and messaging",
+        "Point-to-point versus hub-and-spoke versus bus; integration debt",
+        "REST API design: resources, verbs, status codes, pagination and versioning",
+        "OpenAPI specifications; API gateways, rate limiting, OAuth 2.0 and API keys",
+        "SOAP and WSDL, GraphQL and gRPC compared",
+        "Data formats and transformation: JSON, XML, CSV and schema mapping"
+      ]
+    },
+    {
+      "title": "Messaging and event-driven integration",
+      "weeks": "6-7",
+      "topics": [
+        "Message queues, publish-subscribe, brokers and topics",
+        "Enterprise integration patterns: message router, translator, splitter, aggregator and content-based router",
+        "Delivery guarantees: at-most-once, at-least-once, exactly-once; idempotent consumers",
+        "Event-driven architecture, event sourcing and CQRS",
+        "Dead-letter queues, retries, back-pressure and message ordering",
+        "Middleware: enterprise service bus, integration platforms as a service; orchestration versus choreography"
+      ]
+    },
+    {
+      "title": "Service-oriented and microservice architectures",
+      "weeks": "8-9",
+      "topics": [
+        "SOA principles and the service contract",
+        "Microservices: bounded contexts, service boundaries and database per service",
+        "Distributed transactions: two-phase commit, the saga pattern and eventual consistency",
+        "Service discovery, API composition and the backend-for-frontend pattern",
+        "Resilience: timeouts, retries, circuit breakers and bulkheads",
+        "When not to use microservices: monolith-first and modular approaches"
+      ]
+    },
+    {
+      "title": "Legacy modernisation and migration",
+      "weeks": "10",
+      "topics": [
+        "Assessing legacy systems: technical debt, risk and business value",
+        "Strangler fig pattern and anti-corruption layers",
+        "Wrapping mainframe and older systems with APIs; adapters versus screen scraping",
+        "Data migration: extract, transform and load, reconciliation, parallel running and cut-over",
+        "Replace, rehost, refactor or retire decision matrix"
+      ]
+    },
+    {
+      "title": "Interoperability in national and sector platforms",
+      "weeks": "11",
+      "topics": [
+        "Interoperability levels: technical, semantic, organisational and legal",
+        "Government data exchange layers and national digital identity integration",
+        "Payment switches and mobile money interoperability: message flows and settlement",
+        "Health and agriculture data exchange: HL7 FHIR resources and open data APIs",
+        "Security in integration: mutual TLS, token exchange and audit trails"
+      ]
+    },
+    {
+      "title": "Architecture governance and roadmaps",
+      "weeks": "12-13",
+      "topics": [
+        "Governance bodies: architecture review board, compliance reviews and dispensations",
+        "Gap analysis, baseline and target architecture, and transition architectures",
+        "Roadmaps, investment prioritisation, business cases and benefit tracking",
+        "Architecture metrics: reuse, number of interfaces, technical debt and time to change",
+        "Capstone: an architecture deliverable for a merger or digital-government scenario"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Enterprise architecture and its frameworks",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Build a business capability map and a four-layer view of a regional bank, and list the architecture principles that would guide its change.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Place twelve given elements of a regional hospital group into business, application, data and technology layers on a layered diagram"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Model a loan approval process across layers in the diagram studio using ArchiMate-style elements and write one viewpoint for the executive sponsor"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Work a case in which a firm adopts a framework, choosing which phases to tailor and justifying each choice against stakeholder concerns"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Portfolios, styles and ownership",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Analyse a portfolio of 15 applications with the TIME model and recommend tolerate, invest, migrate or eliminate for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E9",
+          "title": "Plot twelve applications on a business value versus technical fit grid and assign each a TIME category"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Redraw a given tangled monolith as a layered design and a hexagonal design and list the coupling removed by each"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E5",
+          "title": "Identify duplicate customer records across three given source tables, define the master record rules and write queries that build the golden record"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Canonical models, landscapes and data quality",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Define a canonical customer and order model and map three systems onto it, recording data quality rules at each integration point.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E9",
+          "title": "Draw the system landscape of a retailer and mark which system is the system of record for customers, stock and invoices"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Design a canonical order schema and write SQL views that present data from two differently shaped source tables in that one form"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E5",
+          "title": "Write data quality checks for completeness, validity and uniqueness over a merged customer table and report the defect rate per source system"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Integration styles and REST APIs",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Replace six point-to-point links in a given diagram with a hub design and design the REST API for one of the services.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Call a given REST API with GET and POST requests, inspect status codes and headers, and record the response for each case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Count the interfaces in a point-to-point estate of eight systems, redraw it with a hub and compare the number of connections and failure points"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement a small orders REST service with pagination and versioned routes and write tests that cover error paths and idempotent updates"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "API contracts, gateways and data formats",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write an OpenAPI contract for a payments API, specify gateway policies, and compare REST, GraphQL and gRPC for one use case.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Convert a sample record between JSON, XML and CSV in a script and check that no field is lost or changed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Write an OpenAPI description for three endpoints and implement a gateway wrapper that enforces an API key and a rate limit of ten requests a minute"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Choose among REST, GraphQL and gRPC for four integration scenarios in a branching case, scored on payload size, client variety and tooling cost"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Queues, publish-subscribe and integration patterns",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Design a message flow for an order system with splitter, router and aggregator steps and state the delivery guarantee required on each hop.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Step through a producer, queue and two consumers and record how messages are distributed, acknowledged and redelivered"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Model an order-handling flow with a content-based router, a splitter and an aggregator, and trace three sample messages through it"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement an idempotent consumer using message ids, then simulate duplicate deliveries and show that account balances stay correct"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Event-driven design and middleware",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compare orchestration and choreography for a loan application workflow and write a failure-handling plan for the event flow.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E6",
+          "title": "Observe a consumer that keeps failing a message and show it moving to a dead-letter queue after a set number of retries"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Build an event-sourced account where the balance is rebuilt by replaying events, and add a read model for statements"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E9",
+          "title": "Model one business process once as central orchestration and once as choreography, then compare coupling, observability and failure handling"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Service-oriented design and microservice boundaries",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Split a monolithic hospital system into bounded contexts and design a saga for admitting a patient and billing the insurer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Write the service contract for a stock-check service, listing operations, message formats, error cases and service levels"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Identify bounded contexts in a given domain description and draw services with their own databases and the events they publish"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Step through a saga with a failing payment step and design the compensating actions that return the order system to a consistent state"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Composition and resilience",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Add timeouts, retries and a circuit breaker to a service-call design, and write a one-page argument for or against microservices for a small firm.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Watch a circuit breaker open, half-open and close as a failing dependency recovers and note the state at each request"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Build an API composition endpoint that calls two services in parallel, applies timeouts and returns a partial result when one fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Decide among a monolith, a modular monolith and microservices for three organisations in a case, justified against team size and change rate"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Modernising legacy systems",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Plan the staged replacement of a legacy payroll system using a strangler approach, including the data migration and cut-over steps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Score six legacy systems on business value, risk and cost and place each in the replace, rehost, refactor or retire matrix"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E9",
+          "title": "Draw a strangler migration in three stages with a routing layer and an anti-corruption layer between old and new systems"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E5",
+          "title": "Migrate records from a legacy schema to a new schema with transform queries and prove completeness with reconciliation counts and checksums"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Interoperability and national platforms",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Trace a mobile money transfer between two providers through a payment switch, naming each message, and propose secure exchange controls.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E9",
+          "title": "Draw the message sequence for a cross-network mobile money transfer through a switch, labelling request, response and settlement steps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Retrieve and validate a sample FHIR patient resource from a test server and map three of its fields to a local record format"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Resolve a security review case on a government data exchange, selecting authentication, token and audit controls scored against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Governance, gaps and roadmaps",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write a gap analysis from baseline to target architecture for a district assembly and a three-stage roadmap ranked by value and risk.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "List the gaps between a given baseline and target architecture and map each gap to a work package on a diagram"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E9",
+          "title": "Build a roadmap in the diagram studio with dependencies between projects and an ordering justified by value, cost and risk"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Chair a simulated review board in a case, approving, conditioning or rejecting four project proposals and scored on principle compliance"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Metrics and capstone",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Produce and defend the capstone architecture pack for a merger of two microfinance firms: current state, target state, integration design and roadmap.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Compute reuse rate, interface count and time to change for a given architecture and compare them against stated targets"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E9",
+          "title": "Produce a layered target architecture with the main integration interfaces for the merger scenario and annotate each with its pattern"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E12",
+          "title": "Deploy a reference implementation of the key integration in the cloud console, measure its throughput and failure behaviour, and report the evidence for the review"
+        }
+      ]
+    }
+  ]
+}

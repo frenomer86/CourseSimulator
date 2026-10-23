@@ -1,0 +1,522 @@
+{
+  "slug": "evaluation-and-implementation-of-health-information-systems",
+  "description": "How to judge whether a health information system works and how to get one adopted: study designs, usability and workflow studies, qualitative and mixed methods, implementation science, procurement and economics. Students plan evaluations, analyse routine health data, and run implementation cases in Ghanaian and wider African health settings.",
+  "modelledOn": [
+    "Friedman and Wyatt, Evaluation Methods in Biomedical and Health Informatics",
+    "Published framework papers on NASSS, CFIR and RE-AIM for technology adoption and implementation in health care",
+    "Creswell and Plano Clark, Designing and Conducting Mixed Methods Research"
+  ],
+  "outcomes": [
+    "Choose and justify an evaluation framework, question and study design for a health information system intervention.",
+    "Analyse routine health data and intervention effects using interrupted time series and difference-in-differences methods.",
+    "Plan and critique usability, clinical workflow and patient-safety studies, including studies in low-resource settings.",
+    "Design a qualitative and mixed-methods evaluation, code interview data and report findings with methodological rigour.",
+    "Plan a system implementation, including readiness, vendor selection, contracting, change management and project leadership.",
+    "Build a cost analysis and an economic case for a health information system and write a complete evaluation protocol."
+  ],
+  "units": [
+    {
+      "title": "Foundations of health IT evaluation",
+      "weeks": "1",
+      "topics": [
+        "Why evaluate: failures, benefits and harms of health IT; the sociotechnical view",
+        "Evaluation frameworks: Donabedian structure-process-outcome, information systems success model, HOT-fit and NASSS",
+        "Evaluation questions, outcomes and measures at the system, user and patient level",
+        "Ethics of evaluation: consent, data protection and research ethics approval",
+        "Formative versus summative evaluation across the system life cycle"
+      ]
+    },
+    {
+      "title": "Study designs and analysis",
+      "weeks": "2-3",
+      "topics": [
+        "Randomised trials: cluster and stepped-wedge designs",
+        "Quasi-experimental designs: interrupted time series, difference-in-differences and pre-post comparison",
+        "Observational designs: cohort, case-control and cross-sectional surveys",
+        "Sample size, power, bias and confounding",
+        "Analysing routine data: completeness, timeliness and accuracy in a national district health information platform",
+        "Effect sizes, confidence intervals and regression for evaluation data"
+      ]
+    },
+    {
+      "title": "Usability, workflow and safety studies",
+      "weeks": "4-5",
+      "topics": [
+        "Heuristic evaluation and cognitive walkthrough",
+        "Think-aloud testing, task completion measures and System Usability Scale scoring",
+        "Time-and-motion studies and clinical workflow mapping",
+        "Alert fatigue, override rates and evaluation of clinical decision support",
+        "Patient safety: incident analysis for health IT, safety cases and human factors",
+        "Design and testing for low literacy, multilingual use and offline operation"
+      ]
+    },
+    {
+      "title": "Qualitative and mixed methods",
+      "weeks": "6",
+      "topics": [
+        "Qualitative designs: interviews, focus groups, observation and ethnography",
+        "Sampling, saturation, interview guides and reflexivity",
+        "Thematic and framework analysis; coding and trustworthiness",
+        "Mixed-methods designs: convergent, explanatory sequential and exploratory sequential",
+        "Reporting standards for trials, quality improvement studies and qualitative research"
+      ]
+    },
+    {
+      "title": "Implementation science and change management",
+      "weeks": "7-8",
+      "topics": [
+        "Implementation frameworks: CFIR, RE-AIM and Normalisation Process Theory",
+        "Change models: unfreeze-change-refreeze, stage-based eight-step models and ADKAR",
+        "Readiness assessment: power, connectivity, devices, skills and culture",
+        "Training, super-users and go-live strategies: big bang, phased, pilot and parallel run",
+        "Adoption, resistance and sustainability; why pilots fail to scale in African digital health",
+        "Governance, data stewardship and post-go-live support"
+      ]
+    },
+    {
+      "title": "Procurement, vendor selection and contracting",
+      "weeks": "9",
+      "topics": [
+        "Needs specification, requests for information and requests for proposal",
+        "Open source versus commercial systems; total cost of ownership and vendor lock-in",
+        "Scoring vendors: weighted criteria, scripted demonstrations and reference checks",
+        "Contracts and service levels: licensing, support, data ownership and exit clauses",
+        "Public procurement rules and donor-funded projects"
+      ]
+    },
+    {
+      "title": "Organisational behaviour and project leadership",
+      "weeks": "10-11",
+      "topics": [
+        "Project management for health IT: scope, schedule, risk, Gantt charts and the critical path",
+        "Leadership, clinical champions and stakeholder management",
+        "Organisational culture, power and communication in hospitals",
+        "Managing risks and issues; analysing project failure",
+        "Migrating legacy records: data mapping, cleansing, reconciliation and cut-over",
+        "Benefits realisation management"
+      ]
+    },
+    {
+      "title": "Health economics and return on investment",
+      "weeks": "12",
+      "topics": [
+        "Cost analysis: capital, recurrent and hidden costs; total cost of ownership",
+        "Cost-effectiveness, cost-benefit and cost-utility analysis; QALY and DALY",
+        "Return on investment, net present value, payback period and sensitivity analysis",
+        "Budget impact and financing: national insurance and donor funding",
+        "Value for money and equity in low-resource settings"
+      ]
+    },
+    {
+      "title": "Evaluation project",
+      "weeks": "13",
+      "topics": [
+        "Writing an evaluation protocol: aims, design, outcomes and ethics",
+        "Data collection and analysis plans",
+        "Reporting and feeding results back to decision makers",
+        "Defending an evaluation: peer review, limitations and next steps"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why and how to evaluate health IT",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Select a framework and write three evaluation questions for a new electronic records system in a regional hospital, listing the outcomes to be measured.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Match the questions of a given evaluation to Donabedian structure, process and outcome measures and name a data source for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw a logic model from inputs and activities to outcomes for a hospital pharmacy system and mark a measure for each link"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Resolve an ethics case in which routine data are reused for evaluation, deciding on consent, de-identification and approval route"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Trials and quasi-experimental designs",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compare a stepped-wedge trial with an interrupted time series for evaluating SMS appointment reminders across 12 clinics and state the biases in each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Choose among a randomised trial, cohort study and pre-post design for four evaluation questions in a case and justify each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Fit an interrupted time series to monthly antenatal visit counts around a system launch and report the level and slope change"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Estimate the effect of a roll-out with difference-in-differences on clinic data, test the parallel trends assumption and report the interval"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Power, routine data and statistical analysis",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Assess the quality of one year of district reporting data, then compute the sample size needed to detect a change in the stock-out rate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Compute completeness and timeliness of monthly facility reports with SQL and list the ten worst-performing facilities"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Calculate the sample size per arm needed to detect a drop in stock-outs from 30 to 20 percent at 80 percent power"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Fit a regression of clinic wait times on a system-use indicator with covariates, check confounding and report adjusted effects with intervals"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Usability inspection and testing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Run a heuristic review and a five-user think-aloud test of a patient registration screen and report the severity-ranked problems.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E11",
+          "title": "Inspect a given patient registration screen against ten usability heuristics and list each violation with a severity rating"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Score ten completed System Usability Scale questionnaires, compute the mean and interval, and interpret the grade for the system"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Map the clinic visit workflow before and after the system with swimlane diagrams, using observed times to find the new bottleneck"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Decision support, safety and low-resource settings",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Analyse a medication alert log for override patterns and plan a safe design for a community health worker app used offline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compute the override rate by alert type from a given log and identify the alerts most likely to cause fatigue"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Analyse a health IT incident case, identify contributing factors and select corrective actions scored against a safety rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E11",
+          "title": "Test a community health worker data entry app on a slow, offline connection and propose fixes for low literacy and local language use"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Qualitative and mixed methods",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Plan a study of why nurses bypass a new records system and code two sample transcripts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Write an interview guide of eight open questions for nurses and revise it after spotting leading questions in a given draft"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Code two interview excerpts, group the codes into themes and write a short statement of evidence for each theme"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Design an explanatory sequential mixed-methods study where survey results decide the interview sample, and explain how the strands are integrated"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Implementation frameworks and readiness",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Assess the readiness of five health centres for an electronic system using a framework and rank them for roll-out order.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Classify barriers and enablers in a short case into the constructs of an implementation framework"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E5",
+          "title": "Score ten facilities on power, connectivity, devices and skills from a survey table and rank them for the first roll-out wave"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Lead a branching change management case, choosing communication, training and resistance responses at each stage and scored by rubric"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Go-live, adoption and sustainability",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Plan the go-live of a district patient registry with training, super-users and a support model, and explain how the pilot will scale.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E9",
+          "title": "Draw the timeline of a phased go-live over four facilities with training, data migration and support milestones"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Diagnose why a funded pilot stalled in a case and propose scale-up actions covering funding, ownership and integration"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E9",
+          "title": "Design the post-go-live governance structure with data steward roles, a change board and service desk escalation paths"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Procurement and contracts",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write evaluation criteria and score three vendor proposals for a national immunisation registry, then list the contract clauses that protect data ownership.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Turn a stakeholder interview summary into ten prioritised requirements for a request for proposal"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Score three vendors against weighted criteria and test how the ranking changes when each weight moves by 10 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Negotiate a contract in a case, deciding on support levels, data ownership, exit assistance and penalties and scored on risk transfer"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Project management and leadership",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Build a project plan for a hospital system roll-out and a stakeholder map with a strategy for the resistant clinical groups.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Create a Gantt chart for a 20-task system implementation and highlight the critical path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E9",
+          "title": "Map stakeholders by power and interest for a hospital roll-out and define an engagement action for each quadrant"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Work a case where a department head blocks the project, selecting leadership and communication moves and scored on outcomes"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Risk, data migration and benefits",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Migrate patient records from a paper register extract to a new schema, reconcile the totals, and define the benefits to be tracked.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Build a risk register for a project with likelihood, impact, owner and mitigation, and rank the top five risks"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E5",
+          "title": "Clean a legacy patient table with duplicates and inconsistent dates, load it into a target schema, and reconcile record counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E5",
+          "title": "Define five benefit indicators with baselines and write queries that report the benefit at three and six months after go-live"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Costs, economic evaluation and financing",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Build a five-year cost model and a cost-effectiveness comparison of two telemedicine options, with sensitivity analysis and a funding recommendation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "List capital, recurrent and hidden costs for a clinic system and compute the total cost over five years"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Compute net present value, payback and return on investment of a system and test the result against changes in the discount rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute cost per DALY averted for two options with uncertainty ranges using simulation, and draw an acceptability curve for decision makers"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Evaluation protocol and defence",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write and defend a complete evaluation protocol for a national electronic system, with data plan, analysis plan and dissemination plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Review a draft protocol in a case and list its gaps in aims, outcomes, sample and ethics"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E5",
+          "title": "Define the data collection tables and the queries that produce each evaluation outcome from routine records"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Defend the protocol before a simulated review panel, answering challenges on bias, feasibility and ethics, and scored against a rubric"
+        }
+      ]
+    }
+  ]
+}

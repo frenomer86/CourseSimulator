@@ -1,0 +1,491 @@
+{
+  "slug": "software-engineering-studio",
+  "description": "A team studio in which students deliver a real software product for a client over a full lifecycle, from scoping and architecture spikes to sprints, deployment, quality gates, user testing and handover. In the lab they work through client, team and incident scenarios, draw architecture and plans, run pipelines and cloud deployments, and defend their choices at reviews.",
+  "modelledOn": [
+    "Sommerville, Software Engineering",
+    "Humble and Farley, Continuous Delivery",
+    "Bass, Clements and Kazman, Software Architecture in Practice",
+    "Schwaber and Sutherland, The Scrum Guide"
+  ],
+  "outcomes": [
+    "Elicit and scope a client's needs into a prioritised backlog with acceptance criteria and a justified minimum viable product.",
+    "Make and document architectural decisions, using spikes and design reviews to retire the highest risks early.",
+    "Plan and deliver work in sprints, managing estimates, dependencies, change requests and team conflict.",
+    "Build a continuous integration and deployment pipeline and operate the service with monitoring and incident response.",
+    "Apply code review, automated testing and quality gates, and manage technical debt.",
+    "Run usability and acceptance testing with real users and hand over a maintainable product with a candid retrospective."
+  ],
+  "units": [
+    {
+      "title": "Studio set-up, client brief and scoping",
+      "weeks": "1-2",
+      "topics": [
+        "The studio model: team formation, roles, working agreements and cadence",
+        "Eliciting needs from a client: interviews, personas, user stories and domain modelling",
+        "Scoping a minimum viable product: MoSCoW, impact mapping and explicit non-goals",
+        "Estimation under uncertainty: relative sizing, ranges and re-estimation",
+        "Statement of work, acceptance criteria and managing client expectations"
+      ]
+    },
+    {
+      "title": "Architecture spikes and design review",
+      "weeks": "3-4",
+      "topics": [
+        "Architectural drivers: quality attribute scenarios and lightweight trade-off analysis",
+        "Spikes and prototypes to retire technical risk",
+        "Documenting architecture: the C4 model, UML views and architecture decision records",
+        "Build versus buy, API design and data modelling; offline-first design for low-connectivity users",
+        "Running a design review: preparation, roles and recording outcomes"
+      ]
+    },
+    {
+      "title": "Sprint planning and delivery",
+      "weeks": "5-6",
+      "topics": [
+        "Scrum events, backlog refinement and definitions of ready and done",
+        "Kanban flow: work-in-progress limits, cycle time and bottlenecks",
+        "Trunk-based development, short-lived branches and feature flags",
+        "Tracking delivery: velocity, burndown and cumulative flow without gaming the numbers",
+        "Working with the client: demos, feedback loops and change requests",
+        "Team dynamics: conflict, pairing, mob programming and fair contribution"
+      ]
+    },
+    {
+      "title": "Build, deploy and operate",
+      "weeks": "7-8",
+      "topics": [
+        "Continuous integration pipelines: build, test, lint and artefacts",
+        "Containers and infrastructure as code",
+        "Deployment strategies: blue-green, canary, rollback and database migrations",
+        "Observability: logs, metrics, traces and service level objectives",
+        "Incident response, on-call practice and blameless post-mortems",
+        "Hosting choices for African users: latency, data residency, cost and power or connectivity failures"
+      ]
+    },
+    {
+      "title": "Code review and quality gates",
+      "weeks": "9",
+      "topics": [
+        "Code review practice: small changes, checklists and constructive feedback",
+        "The testing pyramid: unit, integration and end-to-end tests, and meaningful coverage",
+        "Static analysis, dependency scanning and secure-coding gates in the pipeline",
+        "Technical debt: measuring it, recording it and paying it down",
+        "A team definition of done and automated quality gates"
+      ]
+    },
+    {
+      "title": "User testing and acceptance",
+      "weeks": "10-11",
+      "topics": [
+        "Usability testing: task design, think-aloud sessions and the system usability scale",
+        "Accessibility, localisation (Twi, Ewe, Hausa and French) and low-bandwidth design",
+        "Acceptance testing: behaviour-driven scenarios and user acceptance sessions",
+        "Performance and load testing against service level objectives",
+        "Security review and privacy impact assessment under data-protection law",
+        "Release readiness review and go/no-go decision"
+      ]
+    },
+    {
+      "title": "Handover and retrospective",
+      "weeks": "12-13",
+      "topics": [
+        "Handover package: documentation, runbooks, architecture overview and client training",
+        "Licensing, ownership of code and contribution to open source",
+        "Retrospective formats, individual contribution evidence and peer assessment",
+        "Final client demonstration and presentation",
+        "Support, maintenance planning and the cost of ownership after release"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Forming the studio team and meeting the client",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Agree team roles and working rules, then interview a role-played client (a Kumasi spare-parts wholesaler) and turn the notes into five personas-based user stories with acceptance criteria.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Choose roles and working agreements for a five-person team in a scenario and handle an early disagreement, scored on the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Interview a client scenario, pick questions that uncover the real problem and record which needs were found and which were missed"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Model the client's domain as a class or entity diagram and write 8 user stories each traced to an element of the model"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Scope, estimates and the agreement",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a one-page scope: MVP features ranked by MoSCoW, non-goals, an estimate range per feature and acceptance criteria the client signs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw an impact map linking a client goal to actors, impacts and deliverables, and mark which deliverables belong in the first release"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Estimate ten backlog items with relative sizes in a scenario, then update the forecast after a surprise and explain the change to the client"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Negotiate a statement of work in a scenario where the client wants twice the scope in the same time, scored on honesty and trade-offs"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Architectural drivers and spikes",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "List the three most important quality attributes for the client's product, write a scenario for each and design one spike that tests the riskiest technical assumption.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Rank quality attributes for a clinic booking app in a scenario and write measurable quality scenarios for the top three"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E9",
+          "title": "Draw C4 context and container diagrams for the studio project and record two architecture decisions with the alternatives rejected"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Run a spike that measures whether a chosen library handles 1000 records on a low-end phone profile and report the result against the target"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Design choices and design review",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Decide build versus buy for authentication and payments (mobile money API), choose offline behaviour for patchy connectivity and defend the architecture at a mock review.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Draw a sequence diagram of an offline-first sync between a phone and a server, including conflict handling and retries"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Compare managed and self-hosted database options on a cloud console for the project's load and cost and record the choice"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Face a design review scenario with a hostile reviewer, answer five questions with evidence and score on clarity and honest treatment of risk"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Sprint planning and flow",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Plan the first sprint from the backlog with a sprint goal, a definition of done and capacity, and compare a Scrum board with a Kanban board using work-in-progress limits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Build a sprint plan with goal, selected stories, capacity per person and a visible definition of done on a task board diagram"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Run a Kanban scenario with a bottleneck in testing, apply a work-in-progress limit and observe the effect on cycle time"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E4",
+          "title": "Practise trunk-based development in a repository using short branches, a feature flag and a merge, and keep the main branch always releasable"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Delivery metrics, clients and team health",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Run a sprint review and retrospective for a role-played sprint, handle a mid-sprint change request, and address an uneven contribution in the team.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Draw a burndown chart from sprint data with a late scope addition and explain what it does and does not show"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Handle a client change request mid-sprint in a scenario, weighing impact, the sprint goal and the agreement, and score the response"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Resolve a team conflict scenario involving a dominant member and a silent member using fair-contribution practices, scored on the rubric"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Continuous integration and containers",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Set up a pipeline that builds, tests and lints on every push, packages the service in a container, and deploys to staging with a rollback.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Write a pipeline script that runs build, unit tests and lint on a sample project and fails when any step fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E4",
+          "title": "Write a container file for a small web service, build the image, run it and check the health endpoint from the terminal"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E12",
+          "title": "Deploy a service to two instances behind a load balancer using blue-green, switch traffic and roll back after an injected failure"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Observability and incidents",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Define two service level objectives for the product, add metrics and alerts, and run a game-day incident where the database becomes slow, ending in a blameless post-mortem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Create dashboard metrics and an alarm for error rate and latency on a deployed service and trigger the alarm with failure injection"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Lead an incident-response scenario with a slow database, follow the evidence to the cause and write the timeline and fixes"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E12",
+          "title": "Estimate monthly hosting cost for the product in two regions with different latencies to Accra and choose with a stated trade-off"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Reviews, tests and quality gates",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Review a teammate's pull request with a checklist, raise the test coverage meaningfully (not just numerically) on one module, and add a quality gate that blocks a failing merge.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Review a pull request scenario with five planted problems, write comments and score on defects found and the tone used"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Add unit and integration tests to a module so that a planted bug fails a test, then fix the bug and show the suite passes"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E4",
+          "title": "Run a dependency scan and a static analysis check on a repository, triage the findings and gate the pipeline on severity"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Usability testing and accessibility",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Test the prototype with five real users on three tasks, collect think-aloud notes and a SUS score, and write acceptance scenarios in given-when-then form for the top stories.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Run a usability session scenario, observe task failures, compute a system usability scale score and list the top three fixes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E11",
+          "title": "Test a screen on a small low-end phone profile with a slow connection and text in two languages, and fix truncation and large images"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write behaviour-driven scenarios for the checkout story and automate them against a sample app so they pass or fail with the feature"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Performance, security and release readiness",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Load test the service against its objectives, complete a privacy impact assessment for the data collected, and run a go/no-go meeting with evidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Load test a service with a rising request rate on the cloud console, find the saturation point and apply autoscaling to meet the target"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Run a privacy impact assessment scenario for a customer-data app under the data protection act and choose controls for each risk"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Decide go or no-go in a release-readiness meeting scenario with open defects, weighing the evidence and scored on the rubric"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Handover and licensing",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Assemble the handover package (README, architecture overview, runbook, training outline), choose a licence for the code and complete peer-assessment forms with evidence from the repository.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Produce an architecture overview and a runbook page for the deployed system that a new engineer could use to restart it safely"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Choose a licence and ownership terms for the delivered code in a client scenario and justify against the client's goals"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Use the repository history to compile each member's contribution evidence by commits, reviews and tickets, and note the limits of such data"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Final demonstration and cost of ownership",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Give the final client demonstration with a live deployment and a fallback, present a support and maintenance plan with costs, and submit an honest retrospective.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E12",
+          "title": "Prepare a live deployment for the demonstration with a health check and a scripted fallback to a recorded run if the service fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E9",
+          "title": "Draw a support plan with response tiers, a maintenance schedule and a three-year cost of ownership table for the client"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Present to a client panel scenario, answer hard questions on risks and cost, and be scored on clarity, evidence and candour"
+        }
+      ]
+    }
+  ]
+}

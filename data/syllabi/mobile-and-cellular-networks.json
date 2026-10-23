@@ -116,5 +116,404 @@
         "Capstone: plan an LTE network for a rural Ghanaian district and simulate attach, handover and a USSD transaction across it"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Generations, cells and frequency reuse",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Problem set: compute the reuse distance and the signal-to-interference ratio for cluster sizes 3, 4, 7 and 12, and traffic in Erlangs for a cell with given call rates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute reuse distance and signal-to-interference ratio for cluster sizes 3, 4, 7 and 12 and tabulate them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Use the Erlang B formula to find the channels needed for 20 Erlangs at 2 percent blocking, and plot blocking against channel count"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E3",
+          "title": "Plan cell splitting and sectoring for a congested city cell by comparing capacity gain and interference in a simulated cellular layout"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Cell layers and the African mobile market",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Short report: describe how tower sharing and low-band spectrum could extend coverage to villages in one Ghanaian district, with a simple cost comparison.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Place macro, micro and small cells on a simulated map and mark which areas are coverage-limited and which are capacity-limited"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Configure three cell layers over one town and test whether a fast-moving user is served by the macro layer to avoid repeated handovers"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Estimate the break-even population for a rural tower from build and operating costs and revenue per user, then test the effect of tower sharing"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Spectrum, multiple access and link budgets",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compare 900 MHz, 1800 MHz, 3.5 GHz and 26 GHz in a table of range, capacity and building penetration, and state which suit rural and urban Ghana.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Match each of GSM, UMTS, LTE and 5G to its duplexing and multiple-access scheme, and compute the resource slots of a TDMA frame"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Compute a link budget and the cell range at 900 MHz and 2100 MHz for given power, antenna gain and receiver sensitivity"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E3",
+          "title": "Compare coverage and capacity for 700 MHz and 3.5 GHz deployments of the same rural site using the wireless link simulator and report the findings"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "GSM architecture, air interface and signalling",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Label a GSM network diagram with all elements and interfaces, then write the sequence of messages for a location update.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E3",
+          "title": "Build a GSM network diagram in the simulator with MS, BTS, BSC, MSC and registers, and label the Um, Abis and A interfaces"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E3",
+          "title": "Decode a TDMA frame in the simulator, assign eight mobile stations to timeslots, and identify the broadcast and dedicated control channels"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E3",
+          "title": "Trace the GSM protocol stack and signalling messages for a location update, and find which message is missing in a faulty capture"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Call setup and 2G security",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Explain in writing the A3, A8 and A5 steps of a challenge-response authentication, and list two weaknesses of 2G that later generations fixed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E3",
+          "title": "Trace the message flow of a mobile-originated call from channel request to alerting, and fill in the table of signalling messages"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E3",
+          "title": "Trace a mobile-terminated call through paging and channel assignment, and find the point where a given trace fails to reach the called phone"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E3",
+          "title": "Simulate a GSM challenge-response authentication with a fake base station, show what an attacker can learn, and recommend countermeasures"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "GPRS, UMTS and HSPA",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compare the 2G packet core (SGSN, GGSN) with the 3G core, mapping each element, interface and domain, and note why handover is soft in WCDMA.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E3",
+          "title": "Establish a PDP context on a simulated GPRS network and trace the IP address given by the GGSN to the mobile"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Simulate WCDMA spreading and despreading with two users and show how a near user's signal interferes with a far user's without power control"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E3",
+          "title": "Compare voice and data load on a simulated UMTS cell as HSPA users grow, and find the user count at which downlink throughput per user falls below 1 Mbps"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "LTE architecture and radio",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw the LTE architecture with all interfaces, then explain how OFDMA resource blocks are assigned to three users with different channel quality.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E3",
+          "title": "Build an LTE network in the simulator with an eNodeB, MME, S-GW and P-GW, and label the S1, X2 and S11 interfaces"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Compute the resource blocks and peak throughput of a 20 MHz LTE carrier with 2 by 2 MIMO and compare it with a 5 MHz carrier"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E3",
+          "title": "Trace the user-plane and control-plane protocol stacks for a data session and identify which layer causes a packet loss in a faulty trace"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "LTE bearers, voice and attach",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write the ordered steps of an LTE attach and default bearer setup, naming the message and the network element for each step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E3",
+          "title": "Attach a mobile to a simulated LTE network and identify the default bearer and its IP address in the session table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E3",
+          "title": "Add a dedicated bearer with a guaranteed bit rate for voice over LTE, and verify that voice keeps its quality when data load rises"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E3",
+          "title": "Measure control-plane latency of an LTE attach in the simulator under three radio conditions, and find which step dominates the delay"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Mobility, handover and roaming",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Problem set: given a measurement report sequence, decide when a handover triggers with hysteresis and time-to-trigger, and spot a ping-pong.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E3",
+          "title": "Compare location-update traffic and paging load for tracking areas of 5, 20 and 50 cells, and choose the best balance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E3",
+          "title": "Move a mobile between two cells in the simulator and observe the measurement reports and handover decision with given parameters"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E3",
+          "title": "Tune hysteresis and time-to-trigger to remove ping-pong handovers on a highway scenario without increasing call drops, and report the final setting"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "5G radio, core and deployment",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compare 5G standalone and non-standalone options in a table of core, radio, cost and latency, and recommend one for an African city rollout.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Match twelve services to eMBB, mMTC and URLLC and plot the latency and data rate each needs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute the beamforming gain and beam width of massive MIMO arrays of 8, 32 and 64 elements, and compare coverage at 3.5 GHz and 26 GHz"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E3",
+          "title": "Build a 5G service-based core with AMF, SMF and UPF, create video and low-latency control slices, and show each keeps its guarantee under congestion"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "5G business cases and fixed wireless access",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a short business case: should an operator deploy 5G in Accra, extend 4G to rural villages, or both? Give the cost, revenue and coverage assumptions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E3",
+          "title": "Compare non-standalone and standalone 5G connections in the simulator and record the core network and radio used in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Compute the cost per covered person for 5G in a dense city and 4G in a rural district, and compare the two figures"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Evaluate a fixed wireless access offer for homes by modelling subscriber revenue, equipment cost and capacity, and find the number of subscribers per site that breaks even"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "SMS, USSD and mobile data services",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Design a USSD menu and session flow for paying a utility bill with mobile money, including timeouts, shortcodes and a failure path, and test it with five scenarios.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E3",
+          "title": "Walk a USSD session for a balance check through the gateway in the simulator and note each request and response"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E3",
+          "title": "Design a USSD menu of at most four levels for a mobile money transfer and test it against session timeout and wrong-input cases"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Investigate a SIM swap fraud case in a branching scenario, gathering evidence from SMS and network logs and choosing containment steps for the operator"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Network planning, operations and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Capstone report: dimension an LTE network for a rural district with site locations, a backhaul choice, a solar power plan and the expected KPI targets.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E7",
+          "title": "Compute call setup success rate, drop rate and handover success rate from a table of counters and flag KPIs below target"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E3",
+          "title": "Place sites to cover a rural district map in the simulator and check the coverage prediction against the required service levels"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E3",
+          "title": "Plan an LTE network for a rural district and simulate an attach, a handover and a USSD mobile money transaction across it, and report KPIs"
+        }
+      ]
+    }
   ]
 }

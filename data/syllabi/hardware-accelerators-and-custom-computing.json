@@ -1,0 +1,511 @@
+{
+  "slug": "hardware-accelerators-and-custom-computing",
+  "description": "Why and how computation is moved from general processors onto GPUs, FPGAs and custom dataflow hardware. Students model speedups, reason about memory bandwidth with roofline plots, build pipelined and systolic circuits in the circuit bench, run kernels on a GPU model and measure energy on small boards.",
+  "modelledOn": [
+    "Hennessy and Patterson, Computer Architecture: A Quantitative Approach",
+    "Kirk and Hwu, Programming Massively Parallel Processors",
+    "Sze, Chen, Yang and Emer, Efficient Processing of Deep Neural Networks",
+    "Hauck and DeHon, Reconfigurable Computing"
+  ],
+  "outcomes": [
+    "Predict the benefit of acceleration using Amdahl's law, offload costs and performance-per-watt metrics.",
+    "Write and optimise GPU kernels reasoning about warps, memory coalescing, shared memory and occupancy.",
+    "Design pipelined, dataflow and systolic circuits and explain the FPGA flow from RTL or high-level synthesis to timing closure.",
+    "Map neural network layers onto accelerator dataflows and evaluate the effect of quantisation and sparsity.",
+    "Use roofline and energy models to locate bottlenecks and justify design decisions quantitatively.",
+    "Deliver an accelerated kernel with a baseline comparison, a design-space exploration and a written evaluation."
+  ],
+  "units": [
+    {
+      "title": "The case for acceleration",
+      "weeks": "1",
+      "topics": [
+        "End of Dennard scaling, dark silicon and domain-specific architectures",
+        "Amdahl's law, Gustafson's law and offload overhead",
+        "Accelerator taxonomy: CPU, GPU, FPGA, ASIC and neural processing units; cost and non-recurring engineering",
+        "Metrics: throughput, latency, performance per watt and per dollar"
+      ]
+    },
+    {
+      "title": "GPU architecture and programming",
+      "weeks": "2-3",
+      "topics": [
+        "SIMT execution model: threads, warps, streaming multiprocessors and branch divergence",
+        "Kernel programming model: grids, blocks, threads and host-device transfers",
+        "GPU memory hierarchy: global, shared and constant memory; coalescing and bank conflicts",
+        "Occupancy, latency hiding and tiled matrix multiplication",
+        "Parallel patterns: reduction, prefix scan and histogram",
+        "Profiling and optimisation workflow"
+      ]
+    },
+    {
+      "title": "FPGA acceleration flows",
+      "weeks": "4-5",
+      "topics": [
+        "FPGA fabric: lookup tables, flip-flops, block RAM, DSP slices and routing",
+        "Design flow: RTL, synthesis, place and route, bitstream and timing closure",
+        "Pipelining and retiming: frequency versus area and latency",
+        "Host-FPGA interfaces: PCIe, AXI streams, DMA and on-chip memory",
+        "Partial reconfiguration and soft processor cores"
+      ]
+    },
+    {
+      "title": "Dataflow and systolic designs",
+      "weeks": "6",
+      "topics": [
+        "Dataflow graphs, firing rules and synchronous dataflow",
+        "Systolic arrays for matrix multiplication and convolution",
+        "Stream processing with FIFOs and backpressure",
+        "Coarse-grained reconfigurable arrays and spatial architectures",
+        "Mapping loop nests: unrolling, tiling and loop interchange"
+      ]
+    },
+    {
+      "title": "Machine learning accelerators",
+      "weeks": "7-8",
+      "topics": [
+        "Neural network compute: matrix multiply, convolution and im2col",
+        "Quantisation to INT8 and bfloat16; pruning and sparsity",
+        "Matrix-unit designs and dataflows: weight-, output- and row-stationary",
+        "Edge inference on microcontrollers and low-power neural processors for off-grid devices",
+        "Training accelerators: memory capacity, mixed precision and multi-chip interconnect"
+      ]
+    },
+    {
+      "title": "High-level synthesis",
+      "weeks": "9",
+      "topics": [
+        "From C or C++ to RTL: scheduling, allocation and binding",
+        "Pragmas: pipeline, unroll, array partition and dataflow",
+        "Initiation interval, latency and resource trade-offs",
+        "Co-simulation, verification and design-space exploration"
+      ]
+    },
+    {
+      "title": "Memory bandwidth and roofline models",
+      "weeks": "10-11",
+      "topics": [
+        "Arithmetic intensity and the roofline model",
+        "Memory systems: DRAM, high-bandwidth memory, caches and scratchpads",
+        "Data reuse: tiling, blocking and locality",
+        "Compression, on-chip buffering and communication-avoiding algorithms",
+        "Analytical performance models of accelerators"
+      ]
+    },
+    {
+      "title": "Energy-efficient design",
+      "weeks": "12",
+      "topics": [
+        "CMOS power: dynamic, short-circuit and leakage power; P = C V squared f",
+        "Voltage and frequency scaling, clock gating and power gating",
+        "Approximate computing and precision tuning",
+        "Energy per operation versus energy per data movement; solar-powered and off-grid deployments"
+      ]
+    },
+    {
+      "title": "Project: accelerating a kernel",
+      "weeks": "13",
+      "topics": [
+        "Choosing a kernel and a software baseline",
+        "Design-space exploration and bottleneck analysis",
+        "Reporting performance, energy and cost fairly",
+        "Project presentation and review"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The case for acceleration",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Compute the overall speedup of an application when 70 percent of its time is offloaded to an accelerator with a 20x kernel speedup and a fixed transfer cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot Amdahl speedup against accelerated fraction for several kernel speedups, and mark the point where offload overhead removes the gain"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compute throughput, latency, performance per watt and performance per dollar for four devices from a datasheet table and rank them for two workloads"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Choose between a GPU, an FPGA and a custom chip for a clinic image-analysis service, weigh cost and volume, and be scored on the justification"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "SIMT execution and the kernel model",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Explain what happens when threads in one warp take different branches, and work out the memory transactions for a strided and a coalesced access pattern.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step a warp of 8 threads through an if-else branch and record active masks, the divergence cost and the total cycles"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Write a vector-add and a SAXPY kernel in the GPU model, choose block sizes, and check results against the CPU for 1 million elements"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Compare coalesced and strided global memory accesses and shared-memory bank conflicts in the visualiser, and count memory transactions for each pattern"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Tiling, occupancy and parallel patterns",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Tile a matrix multiply with shared memory, compute the occupancy of a kernel from register and shared memory use, and trace a work-efficient prefix scan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Step a parallel tree reduction over 16 values and count the steps and idle threads, then repeat for a prefix scan"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Write naive and tiled matrix multiply kernels for 512 by 512 matrices and compare global memory loads and modelled run time"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Profile a given slow kernel, identify the bottleneck from the counters, apply one fix at a time and report the speedup of each change"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "FPGA fabric and design flow",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Count the lookup tables needed for a 6-input function, and explain how pipelining a long combinational path trades latency for clock rate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E2",
+          "title": "Implement a 4-input function as a lookup table with a memory of 16 bits and verify all inputs against the gate version"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E2",
+          "title": "Pipeline a 4-stage arithmetic datapath by inserting registers, measure the maximum clock frequency before and after, and report the latency cost"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Walk a small design through synthesis, placement and routing in a model flow, find the critical path, and fix a timing violation"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Interfaces, reconfiguration and soft cores",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Design the streaming interface between a host and an FPGA kernel, and decide when partial reconfiguration or a soft core is the right answer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E2",
+          "title": "Build an AXI-stream-like handshake with valid and ready signals between a producer and consumer and check no data is lost under backpressure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E8",
+          "title": "Move 1 KB between a host board and a peripheral over SPI at three clock rates, and measure the effective throughput of each"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Compare a soft processor and a custom hardware block for a checksum on cycles, area and energy estimates, and decide which to use"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Dataflow and systolic arrays",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Draw the data movement of a 3x3 systolic array multiplying two matrices, and tile a convolution loop nest to fit a small on-chip buffer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Step a 3x3 weight-stationary systolic array through a matrix multiply and record which values sit in each cell at every cycle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E2",
+          "title": "Build a two-stage streaming filter connected by a FIFO, apply backpressure from the consumer, and show that the FIFO never overflows"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Tile and unroll a convolution loop nest, count external memory reads for three tile sizes, and choose the tile size that fits a 16 KB buffer"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Neural network compute and quantisation",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Express a convolution layer as a matrix multiply, count its operations and memory traffic, and measure the accuracy cost of INT8 quantisation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Convert a small convolution layer to im2col form, multiply the matrices, and verify the output against the direct convolution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Quantise the weights of a small network to INT8 and 4-bit, measure accuracy on a test set, and report the model size saved"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Compare weight-stationary, output-stationary and row-stationary dataflows on one layer by counting buffer and DRAM accesses for each"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Edge and training accelerators",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Select a processor for a solar-powered crop-pest camera with an energy budget, and explain why training needs more memory than inference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Run a tiny classifier on a microcontroller board, measure inference time and current draw, and compute the energy per inference"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Estimate memory for weights, gradients, optimiser state and activations of a model for fp32 and mixed precision, and plot the breakdown"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Pick hardware for a rural clinic camera under a daily solar energy budget in a case, and be scored on accuracy, energy and cost"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "High-level synthesis",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Explain how a loop becomes a pipelined circuit, read an initiation interval from a schedule, and choose pragmas for a dot-product kernel.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Schedule the operations of a small loop body onto adders and multipliers, and read the latency of the loop from the schedule"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Apply pipeline, unroll and array-partition pragmas to a dot product in the HLS model and tabulate latency and resource use for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Sweep unroll factor and partitioning for a matrix kernel, plot the latency against area Pareto front, and select a design under a resource limit"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Roofline and the memory system",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Draw the roofline for a device, place three kernels on it by arithmetic intensity, and say whether each is compute- or memory-bound.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Plot a roofline from given peak compute and bandwidth, place five kernels by their arithmetic intensity, and classify each as memory- or compute-bound"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Run a streaming access pattern and a random access pattern through a DRAM row buffer model and compare achieved bandwidth"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Block a matrix transpose and a stencil for cache reuse, measure modelled memory traffic against block size, and find the best size"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Reducing traffic and modelling accelerators",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Build a simple analytical model of an accelerator's run time from compute and data movement, and test it against a simulator.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compress activations with run-length encoding on sparse data, measure the traffic reduction, and compute the decompression cost"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Fit an analytical run-time model to simulator results for a matrix kernel and report where the model's prediction error is largest"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Use the analytical model to find the buffer size and bandwidth that balance compute and memory for a convolution accelerator under an area limit"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Energy-efficient design",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Calculate the dynamic power saving from lowering voltage and frequency, and argue when approximate arithmetic is acceptable for an image pipeline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute dynamic power for three supply voltages and frequencies and plot energy per operation against voltage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E2",
+          "title": "Add clock gating to an idle register bank in a circuit, run a workload with 20 percent activity, and measure the switching reduction"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E8",
+          "title": "Measure energy for a computation done at full speed and at reduced clock on a board, and find which finishes with less energy"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project: accelerating a kernel",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Present a baseline, an accelerated design, a roofline analysis and a fair comparison of speed, energy and cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Select a kernel, implement a clean CPU baseline, and record run time and energy for three input sizes with repeated runs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Explore at least 6 design points for your accelerated version, plot performance against resources, and justify the point you choose"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E7",
+          "title": "Place baseline and accelerated designs on a roofline plot and write down which bottleneck remains and what to change next"
+        }
+      ]
+    }
+  ]
+}

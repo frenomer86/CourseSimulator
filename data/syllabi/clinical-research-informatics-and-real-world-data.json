@@ -1,0 +1,511 @@
+{
+  "slug": "clinical-research-informatics-and-real-world-data",
+  "description": "The information systems, data models and governance that turn clinical trials, health records, registries and biobanks into evidence. Students design trial databases, map routine data into a common data model, define patient cohorts in SQL, link records, and weigh privacy decisions in realistic cases.",
+  "modelledOn": [
+    "Richesson and Andrews, Clinical Research Informatics",
+    "Observational Health Data Sciences and Informatics, The Book of OHDSI",
+    "ICH E6 Good Clinical Practice guideline and CDISC standards documentation",
+    "Hernan and Robins, Causal Inference: What If"
+  ],
+  "outcomes": [
+    "Design the data capture, validation and standards pipeline for a clinical trial.",
+    "Transform routine health data into a common data model and assess its quality and fitness for a research question.",
+    "Define and validate computable phenotypes and cohorts from structured data and clinical text.",
+    "Build warehouse and lake structures for health data, and link records across sources while measuring linkage error.",
+    "Apply de-identification, differential privacy and federated analysis, and judge consent and governance arrangements.",
+    "Plan an observational study from question to analysis plan, naming its main biases."
+  ],
+  "units": [
+    {
+      "title": "Clinical trial data management",
+      "weeks": "1-2",
+      "topics": [
+        "Trial phases and designs: parallel, cluster and stepped-wedge randomised trials",
+        "Protocols, eligibility criteria and case report form design",
+        "Electronic data capture, data dictionaries and edit checks",
+        "CDISC standards: CDASH, SDTM and ADaM datasets",
+        "Data cleaning, query management, audit trails and Good Clinical Practice",
+        "Randomisation, blinding and safety reporting systems"
+      ]
+    },
+    {
+      "title": "Observational databases and common data models",
+      "weeks": "3-4",
+      "topics": [
+        "Observational designs: cohort, case-control and self-controlled studies",
+        "Bias and confounding: selection, information bias and confounding by indication",
+        "The OMOP common data model: person, visit, condition, drug and measurement tables",
+        "Extract-transform-load into a common data model; vocabulary mapping (ICD-10, SNOMED CT, LOINC, RxNorm)",
+        "Data quality assessment: completeness, plausibility and conformance checks",
+        "Distributed research networks and federated queries"
+      ]
+    },
+    {
+      "title": "Cohort discovery and phenotyping",
+      "weeks": "5-6",
+      "topics": [
+        "Cohort definitions: inclusion, exclusion, index date and observation windows",
+        "Rule-based computable phenotypes from diagnoses, labs and drugs",
+        "Machine-learning phenotyping and weak labels",
+        "Clinical text mining: concept extraction, negation and temporality",
+        "Phenotype validation: chart review, sensitivity and positive predictive value",
+        "Temporal and sequence phenotypes; disease progression patterns"
+      ]
+    },
+    {
+      "title": "Electronic health record data re-use",
+      "weeks": "7",
+      "topics": [
+        "What a record contains and what it omits: coverage, coding practice and workflow effects",
+        "Missing data and informative observation",
+        "Longitudinal events, time series and irregular sampling",
+        "Linking diagnoses, laboratory results and medicines across tables",
+        "Secondary use and the learning health system",
+        "Routine facility data in low-resource settings: completeness and timeliness"
+      ]
+    },
+    {
+      "title": "Data warehouses and data lakes for health",
+      "weeks": "8-9",
+      "topics": [
+        "Star schema design for clinical data: facts, dimensions and slowly changing attributes",
+        "Warehouse, data lake and lakehouse compared",
+        "ETL and ELT pipelines, lineage and provenance",
+        "Query performance: indexes, partitions and materialised views",
+        "FHIR bulk export and bridging between standards and analytic tables",
+        "Data catalogues, metadata and the FAIR principles"
+      ]
+    },
+    {
+      "title": "Registries, biobanks and linkage",
+      "weeks": "10",
+      "topics": [
+        "Disease registries: design, case ascertainment and completeness",
+        "Biobanks: consent, sample metadata and access",
+        "Record linkage: deterministic matching and probabilistic match weights",
+        "Linkage error and its effect on bias",
+        "Linking clinical and genomic data"
+      ]
+    },
+    {
+      "title": "Privacy-preserving analysis and data governance",
+      "weeks": "11-12",
+      "topics": [
+        "De-identification: identifiers, safe-harbour style removal, expert determination and k-anonymity",
+        "Differential privacy: sensitivity, the Laplace mechanism and the privacy budget",
+        "Federated learning and secure multiparty computation for health data",
+        "Consent models: broad, dynamic and opt-out; data sharing agreements",
+        "Ghana Data Protection Act and cross-border transfer of health data",
+        "Trusted research environments and data access committees"
+      ]
+    },
+    {
+      "title": "From question to study",
+      "weeks": "13",
+      "topics": [
+        "Turning a clinical question into an analysis plan on real-world data",
+        "Target trial emulation",
+        "Reporting standards for observational studies",
+        "Capstone: design and critique a real-world data study"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Trial designs, protocols and case report forms",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Draft a short protocol for a cluster-randomised trial of malaria bed nets, list eligibility rules, and design a one-page case report form with a data dictionary.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E5",
+          "title": "Design tables for a trial case report form with patients, visits and measurements, and add keys and types for each field"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E5",
+          "title": "Write 10 edit-check queries over a trial table that flag out-of-range vitals, missing visits and visit dates before enrolment"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Compute the sample size for a cluster trial with an intracluster correlation of 0.05 and compare it with an individually randomised trial"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "CDISC standards, cleaning and safety",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Map six case report form fields to SDTM variables, and describe how an audit trail would show who changed a lab value and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E5",
+          "title": "Map a raw adverse-event table to SDTM-style columns with SQL, renaming fields and coding the severity values as the standard requires"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Generate a permuted-block randomisation list for 120 participants in 3 sites with 1:1 allocation and verify balance within each block"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Handle a trial in a case where a site backdated a visit, reviewing audit trail evidence, choosing corrective action and scoring the effect on data integrity"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Observational designs, bias and the common data model",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Describe the cohort and case-control designs for a study of a new antimalarial in pregnancy, and name the main bias in each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E5",
+          "title": "Draw the person, visit, condition and drug tables of a common data model and write a query counting persons with a condition"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Compute risk ratio and odds ratio with confidence intervals from a 2x2 table in a cohort and a case-control design, and explain why they differ"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Simulate confounding by indication in a drug study, show the crude and adjusted effect estimates, and report how strongly the bias depends on severity"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "ETL, data quality and federated queries",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write the mapping specification from a local hospital diagnosis table to standard vocabulary, with rules for unmapped codes and duplicates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Map local diagnosis codes to standard concepts using a vocabulary table and report the share of rows left unmapped"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Write data quality checks for completeness, plausibility and conformance on a drug exposure table, and summarise failing rows by rule"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Run the same cohort count at three simulated sites, share only aggregate counts, and combine them while suppressing cells below five"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Cohort definitions and rule-based phenotypes",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Write a computable phenotype for type 2 diabetes from diagnoses, HbA1c results and medicines, and describe how each rule could mislabel a patient.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E5",
+          "title": "Write SQL for a cohort of adults with a first hypertension diagnosis and at least 365 days of prior observation, and report the count"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E5",
+          "title": "Build a diabetes phenotype from diagnoses, lab values and medicine records, and show how the cohort size changes as each rule is added"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Train a classifier for a phenotype from weak labels created by the rule-based definition, and compare its predictions with the rules on 200 records"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Text mining, validation and temporal patterns",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compute sensitivity and positive predictive value for a phenotype from a chart review of 100 records, and explain how a negated phrase can fool a keyword search.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Compute sensitivity, specificity and positive predictive value of a phenotype against a chart-review gold standard of 100 records"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Extract symptom mentions from 50 clinical notes with rules, handle negation and history phrases, and measure the error against labels"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E5",
+          "title": "Find patients whose first diagnosis, drug start and lab abnormality occur in a given order within 180 days, and count the pattern by age group"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Record re-use, missingness and routine data",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "List three ways a health record can misrepresent the true patient population, and say how each would bias an estimate of disease prevalence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Summarise missingness per variable in a 5000-row record extract, plot the pattern, and judge if values are missing at random"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E5",
+          "title": "Join diagnoses, laboratory results and prescriptions for 1000 patients, then compute the time from first abnormal lab to first prescription"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Judge in a case whether district routine data are good enough to estimate antenatal coverage, weighing completeness, timeliness and duplicate reports"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Warehouse design and the lake",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw a star schema for hospital admissions with fact and dimension tables, and compare when a warehouse or a data lake suits a dataset of images and notes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E5",
+          "title": "Create a star schema for admissions with patient, diagnosis, ward and date dimensions, and load a small dataset into it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E5",
+          "title": "Write 5 analytic queries on the admissions star schema, including admissions per ward per month and average stay by diagnosis"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Build an extract-transform-load script with a lineage log for three source tables, and rerun it to show it is repeatable and idempotent"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Performance, standards bridges and metadata",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Explain how an index and a partition would speed up a query for all laboratory results in one month, and list the metadata a catalogue entry needs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E5",
+          "title": "Read the query plan of a lab-results query on a million rows, add an index, and compare the plans and timings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Flatten a bulk export of Patient and Observation resources into analytic tables, and check the row counts against the source"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Prepare a dataset for sharing in a case, writing catalogue metadata and a data dictionary, and score findability, access, interoperability and reuse"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Registries, biobanks and record linkage",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Estimate the completeness of a cancer registry with two overlapping sources, and design match rules for linking records where names are spelt differently.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.3",
+          "engine": "E5",
+          "title": "Link two patient tables by exact match on name and date of birth, then count matched, unmatched and ambiguous records"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement probabilistic linkage with string similarity and match weights for 500 record pairs, and choose thresholds for match, review and non-match"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Measure precision and recall of a linkage on a known truth set, then show how missed links bias a mortality estimate"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "De-identification and differential privacy",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Find the quasi-identifiers in a small clinic dataset, generalise them to reach k = 5, and explain what the privacy budget epsilon controls.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E5",
+          "title": "Check k-anonymity of a clinic table on age, sex and postcode, and list the groups smaller than five records"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Release a patient count with the Laplace mechanism at three epsilon values over 1000 repeats, and plot the error against epsilon"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Fit a logistic model with federated averaging across 4 simulated hospitals, and compare accuracy with a pooled model and a single-site model"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Consent, law and access governance",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Draft the key clauses of a data sharing agreement for a hospital sharing records with a research group, covering purpose, security, onward sharing and return of data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Decide in a case whether a clinic may share patient data with a researcher, citing the data protection rules and consent given"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Choose broad or dynamic consent for a new biobank in a case, weighing participant trust, rural access and the cost of re-contact"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Sit on a data access committee in a case, assess three requests for linked health data, and approve, limit or refuse each with reasons"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Real-world data study design",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write the analysis plan for a real-world study of two blood pressure drugs, stating the target trial, cohort, outcome, confounders and sensitivity analyses.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Check a draft observational study report against a reporting checklist in a case, and list the missing items with the risk each creates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E5",
+          "title": "Specify the eligibility, treatment strategies, time zero and follow-up of a target trial, then build the matching cohort tables in SQL"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Run a full real-world analysis on a synthetic records dataset, adjust for confounders, test sensitivity to an unmeasured one, and write the methods and limitations"
+        }
+      ]
+    }
+  ]
+}

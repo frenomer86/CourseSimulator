@@ -111,5 +111,400 @@
         "Structure of a switch and a router; from switching to networking"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Communication systems and standards",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Draw the five components of a communication system for a mobile money SMS from sender to recipient, and name the standard body behind each interface.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E3",
+          "title": "Build a two-host link and label the source, transmitter, channel, receiver and destination, then send one packet and trace it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E3",
+          "title": "Configure a link in simplex, half-duplex and full-duplex modes, send traffic both ways and record which modes allow simultaneous transfer"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Decide which standards body governs six given technologies and rank the effects on a local ISP in a short case scenario"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Signals, spectrum and bandwidth",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Sketch a square wave and its first five harmonics by hand, then estimate the bandwidth needed to carry it with acceptable shape.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot a sine wave and read off its amplitude, frequency and phase, then change each parameter and describe the effect on the plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Sum the first 1, 3, 5 and 15 odd harmonics to build a square wave, plot each approximation and its spectrum, and compare the errors"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Pass a composite signal through a low-pass filter of varying bandwidth and find the smallest bandwidth that keeps all bits recoverable"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Impairments, capacity and performance",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compute the Shannon capacity of a telephone line and a Wi-Fi channel from given bandwidth and SNR, and say which limit applies to each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Convert five attenuation and gain values to and from decibels and compute the SNR of a signal with added noise"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Compute the Nyquist and Shannon rates for a 3 kHz line at 30 dB SNR and plot capacity against SNR to find the dominating limit"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E3",
+          "title": "Measure latency, jitter and throughput on a simulated satellite link and compute its bandwidth-delay product to size a window for full utilisation"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Conversion, sampling and transmission modes",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Explain in a paragraph why telephone voice is sampled at 8000 samples per second and how that leads to 64 kbit/s.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Place eight given signal conversions into the four categories of digital-to-digital, analog-to-digital, digital-to-analog and analog-to-analog"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Sample a 1 kHz tone at three rates, quantise to 3 bits, and plot each reconstruction to show aliasing and quantisation error"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compute bit rate, baud rate and data elements per signal element for four given schemes and find the scheme needing the least bandwidth"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Line coding and digital modulation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Encode a short ASCII word in five line codes by hand and compare their DC balance and clock recovery properties.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Encode the bits 10110010 in NRZ, Manchester and AMI and plot each waveform, marking where clock recovery is possible"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Draw the ASK, FSK and PSK waveforms for an 8-bit message, then plot QPSK and 16-QAM constellations and compute bits per symbol"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Design a scrambling rule that avoids long runs of zeros in a bit stream, test it on a 64-bit string and prove the receiver recovers the original"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Analog modulation and noise simulation",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Explain why FM radio sounds clearer than AM in a thunderstorm, using the idea that noise changes amplitude more than frequency.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Generate an AM signal from a 1 kHz message on a 20 kHz carrier, plot it and compute its modulation index and bandwidth"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Modulate and demodulate a bit stream with BPSK, add noise at five levels and plot the bit error rate against SNR"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compare BPSK and QPSK bit error rates at a fixed noise level and find the SNR at which each reaches an error rate below one in a thousand"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Multiplexing and spread spectrum",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Draw a frequency plan for 10 radio channels with guard bands inside a 1 MHz band and compute the guard band you can afford.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Place four voice channels of 4 kHz with 1 kHz guard bands on a spectrum plot and compute the total bandwidth required"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Build a synchronous TDM frame for four 64 kbit/s channels, interleave their bytes, and compute the frame rate and line rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Encode three users' bits with orthogonal Walsh codes, add the signals together and decode each user, then show what happens when codes are not orthogonal"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Transmission media",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Write a short recommendation for connecting a rural school to the Internet, comparing four media on cost, bandwidth and maintenance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute the attenuation in decibels over 100 m for twisted pair, coaxial cable and fibre from given dB per km figures"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Estimate the line-of-sight range and free-space loss for a 5 GHz point-to-point link between two towers 12 km apart"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E3",
+          "title": "Build a school network with a wireless point-to-point backhaul, test throughput and delay, then compare it with a satellite link under the same load"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Error detection",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compute the Hamming distance between several pairs of codewords and state how many errors a code of that distance detects and corrects.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Find the minimum Hamming distance of a small code of eight codewords and state how many errors it can detect and correct"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute the Internet checksum for a 20-byte message and show a received message with a corrupted byte that the checksum fails to catch"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Divide a 16-bit message by a generator polynomial to find its CRC, then flip each bit in turn and check which errors the CRC catches"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Error correction",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Explain why interleaving helps against burst errors in mobile networks, using a small grid example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Encode four data bits with a Hamming(7,4) code, flip one bit and use the syndrome to locate and correct it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Interleave four Hamming codewords, apply a burst of three errors and show that deinterleaving turns it into single-bit errors that can be corrected"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Compare the overhead and correcting power of a Hamming code, a repetition code and a Reed-Solomon code for a 1 percent error channel"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Framing, flow control and ARQ",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Compute the link utilisation of stop-and-wait for a 10 Mbit/s link with 20 ms delay and compare it to a sliding window.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Apply bit stuffing to a given bit stream containing the flag pattern and then remove the stuffing to recover the original data"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E3",
+          "title": "Measure link utilisation of stop-and-wait against sliding window on a high-delay link, and choose the window size that fills the pipe"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E3",
+          "title": "Run go-back-N and selective repeat on a lossy link at 5 percent loss, then compare retransmissions and throughput in a table"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Data link protocols and media access",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a short comparison of CSMA/CD and CSMA/CA, explaining why wireless networks cannot use collision detection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Decode the fields of a given HDLC frame, including flag, address, control and checksum, and identify its frame type"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E3",
+          "title": "Simulate ALOHA and slotted ALOHA with increasing load and plot throughput to find each peak, then compare with the theory"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E3",
+          "title": "Simulate a shared medium of 10 stations under CSMA/CA with several contention window sizes and choose the setting that maximises throughput"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Switching and the road to networking",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Compute the end-to-end delay of sending a 1 MB file over three store-and-forward hops and compare it with a circuit-switched call.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E7",
+          "title": "Design a two-stage space-division switch for 16 inputs and count its crosspoints against a single crossbar"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E3",
+          "title": "Send packets through a three-router datagram network, then use virtual circuits, and compare the paths and delay in each case"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E3",
+          "title": "Build a network with two switches and a router, trace one packet through each device and explain which layer each device operates at"
+        }
+      ]
+    }
   ]
 }

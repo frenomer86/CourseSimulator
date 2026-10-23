@@ -1,0 +1,527 @@
+{
+  "slug": "advanced-computational-genomics",
+  "description": "Graduate methods for analysing genomes at scale: read mapping and assembly, variant calling, single-cell and spatial transcriptomics, regulatory genomics, association studies, cancer and microbiome analysis, and multi-omics integration. Students implement core algorithms, run statistical pipelines on simulated cohorts and query large variant tables, finishing with a reproducible analysis project.",
+  "modelledOn": [
+    "Durbin, Eddy, Krogh and Mitchison, Biological Sequence Analysis",
+    "Jones and Pevzner, An Introduction to Bioinformatics Algorithms",
+    "Gusfield, Algorithms on Strings, Trees and Sequences",
+    "Hastie, Tibshirani and Friedman, The Elements of Statistical Learning (selected chapters)"
+  ],
+  "outcomes": [
+    "Implement index-based read mapping and de Bruijn graph assembly and judge their accuracy and cost on large inputs.",
+    "Build a variant-calling and filtering workflow and benchmark it with precision and recall against a truth set.",
+    "Analyse bulk and single-cell expression data with appropriate count models, normalisation, clustering and multiple-testing control.",
+    "Design and interpret association, fine-mapping and polygenic-score analyses, including the effect of population structure and ancestry.",
+    "Analyse tumour and microbiome sequencing data using signature, driver and compositional methods.",
+    "Integrate several omics layers and deliver a reproducible, ethically sound analysis with documented workflow and data governance."
+  ],
+  "units": [
+    {
+      "title": "Sequencing data, read mapping and assembly",
+      "weeks": "1-2",
+      "topics": [
+        "Sequencing technologies: short-read, long-read and nanopore; error profiles; FASTQ and base quality",
+        "Index-based mapping: suffix arrays, the Burrows-Wheeler transform, FM-index and seed-and-extend; SAM/BAM/CRAM",
+        "De novo assembly with de Bruijn graphs and overlap-layout-consensus; repeats and graph simplification",
+        "Assembly assessment: N50, completeness and misassembly detection; long-read polishing",
+        "Pangenome graphs and reference bias"
+      ]
+    },
+    {
+      "title": "Variant calling at scale",
+      "weeks": "3",
+      "topics": [
+        "Genotype likelihoods: a Bayesian model of pileup evidence, ploidy and priors",
+        "Calling pipelines: duplicate marking, base-quality recalibration, haplotype-based calling, joint genotyping and the VCF format",
+        "Structural variants and copy-number change from read depth, split reads and discordant pairs",
+        "Filtering and benchmarking: truth sets, precision, recall and F-measure",
+        "African genomic diversity, reference bias and why callers trained on one ancestry underperform on another"
+      ]
+    },
+    {
+      "title": "Bulk and single-cell transcriptomics",
+      "weeks": "4-5",
+      "topics": [
+        "Quantification by pseudoalignment and expectation-maximisation; TPM and count matrices",
+        "Differential expression: negative-binomial models, dispersion shrinkage and false discovery rate",
+        "Single-cell protocols: droplets, UMIs, ambient RNA, doublets and quality control",
+        "Normalisation, feature selection, PCA, UMAP and graph-based clustering; marker genes",
+        "Trajectory inference, pseudotime and batch integration of datasets",
+        "Spatial transcriptomics: spot- and image-based methods, deconvolution and spatially variable genes"
+      ]
+    },
+    {
+      "title": "Epigenomics and regulatory elements",
+      "weeks": "6",
+      "topics": [
+        "ChIP-seq and ATAC-seq: peak calling, fragment-size analysis and signal tracks",
+        "Bisulfite sequencing, DNA methylation and differentially methylated regions",
+        "Chromosome conformation: Hi-C contact maps, topologically associating domains and loops",
+        "Motif discovery: position weight matrices, expectation-maximisation and scanning",
+        "Sequence-to-function deep models for regulatory activity",
+        "Predicting the effect of non-coding variants on enhancers and expression"
+      ]
+    },
+    {
+      "title": "Population genetics, GWAS and fine mapping",
+      "weeks": "7-8",
+      "topics": [
+        "Hardy-Weinberg equilibrium, linkage disequilibrium and population structure by PCA",
+        "Genome-wide association: regression models, covariates, QQ plots, genomic inflation and Manhattan plots",
+        "Linear mixed models, relatedness and SNP heritability",
+        "Polygenic scores and their poor portability across ancestries",
+        "eQTL mapping and the multiple-testing burden",
+        "Fine mapping and colocalisation: credible sets and posterior inclusion probabilities"
+      ]
+    },
+    {
+      "title": "Cancer genomics and somatic variants",
+      "weeks": "9",
+      "topics": [
+        "Somatic versus germline calling from tumour-normal pairs; contamination and low allele fractions",
+        "Tumour purity, ploidy and clonal structure",
+        "Mutational signatures by non-negative matrix factorisation",
+        "Driver gene detection: recurrence, background mutation rate and dN/dS",
+        "Copy-number alterations, fusions and structural rearrangements",
+        "Clinical interpretation of variants and tumour boards; liquid biopsy"
+      ]
+    },
+    {
+      "title": "Metagenomics and microbiome profiling",
+      "weeks": "10",
+      "topics": [
+        "Amplicon sequencing: 16S ribosomal RNA, denoising to amplicon sequence variants",
+        "Shotgun taxonomic profiling by k-mers and marker genes",
+        "Metagenome assembly and binning into genomes",
+        "Functional profiling and pathway abundance",
+        "Antimicrobial resistance gene detection and surveillance, with Ghanaian hospital and wastewater examples",
+        "Diversity measures and compositional data analysis"
+      ]
+    },
+    {
+      "title": "Multi-omics integration",
+      "weeks": "11-12",
+      "topics": [
+        "Omics layers and study designs: matched versus unmatched samples; early, intermediate and late integration",
+        "Matrix factorisation and canonical correlation approaches for multi-omics data",
+        "Network-based integration and similarity network fusion",
+        "Pathway and set enrichment: over-representation analysis and gene set enrichment",
+        "Missing data, batch effects and validation of integrated findings"
+      ]
+    },
+    {
+      "title": "Pipelines, data management and ethics",
+      "weeks": "13",
+      "topics": [
+        "Workflow engines, containers and provenance for reproducible genomics",
+        "Genomic data in relational stores: variant tables, interval queries and indexing",
+        "Benchmarking, power analysis and honest reporting of genomic results",
+        "Ethics of genomic research in Africa: consent, data sovereignty, benefit sharing and privacy",
+        "Project presentations: end-to-end analysis of a cohort dataset"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Sequencing technologies and read mapping",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Compare short-read and nanopore error profiles, build a suffix array and Burrows-Wheeler transform of a short string, and explain how backward search finds a read.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Parse a FASTQ file, compute per-position mean base quality and read-length distribution, and trim a given adapter and low-quality tails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Build a suffix array and BWT for a 1 kb reference, and implement backward search to count and locate 20 query reads"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Implement seed-and-extend mapping with a k-mer index and banded alignment, then measure mapping accuracy on 2000 simulated reads with errors"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "De novo assembly and assessment",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Assemble a small genome by hand from overlapping reads using a de Bruijn graph, compute N50 for a set of contigs, and discuss why repeats break assembly.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Build a de Bruijn graph from 100 error-free reads with k = 21, walk the unitigs, and reconstruct the 5 kb source genome"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Add errors to the reads, prune tips and bubbles from the graph, and compare contig counts before and after cleaning"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute N50, L50 and total length for three assemblies of the same genome, and rank them with a short written justification"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Genotype likelihoods and variant calling",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Calculate genotype posteriors for a site with 12 reads from a binomial error model, run a calling pipeline on a trio, and compute precision and recall against a truth set.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute genotype likelihoods and posteriors for 0/0, 0/1 and 1/1 at a site with 12 reads and error rate 1 percent, and call the genotype"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Call SNPs from a pileup file with a likelihood model, then compute precision, recall and F-measure against a given truth VCF"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Review a case file where a variant caller trained on European samples misses variants in an African cohort, and decide on retraining and benchmark steps"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "RNA-seq quantification and differential expression",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Quantify transcript abundance by EM on a toy ambiguous-read example, fit a negative-binomial model to counts, and control the false discovery rate with Benjamini-Hochberg.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Implement expectation-maximisation for transcript abundance with ambiguous reads on 3 isoforms and report TPM values after convergence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Simulate counts for 5000 genes with 3 replicates per group, fit a negative-binomial test, and count false positives before and after FDR control"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Examine single-cell QC plots of counts, genes and mitochondrial fraction for 3000 cells and choose filtering thresholds with justification"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Single-cell analysis pipeline",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Cluster a matrix of 3000 cells, annotate clusters from marker genes, and explain what could go wrong with batch effects and pseudotime on a trajectory.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Normalise, pick 2000 variable genes, run PCA and graph-based clustering on a given single-cell count matrix, and plot the clusters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Integrate two batches of the same tissue, measure batch mixing before and after correction, and check that biological clusters remain separate"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Deconvolve 100 spatial spots into cell types from a reference matrix by non-negative least squares and map the proportions on the slide grid"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Regulatory genomics",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Call peaks from a ChIP-seq coverage track, find the enriched motif among them, and argue how a non-coding variant could change gene expression through an enhancer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Call peaks from a ChIP-seq signal and input control using a Poisson background, and report the number of peaks at 1 percent FDR"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Run expectation-maximisation motif discovery on 200 peak sequences, build the position weight matrix, and scan a genome for sites with a threshold"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Train a small convolutional model on one-hot sequences to predict enhancer activity, then score the effect of ten given variants"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Population structure and association testing",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Test Hardy-Weinberg for given genotype counts, run a regression for one SNP with covariates, and explain what the QQ plot and genomic inflation factor reveal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Test 10 SNPs for Hardy-Weinberg equilibrium with a chi-square test and flag the ones that fail, with possible causes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Run a case-control association test for 10,000 simulated SNPs with and without PCA covariates, and draw the QQ plot and Manhattan plot for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Fit a linear mixed model with a relatedness matrix on a simulated cohort with family structure, and estimate SNP heritability"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Polygenic scores, eQTL and fine mapping",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Build a polygenic score from summary statistics, measure how its accuracy drops in a second ancestry, and compute credible sets for a locus with a given LD matrix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Compute a polygenic score from effect sizes, evaluate it in two simulated ancestry groups, and report variance explained in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Map eQTLs for 200 genes against nearby SNPs, correct for multiple testing at gene level, and list significant gene-SNP pairs"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Compute posterior inclusion probabilities and a 95 percent credible set for a locus with strong LD, and explain why it holds several variants"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Somatic variants and tumour evolution",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Call somatic variants from tumour-normal counts, estimate purity and clonality from allele fractions, and decompose a set of mutation spectra into signatures.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Call somatic SNVs from paired tumour-normal read counts with a likelihood-ratio test and exclude germline variants and low-depth sites"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Decompose 50 tumour mutation catalogues into 3 signatures with non-negative matrix factorisation and assign each tumour's exposure to the signatures"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Test genes for excess nonsynonymous mutations using a background rate, rank candidate drivers by q-value, and plot dN/dS per gene"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Metagenomics and the microbiome",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Profile a stool metagenome, compare two groups with a compositional method, and screen a hospital wastewater sample for antimicrobial resistance genes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Assign 5000 reads to taxa by k-mer matching against a small reference database and report relative abundance with a confusion estimate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Compute Shannon alpha diversity and Bray-Curtis distances for 20 samples, then test group differences with PERMANOVA and plot an ordination"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Investigate a resistance outbreak in a regional hospital: choose sampling, interpret resistance gene profiles and recommend infection-control actions against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Integrating omics layers",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Match samples across RNA, methylation and protein data for a cohort, compare early and late integration, and extract latent factors from two views.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Align three data tables by sample identifier, handle samples missing in one layer, and report how many remain for each integration design"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Run a canonical correlation analysis on RNA and methylation views, report the top 3 components and which features load most heavily"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Build patient similarity networks per omics layer, fuse them, cluster the fused network, and test if clusters differ in survival"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Enrichment, validation and robustness",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Run over-representation and gene set enrichment on a ranked gene list, and design a validation and sensitivity analysis for an integrated finding.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Test a list of 150 genes for pathway enrichment with the hypergeometric test, correct for multiple testing, and explain the top three pathways"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Mask 20 percent of entries in a multi-omics matrix, impute them, and measure how the reconstruction error changes the clustering result"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Check an integrated signature on a held-out cohort with a different batch, and report how much of its performance survives and why"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Pipelines, data management and ethics",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Wrap an analysis as a documented workflow with fixed software versions, store variant calls in a relational table, and present the genomic project with its limits and ethical safeguards.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E5",
+          "title": "Load 100,000 variants into a table, add an index, and query by genomic interval to compare the plans and timings before and after indexing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E5",
+          "title": "Write queries that join variants, genes and sample genotypes to list rare damaging variants shared by affected family members but absent in controls"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Handle a consent and data-sharing request for a genomic cohort in a case file, balancing community benefit, privacy and sovereignty against the rubric"
+        }
+      ]
+    }
+  ]
+}

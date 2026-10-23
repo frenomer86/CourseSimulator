@@ -1,0 +1,488 @@
+{
+  "slug": "optical-communications-and-fibre-networks",
+  "description": "How light carries data over fibre: propagation and loss, sources and detectors, dispersion and amplification, wavelength-division multiplexing, passive optical networks and optical transport. Students compute and plot fibre behaviour in the maths lab, model access and metro networks in the network simulator, and finish by designing and budgeting a fibre link.",
+  "modelledOn": [
+    "Keiser, Optical Fiber Communications",
+    "Agrawal, Fiber-Optic Communication Systems",
+    "ITU-T G-series recommendations for fibres, PON and optical transport networks"
+  ],
+  "outcomes": [
+    "Calculate acceptance angle, numerical aperture, V number and the number of guided modes for a given fibre.",
+    "Compute attenuation, dispersion-limited bit rate and receiver sensitivity for a point-to-point link.",
+    "Compare LEDs, laser diodes, PIN and APD detectors and choose a transmitter and receiver pair for a link.",
+    "Design a WDM system by choosing a channel grid, amplifier spacing and OSNR margin.",
+    "Dimension a passive optical network from split ratio, power budget and upstream sharing.",
+    "Produce a link design with power and rise-time budgets and interpret an OTDR trace to locate faults."
+  ],
+  "units": [
+    {
+      "title": "Light in optical fibre",
+      "weeks": "1-2",
+      "topics": [
+        "Ray picture of guidance: Snell law, critical angle and total internal reflection",
+        "Step-index and graded-index fibre; acceptance angle and numerical aperture",
+        "Modes, the normalised frequency V and cutoff; single-mode versus multimode fibre",
+        "Attenuation: absorption, Rayleigh scattering, bending and splice loss; the 850, 1310 and 1550 nm windows",
+        "Standard fibre types: multimode OM grades, G.652, G.655 and bend-insensitive G.657"
+      ]
+    },
+    {
+      "title": "Optical sources and detectors",
+      "weeks": "3-4",
+      "topics": [
+        "LEDs and laser diodes: P-I curves, threshold current, spectral width and coupling efficiency",
+        "Laser structures: Fabry-Perot, DFB and VCSEL; direct versus external modulation",
+        "PIN and avalanche photodiodes: responsivity, quantum efficiency, gain and bandwidth",
+        "Receiver noise: shot, thermal and dark current; sensitivity, SNR and bit error rate",
+        "Line coding and modulation: NRZ, RZ, on-off keying, and an introduction to coherent QPSK and QAM"
+      ]
+    },
+    {
+      "title": "Dispersion, nonlinearity and amplification",
+      "weeks": "5-6",
+      "topics": [
+        "Intermodal dispersion in multimode fibre and the bandwidth-distance product",
+        "Chromatic dispersion: material and waveguide contributions, the D parameter in ps/(nm km), and pulse broadening",
+        "Polarisation mode dispersion and the dispersion limit on bit rate and span length",
+        "Dispersion compensation: compensating fibre, chirped Bragg gratings and digital signal processing",
+        "Erbium-doped fibre amplifiers: gain, noise figure, amplifier chains and OSNR accumulation",
+        "Raman amplification and fibre nonlinearities: self-phase modulation, cross-phase modulation and four-wave mixing"
+      ]
+    },
+    {
+      "title": "Wavelength-division multiplexing",
+      "weeks": "7",
+      "topics": [
+        "CWDM and DWDM channel grids; ITU frequency plan and channel spacing",
+        "Multiplexing devices: thin-film filters, arrayed waveguide gratings and fibre Bragg gratings",
+        "Optical add-drop multiplexers and reconfigurable ROADMs",
+        "Crosstalk, power equalisation and gain tilt across channels",
+        "System capacity: spectral efficiency and the Shannon limit applied to fibre"
+      ]
+    },
+    {
+      "title": "Passive optical networks",
+      "weeks": "8-9",
+      "topics": [
+        "Fibre-to-the-x architectures and point-to-point versus point-to-multipoint access",
+        "GPON and XGS-PON: OLT, ONU, splitters, downstream broadcast and upstream time-division access",
+        "Ranging and dynamic bandwidth allocation; encryption and activation of ONUs",
+        "Split ratio, reach and optical power budget classes",
+        "Deploying PON in Ghana: aerial versus ducted fibre, cost per home passed and an operator business case"
+      ]
+    },
+    {
+      "title": "Optical transport and switching",
+      "weeks": "10",
+      "topics": [
+        "SDH and SONET frames, rings and protection switching",
+        "Optical transport network (OTN): containers, multiplexing hierarchy and forward error correction",
+        "Optical cross-connects and wavelength routing; the routing and wavelength assignment problem",
+        "Ethernet over fibre: 10, 40 and 100 Gb/s, SFP and QSFP transceivers",
+        "Submarine cables to West Africa, landing stations and national backbone resilience"
+      ]
+    },
+    {
+      "title": "Link design, testing and capstone",
+      "weeks": "11-13",
+      "topics": [
+        "Optical power budget: transmitter power, losses, margin and receiver sensitivity",
+        "Rise-time and dispersion budget for multimode and single-mode links",
+        "OSNR budget and BER for amplified WDM links",
+        "OTDR operation: reading traces, events, reflectance, splices and dead zones",
+        "Connectors, fusion splicing, cleaning, insertion-loss testing with a source and power meter",
+        "Capstone: design, budget and test a metro fibre ring with a PON access segment for a Ghanaian town"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Guiding light: rays, NA and modes",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Calculate critical angle, acceptance angle and NA for three fibres, then find V and the approximate number of modes at 850 nm and 1310 nm.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Apply Snell law to a core of index 1.48 and cladding 1.46, plot ray paths for five launch angles and mark which are guided"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute NA, acceptance angle and the modal delay for a step-index fibre of 1 km, and compare it with a graded-index fibre of the same core"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Plot V against wavelength for a fibre with a 4.1 micrometre core radius, find the cutoff wavelength of the second mode and say where it is single-mode"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Loss and fibre types",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Estimate the loss of a 40 km route with splices and connectors at 1310 nm and 1550 nm, and choose between G.652 and G.657 for a building riser.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Plot the attenuation spectrum from a Rayleigh scattering term plus absorption peaks and read off the loss in dB per km at the three windows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute the total loss of a 40 km link with 12 splices and 4 connectors at two wavelengths and the power reaching the receiver"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Choose the fibre type for a rooftop-to-basement riser, a long-haul route and a campus backbone, and justify each choice with bend loss and dispersion evidence"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "LEDs and laser diodes",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Compare an LED and a DFB laser for a 10 km 1 Gb/s link on spectral width, coupling power, cost and modulation speed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot the P-I curve of a laser diode with a 12 mA threshold, find the output at 25 mA and compute its slope efficiency"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute launched power into a fibre for an LED and a laser with different coupling efficiencies and show which meets a receiver need"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Model the chirp from direct modulation versus an external modulator, and plot the resulting pulse width after 50 km on standard fibre"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Detectors, noise and BER",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Find the minimum received power for BER of 10 to the minus 9 using a PIN and an APD at 2.5 Gb/s, and compare NRZ with RZ.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute photocurrent for a PIN with responsivity 0.9 A/W at received powers from -40 to -10 dBm and plot it on a log scale"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Combine shot and thermal noise to compute SNR and BER for a PIN receiver at 622 Mb/s, then plot BER against received power"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Plot eye diagrams for NRZ and RZ signals at the same bit rate through a band-limited channel, and measure eye opening and the penalty"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Dispersion and its limits",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Calculate pulse broadening over 80 km of G.652 fibre for sources of 0.1 nm and 2 nm width, then the maximum bit rate for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Compute intermodal dispersion and the bandwidth-distance product for a multimode fibre and find the longest 1 Gb/s link it supports"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Plot chromatic dispersion against wavelength near 1310 and 1550 nm, find the zero-dispersion wavelength and broadening for 80 km"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Combine chromatic and polarisation mode dispersion to find the maximum span for 10 Gb/s and 40 Gb/s signals, and say which limit binds"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Compensation, amplifiers and nonlinearity",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Design a 400 km amplified link with 80 km spans, computing gain per span, accumulated noise and the OSNR at the end.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compute the length of compensating fibre with negative dispersion needed to cancel the dispersion of 100 km of standard fibre and its added loss"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Chain five amplifiers with 5 dB noise figure, compute OSNR after each span and plot it against distance until it falls below 20 dB"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Plot the launch power at which nonlinear penalty overtakes the noise penalty and pick the best launch power for a 10-span link"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Wavelength-division multiplexing",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Define a DWDM plan of 40 channels on a 100 GHz grid and compute total capacity, spectral efficiency and the band it occupies.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "List the centre wavelengths of 16 channels on an 100 GHz grid near 1550 nm and compare them with a CWDM plan of 8 channels"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E3",
+          "title": "Model a ring of four nodes where each ROADM drops one wavelength, and check the routing of eight traffic demands across it"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Simulate eight channels through an amplifier with gain tilt and plot the power spread, then choose an equalisation scheme to bring it within 2 dB"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Fibre to the home and PON basics",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw a GPON network for 64 homes with an OLT, a splitter tree and ONUs, and explain how upstream bursts avoid collisions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E3",
+          "title": "Build a star topology for 16 homes with a central cabinet, compare it with a point-to-point design, and count fibres and ports needed in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E3",
+          "title": "Model one OLT with 32 ONUs on a shared uplink, send traffic from all ONUs and observe how time slots share upstream capacity fairly"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Simulate dynamic bandwidth allocation for eight ONUs with changing demand and compare fixed slots with demand-based grants on mean delay"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "PON power budget and business case",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Check if a 1:64 split at 18 km meets the class B+ power budget and compute a cost per home passed for an aerial route.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute the optical power budget for 1:32 and 1:64 splits at 10 km and 20 km and tabulate which meet a 28 dB class budget"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Find the maximum reach for a 1:64 PON given splitter loss, connector loss and margin, and show how adding a reach extender changes it"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Choose between aerial and ducted fibre for a town in the Volta Region using cost, time to build and outage evidence, and justify the decision"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Optical transport and switching",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compare protection in an SDH ring, an OTN mesh and a submarine cable pair, and explain how Ghana stays online if one cable is cut.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E3",
+          "title": "Build a four-node ring, cut one span and observe protection switching, then record the traffic lost and restoration time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Solve routing and wavelength assignment for six lightpath requests on a five-node mesh with four wavelengths, and report any blocked request"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Handle a case where a submarine cable break cuts international bandwidth, deciding which traffic to prioritise and which backup routes to light"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Power and rise-time budgets",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Complete a power budget and a rise-time budget for a 25 km 2.5 Gb/s link and state its margin and the limiting factor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute the power budget for a 25 km link with 0 dBm launch power, 0.35 dB/km loss and -28 dBm sensitivity, and report the margin"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Add up source, fibre and receiver rise times for a 2.5 Gb/s link, check them against the 70 percent bit-period rule, and say if it passes"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Compute the OSNR needed for BER below 10 to the minus 12 on a 10 Gb/s channel and set the longest amplified span count that still passes"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Testing: OTDR, splicing and loss",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Read an OTDR trace with four events, identify each as splice, connector or break, and compute total link loss from the trace.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Read an OTDR trace of a 12 km link, locate two splices and one reflective event, and compute the loss of each event in dB"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Measure insertion loss of 10 simulated links with source and power meter, compare to the budget, and flag the links that fail"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Diagnose a link that shows 6 dB extra loss with an OTDR trace and a cleaning log, deciding whether to clean, re-splice or replace and justifying it"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Capstone: metro ring with PON access",
+      "topics": [
+        "7.6"
+      ],
+      "exercise": "Submit the link design report with route diagram, power and rise-time budgets, equipment list and test plan, and defend it in a short review.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.6",
+          "engine": "E9",
+          "title": "Draw the route diagram of a four-node metro ring with spurs to two PON cabinets, labelling distances, fibre types and amplifier or splitter positions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Complete the budgets for the longest ring span and the worst PON subscriber, and show the margin and the limiting factor for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E3",
+          "title": "Simulate a fibre cut on the ring in the network model, measure restoration time, and revise the design until traffic recovers within 50 milliseconds"
+        }
+      ]
+    }
+  ]
+}

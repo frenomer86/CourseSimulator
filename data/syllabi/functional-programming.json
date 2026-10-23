@@ -1,0 +1,498 @@
+{
+  "slug": "functional-programming",
+  "description": "Programming with functions as values: the lambda calculus, pure functions, folds, algebraic data types, laziness, type inference and monads. Students write functional programs in the code runner, using Python and JavaScript in a strict functional style, and step through evaluation and call stacks in the visualiser.",
+  "modelledOn": [
+    "Hutton, Programming in Haskell",
+    "Abelson and Sussman, Structure and Interpretation of Computer Programs",
+    "Bird and Wadler, Introduction to Functional Programming"
+  ],
+  "outcomes": [
+    "Reduce lambda-calculus terms by hand and encode booleans, numbers and recursion with Church encodings and fixed points.",
+    "Write programs from pure functions, higher-order functions and folds without mutating state.",
+    "Model data with algebraic data types and process it by exhaustive pattern matching and structural recursion.",
+    "Convert recursive definitions to tail-recursive form and explain stack use, memoisation and lazy evaluation.",
+    "Infer principal types for small programs and use parametric polymorphism, functors and monoids.",
+    "Structure effects with Maybe, Either, State and Writer monads and keep side effects at the edge of a program."
+  ],
+  "units": [
+    {
+      "title": "The lambda calculus",
+      "weeks": "1",
+      "topics": [
+        "Lambda terms: abstraction, application, free and bound variables, alpha conversion",
+        "Beta reduction, normal forms, normal-order versus applicative-order evaluation, and the Church-Rosser theorem",
+        "Church encodings of booleans, pairs and natural numbers; arithmetic by function application",
+        "Recursion without names: fixed points and the Y combinator"
+      ]
+    },
+    {
+      "title": "Purity and immutability",
+      "weeks": "2",
+      "topics": [
+        "Pure functions and referential transparency; equational reasoning",
+        "Side effects and why they complicate testing, caching and concurrency",
+        "Immutable data and persistent structures with structural sharing",
+        "Substitution model versus environment model of evaluation",
+        "Proving properties of functions by equation and induction, such as map fusion"
+      ]
+    },
+    {
+      "title": "Higher-order functions and folds",
+      "weeks": "3-4",
+      "topics": [
+        "First-class functions, closures and lexical scope",
+        "map, filter and zip as the vocabulary of list processing",
+        "foldr and foldl: definitions, differences and expressing sum, length and reverse as folds",
+        "Currying, partial application and function composition",
+        "Pipelines, point-free style and list comprehensions"
+      ]
+    },
+    {
+      "title": "Algebraic data types and pattern matching",
+      "weeks": "5-6",
+      "topics": [
+        "Product types and sum types; tagged unions in Python and JavaScript",
+        "Pattern matching and exhaustiveness checking",
+        "Recursive types: lists, binary trees and expression trees",
+        "Option and Either types replacing null and exceptions",
+        "Structural recursion and folds over trees (catamorphisms)"
+      ]
+    },
+    {
+      "title": "Recursion and tail calls",
+      "weeks": "7",
+      "topics": [
+        "Structural recursion and its correspondence with induction",
+        "Accumulators, tail recursion and tail-call elimination",
+        "Mutual recursion and trampolines to avoid stack overflow",
+        "Cost of recursion: stack depth, repeated work in naive Fibonacci and memoisation",
+        "Divide and conquer in functional style: merge sort and quicksort on immutable lists"
+      ]
+    },
+    {
+      "title": "Lazy evaluation and infinite structures",
+      "weeks": "8-9",
+      "topics": [
+        "Call-by-value, call-by-name and call-by-need; thunks and sharing",
+        "Infinite lists and streams: naturals, Fibonacci numbers and the sieve of Eratosthenes with generators",
+        "Laziness and control: short-circuit operators and user-defined control structures",
+        "Space leaks, strictness and when laziness costs memory",
+        "Lazy dynamic programming and memoisation through lazy tables"
+      ]
+    },
+    {
+      "title": "Types, inference and polymorphism",
+      "weeks": "10-11",
+      "topics": [
+        "Parametric polymorphism: type variables, generic functions and free theorems",
+        "Hindley-Milner type inference: constraint generation and unification",
+        "Ad-hoc polymorphism: type classes, interfaces and overloading",
+        "Functors: mapping over containers and the functor laws",
+        "Monoids, semigroups and folding with associativity: parallel reduction"
+      ]
+    },
+    {
+      "title": "Monads, effects and project",
+      "weeks": "12-13",
+      "topics": [
+        "Applicative functors: combining independent effectful computations",
+        "The monad interface: bind, return and the monad laws",
+        "Maybe, Either, List, State and Writer monads worked through examples",
+        "Effects at the edge: functional core with an imperative shell, and input and output",
+        "Project: a parser-combinator library and an interpreter for a small expression language"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The lambda calculus",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Reduce five lambda terms to normal form by hand, writing each beta step, then encode the number 3 and compute 2 + 3 with Church numerals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "Step through the reduction of five small lambda terms, marking each variable as free or bound and noting where alpha conversion avoids a capture"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement Church booleans, pairs and numerals as functions in JavaScript, then compute successor, addition and multiplication and decode results back to integers"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write the Y combinator in a strict language using the delayed variant, define factorial through it, and explain why the plain Y loops forever"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Purity and equational reasoning",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Rewrite an impure function that uses a global counter into a pure one, then prove by induction that map f (map g xs) equals map (f after g) xs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Classify ten small functions as pure or impure, rewrite the impure ones to take and return state, and show a test that now needs no setup"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement an immutable stack and an immutable binary tree with structural sharing, and check that old versions stay unchanged after ten updates"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Trace the same program under the substitution model and the environment model in the visualiser and identify one program where they give different explanations"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Closures, map, filter and fold",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Write sum, product, length, reverse and a function that groups marks into grade bands, each as a fold, and say whether foldl or foldr suits each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Use map, filter and zip, with no loops, to compute the average of passing marks from two lists of student names and scores"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Define sum, length, reverse and maximum as folds, then compare the shape of foldl and foldr evaluation on a five-element list"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Build a counter generator using closures, show two independent counters, and explain the captured environment of each with a diagram"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Currying, composition and pipelines",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Convert a mobile money fee calculation into a pipeline of small composed functions, and rewrite two of its steps in point-free style.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Curry a three-argument function, build specialised versions by partial application and compose them into a function that cleans and totals a list of payments"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Rewrite a 15-line loop-based report on market prices as a pipeline of map, filter and fold, then check both versions agree on 100 random inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Step through a composed pipeline of five functions in the visualiser, record each intermediate value, and then reorder two stages to show where composition is not commutative"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Algebraic data types and pattern matching",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Define a Shape sum type and an expression tree, then write an area function and an evaluator using pattern matching on every case.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Model shapes (circle, rectangle, triangle) as a sum type with tagged unions and write area and perimeter by matching on each variant"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Define an arithmetic expression tree, write an evaluator and a pretty-printer by pattern matching, and test on ten expressions including nested ones"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Extend the expression type with a new variant and use exhaustiveness checks to find every function that no longer handles all cases"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Option, Either and folds over trees",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Replace null returns and exceptions in a student-records lookup with Option and Either, and write a fold that computes tree height, size and sum.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Rewrite a records lookup that returns null into Option, and chain three lookups without a single null check using map and flat-map style helpers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Write a generic fold for a binary tree and use it to compute size, height, sum and in-order list with no separate recursion for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Validate a registration form with Either so the first error is reported, then adapt it to collect all errors, and compare the two designs"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Recursion and tail calls",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Convert factorial, Fibonacci and list length to tail-recursive form, and measure stack depth and running time for input sizes up to 100,000.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Step through factorial recursively and with an accumulator, compare the call stack at its deepest point, and note which version a compiler could turn into a loop"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Time naive Fibonacci for n up to 35, add memoisation, count the function calls before and after, and plot both against n"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Rewrite a deeply recursive function so it runs for input 1,000,000 without overflow, using a trampoline, and compare it with the accumulator version"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Lazy evaluation and infinite lists",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Predict the output of five expressions under strict and lazy evaluation, then define the primes as an infinite stream and take the first 20.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Evaluate an expression with an unused infinite argument under call-by-value, name and need, and record which terminate and how often each argument is computed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Use generators to define the naturals, the Fibonacci numbers and a prime sieve as infinite streams, then take the first 20 of each lazily"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement your own if-else and short-circuit and function using thunks, and show an argument that is never evaluated when the condition decides the result"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Space, strictness and lazy tables",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compare memory use of a lazy and a strict sum over a million numbers, and compute edit distance using a lazily filled table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Sum the numbers up to one million with a lazy chain of thunks and with a strict accumulator, and compare peak memory and any stack failure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Compute edit distance between two words using a lazily filled memo table and check it against a hand-filled table for a six-letter pair"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Step through a lazy foldl on a long list in the visualiser, find where thunks build up, and fix it with a strict variant"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Polymorphism and type inference",
+      "topics": [
+        "7.1",
+        "7.2"
+      ],
+      "exercise": "Infer the principal type of compose, flip and a function that applies f twice, writing the constraints and the unification steps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Write generic functions (swap, pair map, first element) with type annotations and show each works for integers, strings and records without changes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Implement unification of two type expressions in code, test it on eight pairs including an occurs-check failure, and report the substitution found"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Step through constraint generation and unification for the term that applies f twice, and justify the final polymorphic type in your own words"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Type classes, functors and monoids",
+      "topics": [
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Define a Functor for lists, options and trees, check the two functor laws on examples, and use a monoid to sum, concatenate and merge statistics.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Define a Shape interface with area and describe, give three implementations, and write a function that works for any of them through the interface"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Implement map for list, option and binary tree, then test identity and composition laws on 20 generated examples and report any failure"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Define a monoid for word-frequency maps, split a text in four parts, count each in parallel and merge, and show the result is independent of the split"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Applicatives and the monad interface",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Chain three failing lookups with the Maybe monad, thread a counter with State, and collect log lines with Writer, writing bind for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Implement bind and return for Maybe, then chain three lookups that may fail and verify the left identity, right identity and associativity laws"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Implement a State monad that threads a random-number seed and use it to generate a deterministic list of ten simulated sensor readings"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Implement a Writer monad that records each step of a currency conversion pipeline and check that the final log matches a trace written by hand"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Effects at the edge and project",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present your parser and interpreter with a short demonstration, a test suite, and a note explaining which parts are pure and which touch input and output.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Refactor a script that reads a file, computes and prints into a pure core plus a thin shell, and test the core without touching the filesystem"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build parser combinators for numbers, identifiers and parentheses, then parse and evaluate arithmetic expressions with correct precedence on 15 test inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Extend the interpreter with let-bindings and functions, report errors with Either including positions, and test recursion with factorial and Fibonacci programs"
+        }
+      ]
+    }
+  ]
+}

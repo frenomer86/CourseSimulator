@@ -1,0 +1,510 @@
+{
+  "slug": "advanced-network-security",
+  "description": "A graduate course in defending networks: secure architecture, protocol hardening, secure channels, detection and response at every layer from the link to inter-domain routing. Students design, harden and monitor simulated enterprise, campus and provider networks, then evaluate how well their defences hold against scripted incidents.",
+  "modelledOn": [
+    "Kaufman, Perlman and Speciner, Network Security: Private Communication in a Public World",
+    "Stallings, Network Security Essentials",
+    "NIST SP 800-207 Zero Trust Architecture and NIST SP 800-94 Guide to Intrusion Detection and Prevention Systems",
+    "IETF RFCs for TLS 1.3, DNSSEC, IPsec and RPKI"
+  ],
+  "outcomes": [
+    "Construct threat models for enterprise and provider networks and derive segmentation and zero-trust designs from them.",
+    "Harden link, network and routing protocols with access control, anti-spoofing, authentication and origin validation.",
+    "Configure and evaluate firewalls, intrusion detection and secure channels, reasoning about false positives and failure modes.",
+    "Design mitigations and runbooks for denial of service, botnet activity and wireless or cellular threats.",
+    "Monitor networks with packet capture, flow records and event correlation, and lead a network incident investigation."
+  ],
+  "units": [
+    {
+      "title": "Threat models and secure network architecture",
+      "weeks": "1",
+      "topics": [
+        "Network threat models: attacker positions, capabilities and goals",
+        "Defence in depth and security zones",
+        "Segmentation with VLANs, VRFs and micro-segmentation",
+        "Zero-trust architecture and identity-aware access",
+        "Network security policy, baselines and change control"
+      ]
+    },
+    {
+      "title": "Link and network layer protection",
+      "weeks": "2-3",
+      "topics": [
+        "ARP and IPv6 neighbour discovery weaknesses and their defences: dynamic ARP inspection, DHCP snooping, RA guard",
+        "Port security and 802.1X network access control",
+        "IP spoofing and ingress and egress filtering (BCP 38)",
+        "IPsec: AH, ESP, IKEv2, transport and tunnel modes",
+        "Site-to-site and remote-access VPN design",
+        "Protecting spanning tree, first-hop redundancy and the control plane"
+      ]
+    },
+    {
+      "title": "Firewalls and intrusion detection",
+      "weeks": "4-5",
+      "topics": [
+        "Stateless and stateful packet filtering",
+        "Rule-base design, ordering, shadowed rules and audit",
+        "Application-layer gateways, proxies and web application firewalls",
+        "Signature-based intrusion detection and rule writing",
+        "Anomaly-based detection, base rates and false-positive trade-offs",
+        "Intrusion prevention placement, fail-open versus fail-closed"
+      ]
+    },
+    {
+      "title": "TLS and secure channels",
+      "weeks": "6",
+      "topics": [
+        "TLS 1.3 handshake, key schedule and forward secrecy",
+        "Certificates, chains, revocation and certificate transparency",
+        "TLS misconfigurations and downgrade protection",
+        "Mutual TLS for service-to-service authentication",
+        "Secure shell: host keys, user keys and bastion design"
+      ]
+    },
+    {
+      "title": "DNS and routing security",
+      "weeks": "7-8",
+      "topics": [
+        "DNS cache poisoning and DNSSEC signing and validation",
+        "Encrypted DNS transports: privacy and enterprise visibility trade-offs",
+        "DNS firewalls and response policy zones",
+        "BGP prefix hijacks and route leaks",
+        "RPKI route-origin validation and prefix filtering",
+        "Routing protocol authentication and routing hygiene at African internet exchange points"
+      ]
+    },
+    {
+      "title": "Wireless and mobile network security",
+      "weeks": "9",
+      "topics": [
+        "WPA2 and WPA3 handshakes and their known weaknesses",
+        "Enterprise Wi-Fi with 802.1X and EAP methods",
+        "Rogue access points and wireless intrusion detection",
+        "Cellular security: SIM authentication, signalling risks and 5G improvements",
+        "Securing mobile money and USSD channels"
+      ]
+    },
+    {
+      "title": "Denial of service and botnets",
+      "weeks": "10-11",
+      "topics": [
+        "Volumetric, protocol and application-layer denial of service",
+        "Reflection and amplification and why anti-spoofing stops them",
+        "Mitigation: rate limiting, SYN cookies, scrubbing and anycast",
+        "Botnet architectures and command-and-control detection",
+        "Sinkholing, takedown coordination and CERT cooperation",
+        "Capacity planning and denial-of-service runbooks"
+      ]
+    },
+    {
+      "title": "Monitoring, traffic analysis and response",
+      "weeks": "12-13",
+      "topics": [
+        "Packet capture and flow records (NetFlow and IPFIX)",
+        "Analysing encrypted traffic from metadata and TLS client fingerprints",
+        "Event correlation in a security information and event management system",
+        "Hypothesis-driven threat hunting",
+        "Network forensics and incident response",
+        "Security evaluation of a complete network design"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Threat models and zero-trust architecture",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a threat model for a mobile-money agent network linking 500 rural kiosks to a data centre, then derive the security zones, trust boundaries and the five highest-priority controls.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E3",
+          "title": "Place a firewall, a DMZ and an internal zone in a small office topology and verify that only the web server is reachable from outside"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E3",
+          "title": "Segment a hospital network into clinical, administrative, guest and device VLANs with inter-VLAN ACLs, and prove each allowed and denied flow with test pings"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Redesign a flat campus network for zero trust with identity-aware access proxies, then show which lateral movement paths from a compromised laptop remain open"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Protecting the access layer",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Explain, with a packet sequence diagram, why ARP and IPv6 router advertisements can be forged on a shared segment and how dynamic ARP inspection and RA guard each stop it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E3",
+          "title": "Inspect a capture of duplicate ARP replies on a switch segment, identify the conflicting MAC address and enable dynamic ARP inspection to block it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E3",
+          "title": "Configure 802.1X port authentication with a RADIUS server and a guest VLAN fallback, and verify behaviour for managed, unmanaged and unknown devices"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E3",
+          "title": "Apply ingress and egress filtering at a small provider edge so no customer can send spoofed sources, and measure which test flows are dropped at each hop"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "IPsec, VPNs and control-plane protection",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compare IPsec transport and tunnel mode headers byte by byte for one packet and state what each mode protects and what it reveals to an observer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E3",
+          "title": "Bring up a site-to-site IPsec tunnel between Accra and Kumasi branch routers and confirm with the packet inspector that payloads are encrypted"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E3",
+          "title": "Design a remote-access VPN for field staff with split tunnelling rules, then justify which subnets go through the tunnel and which do not"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E3",
+          "title": "Harden a core switch pair with root guard, BPDU guard and control-plane policing, then show the topology stays stable when a rogue switch is plugged in"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Packet filtering and firewall policy",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Audit a 40-rule firewall policy on paper: mark shadowed, redundant and overly broad rules and rewrite it into the smallest equivalent ordered set.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E3",
+          "title": "Write stateful firewall rules that allow outbound web and DNS from a LAN and only return traffic back in, then test five flows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Write a script that loads a firewall rule base, detects shadowed and redundant rules and reports the minimal reordering that preserves behaviour"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E3",
+          "title": "Deploy a reverse proxy with a web application firewall in front of a clinic booking app and tune it until legitimate traffic passes with no blocks"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Intrusion detection and prevention",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Use Bayes' rule to show how an IDS with 99 percent detection and 1 percent false positives performs when only 1 in 10,000 flows is malicious, and propose two ways to improve precision.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E3",
+          "title": "Write a signature rule that alerts on a known malicious user-agent string and confirm it fires on the sample capture and not on normal traffic"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Train a flow-feature anomaly detector on a week of baseline traffic and plot its ROC curve, choosing a threshold for an analyst budget of 20 alerts a day"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E3",
+          "title": "Place inline and passive sensors in a branch network, choose fail-open or fail-closed for each, and defend the choices against an availability requirement"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "TLS, certificates and secure shell",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Trace the TLS 1.3 key schedule from the shared secret to the traffic keys and explain why recording the session and later stealing the server key reveals nothing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E4",
+          "title": "Inspect a server certificate chain, identify the issuer, validity period and subject alternative names, and explain why one hostname fails validation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E4",
+          "title": "Scan a web server's TLS configuration, disable legacy protocol versions and weak cipher suites, and confirm the improved result in a rescan"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E4",
+          "title": "Set up mutual TLS between two internal services with a private certificate authority, then rotate a client certificate without downtime"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Securing DNS",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Explain how DNSSEC builds a chain of trust from the root to a .gh domain and what a validating resolver does when one signature has expired.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E3",
+          "title": "Turn on DNSSEC validation in a resolver and compare its answers for a correctly signed zone and a zone with a broken signature"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E3",
+          "title": "Configure a response policy zone that blocks a list of known malicious domains and verify that clients receive the block page"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Advise a bank on whether to allow encrypted DNS from staff laptops, weighing privacy, malware detection and regulatory monitoring in a scored case"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Routing security",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Study a published route leak incident and draw the AS paths before and during it, showing where filtering or origin validation would have stopped propagation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E3",
+          "title": "Observe how a more-specific prefix announced by a neighbouring AS diverts traffic in a five-AS topology, and record the changed routing tables"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E3",
+          "title": "Enable RPKI route-origin validation on border routers and confirm that invalid announcements are dropped while valid ones are kept"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E3",
+          "title": "Write prefix filters, maximum-prefix limits and session authentication for every peer at a regional internet exchange and test them against a leak scenario"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Wireless and cellular security",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compare the WPA2 four-way handshake with WPA3 SAE and explain why offline password guessing is no longer possible with SAE.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E3",
+          "title": "Configure enterprise Wi-Fi with 802.1X and certificate-based EAP for staff, and a separate isolated guest network with client isolation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E3",
+          "title": "Use wireless intrusion detection logs to locate a rogue access point broadcasting the corporate network name and quarantine its switch port"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Lead a scored review of a mobile money USSD service, rating SIM-swap, session and agent-fraud risks and choosing controls within a fixed budget"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Denial of service and its mitigation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Calculate the amplification factor for three reflection protocols from request and response sizes and explain why BCP 38 filtering removes the attack class.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E3",
+          "title": "Watch a simulated SYN flood fill a server's connection table, then enable SYN cookies and compare completed legitimate connections"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E3",
+          "title": "Configure rate limits and an upstream scrubbing diversion for a news site under a simulated volumetric flood, keeping legitimate latency under 200 ms"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Model the bandwidth a reflection attack can reach from open resolvers in a region, and estimate how much it falls as anti-spoofing adoption rises"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Botnets and coordinated response",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Draft a one-page denial-of-service runbook for a university portal during results week, with roles, thresholds, contacts and escalation steps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Analyse DNS query logs to flag hosts making periodic queries to algorithmically generated domains, a common sign of botnet check-ins"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Coordinate a botnet sinkhole operation with an ISP, the national CERT and a registrar in a scored scenario, deciding what evidence to share and when"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E12",
+          "title": "Plan capacity and autoscaling for a public service so it absorbs ten times normal load, and price the standby capacity against expected outage cost"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Traffic analysis and monitoring",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Decide which data sources (full capture, flow records, DNS logs, proxy logs) a 2,000-user organisation should collect, with retention periods, storage cost and privacy limits under Act 843.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E3",
+          "title": "Export flow records from an edge router and list the top ten talkers and destination ports for one hour of traffic"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Group TLS client fingerprints and connection metadata from encrypted flows to spot one host whose behaviour differs from the managed laptop fleet"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Write correlation rules that join firewall, DNS and authentication events into one alert for a likely compromised account, and measure alert volume"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Threat hunting, forensics and design review",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Present a security evaluation of your own network design from the semester: threat model, controls per layer, residual risks and a monitoring plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E3",
+          "title": "Reconstruct the timeline of a suspicious file transfer from packet captures and flow records and record the evidence with timestamps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Run a hypothesis-driven hunt for data exfiltration over DNS in a week of logs and report the hosts and evidence that support or refute it"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Lead a scored incident response for a compromised branch router, choosing containment, evidence preservation and communication steps under time pressure"
+        }
+      ]
+    }
+  ]
+}

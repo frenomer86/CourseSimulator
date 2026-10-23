@@ -105,5 +105,400 @@
         "Careers and the map of the computer science degree ahead"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What computing is",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Make a one-page timeline of five computing milestones and decompose an everyday task, such as buying airtime, into steps a computer could follow.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E8",
+          "title": "Identify the hardware parts of a desktop PC in the assembly bench and sort them into input, processing, storage and output"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E8",
+          "title": "Choose between a microcontroller board, a single-board computer and a PC for three given jobs and justify each choice by cost and power"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Decompose the problem of giving change in cedis into steps, write it as a Python function and test it on 10 amounts"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Numbers and text in binary",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Convert six numbers between decimal, binary and hexadecimal by hand, then write the UTF-8 bytes of a short Twi word.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Convert 10 decimal values to binary and hex with the base converter and check each by converting back"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Print 0.1 + 0.2 in Python, show its binary floating-point value and encode -37 as 8-bit two's complement, verifying by adding 37"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Encode a Twi sentence in UTF-8, count bytes per character, then show what garbled text appears when it is decoded as Latin-1"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Media, compression and error detection",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compute the size of one minute of CD-quality stereo audio and a 10 megapixel photo, then explain what lossy compression discards.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Apply run-length encoding to five short strings and a small pixel row and compute the compression ratio of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Add an even-parity bit to 10 bytes, flip one bit in three of them and show which corruptions the parity check detects"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Build the Huffman tree for a 40-character message, assign codes, encode the message and compare its length with fixed 8-bit codes"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Inside the computer",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw a half adder and full adder from gates, then describe what happens in each step of one fetch-decode-execute cycle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E2",
+          "title": "Build a half adder from XOR and AND gates and verify all four input cases in the truth table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Step a tiny CPU through a 5-instruction program, recording the program counter and register values after each fetch-decode-execute cycle"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Run a memory access sequence through a small cache, count hits and misses, and change the cache size to see the effect on average access time"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Programs and operating systems",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Compare compiling and interpreting using one small program, and list five jobs an operating system does when you open a file.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Trace a short assembly program that adds two numbers, listing the machine instruction behind each line and the final register values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E4",
+          "title": "List running processes in the terminal, start and stop a background job and report its process ID and state at each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E4",
+          "title": "Create a folder tree for a school project, set file permissions so only the owner can edit, and verify access as another user"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Algorithms and basic programming",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write pseudocode and a flowchart for finding the highest mark in a class list and trace it with five marks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Write a Python program using a loop and an if statement to total only the marks above 50 in a list of 10 scores"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Run linear and binary search on a sorted list of 16 numbers for three targets and compare the number of comparisons"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Compare bubble sort and selection sort on three 10-element lists and record the swaps and comparisons for each"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Efficiency and software",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Count the steps for linear and binary search on lists of 8, 1000 and 1 million items, and compare open source and proprietary licences for a school.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Write a Python program that asks for a number and prints its multiplication table, then test it with 3 inputs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Time linear search and binary search on lists of 1000, 100000 and 1 million items and plot how the time grows"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Plot step counts for n, n squared and 2 to the n for n up to 30 and decide which algorithms stay usable at one million inputs"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Data, files and spreadsheets",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Design a file naming and folder scheme with a backup plan for a small shop's records, and list three data quality problems in a messy sheet.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E4",
+          "title": "Create, copy, rename and delete files in the terminal, then list file sizes and modification times for a folder of five documents"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Enter 20 rows of shop sales, compute totals with formulas, sort by amount and filter to one product, then chart the monthly totals"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Clean a CSV of 30 survey rows with duplicates, blanks and mixed date formats and report how many records each fix changed"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Databases and big data",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Draw the tables for a mobile money ledger with their primary and foreign keys, and write down three questions it should answer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E5",
+          "title": "Write SELECT queries to list all students, those in one class and those sorted by mark from a given student table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E5",
+          "title": "Query a mobile money ledger for total deposits per customer and the five largest transactions, checking totals against the sample data"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E5",
+          "title": "Design customer, account and transaction tables with keys for a hospital clinic, insert sample rows and join them to answer two questions"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Networks and the web",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Describe step by step what happens between typing a URL on your phone and the page appearing, naming DNS, IP and HTTP.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E3",
+          "title": "Connect four PCs to a switch and a router in the simulator, assign IP addresses and ping between every pair"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E3",
+          "title": "Send a packet across two routers, inspect the headers at each hop and note how the addresses change or stay the same"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E3",
+          "title": "Set up a web server and DNS name on the simulated network and fetch the page from a client, then break DNS and diagnose it"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "The internet in Ghana and your first website",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Estimate how much a 3 MB web page costs on a prepaid data bundle and suggest three changes that would cut that cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Write a one-page website with a heading, paragraph, image and link in HTML and check it renders correctly in the preview"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Style a one-page site with CSS for mobile screens and add a short JavaScript button that changes the greeting text"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E3",
+          "title": "Compare page load times over a fast link and a slow high-latency link in the simulator and list changes that help the slow user"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Security, privacy and ethics",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write guidance for a relative on spotting a mobile money scam, and list what personal data a shop may lawfully collect.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Estimate how long it takes to guess passwords of 6, 8 and 12 characters with different alphabets and compare the numbers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Work through a mobile money scam case, choose responses at each decision point and review your score against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Decide how a small clinic should handle a patient data request and a plagiarism case under the data protection law and academic rules"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Computing in society and what comes next",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a short essay on how one computing technology has changed life in Ghana and one risk it creates, then plan your own degree path.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Explore a career-choice scenario, pick learning steps for three roles and read the feedback on each choice's skill gaps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Estimate the yearly energy use and carbon footprint of 100 office PCs and compare with replacing them using a spreadsheet model"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Debate automation of a cashier or clerk role in a branching case, weigh jobs, cost and access, and justify a decision against the rubric"
+        }
+      ]
+    }
   ]
 }

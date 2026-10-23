@@ -1,0 +1,522 @@
+{
+  "slug": "multi-agent-systems-and-game-theory",
+  "description": "How self-interested and cooperating agents decide, bargain, compete and learn together: game theory, mechanism design, auctions, voting, negotiation, multi-agent reinforcement learning and collective behaviour. Students compute equilibria, run tournaments and simulations of agent populations, and critique recent research.",
+  "modelledOn": [
+    "Shoham and Leyton-Brown, Multiagent Systems: Algorithmic, Game-Theoretic and Logical Foundations",
+    "Nisan, Roughgarden, Tardos and Vazirani, Algorithmic Game Theory",
+    "Wooldridge, An Introduction to MultiAgent Systems"
+  ],
+  "outcomes": [
+    "Model strategic situations as normal-form and extensive-form games and compute dominant, Nash, subgame-perfect and correlated equilibria.",
+    "Design mechanisms and auctions that give agents incentives to report truthfully, and prove or refute their incentive properties.",
+    "Analyse voting, matching and fair-division rules against axioms and known impossibility results.",
+    "Implement negotiation, task-allocation and argumentation protocols for cooperating software agents.",
+    "Train and evaluate agents in multi-agent reinforcement learning settings, and explain failures such as non-stationarity and social dilemmas.",
+    "Simulate collective behaviour and critique recent multi-agent research with respect to evaluation, robustness and ethics."
+  ],
+  "units": [
+    {
+      "title": "Agents and rational choice",
+      "weeks": "1",
+      "topics": [
+        "Agent architectures: reactive, deliberative, BDI and layered",
+        "Utility theory: preferences, the von Neumann-Morgenstern axioms and risk attitudes",
+        "Environment properties and multi-agent settings",
+        "Decision-theoretic agents: expected utility and Markov decision processes",
+        "Agent communication: speech acts, FIPA-ACL and ontologies"
+      ]
+    },
+    {
+      "title": "Normal-form games",
+      "weeks": "2-3",
+      "topics": [
+        "Strategic games, dominance and iterated elimination of dominated strategies",
+        "Nash equilibrium and best response; existence by fixed-point theorems",
+        "Mixed strategies, support enumeration and the Lemke-Howson algorithm for bimatrix games",
+        "Zero-sum games, the minimax theorem and its LP formulation",
+        "Correlated and coarse correlated equilibrium; price of anarchy",
+        "Classic games: prisoner's dilemma, stag hunt, chicken and battle of the sexes"
+      ]
+    },
+    {
+      "title": "Extensive-form, repeated and evolutionary games",
+      "weeks": "4-5",
+      "topics": [
+        "Game trees, perfect and imperfect information and information sets",
+        "Backward induction and subgame-perfect equilibrium; minimax with alpha-beta pruning",
+        "Sequence-form representation and Bayesian games; Bayes-Nash equilibrium",
+        "Repeated games: the folk theorem, grim trigger, tit-for-tat and discounting",
+        "Evolutionary game theory: evolutionarily stable strategies and replicator dynamics",
+        "Learning in games: fictitious play, regret matching and convergence to coarse correlated equilibrium"
+      ]
+    },
+    {
+      "title": "Mechanism design",
+      "weeks": "6",
+      "topics": [
+        "Social choice, dominant-strategy incentive compatibility and the revelation principle",
+        "The VCG mechanism, Clarke pivot rule and Groves mechanisms",
+        "Optimal mechanisms: virtual valuations and revenue maximisation",
+        "Impossibility results: Arrow's theorem and the Gibbard-Satterthwaite theorem",
+        "Budget balance, individual rationality and algorithmic mechanism design"
+      ]
+    },
+    {
+      "title": "Auctions, voting and matching",
+      "weeks": "7-8",
+      "topics": [
+        "Auction formats: English, Dutch, first-price and second-price; revenue equivalence",
+        "Bidding equilibria; private versus common values and the winner's curse",
+        "Combinatorial and multi-unit auctions; winner determination and spectrum auctions",
+        "Voting rules: plurality, Borda, Condorcet methods, approval and single transferable vote; manipulation",
+        "Matching markets: stable matching and the Gale-Shapley algorithm; school and organ allocation",
+        "Cooperative games and fair division: the core, the Shapley value and bargaining"
+      ]
+    },
+    {
+      "title": "Coordination, negotiation and argumentation",
+      "weeks": "9",
+      "topics": [
+        "Coordination: conventions, focal points, social laws and task allocation by contract net",
+        "Distributed constraint optimisation: ADOPT and DPOP",
+        "Negotiation: alternating-offers bargaining, monotonic concession protocol and automated negotiation strategies",
+        "Argumentation: abstract argumentation frameworks, grounded and preferred semantics and dialogue games",
+        "Coalition formation and teamwork with joint intentions"
+      ]
+    },
+    {
+      "title": "Multi-agent reinforcement learning",
+      "weeks": "10-11",
+      "topics": [
+        "Stochastic games and MARL settings: cooperative, competitive and mixed",
+        "Independent Q-learning and the non-stationarity problem",
+        "Centralised training with decentralised execution: MADDPG and QMIX value decomposition",
+        "Self-play, population-based training and opponent modelling",
+        "Learning to communicate and emergent protocols",
+        "Credit assignment and sequential social dilemmas"
+      ]
+    },
+    {
+      "title": "Swarm and collective behaviour",
+      "weeks": "12",
+      "topics": [
+        "Flocking, consensus protocols and convergence via the graph Laplacian",
+        "Ant colony and particle swarm optimisation",
+        "Stigmergy, self-organisation and agent-based modelling",
+        "Opinion dynamics and the wisdom of crowds: DeGroot model, voter model and epidemic spread on networks",
+        "Agent-based simulation of a market of traders or minibus routes"
+      ]
+    },
+    {
+      "title": "Evaluation, ethics and research project",
+      "weeks": "13",
+      "topics": [
+        "Designing a multi-agent system for a real problem: mobile-money fraud, traffic or irrigation",
+        "Evaluating multi-agent systems: welfare, exploitability and robustness",
+        "Ethics and safety of multi-agent AI, including collusion in algorithmic pricing",
+        "Reading and critiquing recent papers; open problems"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Agents, utility and communication",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Specify the architecture, environment properties and utility function for a cooperative fleet of delivery agents and defend the design.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Classify the environment of three agent tasks by observability, determinism, dynamics and number of agents and note the effect on design"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Solve a small Markov decision process by value iteration, stepping through the sweeps and reading off the optimal policy"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Elicit a risk-averse utility function from a set of lottery choices, fit a curve in code and predict the choice in a new lottery"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Dominance and Nash equilibrium",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Find all pure and mixed Nash equilibria of six small games by hand and check each with a program that tests best responses.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Apply iterated elimination of dominated strategies to a 3 by 3 game and identify the surviving outcome"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Write a program that finds all pure Nash equilibria of any two-player game matrix and test it on five games"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement support enumeration for bimatrix games and use it to find the mixed equilibrium of a three-strategy game with verification"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Zero-sum games, correlated equilibrium and classics",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Solve a zero-sum security game with linear programming and compute the price of anarchy for a routing game.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E6",
+          "title": "Play prisoner's dilemma, stag hunt and chicken against scripted agents and record which strategy earns most in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Solve a rock-paper-scissors-style zero-sum game as a linear programme and confirm the value equals the minimax value"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Compute the price of anarchy of a Pigou-style two-road network and compare a correlated equilibrium with the best Nash payoff"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Game trees and Bayesian games",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Solve a sequential bargaining game by backward induction and find the Bayes-Nash equilibrium of a sealed-bid game with private costs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Run backward induction on a game tree with four decision nodes and mark the subgame-perfect path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Apply minimax with alpha-beta pruning to a given tree, count the nodes pruned and compare with the plain minimax count"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Derive the Bayes-Nash equilibrium bidding strategy for a first-price auction with two uniform bidders and plot it against the simulation"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Repeated, evolutionary and learning dynamics",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Run a tournament of repeated-game strategies, then show replicator dynamics and regret matching converging in a population.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Play tit-for-tat, grim trigger and always-defect against each other for 100 rounds and tabulate the average payoffs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Simulate replicator dynamics for hawk-dove and identify the evolutionarily stable mixed strategy from the trajectory"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Implement regret matching for two players in a repeated game and show that the empirical play converges to a coarse correlated equilibrium"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Mechanism design and impossibility results",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Design a mechanism for allocating a public good, prove its truthfulness and compute the VCG payments for a worked example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute VCG payments for three bidders competing for two items and verify that each bidder pays the externality they impose"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Test by brute force over all value profiles whether a given allocation and payment rule is dominant-strategy truthful"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Construct a profile showing that a given voting rule violates a fairness axiom, and relate the counterexample to Arrow's theorem"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Auctions and bidding",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Simulate first- and second-price auctions with learning bidders, compare seller revenue, and solve a small combinatorial winner determination problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Simulate 10,000 second-price auctions with random valuations and show that bidding the true value is never worse"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Simulate a common-value auction with noisy signals and measure how often the winner loses money when bidders ignore the winner's curse"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Solve winner determination for a spectrum auction with package bids as an integer programme and verify the result by brute force"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Voting, matching and fair division",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compare voting rules on one preference profile, run a stable matching for students and schools, and divide a resource using the Shapley value.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Apply plurality, Borda and Condorcet rules to one set of ranked ballots and note the different winners"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Step through the Gale-Shapley algorithm for six students and three schools and check that the result has no blocking pair"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Compute Shapley values for a four-player cost-sharing game by enumeration and test whether the allocation lies in the core"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Coordination, negotiation and argumentation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Build agents that negotiate over price and delivery, and evaluate their strategies against each other in a tournament.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Step through a contract net auction among four agents allocating five tasks and record each bid and award"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement an alternating-offers negotiation with two concession strategies and compare the agreement rates and utilities over 100 runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Compute the grounded and preferred extensions of an argumentation framework of ten arguments and explain how a new argument changes them"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Multi-agent learning basics",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Train independent learners in a cooperative grid task, observe the instability, and compare with a value-decomposition method.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Watch two Q-learning agents in a matrix game and describe how each agent's policy changes while the other agent also learns"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Train independent Q-learners on a two-agent coordination grid and plot the success rate against episodes over ten seeds"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Implement a simple value decomposition network, compare it with independent learners on the same task and analyse credit assignment"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Self-play, communication and social dilemmas",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Train competing and communicating agents, and analyse a sequential social dilemma in which cooperation collapses.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E6",
+          "title": "Train a self-play agent for a small board game and track its win rate against a fixed random opponent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Train two agents with a one-symbol channel on a referential game and inspect the meaning that emerges"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Run a resource-harvesting dilemma with independent learners, show over-exploitation, and test a reward-shaping fix measured by total welfare"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Swarms, opinion dynamics and agent-based models",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Build an agent-based model of minibus drivers choosing routes and show how consensus and opinion spread across a network.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Simulate a consensus protocol on a ring of eight agents and plot the convergence of their values to the average"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Use ant colony optimisation on a 12-city tour and compare its best tour with that found by a nearest-neighbour heuristic"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build an agent-based simulation of 200 drivers choosing between two routes and find whether congestion converges to the Nash equilibrium"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project, evaluation, ethics and research critique",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Present a multi-agent design for a real problem with evaluation results, an ethics review and a critique of one recent paper.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Work a case on algorithmic pricing agents that learn to collude, listing the harms and the safeguards you would require"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Evaluate a trained multi-agent policy by measuring its welfare and its exploitability against a best-response opponent"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Implement and test the project multi-agent system, vary the number of agents and report how welfare and robustness scale"
+        }
+      ]
+    }
+  ]
+}

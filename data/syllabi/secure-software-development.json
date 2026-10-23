@@ -110,12 +110,419 @@
     },
     {
       "title": "Secure deployment and incident response",
-      "weeks": "14",
+      "weeks": "13",
       "topics": [
         "Hardening containers and infrastructure as code; scanning images and configuration",
         "Vulnerability disclosure policies and bug bounties",
         "Incident response for application teams: detection, containment and post-incident review",
         "Capstone: threat-model, attack, fix and verify a vulnerable payment application"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why software is insecure and how to build it right",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write three abuse cases and matching security requirements for a school fees portal, name the design principle each applies, and list the obligations the Data Protection Act places on the developers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Review a short login function and mark each violation of least privilege, fail-safe defaults and complete mediation with a corrected version"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Write security requirements and abuse cases for a mobile-money feature in a scenario and score them against the coverage rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Decide how an app team should handle a request to store national ID numbers, citing data protection duties and design controls, and score the decision"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Threat modelling basics",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw a data flow diagram of a clinic appointment app with trust boundaries, apply STRIDE to each element, and list the top five threats found.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E9",
+          "title": "Draw a data flow diagram for a school results app and mark the assets and two trust boundaries"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Apply STRIDE to every element of a given DFD and record at least one threat per element in a table with a proposed mitigation"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Run a privacy threat model with LINDDUN on a health-records app scenario, choose the highest-risk threats, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Rating risk and modelling a mobile money app",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Rate six threats to a mobile-money app with CVSS and a likelihood-impact matrix, rank them, and propose one mitigation for each of the top three.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Calculate CVSS base scores for three vulnerability descriptions from given metric values and rank them by severity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E9",
+          "title": "Draw a threat model of a mobile-money system with USSD, agent and API channels and mark five threats on the diagram"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Update an existing threat model after a design change adding a third-party API, deciding what to re-assess, and score the update"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Common web vulnerabilities, part one",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "For three short code snippets, name the vulnerability class, explain how an attacker would trigger it, and write the corrected version.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Identify the SQL injection in a given login query, show the input that bypasses it in the test harness, and fix it with a parameterised query"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Fix an insecure direct object reference in a given endpoint so that a user can read only their own records, and test with two accounts"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Audit a given small app for weak crypto, default credentials and verbose errors, and produce a prioritised list of fixes with patches"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Common vulnerabilities, part two",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Explain why each of three vulnerable libraries or patterns (outdated dependency, unsafe deserialisation, SSRF) is dangerous, and write a one-line detection and a fix for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Run a provided C program in the sandbox with overlong input to see a buffer overflow, then fix it with bounds-checked copying"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Replace an insecure pickle deserialisation of user input with a JSON-based design and show the original exploit now fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Fix a server-side request forgery in a URL preview feature using an allow-list and address checks, and test against internal address inputs"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Input handling and injection defences",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Describe for each of three outputs (HTML body, attribute, JavaScript string) the encoding required, and write a Content Security Policy that blocks inline scripts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Convert five string-built SQL queries in a given module to parameterised form and confirm the test suite still passes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Fix reflected and stored cross-site scripting in a comment page using context-aware output encoding, and re-run the provided payloads to confirm"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Write a canonicalise-then-validate input layer with allow-lists for a file name and URL parameter, and defeat ten encoded bypass attempts"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Request forgery, uploads and robust validation",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Write secure validation rules for Ghanaian phone numbers, cedi amounts and personal names that include non-Latin characters, and justify why strict patterns would wrongly reject real users.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Add an anti-CSRF token and SameSite cookie to a state-changing form and show a forged cross-site request now fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Secure a file upload endpoint by checking type, size and path, and show that a traversal name like ../../config is rejected"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Write and test a validator for names, phone numbers and amounts that accepts 30 real-world valid inputs and rejects 30 malicious ones"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Authentication",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Explain why SMS one-time codes are weak against SIM-swap fraud, compare them with authenticator apps and hardware keys, and recommend a method for a mobile-money agent app.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Replace plain-text password storage in a given module with salted Argon2 or bcrypt hashing and verify login still works for old test users"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Add rate limiting and lockout to a login endpoint and show 100 credential-stuffing attempts are throttled while a legitimate user succeeds"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Find and fix three JWT pitfalls in a given service (none algorithm, no expiry, weak secret) and verify forged tokens are rejected"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Sessions, secrets and cryptography",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Review a repository history in which an API key was committed, list the steps to contain the leak, and design a rotation plan and a safer secrets arrangement.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Set the secure cookie flags and a session expiry in a given app, regenerate the session ID at login, and test with a fixation attempt"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E4",
+          "title": "Find a leaked key in the git history of a practice repository, purge it, rotate the credential, and move it to an environment variable"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Replace a home-made XOR cipher and Math.random token generator with authenticated encryption and secure randomness, and test tampering is detected"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Authorisation and API security",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Design a role-based access matrix for a clinic API with four roles, list ten endpoints, and identify two cases where object-level checks are needed beyond the role.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Implement role-based checks on the server for admin and user endpoints and show a user token is refused on every admin route"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Fix a mass assignment flaw that lets users set their own role, and an object-level authorisation gap, and verify with a test for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Audit a small API against the OWASP API Top Ten, list each finding with evidence, and fix the three highest-risk ones with regression tests"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Static and dynamic analysis",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compare what a static analyser and a dynamic scanner can and cannot find, with one example vulnerability for each, and note the cost of false positives.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Run a static analyser over a provided project, count findings by severity, and confirm by reading the code whether the top three are real"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Write a custom static rule that flags string-concatenated SQL queries and run it over a codebase, listing the matches it finds"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Use an intercepting proxy against a local practice app to find three flaws, record the requests and responses, and write the fix for each"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Fuzzing, triage and security in CI",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Triage a list of 15 scanner findings into true and false positives with a reason for each, and design a CI pipeline with security gates that does not block every build.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Run a simple mutation fuzzer against a given parser function, collect the crashing inputs, and report how many distinct failures it found"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Triage a batch of scanner findings by severity and exploitability within limited time, and score the priority order against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E4",
+          "title": "Add dependency scanning and secret detection to a repository's continuous integration workflow, with a gate that fails the build on high severity only"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Reviews, supply chain, operations and capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5",
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Carry out a security review of a vulnerable payment application: threat model it, find and fix five flaws, add a software bill of materials, and write a vulnerability disclosure policy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Review a short authentication module against a security checklist, marking each finding with line number and risk"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Generate a software bill of materials for a small project, match each component against known vulnerabilities, and list the ones needing upgrade"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Respond as the application team to a reported data exposure incident, choosing detection, containment and review steps, and score against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Threat-model a vulnerable payment application, attack it in the local lab, fix the flaws found, and verify with tests that each exploit now fails"
+        }
       ]
     }
   ]

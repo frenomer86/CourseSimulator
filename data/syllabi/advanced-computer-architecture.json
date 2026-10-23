@@ -1,0 +1,529 @@
+{
+  "slug": "advanced-computer-architecture",
+  "description": "A graduate study of how modern processors and memory systems reach high performance within power limits, from out-of-order cores and branch predictors to coherence, consistency, accelerators and hardware security. Each topic pairs derivations and simulator experiments with a critical reading of a research paper, ending in a small architecture study.",
+  "modelledOn": [
+    "Hennessy and Patterson, Computer Architecture: A Quantitative Approach",
+    "Sorin, Hill and Wood, A Primer on Memory Consistency and Cache Coherence",
+    "Jacob, Ng and Wang, Memory Systems: Cache, DRAM, Disk",
+    "Shen and Lipasti, Modern Processor Design: Fundamentals of Superscalar Processors"
+  ],
+  "outcomes": [
+    "Evaluate architectural proposals quantitatively using Amdahl's law, the roofline model and sound simulation methodology.",
+    "Trace instructions through an out-of-order core with renaming, a reorder buffer and a load-store queue, and explain recovery from misspeculation.",
+    "Design and compare branch predictors, cache and prefetch policies and memory controllers using simulated workloads.",
+    "Reason about coherence protocols and memory consistency models with litmus tests and fences.",
+    "Analyse power, reliability and transient-execution security trade-offs in a processor design.",
+    "Read, critique and reproduce results from architecture research papers and present an original experiment."
+  ],
+  "units": [
+    {
+      "title": "Quantitative design and the research method",
+      "weeks": "1",
+      "topics": [
+        "Quantitative principles: Amdahl's law, Gustafson's law and the roofline model",
+        "Benchmarking and simulation methodology: sampling, warm-up and threats to validity",
+        "Technology trends: the end of Dennard scaling, the power wall and dark silicon",
+        "Reading architecture papers: structure, claims, evidence and a critique template",
+        "Instruction-set design choices: RISC-V base and extensions, vector instructions"
+      ]
+    },
+    {
+      "title": "Out-of-order execution and speculation",
+      "weeks": "2-3",
+      "topics": [
+        "Tomasulo's algorithm: reservation stations, common data bus and register renaming",
+        "Reorder buffer, precise exceptions and in-order commit",
+        "Load-store queues, memory disambiguation and store-to-load forwarding",
+        "Superscalar issue: wakeup and select, issue width and scheduling window limits",
+        "Speculation and recovery: checkpoints, flush penalties and the cost of misprediction",
+        "Paper strand: critique a classic out-of-order design paper and reproduce one table"
+      ]
+    },
+    {
+      "title": "Advanced branch prediction and the front end",
+      "weeks": "4",
+      "topics": [
+        "Two-bit counters, gshare and tournament predictors",
+        "TAGE and perceptron predictors: history lengths, tagging and training",
+        "Branch target buffers, return address stacks and indirect branch prediction",
+        "Decoupled front ends, micro-op caches and instruction prefetch",
+        "Paper strand: evaluate a predictor on traces and report mispredicts per kilo-instruction"
+      ]
+    },
+    {
+      "title": "Cache and memory system design",
+      "weeks": "5-6",
+      "topics": [
+        "Cache organisation, average memory access time and the three Cs of misses",
+        "Replacement and insertion policies: LRU, re-reference interval prediction and Belady's optimal policy",
+        "Hardware prefetching: stride, stream and correlation prefetchers; pollution and accuracy",
+        "Non-blocking caches, miss status holding registers and memory-level parallelism",
+        "DRAM organisation: banks, row buffers, scheduling policies and high-bandwidth memory",
+        "Virtual memory hardware: TLB design, huge pages, page walks and non-volatile memory"
+      ]
+    },
+    {
+      "title": "Multicore, coherence and on-chip networks",
+      "weeks": "7-8",
+      "topics": [
+        "Coherence protocols: snooping MESI and MOESI, directory-based protocols and their states",
+        "On-chip networks: mesh and torus topologies, routing, virtual channels and deadlock",
+        "Synchronisation hardware: atomics, load-linked/store-conditional, locks and transactional memory",
+        "Multithreaded and throughput cores: simultaneous multithreading and GPU warp scheduling",
+        "Paper strand: how coherence scales beyond 100 cores"
+      ]
+    },
+    {
+      "title": "Memory consistency models",
+      "weeks": "9",
+      "topics": [
+        "Sequential consistency, total store order and relaxed models (Arm and RISC-V)",
+        "Litmus tests and fences: store buffering, message passing and load buffering",
+        "Axiomatic models and the happens-before relation",
+        "Data races and language-level memory models in C++ and Java"
+      ]
+    },
+    {
+      "title": "Accelerators and domain-specific architectures",
+      "weeks": "10",
+      "topics": [
+        "SIMD and vector architectures; vectorisation limits",
+        "Systolic arrays and neural-network accelerators; data reuse and dataflow",
+        "FPGAs, coarse-grained reconfigurable arrays and high-level synthesis",
+        "Near-memory and in-memory computing",
+        "Low-cost, low-power inference hardware for edge deployments in African settings"
+      ]
+    },
+    {
+      "title": "Low-power and reliable design",
+      "weeks": "11",
+      "topics": [
+        "Dynamic and static power: voltage and frequency scaling, clock and power gating",
+        "Thermal limits, dark silicon and power-capping",
+        "Soft errors, ECC, parity and redundancy for fault tolerance",
+        "Process variation, ageing and approximate computing"
+      ]
+    },
+    {
+      "title": "Hardware security",
+      "weeks": "12",
+      "topics": [
+        "Transient execution attacks: Spectre and Meltdown mechanisms",
+        "Cache side channels: prime-and-probe and flush-and-reload",
+        "Mitigations: fences, partitioning, constant-time code and their performance cost",
+        "Rowhammer, hardware trojans and trusted execution environments"
+      ]
+    },
+    {
+      "title": "Research project and open problems",
+      "weeks": "13",
+      "topics": [
+        "Designing an architecture experiment: simulator, workload set, metrics and baselines",
+        "Reproducibility and artefact evaluation",
+        "Writing the short paper and presenting it; mock peer review",
+        "Open problems: energy-proportional computing, chiplets, memory-centric design"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Measuring and judging architecture ideas",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Apply Amdahl's law and a roofline plot to a proposed accelerator, then write a half-page critique of a short architecture paper using the claim, evidence and threats template.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot a roofline for a core with 100 GFLOP/s peak and 25 GB/s memory bandwidth and place three kernels as compute or memory bound"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E6",
+          "title": "Run the same program on a pipeline simulator with and without warm-up and report how the cycle count and cache miss rate shift"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Review a mock paper scenario with a flawed baseline and cherry-picked workloads, list its threats to validity and score your critique against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Register renaming and dynamic scheduling",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Trace a 12-instruction sequence with RAW, WAR and WAW hazards through Tomasulo's algorithm by hand, listing the reservation stations, renamed registers and the commit order.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step a ten-instruction sequence through reservation stations and the common data bus, recording each instruction's issue, execute and write-back cycle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Trigger an exception in the middle of an out-of-order window and show with the reorder buffer why the architectural state stays precise"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Run a load after an earlier store with an unknown address and compare conservative, speculative and forwarding policies by cycles and replays"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Issue width, recovery and the paper strand",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Reproduce a table of IPC against window size from a classic out-of-order paper using the simulator and explain any differences from the published values.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Sweep the issue width from 1 to 8 and window size from 16 to 256 on one workload and identify where returns diminish"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Measure the flush penalty from a mispredicted branch at pipeline depths of 8, 14 and 20 stages and fit the penalty per stage"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Write a small trace-driven model of an out-of-order window in code and compare its IPC with the visualiser for three traces"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Branch prediction from counters to TAGE",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Compare gshare, tournament and a TAGE-like predictor on traces with loops, nested conditions and data-dependent branches, and report misses per thousand instructions with a short critique.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Run a two-bit predictor and gshare on a loop-heavy trace and report the accuracy, explaining the first mispredictions by hand"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement a perceptron predictor with 32-bit history, train on a trace of 100000 branches, and compare accuracy with gshare at equal storage"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Evaluate a return address stack of depth 4, 8 and 16 on a recursive workload and find the depth that removes all return mispredictions"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Cache design and replacement",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "For a given address trace, compute hit rate for direct-mapped, 4-way and fully associative caches, classify the misses into compulsory, capacity and conflict, and compare LRU with the optimal policy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Classify every miss in a 40-access trace for a 4-line cache as compulsory, capacity or conflict and compute the average access time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Implement LRU, random and Belady's optimal replacement, run a loop larger than the cache and show why LRU thrashes while others do not"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Add a stride prefetcher to the cache simulator, measure accuracy and coverage on array and linked-list code, and quantify pollution"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Memory-level parallelism, DRAM and virtual memory",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Model a memory controller serving row-hit and row-miss requests, schedule a queue of 16 requests with first-come and row-hit-first policies, and compare latency and fairness.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Vary the number of miss status holding registers from 1 to 16 and record how execution time falls on a pointer-free array scan"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Simulate a DRAM bank with open-row policy, schedule 1000 requests under two policies, and report mean latency and the worst-case wait"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E6",
+          "title": "Compute the TLB reach for 4 KB and 2 MB pages and run a big-array scan to compare TLB miss counts and page-walk cost"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Cache coherence",
+      "topics": [
+        "5.1",
+        "5.2"
+      ],
+      "exercise": "Draw state diagrams for MESI and a directory protocol and trace a sequence of reads and writes by four cores through both, counting bus messages and invalidations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Trace a read-write-read sequence over three cores through MESI and record the state of each cache line and each bus transaction"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Show false sharing by placing two counters in one line, count invalidations as two cores update them, and cut the traffic by padding"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Model a 4x4 mesh network with dimension-order routing, inject coherence traffic, and plot latency against injection rate to find saturation"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Synchronisation, threads and scaling",
+      "topics": [
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Estimate the cost of a contended lock versus lock-free update as core count grows from 2 to 64, and summarise a paper on scalable coherence in two paragraphs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Implement a spinlock with test-and-set and with test-and-test-and-set, and compare bus transactions as the number of waiting cores rises"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Run a memory-bound workload on a simultaneous-multithreading core with one, two and four threads and report throughput and per-thread slowdown"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Critique a scalability-of-coherence paper scenario against a rubric, checking its workloads, baselines and the claim about overhead at 128 cores"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Memory consistency",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "List every outcome allowed under sequential consistency and total store order for the store-buffering and message-passing litmus tests, and place the fences that forbid the odd outcomes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Enumerate all interleavings of the store-buffering litmus test and list which final register values each consistency model allows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Run the message-passing litmus test 1 million times on a relaxed-order model and count the forbidden outcomes with and without a fence"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Find the data race in a flag-and-data program, fix it with release-acquire atomics, and justify each memory-order choice"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Accelerators and domain-specific design",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Size a systolic array for matrix multiplication with a given on-chip memory, compute utilisation and data reuse, and decide whether a low-power edge accelerator is worth building for crop-disease detection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Vectorise a loop for 4-wide SIMD, run it on the visualiser and measure speed-up, accounting for alignment and a scalar remainder loop"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Simulate a 4x4 systolic array computing a matrix product cycle by cycle and report cycles, utilisation and memory reads per output"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E8",
+          "title": "Measure inference time and energy of a small model on a Raspberry Pi and an Arduino-class board, and compare cost per inference"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Power, thermal limits and reliability",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Calculate chip power at several voltage and frequency points, decide how much DVFS saves on a bursty workload, and design an ECC scheme for a memory with a given soft error rate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute dynamic power at three voltage and frequency pairs from the capacitance model and find the energy-optimal point for a fixed task"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Encode a 4-bit word with a Hamming code, flip one bit and two bits, and show which errors are corrected or detected only"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Simulate a thermal-aware throttling policy on a workload trace and measure the performance lost against a no-throttling baseline"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Microarchitectural security",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Explain step by step how a bounds-check bypass leaks a secret through a cache timing channel, and choose a mitigation by weighing its slowdown against its protection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E6",
+          "title": "Perform a flush-and-reload on a simulated cache, time the probe accesses and recover a secret byte from the pattern of fast lines"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E6",
+          "title": "Show with the speculation visualiser how a mispredicted branch executes a secret-dependent load and leaves a cache footprint after the squash"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Apply a fence and an index-masking mitigation to a vulnerable gadget, test that the leak disappears and measure the slowdown on a benchmark"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Architecture study, reproduction and open problems",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4"
+      ],
+      "exercise": "Present a ten-minute study of one design question (predictor size, cache policy or prefetcher) with a baseline, a sweep, a reproducibility package and answers to two mock reviewer comments.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E6",
+          "title": "Choose one design parameter, sweep five values across three workloads and plot the performance and energy trade-off with a stated baseline"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.2",
+          "engine": "E1",
+          "title": "Package your experiment as a script with fixed seeds and a README so another student reproduces the same figure within 2 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.3",
+          "engine": "E10",
+          "title": "Answer three reviewer comments on a mock architecture paper by running a small extra experiment and judge your response with a rubric"
+        }
+      ]
+    }
+  ]
+}

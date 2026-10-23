@@ -1,0 +1,500 @@
+{
+  "slug": "cloud-data-platforms-and-storage",
+  "description": "How cloud providers store, move and protect data: block, file and object storage, managed databases, replication and backup, lakes and warehouses, streaming and cost control. In the lab students provision storage and data services in the cloud console, run SQL and code against them, inject failures and price the result.",
+  "modelledOn": [
+    "Kleppmann, Designing Data-Intensive Applications",
+    "Reis and Housley, Fundamentals of Data Engineering",
+    "Provider architecture-framework guides for storage, databases and analytics"
+  ],
+  "outcomes": [
+    "Choose between block, file and object storage for a workload using throughput, latency, durability and cost figures.",
+    "Configure managed relational and NoSQL databases with replicas, failover and backups, and state the resulting RPO and RTO.",
+    "Explain replication, quorum and consistency trade-offs and predict what a client observes during a failure.",
+    "Design a lake-to-warehouse pipeline with columnar formats, partitioning and a streaming ingest path.",
+    "Estimate and reduce monthly storage cost using tiering, lifecycle rules and access-pattern analysis.",
+    "Secure cloud data with encryption at rest and in transit, least-privilege IAM and retention policy that respects the Ghana Data Protection Act."
+  ],
+  "units": [
+    {
+      "title": "Storage types and the storage hierarchy",
+      "weeks": "1-2",
+      "topics": [
+        "Block storage: volumes, snapshots, IOPS, throughput and latency; SSD versus HDD volume classes",
+        "File storage: NFS and SMB shares, POSIX semantics, locking and shared access from many VMs",
+        "Object storage: buckets, keys, metadata, versioning, flat namespace and HTTP access",
+        "Durability and availability: replication versus erasure coding; what eleven nines of durability means in practice",
+        "Choosing storage by workload: databases, logs, media, backups, shared home directories"
+      ]
+    },
+    {
+      "title": "Managed relational databases",
+      "weeks": "3-4",
+      "topics": [
+        "Managed versus self-hosted databases and the shared responsibility model",
+        "Instance sizing, storage autoscaling, parameter groups and maintenance windows",
+        "Read replicas: asynchronous replication, replica lag and read scaling",
+        "Multi-zone high availability: synchronous standby, automatic failover and DNS cutover",
+        "Migrating to a managed database: dump and restore, change data capture and cutover planning"
+      ]
+    },
+    {
+      "title": "NoSQL and key-value services",
+      "weeks": "5",
+      "topics": [
+        "Key-value and document stores: partition keys, hashing and hot partitions",
+        "Single-table and access-pattern-first data modelling for wide-column stores",
+        "Secondary indexes, on-demand versus provisioned capacity and request units",
+        "Time-series and graph services: when a specialised store beats a general one",
+        "Relational versus NoSQL for a mobile money ledger: constraints, transactions and scale"
+      ]
+    },
+    {
+      "title": "Replication, consistency and backup",
+      "weeks": "6-7",
+      "topics": [
+        "Synchronous and asynchronous replication; leader-follower and multi-leader; replication lag",
+        "Quorum reads and writes (R + W > N); read-your-writes; eventual and strong consistency",
+        "CAP and PACELC applied to managed services; reading a provider consistency table",
+        "Snapshots, incremental backups, point-in-time recovery and retention schedules",
+        "Disaster recovery patterns: backup and restore, pilot light, warm standby, active-active; RPO, RTO and restore testing"
+      ]
+    },
+    {
+      "title": "Data lakes and warehouses in the cloud",
+      "weeks": "8-9",
+      "topics": [
+        "Lake, warehouse and lakehouse compared; schema-on-read versus schema-on-write",
+        "Columnar formats (Parquet, ORC), compression, partitioning and predicate pushdown",
+        "ETL versus ELT pipelines, orchestration, idempotent loads and late-arriving data",
+        "Cloud warehouses: massively parallel processing, star schemas and serverless queries billed by bytes scanned",
+        "Data catalogues, schema evolution, lineage and data quality checks"
+      ]
+    },
+    {
+      "title": "Streaming and messaging services",
+      "weeks": "10",
+      "topics": [
+        "Queues, topics and logs: point-to-point versus publish-subscribe versus replayable streams",
+        "Delivery guarantees: at-most-once, at-least-once, exactly-once; idempotent consumers and dead-letter queues",
+        "Partitions, consumer groups, offsets and ordering guarantees",
+        "Stream processing: tumbling and sliding windows, watermarks and late events",
+        "Change data capture and event pipelines for mobile money transactions"
+      ]
+    },
+    {
+      "title": "Storage tiering and lifecycle cost",
+      "weeks": "11",
+      "topics": [
+        "Hot, cool, cold and archive tiers; retrieval time and minimum-storage-duration charges",
+        "Lifecycle rules, expiry and intelligent tiering based on access patterns",
+        "Cost components: capacity, requests, retrieval, replication and data egress",
+        "Cost modelling per GB-month and break-even between tiers; reserved capacity and budgets",
+        "Compression, deduplication and small-file problems as cost levers"
+      ]
+    },
+    {
+      "title": "Security, compliance and capstone",
+      "weeks": "12-13",
+      "topics": [
+        "Encryption at rest: server-side encryption, envelope encryption, key management services and key rotation",
+        "Encryption in transit with TLS, client-side encryption and secrets handling",
+        "Least-privilege IAM, bucket policies, pre-signed URLs, public-access blocks and audit logging",
+        "Data protection law: Ghana Data Protection Act, residency, retention and deletion obligations",
+        "Capstone: design, cost and secure a data platform for a Ghanaian agri-cooperative or mobile money operator"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Block, file and object storage",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Fill a table comparing block, file and object storage on access method, latency, scale limits and typical use, then justify one choice for a school results archive.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E12",
+          "title": "Create a bucket, upload five files with metadata, enable versioning, overwrite one file twice and list its three versions through the console"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E12",
+          "title": "Attach a block volume to a VM, run a write benchmark at two volume classes and compare the measured IOPS and throughput with the quoted limits"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E12",
+          "title": "Mount one shared file system on two VMs, write the same file from both at once and explain the outcome using locking semantics"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Durability and choosing storage",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compute the annual probability of losing an object under three-way replication and under 8+4 erasure coding for a given disk failure rate, then pick a store for four workloads.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write a short script that estimates the probability of losing data with 3 replicas versus 8+4 erasure coding for a given disk failure rate and repair time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E12",
+          "title": "Match four workloads (database volume, video library, shared documents, nightly backups) to storage types in the console and price each over 12 months"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E12",
+          "title": "Kill a zone in the console, observe which of your volume, file and bucket resources stay available, and write up the durability versus availability difference"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Managed databases and sizing",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "List which operational tasks (patching, backups, tuning, failover) move to the provider and which stay with you, then size an instance for 200 concurrent clinic users.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E12",
+          "title": "Launch a managed relational database and a self-managed one on a VM, then list in a table which maintenance duties you still own in each case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E12",
+          "title": "Resize a managed database instance and its storage during a running load, and record downtime and the parameter-group setting that changed buffer memory"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E5",
+          "title": "Create a primary and a read replica, direct reporting queries to the replica, inject write load and measure replica lag against a read-your-writes check"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "High availability and migration",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Draw a migration plan for a district hospital database moving to a managed service, with cutover steps, rollback criteria and expected downtime.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Enable multi-zone mode on a managed database, force a failover from the console and time how long the application endpoint is unavailable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Dump a 50,000-row clinic database, restore it into the managed instance and verify row counts and constraints match with a set of checking queries"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E12",
+          "title": "Plan and run a near-zero-downtime migration using change capture, then cut over the application and prove no committed order was lost"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "NoSQL stores and data modelling",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Model a mobile money wallet in both a relational schema and a key-value design, list the access patterns, and argue which store you would trust with balances.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E12",
+          "title": "Create a key-value table with a partition key, insert 1,000 items and read them back, then check how the key choice spreads load across partitions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Design a single-table layout for orders, customers and items to serve four named queries with no scans, and verify each by running it from code"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E5",
+          "title": "Implement a wallet transfer in SQL with a transaction, then reproduce it on a key-value store without transactions and show how a crash leaves money in limbo"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Replication and consistency",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "For a three-node store, tabulate R, W, N choices and state for each whether it gives strong reads, fast writes or tolerates one node failure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Step through leader-follower replication with asynchronous and synchronous modes, stop the leader mid-write and note which writes are lost in each mode"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Simulate a three-replica store in code with settings R=1,W=1 and R=2,W=2, count stale reads over 10,000 operations and relate them to R + W > N"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E12",
+          "title": "Partition a multi-region database in the console, test reads and writes on both sides, and classify the service as CP or AP with evidence"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Backup and disaster recovery",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a backup and disaster recovery plan for a rural bank branch system, stating RPO, RTO, backup schedule, retention and the quarterly restore drill.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Schedule daily snapshots with a seven-day retention policy, restore the oldest one to a new volume and check the data matches the original"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E5",
+          "title": "Corrupt a table by a faulty UPDATE, then recover the database to a point in time two minutes earlier and verify exactly which rows return"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E12",
+          "title": "Build pilot-light and warm-standby recovery for the same app, fail the primary region, and compare measured RTO, RPO and monthly cost of the two"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Lakes, warehouses and file formats",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Take a 100,000-row sales CSV and describe its path through raw, cleaned and curated lake zones, naming the format and partition key at each zone.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E12",
+          "title": "Create raw, cleaned and curated buckets for a farm-produce dataset and write a note on which zone is schema-on-read and which is schema-on-write"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Convert a CSV of 100,000 sales rows to partitioned columnar files, then compare file size and the bytes read for a one-month query"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Write an idempotent load job that can be run twice without duplicating rows, and handle a batch of late-arriving records correctly"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Cloud warehouses and governance",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Design a star schema for mobile money transactions, write three analytical queries, and estimate query cost from bytes scanned under a pay-per-scan price.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E5",
+          "title": "Load a star schema of sales facts and three dimensions, run a grouped query and read its query plan to see which scans can be pruned"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E12",
+          "title": "Run the same analytical query on a serverless engine over partitioned and unpartitioned data and compare bytes scanned and the price charged"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Add automated quality checks (null rate, key uniqueness, value ranges) to a pipeline, break the source schema on purpose and show the checks catch it"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Queues, topics and streams",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Draw an event pipeline from mobile money transactions to a fraud alert and a daily warehouse load, naming each queue, topic and the delivery guarantee required.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E12",
+          "title": "Create a queue and a topic with two subscribers, publish ten messages, and show which consumers see each message under each service"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Write a consumer that processes messages at least once, make it idempotent with a dedupe key, and route poison messages to a dead-letter queue"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Aggregate a stream of 5,000 mobile payments into five-minute tumbling windows, handle events arriving two minutes late with a watermark, and check totals"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Tiering, lifecycle and cost",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Estimate the yearly cost of storing 20 TB of clinic scans across hot, cool and archive tiers, including a retrieval of 1 TB twice a year.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E12",
+          "title": "Move a set of objects between hot, cool and archive tiers, time the retrieval of each and record the charges the console reports"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E12",
+          "title": "Write a lifecycle rule that tiers logs after 30 days and expires them after 365, then confirm with simulated time that objects move and expire as expected"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compute the break-even number of reads per month between hot and cool tiers for a given price list, and plot total cost against reads"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Encryption, keys and access control",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Review a bucket policy and an IAM policy for faults, and rewrite each to least privilege for a school records application.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E12",
+          "title": "Enable server-side encryption on a bucket with a managed key, upload a file, rotate the key and verify old and new objects still decrypt"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E12",
+          "title": "Create a role that can only read one bucket prefix, attach it to a VM, and show that other buckets and write calls are denied in the audit log"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Implement client-side envelope encryption in code with a data key per file wrapped by a master key, and show a lost master key makes data unreadable"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Compliance and capstone",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present the capstone design with a diagram, an RPO and RTO table, a monthly cost estimate and a security and compliance checklist.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Work through a case where a data subject requests deletion, decide what must be removed from live data, backups and logs, and justify retention exceptions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E12",
+          "title": "Provision the full platform for a cooperative: ingest bucket, managed database, backup policy and least-privilege roles, then price it for 12 months"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E12",
+          "title": "Inject a regional failure and a leaked access key into your capstone platform and show the recovery steps and containment meet the stated RPO and RTO"
+        }
+      ]
+    }
+  ]
+}

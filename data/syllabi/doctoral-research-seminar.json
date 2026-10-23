@@ -1,0 +1,511 @@
+{
+  "slug": "doctoral-research-seminar",
+  "description": "A field-neutral doctoral seminar in which students survey a research area, present and critique papers, find open problems, evaluate artefacts and benchmarks, practise peer review, and prepare for qualifying examinations and a dissertation proposal. Weekly work uses research scenarios, reproducibility notebooks and statistical checks on published results, with examples drawn from many computing fields.",
+  "modelledOn": [
+    "Booth, Colomb and Williams, The Craft of Research",
+    "Association for Computing Machinery, Artifact Review and Badging policy and Code of Ethics",
+    "Phillips and Pugh, How to Get a PhD",
+    "Wohlin et al., Experimentation in Software Engineering"
+  ],
+  "outcomes": [
+    "Survey a research area and build a structured, annotated reading list that exposes its main lines and gaps.",
+    "Present and critique a recent paper, separating claims from evidence and naming hidden assumptions.",
+    "Identify, formulate and position an open research problem with a defensible claim to novelty.",
+    "Assess benchmarks and artefacts for validity and reproducibility, and reproduce a published result with statistical care.",
+    "Write a constructive peer review and respond professionally to reviews of your own work.",
+    "Plan qualifying examination preparation and write a dissertation proposal with a realistic work plan."
+  ],
+  "units": [
+    {
+      "title": "Surveying a research area",
+      "weeks": "1-2",
+      "topics": [
+        "Scoping an area: boundaries, taxonomies and neighbouring fields",
+        "Building a reading list from seminal, survey and recent papers",
+        "Bibliometrics: citation networks, venues and how to read a field at scale",
+        "Annotated bibliographies and concept maps",
+        "Writing a literature map or survey section",
+        "Keeping current: preprints, alerts and tracking a living literature"
+      ]
+    },
+    {
+      "title": "Presenting and critiquing papers",
+      "weeks": "3-4",
+      "topics": [
+        "Structure of a paper presentation for a journal club",
+        "Separating claims from evidence in a paper",
+        "Hidden assumptions and threats to validity in published work",
+        "Comparing competing approaches on common ground",
+        "Leading discussion and giving feedback",
+        "Reading across fields: borrowing methods from a neighbouring discipline"
+      ]
+    },
+    {
+      "title": "Open problems and research gaps",
+      "weeks": "5-6",
+      "topics": [
+        "Telling gaps, open problems and fashionable problems apart",
+        "Mining limitations and future-work sections for problems",
+        "Negative results and failed replications",
+        "Formulating a problem and assessing novelty",
+        "Positioning a contribution: incremental, new method or new framing",
+        "Locally grounded research agendas and relevance to African needs"
+      ]
+    },
+    {
+      "title": "Benchmarks, artefacts and reproducibility",
+      "weeks": "7-8",
+      "topics": [
+        "Benchmark design, saturation, leakage and gaming",
+        "Evaluation metrics and statistical rigour: seeds, intervals and significance",
+        "Artefact evaluation: containers, documentation and badging",
+        "Reproducing a published result and diagnosing a discrepancy",
+        "Data, code and model licensing and sharing",
+        "Compute budgets, efficiency and low-resource research"
+      ]
+    },
+    {
+      "title": "Peer review practice",
+      "weeks": "9",
+      "topics": [
+        "Anatomy of a review: summary, strengths, weaknesses, questions and score",
+        "Judging soundness, novelty, significance and clarity",
+        "Confidentiality, bias, conflicts of interest and the use of AI tools in review",
+        "Writing rebuttals and responding to reviewers",
+        "Programme committee simulation and meta-review"
+      ]
+    },
+    {
+      "title": "Qualifying examination preparation",
+      "weeks": "10-11",
+      "topics": [
+        "Exam formats: written papers, oral exams, reading lists and research qualifiers",
+        "Breadth and depth: mapping the core areas of the field",
+        "Mock oral examination: thinking aloud and handling follow-up questions",
+        "Writing a critical survey or candidacy paper",
+        "Managing time, wellbeing and the supervisory relationship",
+        "Mentored teaching and communicating to non-specialists"
+      ]
+    },
+    {
+      "title": "Proposal and dissertation planning",
+      "weeks": "12",
+      "topics": [
+        "Thesis statement, research questions and contributions",
+        "Structure of a proposal: background, aims, methods and risks",
+        "Work plans, milestones, dependencies and contingency",
+        "Publication strategy: from papers to a compilation or monograph thesis",
+        "Funding, grant writing and research ethics approval",
+        "Choosing and working with a committee"
+      ]
+    },
+    {
+      "title": "Career, collaboration and impact",
+      "weeks": "13",
+      "topics": [
+        "Explaining your research in three minutes to a general audience",
+        "Authorship, collaboration and credit",
+        "Impact beyond papers: open source, policy and industry transfer",
+        "Proposal defence rehearsal"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Scoping an area and building a reading list",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Choose a research area, draw its taxonomy on one page, and assemble a reading list of 15 papers split among seminal, survey and recent work, with a line on why each is there.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Pick 12 papers from a given list of 30 for a reading list on a new topic in a scenario, and score coverage of seminal and recent work"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Build a citation graph from a table of 80 papers, rank them by in-degree and betweenness, and identify the three most connecting papers"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Cluster 200 abstracts by topic with a simple text model, label the clusters as a taxonomy, and judge where the area's boundaries blur"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Annotating, mapping and writing the survey",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Write annotations for ten papers, build a concept map linking them, and draft a one-page literature map that ends in a stated gap.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Turn 10 paper annotations stored in a table into a concept matrix of methods against datasets, and highlight the empty cells"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Triage 20 new preprints in a scenario with limited weekly reading time, deciding which to read, skim or skip, and score the choices"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Revise a draft survey section in a scenario that lists papers instead of synthesising them, grouping by theme, and score the argument that results"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Presenting and dissecting a paper",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Present one recent paper in ten minutes, then write a half-page list separating each claim from the evidence offered and the assumption each rests on.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Match 8 claims in a paper to the evidence supporting them in a scenario, and flag the claims that go beyond what the experiments show"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Re-run an evaluation from a paper on a different data split and report which of its headline claims change"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Recompute the statistics of a reported comparison from its summary table, check the stated significance, and find what the paper's test assumes"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Comparing approaches and leading discussion",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compare two competing methods from the literature on the same problem under a common task description, and lead a fifteen-minute discussion with prepared questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Give feedback on a mock presentation in a scenario, balancing praise and critique, and score how useful and respectful the comments are"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Compare two published methods on one shared dataset with the same metric and budget, and report where the original comparison was unfair"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Adapt a method from a neighbouring field to your own problem in a scenario, justifying which assumptions transfer and which need testing"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Finding gaps and open problems",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Collect the limitations stated in eight recent papers, group them, and write three candidate open problems with the evidence that each is still open.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Extract future-work statements from 10 paper excerpts in a scenario and sort them into open problems, routine extensions and speculation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Attempt to replicate a published result and document the outcome as a short report, treating a failure as a finding rather than a mistake"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Judge 6 proposed problems in a scenario as gap, open problem or passing fashion, using evidence on prior attempts, and justify each verdict"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Formulating problems and positioning contributions",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write a half-page problem statement with a precise formulation, the closest prior work, and the specific way your contribution would differ.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Formulate a vague problem as an input, output and success criterion in a scenario, and score the precision of the statement"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Position a contribution against five related papers in a scenario, stating what is new, what is borrowed and what is only incremental"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Choose between a globally popular problem and a locally important one in a scenario with limited data, and defend the research agenda with evidence"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Benchmarks and statistical rigour",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Evaluate a benchmark for saturation and leakage, choose metrics with justifications, and write the evaluation protocol for fair comparison across seeds.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Plot the best reported score on a benchmark over 8 years from a given table, and judge whether it is saturating"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Train a model with 20 seeds, report mean, spread and a confidence interval, and show that a single run can flip a ranking of two methods"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Audit a shared artefact for missing files, hard-coded paths and unpinned versions, fix them, and run it clean in a fresh environment"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Reproduction, sharing and efficiency",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Reproduce one table of a published paper, explain any discrepancy, and write the licence and data statement you would attach to your own release.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Pick licences and write a data-sharing statement for a dataset with personal information in a scenario, and score legal and ethical fit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Reproduce a result from a paper's released code, track the difference to the reported number, and test three hypotheses for the gap"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Reduce the compute needed for an experiment tenfold by subsampling and early stopping, and check the conclusion is unchanged across 10 seeds"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Reviewing papers and responding to reviews",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a full review of a short paper with a summary, strengths, weaknesses, questions and a score, then draft a rebuttal to a critical review of your own work.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Write a structured review of a draft paper in a scenario and score it for specificity, fairness and constructive suggestions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Respond to three reviews of your submission in a scenario, one unfair, answering with evidence and without defensiveness, and score the reply"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Simulate a programme committee with 30 papers and noisy reviewers, compare acceptance by mean score and by discussion, and measure the agreement"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Exam formats, breadth and the oral",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Draft your qualifying plan: the exam format, the breadth areas you need to cover, a reading calendar, and ten likely oral questions with outlines of answers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Plan the preparation for a written qualifying exam in a scenario with eight weeks, allocating time across topics and mock papers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Map the core areas of your field against your reading list in a table, compute coverage by area, and list the three weakest areas"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Face a mock oral examination in a scenario with probing follow-up questions, thinking aloud and admitting gaps, and score reasoning and honesty"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Candidacy paper, wellbeing and teaching",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Outline a critical survey paper for your area with a thesis about the literature, and write a plan for a month with agreed meetings with your supervisor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Handle a stalled research project and a tense supervision meeting in a scenario, choosing steps that restore progress, and score the outcome"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Restructure a draft survey paper in a scenario so that it argues a thesis about the literature, and score argument and organisation"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Explain a technical result to a mixed class and a policy audience in a scenario, adjusting depth, and score clarity and accuracy for each"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Writing the dissertation proposal",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a four-page dissertation proposal containing the thesis statement, research questions, method, a milestone chart, risks and a publication plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Refine a thesis statement through three critique rounds in a scenario, improving scope and testability, and score each version"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E9",
+          "title": "Draw a Gantt chart for a three-year dissertation plan with dependencies, mark the critical path, and add a contingency for a failed experiment"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Plan the publications of a thesis in a scenario, choosing venues, order and co-authors so that the papers form a coherent thesis, and defend the plan"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Communicating, collaborating and the proposal defence",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Deliver a three-minute public summary and a twenty-minute proposal defence rehearsal, and write down the five hardest questions you were asked with revised answers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Rewrite a technical abstract as a three-minute talk for a general audience in a scenario, and score clarity without losing accuracy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Agree roles, authorship and data ownership for a collaboration across two institutions in a scenario, and score how well disputes are prevented"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Defend a dissertation proposal before a mock committee in a scenario, answering challenges on novelty, feasibility and risk, and score the defence"
+        }
+      ]
+    }
+  ]
+}

@@ -119,5 +119,407 @@
         "Capstone: design and simulate an interoperable mobile money service with a USSD menu, a ledger, agents and settlement through a switch"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Money, payment instruments and the Ghana landscape",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Map one everyday payment (buying airtime by mobile money) onto the parties, instrument and regulator involved, and write a one-page summary of why mobile money spread in Africa.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Classify ten payment scenarios by instrument (cash, card, transfer, mobile money, QR) and choose the cheapest suitable one for each stated need"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Trace a card purchase and a mobile money merchant payment, naming each party and the money or message they pass, and score the completed trace"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Advise a rural trader on whether to adopt mobile money, weighing cost, trust, agent access and cash needs, and defend the recommendation to a rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Clearing and settlement",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Explain with a worked numeric example the difference between real-time gross settlement and deferred net settlement, and which costs more liquidity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Follow a transfer through authorisation, clearing and settlement in a branching case and decide at which point the payment becomes final"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E5",
+          "title": "Store a day of interbank transfers in tables and compute each bank's multilateral net position with a SQL query, then check that positions sum to zero"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Choose between cheque clearing, ACH and instant payment for four business cases and justify each choice against cost, speed and risk"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Settlement risk and payment messages",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Read an ISO 20022 credit transfer message and label each element with its meaning, then write what a legacy field would map to.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Parse a sample payment message stored as rows of fields, extract payer, payee, amount and reference, and flag one invalid message"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E5",
+          "title": "Simulate netting among five banks over a day's payments and compute the settlement amounts, then confirm bilateral and multilateral netting reduce volumes"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Handle a scenario in which one bank cannot fund its net position at settlement time, choose among prefunding, collateral and delay, and defend the choice"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Card payments",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw the four-party card model with the money flows for a 100 cedi purchase, including interchange and the merchant discount rate, and compute each party's share.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E5",
+          "title": "Calculate interchange, scheme fee and merchant discount for 20 card sales using a fee table in the database, and check the totals reconcile"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Walk through an authorisation request and response, interpret three response codes and decide the right customer message for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Investigate a disputed contactless transaction using chip cryptogram and terminal evidence, and decide who bears the loss under the scheme rules"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Online card payments and standards",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write a checklist a small online shop could use to reduce its PCI DSS scope by using a hosted payment page and tokens.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Handle a chargeback case for a card-not-present purchase by gathering the right evidence and choosing to accept or contest it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Evaluate three shop designs (stores card numbers, uses hosted page, uses tokens) for PCI scope and rank them with reasons"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Plan how a new bank should join a national card scheme and switch, picking connection, certification and testing steps in order against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "The mobile money model and platform",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Explain with an example why every unit of e-money must be backed one-to-one by funds in a trust account, and what would go wrong otherwise.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E5",
+          "title": "Model wallets and a trust account in tables, perform a cash-in and cash-out and check that total e-money equals the trust balance after each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E5",
+          "title": "Design a double-entry ledger for a person-to-person transfer with a fee, run it as a SQL transaction and show debits equal credits"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E5",
+          "title": "Add merchant payment, bill payment and bulk disbursement flows to the ledger and verify the fee and settlement accounts balance for 100 test transactions"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Correctness, APIs and regulation",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Summarise the main licence categories and trust account rules under Act 987 in a one-page table for a start-up, with the obligations of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E5",
+          "title": "Show with two simulated transfers how a retried request without an idempotency key double-charges a customer and then fix it with a key"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E5",
+          "title": "Reconcile a provider ledger against a partner statement after a timeout, find three mismatched entries and decide whether to reverse, confirm or investigate each"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Decide which licence a proposed service needs and which trust account rules apply, in a branching case scored against a compliance rubric"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Agent networks and liquidity",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Calculate the daily commission and float needs for a rural agent on a market day and argue whether the agent is viable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E5",
+          "title": "Track an agent's e-float and cash float through 30 transactions in tables and show when the agent must rebalance to avoid running out"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E5",
+          "title": "Compute commission income and costs for three agents with different volumes and find the break-even number of transactions per day"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Manage float rebalancing for a district of eight agents across a week with market-day spikes and score the plan on stock-outs avoided and rebalancing cost"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "USSD design and usability",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Sketch a USSD menu tree for sending money and paying a bill, then test it on a classmate and note every point where they hesitated.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Map the screens of a five-step USSD session, set the session timeout and decide what happens to a transaction if the session drops midway"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Redesign a four-level USSD menu so a first-time user finishes a transfer in fewer steps, with confirmation and PIN screens, and justify each change"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Build a USSD menu in the browser simulator with balance, send money and bill payment, then test twelve paths including wrong PIN and timeout"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Interoperability and the switch",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compare bilateral links with a central switch for connecting five providers, counting links needed and the cost of adding a sixth.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Choose between bilateral integration and a central switch for a group of five providers and justify the choice on cost, time and risk"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E5",
+          "title": "Route 30 wallet-to-wallet and wallet-to-bank transfers through a switch table by destination prefix and report any that fail with the reason"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Resolve a failed interoperable transfer where the sender was debited and the receiver not credited, using status queries and reversals, scored on the dispute rubric"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Settlement between providers and cross-border payments",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Compare PAPSS with correspondent banking for a Ghana to Nigeria remittance in cost, speed and number of intermediaries.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E5",
+          "title": "Produce a settlement file of net positions between three providers from a day of interoperable transfers and check it against each provider's records"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Select the cheapest and fastest route for sending 500 dollars from Accra to Lagos from three corridor options and defend the choice with fees"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E5",
+          "title": "Find reconciliation breaks between two providers' settlement files for a week, classify the causes and propose fixes that prevent recurrence"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Fraud, KYC, consumer protection and tax",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a consumer awareness leaflet that explains five common mobile money scams and what a customer should do after each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Respond to a customer who has been tricked by a fake reversal request, deciding what to block, whom to inform and how to explain it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E5",
+          "title": "Write SQL rules for velocity and amount thresholds that flag suspicious wallets in a transaction table, and measure how many true cases they catch"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Decide which KYC tier and limits apply to five customer profiles, and handle an application with a mismatched Ghana Card number"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Digital currencies, open finance and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a design brief for an interoperable mobile money service describing its users, ledger, agent model, USSD menu, switch connection and settlement.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Assess a digital susu and nano-loan product for a trader, spotting the risks of over-borrowing and high charges, and rate it on a consumer rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Compare an eCedi pilot with mobile money for an offline payment scenario in a remote market, and recommend which fits better with reasons"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E5",
+          "title": "Build the capstone ledger, agent float and switch settlement tables, run 100 transactions across two providers and show all balances reconcile"
+        }
+      ]
+    }
   ]
 }

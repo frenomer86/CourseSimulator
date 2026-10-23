@@ -115,5 +115,403 @@
         "Project: an alignment and annotation report on a gene of public health importance in Africa"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Sequences as data",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Translate a short DNA sequence in all six frames by hand and explain how the HBB sickle cell mutation changes codon 6.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compute reverse complement, GC content and 3-mer counts for a 60-base sequence and check each against hand counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Parse a FASTQ file of 20 reads, convert Phred scores to error probabilities and drop reads with mean quality below 20"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Find all open reading frames of at least 100 codons in a 3000-base sequence on both strands and report their coordinates and protein lengths"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Why and how to compare sequences",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Count by hand how many ways two 4-letter sequences can be aligned and explain why the number explodes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Draw a dot plot of two 40-base sequences with a repeat, and mark the diagonal that shows the repeat and the one that shows an inversion"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Fill an edit distance table for two 6-letter words step by step and trace one optimal path back through the grid"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement edit distance by plain recursion, by memoisation and by tabulation and compare call counts and runtime for lengths up to 20"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Dynamic programming alignment",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Align two short protein fragments by hand with Needleman-Wunsch and then with Smith-Waterman, and say which answer suits a domain search.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Fill the Needleman-Wunsch matrix for two 6-base sequences with given scores and trace back the optimal global alignment"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Align a short motif inside a longer sequence with Smith-Waterman and semi-global modes, and compare the alignments each reports"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement Gotoh's affine-gap alignment with three matrices, test it on 8 pairs and show how raising the gap open penalty changes results"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Efficient alignment algorithms",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Compare time and memory of full and linear-space alignment for sequences of 1000 and 100000 bases, in a short table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Plot the cells filled and memory used for sequence lengths 100 to 5000 with quadratic and linear-space alignment, and read off where memory fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Run banded alignment on two 20-base sequences with a band of 3 and compare the score against the full matrix"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement Hirschberg's divide and conquer alignment, verify it returns the same score as the full matrix on 10 pairs and measure memory saved"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Scoring matrices and significance",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Derive a log-odds score for one amino acid pair from target and background frequencies and say what a positive score means.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute log-odds scores for five amino acid pairs from given frequencies and compare them with the matching BLOSUM62 entries"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Raise a PAM1 matrix to the powers 30 and 250 and observe how identity probabilities fall and the substitution pattern flattens"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Shuffle one sequence 1000 times, align each against a fixed query, fit an extreme value distribution and report a p-value for the true score"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Database search with BLAST",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Pick the right BLAST program for four queries, such as a new cDNA, a protein and a genome contig, and explain each choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Choose between blastn, blastp, blastx and tblastn for six query-database pairs and justify each against the program's translation rules"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Step through BLAST seeding on a query with word size 3, list neighbourhood words, find two-hit seeds and extend one to a high-scoring pair"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Read a hit table of 10 results, convert raw to bit scores, compute E-values for two database sizes and explain how the ranking changes"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Filtering, profiles and identification",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Explain how low-complexity regions can produce high scores with no homology and how profile drift can contaminate PSI-BLAST.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Mask low-complexity stretches in a protein sequence by entropy in a sliding window and count how many false hits the masking removes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Build a position-specific scoring matrix from 10 aligned homologues and use it to score 5 candidate sequences, ranking them"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Identify an unknown pathogen sequence and a resistance gene variant by searching a reference set, and report the best hit with evidence"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Multiple sequence alignment",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Score a 4-sequence alignment with the sum-of-pairs objective by hand and explain why exact optimisation is infeasible for 30 sequences.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute the sum-of-pairs score of a 4-sequence alignment for each column and the total using a given scoring matrix"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Build a guide tree from pairwise distances of 5 sequences and align them progressively, showing the profile merges in order"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Refine a progressive alignment by iterative repartitioning and realignment, and report how the sum-of-pairs score improves each round"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Evaluating and using alignments",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Judge a 12-sequence alignment of a malaria antigen by eye, mark unreliable columns and propose what to trim.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Compute a per-column conservation score for an alignment of 10 antigen variants and list the five most conserved positions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Compare a test alignment with a benchmark reference using sum-of-pairs and column scores, then trim columns with over 50 percent gaps"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Plot conservation along a malaria antigen and mark variable regions, then explain which regions suit a vaccine target and why"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Motifs and domains",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Build a position weight matrix from eight binding sites by hand and compute the information content of each column.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Build a frequency matrix with pseudocounts from 10 aligned sites, convert to log-odds and compute the score of one candidate site"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Scan a 500-base promoter with a weight matrix, report windows above a threshold and compare hits with the known planted site"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Implement Gibbs sampling to find a 6-base motif hidden in 10 random 50-base sequences, and report the motif and its recovery rate"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Hidden Markov models",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Run Viterbi by hand on a 5-roll sequence in the dishonest casino model and compare it with posterior decoding.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Build a two-state Markov model of CpG island and background DNA and compute the log-odds score of three given sequences"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E6",
+          "title": "Run the Viterbi algorithm step by step on a 10-roll sequence from the dishonest casino and read off the most likely state path"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Implement forward, backward and posterior decoding in log space for a 3-state HMM and verify the probabilities sum to one at each position"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Training HMMs and profile models",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Sketch a profile HMM for a 5-column alignment with match, insert and delete states and explain what a delete state means biologically.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Estimate HMM transition and emission probabilities by counting from a labelled training sequence and compare them with the true values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E6",
+          "title": "Score three sequences against a small profile HMM with match, insert and delete states, showing the best path for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Train a simple gene-finding HMM with exon, intron and intergenic states using Baum-Welch and report its accuracy on 5 held-out sequences"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Reproducible analysis and project",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write the methods section of your project report so another student could rerun it, listing tools, versions and parameters.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Write a notebook that loads a FASTA file, aligns two sequences, prints the identity and records parameters and versions in the output"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Align HBB variants from 6 populations, locate each substitution and report which change the protein sequence and which are silent"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Annotate an unknown gene by searching, aligning with homologues, scanning for domains and proposing a function with supporting evidence"
+        }
+      ]
+    }
   ]
 }

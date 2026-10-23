@@ -107,7 +107,7 @@
     },
     {
       "title": "Audio and image processing applications",
-      "weeks": "13-14",
+      "weeks": "13",
       "topics": [
         "Speech analysis: pitch detection, linear predictive coding and MFCC features for recognising Twi and Ewe keywords",
         "Audio effects and equalisers; perceptual audio coding principles",
@@ -115,6 +115,406 @@
         "Image filtering: smoothing, sharpening, edge detection and median filtering",
         "DCT-based image compression and JPEG for low-bandwidth delivery",
         "Real-time constraints: latency, buffering and DSP processor architectures"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Sampling, quantisation and number formats",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Problem set: compute the SNR of a 12-bit converter, the sample rate needed for a 4 kHz speech band, and the error of a Q15 fixed-point multiply.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Quantise a sine wave with 3, 6 and 10 bits, plot the error, and read off the signal-to-noise ratio for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Sample a two-tone signal below and above its Nyquist rate, plot the reconstruction in each case, and identify the aliased frequency"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Implement a fixed-point (Q15) FIR filter in code, compare its output with floating point, and report the error and the overflow cases found"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "The DFT and circular convolution",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compute an 8-point DFT by hand with the DFT matrix, check Parseval's theorem, and show with a small example how circular convolution differs from linear convolution.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute the 8-point DFT of a short sequence using the DFT matrix and plot its magnitude spectrum"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute a linear convolution of two sequences through zero-padded DFTs and confirm it matches direct convolution to numerical precision"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Verify linearity, circular shift, symmetry and Parseval's theorem numerically on random signals, and report the largest error for each property"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Block convolution and the DCT",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Estimate the number of multiplications for filtering a 10-minute audio file with a 512-tap filter directly versus overlap-add, and pick a block size.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Compute the DCT of an eight-sample ramp and show how much energy sits in the first two coefficients"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Filter a long signal with overlap-add using FFT blocks and verify the output equals direct convolution"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Compare overlap-save and direct convolution runtime for filter lengths from 16 to 1024, and find the crossover length"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "The fast Fourier transform",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Draw the 8-point radix-2 decimation-in-time flow graph, mark the twiddle factors and bit-reversed inputs, and count multiplications against the direct DFT.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Work through an 8-point decimation-in-time butterfly by hand with twiddle factors and compare the result with the direct DFT"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Detect the DTMF keypress digits in a synthesised phone tone with the Goertzel algorithm at the eight standard frequencies"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Implement a radix-2 FFT from scratch, validate it against a library on random inputs, and plot runtime against length to confirm n log n"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "FIR filter design",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Design a low-pass FIR filter with a 3 kHz cut-off at 16 kHz sampling using a Hamming window, and compare it with a rectangular window design.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Read passband ripple, stopband attenuation and transition width from a plotted filter response and state whether it meets a given specification"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Design low-pass FIR filters with rectangular, Hann, Hamming and Blackman windows of 41 taps and compare their stopband attenuation"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Design a filter by frequency sampling to meet a given mask, and adjust the transition samples until the stopband ripple falls below 40 dB"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Optimal FIR design and ECG clean-up",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Short report: compare window and equiripple designs for the same specification in terms of order and ripple, and recommend one for a battery-powered ECG monitor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Draw the direct and transposed forms of a 5-tap FIR filter and compute its output for a short input"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Design an equiripple low-pass filter with the Parks-McClellan method and show it needs fewer taps than a Hamming design for the same mask"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Remove 50 Hz mains hum and baseline wander from a supplied noisy ECG with FIR filters, and verify the heart-rate peaks are preserved"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "IIR filter design",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Design a second-order Butterworth low-pass by the bilinear transform with prewarping at a chosen cut-off, and verify the pole locations are inside the unit circle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Plot the magnitude responses of fourth-order Butterworth, Chebyshev I and elliptic prototypes and compare their roll-off and ripple"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Convert an analogue Butterworth prototype to a digital filter with the bilinear transform and prewarping, and verify its cut-off frequency"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Design a band-stop IIR filter that removes a 50 Hz hum from a 1 kHz sampled signal, and check the notch depth and passband flatness"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "IIR structures and finite word length",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compare cascaded second-order sections with a single high-order direct form for a given filter, explaining how coefficient rounding moves the poles.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Draw direct form I and II structures for a second-order IIR filter and compute the first eight output samples for an impulse input"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Quantise the coefficients of a sixth-order IIR filter to 8 and 12 bits in direct form and in cascade, and compare the pole shifts"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Choose between an FIR and an IIR filter for a 1 kHz low-pass on a 20 kHz sensor stream under a limit of 50 multiplications per sample"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Multirate signal processing",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Design the decimation chain to reduce a 48 kHz audio signal to 8 kHz, specifying the anti-aliasing filter, and compute the saving from a polyphase form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Downsample a 1 kHz and a 5 kHz tone by 4 at 16 kHz sampling and plot spectra to show which one aliases"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Convert a signal from 44.1 kHz to 48 kHz by rational resampling and check the tone frequencies and level are preserved"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Build a two-channel QMF filter bank, split and rebuild a test signal, and measure the reconstruction error against perfect reconstruction"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Spectral analysis and random signals",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Spectral analysis lab note: show how window choice and zero padding change the resolved peaks of two tones 20 Hz apart, and state the resolution limit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Take the DFT of a sine that is not periodic in the window, observe the leakage, and then apply a Hann window to reduce it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Compute a spectrogram of a chirp signal with two window lengths and describe the time-frequency trade-off"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Estimate the autocorrelation and power spectral density of noisy sensor data and identify the hidden periodic component"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Power spectrum estimation and real signals",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Compare the periodogram, Welch and AR spectrum estimates for a short noisy record, reporting variance, resolution and model order choices.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compute the periodogram of a noisy 120 Hz tone and then the Welch estimate, and compare the noise floor smoothness"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Fit an autoregressive model with the Yule-Walker equations to a signal and compare its spectrum with the periodogram"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Estimate the grid frequency drift from a supplied voltage recording near 50 Hz and detect the motor vibration lines in a cocoa-processing dataset"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Linear prediction and adaptive filtering",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Derive the normal equations of the Wiener filter for a two-tap case and compute the optimal weights from given correlations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Solve the Wiener normal equations for a two-tap filter from given autocorrelation and cross-correlation values and compute the minimum error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Run the Levinson-Durbin recursion to predict a speech frame, and compare the prediction error energy at orders 4, 8 and 12"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Build an LMS adaptive noise canceller for a voice call, tune the step size, and plot convergence for a stable and a diverging setting"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Speech, audio and image processing",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5",
+        "9.6"
+      ],
+      "exercise": "Mini-project proposal: describe the steps from microphone to features to classifier for recognising five Twi or Ewe spoken keywords, including sample rate and frame length.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Filter a noisy grey-scale image with a 3 by 3 mean filter and a median filter, and compare the removal of salt-and-pepper noise"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Extract MFCC features from five recorded keywords and compare feature distances between repeats of the same word and different words"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E1",
+          "title": "Compress a grey-scale image with 8 by 8 DCT blocks at three quantisation levels and report the file size ratio against the image quality"
+        }
       ]
     }
   ]

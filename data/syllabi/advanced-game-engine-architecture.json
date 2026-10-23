@@ -1,0 +1,503 @@
+{
+  "slug": "advanced-game-engine-architecture",
+  "description": "A graduate study of how production game engines are structured for speed and scale: entity-component-system design, cache-aware data layout, job systems, custom allocators, asset pipelines and profiling. Students build and benchmark the core of a small engine in the code runner and visualise cache and memory behaviour.",
+  "modelledOn": [
+    "Gregory, Game Engine Architecture",
+    "Nystrom, Game Programming Patterns",
+    "Fabian, Data-Oriented Design",
+    "Williams, C++ Concurrency in Action"
+  ],
+  "outcomes": [
+    "Design an entity-component-system and justify its storage layout against an object-oriented alternative with measurements.",
+    "Predict and measure the effect of data layout on cache misses and frame time.",
+    "Implement a job system with dependencies and reason about data races, ordering and determinism.",
+    "Write custom allocators and a streaming policy that meet a stated memory budget.",
+    "Build an asset pipeline with incremental builds and hot reloading of data and scripts.",
+    "Profile an engine build on target hardware, set a frame budget and fix the largest bottleneck."
+  ],
+  "units": [
+    {
+      "title": "Engine architecture and entity-component-system design",
+      "weeks": "1-2",
+      "topics": [
+        "Engine subsystems and the main loop: fixed versus variable timestep and the accumulator pattern",
+        "Entity-component-system: entities as ids, components as data, systems as functions",
+        "Component storage: archetypes versus sparse sets, queries and iteration",
+        "Command buffers, deferred structural changes and event queues between systems",
+        "Comparing deep inheritance, composition and ECS on a worked game feature"
+      ]
+    },
+    {
+      "title": "Data-oriented design and cache behaviour",
+      "weeks": "3",
+      "topics": [
+        "The memory hierarchy: cache lines, associativity, misses and the cost of a cache miss",
+        "Array-of-structures versus structure-of-arrays and hot/cold data splitting",
+        "Alignment, padding, false sharing and prefetching",
+        "SIMD basics and batching work for vectorisation",
+        "Cache-friendly spatial structures: uniform grids, flat BVH and sorting by locality"
+      ]
+    },
+    {
+      "title": "Job systems and multithreading",
+      "weeks": "4",
+      "topics": [
+        "Thread pools, tasks and dependency graphs of jobs",
+        "Work-stealing deques and load balancing",
+        "Atomics, memory ordering and lock-free queues",
+        "Data races, deadlock and designing for determinism",
+        "Frame pipelining: simulation, render and audio threads; parallel-for patterns"
+      ]
+    },
+    {
+      "title": "Memory allocators and streaming",
+      "weeks": "5-6",
+      "topics": [
+        "Linear, stack and pool allocators and per-frame arenas",
+        "Free-list and buddy allocators; fragmentation and compaction",
+        "Handles, generation counters and safe references instead of raw pointers",
+        "Asset streaming: level-of-detail paging, prefetch and memory budgets",
+        "Memory profiling and budgets for low-end Android phones and browser targets"
+      ]
+    },
+    {
+      "title": "Asset pipelines and hot reloading",
+      "weeks": "7-8",
+      "topics": [
+        "Importing, cooking and packing assets; platform-specific formats",
+        "Asset databases, stable identifiers, dependency graphs and incremental builds",
+        "Compression, texture formats and bundle layout for download size",
+        "Hot reloading of data, shaders and code",
+        "Serialisation, reflection and versioned save formats"
+      ]
+    },
+    {
+      "title": "Scripting and tools integration",
+      "weeks": "9",
+      "topics": [
+        "Embedding a scripting language: binding native functions and ownership across the boundary",
+        "Script cost, coroutines and when to move logic out of scripts",
+        "Editor tooling: inspectors, property reflection and undo systems",
+        "Data-driven design: configuration files, tuning tables and live editing",
+        "Debug tooling: developer console, in-game profiler overlay and deterministic replay"
+      ]
+    },
+    {
+      "title": "Cross-platform builds and profiling",
+      "weeks": "10-11",
+      "topics": [
+        "Build systems and toolchains; abstraction layers for platform differences",
+        "Platform abstraction of graphics, input, audio and file systems",
+        "Frame budgets, CPU and GPU profiling, flame graphs and sampling versus instrumentation",
+        "Performance regression tests and benchmarking in continuous integration",
+        "Optimising for mobile and WebAssembly targets: thermal limits, battery and download size"
+      ]
+    },
+    {
+      "title": "Deterministic simulation and engine integration",
+      "weeks": "12-13",
+      "topics": [
+        "Deterministic simulation: fixed-point maths, seeded randomness and replay",
+        "Physics and collision pipeline integration: broad phase, narrow phase and solver ordering",
+        "Rendering architecture: scene graph versus render graph and visibility culling",
+        "Published engine post-mortems: lessons from architecture decisions that aged badly",
+        "Capstone: assemble and benchmark a mini engine core against a stated frame budget"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The game loop and ECS foundations",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Implement a fixed-timestep loop with an accumulator, then sketch the data structures for entities, components and systems and give the cost of a query that visits two component types.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Code a fixed-timestep game loop with an accumulator and print the number of updates per rendered frame at 30, 60 and 144 fps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Implement a minimal ECS with entity ids, two component arrays and a movement system, and run it on 10,000 entities"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement sparse-set component storage with dense iteration and compare insertion, removal and iteration time against a hash map version"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Deferred changes and design comparison",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Model a poisoned-and-burning status effect for monsters three ways (inheritance, composition and ECS) and compare how hard each is to extend with a new effect.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Add a command buffer to your ECS so entities destroyed during iteration are removed safely after the system finishes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Build an event queue between a collision system and a damage system and verify event order over 1,000 simulated frames"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Implement the same 20,000-entity feature as inheritance and ECS, benchmark both over 1,000 frames and report time per frame and lines changed to add a feature"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Caches, layout and vectorisation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Predict the number of cache misses when summing one field across 1,000 structs of 64 bytes versus a packed array, then measure the time difference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step through a direct-mapped cache with a stride-1 and a stride-16 array walk and count hits and misses for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Convert a particle update from array-of-structures to structure-of-arrays and measure speed-up for 1 million particles over 100 frames"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Demonstrate false sharing with two threads updating adjacent counters, fix it with padding and report the time before and after"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Job systems and concurrency",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Draw the dependency graph of jobs for a frame (input, AI, physics, animation, render submission) and compute its critical path on four cores.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Build a thread pool that runs 100 tasks and prints how many each worker thread completed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Add work stealing to the pool and compare finish time on a workload of tasks with very uneven durations against a shared queue"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Find and fix a data race in a given multi-threaded particle system, then prove the fix makes 100 runs produce identical results"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Allocators and safe references",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compare malloc with a pool allocator for 100,000 same-sized objects and explain why a generation counter prevents use of a stale handle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Implement a linear per-frame arena allocator, reset it every frame and verify allocations never overlap across 1,000 frames"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Implement a pool allocator for fixed-size entities and benchmark 1 million allocate and free pairs against the language default"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement handles with generation counters and show that access to a destroyed entity is detected rather than reading reused memory"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Fragmentation, streaming and budgets",
+      "topics": [
+        "4.2",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Design a streaming plan for a 12 km open world on a phone with 1.5 GB usable memory, with the number of chunks resident, the load radius and an eviction rule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Watch a free-list allocator serve a sequence of 20 allocations and frees and note where external fragmentation first blocks a request"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Simulate chunk streaming along a player path with a load radius and least-recently-used eviction, and report hit rate and peak memory"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Tune texture and mesh budgets for a low-end phone so peak memory stays under 1 GB while the visible quality score drops by under 10 percent"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Importing, cooking and the asset database",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw the dependency graph of a model, its material and two textures, then explain which files are rebuilt when one texture changes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Write a tool that converts a text mesh file into a packed binary format and verify a round trip returns identical vertices"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Build an asset database with stable ids and hash-based change detection so that only modified assets are rebuilt on the second run"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Pack 200 small assets into one bundle with an index, compare load time and download size against separate files and justify the layout for slow networks"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Hot reloading and serialisation",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Specify a versioned save format for a farming game that must still load saves from version 1 after fields are added in versions 2 and 3.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Serialise a game state of entities to JSON and back, then diff the loaded state against the original"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Watch a data file and reload tuning values into a running loop within one frame without restarting the process"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Write migration functions that load version 1, 2 and 3 save files into the current format and test with 12 sample saves including corrupted ones"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Scripting, tools and debug facilities",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Decide which of ten gameplay behaviours should be native code, script or data, and justify each choice by frequency, cost and designer need.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Move enemy health, speed and damage into a table loaded at start-up and change three values without recompiling"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Embed a small interpreter, expose three native functions to it, and run a script that spawns and moves entities"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Record player input per frame, replay it into a deterministic simulation and verify that the final state matches the original run exactly"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Build systems and platform layers",
+      "topics": [
+        "7.1",
+        "7.2"
+      ],
+      "exercise": "Design the platform abstraction interface for file access, input and windowing so the same game code runs on Linux, Windows and a browser build.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E4",
+          "title": "Write a build script with targets for debug and release configurations and show that only changed files are recompiled on the second run"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Define an abstract file-system interface with two implementations, one real and one in-memory, and run the same tests against both"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E9",
+          "title": "Draw the layered architecture of an engine with a platform layer and mark which modules may depend on which, rejecting three illegal dependencies"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Profiling and performance engineering",
+      "topics": [
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Set a 16.6 ms frame budget across systems, profile a supplied frame trace, and propose the single change that frees the most time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Instrument five systems with scoped timers, print a table of milliseconds per system over 600 frames and flag any over budget"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Write a benchmark harness that runs the physics step 100 times, reports mean and 99th percentile and fails when it regresses by over 10 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Analyse a trace of frame times from a mid-range phone, find thermal throttling in the plot and recommend quality settings that hold 30 fps"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Determinism, physics and rendering architecture",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Compare a scene graph with a render graph for a deferred renderer, and list what must be fixed in a simulation for two machines to agree frame by frame.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Replace a floating-point movement update by fixed-point arithmetic and a seeded random generator, and show identical results across two runs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Implement a uniform-grid broad phase and narrow-phase circle test for 5,000 bodies and count pair tests against brute force"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Implement frustum culling over a flat bounding-volume array and measure objects drawn and time per frame for 50,000 objects"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Capstone: mini engine core",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present your mini engine: architecture diagram, benchmark table against the frame budget, and one decision you would reverse after the post-mortem readings.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Run the capstone benchmark scene of 10,000 entities and record frame time, memory and entity count in a results table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E9",
+          "title": "Draw the architecture of a published engine post-mortem as a diagram, marking the decision that caused the later problem"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Integrate ECS, job system, arena allocator and profiler into one build, reach a 16.6 ms frame at 50,000 entities and document each optimisation"
+        }
+      ]
+    }
+  ]
+}

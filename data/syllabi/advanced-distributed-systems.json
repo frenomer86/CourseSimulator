@@ -1,0 +1,499 @@
+{
+  "slug": "advanced-distributed-systems",
+  "description": "Graduate-level study of the algorithms and impossibility results behind replicated, fault-tolerant systems: time, consensus, consistency, distributed transactions, CRDTs, failure detection and resilience engineering. Students step through protocols, inject failures into simulated networks and clusters, and finish with a replicated store project.",
+  "modelledOn": [
+    "Kleppmann, Designing Data-Intensive Applications",
+    "Lynch, Distributed Algorithms",
+    "Attiya and Welch, Distributed Computing: Fundamentals, Simulations and Advanced Topics",
+    "Research papers on Paxos, Raft, Dynamo, Spanner and CRDTs"
+  ],
+  "outcomes": [
+    "Prove or refute safety and liveness properties of a distributed protocol under a stated failure and timing model.",
+    "Derive and apply the FLP, CAP and quorum-intersection results to decide what a design can and cannot guarantee.",
+    "Implement and trace single-decree Paxos and Raft, including leader change and log repair.",
+    "Compare consistency models and transaction protocols and choose one for a given workload and failure profile.",
+    "Design convergent replicated data types and gossip-based membership with analysed convergence.",
+    "Evaluate a production-scale fault tolerance design by reading a systems paper and an incident report critically."
+  ],
+  "units": [
+    {
+      "title": "System models, time and ordering",
+      "weeks": "1-2",
+      "topics": [
+        "System models: asynchronous, partially synchronous and synchronous; crash, omission and Byzantine faults",
+        "Physical clocks: drift, NTP, Cristian's algorithm and averaging-based clock synchronisation, bounded-uncertainty clocks",
+        "Logical time: Lamport clocks, vector clocks, version vectors and hybrid logical clocks",
+        "Consistent cuts and global snapshots: the Chandy-Lamport algorithm and stable property detection",
+        "Impossibility results: Two Generals, FLP, the CAP theorem and PACELC"
+      ]
+    },
+    {
+      "title": "Consensus",
+      "weeks": "3-4",
+      "topics": [
+        "The consensus problem: agreement, validity and termination; equivalence with atomic broadcast",
+        "Single-decree Paxos with its safety proof, and Multi-Paxos",
+        "Raft: leader election, log replication, safety argument, membership change and log compaction",
+        "Byzantine fault tolerance: the 3f+1 bound, PBFT and view change; blockchain-style consensus compared",
+        "Randomised and leaderless consensus: Ben-Or, EPaxos and wide-area latency of consensus"
+      ]
+    },
+    {
+      "title": "Replication and consistency models",
+      "weeks": "5-6",
+      "topics": [
+        "Primary-backup, state machine replication and chain replication",
+        "Consistency models: linearizability, sequential, causal and eventual consistency; session guarantees",
+        "Quorum systems: R+W>N, sloppy quorums, hinted handoff and read repair",
+        "Checking consistency: Jepsen-style testing, linearizability checkers and common anomalies",
+        "Multi-leader and geo-replication; conflict detection and the pitfalls of last-write-wins"
+      ]
+    },
+    {
+      "title": "Distributed transactions and commit",
+      "weeks": "7",
+      "topics": [
+        "ACID in a distributed setting: serialisability, snapshot isolation and write skew",
+        "Two-phase commit, its blocking problem, three-phase commit and Paxos Commit",
+        "Distributed concurrency control: two-phase locking, timestamp ordering, MVCC and externally consistent transactions",
+        "Sagas, compensating transactions, the outbox pattern and idempotency for mobile money transfers",
+        "Deterministic transaction execution, coordination avoidance and the CALM theorem"
+      ]
+    },
+    {
+      "title": "Key-value stores and CRDTs",
+      "weeks": "8-9",
+      "topics": [
+        "Partitioning: consistent hashing, virtual nodes and rendezvous hashing",
+        "Dynamo-style stores: gossip, vector clocks and Merkle-tree anti-entropy",
+        "LSM-tree storage engines, write-ahead logs and compaction in wide-column stores",
+        "State-based and operation-based CRDTs: G-counter, PN-counter, OR-set and sequence CRDTs",
+        "Convergence proofs with join-semilattices; offline-first applications"
+      ]
+    },
+    {
+      "title": "Failure detection and membership",
+      "weeks": "10",
+      "topics": [
+        "Heartbeat and phi-accrual failure detectors; completeness, accuracy and the Chandra-Toueg classes",
+        "Gossip protocols: SWIM membership, epidemic dissemination and convergence-rate analysis",
+        "Leader election, leases and fencing tokens; split-brain",
+        "Group membership, view synchrony and reconfiguration",
+        "Coordination services: ZooKeeper and etcd, locks, barriers and configuration"
+      ]
+    },
+    {
+      "title": "Fault tolerance in practice",
+      "weeks": "11-12",
+      "topics": [
+        "Planet-scale systems: a Spanner-style database, a Chubby-style lock service and a Borg-style cluster manager",
+        "Reading incident reports: storage and network partition outages, cascading and metastable failures",
+        "Resilience engineering: chaos experiments, circuit breakers, bulkheads, retries with backoff and jitter, load shedding",
+        "Performance at scale: tail latency, hedged requests, queueing and backpressure",
+        "Intermittent connectivity in Africa: delay-tolerant networking, edge computing and offline-first design"
+      ]
+    },
+    {
+      "title": "Verification, research and project",
+      "weeks": "13",
+      "topics": [
+        "Verifying protocols: TLA+ specifications, model checking and deterministic simulation testing",
+        "Critical reading of a recent distributed systems paper: claims, assumptions and evaluation gaps",
+        "Project: a replicated key-value store tested under injected partitions and crashes",
+        "Open problems: scalable Byzantine consensus, verified implementations and wide-area coordination"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Failure models, clocks and logical time",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Show with a message-sequence diagram why two processes cannot order events using only synchronised wall clocks with 5 ms skew, then fix it with vector clocks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Assign Lamport timestamps to the events of a three-process message diagram and list pairs that are concurrent versus ordered."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Compute vector clocks for a five-event trace, detect two concurrent writes, and show which one a last-write-wins rule would silently lose."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E3",
+          "title": "Simulate NTP-style synchronisation across links with asymmetric delay and measure the residual clock error for each node."
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Snapshots and impossibility results",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write out the FLP argument in your own words: what is assumed, what is shown and which assumption real systems relax.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Run the Chandy-Lamport snapshot on a four-process token-passing system and verify that the recorded global state conserves the total tokens."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E3",
+          "title": "Partition a three-node replicated service on a simulated network and record which requests a CP and an AP configuration each accept or reject."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E6",
+          "title": "Explore an asynchronous consensus execution step by step and construct the schedule in which a single crash prevents any decision, illustrating the FLP argument."
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "The consensus problem and Paxos",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Prove that two different values cannot both be chosen in single-decree Paxos, using the quorum intersection argument.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Trace a failure-free single-decree Paxos round with three acceptors through prepare, promise, accept and accepted messages."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Run two competing proposers with message delays, show the dueling proposers livelock, and fix it with randomised backoff or a distinguished leader."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Implement single-decree Paxos with a message simulator that drops and reorders messages, and check agreement across 1000 random schedules."
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Raft, Byzantine agreement and fast consensus",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compare Raft and PBFT in a table covering fault model, node count, message complexity per decision and recovery from a faulty leader.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Watch a five-node Raft cluster elect a leader, replicate three log entries, then crash the leader and observe the new election."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Create a network partition in a Raft cluster so a minority leader accepts writes, and show these entries are overwritten after healing."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Run PBFT with four replicas and one Byzantine primary sending conflicting pre-prepares, and trace the view change until a correct primary commits."
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Replication strategies and consistency models",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "For each of five operations histories, decide whether it is linearizable, sequentially consistent, causally consistent or none, with a justification.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Decide for six read and write histories whether each is linearizable and give the linearization order or a counterexample."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E12",
+          "title": "Configure N=5 replicas with R and W values, inject two node failures, and tabulate which settings still give strong reads and writes."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Compare primary-backup with chain replication under a head crash and a tail crash, tracing which acknowledged writes survive each time."
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Testing consistency and geo-replication",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Design a Jepsen-style test for a replicated counter: operations, faults to inject, the invariant to check and how the checker decides.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Check a recorded history of 12 register operations with a linearizability checker and identify the operation that makes it fail."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E12",
+          "title": "Deploy a two-region multi-leader store, write the same key in both regions during a partition, and compare last-write-wins with merge resolution."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Write a nemesis that partitions and heals a simulated three-node store at random, run 200 operations, and report any stale reads found."
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Transactions, commit protocols and sagas",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Specify a mobile money transfer between two wallets on different shards as a two-phase commit and as a saga, comparing failure behaviour at each step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Trace two-phase commit with three participants where one votes no, and list the log records written by coordinator and participants."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Crash the coordinator after all participants vote yes, show participants blocked holding locks, and explain how Paxos Commit removes that block."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Implement a transfer saga with compensations and idempotency keys, inject duplicate and lost messages, and verify no balance is double-debited."
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Partitioning and Dynamo-style stores",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compute how many keys move when a node is added under modulo hashing versus consistent hashing with 100 virtual nodes, then explain the difference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Place six nodes and twenty keys on a hash ring, add a seventh node, and count the keys that move."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Use Merkle trees to find the differing keys between two replicas of 16 items and count hashes compared against a full scan."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Build a small LSM store with a memtable, sorted runs and compaction, and measure read and write amplification for 10000 operations."
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "CRDTs and convergence",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Prove that a G-counter merge by element-wise maximum is commutative, associative and idempotent, and explain why that guarantees convergence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Apply increments on three replicas of a PN-counter, merge them in different orders, and confirm all replicas converge to the same value."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Implement an OR-set and show that an add concurrent with a remove of the same element keeps the element after merging."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E3",
+          "title": "Simulate three field-agent phones editing a shared harvest record offline over an intermittent network, then reconcile with CRDTs and report conflicts avoided."
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Failure detectors, gossip and coordination",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "For a 1000-node cluster with 1 percent packet loss, estimate the false-positive rate of a fixed-timeout heartbeat detector and explain how phi-accrual and SWIM improve on it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E3",
+          "title": "Configure heartbeat timeouts on a simulated 8-node cluster with variable delay and count false suspicions at three timeout values."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Simulate push gossip on 64 nodes, record rounds until all nodes know a rumour, and compare it with the log2 n prediction."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E12",
+          "title": "Build a lease-based lock with fencing tokens, pause the lock holder past its lease, and show the storage service rejecting the stale write."
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Large-scale designs and incident analysis",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Read a public post-mortem of a cloud storage outage and write a one-page analysis: trigger, propagation, why redundancy did not help and two design changes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E12",
+          "title": "Add a circuit breaker and retries with exponential backoff and jitter in front of a failing service, and compare error rates before and after."
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E12",
+          "title": "Replay a retry storm that overloads a recovering database, and apply load shedding and bulkheads to restore throughput."
+        },
+        {
+          "level": "advanced",
+          "topic": "7.1",
+          "engine": "E12",
+          "title": "Design a multi-zone deployment with a replicated lock service and cluster scheduler, inject a zone loss, and verify the survivor serves with no data loss."
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Tail latency and low-connectivity environments",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "A page fans out to 100 backends, each slower than 100 ms one time in a hundred. Compute how often the page is slow and how hedged requests change this.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Simulate a fan-out of 50 backend calls with heavy-tailed latencies and plot the median and 99th percentile of the overall response."
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E12",
+          "title": "Add hedged requests after the 95th percentile delay, measure the extra load and the reduction in 99th percentile latency."
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E3",
+          "title": "Design a store-and-forward sync between rural clinics and a district server over a link that is up two hours a day, and test lost updates."
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Verification, paper review and project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present the project: the replication design, the invariants checked, the faults injected, and a critique of one weakness you could not close.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E6",
+          "title": "Model-check a two-process leader election with a state explorer and read the counterexample trace to the violated invariant."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Reproduce one claimed result from a systems paper in the simulator, and list the assumptions the authors made that your run depends on."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E12",
+          "title": "Deploy a three-replica key-value store, inject crashes and partitions through a failure-injection script, and prove no acknowledged write is lost over 500 operations."
+        }
+      ]
+    }
+  ]
+}

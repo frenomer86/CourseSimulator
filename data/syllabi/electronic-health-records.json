@@ -107,5 +107,401 @@
         "Project: an implementation plan and working prototype record for a rural health centre"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Records and their purposes",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compare a paper outpatient folder with an electronic record for one patient over three visits, listing what information is lost or hard to find on paper.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Read a paper outpatient folder for a returning patient and list the missing, duplicated or unreadable items that would change today's care"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Convert a free-text consultation into a SOAP note and a problem list, and check what each format makes easier for the next clinician"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw a diagram of how a patient's longitudinal record is assembled across clinic, laboratory and hospital, and mark where data can be lost between visits"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Clinical workflows and order entry",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Map the workflow of a malaria patient from registration to pharmacy on one page, marking each handover and where an error could creep in.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E9",
+          "title": "Draw a BPMN workflow for an outpatient visit from registration to pharmacy, with swimlanes for clerk, nurse, doctor, laboratory and pharmacist"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Work through an order entry scenario with a lost laboratory result, identify the broken loop, and choose the fix that closes it"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Redesign a documentation template for antenatal visits to balance structured fields and free text, tested against a rubric of time and completeness"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Medications and documentation quality",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Review a sample note with copied text and note bloat, mark the errors, and rewrite it in a concise and accurate form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Trace a prescription from order through dispensing to administration in a ward case and mark each point where a wrong dose could occur"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Generate an NHIS claim summary from diagnosis codes in a patient table and find the claims that would be rejected for missing data"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Audit ten copied-forward notes in a case file, identify the clinical error each hides, and recommend controls against copy-paste risk"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Clinical data models",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compare a relational design and an entity-attribute-value design for lab results, listing one query that each makes easy and one that each makes slow.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E5",
+          "title": "Create tables for patients, encounters, observations and orders with keys, and insert a week of data for five patients"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E5",
+          "title": "Store sparse clinical observations in an entity-attribute-value table and write queries that pivot them back into one row per visit"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Model a blood pressure archetype with constraints and a template for a clinic visit, and explain how the two-level approach lets models change safely"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Concepts, time and coding",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Explain with an example why a legal record needs amendments and versions rather than overwriting, and design the fields that support it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E5",
+          "title": "Define five concepts and record observations against them in a concept-based schema, then query all values for one concept"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E5",
+          "title": "Design versioned tables that keep every amendment with author and time, then show a query that rebuilds the record as it stood on a past date"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E5",
+          "title": "Map ten local diagnosis and lab terms to ICD, SNOMED CT and LOINC codes and export a patient summary as a FHIR-style structure"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Clinical decision support",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write the logic of a malaria test-and-treat reminder as plain if-then rules, covering the exceptions for pregnancy and young children.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Sort eight example alerts into types of decision support and say which clinician action each is meant to trigger"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E5",
+          "title": "Encode a rule base for childhood fever from IMCI as database rules and run it against ten test patients to check each output"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Implement an antenatal care schedule reminder set, test it on a case file of patients with missed visits, and judge which reminders would be useful"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Safety checking and evaluating support",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compute sensitivity, override rate and alert burden from a log of 200 alerts, and recommend which rules to retire or tighten.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E5",
+          "title": "Write a dose check for a children's paracetamol order using weight, and test it with five patients including one overdose"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Analyse an alert log with a high override rate, identify the rules that cause alert fatigue, and justify which to change against the five rights"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Review a risk-prediction model case for bias and validation problems on rural data, and decide whether it is safe to deploy, scored with a rubric"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Usability and clinician workload",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Carry out a heuristic review of a screenshot set from a record system, listing at least eight problems with a severity rating for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Review a medication ordering screen against usability principles and list five design faults that increase cognitive load"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Run a simulated task-based usability test on a record form, time three tasks, count the errors, and compute a System Usability Scale score"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Analyse a patient safety incident caused by a confusing screen, find the design root cause, and propose a redesign that would prevent it"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Privacy, rights and access control",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write a short note explaining what a patient may request under Ghana's data protection law and how the clinic must respond within its record system.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Decide whether five proposed uses of patient data are lawful under the Data Protection Act and give the principle each case relies on"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E5",
+          "title": "Create role-based access rules for clerk, nurse, doctor and records officer, and test which of them can read, write or amend each table"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Handle a break-the-glass emergency access request, then review the audit log and decide whether the access was justified, scored against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Consent, audit and secondary use",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Design a consent form and process for sharing HIV records with a referral hospital, stating the choices the patient has and who can see what.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Apply an opt-in and an opt-out consent policy to six patient cases and note where the two give different outcomes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E5",
+          "title": "Query an audit table to find which staff viewed one patient record last month and flag the accesses with no care relationship"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E5",
+          "title": "De-identify a research extract of 500 patients, test re-identification risk with rare combinations of age, village and diagnosis, and report the residual risk"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Choosing and deploying systems",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Prepare a comparison table of two record systems for a rural clinic covering cost, hardware, offline use, support and data ownership.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Compare an open-source and a commercial record system for a district hospital using a weighted scoring sheet and recommend one"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Plan the infrastructure for a clinic with unreliable power and internet, choosing devices, solar capacity, local server and backup, within a budget"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E5",
+          "title": "Migrate 300 paper register entries into a record database, find and fix the duplicates and bad dates, and report the data quality before and after"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Change management and rollout lessons",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a training and super-user plan for a new record system in a clinic of twelve staff, with a four-week parallel running schedule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "List the training, workflow and role changes needed for a ward going live, and sequence them across the first month"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E5",
+          "title": "Compute adoption and consultation-time measures from a usage table before and after rollout, and judge whether care quality improved"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Compare rollout case studies from Ghana, Rwanda and Kenya, identify why one failed, and recommend changes to the failed plan"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project: a record system for a rural health centre",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Project deliverable: submit requirements, an implementation plan and a working prototype record, with usability test results and a short privacy statement.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Interview a simulated health centre nurse and write ten requirements for the record system, ranked by importance to patient care"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E5",
+          "title": "Configure registration and consultation forms, three decision rules and four access roles in the simulated record system and test each one"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Run usability tests of your prototype on three realistic clinical scenarios, score the results, and revise the design to fix the top three problems"
+        }
+      ]
+    }
   ]
 }

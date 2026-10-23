@@ -107,5 +107,401 @@
         "Project: an end-to-end analysis of a public bacterial or viral outbreak dataset with a surveillance report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Genomes and sequencing technologies",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Compare Sanger and Illumina sequencing in a half-page table covering read length, accuracy, cost per base and best uses.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Compute genome size, gene count and repeat fraction from a small annotation table for a bacterium, a virus and a plasmid using a short script"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Plot the cost per megabase of sequencing from given yearly values and fit a trend to estimate when a 30x human genome fell below a target price"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Simulate cluster generation and paired-end reads from a 5 kb reference and check that the insert size distribution matches the library design"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Long reads and experimental design",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Plan the sequencing run for a bacterial outbreak of 24 isolates, stating platform, barcodes and expected depth per isolate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Simulate reads with a 1 percent and a 10 percent error rate from a 2 kb sequence and compare how many exact k-mer matches each keeps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Compute expected coverage and the fraction of genome uncovered from Lander-Waterman for five read depths and find the minimum depth for 99 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Plan a nanopore surveillance run in a regional lab with limited power and cold chain, choosing kit, samples and fallback in the scenario"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "FASTQ and quality control",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Interpret a FastQC style report excerpt and write three sentences stating what is wrong with the library and what to do about it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Decode Phred quality characters in 10 FASTQ records and compute the error probability and mean quality for each read"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Write a trimmer that removes adapters and low-quality tails and report how many reads survive in a 1000-read file"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Produce per-base quality, GC content and duplication summaries for a FASTQ file, flag the failed checks and compare two runs"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Read mapping and indexing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain with a small worked example why backward search on the FM-index finds a read in time proportional to its length.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Step through the Burrows-Wheeler transform of a short string and perform a backward search for a 3-letter pattern, recording the interval at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Build a suffix array and FM-index for a 200 bp reference, then use them to locate 20 short reads with a script"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Write a seed-and-extend mapper that tolerates up to two mismatches and test it on 100 simulated paired-end reads, reporting the mapped fraction"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Alignment files and coverage",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Read a few SAM lines by hand and explain every field, including the flag and the CIGAR string.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Decode the flag and CIGAR strings of 10 SAM records and state for each read whether it is paired, mapped and reverse complemented"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Compute per-base coverage and mean insert size from a small alignment, mark duplicates and plot the coverage along the reference"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E5",
+          "title": "Load alignment records into tables and write queries that find regions with coverage below 10x and pairs with abnormal insert sizes"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Genome assembly theory",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Explain why repeats longer than the read length cannot be resolved and what kind of data would resolve them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Assemble 12 short overlapping reads into contigs by greedy overlap merging and state where a repeat causes ambiguity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Build a de Bruijn graph from the reads of a 30 base sequence at k equals 4, then trace an Eulerian path to reconstruct it"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Assemble reads with errors using a de Bruijn graph, pick k to minimise tips and bubbles, and report the contig length and errors left"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Assemblers, evaluation and annotation",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Write a one-page comparison of assembling a bacterial genome with short reads, long reads and a hybrid approach.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Compute N50 and total length from a list of contig sizes and say whether the assembly meets a target of N50 above 100 kb"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Find open reading frames of at least 300 bases in a bacterial contig on both strands and label the longest five with start and stop codons"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Compare two assemblies of the same genome by N50, misassembly count and completeness against a reference, then recommend one for surveillance"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Variant calling",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compute by hand the probability that a SNV is real from base quality and coverage in a tiny example and say what threshold you would use.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Classify 10 given differences between a sample and a reference as SNVs, indels or structural variants and write their positions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement a simple Bayesian genotype caller for a haploid site using base qualities and test it on 20 pileup columns"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Run a simplified calling pipeline on simulated reads with 50 planted variants and report sensitivity and false discoveries"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Variant files, annotation and human variation",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Explain why population databases that mostly contain non-African genomes can mislead variant interpretation for patients in Ghana.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Parse a small VCF, apply hard filters on depth and quality, and compute the transition to transversion ratio as a sanity check"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E5",
+          "title": "Load variants and an annotation table into a database and write a query that lists the protein-changing variants rarer than 1 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Compute allele frequencies of the HbS allele across five West African populations from given counts and test the link with malaria prevalence"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "RNA-seq design, quantification and normalisation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Design an RNA-seq experiment with enough replicates to compare treated and untreated samples and explain your choices.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Check a small RNA-seq sample table for batch effects by plotting condition against sequencing batch and state if the design is confounded"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Count reads per gene from given alignments, compute TPM for 10 genes and compare with raw counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Normalise a counts matrix by size factors, run a PCA on the samples and say whether replicates cluster as expected"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Differential expression and single-cell",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Explain in a paragraph why testing 20000 genes needs a false discovery rate correction.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Test 10 genes for differential expression between groups with a simple model and compute adjusted p-values by the Benjamini-Hochberg method"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Draw a volcano plot of a results table and run an enrichment test of a pathway among the top genes to report which pathways are significant"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E5",
+          "title": "Join differential expression results to a gene set table with queries and find pathways enriched among up-regulated genes while controlling the false discovery rate"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Genomic surveillance of outbreaks",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a one-page surveillance bulletin for a regional health office summarising what the genomic data say about a cholera outbreak.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Plan the sample-to-sequence workflow for an outbreak with a 72-hour turnaround target and decide which steps to shorten in the scenario"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Search assembled genomes for resistance gene sequences from a small database and report the predicted resistance profile for 10 isolates"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E5",
+          "title": "Link sequence lineages to case data in tables and write queries that show clusters by district and week, flagging a possible transmission chain"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Reproducible pipelines, governance and project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a data sharing and consent statement for a genomic study in a Ghanaian community, covering ownership and benefit sharing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Write a small workflow script with named steps and dependencies that reruns only the changed step when an input file is modified"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Handle a request to share outbreak genomes with a foreign partner by weighing consent, community interests and data sovereignty in the scenario"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Run an end-to-end analysis on a public bacterial outbreak dataset, from quality control to lineage and resistance, and write a one-page surveillance report"
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,513 @@
+{
+  "slug": "datacentre-networks-and-network-virtualisation",
+  "description": "How modern datacentre networks are built, shared and kept running: Clos and fat-tree fabrics, load balancing, overlays, virtual switches, network function virtualisation, programmable data planes and congestion control. Students build and break fabrics in the network simulator, size them with models, and test load balancers and failure handling on the cloud console.",
+  "modelledOn": [
+    "Kurose and Ross, Computer Networking: A Top-Down Approach (datacentre and SDN chapters)",
+    "Peterson and Davie, Computer Networks: A Systems Approach (SDN edition)",
+    "Dally and Towles, Principles and Practices of Interconnection Networks",
+    "ETSI NFV architectural framework and the Open Networking Foundation SDN specifications"
+  ],
+  "outcomes": [
+    "Design a fat-tree or leaf-spine fabric for given port counts and oversubscription, and compute its bisection bandwidth, path diversity and cost.",
+    "Configure and analyse datacentre routing and load balancing, including ECMP hashing, consistent hashing and anycast.",
+    "Explain and build overlay networks with VXLAN encapsulation and virtual switches, and reason about tenant isolation.",
+    "Compose virtual network functions into service chains and compare their performance trade-offs with hardware appliances.",
+    "Write match-action programs for a programmable data plane and explain what in-network computing can and cannot do.",
+    "Analyse congestion in datacentre traffic and verify a network's behaviour under failure with injection and reachability analysis."
+  ],
+  "units": [
+    {
+      "title": "Datacentre workloads and topologies",
+      "weeks": "1-2",
+      "topics": [
+        "Datacentre traffic: east-west flows, elephant and mice flows, incast and traffic matrices",
+        "From three-tier trees to leaf-spine and Clos fabrics; non-blocking and oversubscribed designs",
+        "The k-ary fat-tree: pods, switch counts, host counts, bisection bandwidth and path diversity",
+        "Alternative topologies: BCube, Jellyfish, torus and dragonfly; cost and wiring",
+        "Physical layer and operations: top-of-rack switches, optics from 25 to 400 Gb/s, power and cooling",
+        "Datacentres in Africa: carrier-neutral facilities in Accra, Lagos, Nairobi and Johannesburg, and edge sites"
+      ]
+    },
+    {
+      "title": "Routing and addressing in the fabric",
+      "weeks": "3",
+      "topics": [
+        "Layer 2 versus layer 3 fabrics; spanning tree limits and multi-chassis link aggregation",
+        "BGP in the datacentre: eBGP leaf-spine, AS numbering and route policy",
+        "Equal-cost multipath and its convergence behaviour; fast failure detection with BFD",
+        "IPv4 and IPv6 addressing plans for a fabric; anycast gateways",
+        "Fabric automation: templated configuration, zero-touch provisioning"
+      ]
+    },
+    {
+      "title": "Traffic engineering and load balancing",
+      "weeks": "4-5",
+      "topics": [
+        "ECMP hashing: flow collisions, polarisation and entropy",
+        "Improving on ECMP: flowlet switching, weighted multipath, centralised scheduling for elephant flows, and packet spraying",
+        "Layer 4 load balancing: consistent hashing, Maglev-style lookup tables and direct server return",
+        "Layer 7 load balancing and reverse proxies; health checks and connection draining",
+        "Anycast and global server load balancing with DNS",
+        "Traffic matrix estimation, capacity planning and measuring fabric utilisation"
+      ]
+    },
+    {
+      "title": "Overlay networks and virtual switches",
+      "weeks": "6-7",
+      "topics": [
+        "Multi-tenancy and the limits of VLANs; VXLAN, NVGRE and Geneve encapsulation",
+        "EVPN control plane for VXLAN: route types, MAC and IP advertisement",
+        "Virtual switches: Open vSwitch flow tables, kernel datapath and user-space packet processing",
+        "Virtual routing and forwarding, tenant routers and gateways to the outside world",
+        "Container networking: pod networks, CNI plugins and service meshes",
+        "Isolation and security: security groups, micro-segmentation and noisy-neighbour effects"
+      ]
+    },
+    {
+      "title": "Network function virtualisation and SDN",
+      "weeks": "8-9",
+      "topics": [
+        "Software-defined networking: control and data plane separation, OpenFlow and controller architecture",
+        "Northbound APIs, intent-based networking and network operating systems",
+        "The NFV architecture: VNFs, the infrastructure layer and orchestration (MANO)",
+        "Service function chaining: firewall, NAT, load balancer and intrusion detection in a chain",
+        "Fast software packet processing: SR-IOV, DPDK and the cost of the kernel path",
+        "Telecom cloud and virtualised 5G core; wide-area SDN and lessons from large operators"
+      ]
+    },
+    {
+      "title": "Programmable data planes",
+      "weeks": "10",
+      "topics": [
+        "The P4 language: parsers, match-action tables, actions and the deparser",
+        "Protocol-independent switch architectures and their resource limits",
+        "In-band network telemetry and per-packet visibility",
+        "In-network computing: caching, aggregation and load balancing in the switch",
+        "eBPF and XDP for programmable host networking; SmartNICs"
+      ]
+    },
+    {
+      "title": "Congestion control in datacentres",
+      "weeks": "11",
+      "topics": [
+        "TCP in the datacentre: incast, buffer sizing and flow completion time",
+        "ECN-based control: DCTCP and its marking threshold analysis",
+        "Lossless Ethernet: priority flow control, pause storms and deadlock",
+        "RDMA over Ethernet and congestion control for it (DCQCN)",
+        "Receiver-driven and delay-based transports; BBR in shared fabrics",
+        "Queueing models of switch buffers and microburst analysis"
+      ]
+    },
+    {
+      "title": "Failure, verification and operations",
+      "weeks": "12-13",
+      "topics": [
+        "Failure modes: link, switch, gray and correlated failures; failure domains and blast radius",
+        "Failure injection and chaos testing of networks",
+        "Network verification: reachability, loops and black holes by header-space analysis",
+        "Configuration analysis and change validation before deployment",
+        "Streaming telemetry, monitoring and incident response for the fabric",
+        "Capstone: design, verify and stress-test a fabric for a regional cloud provider"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Datacentre workloads and Clos fabrics",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Size a leaf-spine fabric for 2000 servers with 25 Gb/s ports and a 3:1 oversubscription ratio, and compute switch counts and bisection bandwidth for a k = 8 fat-tree.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compute hosts, switches, links and bisection bandwidth for k-ary fat-trees with k = 4, 8, 16 and 48, and tabulate the results"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E3",
+          "title": "Build a two-tier leaf-spine fabric in the simulator with 4 spines and 8 leaves, and verify any two hosts reach each other by multiple paths"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Design a leaf-spine fabric for 3000 servers under a budget, choosing port speeds and oversubscription, and compare cost with a three-tier design"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Alternative topologies and the physical layer",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Compare a fat-tree, Jellyfish and torus on cost, diameter and fault tolerance, and write a short note on siting a datacentre in Accra with power and cooling constraints.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Generate a fat-tree and a random-regular topology of equal size, compute average shortest-path length and diameter, and compare the results"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Compute the power and cooling load for a 500-rack hall at a given PUE, and the yearly energy cost at a local tariff"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Choose a site and design for a new regional datacentre from a case file, weighing power reliability, connectivity, cost and latency against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Datacentre routing and addressing",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Plan AS numbers and addresses for a leaf-spine fabric, write the eBGP configuration for one leaf, and predict the convergence behaviour when a spine fails.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E3",
+          "title": "Configure eBGP between 2 spines and 4 leaves in the simulator, advertise a server subnet per leaf, and verify the routing table on every device"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E3",
+          "title": "Break one spine link, observe route withdrawal and ECMP re-balance, and measure how many packets are lost until the fabric converges"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E3",
+          "title": "Design and apply an addressing plan with IPv6 and anycast gateways for a 16-leaf fabric, and show host reachability end to end"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "ECMP and traffic engineering",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Show with a hash simulation how ECMP collides elephant flows, then compare ECMP, flowlet switching and packet spraying on a skewed traffic matrix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Simulate ECMP hashing of 1000 flows across 8 paths, measure the load imbalance, and repeat with two elephant flows added"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Simulate flowlet switching with a gap timeout and compare maximum link utilisation and reordering with plain ECMP over 5 traffic traces"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Step through consistent hashing for a load balancer, add and remove a backend, and count how many connections remap compared with modulo hashing"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Load balancers and global traffic management",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Design the load-balancing tiers for a national e-service with anycast front ends, and plan a failover that drains one region without dropping existing sessions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E12",
+          "title": "Create a load balancer with three backends and health checks on the cloud console, then fail one backend and confirm traffic shifts without errors"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E12",
+          "title": "Route users by latency to two regions with DNS policies, fail one region, and measure the time until clients are directed to the survivor"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Estimate a traffic matrix from link counts for a small fabric using least squares, and compare the estimate with the true matrix"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Overlays and VXLAN",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Show how a VXLAN header wraps a tenant frame, trace a packet between two VMs on different hosts through VTEPs, and list what EVPN advertises.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute the VXLAN overhead on a 1500-byte frame and the MTU the underlay needs, and the throughput loss for small packets"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E3",
+          "title": "Build two tenant networks with the same IP ranges over one shared underlay in the simulator and show the tenants cannot reach each other"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Step through flow-table lookups in a virtual switch for five packets, showing which match entries and actions fire and how new flows are installed"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Virtual routing, containers and isolation",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Design the network for a multi-tenant Kubernetes cluster with pod networks and tenant isolation, and list the noisy-neighbour risks and how to limit them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E3",
+          "title": "Create two virtual routing instances with overlapping prefixes on one router, route between them via a gateway, and verify isolation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E12",
+          "title": "Deploy two services in a cluster, expose one through a service and ingress, and show pod-to-pod and external reachability paths"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E12",
+          "title": "Apply security groups to isolate a database tier, test allowed and blocked flows, and find the rule that accidentally opens a path"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Software-defined networking",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write controller logic that installs forwarding rules for a learning switch, then discuss the controller as a single point of failure and the answers to it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Write a learning-switch controller that installs flow rules on packet-in events, and test it on a 4-host topology"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E3",
+          "title": "Use a central controller to compute shortest paths and install them on a 6-switch topology, then fail a link and observe reroute time"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Explain the NFV management and orchestration flow by stepping through the on-boarding, instantiation and scaling of a virtual firewall"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Service chains and fast packet processing",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Design a service chain of firewall, NAT and load balancer for a telecom cloud tenant, and compare software and hardware appliances on throughput, cost and flexibility.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E3",
+          "title": "Chain a firewall, NAT and load balancer in the simulator, send test flows, and check each function applies in the intended order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Compute packets per second needed for 10 Gb/s at 64-byte and 1500-byte frames, and estimate cores needed at kernel versus DPDK processing costs"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Plan a virtualised core network migration for an operator in a case file, weighing latency, resilience and skills against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Programmable data planes",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write the parser and match-action table of a P4 program that forwards by destination prefix and counts packets per flow, and discuss what in-network aggregation can speed up.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Step a packet through a parser, match-action tables and deparser, noting headers extracted and fields rewritten at each stage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Implement a small match-action pipeline in code with longest-prefix and exact-match tables, and forward 50 packets with per-flow counters"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Build an in-network cache model in code, replay a skewed key-value workload, and measure hit rate and server load reduction against cache size"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Congestion control in the datacentre",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Explain incast with a numeric example, derive the ECN marking threshold for DCTCP, and describe why pause storms and deadlocks arise in lossless Ethernet.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Simulate N servers answering one client through a shallow-buffered switch, plot goodput against N, and observe the incast collapse"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Add ECN marking and a DCTCP-style window reduction to the simulation, and compare queue length and flow completion times with plain TCP"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Model a switch buffer as a queue, compute loss and delay for bursty arrivals at several loads, and find the buffer size for 99.9 percent no-loss"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Failures and verification",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Classify five failure scenarios by blast radius, design a failure-injection plan for a fabric, and use reachability analysis to find a black hole created by a faulty route policy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E3",
+          "title": "Fail one link, one switch and a whole pod in turn, and record which tenants lose connectivity and how long recovery takes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Inject packet loss, latency and a zone outage into a three-tier service on the console, and measure the effect on request success"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Represent a rule-based network as header sets, compute reachability between two hosts, and find the black hole and the loop in a faulty configuration"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Configuration checking, operations and project",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Validate a proposed configuration change before rollout, define the telemetry that would reveal a gray failure early, and present the capstone fabric design with its stress tests.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E3",
+          "title": "Apply a given configuration change to a copy of the fabric, run a reachability check before and after, and block the change if it breaks a path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Respond to a gray failure in a case study: use partial telemetry to localise a faulty link, decide on mitigation, and record the incident review"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E12",
+          "title": "Stress-test your capstone design with a surge in traffic and two injected failures, and document capacity, headroom and recovery times"
+        }
+      ]
+    }
+  ]
+}

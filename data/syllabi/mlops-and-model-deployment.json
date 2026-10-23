@@ -101,5 +101,395 @@
         "Capstone: a versioned, containerised, monitored model with an automated retraining pipeline and a cost report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why models never reach production",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Write a one-page case study of a model that stayed in a notebook, identifying three pieces of technical debt that blocked it reaching production.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Take a trained notebook model and list, stage by stage, every missing piece (serving, monitoring, retraining) needed before it could run in production"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Diagnose a deliberately messy notebook for hidden state and hard-coded paths, and rewrite it so it runs top to bottom on a fresh machine"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Pick a business metric and a model metric for a fraud detector and show, with an example, a case where the model metric improves but the business metric does not"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Reproducibility and experiment tracking",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Explain why a fixed random seed is not enough for full reproducibility, and list three other sources of nondeterminism in a training run.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Pin a training script's dependencies and random seeds, run it twice on different days and confirm the metrics match exactly"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Track five training runs with different hyperparameters using an experiment tracker, compare their metrics and pick the best run with evidence"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E4",
+          "title": "Version two snapshots of a changing dataset, retrain a model on each and trace which snapshot produced a given deployed model"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Model registries and feature stores",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Design a model card template for a crop disease classifier, listing the fields a reviewer would need before approving it for staging.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Register two versions of a model with stages and approvals, then promote the better one to production using the registry's recorded metrics"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Build a small offline feature table and show how computing the same feature online at serving time could introduce training-serving skew"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Write a model card for a trained classifier covering intended use, data, metrics and known limitations, and get it reviewed against a checklist"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Serving a model behind an API",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Design the request and response schema for a model-serving API, including the validation errors it should return for three kinds of bad input.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Serve a trained model behind a REST API with input validation, and confirm it returns a clear error for three malformed requests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Export a trained model to ONNX, reload it in a separate script and confirm its predictions match the original model within a small tolerance"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Containerise the model server with a health check endpoint, build the image and verify it starts and responds correctly inside the container"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Inference patterns and testing",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Compare batch, online and streaming inference for three example use cases and justify which pattern fits each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Run the same model as a batch job over a file of records and as an online API, and compare their latency and resource use"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Write unit tests for a feature transformation function and a contract test for the serving API's response schema"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Write a model behaviour test that checks a known input always produces the expected prediction, and show it catches a deliberately broken model"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Cloud deployment and release strategies",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compare virtual machines, managed endpoints, Kubernetes and serverless functions for deploying a model, and recommend one for a low-traffic clinic app.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E12",
+          "title": "Deploy a model-serving container to a cloud virtual machine and a managed endpoint, and compare the setup effort and cost of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E12",
+          "title": "Set up a canary release that sends 10 percent of traffic to a new model version, and decide whether to roll forward or back from the compared metrics"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Quantise a trained model, measure the accuracy loss and the size and speed improvement, and decide if the trade-off is acceptable"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "On-device inference",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Design an offline-first flow for a crop disease classifier on a low-cost phone, describing what happens with no connectivity and how results sync later.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Convert a trained model to a lightweight on-device format and run it on a simulated low-cost Android phone, comparing latency with the server version"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Build a crop disease classifier that stores a prediction locally when offline and show it syncs to the server once connectivity returns"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Measure the accuracy and latency trade-off of three compression levels of a model intended for an offline phone app, and recommend one with reasons"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "CI/CD and pipeline orchestration",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Design a pipeline diagram with stages for data validation, training, evaluation and deployment, marking which steps need human approval.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Set up continuous integration that runs a model's tests automatically on every code change, and show it fails a pull request with a broken test"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Build a directed acyclic graph pipeline with idempotent steps for data preparation, training and evaluation, and rerun it safely after a failure"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Add a validation gate that blocks automatic retraining unless accuracy improves over the current production model, and test it with a worse candidate"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Data validation and governance",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write three schema checks that would have caught a described data quality incident before it reached a training pipeline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Add schema and range checks to a data pipeline and show they catch a deliberately corrupted batch of incoming data"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Set up an audit trail that records which data snapshot and code version produced a deployed model, and use it to answer a rollback question"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Roll back a production model to a previous version after a simulated validation failure and confirm the audit trail records the change and its approver"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Monitoring for drift",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Explain the difference between data drift, concept drift and label shift with one agricultural or financial example of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Log a production model's predictions and input features over simulated time and build a dashboard of the prediction distribution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Simulate a seasonal shift in input data (such as a harvest cycle) and show how it changes a model's prediction distribution over time"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Compute the population stability index between two time periods of feature data and decide whether the drift is large enough to trigger retraining"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Observability and fairness monitoring",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Design an alerting rule for a monitored model that distinguishes a real performance drop from normal day-to-day noise.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Build a monitoring dashboard with prediction volume, latency and an error-rate alert threshold, and show it fires on an injected spike"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Measure a model's error rate separately across two simulated user groups and decide whether the gap is large enough to need attention"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Wire a deployed model's logs into a metrics dashboard and set an alert threshold, then demonstrate it firing on a simulated outage"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Latency, cost and unreliable networks",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Estimate the inference cost per thousand predictions in cedis for a given model and traffic level, and propose one change that would cut it in half.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Measure p50, p95 and p99 latency for a serving model under increasing load, and decide where batching or caching would help most"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E12",
+          "title": "Estimate the monthly inference cost in cedis for a model at three traffic levels, and compare autoscaling against scale-to-zero for the cheapest option"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Design a store-and-forward fallback for a model-backed app that must keep working through a power or network outage, and demonstrate it queuing and later sending requests"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Security and the deployment capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write an incident runbook for a deployed model that covers a suspected data-poisoning attack, including the kill switch and fallback to a rule-based system.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Identify three security risks (model theft, data poisoning, adversarial input) in a described deployment and propose one mitigation for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Review a training dataset for personal data that should have been removed under retention rules, and redact it before retraining"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E12",
+          "title": "Build a versioned, containerised, monitored model with an automated retraining pipeline and a monthly cost report, and demonstrate a rollback using the kill switch"
+        }
+      ]
+    }
   ]
 }

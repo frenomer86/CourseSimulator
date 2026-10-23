@@ -1,0 +1,521 @@
+{
+  "slug": "programming-language-theory-and-verification",
+  "description": "The mathematical foundations of programming languages and the methods used to prove programs correct: operational and denotational semantics, lambda calculus, type systems and inference, program logics, abstract interpretation, proof assistants and effects. In the lab students step through derivations and write small interpreters, type checkers, verifiers and analysers.",
+  "modelledOn": [
+    "Pierce, Types and Programming Languages",
+    "Winskel, The Formal Semantics of Programming Languages",
+    "Pierce et al., Software Foundations",
+    "Nielson, Nielson and Hankin, Principles of Program Analysis"
+  ],
+  "outcomes": [
+    "Define the meaning of a small language by operational and denotational semantics and prove properties by induction.",
+    "Reduce lambda terms under different evaluation strategies and encode data and recursion in the lambda calculus.",
+    "State and prove type safety for a typed language, and implement type checking and type inference.",
+    "Specify and verify imperative and pointer programs with pre- and postconditions, invariants and separation logic.",
+    "Build a sound abstract interpreter and reason about its precision.",
+    "Explain how proof assistants, SMT solvers, effect systems and concurrency models support verified software."
+  ],
+  "units": [
+    {
+      "title": "Syntax and semantics of programming languages",
+      "weeks": "1-2",
+      "topics": [
+        "Concrete and abstract syntax, binding and substitution",
+        "Small-step structural operational semantics of a simple imperative language",
+        "Big-step semantics and its equivalence with small-step",
+        "Denotational semantics: domains, continuous functions and the meaning of while as a fixed point",
+        "Induction principles: structural induction and rule induction",
+        "Program equivalence and contextual equivalence"
+      ]
+    },
+    {
+      "title": "The lambda calculus",
+      "weeks": "3",
+      "topics": [
+        "Untyped lambda terms: free and bound variables, alpha equivalence, beta reduction",
+        "Evaluation strategies: call by value, call by name and normal order",
+        "Confluence and the diamond property",
+        "Church encodings of booleans, numbers and pairs; the fixed-point combinator",
+        "De Bruijn indices and writing an interpreter"
+      ]
+    },
+    {
+      "title": "Simple type systems",
+      "weeks": "4-5",
+      "topics": [
+        "The simply typed lambda calculus: typing rules and derivations",
+        "Progress and preservation as type safety",
+        "Strong normalisation and what it costs",
+        "Products, sums, records and subtyping",
+        "Propositions as types and proofs as programs",
+        "A first look at dependent types"
+      ]
+    },
+    {
+      "title": "Polymorphism and type inference",
+      "weeks": "6",
+      "topics": [
+        "System F and parametric polymorphism; free theorems",
+        "Let-polymorphism in ML-style languages",
+        "Unification and the principal type algorithm",
+        "Type classes and ad hoc polymorphism",
+        "Bidirectional type checking"
+      ]
+    },
+    {
+      "title": "Program logics and separation logic",
+      "weeks": "7-8",
+      "topics": [
+        "Pre- and postcondition triples for partial and total correctness",
+        "Weakest preconditions and verification condition generation",
+        "Loop invariants and termination measures",
+        "Soundness and relative completeness of the program logic",
+        "Separation logic: heaps, the separating conjunction and the frame rule",
+        "Verifying linked data structures with separation logic"
+      ]
+    },
+    {
+      "title": "Abstract interpretation and static analysis",
+      "weeks": "9-10",
+      "topics": [
+        "Lattices, monotone functions, fixed points and Galois connections",
+        "Numerical abstract domains: signs and intervals",
+        "Widening and narrowing for fast convergence",
+        "Dataflow analysis as abstract interpretation",
+        "Soundness, precision and false alarms in practical analysers"
+      ]
+    },
+    {
+      "title": "Proof assistants and verified software",
+      "weeks": "11",
+      "topics": [
+        "Interactive theorem proving: goals, tactics and proof terms",
+        "Inductive types and proofs about lists and trees",
+        "Verified software case studies: compilers, microkernels and file systems",
+        "SMT solvers and automated verification",
+        "Model checking and temporal properties"
+      ]
+    },
+    {
+      "title": "Effects and concurrency",
+      "weeks": "12",
+      "topics": [
+        "Computational effects: state, exceptions and monads",
+        "Effect systems, algebraic effects and handlers",
+        "Concurrency models: shared memory, message passing and process calculi",
+        "Data races, linearizability and memory models",
+        "Ownership types and borrow checking; session types"
+      ]
+    },
+    {
+      "title": "Research project",
+      "weeks": "13",
+      "topics": [
+        "Mechanising a type safety proof for a small language",
+        "Building a verified or well-tested interpreter",
+        "Reading and presenting a research paper in the field",
+        "Open problems: verification at scale and language design for safety"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Syntax, binding and small-step semantics",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write the small-step rules for arithmetic expressions and assignment, derive the evaluation of x := 2 + 3 in a store, and show a proof that big-step and small-step agree on one program.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Write a parser and abstract syntax tree for arithmetic expressions with let-binding, and implement capture-avoiding substitution tested on five terms"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E6",
+          "title": "Step a small imperative program through the small-step rules one transition at a time, showing the configuration of program and store after each"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement both small-step and big-step interpreters for a while-language and test on 20 random programs that their final stores agree"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Denotational semantics, induction and equivalence",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Compute the first four approximations of the denotation of a while loop and show the least fixed point, then prove by rule induction that evaluation is deterministic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Iterate the fixed-point approximations of a while loop over a small state space and show the chain of partial functions converging"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Prove by structural induction that an expression optimiser preserves meaning, then test the claim with randomly generated expressions in code"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Decide with a random-testing harness whether three pairs of program fragments are equivalent in all contexts, and find a distinguishing context where not"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Lambda calculus and evaluation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Reduce (lambda x. x x)(lambda y. y) under call by value and call by name, and write addition on Church numerals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Reduce five lambda terms step by step, labelling each beta step and renaming bound variables when capture would occur"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement call-by-value, call-by-name and normal-order reducers, and run them on terms where the three strategies differ in result or termination"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Encode booleans, numbers, pairs and factorial using Church encodings and the fixed-point combinator, and evaluate factorial of 5 with your reducer"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "The simply typed lambda calculus and type safety",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive the type of lambda f. lambda x. f (f x), state the progress and preservation lemmas, and prove one case of preservation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Build typing derivation trees for 5 terms, applying the variable, abstraction and application rules, and mark the term that does not type"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Implement a type checker for the simply typed lambda calculus with booleans and integers, and test it on 10 well-typed and 10 ill-typed terms"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Generate random typed terms, evaluate them step by step, and test progress and preservation as properties over 10000 samples, finding a planted bug"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Richer types and propositions as types",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Add pairs and sums to the typed calculus with their rules, show the proof-as-program for A and B implies B and A, and sketch the type of vectors indexed by length.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Match 6 logical proofs of implications to lambda terms of the corresponding types and check each with a type checker"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Extend a type checker with pairs, sums and records, and add structural subtyping for records with a contravariant function rule"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Define length-indexed vectors in a small dependently typed checker, type head and append, and show a program the checker rejects"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Polymorphism and type inference",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Infer the principal type of lambda f. lambda g. lambda x. f (g x) by generating constraints and solving them by unification.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Unify 8 pairs of type expressions step by step, showing the substitution after each step and the occurs-check failure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Implement let-polymorphic type inference with generalisation and instantiation, and test on the identity function used at two types"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Implement a bidirectional checker with annotations, compare which programs need annotations against full inference, and report the trade-off"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Hoare-style reasoning and weakest preconditions",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Prove a triple for an integer-division loop with an invariant and a termination measure, and compute the weakest precondition of three assignments.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Build the proof tree for a triple on a three-assignment program, using assignment, sequence and consequence rules"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement a weakest-precondition calculator for assignments, conditionals and annotated loops, and use it on 6 small programs"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Find a loop invariant and variant for binary search, check them on random inputs by assertion, and spot the invariant that is too weak"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Soundness and separation logic",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "State the frame rule, use it to prove a list-reversal step on two disjoint lists, and show why the ordinary conjunction fails to express disjointness.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Draw heap diagrams for 6 separation logic assertions and decide which heaps satisfy each, including aliased cases"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Write a small heap model, check separation logic assertions about list segments, and verify a list append against its specification on random heaps"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Test the soundness of a program logic against an interpreter by generating triples and executions, and find a planted unsound rule"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Lattices, fixed points and numerical domains",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compute the interval analysis of a counting loop by Kleene iteration and show why widening is needed to terminate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Run sign analysis on a small program, writing the abstract state at each point and the abstract result of each operation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement an interval abstract interpreter for a while-language, report variable ranges, and check them against concrete runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Add widening and narrowing to the interval analyser, compare the iterations and precision on three loops, and explain the lost precision"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Dataflow analysis and analyser practice",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compute reaching definitions for a small flowgraph by iteration to a fixed point, and classify five analyser warnings as true or false alarms.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Iterate live-variable analysis on a 7-block flowgraph until a fixed point and list the live set at each block"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Implement a worklist solver for dataflow equations, run reaching definitions and available expressions, and check results on three programs"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Run your analyser on 10 programs with known bugs, count true and false alarms, and tune the abstraction to reduce false alarms without missing a bug"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Proof assistants and automated verification",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Prove that appending an empty list is the identity by induction, write the proof script step by step, and sketch what a verified compiler theorem states.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Step through a tactic proof of commutativity of addition on natural numbers, recording the goal after each tactic"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Encode verification conditions for three small functions as constraints, check them with a simple solver or enumeration, and read the counterexample for the faulty one"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Model a mutual exclusion protocol as a state graph, check a safety and a liveness property by exploration, and extract the counterexample trace"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Effects and concurrency",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Model exceptions as a monad, write a handler for a state effect, and explain how a borrow checker rules out a data race.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Write a state monad and an exception monad in code and use them to sequence a small stateful computation with an error case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E6",
+          "title": "Explore all interleavings of two threads incrementing a shared counter, count the distinct final values, and mark the racy interleavings"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Implement a simple ownership and borrow checker for a tiny language, and test it on 10 programs with aliasing and use-after-move errors"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Research project in language theory",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Present a research paper from the field in ten minutes: the problem, the technique, the main theorem, and one limitation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Read a short paper on a type system, reproduce one of its examples in code, and summarise the claim and its evidence in five sentences"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Build an interpreter for a small typed language with a type checker, and test it against an executable specification on 100 random programs"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Specify a small language with its typing and evaluation rules, test progress and preservation exhaustively on small terms, and write the proof outline of the safety theorem"
+        }
+      ]
+    }
+  ]
+}

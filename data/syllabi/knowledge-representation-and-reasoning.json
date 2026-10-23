@@ -115,5 +115,404 @@
         "Capstone: encode a logistics domain and have a planner produce and explain a plan"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What knowledge representation is",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Pick five facts a clinic nurse uses for triage and write them as rules, as a table and as a sentence in logic, noting what each form hides.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write the same crop-advice knowledge once as if-then Python code and once as a data table of rules, and compare how each is changed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Test an inference function against a knowledge base of 10 facts, labelling each answer as sound, unsound or incomplete"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Represent a rural health post triage problem in rules, frames and a probabilistic table, then compare the three on five test patients"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Propositional logic",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Use the deduction theorem to show that a set of premises entails a conclusion, and convert a formula to clauses by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Enumerate all models of a 4-symbol formula with a truth-table checker and list which assignments make it true"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Decide validity, satisfiability and entailment for six formula pairs using model enumeration and report the counts of models found"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Write a converter that turns formulas into CNF clauses by eliminating implications and distributing, and test it on 8 formulas"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "SAT solving and encoding",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Run DPLL by hand on a 6-clause formula, showing unit propagation and each branching decision.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Step through DPLL on a 5-variable formula, recording each unit propagation and decision, and report the satisfying assignment found"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Encode a 3-colouring problem for a 6-node map as clauses and solve it with a small SAT routine, verifying the colouring"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Encode a weekly timetable for 4 classes and 3 rooms with clash constraints as CNF, solve it and count how many clauses result"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "First-order logic",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Translate eight English sentences about students and courses into first-order logic and say which have more than one reading.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Define a small family domain with constants and predicates in code and evaluate five quantified sentences against it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Check whether a given interpretation is a model of three first-order sentences and find one interpretation that falsifies the fourth"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Translate 10 statements about a university registration system into first-order sentences and test them on a database of facts for errors"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Ontologies in logic and its limits",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write down the sentences defining parent, sibling and cousin and a few facts about regions and districts, then list one question first-order logic cannot answer by computation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Encode 12 facts about Ghana's regions and districts and write a rule that derives all districts in a given region"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Define ancestor, cousin and in-law relations over a 15-person family tree and query them, checking five answers by hand"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Show with a non-terminating rule set why inference over first-order logic can loop forever, then add a depth bound that restores termination"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Chaining, unification and resolution",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Unify four pairs of terms by hand, then prove a query by resolution refutation on a small knowledge base.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Run forward chaining on a Horn clause base of 8 rules, listing facts as they are derived, and stop when the goal is derived"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Implement unification with an occurs check and test it on 10 term pairs including failing and cyclic cases"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Prove a query by resolution refutation on a clause set, recording each resolvent, and compare the proof length with backward chaining"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Proof search and a Prolog-style engine",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Explain why the closed-world assumption makes 'not flooded' true for any region absent from a database and when that is dangerous.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Run five queries against a facts-and-rules program and trace which clause matches and where backtracking happens in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Write a small backtracking interpreter for facts, rules and queries and check it on a family-relations knowledge base"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Add negation as failure to your interpreter, then show a query where it gives a misleading answer under incomplete data"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Production rules and expert systems",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compare forward and backward chaining for a diagnosis task and write the explanation facility's output for one conclusion.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Step through a production system cycle on 6 rules and 5 working-memory facts, recording matches and the rule fired each cycle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement conflict resolution by specificity and recency, and show how the order of fired rules changes on the same facts"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Build a small expert system for diagnosing maize leaf problems with 15 rules and a why-explanation, tested on 10 cases"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Frames, semantic nets and description logics",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Draw a class hierarchy for farm animals with defaults and exceptions, and say what the open-world assumption means for an unstated fact.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Build a frame hierarchy of crops with slot inheritance and a default, then query three inherited values and one exception"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Classify 10 individuals into a subsumption hierarchy by stepping through membership checks and draw the resulting graph"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Express five concept definitions with existential and universal restrictions and compute subsumption among them by checking all instances"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "The semantic web and ontology modelling",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Model five classes and four properties for malaria clinic data and list the three reasoning tasks your ontology should support.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Write 15 RDF triples about districts and crops and answer three pattern queries by matching the triples in code"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Run RDFS style inference of types and subclasses over a small graph, and report the new triples that appear"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Model a local agriculture domain with at least 8 classes, check consistency with disjoint classes and list instances found by retrieval"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Reasoning under uncertainty",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Apply Bayes' rule by hand to a malaria test with stated sensitivity, specificity and prevalence, and interpret the posterior.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Compute the probability of disease given a positive test for three prevalence levels and plot how the posterior changes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Train a naive Bayes classifier on 200 symptom records, report test accuracy and examine one prediction by its likelihood terms"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compare certainty factors, fuzzy membership and probability on the same five uncertain triage cases and discuss where they disagree"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Bayesian networks",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Draw a 5-node network for fever, malaria, typhoid, test result and travel, and fill in plausible conditional probability tables.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Build a three-node network and read its conditional probability tables to compute one joint probability by the chain rule"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Compute a posterior in a 5-node network by enumeration and variable elimination and compare the number of multiplications used"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Estimate a posterior in the malaria diagnosis network with rejection sampling and likelihood weighting, and compare error against exact inference"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Planning and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Describe the actions, preconditions and effects for a delivery of vaccines to three clinics, and explain how a planner would explain its plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E6",
+          "title": "Write STRIPS actions for moving a truck and loading a crate, then apply them to a start state to reach a goal by hand"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E6",
+          "title": "Run forward state-space search on a 3-location logistics problem, comparing nodes expanded with and without a simple heuristic"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E1",
+          "title": "Encode a logistics domain in PDDL-style actions, have a planner produce a plan and print the reason each action is in it"
+        }
+      ]
+    }
   ]
 }

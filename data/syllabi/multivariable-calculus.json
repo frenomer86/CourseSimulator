@@ -1,0 +1,518 @@
+{
+  "slug": "multivariable-calculus",
+  "description": "Calculus of functions of several variables: gradients, optimisation, multiple integrals, vector fields and the great integral theorems, ending in the matrix calculus used in machine learning. Students plot surfaces and fields, compute derivatives and integrals symbolically and numerically, and code gradient-based methods in the lab.",
+  "modelledOn": [
+    "Stewart, Calculus: Early Transcendentals (multivariable chapters)",
+    "Marsden and Tromba, Vector Calculus",
+    "Deisenroth, Faisal and Ong, Mathematics for Machine Learning (analytic geometry and vector calculus chapters)"
+  ],
+  "outcomes": [
+    "Compute and interpret partial derivatives, gradients, directional derivatives and tangent planes.",
+    "Locate and classify local and global extrema, including constrained extrema with Lagrange multipliers.",
+    "Evaluate double and triple integrals in Cartesian, polar, cylindrical and spherical coordinates, using the Jacobian for changes of variables.",
+    "Compute line and surface integrals and apply Green, Stokes and divergence theorems.",
+    "Differentiate vector and matrix expressions and use them to derive gradients for least squares and neural networks.",
+    "Verify analytic results numerically with plots, finite differences, quadrature and Monte Carlo methods."
+  ],
+  "units": [
+    {
+      "title": "Vectors, curves, surfaces and coordinates",
+      "weeks": "1",
+      "topics": [
+        "Vectors in R^n: dot and cross products, lines and planes",
+        "Parametric curves: velocity, tangent vector, arc length and curvature",
+        "Surfaces and level sets: quadric surfaces, contour plots",
+        "Polar, cylindrical and spherical coordinates",
+        "Functions of several variables: limits along paths and continuity"
+      ]
+    },
+    {
+      "title": "Partial derivatives and the gradient",
+      "weeks": "2-3",
+      "topics": [
+        "Partial derivatives, tangent planes and linear approximation",
+        "The multivariable chain rule with tree diagrams",
+        "Directional derivatives and the gradient as direction of steepest ascent",
+        "Implicit differentiation and the implicit function theorem",
+        "Gradient descent: steepest descent on a loss surface, learning rate and zig-zagging",
+        "Total differential and propagation of measurement error"
+      ]
+    },
+    {
+      "title": "Taylor expansion and local extrema",
+      "weeks": "4",
+      "topics": [
+        "Taylor polynomials of several variables; the gradient and Hessian terms",
+        "Critical points and the second-derivative test",
+        "Saddle points and classification using Hessian eigenvalues",
+        "Global extrema on closed bounded regions",
+        "Convex functions, positive-definite Hessians and why convexity makes optimisation easy"
+      ]
+    },
+    {
+      "title": "Constrained optimisation",
+      "weeks": "5",
+      "topics": [
+        "Lagrange multipliers with one equality constraint",
+        "Several constraints and the geometry of parallel gradients",
+        "The multiplier as a shadow price: sensitivity of the optimum",
+        "Inequality constraints and an introduction to the KKT conditions",
+        "Applications: allocating land among crops, maximum entropy and the margin of a support vector machine"
+      ]
+    },
+    {
+      "title": "Multiple integrals",
+      "weeks": "6-7",
+      "topics": [
+        "Double integrals over rectangles and general regions; Fubini theorem and order of integration",
+        "Double integrals in polar coordinates",
+        "Triple integrals in Cartesian, cylindrical and spherical coordinates",
+        "Mass, centre of mass, moments of inertia and joint probability densities",
+        "The Gaussian integral and the normal distribution normalising constant",
+        "Monte Carlo integration and its error in high dimensions"
+      ]
+    },
+    {
+      "title": "Jacobians and change of variables",
+      "weeks": "8",
+      "topics": [
+        "The Jacobian matrix as the best linear approximation of a map",
+        "Jacobian determinant and change of variables in double and triple integrals",
+        "Transforming probability densities under a change of variable",
+        "Inverse functions, invertibility and the inverse function theorem"
+      ]
+    },
+    {
+      "title": "Vector fields and line integrals",
+      "weeks": "9-10",
+      "topics": [
+        "Vector fields, flow lines and gradient fields",
+        "Line integrals of scalar functions and of vector fields; work and circulation",
+        "Conservative fields, potential functions and the fundamental theorem for line integrals",
+        "Green's theorem and area as a line integral",
+        "Divergence and curl: meaning and computation"
+      ]
+    },
+    {
+      "title": "Surface integrals and the integral theorems",
+      "weeks": "11-12",
+      "topics": [
+        "Parametrised surfaces, tangent vectors and surface area",
+        "Surface integrals and flux of a vector field",
+        "Stokes' theorem",
+        "The divergence theorem",
+        "Applications: fluid flow, heat flow and conservation laws"
+      ]
+    },
+    {
+      "title": "Matrix calculus for machine learning",
+      "weeks": "13",
+      "topics": [
+        "Gradient of a scalar with respect to a vector; Jacobian of a vector function",
+        "Derivatives of linear and quadratic forms; the Hessian matrix",
+        "The chain rule in matrix form and backpropagation through a layer",
+        "Least squares: deriving the normal equations and the gradient of the loss",
+        "Automatic differentiation: forward and reverse mode compared with finite differences"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Vectors, curves and coordinate systems",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Find the plane through three points, the arc length of a helix, and the limit of a two-variable function along three paths to show it does not exist.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot a plane through three given points in 3D, compute its normal with a cross product and check the distance from the origin"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Plot the contour map and 3D surface of z = x^2 - y^2 and identify the quadric type and the shape of each level curve"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Evaluate a function near the origin along many paths numerically and decide whether the limit exists, then confirm using polar substitution"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Partial derivatives, tangent planes and the chain rule",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compute partial derivatives of five functions, find the tangent plane of a surface at a point, and use the gradient to give the direction of steepest ascent on a hill.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute both partial derivatives of a given function symbolically and draw its tangent plane at a chosen point on the surface plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Apply the chain rule to a temperature field along a moving path and verify the symbolic result against a numerical derivative"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Estimate the gradient of a function by finite differences, compare with the analytic gradient and plot error against step size to find the best step"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Implicit functions, gradient descent and error propagation",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Find dy/dx for an implicit curve, run gradient descent by hand for three steps, and estimate the error in the volume of a cylinder from measurement error.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Run gradient descent for ten steps on a simple bowl-shaped function and plot the path on the contour map for learning rate 0.1"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Run gradient descent on an elongated valley with three learning rates, plot loss against iteration and explain zig-zagging and divergence"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Propagate measurement uncertainty through a borehole-flow formula with the total differential and check it with a Monte Carlo simulation of 10,000 draws"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Taylor expansion, extrema and convexity",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Expand a function to second order at a point, classify its critical points with the Hessian, and find the global maximum on a closed triangle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Find the critical points of a cubic function of two variables and classify each with the second-derivative test and the surface plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Build the second-order Taylor polynomial of a function at a point and plot the approximation error as the distance from the point grows"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Compute the Hessian eigenvalues of a loss function at several points, test convexity numerically and show where Newton steps beat gradient steps"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Lagrange multipliers and the KKT conditions",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Maximise the area of a rectangular plot for a fixed fence length, solve a two-constraint problem, and interpret the multiplier as a shadow price in a crop allocation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Plot level curves of a function and a constraint curve, find the point where they are tangent and confirm it with the Lagrange conditions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Allocate 100 hectares between maize and cassava to maximise a profit function, then vary the land by one hectare to verify the shadow price"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Solve a small quadratic programme with an inequality constraint by checking KKT cases and confirm with a projected gradient method"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Double integrals",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Evaluate four double integrals, switching order of integration in one, and compute the volume of a cone with a triple integral in cylindrical coordinates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Evaluate a double integral over a triangle in both orders of integration and confirm the two answers agree with a numerical result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Convert a double integral over a disc to polar coordinates, evaluate it, and plot the region with its radial and angular limits"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Write a nested quadrature routine for a triple integral over a sphere in spherical coordinates and check its convergence against the exact volume"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Applications of multiple integrals and Monte Carlo",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compute the centre of mass of a plate with variable density, derive the Gaussian integral by polar coordinates, and estimate a 5-dimensional integral by Monte Carlo.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute the mass and centre of mass of a plate whose density varies with x and y, and mark the centre on a plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Verify numerically that the integral of exp(-x^2-y^2) over the plane equals pi, then deduce the normal distribution constant"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Compare grid quadrature and Monte Carlo for the volume of a unit ball in dimensions 2 to 10, and plot error against sample count"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Jacobians and change of variables",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Compute the Jacobian determinant of polar and spherical maps, evaluate an integral over an ellipse by a linear change of variables, and transform a probability density.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute the Jacobian matrix and determinant of the polar-to-Cartesian map symbolically and interpret the determinant as an area scaling factor"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Evaluate the area integral over an ellipse by mapping to a unit disc, using the Jacobian determinant, and check against pi times a times b"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Transform samples of two uniform variables to a Gaussian pair (Box-Muller), derive the density with the Jacobian and verify with a histogram"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Vector fields, line integrals and conservative fields",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Sketch three vector fields, compute the work done by a force field along a curved path, and test whether a field is conservative by finding its potential.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Plot a rotating vector field and a radial field on a grid and describe the flow lines of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute the work done by a force field along a parametrised curve and check path independence on a conservative field with two routes"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Test a field for being conservative by a numerical curl check, recover the potential by line integration and verify its gradient matches the field"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Green's theorem, divergence and curl",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Verify Green's theorem on a square for a given field, compute divergence and curl of three fields and relate each to sources and rotation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Compute divergence and curl symbolically for three fields and label each as source, sink, rotational or irrotational"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Evaluate both sides of Green's theorem for a field on a unit square and confirm the line integral equals the area integral"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Use Green's theorem to compute the area of an irregular plot from surveyed boundary coordinates and compare with the shoelace formula"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Surfaces and flux",
+      "topics": [
+        "8.1",
+        "8.2"
+      ],
+      "exercise": "Parametrise a sphere and a paraboloid, compute surface areas, and find the flux of a field through a closed surface.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Parametrise a sphere, plot the surface patch grid and compute its area by integrating the length of the cross product of tangent vectors"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute the flux of a given vector field through the upper hemisphere with a surface integral and verify numerically on a fine grid"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Compute the area of a triangulated terrain surface from a height grid and compare with the surface area integral for the smooth model"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Stokes, divergence theorem and conservation laws",
+      "topics": [
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Verify Stokes' theorem and the divergence theorem on a cube and a hemisphere, and use a conservation law to model heat flowing through a wall.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Verify the divergence theorem for a simple field on the unit cube by computing the flux and the volume integral separately"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Verify Stokes' theorem for a field on a paraboloid cap by computing the curl flux and the boundary line integral"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Simulate steady heat flow through a wall with a finite-difference grid and check net flux through the boundary equals the heat generated inside"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Matrix calculus and automatic differentiation",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Derive the gradient of the squared error for linear regression, apply it to a small dataset, and compare hand-derived, finite-difference and automatic gradients.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E7",
+          "title": "Compute the Jacobian of a vector-valued function at a point as a matrix and verify it against finite differences"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Derive the normal equations by setting the gradient of the squared error to zero, and solve them for a rainfall and yield dataset"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E1",
+          "title": "Implement reverse-mode automatic differentiation for a two-layer network, check it against finite differences and compare cost with forward mode"
+        }
+      ]
+    }
+  ]
+}

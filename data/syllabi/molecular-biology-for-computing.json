@@ -97,5 +97,397 @@
         "Data sharing, consent and benefit-sharing in African genomics research; capstone: annotate a malaria parasite gene from database records"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Cells and the chemistry of life",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Draw and label a prokaryotic and a eukaryotic cell side by side, and write two sentences on why the differences matter for drug design.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Classify twelve cell structures by cell type and function in a guided scenario, and explain one misclassification the case exposes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Match five biomolecules to their roles in a malaria case study, using evidence on what each one does in the parasite and the patient"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Choose which of three computing projects in drug discovery, epidemiology and precision medicine best fits a given clinic need, with reasons scored by rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Metabolism and inheritance",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Work three Punnett square problems for a recessive trait and write the expected ratios and what a carrier parent means.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Simulate the inheritance of one recessive trait across 1000 offspring from two carrier parents and compare the counts with the expected 3 to 1 ratio"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Step through glycolysis and respiration in a visualiser, track ATP made at each stage, and total the energy yield per glucose molecule"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Simulate mitosis and meiosis on a small genome, track chromosome number and allele mixing, and show how meiosis produces variation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "DNA structure and replication",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Explain in a paragraph why replication is semi-conservative and why the lagging strand needs Okazaki fragments.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Write a function that returns the complementary strand and reads 5 prime to 3 prime direction for five short DNA sequences"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Compare genome sizes of six organisms against their chromosome numbers and gene counts, and discuss why size does not track complexity"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Step through replication of a DNA segment, labelling the leading strand, lagging strand and Okazaki fragments at each fork step"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Repair and DNA as data",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Describe three DNA repair pathways and the type of damage each fixes, then link each to a disease that follows from its failure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Compute the GC content and reverse complement of five DNA sequences with a short program and check one by hand"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Count all k-mers of length 3 in a DNA sequence of 500 bases and plot the most frequent ones"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Simulate replication with a given error rate and proofreading success, count mutations over many generations, and compare with the expected value"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Transcription and RNA processing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw the flow from gene to mature mRNA, marking promoter, exons, introns, cap and tail, and say where each step can go wrong.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Step through transcription of a gene with a promoter and terminator and record the RNA sequence produced"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Splice a pre-mRNA with three exons, then use alternative splicing to create two different mature mRNAs and compare their lengths"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Explain from a case on HIV and an RNA virus why reverse transcription is a target for drugs, and rank three drug ideas by evidence"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "The genetic code and translation",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write the protein produced by a short mRNA by hand using the codon table, and show the effect of a one-base insertion.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Translate a DNA sequence into a protein in all three forward reading frames using a codon table and find the longest open reading frame"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Step through ribosome translation of an mRNA, tracking tRNA binding, peptide growth and termination at the stop codon"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Analyse a case on an operon with a regulator mutation and decide, from the expression data, whether the gene is always on, always off or normal"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Genes, mutation and sickle cell disease",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a short explanation of how a single base change in the beta-globin gene leads to sickle cell disease and how it is inherited.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Classify ten mutations in a gene as substitution, insertion or deletion and as silent, missense, nonsense or frameshift by translating each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Compare the normal and sickle beta-globin sequences, find the substitution, and compute the expected inheritance ratios for carrier parents"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Annotate the exons, introns and regulatory regions of a sample gene model, and judge which of three variants is most likely harmful"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Malaria, pathogen genomes and populations",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Explain why the sickle cell trait persists in malaria regions, using the idea of balancing selection with a simple numeric example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Compute genotype frequencies under Hardy-Weinberg for an allele frequency of 0.1 and compare them with a sample of observed counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Simulate selection on the sickle allele with and without malaria over 100 generations and plot the allele frequency in each case"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Interpret genomic surveillance data on drug-resistance mutations in Plasmodium falciparum and recommend a change in treatment policy from the evidence"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Amino acids and protein structure",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Sort the twenty amino acids by property in a table, and predict which kinds of substitution would most disturb a protein.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Compute the length and net charge of three short peptides from their sequences using an amino acid property table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Fold a short peptide in a simple lattice model, step by step, and compare the energy of folded and unfolded forms"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Explain the haemoglobin sickling case from structure data, identifying which interactions the substitution creates and how they cause fibres"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Enzymes, immunity and structure prediction",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write a short note on how an antimalarial drug can inhibit an enzyme, with the type of inhibition and the effect on reaction rate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Compute reaction rates from the Michaelis-Menten equation for six substrate levels and plot the curve with its maximum rate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Add a competitive inhibitor to the enzyme model and show how the apparent Km changes while the maximum rate stays the same"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Judge three structure predictions of a drug target using confidence scores, and decide which regions you would trust for drug design"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Laboratory methods and sequencing data",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Plan a PCR and gel experiment to detect a pathogen gene in a blood sample, listing controls and what each band pattern would mean.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Digest a DNA sequence with two restriction enzymes in code, list the fragment sizes, and draw the expected gel pattern"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Model PCR amplification over 30 cycles with a given efficiency and find the cycle at which the signal crosses the detection threshold"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Parse a small FASTQ file, convert quality scores, trim low-quality ends and report the coverage of a short reference"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Expression, editing and noise",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write a short ethics note on a proposed CRISPR therapy for sickle cell disease, covering benefit, risk, access and consent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Compare measurements from three replicates and one control, compute mean and spread, and decide whether a difference is larger than the noise"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Compute fold change from an RNA-seq count table for ten genes, normalise by library size, and list those changed more than twofold"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Decide whether to approve a genome-editing trial in a case with scientific, consent and equity issues, scored against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Biological data and databases",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Capstone report: annotate one malaria parasite gene using database records, giving its location, product, function, variants and sources.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Parse a FASTA file of five sequences, report each length and base composition, and write the sequences back out in a valid format"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Interpret a BLAST result for a mystery sequence from a case, reading e-values and identity to decide what the sequence most likely is"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Annotate a malaria parasite gene from database records and design a data-sharing and consent plan for a related African study, scored against a rubric"
+        }
+      ]
+    }
   ]
 }

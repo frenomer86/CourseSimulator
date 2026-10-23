@@ -1,0 +1,502 @@
+{
+  "slug": "data-privacy-and-protection",
+  "description": "The principles, laws and engineering practices that keep personal data safe and lawfully used, from consent and impact assessments to anonymisation and privacy-aware database design. Students work through branching compliance cases and build and attack small datasets in the lab.",
+  "modelledOn": [
+    "Solove, Understanding Privacy",
+    "Cavoukian, Privacy by Design: The 7 Foundational Principles",
+    "Dwork and Roth, The Algorithmic Foundations of Differential Privacy (introductory chapters)",
+    "IAPP Certified Information Privacy Professional body of knowledge"
+  ],
+  "outcomes": [
+    "Classify data as personal, sensitive or anonymous and apply the core privacy principles to a described system.",
+    "Compare the Ghana Data Protection Act with other African and international laws and decide which obligations apply to a case.",
+    "Carry out a privacy impact assessment with a data-flow map, a risk rating and justified mitigations.",
+    "Anonymise and pseudonymise a dataset, measure its k-anonymity and attack it with a linkage test.",
+    "Handle consent, data subject requests and a personal data breach within the legal time limits.",
+    "Design a database schema and access model that applies data minimisation, retention and audit logging."
+  ],
+  "units": [
+    {
+      "title": "Personal data and privacy principles",
+      "weeks": "1-2",
+      "topics": [
+        "Concepts of privacy: information, bodily and decisional privacy; contextual integrity",
+        "Personal data, identifiability, and special categories: health, biometric, financial and children's data",
+        "Fair information practice principles: collection limitation, purpose specification, use limitation, data quality, openness",
+        "Roles: data controller, data processor, data subject, regulator and data protection officer",
+        "Privacy harms and threats: profiling, surveillance, SIM registration, digital ID and mobile money trails"
+      ]
+    },
+    {
+      "title": "Data protection legislation in practice",
+      "weeks": "3",
+      "topics": [
+        "Structure of the Ghana Data Protection Act 2012 and the work of the Data Protection Commission",
+        "Lawful bases for processing: consent, contract, legal obligation, vital and legitimate interests",
+        "Comparison of GDPR, POPIA, the Kenya Data Protection Act and the Nigeria Data Protection Act",
+        "Cross-border transfers, adequacy decisions, standard contractual clauses and data localisation",
+        "Accountability: registration, records of processing, penalties and enforcement case studies"
+      ]
+    },
+    {
+      "title": "Privacy impact assessments",
+      "weeks": "4",
+      "topics": [
+        "When a data protection impact assessment is required and who must sign it off",
+        "Data-flow mapping: sources, stores, recipients, retention and transfers",
+        "Risk assessment: likelihood, severity, risk matrices and residual risk",
+        "Selecting and documenting mitigations; consulting the regulator",
+        "Processor and vendor due diligence, data processing agreements and audits"
+      ]
+    },
+    {
+      "title": "Anonymisation and pseudonymisation",
+      "weeks": "5-6",
+      "topics": [
+        "Direct and quasi-identifiers; linkage attacks and famous re-identification cases",
+        "k-anonymity by generalisation and suppression; information loss measures",
+        "l-diversity, t-closeness and the homogeneity and background-knowledge attacks",
+        "Pseudonymisation: tokenisation, keyed hashing, salting, and why plain hashing fails",
+        "Differential privacy: the Laplace mechanism, epsilon, sensitivity and composition; synthetic data"
+      ]
+    },
+    {
+      "title": "Consent and data subject rights",
+      "weeks": "7-8",
+      "topics": [
+        "Valid consent: freely given, specific, informed, unambiguous; withdrawal; dark patterns",
+        "Rights of access, rectification, objection and restriction",
+        "Erasure and portability; handling a data subject request workflow with identity checks and deadlines",
+        "Special cases: children, health data, employee data, credit reporting and direct marketing",
+        "Retention schedules and secure deletion across backups and processors"
+      ]
+    },
+    {
+      "title": "Breach notification and response",
+      "weeks": "9",
+      "topics": [
+        "What counts as a personal data breach: confidentiality, integrity and availability loss",
+        "Detection, triage and severity scoring; the first 72 hours",
+        "Notification duties: regulator, data subjects, timelines and content of a notice",
+        "Containment, evidence preservation, root cause and post-incident review",
+        "Case studies of telecom, fintech and health-sector breaches in Africa and a tabletop exercise"
+      ]
+    },
+    {
+      "title": "Privacy by design in databases",
+      "weeks": "10-11",
+      "topics": [
+        "The seven foundational principles of privacy by design and data minimisation in schema design",
+        "Separating identifiers from attributes; vertical partitioning and lookup keys",
+        "Encryption in transit, at rest and at field level; key management and rotation",
+        "Access control: roles, views, row-level security and audit logging of reads",
+        "Privacy-preserving analytics: aggregation thresholds, query auditing and purpose limitation checks"
+      ]
+    },
+    {
+      "title": "Governance, emerging technology and privacy audit",
+      "weeks": "12-13",
+      "topics": [
+        "Privacy programme: policies, training, privacy notices and metrics",
+        "Machine learning and privacy: membership inference, model inversion and biometric systems",
+        "Digital ID, mobile money, telemedicine and CCTV: sector-specific privacy risks",
+        "Privacy-enhancing technologies: secure multiparty computation, homomorphic encryption and federated learning",
+        "Privacy audit of a mobile money application: findings, ratings and remediation plan"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Privacy concepts and personal data",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Classify twenty data fields from a clinic registration form as personal, special category or non-personal, and map each to the principle it most affects.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Sort 15 data fields from a pharmacy app into personal, sensitive or non-personal and justify each choice in the scenario rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Review a school fee app's data practices and identify which fair information principles it breaks, citing the evidence in the case file"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Judge three data flows in a smart-city case using contextual integrity and decide which flows violate the norms of their original context"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Roles, harms and threat landscape",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Draw a role diagram for a mobile money transfer naming controller, processor and data subject, then list three privacy harms that follow from the data trail it leaves.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Draw a diagram of a ride-hailing app labelling each party as controller, joint controller, processor or data subject"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Work through a SIM registration case, rank six privacy harms by severity and propose one safeguard for each of the top three"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Resolve a dispute between a hospital, a cloud vendor and an analytics firm by assigning controller and processor duties and defending the allocation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Data protection law across jurisdictions",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write a one-page comparison table of the Ghana, Kenya, Nigeria, South Africa and EU laws covering lawful bases, transfer rules, registration and penalties.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Pick the correct lawful basis for eight processing activities of a bank and record the clause that supports each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Decide whether a Ghanaian fintech may store customer records on a European cloud region and list the safeguards needed for the transfer"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Act as the regulator on a complaint against a telecom and choose between warning, order and fine, justifying each against the evidence and statute"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Running a data protection impact assessment",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Complete a DPIA template for a community health worker app: describe the processing, map the data flows, rate the risks and agree mitigations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Draw a data-flow diagram for a loan app showing sources, stores, third-party recipients and retention period on each flow"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Rate ten privacy risks in a payroll system on a likelihood and severity matrix and choose the top three for mitigation"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Audit three candidate analytics vendors from their contracts, rank them by privacy risk and draft the five clauses a processing agreement must contain"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Re-identification and k-anonymity",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Take a table of 30 patients and generalise age and postcode until it is 3-anonymous, then explain what a homogeneity attack could still reveal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E5",
+          "title": "Join a released health table to a public voter list on postcode, birth year and sex and count how many people become unique"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Write a function that checks k-anonymity of a small table and generalise age into bands until k reaches 3 with minimum information loss"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Measure l-diversity and t-closeness on an anonymised disease table, then mount a homogeneity attack on one equivalence class and report what leaks"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Pseudonymisation and differential privacy",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Show why an unsalted hash of a phone number can be reversed, design a keyed pseudonym scheme, and compute the noise needed for an epsilon of 1 on a count query.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Hash 1,000 Ghana mobile numbers with SHA-256, then recover them by brute force to show why plain hashing is not pseudonymisation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Add Laplace noise to a count query at epsilon 0.1, 1 and 10, run 500 trials each and plot the error distribution"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Build a privacy budget tracker that answers repeated queries with Laplace noise and refuses once the total epsilon is spent"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Consent and the rights of data subjects",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Redesign a consent screen for a mobile lending app so it is specific and unbundled, and write the response steps for an access request and an erasure request.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Review five consent screens and mark each valid or invalid against the four tests, noting which dark pattern appears"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Process an erasure request from a customer of an online shop, deciding which records must be deleted and which may be kept by law"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E5",
+          "title": "Write SQL that exports one person's data across four tables as a portable file and a second script that erases it while keeping audit rows"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Special cases and retention",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Draft a retention schedule for a campus clinic covering patient notes, appointment logs and CCTV, with a deletion method for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Match ten record types from a school to the right retention period and say which must be destroyed at the end of it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Decide whether a hospital may share a child's records with a researcher and a parent, using the case evidence and consent rules"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E4",
+          "title": "Schedule a retention job on a Linux server that deletes expired records, rotates logs and records proof of deletion for the audit trail"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Responding to a personal data breach",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a breach notification to the regulator and a plain-language notice to customers for a stolen laptop holding 4,000 loan records.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Classify six incidents as confidentiality, integrity or availability breaches and decide which count as reportable personal data breaches"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Triage a leaked database incident, score its severity and choose containment steps within the first 72 hours of the scenario clock"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Lead a tabletop exercise for a mobile money breach, balancing regulator notice, customer notice and evidence preservation, and score the decisions"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Minimising data in schema and storage",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Redesign a student records schema so identifiers sit in one table, sensitive columns are encrypted, and each analytics table holds only what it needs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E5",
+          "title": "Remove every column from a customer table that the stated purpose does not need and justify each removal"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E5",
+          "title": "Split a patient table into an identity table and a clinical table linked by a random key and show that reports still run"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Implement field-level encryption for a national ID column with key rotation and prove old rows still decrypt after the key changes"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Access control, audit and private analytics",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Create roles for nurse, billing clerk and researcher on a clinic database and write the views that give each only the fields and rows they may see.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E5",
+          "title": "Create a view that hides the national ID and phone number columns and grant a researcher role access to it only"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E5",
+          "title": "Add an audit table and trigger that logs every read of patient rows by user and time, then query who looked at one record"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E5",
+          "title": "Write a query guard that rejects aggregate queries on groups smaller than 5 and show a differencing attack that tries to get around it"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Governance, AI and sector risks",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Prepare a half-page privacy notice and a staff training outline for a telemedicine start-up, and list the privacy risks of its symptom-checking model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Rewrite a privacy notice full of legal jargon into plain language and check it against the required content list"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Run a membership inference test on a small overfitted classifier and report how well the attacker tells training rows from unseen rows"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Simulate federated averaging across three clinics without sharing raw records and compare accuracy and exposure against a centralised model"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Privacy audit capstone",
+      "topics": [
+        "8.3",
+        "8.5"
+      ],
+      "exercise": "Audit a described mobile money application against the law and the privacy by design principles and present a findings table with ratings and fixes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Complete the audit checklist for a mobile money app case and mark each control as met, partly met or missing with evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E9",
+          "title": "Draw the data-flow diagram of a digital ID enrolment system and mark the three points of highest privacy risk"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Deliver a full audit of a telemedicine platform: findings, severity ratings, regulator exposure and a costed remediation plan, scored on the rubric"
+        }
+      ]
+    }
+  ]
+}

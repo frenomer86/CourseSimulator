@@ -1,0 +1,545 @@
+{
+  "slug": "applied-cryptography",
+  "description": "How modern cryptographic primitives are built, combined into protocols, and broken when used badly. In the lab students implement ciphers, hashes, signatures and key exchanges at toy scale, mount real attacks on flawed designs, and review the cryptography of a mobile-money style system.",
+  "modelledOn": [
+    "Boneh and Shoup, A Graduate Course in Applied Cryptography",
+    "Ferguson, Schneier and Kohno, Cryptography Engineering",
+    "Katz and Lindell, Introduction to Modern Cryptography",
+    "NIST Special Publications 800-57 and 800-131A (key management and algorithm transitions)"
+  ],
+  "outcomes": [
+    "State and use security definitions such as IND-CPA, IND-CCA and unforgeability, and reason about concrete security levels.",
+    "Implement and attack block-cipher modes, MACs, hashes and public-key schemes at toy parameters.",
+    "Select authenticated encryption, key exchange and signature schemes and justify their parameters.",
+    "Analyse an authentication or key-exchange protocol and find replay, reflection and man-in-the-middle attacks.",
+    "Identify and exploit common implementation failures such as nonce reuse, weak randomness and timing leaks.",
+    "Produce a cryptographic design review that maps controls to a threat model and to applicable standards and law."
+  ],
+  "units": [
+    {
+      "title": "Security definitions and mathematical toolkit",
+      "weeks": "1",
+      "topics": [
+        "Threat models, Kerckhoffs's principle, computational security and negligible functions",
+        "Security games: IND-CPA, IND-CCA2, EUF-CMA and PRF/PRP distinguishing advantage",
+        "Randomness: CSPRNGs, entropy sources, nonces versus IVs and the birthday bound",
+        "Number theory toolkit: modular arithmetic, extended Euclid, CRT, Fermat and Euler, Miller-Rabin primality testing",
+        "Reductions, concrete security and security levels in bits"
+      ]
+    },
+    {
+      "title": "Block and stream ciphers",
+      "weeks": "2-3",
+      "topics": [
+        "Feistel and substitution-permutation designs; AES rounds, GF(2^8) arithmetic and key schedule",
+        "Modes of operation: ECB, CBC, CTR and XTS; padding and why ECB leaks",
+        "Stream ciphers: LFSRs, RC4 biases, ChaCha20 and keystream reuse",
+        "Cryptanalysis: differential and linear cryptanalysis, meet-in-the-middle and double encryption",
+        "CBC malleability and padding-oracle attacks"
+      ]
+    },
+    {
+      "title": "Hash functions and MACs",
+      "weeks": "4",
+      "topics": [
+        "Preimage, second-preimage and collision resistance; birthday attacks; Merkle-Damgard and length extension",
+        "SHA-2 and the SHA-3 sponge construction",
+        "HMAC, CMAC and Poly1305; forgeries and constant-time tag comparison",
+        "Password hashing and key derivation: PBKDF2, bcrypt, scrypt, Argon2 and HKDF",
+        "Merkle trees, hash chains and commitments, with a mobile-money ledger as example"
+      ]
+    },
+    {
+      "title": "Public-key encryption and signatures",
+      "weeks": "5-6",
+      "topics": [
+        "RSA: key generation, textbook weaknesses, OAEP and PSS padding, small-exponent and common-modulus attacks",
+        "Discrete logarithm groups: Diffie-Hellman, ElGamal and generic attacks such as baby-step giant-step",
+        "Elliptic curves: group law, ECDH, X25519, ECDSA, EdDSA and the danger of nonce reuse",
+        "Digital signatures: security notions, hash-then-sign and Schnorr signatures",
+        "Post-quantum cryptography: the effect of Shor's algorithm, lattice-based key encapsulation and hash-based signatures",
+        "Hybrid encryption and the KEM/DEM paradigm"
+      ]
+    },
+    {
+      "title": "Key exchange and public-key infrastructure",
+      "weeks": "7",
+      "topics": [
+        "Authenticated key exchange, forward secrecy and ratcheting ideas",
+        "X.509 certificates, chains of trust, revocation (CRL, OCSP) and certificate transparency",
+        "Trust models and key management: trust on first use, HSMs, rotation and threshold secret sharing",
+        "The TLS 1.3 handshake and key schedule",
+        "Password-authenticated key exchange: SRP and the idea of OPAQUE"
+      ]
+    },
+    {
+      "title": "Authenticated encryption",
+      "weeks": "8",
+      "topics": [
+        "Composition: encrypt-then-MAC, MAC-then-encrypt and encrypt-and-MAC",
+        "AEAD interfaces and schemes: AES-GCM, ChaCha20-Poly1305 and CCM; associated data",
+        "Nonce misuse and misuse-resistant modes (SIV)",
+        "Encrypting stored data: disk and database encryption, format-preserving encryption and tokenisation of card numbers",
+        "Envelope encryption, key wrapping and cloud key management services"
+      ]
+    },
+    {
+      "title": "Cryptographic protocol design",
+      "weeks": "9-10",
+      "topics": [
+        "Building blocks: nonces, timestamps, challenge-response and replay protection",
+        "Classic protocol attacks: reflection, man-in-the-middle and the Needham-Schroeder public-key flaw",
+        "Formal analysis: symbolic models, attack traces and computational proofs",
+        "Zero-knowledge proofs: Schnorr identification, the Fiat-Shamir transform and commitments",
+        "Authentication in practice: HOTP and TOTP, end-to-end messaging, and PIN protection in USSD and SMS mobile-money flows",
+        "Secret sharing, threshold schemes and homomorphic tallying for e-voting"
+      ]
+    },
+    {
+      "title": "Common implementation failures",
+      "weeks": "11-12",
+      "topics": [
+        "Side channels: timing, cache and power; constant-time programming",
+        "Randomness failures: weak generators, repeated nonces and RSA keys sharing a prime (batch GCD)",
+        "API and design misuse: ECB, static IVs, hard-coded keys, homemade ciphers, downgrade attacks and compression oracles",
+        "Using high-level libraries and misuse-resistant APIs; crypto agility",
+        "Case studies of real failures: root cause through design, code and process",
+        "Auditing cryptographic code: known-answer tests, negative tests and fuzzing"
+      ]
+    },
+    {
+      "title": "Standards, review and project",
+      "weeks": "13",
+      "topics": [
+        "Threat model and primitive selection for a complete system",
+        "Parameter choice and the key lifecycle: generation, storage, rotation, revocation and destruction",
+        "Standards and law: NIST guidance, FIPS 140, PCI DSS and the Ghana Data Protection Act",
+        "Writing and presenting a cryptographic design review"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Security games, randomness and number theory",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Define IND-CPA with a game, compute a modular inverse and a CRT solution by hand, and estimate the sample size at which a 64-bit hash collides.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute modular inverses with extended Euclid, apply the Chinese remainder theorem to two congruences, and run Miller-Rabin on five numbers labelling primes and composites"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a distinguishing game for a biased pseudorandom generator, run 10,000 trials, and estimate the adversary's advantage with a confidence interval"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Find a collision in a 32-bit truncated hash by random sampling, measure the sample count over 100 runs, and compare it with the birthday-bound estimate"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "AES and modes of operation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Trace one AES round on a block, explain why ECB leaks structure, and show why reusing a keystream destroys confidentiality.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Implement AES SubBytes, ShiftRows and MixColumns on one block and check the round output against a published test vector"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Encrypt a bitmap image with ECB and with CTR using a library, display both, and explain the leakage visible in the ECB result"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Exploit keystream reuse: given two ciphertexts under the same stream-cipher key and nonce, recover both messages by crib dragging"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Block-cipher cryptanalysis and padding oracles",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Build a difference distribution table for a small S-box, count the work of a meet-in-the-middle attack, and explain the padding-oracle attack step by step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Build a difference distribution table for a 4-bit S-box and identify the highest-probability differential an attacker would use"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Implement a padding-oracle attack against a provided CBC decryption service and recover a 32-byte message byte by byte"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Mount a meet-in-the-middle attack on double encryption with a toy 24-bit block cipher and compare the work with brute force on 48 bits"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Hashes, MACs and password storage",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Show the avalanche effect in SHA-256, explain why a secret-prefix MAC is forgeable, and pick password-hashing parameters for a 100 ms login budget.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Compute SHA-256 of small inputs, flip one input bit, and plot the number of changed output bits over 1000 trials to show the avalanche effect"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Forge a tag for an appended message against a naive secret-prefix MAC using length extension, then show HMAC resists the same attack"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Build a Merkle tree over eight mobile-money transactions, then produce and verify an inclusion proof for one of them"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Compare PBKDF2, bcrypt and Argon2 cracking cost for a short password list at a stated hash rate, and choose parameters meeting a 100 ms login budget"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "RSA, discrete logarithms and elliptic curves",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Generate a small RSA key and decrypt by CRT, solve a toy discrete logarithm, and add points on an elliptic curve.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Generate an RSA key from two 16-bit primes, encrypt and decrypt three messages with checked modular arithmetic, and verify the CRT shortcut"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Run Diffie-Hellman in a small prime group, then recover the shared secret from the public values using baby-step giant-step and count the steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Break RSA in three flawed setups: small public exponent without padding, two keys sharing a prime, and a common modulus, recovering the plaintext in each"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement point addition and scalar multiplication on a small elliptic curve, then recover an ECDSA private key from two signatures that reuse a nonce"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Signatures, post-quantum schemes and hybrid encryption",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Sign and verify with Schnorr signatures, compare the sizes of classical and lattice-based keys, and build a hybrid encryption scheme.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Sign and verify three messages with Schnorr signatures in a small group, then show that a modified message fails verification"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Build a hybrid encryption scheme with an ephemeral key exchange, key derivation and a symmetric cipher, and test it on a 1 MB file"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compare key and ciphertext sizes of RSA-2048, X25519 and a lattice-based KEM, and compute the extra bandwidth for 1 million handshakes a day on a mobile network"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Key exchange, PKI and TLS",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Show a man-in-the-middle on unauthenticated Diffie-Hellman, validate a certificate chain, and label the messages of a TLS 1.3 handshake.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Split a secret into five shares with threshold three using polynomial interpolation over a prime field, and reconstruct it from three different subsets"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Run Diffie-Hellman with and without signed ephemeral keys, mount a man-in-the-middle in the first case, and show it fails in the second"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Parse a certificate chain from provided files, verify each signature and validity date, and report which check fails when an intermediate is removed or expired"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Trace a TLS 1.3 handshake capture, label each message and key-schedule stage, and work out which secrets a later theft of the server key would expose"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Authenticated encryption and key management",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compare three ways of combining encryption and MACs, explain what happens when a GCM nonce repeats, and design envelope encryption for cloud storage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Implement encrypt-then-MAC with AES-CTR and HMAC, and show that a flipped ciphertext bit is rejected before any decryption happens"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Encrypt two messages under AES-GCM with a repeated nonce, recover the XOR of the plaintexts, then switch to a misuse-resistant mode and repeat the attempt"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Design envelope encryption for a cloud bucket with per-object data keys wrapped by a master key, and test that rotation re-wraps keys without re-encrypting data"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Protocol attacks and formal analysis",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Break a naive challenge-response login by replay, run the man-in-the-middle on the Needham-Schroeder public-key protocol, and state the fix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Add nonces and timestamps to a naive challenge-response login, replay a captured message to show the flaw, and verify the fix blocks it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Simulate the Needham-Schroeder public-key protocol with an intruder, execute the man-in-the-middle run, and implement the fix of adding the responder's identity"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Model a small authentication protocol in a symbolic checker supplied with the task, find the attack trace, and repair the protocol until verification passes"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Zero knowledge, one-time codes and mobile-money protocols",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Prove knowledge of a discrete logarithm without revealing it, implement a one-time code generator, and review a USSD PIN flow for leaks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Implement TOTP with HMAC-SHA1, generate codes for 10 time steps, and verify they match a provided test vector"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Implement a Schnorr proof of knowledge made non-interactive with Fiat-Shamir, verify it, then show a cheating prover without the secret fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Tally an e-voting scheme using additively homomorphic encryption with a toy Paillier key, and verify the total is correct without decrypting any single ballot"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Review a USSD and SMS mobile-money PIN flow in a scenario, find where it leaks the PIN or allows replay, and propose a protocol that fixes both"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Side channels, randomness and misuse",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Recover a tag by timing, factor weak RSA keys with a batch GCD, and list the misuse errors in a small code sample.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Compute pairwise GCDs across 50 provided RSA public keys and factor every key that shares a prime factor with another"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Time a naive comparison of MAC tags, recover a 4-byte tag byte by byte from timing differences, and fix it with constant-time comparison"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Audit a provided small codebase using ECB, a static IV, a hard-coded key and a homemade XOR cipher, and rewrite it with an authenticated-encryption library"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Libraries, case studies and testing cryptographic code",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Replace low-level calls with a high-level library, write known-answer and negative tests, and analyse the root cause of one real-world failure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Replace low-level primitives in a provided program with a high-level library's sealed-box and signature calls, and confirm old test messages still decrypt"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Write known-answer and negative tests for an AES-GCM wrapper, including truncated tags and altered associated data, and fuzz it with 10,000 random inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Analyse a case study of a real key-generation or protocol failure in a scenario, trace the root cause through design, code and process, and write recommendations"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Design review: choices, lifecycle and compliance",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write the cryptography section of a design review for a school-records or mobile-money system, justifying primitives, key sizes and key lifecycle against standards and law.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Map the encryption requirements of a payment standard and a data protection law to controls for a mobile-money app, and list the evidence an auditor would ask for"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Select primitives, modes and key sizes for a school records system in a scenario, and justify each against its threat model and a 10-year protection requirement"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Implement the key lifecycle of a small service covering generation, storage, rotation, revocation and destruction, with tests, and review it against a checklist"
+        }
+      ]
+    }
+  ]
+}

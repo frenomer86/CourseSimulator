@@ -1,0 +1,505 @@
+{
+  "slug": "performance-modelling-and-queueing-systems",
+  "description": "The mathematics and measurement practice of predicting how computer and communication systems behave under load. Students derive Markov chain and queueing results, run discrete-event simulations and use the models to size systems such as call centres, cell sites, web services and mobile-money platforms.",
+  "modelledOn": [
+    "Harchol-Balter, Performance Modeling and Design of Computer Systems",
+    "Lazowska, Zahorjan, Graham and Sevcik, Quantitative System Performance",
+    "Jain, The Art of Computer Systems Performance Analysis",
+    "Kleinrock, Queueing Systems, Volume 1: Theory"
+  ],
+  "outcomes": [
+    "Apply operational laws and bottleneck analysis to bound the throughput and response time of a system.",
+    "Model systems as Markov chains and birth-death processes and solve for steady-state distributions.",
+    "Derive and apply M/M/1, M/M/c, Erlang B and C and M/G/1 results to staffing and dimensioning problems.",
+    "Analyse open and closed queueing networks with product-form solutions and mean value analysis.",
+    "Characterise workloads from traces and build discrete-event simulations with valid statistical output analysis.",
+    "Produce a capacity plan that forecasts demand, validates a model against measurements and states cost and risk."
+  ],
+  "units": [
+    {
+      "title": "Performance fundamentals and operational laws",
+      "weeks": "1",
+      "topics": [
+        "Metrics: throughput, latency, utilisation, response time and tail percentiles",
+        "Operational laws: utilisation law, Little's law, forced flow law and the interactive response time law",
+        "Open and closed workloads, and the pitfalls of benchmarking",
+        "Bottleneck analysis and asymptotic bounds on throughput and response time"
+      ]
+    },
+    {
+      "title": "Probability and Markov chains",
+      "weeks": "2-3",
+      "topics": [
+        "Exponential and Poisson processes: memorylessness, merging and splitting",
+        "Discrete-time Markov chains: classification of states, stationary distribution and ergodicity",
+        "Continuous-time Markov chains: generator matrix, balance equations and uniformisation",
+        "Birth-death processes and detailed balance",
+        "Renewal processes and the inspection paradox",
+        "Transient analysis with the matrix exponential"
+      ]
+    },
+    {
+      "title": "Single-station queues",
+      "weeks": "4-5",
+      "topics": [
+        "The M/M/1 queue: derivation of L, Lq, W and Wq and the response-time distribution",
+        "M/M/c and the Erlang C formula for staffing agents, counters and clinics",
+        "Loss systems: M/M/c/c and the Erlang B formula for trunk and channel dimensioning",
+        "Finite buffers and finite populations: M/M/1/K and machine-repairman models",
+        "M/G/1 and the Pollaczek-Khinchine formula; the effect of service-time variability and priority queues",
+        "Heavy-tailed service times and the Kingman approximation for G/G/1"
+      ]
+    },
+    {
+      "title": "Queueing networks",
+      "weeks": "6-7",
+      "topics": [
+        "Tandem queues and Burke's theorem",
+        "Open Jackson networks and product-form solutions",
+        "Closed networks: Gordon-Newell form and mean value analysis",
+        "Multiclass networks and approximate mean value analysis",
+        "Balanced job bounds and finding the bottleneck station",
+        "Applications: a multi-tier web service and a packet-switched network"
+      ]
+    },
+    {
+      "title": "Workload characterisation",
+      "weeks": "8",
+      "topics": [
+        "Collecting and cleaning traces; clustering requests into workload classes",
+        "Distribution fitting: exponential, lognormal and Pareto by maximum likelihood, QQ plots and the Kolmogorov-Smirnov test",
+        "Burstiness and self-similarity; Markov-modulated arrival processes",
+        "Session and think-time models and generating synthetic workloads"
+      ]
+    },
+    {
+      "title": "Simulation of systems",
+      "weeks": "9-10",
+      "topics": [
+        "Discrete-event simulation: event list, simulation clock and state updates",
+        "Random number and variate generation: inverse transform and acceptance-rejection",
+        "Simulating queues, verifying against M/M/1 theory and deleting the warm-up period",
+        "Variance reduction: common random numbers, antithetic variates and control variates",
+        "Rare-event simulation and importance sampling"
+      ]
+    },
+    {
+      "title": "Measurement and statistical analysis",
+      "weeks": "11",
+      "topics": [
+        "Output analysis: independent replications, batch means and confidence intervals",
+        "Steady-state versus terminating simulations and detecting the initial transient",
+        "Comparing alternatives: paired comparisons, confidence intervals on differences and ranking",
+        "Experimental design: 2^k factorial and fractional factorial designs",
+        "Measuring real systems: load testing, percentile reporting and coordinated omission"
+      ]
+    },
+    {
+      "title": "Capacity planning and reliability",
+      "weeks": "12-13",
+      "topics": [
+        "The capacity planning cycle: forecasting demand, modelling, validating and sizing",
+        "Cost-performance trade-offs in the cloud: autoscaling, reserved versus on-demand capacity",
+        "Network dimensioning: link sizing for rural cell sites with Erlang models",
+        "Case study: sizing a mobile-money platform for a month-end peak",
+        "Availability and reliability: queues with failures, service level objectives and error budgets",
+        "Project: model, measure and size a system end to end"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Metrics and operational laws",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Apply Little's law and the utilisation law to a measured web service and compute its bottleneck, maximum throughput and response-time bounds.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Apply Little's law and the utilisation law to a table of measured arrival rates and service times and compute the missing quantities"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Plot asymptotic throughput and response-time bounds for a three-station closed system and read off the saturation population"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Compare an open and a closed load generator against the same server and show how the closed generator hides overload"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Poisson processes and discrete-time chains",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Model a bank queue's customer arrivals as a Poisson process, test the assumption against data and state what fails when arrivals are bursty.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Merge and split two Poisson streams, verify the rates by simulation and check that interarrival times are exponential"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Find the stationary distribution of a 4-state weather-like chain by solving the balance equations and by powering the matrix"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Step through a continuous-time chain of a two-state machine with failure and repair rates and compare simulated and exact availability"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Birth-death processes, renewal and transients",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Derive the stationary distribution of a general birth-death chain and use it to solve a small shared-server problem in closed form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Solve the detailed balance equations for a birth-death chain with state-dependent rates and plot the steady-state distribution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Simulate a bus-arrival renewal process and show the inspection paradox by comparing the mean waiting time with half the mean gap"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Compute the transient state probabilities of a three-state chain with the matrix exponential and plot convergence to steady state"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "M/M/1, M/M/c and Erlang models",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Staff a call centre for a bank so that 80 percent of calls are answered within 20 seconds, showing your Erlang C working and the cost of one extra agent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Derive L, W, Lq and Wq for an M/M/1 queue at utilisations from 0.1 to 0.95 and plot the knee of the response-time curve"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute the number of agents needed by the Erlang C formula for a mobile-money call centre to meet a waiting-time target"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Dimension the channels at a cell site with Erlang B so that blocking stays below 2 percent at the busy-hour traffic load"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Finite systems, M/G/1 and variability",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Show with the Pollaczek-Khinchine formula why reducing service-time variability can matter more than adding capacity, with numbers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Solve an M/M/1/K queue for loss probability and throughput as the buffer size K grows from 1 to 20"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Compute the mean wait for M/G/1 with deterministic, exponential and hyperexponential service at the same mean and compare them"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Simulate a G/G/1 queue with Pareto service times, compare the mean wait with the Kingman approximation and discuss heavy-tail effects"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Tandem and Jackson networks",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Model a clinic with registration, consultation and pharmacy stations as a Jackson network and identify the station to upgrade first.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Verify Burke's theorem by simulating two M/M/1 queues in tandem and testing that the departures are Poisson"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Solve the traffic equations for a three-station open Jackson network and compute the mean response time of each station"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Run mean value analysis for a closed network of three stations and 20 jobs and tabulate throughput and queue lengths by population"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Multiclass networks and applications",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Build a model of a three-tier web service during a peak, state the model's assumptions and use it to predict the effect of doubling the database capacity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compute balanced job bounds for a closed network, plot them against the exact solution and name the bottleneck station"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Apply approximate mean value analysis to a two-class workload of reads and writes and compare with the single-class result"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E6",
+          "title": "Simulate packets crossing a three-hop network with finite buffers and compare the measured delay with the Jackson network prediction"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Workload characterisation",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Characterise a trace of requests to a mobile-money API, fit distributions to its interarrival and size data and state how well a Poisson model works.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Cluster a request trace into three classes using size and service time and report each class's share of the load"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Fit exponential, lognormal and Pareto distributions to service times by maximum likelihood and choose by QQ plot and a KS test"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Measure burstiness of an arrival trace with the index of dispersion at several time scales and fit a two-state modulated process"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Discrete-event simulation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write a pseudo-code event loop for a bank with two tellers and trace the first ten events by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Step through the event list of a single-server queue for ten arrivals and record the clock, queue length and next event at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Generate exponential and Pareto variates by inverse transform and confirm their moments and histograms against theory"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Simulate an M/M/1 queue, delete the warm-up with a moving average and compare the simulated mean wait with the exact value"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Variance reduction and rare events",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Explain in a page how common random numbers help compare two staffing policies, and when antithetic variates fail.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Compare two staffing policies with and without common random numbers and report the change in the confidence interval width"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Apply control variates to estimate the mean wait of an M/M/1 queue using the known mean service time and report the variance reduction"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Estimate the probability that a queue exceeds a very high level with importance sampling and compare it with the plain Monte Carlo estimate"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Output analysis and measurement",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Plan a load test for a service, stating the metrics, duration, warm-up and number of repetitions needed to support a conclusion with 95 percent confidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Estimate the mean wait with replications and with batch means and compare the confidence interval widths for the same run budget"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compare three server designs by paired confidence intervals on their mean response time and rank them with a stated confidence"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Analyse a 2^3 factorial experiment on cache size, thread count and disk type and compute the main and interaction effects"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Capacity planning cycle and cost",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Produce a capacity plan for a growing service that forecasts demand for twelve months and proposes the cheapest configuration meeting the response target.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Forecast monthly peak load with a fitted trend and find the month in which utilisation first exceeds 70 percent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Compare reserved and on-demand instance mixes for a seasonal workload and compute the total cost meeting a latency target"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Size backhaul link capacity for a rural cell site with a given subscriber count and busy-hour traffic using Erlang models"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Case study and project",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Present your project: a model, its validation against measurements, a sizing recommendation with cost and a statement of what could invalidate it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Model the month-end peak of a mobile-money platform as an M/M/c queue with a surge and compute the servers needed for a 2 second target"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Compute the availability of a service built from a queue with servers that fail and repair, and the SLO it can support"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Validate your model against a supplied measurement log, report the error in utilisation and response time, and refine the model"
+        }
+      ]
+    }
+  ]
+}

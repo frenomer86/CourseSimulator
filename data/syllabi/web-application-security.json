@@ -113,5 +113,402 @@
         "Capstone: attack a vulnerable application, then remediate it and prove the fixes hold"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "HTTP, browsers and trust boundaries",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Take a web page load and list every request, header and cookie involved, then draw the trust boundaries between the browser, network, server, database and third-party services.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Send GET, POST and a malformed request to a local test server with a script and record the status code and headers of each response"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Demonstrate the same-origin policy by loading two local origins and showing which script access succeeds and which is blocked by the browser"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw a trust-boundary diagram for a school portal with CDN, payment gateway and database, and mark where input must be validated"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Mapping an application and setting up the lab",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a lab safety checklist for an isolated testing setup, and map all entry points of a practice app into a table of parameters, methods and roles.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Start a deliberately vulnerable app on an isolated lab VM, check it is unreachable from outside the lab network, and confirm the proxy sees its traffic"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write a script that crawls a local practice app and lists all pages, forms and parameters it finds in a table"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Find three hidden or unlinked endpoints in a practice app by comparing a wordlist scan with the linked pages, and report each with its risk"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "The OWASP Top Ten and the attacker's view",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Map ten vulnerabilities from a given scan report to OWASP Top Ten categories, and threat model a mobile-money top-up form listing the data an attacker could tamper with.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Match ten described flaws to the right OWASP Top Ten category and justify each match, scored against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Modify hidden form fields and cookies on a practice app to show the server wrongly trusts client data, and patch the server check"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Infer a hidden user list from error messages and response timing of a login form in the lab, and fix the form to respond identically"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "SQL injection in the lab",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain the root cause shared by SQL, command and NoSQL injection, and write the vulnerable and the corrected versions of one login query.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Trigger an error-based SQL injection in the lab app login with a single quote and record the database error that leaks the query structure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Use a login bypass and a union query against the lab database to list the users table, and record the exact payloads and results"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Exploit a command injection in a lab ping tool, then fix it with an allow-list and verify the original payloads are now rejected"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Defending against injection",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Convert four vulnerable queries to parameterised form, define a least-privilege database account for the web app, and write allow-list rules for three input fields.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Rewrite a login query with a prepared statement and show the earlier injection payloads now return no rows and no errors"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E4",
+          "title": "Create a database user limited to select and insert on two tables, connect the app with it, and show a drop-table payload now fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Add allow-list validation to five form fields of a lab app, then run 40 hostile and 40 valid inputs and report false accepts and rejects"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Cross-site scripting and output encoding",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "For reflected, stored and DOM-based XSS, describe where the payload travels, what it can do to a logged-in user, and which output encoding blocks it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Trigger a reflected XSS in a lab search page with an alert payload, then show how the same input is shown when properly encoded"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Show in the lab how a stored XSS payload could read a session cookie to a test collector, and then protect the cookie with HttpOnly"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Apply correct encoding for HTML body, attribute, JavaScript and URL contexts in a template, and pass 12 payloads that previously executed"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "CSP and request forgery",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a Content Security Policy for a page with one external script host and no inline scripts, and describe how a CSRF token and SameSite cookie together stop a forged transfer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Add a Content Security Policy header to a lab page and show an injected inline script is blocked and logged in the console"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Forge a cross-site money transfer request against the lab bank, then add an anti-CSRF token and show the forged request is rejected"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Sanitise rich text comments with an allow-list of tags and attributes, and test 20 bypass payloads to confirm none execute"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Authentication and session management",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Review a login, reset and session design for flaws, and write a safe password reset flow as numbered steps, including the controls that protect each step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Hash 10 passwords with salted bcrypt in Python, time the work factor, and compare with the speed of cracking unsalted hashes of a small list"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Find user enumeration, missing lockout and a predictable reset token in a lab login, and patch each so the faults no longer reproduce"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Demonstrate session fixation in a lab app, then regenerate the session ID at login, set Secure and HttpOnly flags, and add idle timeout"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Access control flaws",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Design an authorisation scheme for a wallet app with customer, agent and admin roles, listing each endpoint's rule and a test that would catch a missing check.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Show horizontal escalation by changing an account number in a lab URL to view another user's profile, and record the evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Exploit an identifier in a lab wallet API to read another user's balance, then add an ownership check and prove the exploit now fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Write an automated test that logs in as three roles and tries every endpoint, then reports any route that grants access it should deny"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "SSRF, file uploads and inclusion",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Explain how a URL fetch feature, an image upload and a file path parameter can each become a route to the server's internals, and the single control that best stops each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Read an unintended file in the lab app through a path traversal in a download parameter, then fix it by resolving and checking the path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Upload a disguised script to a lab app that checks only the extension, show it is accepted, and fix the checks to validate type and rename the file"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Use an SSRF in a lab URL preview to reach an internal-only service, then block it with an allow-list and verify internal addresses fail"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Deserialisation, XXE and their defences",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Describe how an XML parser can be tricked into reading a local file and how an untrusted serialised object can run code, and list the safe configuration for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Parse a provided XML document with external entities enabled and show it reads a local lab file, then disable entities and re-run"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Exploit an unsafe deserialisation in a lab service with a harmless marker payload, then replace it with a JSON schema check and re-test"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E4",
+          "title": "Limit a lab web server's outbound connections with a firewall egress rule and store uploads outside the web root, then verify both with tests"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Defence in depth and configuration",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Audit a lab web app's headers, TLS and cookie settings with a checklist, and rank the fixes by risk reduced per hour of effort.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Check the response headers of a lab app, list which security headers are missing, and add HSTS, X-Content-Type-Options and a frame control"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E4",
+          "title": "Harden a lab web server by enabling modern TLS only, setting cookie flags and CORS rules, and returning generic error pages, then verify each"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Scan a lab project's dependencies for known vulnerable versions, upgrade the two worst, and confirm the app's tests still pass"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Secure lifecycle, testing and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write up the capstone: for a vulnerable lab app, list the findings with severity, show the exploit evidence, describe the fix, and prove each fix with a retest.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Run an automated scanner against a local lab app, export the findings, and confirm by hand which three are true positives"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Prioritise a backlog of 15 findings for a three-person team with two weeks, choosing what to fix first, and score against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Attack a vulnerable lab application to find six flaws, remediate each in code, and write a regression test proving every fix holds"
+        }
+      ]
+    }
   ]
 }

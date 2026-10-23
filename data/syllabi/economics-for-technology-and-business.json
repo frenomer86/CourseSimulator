@@ -1,0 +1,507 @@
+{
+  "slug": "economics-for-technology-and-business",
+  "description": "The economics a technologist needs: markets, costs, competition, platforms, digital pricing, incentives, the macroeconomy and the business case for IT spending. Students fit demand curves, simulate platform adoption, price digital products and argue investment cases in scenarios drawn from Ghana and the wider continent.",
+  "modelledOn": [
+    "Mankiw, Principles of Economics",
+    "Shapiro and Varian, Information Rules: A Strategic Guide to the Network Economy",
+    "Parker, Van Alstyne and Choudary, Platform Revolution",
+    "Brealey, Myers and Allen, Principles of Corporate Finance (investment appraisal chapters)"
+  ],
+  "outcomes": [
+    "Explain market outcomes with demand, supply, elasticity and surplus, and predict the effect of a price control, tax or subsidy.",
+    "Derive cost curves and profit-maximising output, and compare competitive, monopolistic and oligopolistic markets using simple game models.",
+    "Model network effects and two-sided platforms, and simulate how adoption tips toward one provider.",
+    "Design and evaluate pricing schemes for digital goods, including versioning, subscriptions and auctions.",
+    "Read macroeconomic indicators and trace how inflation, interest rates and exchange rates affect technology organisations.",
+    "Build and defend a quantified investment case for an IT or cloud project using net present value and sensitivity analysis."
+  ],
+  "units": [
+    {
+      "title": "Scarcity, demand and supply",
+      "weeks": "1-2",
+      "topics": [
+        "Scarcity, opportunity cost, the production possibility frontier and comparative advantage",
+        "The demand curve, its determinants, and movements along versus shifts of the curve",
+        "The supply curve, its determinants, market equilibrium and comparative statics",
+        "Consumer and producer surplus; efficiency of competitive markets",
+        "Price elasticity of demand and supply (arc and point), income and cross elasticity, the total revenue test",
+        "Price ceilings, floors, taxes and subsidies: incidence and deadweight loss, with fuel and cocoa price examples"
+      ]
+    },
+    {
+      "title": "Production, costs and market structures",
+      "weeks": "3-4",
+      "topics": [
+        "Production function, diminishing marginal returns, short run versus long run",
+        "Fixed, variable, marginal and average cost curves; economies and diseconomies of scale",
+        "Perfect competition: profit maximisation at MR = MC, the shutdown rule, long-run equilibrium",
+        "Monopoly: marginal revenue, deadweight loss, natural monopoly and regulation",
+        "Oligopoly: Cournot and Bertrand competition, kinked demand, cartels",
+        "Game theory basics: payoff matrices, dominant strategies, Nash equilibrium, the prisoner's dilemma"
+      ]
+    },
+    {
+      "title": "Network effects and platform economics",
+      "weeks": "5-6",
+      "topics": [
+        "Direct and indirect network effects; Metcalfe's law and its critique; critical mass",
+        "Two-sided markets: cross-side effects, pricing structure, the chicken-and-egg problem",
+        "Switching costs, lock-in, multi-homing and compatibility",
+        "Tipping and winner-takes-most dynamics: positive feedback and adoption curves",
+        "Standards, interoperability and open versus closed platforms, with mobile money interoperability as a case"
+      ]
+    },
+    {
+      "title": "Pricing of digital goods and services",
+      "weeks": "7-8",
+      "topics": [
+        "Zero marginal cost, high fixed cost and why digital goods differ from physical ones",
+        "Price discrimination: first, second and third degree; versioning and bundling",
+        "Freemium, subscriptions, advertising-funded and data-driven business models",
+        "Dynamic and surge pricing; first-price, second-price and ad auctions",
+        "Estimating willingness to pay and the revenue-maximising price from demand data",
+        "Data bundles and mobile money tariffs in Ghana: pricing under regulation"
+      ]
+    },
+    {
+      "title": "Information, incentives and market failure",
+      "weeks": "9",
+      "topics": [
+        "Adverse selection: the market for lemons, screening and signalling",
+        "Moral hazard and principal-agent problems; contract and incentive design",
+        "Reputation and rating systems; trust in online marketplaces",
+        "Externalities and public goods: open source software and digital public infrastructure",
+        "Behavioural biases in decisions: anchoring, loss aversion and defaults in interface design"
+      ]
+    },
+    {
+      "title": "Macroeconomic indicators and policy",
+      "weeks": "10-11",
+      "topics": [
+        "GDP by expenditure, income and output; real versus nominal; growth rates",
+        "Inflation, construction of the consumer price index, and measures of unemployment",
+        "Aggregate demand and supply; fiscal policy and the multiplier",
+        "Money, banking and monetary policy: policy rates and central bank tools",
+        "Exchange rates and the balance of payments: effect of cedi depreciation on imported IT equipment",
+        "Growth, productivity and the digital economy; development indicators"
+      ]
+    },
+    {
+      "title": "Economics of IT investment and cloud pricing",
+      "weeks": "12",
+      "topics": [
+        "Total cost of ownership; capital versus operating expenditure",
+        "Net present value, internal rate of return, payback and discounting for IT projects",
+        "Cloud pricing models (on-demand, reserved, spot) and the break-even against on-premise hardware",
+        "Risk and real options in technology investment; sensitivity and scenario analysis",
+        "Measuring returns: the productivity paradox and benefit realisation"
+      ]
+    },
+    {
+      "title": "Policy, regulation and the economic case",
+      "weeks": "13",
+      "topics": [
+        "Competition policy and platform regulation: market power, mergers, data portability",
+        "Transaction levies on mobile money and their incidence on users and providers",
+        "Digital inclusion and development: mobile money, savings, remittances and farm-gate prices",
+        "Capstone: a written economic case with cost-benefit analysis for a Ghanaian digital service"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Scarcity, demand and supply",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Draw a production possibility frontier for a farm choosing between maize and tomatoes, then shift the demand and supply curves for tomatoes after a transport strike and state the new equilibrium.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot a demand curve from a table of 8 price-quantity pairs, fit a straight line and read off the quantity demanded at three new prices"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Plot supply and demand for tomatoes, shift supply left after a fuel price rise, and report the new equilibrium price and quantity"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Write a script that finds equilibrium for linear demand and supply, then reruns it for 20 random shock scenarios and summarises the price range"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Surplus, elasticity and price controls",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Compute elasticity from a given demand schedule, decide whether a price cut raises revenue, and draw the deadweight loss triangle caused by a price ceiling on fuel.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Compute point and arc price elasticity for six price changes on a demand schedule and classify each as elastic or inelastic"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.6",
+          "engine": "E7",
+          "title": "Impose a 10 percent tax on a market, shade consumer and producer surplus, and compute who bears the tax and the deadweight loss"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Advise a ministry in a branching scenario on removing a fuel subsidy, weighing revenue, shortages and household welfare using evidence packs"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Costs and competitive firms",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Tabulate output, total, marginal and average cost for a small bakery, find the profit-maximising output at a given price, and state the shutdown price.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Plot total, marginal, average variable and average total cost from a table and mark the minimum of average total cost"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Find profit-maximising output where MR equals MC for three market prices and shade profit or loss on the cost chart"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Simulate a firm whose fixed cost doubles with each capacity step, and find the output range where average cost is lowest"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Monopoly, oligopoly and games",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Solve a two-firm Cournot problem, write the payoff matrix for a price war between two network providers, and find the Nash equilibrium and the cartel outcome.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Draw demand, marginal revenue and marginal cost for a monopolist, find the profit-maximising price and shade the deadweight loss"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Enter a 2x2 payoff matrix for a data-price war between two operators and mark dominant strategies and Nash equilibria"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Simulate repeated Cournot competition with best-response updates for 30 rounds and test whether output converges to the Nash level"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Network effects",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Estimate the value of a network with 10, 100 and 1000 users under a linear and a quadratic rule, and discuss where the quadratic rule overstates value.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Plot network value against users under linear, n log n and n squared rules and locate the point where each exceeds a fixed cost"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Launch a ride-hailing app in a scenario, choosing which side to subsidise first, and score outcomes on driver and rider growth"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Model users choosing between two apps with switching costs, and find the cost level that stops a rival from taking half the market"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Tipping, adoption and standards",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Explain with a diagram why a market with strong network effects can tip to one provider, and argue for or against mandated mobile money interoperability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Plot a logistic adoption curve for a messaging app, vary the growth rate, and report how many months to reach 50 percent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Run an agent-based simulation of 1000 users picking between two platforms and measure how often each market share tips above 90 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Negotiate interoperability between three mobile money operators in a scenario, scored on competition, user value and operator revenue"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Zero marginal cost and price discrimination",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Design three versions of a learning app, set their prices to separate student, professional and institution customers, and explain the self-selection logic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Plot average cost against users for a software product with a large fixed cost and near-zero marginal cost, and find the break-even user count"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Set tiered prices for a three-segment market from given willingness-to-pay data and compare revenue with a single uniform price"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Simulate a freemium app with a free-to-paid conversion rate and compute the break-even conversion for a given server and support cost"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Auctions, dynamic pricing and local tariffs",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compare revenue from a first-price and a second-price auction with the same bids, and recommend a bundle design for mobile data given usage data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Simulate a second-price auction with 5 bidders over 100 rounds and show that truthful bidding earns at least as much as shading"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Estimate a demand curve from 200 price-sales observations by regression and compute the revenue-maximising price with a confidence band"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Set data bundle prices as a regulated operator in a scenario, balancing revenue, affordability for rural users and a regulator price cap"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Information problems and incentives",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Explain why unreliable sellers can drive out good ones in an online marketplace, and design a rating rule and an escrow rule that fix the problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute the equilibrium of the used-phone lemons model for three seller quality distributions and show when the market collapses"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Design the rating, refund and verification rules of a marketplace in a scenario, scored on fraud rate, seller exit and buyer trust"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Simulate a principal-agent contract with hidden effort, comparing fixed pay and bonus pay on expected output and cost across 1000 draws"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "National accounts, inflation and policy",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compute nominal and real GDP growth from a three-year table, build a price index for a small basket, and apply the multiplier to a stimulus.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute nominal GDP, real GDP and growth for five years from price and quantity tables, and plot both series"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Build a consumer price index for a 6-item basket over 4 years and compute the inflation rate and the real value of a fixed salary"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Simulate the spending multiplier over 20 rounds for different marginal propensities to consume and plot the cumulative output gain"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Money, exchange rates and development",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Trace how a policy-rate rise and a depreciating cedi change the cost of imported servers and cloud bills, and explain the effect on a startup's plans.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Plot how a one-percentage-point policy rate change moves loan repayments on a 5-year equipment loan for three loan sizes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Convert a dollar-priced cloud bill into cedis across 12 months of exchange rates and chart the budget overrun against a fixed budget"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Advise a government in a scenario on three digital-economy investments, scored on growth, jobs and fiscal cost using indicators in the evidence pack"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "The economics of IT investment",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compute the NPV and payback of moving a school's servers to the cloud, then test how the decision changes when usage grows 30 percent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute NPV and payback for a 5-year IT project from given cash flows at discount rates of 8, 12 and 20 percent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compute the monthly break-even between on-demand, reserved and on-premise servers for usage levels from 10 to 100 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Run a Monte Carlo of 5000 trials on uncertain costs and benefits of a hospital system and report the probability that NPV is negative"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Regulation, inclusion and the economic case",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a one-page economic case for a digital service, stating costs, benefits, discount rate, risks and the policy that would most change the result.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute the revenue and the burden on users for a transaction levy at 1, 1.5 and 3 percent given a distribution of transfer sizes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Decide in a scenario how to extend mobile money to farmers, weighing agent costs, fees and trust, and score the outcomes by farm income"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Build a cost-benefit model of a digital service with sensitivity tables on adoption and discount rate and present the three most influential inputs"
+        }
+      ]
+    }
+  ]
+}

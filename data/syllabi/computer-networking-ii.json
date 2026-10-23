@@ -120,5 +120,403 @@
         "Capacity planning and a network design project for a campus with a WAN link to a branch"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Routing tables, static routes and distance-vector",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Given a routing table with overlapping prefixes, work out by hand which route is chosen for ten destination addresses and why, then explain count-to-infinity with a three-router example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E3",
+          "title": "Configure static and default routes on a three-router chain so that two LANs can ping each other, and verify with traceroute"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E3",
+          "title": "Enable RIP on four routers, then break a link and watch the routing tables converge, noting the hop counts and the time taken"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E3",
+          "title": "Reproduce a count-to-infinity loop on a three-router topology after a link failure, then fix it with split horizon and poison reverse"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Link-state routing, BGP and OSPF configuration",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Run Dijkstra's algorithm by hand on a seven-node weighted graph from two different source routers and compare the shortest-path trees.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.6",
+          "engine": "E3",
+          "title": "Configure single-area OSPF on three routers and verify neighbour adjacencies and the learned routes with the show commands"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Build a two-area OSPF network, check that area border routers summarise routes and compare the link-state database of an internal router and an ABR"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E3",
+          "title": "Model three autonomous systems with BGP and set a local preference so that traffic to one prefix prefers the cheaper of two upstream providers"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Switching, spanning tree and switch security",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Hand-compute the root bridge, root ports and designated ports for a four-switch triangle topology with given bridge priorities and link costs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E3",
+          "title": "Watch a switch learn MAC addresses as hosts ping each other, read the MAC table and see an entry age out after inactivity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E3",
+          "title": "Connect four switches in a loop, elect the root bridge by setting priority, and identify which ports are blocking and why"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E3",
+          "title": "Enable port security and DHCP snooping on an access switch, then attach a rogue DHCP server and confirm that the offers are blocked"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "VLANs and inter-VLAN routing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Plan a VLAN numbering and subnet scheme for a school with administration, teaching and lab networks, and justify the choices in a short table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E3",
+          "title": "Create two VLANs on a switch, assign access ports and show that hosts in different VLANs cannot ping each other"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E3",
+          "title": "Link two switches with an 802.1Q trunk, carry both VLANs across it and prove same-VLAN hosts on different switches can communicate"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E3",
+          "title": "Configure router-on-a-stick sub-interfaces so that two VLANs can reach each other, then restrict traffic between them to web only"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "VLAN design and troubleshooting",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write a troubleshooting checklist for VLAN faults, then apply it in a worked example where hosts lose connectivity after a switch replacement.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E3",
+          "title": "Build a campus VLAN design with staff, student, lab and management VLANs and confirm each group reaches only the services it should"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E3",
+          "title": "Find a trunk native VLAN mismatch from the log messages and symptoms, correct it and verify with ping across the trunk"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E3",
+          "title": "Diagnose a network with three injected faults (wrong access VLAN, trunk allowed list, missing sub-interface) and fix them in the fewest steps"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Access control lists",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write ACL statements, with wildcard masks, for four stated security policies and explain the placement of each ACL and the effect of the implicit deny.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E3",
+          "title": "Create a standard ACL that blocks one host and permits everyone else, apply it to an interface and check the match counters after test pings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E3",
+          "title": "Write an extended ACL that lets guest hosts use only web and DNS to the internet, apply it and verify blocked and allowed traffic"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E3",
+          "title": "Design ACLs for a lab policy that blocks social media sites but allows learning sites, restricts Telnet to the admin subnet and logs every denied packet"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "DNS and DHCP",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Explain the full chain of queries when a student resolves a university web address with a cold cache, labelling resolver, root, TLD and authoritative steps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E3",
+          "title": "Query A, MX and NS records from a simulated DNS server and explain how a changed TTL affects how soon clients see an update"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E3",
+          "title": "Configure a DHCP pool with a lease time and an exclusion range, and watch four clients receive addresses through the four-step exchange"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E3",
+          "title": "Troubleshoot a LAN where clients get an address but cannot browse by name, using packet capture to locate the missing DNS option"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "WAN technologies and VPNs",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Compare leased line, Metro Ethernet, broadband and cellular links for connecting three branch offices in Ghana, using a table of cost, speed and reliability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E3",
+          "title": "Bring up a serial link between two routers by setting clock rate on the DCE side and verifying the line protocol turns up"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E3",
+          "title": "Build a site-to-site tunnel between two branch routers and show that private traffic crosses the public network encapsulated"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E3",
+          "title": "Design a hub-and-spoke WAN for a bank with a head office and four regional branches and justify the link type chosen for each branch by cost and resilience"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "PPP and authentication",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Describe the PPP link establishment phases in order and explain why CHAP is stronger than PAP, using captured packets as evidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E3",
+          "title": "Bring up a PPP link and read the LCP negotiation exchange to see the options each side offers and accepts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E3",
+          "title": "Configure CHAP between two routers, then deliberately mismatch the shared secret and observe the authentication failure"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E3",
+          "title": "Bundle two PPP links with Multilink PPP and demonstrate that traffic is balanced across both, then fail one link and keep connectivity"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Frame Relay and legacy WAN",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a short report explaining why Frame Relay was replaced, comparing its cost and flexibility with MPLS and Metro Ethernet.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E3",
+          "title": "Build a Frame Relay hub-and-spoke network and map the DLCIs on each router so that the hub reaches every spoke"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E3",
+          "title": "Configure point-to-point sub-interfaces on a Frame Relay hub to fix a split-horizon routing problem and confirm spoke-to-spoke reachability"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E3",
+          "title": "Calculate committed information rate and burst limits for a branch link, then simulate overload to see frames marked discard eligible and dropped"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Network address translation",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Explain why private addresses need NAT, and trace by hand how a PAT router rewrites the source address and port of three simultaneous connections.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E3",
+          "title": "Configure static NAT for one internal web server and verify the inside local and global address mapping in the translation table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E3",
+          "title": "Configure PAT with overload for a LAN of ten hosts sharing one public address and read the translation table while several hosts browse"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E3",
+          "title": "Publish a server behind PAT by port forwarding, then diagnose why a peer-to-peer or VoIP application fails through the translating router"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Performance, redundancy and quality of service",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3"
+      ],
+      "exercise": "Calculate the availability of a link with given MTBF and MTTR, then of two such links in parallel, and state whether it meets a 99.9 percent SLA.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E3",
+          "title": "Measure round-trip time, jitter and packet loss across a link with ping and a traffic generator, and compare them with the stated SLA"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.2",
+          "engine": "E3",
+          "title": "Configure two routers with HSRP, fail the active router and show the standby takes over with the virtual gateway address unchanged"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.3",
+          "engine": "E3",
+          "title": "Mark voice traffic with a DSCP value and give it priority queuing on a congested link, then compare its delay with and without the policy"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "QoS configuration and a campus network project",
+      "topics": [
+        "10.4",
+        "10.5"
+      ],
+      "exercise": "Prepare the design document for a campus with a WAN branch, including addressing plan, VLAN list, routing choice, security policy and capacity estimate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.4",
+          "engine": "E3",
+          "title": "Configure QoS on a congested WAN link so that a video call stays smooth while a large file transfer runs, and verify queue statistics"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.5",
+          "engine": "E3",
+          "title": "Estimate bandwidth needs for a campus and branch from user counts and application mix, then choose link speeds and check them under simulated load"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.5",
+          "engine": "E3",
+          "title": "Design, build and test a campus network with VLANs, OSPF, ACLs, NAT and a branch WAN link, and show it passes a ten-point acceptance checklist"
+        }
+      ]
+    }
   ]
 }

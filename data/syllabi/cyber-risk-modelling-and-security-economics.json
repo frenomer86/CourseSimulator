@@ -1,0 +1,505 @@
+{
+  "slug": "cyber-risk-modelling-and-security-economics",
+  "description": "A graduate course on measuring cyber risk with probability and loss models, and on why security decisions are shaped by incentives, markets and strategic adversaries. Students build Monte Carlo loss models and game-theoretic defences in the maths lab, and defend investment decisions in scored scenarios.",
+  "modelledOn": [
+    "Freund and Jones, Measuring and Managing Information Risk: A FAIR Approach",
+    "Anderson, Security Engineering (economics chapters)",
+    "Hubbard and Seiersen, How to Measure Anything in Cybersecurity Risk",
+    "ISO/IEC 27005, Information security risk management"
+  ],
+  "outcomes": [
+    "Build a quantitative risk model from frequency and severity distributions and report a loss exceedance curve with uncertainty.",
+    "Construct attack trees and attack graphs and compute attack probabilities and cheapest attack paths.",
+    "Estimate breach losses and evaluate cyber insurance terms, including accumulation and moral hazard.",
+    "Analyse security investment with cost-benefit models and explain externalities and information asymmetry.",
+    "Model attacker and defender choices as games and compute equilibria and optimal mixed defences.",
+    "Present a risk decision to a board with transparent assumptions, metrics and sensitivity analysis."
+  ],
+  "units": [
+    {
+      "title": "Foundations of cyber risk",
+      "weeks": "1-2",
+      "topics": [
+        "Assets, threats, vulnerabilities and risk as likelihood times impact",
+        "Qualitative versus quantitative assessment; the flaws of risk matrices",
+        "Probability toolkit: distributions, Bayes' rule and Monte Carlo simulation",
+        "Frameworks: ISO 27005, NIST risk management and the FAIR taxonomy",
+        "Risk appetite, tolerance and treatment options: avoid, reduce, transfer, accept"
+      ]
+    },
+    {
+      "title": "Quantitative risk models",
+      "weeks": "3-4",
+      "topics": [
+        "FAIR decomposition: loss event frequency and loss magnitude",
+        "Frequency-severity modelling: Poisson counts and lognormal or Pareto losses",
+        "Monte Carlo aggregation, loss exceedance curves, value at risk and expected shortfall",
+        "Bayesian updating with sparse incident data; calibrated expert elicitation",
+        "Dependence and aggregation: correlation and copulas",
+        "Sensitivity analysis and model risk"
+      ]
+    },
+    {
+      "title": "Attack trees and threat modelling",
+      "weeks": "5-6",
+      "topics": [
+        "STRIDE threat modelling on data-flow diagrams",
+        "Attack trees with AND/OR nodes: probability, cost and cheapest attack",
+        "Attack graphs and Bayesian attack graphs",
+        "Kill chains and the ATT&CK matrix as a threat catalogue",
+        "Markov models of compromise and attacker progress",
+        "Quantifying detection and response: time to detect and time to contain"
+      ]
+    },
+    {
+      "title": "Loss estimation and insurance",
+      "weeks": "7",
+      "topics": [
+        "Breach cost components: direct, indirect, regulatory and reputational loss",
+        "Cyber insurance: coverage, exclusions, premium setting and actuarial pricing",
+        "Systemic risk and accumulation from shared cloud and software dependencies",
+        "Moral hazard and adverse selection in cyber insurance",
+        "Case: mobile money fraud losses and recovery in West Africa"
+      ]
+    },
+    {
+      "title": "Incentives and security investment",
+      "weeks": "8-9",
+      "topics": [
+        "Security investment models with diminishing returns and the one-third rule of thumb",
+        "Return on security investment, NPV and budget allocation",
+        "Externalities, free riding and security as a public good; weakest-link versus best-shot",
+        "Information asymmetry, the market for lemons and certification",
+        "Behavioural economics: compliance budgets, usability and phishing",
+        "Regulation, liability and data protection law as incentives"
+      ]
+    },
+    {
+      "title": "Game-theoretic defence models",
+      "weeks": "10-11",
+      "topics": [
+        "Normal-form games, Nash equilibrium and mixed strategies",
+        "Stackelberg security games and optimal randomised patrols or scans",
+        "Inspection games, deception and honeypots",
+        "Dynamic and Bayesian games; signalling and incomplete information",
+        "Timing games for stealthy takeover and key rotation",
+        "Bounded rationality and learning in games"
+      ]
+    },
+    {
+      "title": "Vulnerability markets and disclosure",
+      "weeks": "12",
+      "topics": [
+        "Vulnerability scoring and prediction: CVSS and exploit prediction scoring",
+        "Vulnerability lifecycle and the economics of patching",
+        "Bug bounties and exploit markets",
+        "Coordinated disclosure policy and national reporting rules"
+      ]
+    },
+    {
+      "title": "Security metrics and decision making",
+      "weeks": "13",
+      "topics": [
+        "Leading and lagging security metrics; metric gaming and perverse incentives",
+        "Decision analysis: expected utility and the value of information",
+        "Communicating uncertainty to a board",
+        "Capstone risk assessment and investment recommendation"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Risk concepts and measurement",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "List the assets, threats and vulnerabilities of a mobile money agent network, score five risks on a 5x5 matrix, then show two different risks that the matrix ranks identically but differ greatly in expected loss.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Identify assets, threats and vulnerabilities in a clinic records case and rank six risks by likelihood times impact using the evidence given"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Score eight risks on a 5x5 matrix, compute expected losses from given ranges, and show two risks whose matrix cells hide a tenfold difference"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Simulate 10,000 years of incidents with a Poisson frequency and lognormal loss, and report the mean, 95th percentile and chance of a loss above a given limit"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Frameworks and risk treatment",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Map a risk assessment of a district hospital onto the steps of two frameworks, then choose a treatment for each of six risks and justify the residual risk against a stated appetite.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Order the steps of a risk assessment process from context to monitoring for a case, and match each to the corresponding framework activity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Pick a treatment option for six risks in a case under a fixed budget, and compute the residual risk against the stated appetite"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Decompose a ransomware risk into FAIR factors, set ranges for each and compute the distribution of annualised loss with a short sensitivity table"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "FAIR, frequency and severity",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Fit a Poisson frequency and a lognormal severity to a small incident log, simulate annual loss and read the loss exceedance curve at 1 in 10 and 1 in 100 year levels.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Break a data-breach scenario into loss event frequency and loss magnitude components and fill in a minimum, likely and maximum for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Fit a Poisson distribution to monthly incident counts and a lognormal to loss sizes, then check each fit with a goodness measure"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Aggregate 50,000 simulated years of losses, plot the loss exceedance curve and compute the value at risk and expected shortfall at 99 percent"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Bayesian estimates, dependence and model risk",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Update a prior estimate of breach frequency after two quiet years, aggregate two correlated risks with a copula, and rank the inputs of a loss model by their influence on the 95th percentile.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Combine a prior on annual breach probability with two years of no incidents using a beta update, and plot prior and posterior"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Simulate two risks with correlation 0, 0.5 and 0.9, and show how the 99th percentile of the combined loss changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Run a one-at-a-time sensitivity analysis on a loss model with six inputs, rank them for the tail loss and name the assumption most worth gathering data on"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "STRIDE, attack trees and attack graphs",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw a data-flow diagram for a mobile money app, list STRIDE threats for each element, build an attack tree for fraudulent cash-out and find the cheapest attack path.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Draw a data-flow diagram of a mobile money transfer and list one STRIDE threat for each process, store, flow and trust boundary"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Build an attack tree with AND and OR nodes for stealing a SIM identity, assign costs and probabilities, and compute the cheapest path"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Convert a six-host network into an attack graph with exploit probabilities, compute the probability of reaching the database and rank the best patch"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Kill chains, Markov models and response time",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Map an incident report onto kill chain stages, model attacker progress as a Markov chain, and estimate how faster detection changes expected loss.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Map twelve events from an incident timeline to kill chain stages and mark where a detection control would have interrupted the attack"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Model an intrusion as a five-state Markov chain, compute the chance of full compromise within 30 days and the mean time to absorb"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Simulate loss growth per day of undetected presence, and compare expected loss for mean detection times of 5, 20 and 60 days"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Breach losses and cyber insurance",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Price a cyber insurance policy from a loss distribution with a deductible and limit, show how a shared cloud outage creates accumulation, and explain moral hazard in a policy with no security conditions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Itemise the direct, indirect and regulatory costs of a customer data breach for a Ghanaian retailer and total them with ranges"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute the expected insurer payout for a policy with a deductible and limit from a simulated loss distribution, and set a premium with a 30 percent load"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Simulate 1,000 insured firms sharing one cloud provider, compare independent and common-shock losses, and show how reserves for the portfolio change"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Security investment and incentives",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compute the optimal security spend for a vulnerability under a diminishing-returns breach probability function, then explain why firms in a weakest-link network underinvest.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Compute return on security investment and NPV for three controls from given costs and avoided loss, and rank them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Plot expected net benefit against spend under a diminishing-returns breach function, find the optimum and compare it with the rule of thumb"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Simulate 20 firms choosing security effort in a weakest-link network, compare the equilibrium with the social optimum and quantify the gap"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Information asymmetry, behaviour and regulation",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Explain how a market for security products can fall into a lemons market, estimate the compliance budget of staff facing frequent warnings, and compare fines and liability rules as incentives.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Judge three product claims in a procurement case with limited evidence, and choose which vendor to trust using certification information"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Design a phishing awareness programme in a branching case, set training and policy choices, and compare click rates over simulated quarters"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E7",
+          "title": "Model a firm's security spend under no rule, a fixed fine and a strict liability rule, and show which one best aligns its incentive with social cost"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Games, Nash equilibrium and Stackelberg models",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Solve a 3x3 attacker-defender matrix game for its mixed equilibrium, compute the leader's optimal randomised strategy in a Stackelberg version, and compare the two.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Find pure and mixed Nash equilibria of a 2x2 attacker-defender game with given payoffs and check that no player gains by deviating"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Compute the defender's optimal randomised coverage of four targets against an attacker who observes the strategy, and compare it with uniform coverage"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Model a honeypot deployment as a deception game, compute the equilibrium mix of real and fake systems and report the defender payoff"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Dynamic games, timing and bounded rationality",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Analyse a signalling game between a vendor and a buyer, find the best key-rotation interval against a stealthy attacker, and discuss how a boundedly rational attacker changes the equilibrium.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Solve a two-type signalling game by backward induction and state under which beliefs a separating equilibrium holds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Simulate a stealthy takeover game with periodic key rotation and find the rotation interval that maximises the defender's control share"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E7",
+          "title": "Simulate learning attackers using fictitious play against a defender, plot strategy convergence and compare it with the computed equilibrium"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Vulnerability markets and disclosure",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Prioritise twenty vulnerabilities using severity and exploit likelihood, estimate the cost of patching delays, and compare a bounty programme with an exploit broker market.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Rank twenty vulnerabilities by severity alone and by severity times exploit probability, and list those whose rank changes most"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Model patch timing as a trade-off between exposure and outage risk, and find the patch delay that minimises expected cost"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Decide how to disclose a flaw found in a national payment gateway in a branching case, balancing user harm, vendor response and legal duties"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Metrics, decisions and capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Prepare a board paper that recommends a security budget for a regional bank, with a loss exceedance curve, sensitivity analysis, alternatives and the expected value of better information.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Sort twelve proposed security metrics into leading and lagging indicators, and identify two that would invite gaming"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute the expected value of perfect information for a choice between two controls and decide whether a 20,000 cedi audit is worth buying"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Recommend a security investment plan to a simulated board, answer questions on assumptions and uncertainty, and revise the plan against the rubric"
+        }
+      ]
+    }
+  ]
+}

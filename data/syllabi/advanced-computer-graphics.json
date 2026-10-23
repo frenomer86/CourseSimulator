@@ -1,0 +1,523 @@
+{
+  "slug": "advanced-computer-graphics",
+  "description": "Graduate-level real-time and offline rendering: GPU architecture, programmable shading, physically based lighting, shadows and global illumination, ray tracing, modern renderer architectures, temporal techniques and profiling. Students implement shaders and renderers as per-pixel code in the lab, derive the underlying mathematics and finish with a research-style rendering project.",
+  "modelledOn": [
+    "Akenine-Moller, Haines and Hoffman, Real-Time Rendering",
+    "Pharr, Jakob and Humphreys, Physically Based Rendering: From Theory to Implementation",
+    "Marschner and Shirley, Fundamentals of Computer Graphics",
+    "Selected SIGGRAPH course notes on physically based shading and real-time ray tracing"
+  ],
+  "outcomes": [
+    "Explain how a GPU executes the graphics pipeline and reason about its memory and parallelism limits.",
+    "Implement shaders for lighting, texturing and procedural effects, including a physically based BRDF with image-based lighting.",
+    "Derive and implement shadowing, ambient occlusion and global illumination approximations and state their errors.",
+    "Build a ray or path tracer with an acceleration structure, importance sampling and denoising.",
+    "Compare forward, deferred and clustered renderer architectures and choose one for a given workload.",
+    "Profile a renderer, identify its bottleneck and apply a justified optimisation, and critique a recent rendering paper."
+  ],
+  "units": [
+    {
+      "title": "GPU architecture and the rendering pipeline",
+      "weeks": "1",
+      "topics": [
+        "GPU architecture: SIMT execution, warps, occupancy and the memory hierarchy",
+        "Pipeline stages: vertex, tessellation, geometry, rasterisation, fragment and compute",
+        "Rasterisation: edge functions, barycentric coordinates and perspective-correct interpolation",
+        "Depth buffering: early-z, z-fighting and reversed-z with floating-point depth",
+        "Homogeneous coordinates and projection matrices: derivation of the perspective matrix"
+      ]
+    },
+    {
+      "title": "Programmable shading",
+      "weeks": "2-3",
+      "topics": [
+        "Shader languages and stages; uniforms, varyings, textures and buffers",
+        "Vertex shader techniques: skeletal skinning, instancing and displacement",
+        "Texture sampling: mipmaps, anisotropic filtering and the derivation of aliasing artefacts",
+        "Compute shaders: work groups, shared memory and parallel reduction and prefix sum",
+        "Procedural shading: Perlin and Worley noise, signed distance functions and ray marching",
+        "Tessellation and mesh shaders for geometry amplification and culling"
+      ]
+    },
+    {
+      "title": "Physically based shading",
+      "weeks": "4-5",
+      "topics": [
+        "Radiometry: radiance, irradiance, the BRDF and the rendering equation",
+        "Microfacet models: Cook-Torrance, GGX normal distribution, Smith masking and Schlick Fresnel",
+        "Diffuse models and the metallic-roughness material workflow; energy conservation",
+        "Image-based lighting: prefiltered environment maps, the split-sum approximation and BRDF lookup table",
+        "Linear-space colour, HDR and tone mapping operators (Reinhard, filmic)",
+        "Area lights and linearly transformed cosines"
+      ]
+    },
+    {
+      "title": "Shadows and global illumination approximations",
+      "weeks": "6",
+      "topics": [
+        "Shadow mapping: bias, percentage-closer filtering and contact-hardening soft shadows",
+        "Cascaded shadow maps for large outdoor scenes and cascade selection",
+        "Ambient occlusion: SSAO and horizon-based methods",
+        "Indirect lighting approximations: light probes with spherical harmonics, voxel cone tracing and screen-space GI",
+        "Reflections: screen-space, planar and probe-based, and their failure cases"
+      ]
+    },
+    {
+      "title": "Ray tracing on the GPU",
+      "weeks": "7-8",
+      "topics": [
+        "Ray intersection with spheres, triangles and boxes; the Moller-Trumbore test",
+        "Bounding volume hierarchies: surface area heuristic build and stackless traversal",
+        "Monte Carlo path tracing: importance sampling, next-event estimation and multiple importance sampling",
+        "Hardware ray tracing APIs, hybrid raster-plus-ray pipelines and their budgets",
+        "Denoising: bilateral and spatiotemporal variance-guided filters",
+        "Variance reduction: low-discrepancy sequences, stratification and reservoir resampling"
+      ]
+    },
+    {
+      "title": "Renderer architectures",
+      "weeks": "9",
+      "topics": [
+        "Forward rendering and deferred shading with a G-buffer; memory bandwidth cost",
+        "Tiled and clustered light culling with compute shaders",
+        "Visibility buffers and material evaluation passes",
+        "Transparency: sorted blending, weighted blended and per-pixel linked-list order-independent transparency",
+        "GPU-driven rendering: frustum and Hi-Z occlusion culling, level of detail and indirect draw"
+      ]
+    },
+    {
+      "title": "Post-processing and temporal techniques",
+      "weeks": "10-11",
+      "topics": [
+        "Bloom, depth of field and motion blur from the physical camera model",
+        "Temporal anti-aliasing: jittered projection, reprojection, history clamping and ghosting",
+        "Spatial anti-aliasing: MSAA, FXAA and SMAA compared",
+        "Temporal and spatial upscaling, and checkerboard rendering",
+        "Auto-exposure, colour grading and look-up tables"
+      ]
+    },
+    {
+      "title": "GPU profiling and optimisation",
+      "weeks": "12",
+      "topics": [
+        "Measuring a frame: timestamp queries, frame budgets and capture tools",
+        "Bandwidth-bound versus ALU-bound work; the roofline model applied to a shader",
+        "Occupancy, divergence and register pressure",
+        "Mobile and tile-based GPUs: budgets for mid-range phones common across Africa",
+        "Draw-call overhead, batching, instancing and pipeline-state sorting"
+      ]
+    },
+    {
+      "title": "Research frontiers and project",
+      "weeks": "13",
+      "topics": [
+        "Reading recent rendering papers: neural radiance fields and Gaussian splatting",
+        "Differentiable rendering and inverse problems",
+        "Designing a rendering project with a reproducible benchmark",
+        "Evaluating image quality: error metrics, perceptual metrics and ground-truth references",
+        "Project presentation and peer critique"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The pipeline, rasterisation and projection",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Derive the perspective projection matrix from similar triangles, then explain with a diagram why perspective-correct interpolation needs 1/w and when z-fighting appears.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Rasterise one triangle with edge functions into a 64 by 64 pixel grid and colour each pixel by its barycentric coordinates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Build a perspective projection matrix, project the eight corners of a cube and plot the result for three fields of view"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compare standard and reversed-z depth precision using float32 across a near plane of 0.1 and far plane of 10,000, and chart the resolvable depth step"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Shader fundamentals, skinning and sampling",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write a vertex transformation for a two-bone skinned limb and derive the mip level from texture coordinate derivatives. Explain aliasing on a checkerboard plane.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement linear blend skinning for a two-bone arm in code and render the vertex positions for three bend angles"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Generate a mip chain for a checkerboard texture and select the level from screen-space derivatives, comparing against nearest sampling on a receding plane"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement trilinear and 8-tap anisotropic sampling on a tilted floor, and measure the blur versus aliasing trade-off against a supersampled reference"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Compute, procedural shading and mesh amplification",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write a parallel reduction and a prefix sum on paper for 16 elements, then build a noise-based terrain pattern and discuss mesh shader culling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Generate 2D value noise at four octaves and combine them into fractal noise, outputting the result as a greyscale image grid"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Emulate a work-group parallel reduction with shared memory in log steps, verify the sum for 1,024 values and count the steps and barriers"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Ray march a signed distance field of a smooth-unioned sphere and box with soft shadows, and plot step count per pixel to find the costly regions"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Radiometry, BRDFs and the rendering equation",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive the Lambertian BRDF value rho over pi, evaluate the GGX distribution for three roughness values, and show why an energy-conserving material must satisfy the white furnace test.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Plot cosine-weighted irradiance against light angle for a diffuse surface and verify numerically that the albedo over pi BRDF integrates to the albedo"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Plot the GGX normal distribution, Smith masking and Schlick Fresnel for roughness 0.1, 0.5 and 0.9 and describe the lobe shape"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Render a sphere with Cook-Torrance and Lambert terms, run a white furnace test by Monte Carlo and report the energy lost at high roughness"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Image-based lighting, colour and area lights",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Derive the split-sum approximation for specular image-based lighting, and compare two tone mapping operators on an HDR image with a bright window.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Apply gamma encoding and Reinhard tone mapping to an HDR gradient and compare the output values against clamping"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Precompute the BRDF lookup table over view angle and roughness by Monte Carlo sampling with 256 samples per texel and output it as an image"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Compare a linearly transformed cosine area light against 4,096-sample Monte Carlo integration for a rectangular light at three roughnesses and report the error"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Shadows, occlusion and indirect light",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Choose cascade split distances for a 1 km view range, explain shadow acne and peter-panning with a diagram, and list what screen-space reflections cannot show.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Render a shadow map for a simple scene and show shadow acne appear and disappear as you change the depth bias"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Implement percentage-closer filtering with 16 taps and a variable penumbra width estimated from the blocker search, and compare edge quality"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Estimate hemisphere ambient occlusion for a depth buffer, add a one-bounce light probe in spherical harmonics, and compare with a path-traced reference"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Ray intersection, BVH and path tracing",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Derive the Moller-Trumbore test, build a BVH for twelve boxes by hand with the surface area heuristic, and explain the variance difference between uniform and cosine sampling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Implement ray-sphere and ray-triangle intersection and render a depth image of a small scene with three spheres and one triangle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Build a BVH over 2,000 random triangles with median split and surface area heuristic, and compare traversal counts per ray against brute force"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Write a path tracer with next-event estimation and multiple importance sampling for a glossy floor and small light, and plot noise against samples per pixel"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Hybrid ray tracing, denoising and sampling",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Budget a hybrid frame at 60 frames per second on a mid-range GPU, sketch a spatiotemporal denoiser, and compare sampling patterns on a test integral.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Estimate the integral of a 2D function with random, stratified and Halton samples at 64 samples and plot the error of each over 50 runs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Denoise a one-sample-per-pixel noisy render with a joint bilateral filter guided by normals and depth, reporting the error before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Build a hybrid frame model where rasterised primary visibility is combined with ray-traced shadows, and chart the ray budget per pixel against frame time"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Forward, deferred and clustered rendering",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "For a scene with 500 lights and 1080p resolution, compute the bandwidth of forward, deferred and clustered shading and recommend one with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Calculate the G-buffer size and per-frame bandwidth for four layouts at 1080p and chart them against a mobile bandwidth budget"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Assign 500 point lights to a 16 by 9 by 24 cluster grid on the CPU and report the lights per cluster distribution and the culling accuracy"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Implement Hi-Z occlusion culling on a depth pyramid for 10,000 instances and measure the fraction culled against exact visibility"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Camera effects and temporal anti-aliasing",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Derive the circle of confusion for a thin lens, explain history clamping in temporal anti-aliasing, and discuss when upscaling introduces ghosting.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute the circle of confusion diameter against object distance for a thin lens at three apertures and plot the in-focus range"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Jitter the projection with a Halton sequence, accumulate eight frames with an exponential history and show edge smoothing on a moving square"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Add motion-vector reprojection with neighbourhood colour clamping to the accumulator, and measure ghosting and flicker against an unclamped version"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Spatial anti-aliasing and exposure",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compare MSAA, FXAA and SMAA on a high-contrast scene in terms of cost, quality and what each misses, and derive an auto-exposure rule from average log luminance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Compute the log-average luminance of an HDR image and set an exposure value that maps middle grey, applying it to three test images"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Implement an edge-detecting FXAA-style filter on a rendered line image and compare jagged-edge counts against 4x supersampling"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Build a 3D colour grading lookup table from a target look, apply it with trilinear interpolation and measure the colour error on a patch chart"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Profiling and optimising a renderer",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Given a frame time breakdown and shader instruction counts, identify the bottleneck using the roofline model and propose two optimisations with predicted gains.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Plot a frame time breakdown across eight passes from timing data and mark which passes exceed their share of the 16.6 ms budget"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Place three shaders on a roofline plot from their arithmetic intensity and decide which are bandwidth bound and which compute bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Model overdraw and bandwidth for a tile-based mobile GPU, optimise a particle-heavy scene to reach 30 frames per second, and explain each change"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Research frontiers and project presentation",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Present the rendering project with a reproducible benchmark, ground-truth comparison and error metrics, and give a written critique of a peer project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Compute mean squared error and peak signal-to-noise ratio between a render and a reference image, and report both for three sample counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Fit the colour of a small sphere to a target image by gradient descent on a differentiable shading function and plot the loss curve"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Implement your project technique and a baseline, benchmark both over 10 scenes with confidence intervals, and write up where the technique fails"
+        }
+      ]
+    }
+  ]
+}

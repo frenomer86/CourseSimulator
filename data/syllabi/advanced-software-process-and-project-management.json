@@ -1,0 +1,513 @@
+{
+  "slug": "advanced-software-process-and-project-management",
+  "description": "Managing real software projects at graduate depth: tailoring a process, estimating under uncertainty, quantifying risk, measuring with care, shipping continuously and leading distributed teams. Students plan and re-plan projects in the diagram studio, run Monte Carlo schedule and risk analyses, and make management decisions in branching case studies.",
+  "modelledOn": [
+    "Boehm and Turner, Balancing Agility and Discipline",
+    "Humphrey, Managing the Software Process",
+    "Forsgren, Humble and Kim, Accelerate",
+    "CMMI Institute, CMMI for Development"
+  ],
+  "outcomes": [
+    "Select and tailor a software process to a project's size, risk, regulation and team context, and defend the choice.",
+    "Produce estimates with ranges using parametric, analogy-based and simulation methods, and plan releases from them.",
+    "Run qualitative and quantitative risk analysis and use decision analysis to choose among responses.",
+    "Choose goal-driven metrics, compute earned-value and flow measures, and recognise how metrics are gamed.",
+    "Design a continuous delivery pipeline and release strategy that balances speed with safety.",
+    "Lead distributed and cross-functional teams, assess process maturity and plan a measured improvement programme."
+  ],
+  "units": [
+    {
+      "title": "Process models and tailoring",
+      "weeks": "1",
+      "topics": [
+        "Plan-driven, iterative, agile and flow-based models compared: waterfall, spiral, unified process, Scrum, extreme programming, Kanban",
+        "Tailoring factors: size, criticality, volatility, culture and team experience",
+        "Balancing agility and discipline; the home-ground analysis",
+        "Processes for regulated and safety-critical domains, and for health and fintech products",
+        "Value-stream mapping and finding waste in a process"
+      ]
+    },
+    {
+      "title": "Estimation and planning under uncertainty",
+      "weeks": "2-3",
+      "topics": [
+        "Why estimates fail: the cone of uncertainty, optimism and anchoring",
+        "Parametric models: COCOMO II and function points",
+        "Expert and relative estimation: Delphi, planning poker, reference-class forecasting",
+        "Critical path, PERT and critical chain scheduling",
+        "Monte Carlo schedule simulation and confidence-level commitments",
+        "Release and sprint planning; velocity and throughput forecasting",
+        "Budgeting and resource levelling for multiple projects"
+      ]
+    },
+    {
+      "title": "Risk and decision management",
+      "weeks": "4",
+      "topics": [
+        "Risk identification: checklists, assumption analysis and pre-mortems",
+        "Qualitative analysis: probability-impact matrices and risk exposure",
+        "Quantitative analysis: expected monetary value, decision trees and Monte Carlo simulation",
+        "Risk response and contingency reserves; supplier and security risk",
+        "Decision records, trade-off analysis and cost of delay"
+      ]
+    },
+    {
+      "title": "Metrics-driven management",
+      "weeks": "5-6",
+      "topics": [
+        "Goal-question-metric and the validity of measurement",
+        "Product and quality metrics: defect density, escaped defects, complexity and technical debt",
+        "Flow metrics: lead time, cycle time, work in progress, flow efficiency and cumulative flow",
+        "Delivery performance measures: deployment frequency, change failure rate and recovery time",
+        "Earned value management: planned and earned value, cost and schedule indices, estimate at completion",
+        "Control charts, dashboards, Goodhart's law and gaming of metrics"
+      ]
+    },
+    {
+      "title": "Continuous delivery and release engineering",
+      "weeks": "7-8",
+      "topics": [
+        "Continuous integration and delivery pipelines; trunk-based development and branching strategies",
+        "Release strategies: blue-green, canary, dark launches and feature flags",
+        "Infrastructure as code, environments and configuration management",
+        "Versioning, change control and release trains; mobile releases in low-bandwidth markets",
+        "Site reliability: service-level objectives, error budgets and on-call",
+        "Incident management and blameless post-incident review"
+      ]
+    },
+    {
+      "title": "Distributed and cross-functional teams",
+      "weeks": "9-10",
+      "topics": [
+        "Conway's law, team topologies and architecture-aligned teams",
+        "Working across time zones: communication, documentation and remote rituals",
+        "Outsourcing and vendor contracts; open-source collaboration and governance",
+        "Team development, psychological safety and handling conflict",
+        "Building engineering teams in African tech hubs: hiring, retention and mentoring",
+        "Leading technical staff: delegation, code review culture and performance conversations"
+      ]
+    },
+    {
+      "title": "Scaling, governance and failure",
+      "weeks": "11",
+      "topics": [
+        "Scaling agile: SAFe, LeSS and Nexus compared; portfolio planning",
+        "Business case, benefit realisation and product management with OKRs",
+        "Contracting: fixed price, time and materials, and outcome-based; public-sector procurement",
+        "Case studies of large project failure: causes and warning signs",
+        "Project recovery: resetting scope, replanning and rebuilding trust"
+      ]
+    },
+    {
+      "title": "Process assessment and improvement",
+      "weeks": "12-13",
+      "topics": [
+        "CMMI maturity and capability levels; ISO/IEC 33000 process assessment",
+        "Retrospectives, root-cause analysis (fishbone, five whys) and PDCA improvement cycles",
+        "Linking improvement to business goals: GQM+Strategies and improvement roadmaps",
+        "Change management: adoption, resistance and measuring whether a change worked",
+        "Lightweight assessment of agile maturity and team health",
+        "Capstone: assess an organisation's process, prioritise improvements and present a plan"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Process models and tailoring",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compare two processes for a clinic-records project and a payment-switch project, justify the tailoring choices with the home-ground factors, and map the value stream of a feature from idea to release.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw the workflow of Scrum, Kanban and a plan-driven model as diagrams, marking feedback loops, artefacts and decision points in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Advise a start-up and a regulated insurer which process to adopt, using the home-ground factors in the case file, and justify against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Map a value stream for a feature from request to production, compute flow efficiency from touch and wait times, and propose three waste reductions"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Why estimates fail, and parametric estimation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Estimate a mobile-money feature set with function points and COCOMO II, then compare with a Delphi round of three estimators and explain the spread.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Compute effort, duration and team size from COCOMO II for a 40 KLOC project with given cost drivers, and plot effort against size"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Run a planning-poker session in a case study with biased estimators, and note where anchoring distorts the result and how to correct it"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Build a PERT network of 12 activities with three-point estimates, compute expected durations, the critical path and its standard deviation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Uncertainty, simulation and release planning",
+      "topics": [
+        "2.5",
+        "2.6",
+        "2.7"
+      ],
+      "exercise": "Run a Monte Carlo simulation of a 12-task schedule to give a 50 and 85 percent confidence date, and forecast a release from a team's throughput history.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Run 10,000 Monte Carlo trials on a task network with triangular durations and read the dates for 50, 80 and 95 percent confidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Forecast the completion of a backlog of 60 items from 12 weeks of throughput data using resampling and show the distribution of finish weeks"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.7",
+          "engine": "E9",
+          "title": "Level resources across two projects in a Gantt chart so that a shared team of five is never overbooked, and show the slip in each project"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Risk identification and decision analysis",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Run a pre-mortem on a national ID app rollout, rank the ten risks by exposure, and choose between mitigating and transferring the top two with an expected-value calculation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Fill a probability-impact matrix for ten risks of a hospital information system project and rank the risks by exposure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Compute expected monetary value on a decision tree for building, buying or outsourcing a module, with probabilities, and find the break-even probability"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Manage risks across a six-month branching project case, choosing responses and reserves each month, and see the outcomes scored against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Measurement and the goal-question-metric approach",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Derive a metric set from a goal for reducing production defects, define each metric operationally, and read a cumulative flow diagram for a team that has too much work in progress.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Build a goal-question-metric tree for the goal of faster, safer releases, with three questions and two defined metrics per question"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute defect density, defect escape rate and defect removal efficiency across 5 modules from the data, and rank the modules by risk"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Plot a cumulative flow diagram from daily board counts, find the bottleneck stage, and compute average lead time by Little's law"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Earned value, delivery metrics and control",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compute earned-value indices and the estimate at completion at month 6 of a project, and explain how a team could game velocity and what to measure instead.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compute PV, EV, AC, CPI, SPI and the estimate at completion for a project at three reporting dates and chart the trend"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute deployment frequency, lead time, change failure rate and time to restore from a deployment log, and classify the team's performance level"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Handle a case where a manager sets a velocity target and the team inflates points, then redesign the measures and justify them against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Continuous integration and release strategies",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Design a pipeline for a mobile banking backend with build, test, security scan, staging and canary release, and explain which stage catches which class of failure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Draw a CI/CD pipeline as a diagram with stages, gates, automated tests and rollback paths for a web service and its mobile client"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E12",
+          "title": "Roll out a new version to a load-balanced pool as a canary, watch error rates, and roll back when the threshold is exceeded"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E4",
+          "title": "Define a repeatable environment with a Dockerfile and configuration files, rebuild it on a clean machine, and show that two builds match"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Versioning, reliability and incidents",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Set service-level objectives and an error budget for a payment API, and write a blameless post-incident review for a failed release.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Compute availability, error budget remaining and burn rate from a month of request logs for a 99.9 percent objective"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Plan a release of a mobile app update for users on slow networks and old devices, choosing staging, versions and rollback against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Lead an incident response in a branching scenario, gather evidence, decide on rollback timing and write the post-incident review"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Teams, architecture and communication",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Redraw the team structure of a platform to match its architecture, and set communication practices for a team spanning Accra, Nairobi and Lagos.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Compare a given module architecture with the team structure, mark the mismatches, and redraw the teams to cut cross-team dependencies"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Run a distributed team across three time zones in a case study, choosing meeting times and documentation, and handle a missed handover"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Negotiate a vendor contract for an outsourced module in a case file, choosing price model, acceptance criteria and exit terms against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "People, culture and leadership",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Plan how to hire, onboard and retain five developers for a growing team in an African tech hub, and prepare a feedback conversation about a missed deadline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Handle a conflict between two senior developers over code review in a case study, choosing responses and seeing how team safety changes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Build a hiring and retention plan for a team that loses developers to overseas remote jobs, weighing salary, growth and mentoring in the case file"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E9",
+          "title": "Design a code review policy as a flow diagram with roles, turnaround targets and escalation, and justify it against delivery data"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Scaling, governance and failure analysis",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compare scaling frameworks for a ministry's twelve-team programme, choose a contract type for a government system, and write a recovery plan for a project that is a year late.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Draw a portfolio of three products with dependencies and a quarterly planning cycle for 8 teams, marking where the coordination points sit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Choose fixed-price, time-and-materials or outcome-based for a public e-service procurement in a case file, and defend it against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Recover a failing project in a branching case: reset scope, replan with new estimates, brief the sponsor and see how trust and delivery respond"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Process assessment and improvement cycles",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Assess a small company's process against CMMI-style practice areas, run a root-cause analysis on late releases, and link an improvement to a business goal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Score a case-file organisation's practices against maturity-model criteria with evidence for each rating, and list the weakest areas"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Draw a fishbone diagram for recurring late releases and apply five whys to the three most likely causes, ending in testable actions"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E9",
+          "title": "Build an improvement roadmap as a Gantt chart with goals, metrics, owners and checkpoints for three improvement initiatives over a year"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Change management and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Present a process assessment and improvement plan for a software organisation, with measures to show whether the change worked and how resistance will be handled.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Introduce a new review practice in a case study, deal with resistance, and measure adoption and outcomes across three quarters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Assess team health survey results over six sprints with a control chart, and decide which changes are signal and which are noise"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Complete the capstone case: assess an organisation, rank improvements by value and effort, and present the plan against the rubric"
+        }
+      ]
+    }
+  ]
+}

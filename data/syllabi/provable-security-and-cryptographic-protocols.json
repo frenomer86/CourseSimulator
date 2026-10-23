@@ -1,0 +1,503 @@
+{
+  "slug": "provable-security-and-cryptographic-protocols",
+  "description": "A doctoral research seminar on the foundations of modern cryptography: security definitions and reductions, pseudorandomness, zero-knowledge proofs, secure multi-party computation, lattice-based schemes, cryptanalysis and the move to post-quantum cryptography. Students read and critique recent papers, work through proofs and toy implementations in the maths lab, and prepare a research proposal with an artefact.",
+  "modelledOn": [
+    "Katz and Lindell, Introduction to Modern Cryptography",
+    "Boneh and Shoup, A Graduate Course in Applied Cryptography",
+    "Peikert, A Decade of Lattice Cryptography",
+    "NIST post-quantum cryptography standardisation reports and draft standards"
+  ],
+  "outcomes": [
+    "State and compare security definitions for encryption, signatures and protocols, and write a reduction-based proof of a simple scheme.",
+    "Construct pseudorandom objects from one-way functions and explain the assumptions each construction needs.",
+    "Design and analyse commitments, sigma protocols and zero-knowledge proofs, including simulators, extractors and the removal of interaction.",
+    "Describe secure multi-party computation protocols for semi-honest and malicious adversaries and estimate their costs.",
+    "Explain how lattice problems yield encryption and signatures, and estimate concrete security with attack cost models.",
+    "Critique a published proof or attack, assess migration to post-quantum schemes, and defend a research proposal with an artefact."
+  ],
+  "units": [
+    {
+      "title": "Security definitions and reductions",
+      "weeks": "1-2",
+      "topics": [
+        "Computational security: negligible functions, probabilistic polynomial-time adversaries, asymptotic versus concrete security",
+        "Game-based definitions (IND-CPA, IND-CCA, EUF-CMA) and simulation-based definitions",
+        "Proofs by reduction and hybrid arguments; tightness and security loss",
+        "Idealised models: the random oracle, ideal cipher and generic group, and critiques of them",
+        "Critiquing a proof: common errors in published security arguments"
+      ]
+    },
+    {
+      "title": "One-way functions and pseudorandomness",
+      "weeks": "3-4",
+      "topics": [
+        "One-way functions, permutations and hard-core predicates",
+        "Pseudorandom generators from one-way functions and the length-extension argument",
+        "Pseudorandom functions from generators by a tree construction; Feistel networks and pseudorandom permutations",
+        "Message authentication and authenticated encryption; composition results",
+        "Number-theoretic assumptions (discrete log, CDH, DDH, RSA, factoring) and the five worlds of average-case complexity",
+        "Collision-resistant hashing: iterated and sponge constructions, and indifferentiability"
+      ]
+    },
+    {
+      "title": "Commitments and zero-knowledge proofs",
+      "weeks": "5-6",
+      "topics": [
+        "Commitment schemes: hiding and binding, discrete-log-based and hash-based commitments",
+        "Interactive proofs: completeness and soundness; sigma protocols for discrete logarithm knowledge",
+        "Zero knowledge: simulators, honest-verifier versus malicious verifier, proofs of knowledge and extractors",
+        "Removing interaction by hashing the challenge; security in the random oracle model and known pitfalls",
+        "Succinct arguments: arithmetisation, polynomial commitments, trusted setup versus transparent proofs",
+        "Applications: anonymous credentials, private payments and verifiable computation"
+      ]
+    },
+    {
+      "title": "Secure multi-party computation",
+      "weeks": "7-8",
+      "topics": [
+        "Adversary models: semi-honest and malicious; composition and the universal composability framework",
+        "Oblivious transfer and garbled circuits",
+        "Polynomial secret sharing and honest-majority protocols for arithmetic and Boolean circuits",
+        "Malicious security: cut-and-choose, authenticated sharing and zero-knowledge compilers",
+        "Threshold cryptography and links to homomorphic encryption",
+        "Applications and costs: private set intersection, auctions and joint statistics across hospitals"
+      ]
+    },
+    {
+      "title": "Lattice-based cryptography",
+      "weeks": "9-10",
+      "topics": [
+        "Lattices, shortest and closest vector problems, and the basis reduction algorithm LLL",
+        "LWE and SIS; worst-case to average-case reductions; ring and module variants",
+        "Public-key encryption and key encapsulation from LWE: correctness and noise analysis",
+        "Lattice signatures: hash-and-sign and Fiat-style signing with aborts",
+        "Fully homomorphic encryption: noise growth and bootstrapping",
+        "Concrete security: BKZ cost models, lattice estimators and parameter selection"
+      ]
+    },
+    {
+      "title": "Cryptanalysis case studies",
+      "weeks": "11",
+      "topics": [
+        "Generic attacks: birthday and meet-in-the-middle; differential and linear cryptanalysis",
+        "Implementation attacks: timing, cache, fault injection and padding oracles",
+        "Breaking deployed systems: weak randomness, nonce reuse in signatures and lattice small-root attacks on RSA",
+        "Break of a proposed post-quantum scheme: causes and lessons for scheme evaluation"
+      ]
+    },
+    {
+      "title": "Post-quantum transitions",
+      "weeks": "12",
+      "topics": [
+        "Quantum attacks: period finding against factoring and discrete log, quantum search against symmetric keys, and resource estimates",
+        "Standardisation of post-quantum schemes: lattice, hash-based, code-based and multivariate families and their status",
+        "Hybrid constructions, crypto-agility and the harvest-now-decrypt-later threat",
+        "Migration in African contexts: constrained devices, bandwidth limits and national identity and payment systems"
+      ]
+    },
+    {
+      "title": "Research seminar: proposal and artefact",
+      "weeks": "13",
+      "topics": [
+        "Surveying a topic and building a reading list",
+        "Formulating an open problem and a proof sketch",
+        "Building and testing a toy implementation or attack as an artefact",
+        "Presenting and defending the proposal"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Computational security and game-based definitions",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Write the IND-CPA game for a symmetric cipher, show that a deterministic cipher fails it with an explicit adversary, and compare asymptotic and concrete statements.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot adversary advantage against key length for a generic key-search attack and decide the key size for 2^-40 advantage at 2^80 work"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Play the IND-CPA game against a deterministic cipher in the lab, build the winning adversary, and measure its advantage over 1000 rounds"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Implement the EUF-CMA game against a textbook RSA signature and find a forgery that needs no signing query on the target message"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Reductions, idealised models and proof critique",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Prove security of a simple scheme by reduction with explicit loss, and identify the flaw in a supplied flawed proof.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compute the security loss of a hybrid argument with q queries and derive the key length needed to keep 2^-40 advantage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Show that a hash function modelled as a random oracle gives a binding commitment, then explain what is lost when the oracle is instantiated"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E6",
+          "title": "Step through a supplied reduction in the visualiser, mark the step where the simulator fails to program the oracle consistently, and repair it"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "One-way functions, generators and PRFs",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Construct a pseudorandom generator from a one-way permutation with a hard-core bit, then build a pseudorandom function by the tree construction and test it statistically.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute modular exponentiation as a candidate one-way function for a 32-bit prime and measure the cost of inversion by brute force and baby-step giant-step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Stretch a short seed to 128 bits using a hard-core bit construction and run a frequency and runs test on 10000 outputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Trace a four-round Feistel network in the visualiser for two plaintexts and show how round count affects distinguishability from a random permutation"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Authentication, assumptions and hashing",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Show that encrypt-and-MAC can leak information while encrypt-then-MAC does not, and map six number-theoretic assumptions by strength.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Build a distinguisher against encrypt-and-MAC for a deterministic MAC and measure its advantage over repeated messages"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E9",
+          "title": "Draw the implications between DLog, CDH, DDH and RSA assumptions and mark which are known to be separated in generic groups"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Implement an iterated hash with a toy compression function, mount a length-extension attack, then fix it with a sponge-style construction"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Commitments, sigma protocols and zero knowledge",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Prove that the sigma protocol for discrete log is complete, special-sound and honest-verifier zero-knowledge, and write its simulator and extractor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Implement a commitment from a group of prime order, open it in two ways when the trapdoor is known, and show binding fails then"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Step through the sigma protocol for knowledge of a discrete log in the visualiser, checking the verifier equation in each of ten runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Write a simulator that produces accepting transcripts without the witness, and test that real and simulated transcripts are statistically close"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Non-interactive proofs and succinct arguments",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Convert the sigma protocol into a non-interactive proof by hashing the challenge, show how omitting the statement from the hash breaks soundness, and survey SNARK designs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Build the non-interactive proof by hashing the challenge, then forge a proof when the statement is not included in the hash input"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Turn a small arithmetic circuit into a rank-one constraint system and check a satisfying assignment by matrix multiplication"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Choose a proof system for a private-payment application in a scenario with prover cost, proof size and setup trust trade-offs, scored on fit"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Security models, oblivious transfer and garbling",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Run a garbled circuit for an AND gate with oblivious transfer on paper and in the lab, and compare semi-honest and malicious security for the same protocol.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Show a semi-honest protocol leaking a private input to a malicious party, and give the adversary strategy that achieves it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Garble an AND gate with random wire labels, evaluate it on all four inputs, and check the evaluator learns only the output"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Share two secrets by degree-1 polynomials over a prime field, multiply the shares, reduce the degree and reconstruct the product"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Malicious security and applications of MPC",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Estimate the communication cost of a three-hospital joint statistic with semi-honest and malicious protocols, and discuss whether a threshold design is better.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Step through a cut-and-choose garbled circuit protocol, mark where cheating is caught, and compute the detection probability for 10 copies"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Implement threshold decryption among 5 parties with threshold 3 and test that any 2 parties learn nothing about the key"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Compute the private set intersection of two patient ID lists with a hash-and-blind protocol and measure cost as list size grows"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Lattices, LWE and SIS",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Find a short vector in a two-dimensional lattice by reduction, build a small LWE instance, and analyse decryption correctness and noise growth.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Reduce a 2D lattice basis by hand-guided steps, plot both bases and compute the shortest vector length"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Generate an LWE instance with dimension 8 and modulus 97, recover the secret by brute force and show how it scales with dimension"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Implement LWE encryption of single bits, estimate the decryption failure rate over 10000 trials and tune parameters to push it below 1 percent"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Lattice signatures, FHE and concrete security",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compare a lattice signature with a classical one on size and speed, analyse noise in homomorphic evaluation, and select parameters for 128-bit security.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Run signing with rejection sampling on toy parameters and plot the acceptance rate against the norm bound"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Track noise growth through a chain of homomorphic additions and multiplications and find the depth at which decryption fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Use a cost model to estimate the block size and bit security for five parameter sets and select the smallest set meeting 128 bits"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Cryptanalysis case studies",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Break a toy cipher with a differential attack, exploit a padding oracle, recover a key from nonce reuse, and write a short post-mortem on a broken post-quantum candidate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Build a difference distribution table for a 4-bit S-box, find the best differential, and use it to recover one key nibble from chosen plaintexts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Mount a padding oracle attack against a toy decryption service and recover a 16 byte message with a count of oracle queries"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Recover a signing key from two signatures that reused the same nonce in a toy discrete-log signature scheme"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Post-quantum transition",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Draft a migration plan for a national payment platform, sorting systems by data lifetime and device limits, with a hybrid mode and a rollback strategy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Estimate the logical qubits and time for breaking 2048-bit RSA and 256-bit symmetric keys under stated assumptions, and compare the two threats"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compare key, signature and ciphertext sizes of five post-quantum candidates against RSA and elliptic-curve schemes and chart the bandwidth cost"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Plan the post-quantum migration of a national identity card system in a scenario with old readers and low bandwidth, scored on risk reduction and cost"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Research seminar: proposal and artefact",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a research proposal with a survey, an open problem, a proof sketch and a small artefact, and answer questions from a seminar panel.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Draw a map of related work for your topic with the main assumptions and models of each paper, and mark the gap you target"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Build a toy implementation of your chosen primitive or attack and run it on three parameter sizes to report cost and success"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Defend your proposal before a panel in a scenario that questions the model, assumptions and artefact, scored on rigour and honesty about gaps"
+        }
+      ]
+    }
+  ]
+}

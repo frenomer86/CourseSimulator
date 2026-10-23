@@ -97,12 +97,406 @@
     },
     {
       "title": "A responsible-AI assessment",
-      "weeks": "14",
+      "weeks": "13",
       "topics": [
         "Combining fairness, transparency, privacy and safety into one evaluation of a system",
         "Producing an impact assessment and a mitigation and monitoring plan",
         "Communicating findings to technical and non-technical stakeholders",
         "Capstone: audit a provided model and dataset and deliver a responsible-AI report with fixes"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Harms and the AI lifecycle",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Pick one AI system you have met in daily life and write a half-page harm map covering who is affected and at which lifecycle stage harm enters.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Classify eight reported harms from AI systems into allocative, representational, quality-of-service and dignity harms and note who was affected"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Trace a biased hiring tool case through problem framing, data, model, deployment and feedback, and identify the stage where each harm enters"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Investigate a flawed face recognition deployment case, weigh the evidence on errors by group, and decide whether to pause the system, scored by rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Regional harms and responsibility",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a stakeholder table for a mobile-money credit scoring model listing each party, what they gain, what they risk and who is answerable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Review a credit scoring case for the unbanked and list which data features could disadvantage rural women, with evidence for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Map the stakeholders in a mobile-money risk model case and decide who carries the cost when it wrongly flags a customer"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Decide whether to deploy a mobile-money fraud model that blocks some honest traders, weighing harm, benefit and appeal options against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Bias and fairness metrics",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Compute demographic parity, equalised odds and predictive parity by hand from a confusion matrix for two groups and compare the three.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Identify the type of bias in each of six case descriptions, such as measurement or representation bias, and cite the evidence in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Compute group selection rates, true positive rates and precision for a loan dataset and report which fairness definitions the model meets"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Show on a given dataset that equal error rates and equal predictive value cannot both hold when base rates differ, and explain what to choose"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Auditing a model",
+      "topics": [
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Write the findings section of an audit memo for a loan model, with the metrics, the groups, the gaps found and the limits of the audit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Load a held-out loan dataset and compute accuracy for each of three groups to show which group the model serves worse"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Test a model by flipping a protected attribute on 200 applicants and count how many decisions change, discussing counterfactual fairness"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Audit a model on a held-out dataset with confidence intervals for each group gap, and write which gaps are real and which may be noise"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Mitigation and sensitive attributes",
+      "topics": [
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Describe three mitigation steps at different stages, and say what each trades away in accuracy or simplicity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Reweight a training set so group sizes balance, retrain, and report the change in accuracy and in the group gap"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Apply a post-processing threshold per group to equalise true positive rates, and measure what the change costs in overall accuracy"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Decide whether and how to collect ethnicity, language and region data for a fairness audit, balancing audit value against the risk of misuse"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Explainability",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain to a classmate the difference between transparency, explainability and interpretability, with one real example of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Sort ten statements about a system into transparency, explainability or interpretability claims and note which need more evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Train a decision tree and a larger model on the same data, compare their accuracy, and explain which you would use for a high-stakes decision"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Compute feature attributions for five predictions with a local method, check them for consistency across similar inputs, and report where they disagree"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Documentation and explaining decisions",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write a one-page model card for a loan model, covering intended use, data, performance by group, limits and contact for complaints.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Fill in a model card template for a provided model, marking each field that the available evidence cannot support"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Draw a partial-dependence plot for two features of a model and identify a misleading pattern that could be produced by correlated inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Write the explanation given to a declined loan applicant with the main reasons and next steps, tested against a rubric for clarity and fairness"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Data protection and consent",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "List the data a mobile health app collects, and mark which items you would drop under data minimisation and purpose limitation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Review a consent form for a loan app and mark where it breaks the rules on consent, purpose and minimisation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Decide whether five described data uses are lawful under the Data Protection Act, citing the principle each decision relies on"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Re-identify individuals in a released anonymised table by linking it with a public list, and report how many are uniquely identified"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Privacy techniques and community data",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a short comparison of k-anonymity, differential privacy and federated learning, with one use and one limit for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Generalise a table of ages and districts to reach k-anonymity with k equal to 3, and count the records that lose precision"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Add Laplace noise to a count query for several privacy budgets and plot how accuracy changes as the budget tightens"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Plan the consented collection of speech data in a local language from a rural community, covering consent, payment and who controls the data, scored by rubric"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Robustness and reliability",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Give three examples of conditions in a rural deployment that differ from the training data and say how each could lower accuracy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Compare a model's accuracy on a test set and on a shifted set from another region, and report the drop"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Create adversarial examples against a small classifier, measure how little change flips its output, and record the success rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Calibrate a classifier, plot its reliability diagram, and choose an abstain threshold that sends uncertain cases to a human at a set workload"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Deployment robustness and monitoring",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a monitoring plan for a deployed model, listing the signals, the thresholds, who is alerted and the rollback steps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Test a model with 10, 20 and 40 percent of its inputs missing and report how accuracy falls under each fill strategy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Detect a drift in a stream of inputs with a statistical test, and trigger an alert at a stated threshold"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Respond to a deployed model that starts failing for one district, deciding evidence needed, rollback timing and communication, scored against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Governance and regulation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Complete a risk register for a hospital triage assistant, scoring likelihood and impact and assigning an owner and control to each risk.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Place a described AI system in the risk-management framework functions and list which activities are missing from its governance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Classify five systems into risk tiers under a regulatory scheme and say which obligations each tier brings"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Evaluate a third-party model for a bank, deciding the evidence to request, the contract terms and who is responsible when it fails, scored by rubric"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "African context and capstone audit",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5",
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Capstone report: audit a provided model and dataset, present fairness, explanation, privacy and robustness results, and recommend fixes with a monitoring plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Choose a deployment design for a village clinic with power cuts and poor connectivity, justifying on-device versus cloud with evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Produce an impact assessment and a mitigation and monitoring plan for a crop advice app, rated against a rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Audit a provided model and dataset for group gaps, privacy leaks and brittleness, apply two fixes and report the before and after results"
+        }
       ]
     }
   ]

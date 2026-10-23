@@ -106,5 +106,401 @@
         "Capstone: plan and dimension a regulated access network for a Ghanaian district"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The anatomy of a network and digital signals",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Compute the Shannon capacity of a channel given bandwidth and signal-to-noise ratio, and explain what changing each input does to the limit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compute the Nyquist sampling rate and the Shannon capacity for three given bandwidth and noise scenarios, and compare the results"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw the access, aggregation, core and interconnection layers for a described national network, labelling where a household's traffic enters each layer"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot an analogue sine wave and its digitised, quantised version side by side, and measure the quantisation error introduced"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Standards and Ghana's telecom landscape",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a short note on why layered standards from bodies like the ITU and IEEE let equipment from different vendors interoperate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Map a described communication exchange onto a layered protocol stack and identify which layer a stated standard belongs to"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Draw a diagram of Ghana's mobile operators, mobile money services and the national backbone, and mark where an outage would affect the most users"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Build a simple layered network in the simulator and show that two correctly layered devices interoperate while a mismatched one fails"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Switching and signalling",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compare circuit, message and packet switching for a voice call and an email, and justify which switching type suits each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E3",
+          "title": "Set up a simulated circuit-switched call path and a packet-switched data path between the same two endpoints and compare the delay of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E3",
+          "title": "Trace an in-band and an out-of-band signalling exchange for a call setup, and explain why separating signalling from voice improved reliability"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Diagram a space-division and a time-division switch fabric for the same four inputs and outputs and compare how each connects a given pair"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Call routing and the move to VoIP",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain, with a diagram, the three phases of a telephone call (set-up, routing, teardown) and how they differ for a VoIP call using a softswitch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E3",
+          "title": "Trace call set-up, routing and teardown for a simulated call between two numbering plan addresses, and identify the role of each signalling message"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E3",
+          "title": "Build a simple VoIP path through a softswitch and compare its signalling steps with the equivalent circuit-switched call"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Design a numbering and addressing plan for a small telecom network with three exchanges, and resolve a numbering conflict between two of them"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Transmission media and impairments",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compute the link budget for a given copper, radio and fibre link and determine which impairment dominates each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Compare the bandwidth and attenuation characteristics of copper, coaxial and fibre links over a given distance and recommend one for a scenario"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute a link budget for a radio link given transmit power, path loss and receiver sensitivity, and determine if it closes"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Plot the constellation of an ASK, FSK and PSK modulated signal and identify which one is more robust to a given noise level"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Multiplexing and digital hierarchies",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Explain with a diagram how frequency-, time- and wavelength-division multiplexing each let multiple signals share one medium.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Simulate four signals multiplexed by time-division onto one channel and demultiplexed back, and verify no signal is lost or mixed with another"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Introduce a bit error into a transmitted codeword and show a simple error-detecting code catches it, then show an error-correcting code repairs it"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E9",
+          "title": "Diagram the hierarchy levels of a synchronous digital transmission system and show how four lower-rate streams combine into one higher-rate stream"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Fibre optics",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compute the optical link budget for a given fibre length, attenuation and connector loss, and state whether a repeater is needed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Explain total internal reflection with a ray diagram for single-mode and multi-mode fibre, and compute the critical angle for given refractive indices"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute an optical link budget for a given fibre run with stated attenuation and connector losses, and determine the margin at the receiver"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Compare the capacity gain from adding wavelength-division multiplexing to a single fibre link against adding a second fibre"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Submarine cables and access networks",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a short resilience plan for a country whose main submarine cable is cut, listing the backup options and their trade-offs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Draw a map of the West Africa submarine cable systems and identify which countries would be most affected if one cable were cut"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E9",
+          "title": "Design a fibre-to-the-home access network for a described neighbourhood, and compare its resilience with a single shared feeder line"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Estimate the capacity loss and rerouting delay for a country when one submarine cable is cut, given the remaining cable capacities"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Radio propagation and cellular principles",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Explain frequency reuse with a worked example of cluster size, and compute the reuse distance for a given cell radius.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute received signal strength using a log-distance path loss model for three distances and compare with a measured value"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Design a frequency reuse pattern for a described cluster of cells and compute the reuse distance for a given cell radius"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E9",
+          "title": "Plan a cellular coverage layout for rural Ghana balancing tower cost against the number of towers needed for a stated coverage target"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Satellite communication",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compare GEO, MEO and LEO orbits for a rural broadband service, using a table of latency, coverage and cost trade-offs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute the round-trip latency for a GEO, a MEO and a LEO satellite link and explain why the difference matters for a voice call"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compute a satellite link budget including rain fade for a given frequency band and determine the margin under clear and rainy conditions"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E9",
+          "title": "Decide whether satellite, fibre or cellular backhaul best serves a described underserved community, and justify the choice against cost and latency"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Traffic engineering",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Use the Erlang B formula to compute the number of trunks needed for a given offered traffic and blocking probability target.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute offered traffic in erlangs from a given call volume and holding time, and interpret what the number means for trunk planning"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Use the Erlang B formula to find the number of circuits needed for a given traffic load and a 2 percent blocking probability"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Dimension the circuits for a rural exchange given a forecast traffic increase, and determine how many extra circuits a 5 percent blocking target needs"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Packet queueing and quality of service",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Explain how a queuing delay model differs from the circuit-switched blocking model, and state which one applies to a congested data link.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Model a packet queue with a given arrival rate and service rate, and compute the utilisation and average delay"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E3",
+          "title": "Configure a QoS policy on a simulated congested link so voice traffic is prioritised over bulk data, and measure the delay improvement"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E3",
+          "title": "Dimension a mobile cell's data channels for a target blocking probability under a given traffic load, and verify the chosen capacity in the simulator"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Regulation and the capstone network plan",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Write a short justification of why spectrum is licensed and why unlicensed bands like Wi-Fi exist alongside it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Compare licensing, interconnection and number portability rules for a described new entrant operator and identify the biggest regulatory hurdle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E9",
+          "title": "Evaluate how Ghana's National Communications Authority rules on SIM registration and consumer protection would apply to a described new service"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E3",
+          "title": "Plan and dimension a regulated access network for a Ghanaian district, choosing media, capacity and coverage, and justify the plan against a stated budget and coverage target"
+        }
+      ]
+    }
   ]
 }

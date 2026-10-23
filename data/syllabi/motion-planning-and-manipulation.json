@@ -1,0 +1,523 @@
+{
+  "slug": "motion-planning-and-manipulation",
+  "description": "Graduate course on how robots decide where to move and how to handle objects: configuration space, search and sampling-based planners, trajectory optimisation, differential kinematics, grasping, contact-rich tasks and mobile manipulation. Students step through planners, implement them in code on arms and mobile bases, and benchmark them in a final project.",
+  "modelledOn": [
+    "LaValle, Planning Algorithms",
+    "Lynch and Park, Modern Robotics: Mechanics, Planning, and Control",
+    "Siciliano et al., Robotics: Modelling, Planning and Control",
+    "Choset et al., Principles of Robot Motion"
+  ],
+  "outcomes": [
+    "Construct the configuration space of a robot and formulate a motion planning problem with collision constraints.",
+    "Implement and compare search-based and sampling-based planners, stating their completeness and optimality guarantees.",
+    "Generate smooth, feasible trajectories by time parametrisation and trajectory optimisation.",
+    "Control a redundant manipulator with differential inverse kinematics, handling singularities and secondary tasks.",
+    "Evaluate grasps with friction-cone and force-closure analysis and plan pick-and-place tasks.",
+    "Benchmark planners rigorously and critique recent literature on contact-rich and mobile manipulation."
+  ],
+  "units": [
+    {
+      "title": "Configuration space and problem formulation",
+      "weeks": "1",
+      "topics": [
+        "Kinematics review: forward kinematics, Denavit-Hartenberg parameters and the Jacobian",
+        "Configuration space: obstacles in C-space, topology of SO(2), SE(2) and joint spaces",
+        "Minkowski sums: translating polygon robots among polygon obstacles",
+        "Collision detection: bounding volumes, the GJK algorithm and signed distance fields",
+        "Problem classes: holonomic versus nonholonomic, completeness, optimality and computational complexity"
+      ]
+    },
+    {
+      "title": "Search-based and combinatorial planning",
+      "weeks": "2-3",
+      "topics": [
+        "Graph search for planning: grids, Dijkstra, A-star and admissible heuristics",
+        "Incremental replanning with D-star Lite for changing maps",
+        "Roadmaps and cell decomposition: visibility graphs and trapezoidal decomposition",
+        "Artificial potential fields, local minima and navigation functions",
+        "State lattices and car-like paths: Dubins and Reeds-Shepp curves",
+        "Bug algorithms for planning with only local sensing"
+      ]
+    },
+    {
+      "title": "Sampling-based planning",
+      "weeks": "4-5",
+      "topics": [
+        "Probabilistic roadmaps: construction, query and lazy collision checking",
+        "Rapidly-exploring random trees and RRT-Connect; Voronoi bias",
+        "Asymptotically optimal planners: RRT-star and PRM-star",
+        "Probabilistic completeness, narrow passages and sampling strategies",
+        "Kinodynamic planning: steering functions and planning with dynamics",
+        "Path post-processing: shortcutting and smoothing"
+      ]
+    },
+    {
+      "title": "Trajectory generation and optimisation",
+      "weeks": "6-7",
+      "topics": [
+        "Trajectory representations: polynomials, splines and minimum-jerk motion",
+        "Time-optimal path parametrisation under velocity and torque limits",
+        "Optimisation formulations: direct shooting, collocation and constraints",
+        "CHOMP, STOMP and TrajOpt: gradient and sequential convex methods for collision-free trajectories",
+        "Model predictive control for trajectory tracking with constraints",
+        "Combining sampling-based initialisation with optimisation-based refinement"
+      ]
+    },
+    {
+      "title": "Differential inverse kinematics",
+      "weeks": "8",
+      "topics": [
+        "Resolved-rate control, Jacobian pseudo-inverse and damped least squares",
+        "Singularities and the manipulability ellipsoid",
+        "Redundancy resolution: null-space projection and secondary objectives such as joint limits and obstacle avoidance",
+        "Task-priority control and quadratic-programming based inverse kinematics with constraints",
+        "Operational-space control and task-space impedance"
+      ]
+    },
+    {
+      "title": "Grasp planning",
+      "weeks": "9-10",
+      "topics": [
+        "Contact models: point contact with friction, friction cones and the Coulomb model",
+        "Form closure, force closure and the grasp matrix",
+        "Grasp quality metrics: epsilon-quality and the grasp wrench space",
+        "Grasp synthesis: analytic, sampling-based and learned grasp detection from depth images",
+        "End-effectors: parallel-jaw, suction and soft grippers, with produce-handling examples from Ghanaian farms and markets",
+        "Pick-and-place pipelines and integrated task and motion planning"
+      ]
+    },
+    {
+      "title": "Contact-rich manipulation",
+      "weeks": "11",
+      "topics": [
+        "Compliance: impedance and admittance control",
+        "Hybrid force and position control",
+        "Contact dynamics: complementarity, friction models and simulation of contact",
+        "Insertion and assembly: peg-in-hole, jamming and compliant strategies",
+        "Learning for contact-rich tasks: reinforcement learning, demonstration and sim-to-real transfer"
+      ]
+    },
+    {
+      "title": "Mobile manipulation",
+      "weeks": "12",
+      "topics": [
+        "Combining base and arm: whole-body motion and reachability maps",
+        "Task and motion planning with symbolic planners and PDDL",
+        "Uncertainty: perception errors, belief-space planning and replanning",
+        "Nonholonomic base control and docking at a workspace",
+        "Software stacks and deployment: MoveIt-style pipelines and field robots for farms and warehouses"
+      ]
+    },
+    {
+      "title": "Benchmarking, literature and project",
+      "weeks": "13",
+      "topics": [
+        "Planner benchmarking: success rate, time, path length and statistical comparison",
+        "Reading recent literature: learned planners, diffusion policies and foundation models for manipulation",
+        "Safety, verification and failure modes of planners",
+        "Project presentation and critique"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Configuration space and collision checking",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Draw the C-space of a two-link planar arm among a rectangular obstacle, compute the Minkowski sum for a polygon robot, and classify four planning problems by class.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compute the Minkowski sum of a triangular robot and a square obstacle and plot the C-obstacle with the robot reference point"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Sample the configuration space of a two-link arm among a box obstacle, plot the colliding region in joint angles, and spot the wrap-around at 2 pi"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Implement GJK for two convex polygons, test 100 random pairs against exhaustive edge intersection checks and report any disagreements"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Graph search for planning",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Plan across a grid map with A-star, show when an inadmissible heuristic gives a suboptimal path, and sketch a visibility graph for a polygon map.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step A-star through an 8 by 8 grid with obstacles, record the open list at each step and compare nodes expanded with Dijkstra"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Step D-star Lite as an obstacle appears on the route, and count how many cells it recomputes against replanning from scratch"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Build a visibility graph for a polygon map, run Dijkstra on it and compare the path length with grid A-star at three resolutions"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Potential fields, lattices and bug algorithms",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Show a local minimum of a potential field in a U-shaped trap, generate a Dubins path between two poses, and trace Bug2 on a map.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Move a point robot on an attractive-repulsive potential field around two obstacles and plot the path, noting any local minimum it hits"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Compute the shortest Dubins path between two poses for a minimum turning radius of 2 m and verify its length against the six word types"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E6",
+          "title": "Step Bug2 through three obstacle layouts, including one where it circles the obstacle, and measure path length against the optimum"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Probabilistic roadmaps and RRT",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Build a PRM and an RRT on the same map, compare their query times, and explain why RRT-star improves path cost over time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Grow an RRT in a 2D map with a step size of 0.5 for 500 iterations and watch how the tree reaches the goal region"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Build a PRM with 300 nodes, connect each to its 10 nearest neighbours, and answer 20 queries, reporting success rate and path cost"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement RRT-star with rewiring, plot path cost against iterations for 20 runs and compare with plain RRT cost"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Completeness, kinodynamics and smoothing",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Test planners on a map with a narrow passage, plan for a car-like robot with a steering function, and shortcut a jagged path.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Shortcut a jagged RRT path by repeatedly connecting random pairs of waypoints with collision-free segments and report the length reduction"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Measure the success rate of RRT and PRM as the width of a narrow passage shrinks, and compare uniform with bridge-test sampling"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Implement a kinodynamic RRT for a car with limited steering angle and test whether the resulting path is drivable by simulation"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Trajectory representation and time parametrisation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Fit a minimum-jerk trajectory through waypoints, find the time-optimal speed profile along a path under torque limits, and formulate a collocation problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Fit a quintic polynomial between two joint positions with zero velocity and acceleration at both ends and plot position, velocity and acceleration"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Compute a time-optimal speed profile along a fixed path with velocity and acceleration limits using forward and backward passes"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Pose a direct collocation problem for a two-link arm swing-up, solve it with a gradient solver and check the dynamics at the knot points"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Optimisation-based planners and MPC",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compare CHOMP with a refined sampling-based path on a cluttered scene and write a note on when optimisation fails.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Run a CHOMP-style gradient step on a straight path that crosses an obstacle and plot the path movement over 20 iterations"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Track a reference trajectory with a model predictive controller on a double integrator with input limits and plot the tracking error"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Initialise an optimiser from an RRT path, refine it, and compare cost and clearance against plain RRT smoothing over 10 maps"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Differential kinematics and redundancy",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Drive a three-link arm to a target with resolved-rate control, show behaviour near a singularity with pseudo-inverse and damped least squares, and use the null space for joint limit avoidance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute the Jacobian of a two-link arm at three poses and find the joint rates that give a desired end-effector velocity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Move a two-link arm through a singular configuration with pseudo-inverse and damped least squares and plot the joint velocity spikes"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Control a 3-link redundant arm to a target while using null-space motion to stay away from joint limits and an obstacle point"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Grasp mechanics and quality",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Draw friction cones for a two-finger grasp of a bottle, test force closure for three grasps, and compute a quality metric.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Draw the friction cone for a contact with friction coefficient 0.5 and check whether given contact forces lie inside it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Build the grasp matrix for a three-contact planar grasp and test force closure by checking the origin lies in the interior of the wrench hull"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Compute the epsilon grasp quality for 50 candidate grasps of a polygon object and rank them, verifying the best against a perturbation test"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Grasp synthesis and pick-and-place",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Choose end-effectors for picking tomatoes, yams and cartons in a market, and write the plan of a pick-and-place pipeline with failure recovery.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Choose a gripper type for six objects from a Ghanaian market stall and justify each against fragility, shape and surface"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Sample antipodal grasps on a depth-map outline, filter by friction cone and report the fraction that pass for three objects"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E6",
+          "title": "Step a task planner for a block-stacking pick-and-place problem, finding the action sequence and inserting a regrasp when the motion planner fails"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Compliance and contact",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Tune an impedance controller for a wall-contact task, design a peg-in-hole insertion strategy with compliance, and read two papers on learned contact-rich skills.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Plot the response of a mass-spring-damper impedance model hitting a wall for three stiffness values and read the peak contact force"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Simulate hybrid force and position control that wipes a surface at constant 5 N force and report the force error along the path"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Simulate peg-in-hole insertion with lateral error and a compliant wrist, finding the largest misalignment that still succeeds without jamming"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Mobile manipulation and deployment",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Plan a mobile manipulator that fetches an item from a shelf, with a reachability map, base placement and a recovery plan for a failed grasp.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Plot the reachable workspace of a two-link arm and choose base positions from which a table-top target is reachable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Step a symbolic planner on a fetch-and-carry task with three rooms and two objects, and list the action sequence found"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Plan with a noisy object pose estimate, replan when a grasp misses, and measure task success over 100 randomised trials"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Benchmarking and project presentation",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Present the project: problem, planners compared, benchmark design, statistical results and failure analysis, followed by a critique of a peer project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Run two planners on 20 random maps and tabulate success rate, planning time and path length for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E7",
+          "title": "Compare planner path lengths across 30 maps with a paired test and effect size, and state which planner is preferable"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Stress-test your planner with adversarial maps and sensor noise, categorise every failure and propose a fix for the most common one"
+        }
+      ]
+    }
+  ]
+}

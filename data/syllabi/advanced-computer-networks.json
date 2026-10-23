@@ -1,0 +1,505 @@
+{
+  "slug": "advanced-computer-networks",
+  "description": "Graduate-level network engineering: capacity planning, large-scale routing and traffic engineering, data centre fabrics, quality of service, virtualisation, telemetry and automation. Students design and stress networks in the simulator and cloud console, then reproduce and critique results from the research literature.",
+  "modelledOn": [
+    "Peterson and Davie, Computer Networks: A Systems Approach",
+    "Kurose and Ross, Computer Networking: A Top-Down Approach (advanced chapters)",
+    "Doyle and Carroll, Routing TCP/IP, Volumes I and II"
+  ],
+  "outcomes": [
+    "Dimension links and topologies from a traffic matrix and queueing models, and justify the redundancy and cost trade-offs.",
+    "Configure and analyse OSPF, IS-IS, BGP and MPLS designs, including policy, convergence and traffic-engineering behaviour.",
+    "Design leaf-spine and overlay data centre networks and evaluate load balancing and congestion control under load.",
+    "Implement and measure quality-of-service mechanisms, and reason about delay bounds with token buckets and schedulers.",
+    "Build network automation and telemetry pipelines, and evaluate a network design experimentally against published results."
+  ],
+  "units": [
+    {
+      "title": "Network design and capacity planning",
+      "weeks": "1-2",
+      "topics": [
+        "Hierarchical and spine-leaf design models: access, distribution and core",
+        "Traffic matrices and demand estimation; busy-hour and peak-to-mean ratios",
+        "Queueing models for links: M/M/1 and M/D/1 delay; Erlang B and C for dimensioning",
+        "Oversubscription, redundancy and k-connected resilient topologies",
+        "Capacity planning for a national backbone: exchange points, submarine cable landings and terrestrial fibre",
+        "Cost-performance optimisation of topology and link upgrades"
+      ]
+    },
+    {
+      "title": "Advanced routing and traffic engineering",
+      "weeks": "3-4",
+      "topics": [
+        "Link-state internals: OSPF areas and LSA types, IS-IS, fast convergence and BFD",
+        "BGP in depth: path attributes, policy, route reflectors, communities, convergence and route leaks",
+        "Internet exchange points, peering versus transit economics, and RPKI route origin validation",
+        "MPLS: label switching, LDP and layer-3 VPNs",
+        "Traffic engineering: constraint-based routing, ECMP and segment routing",
+        "IP multicast: IGMP and PIM"
+      ]
+    },
+    {
+      "title": "Data centre and overlay networks",
+      "weeks": "5-6",
+      "topics": [
+        "Data centre topologies: fat-tree, Clos and leaf-spine; east-west traffic",
+        "VXLAN and EVPN overlays; underlay versus overlay",
+        "Load balancing: ECMP hashing, consistent hashing, layer-4 and layer-7 balancers and anycast",
+        "Data centre transport: TCP incast, DCTCP and RDMA over converged Ethernet",
+        "Congestion control: Reno, CUBIC and BBR; fairness, bufferbloat and QUIC",
+        "Content delivery and edge caching for African networks"
+      ]
+    },
+    {
+      "title": "Quality of service",
+      "weeks": "7",
+      "topics": [
+        "QoS models: best effort, IntServ with RSVP, and DiffServ",
+        "Classification and marking with DSCP and CoS; trust boundaries",
+        "Queue scheduling: FIFO, priority, WFQ, CBWFQ and LLQ; delay bounds",
+        "Policing and shaping with token and leaky buckets",
+        "Congestion avoidance with RED, WRED and ECN; voice and video requirements"
+      ]
+    },
+    {
+      "title": "Network virtualisation and software-defined networking",
+      "weeks": "8-9",
+      "topics": [
+        "SDN architecture: control and data plane separation, OpenFlow match-action",
+        "SDN controllers, northbound APIs and flow table design",
+        "P4 and programmable data planes",
+        "Network function virtualisation: VNFs, service chaining and virtual switches",
+        "Network slicing and multi-tenancy with VRF and VXLAN isolation",
+        "Container networking: CNI plugins, overlays and service meshes"
+      ]
+    },
+    {
+      "title": "Monitoring and telemetry",
+      "weeks": "10",
+      "topics": [
+        "SNMP, syslog, NetFlow/IPFIX and sFlow",
+        "Streaming telemetry with gNMI and YANG models",
+        "Active measurement: latency, jitter and loss; Paris traceroute and one-way delay",
+        "Anomaly and DDoS detection from flow data",
+        "Dashboards, SLOs and root-cause analysis"
+      ]
+    },
+    {
+      "title": "Network automation",
+      "weeks": "11-12",
+      "topics": [
+        "Infrastructure as code for networks: templates, Jinja2 and Ansible",
+        "NETCONF, RESTCONF and YANG data models",
+        "Intent-based networking and closed-loop automation",
+        "Testing and CI/CD for networks: configuration validation, digital twins and reachability verification",
+        "Change management, rollback and network reliability engineering"
+      ]
+    },
+    {
+      "title": "Research methods and capstone",
+      "weeks": "13",
+      "topics": [
+        "Reading networking research: measurement papers and design critiques",
+        "Reproducing a result in simulation; experimental methodology and statistics",
+        "Capstone: design, simulate and defend a network for a regional ISP or hospital group",
+        "Open problems: networks in low-bandwidth settings and the security of routing"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Design models, demand and link dimensioning",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Estimate a traffic matrix for a four-city ISP from subscriber counts, then dimension each trunk so utilisation stays under 70 percent at busy hour.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E3",
+          "title": "Build a three-layer access, distribution and core topology for a campus and check that every host reaches every other with a ping test"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Build a traffic matrix for five sites from given populations using a gravity model and compute the busy-hour load on each link"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Use the Erlang C formula to size a call-centre trunk group and an M/M/1 delay model to size a router uplink, showing the assumptions"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Resilience, backbones and cost",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Design a resilient national backbone with two submarine landing points and justify each added link by cost and availability gained.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Add redundant links to a ring topology, fail each link in turn in the simulator and record which host pairs lose connectivity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E3",
+          "title": "Connect three regional networks through an exchange point so that domestic traffic stays local, and verify the paths with traceroute"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E7",
+          "title": "Choose which links to upgrade within a fixed budget to minimise the worst link utilisation under a failure of the busiest link"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Link-state, BGP and peering",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Configure a multi-area OSPF network and a three-AS BGP topology, apply policy, and explain a route leak scenario with the fix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E3",
+          "title": "Configure a two-area OSPF network, inspect the link-state database and identify the area border router and each LSA type present"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E3",
+          "title": "Set local preference and AS-path prepending on a dual-homed customer so inbound and outbound traffic use the intended provider links"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E3",
+          "title": "Reproduce a route leak between three autonomous systems, show its effect on a victim prefix and apply filters and origin validation to stop it"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "MPLS, traffic engineering and multicast",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Build an MPLS L3VPN for two customers on one provider core and engineer traffic across two unequal paths.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E3",
+          "title": "Enable label switching on a four-router core and follow a packet showing the label pushed, swapped and popped at each hop"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E3",
+          "title": "Spread traffic over two equal-cost paths with ECMP, then change link costs to move half the load to a longer path"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E3",
+          "title": "Configure multicast with IGMP and PIM so a video source reaches subscribers in three sites, and verify the distribution tree and pruning"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Data centre topologies and overlays",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Design a leaf-spine fabric for 2,000 servers with a stated oversubscription ratio, add a VXLAN overlay and a load balancer tier.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E3",
+          "title": "Build a small leaf-spine topology and count the equal-cost paths between two servers on different leaves"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E3",
+          "title": "Create a VXLAN overlay that extends one layer-2 segment across two leaves and verify reachability between the two virtual machines"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E12",
+          "title": "Compare ECMP hashing with consistent hashing across a load balancer pool, and measure the traffic skew when one backend is removed"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Transport, congestion and content delivery",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compare congestion control algorithms on a lossy long-delay path and design a caching plan to cut international bandwidth use for a Ghanaian ISP.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Plot the congestion window of Reno over a sequence of loss events and mark slow start, congestion avoidance and fast recovery"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E3",
+          "title": "Reproduce incast by sending synchronised responses through a shallow-buffer switch and measure the goodput collapse as the number of senders grows"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Simulate a cache with a Zipf popularity workload, find the hit rate for different cache sizes, and estimate the saved international bandwidth"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Quality of service",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Design a QoS policy for a branch office sharing voice, video and bulk transfer on one link and prove the voice delay bound.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E3",
+          "title": "Mark voice, video and web traffic with DSCP values at the edge and confirm the markings at a downstream router"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E3",
+          "title": "Configure a low-latency queue for voice and weighted queues for other classes, then show voice delay under a saturating bulk transfer"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute the worst-case delay of a flow shaped by a token bucket through a weighted fair queue and check it against a simulation"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Software-defined networking",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write match-action rules for a learning switch and a firewall, and describe how a P4 program would change the data plane.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E3",
+          "title": "Install flow entries on a virtual switch matching on destination address and verify the packet counters for each rule"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Write a controller application that learns host locations and installs forwarding flows, and test it on a three-switch topology"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Specify a P4-style parser and match-action pipeline that drops traffic from a rate-limited source, and trace sample packets through it"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "NFV, slicing and container networks",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Design a service chain with a firewall and load balancer as virtual functions and isolate two tenants on one shared fabric.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E3",
+          "title": "Chain a firewall and a NAT function between a client and server and trace a packet through both functions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E3",
+          "title": "Isolate two tenants with separate VRFs on shared routers and show that their overlapping address ranges do not interfere"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E12",
+          "title": "Deploy pods across two nodes with an overlay network, apply a network policy, and measure the throughput overhead against the host network"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Telemetry and measurement",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Collect flow records and streaming metrics from a simulated network, detect an injected DDoS attack, and build the dashboard that revealed it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E3",
+          "title": "Enable flow export on a router, generate traffic and list the top five talkers from the collected records"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write a probe that measures latency, jitter and loss to several hosts every second, and plot the results with a daily summary"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Detect a volumetric attack in a flow log using entropy of source addresses and a threshold, and measure detection delay and false alarms"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Templates, models and intent",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Generate configurations for 20 branch routers from one template and a data file, then push them through a model-driven interface.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Fill a Jinja2 template with per-site variables to produce router configurations and check them against a reference config"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E3",
+          "title": "Read and change an interface setting through a model-driven API on a simulated router and verify the running configuration changed"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Write a closed-loop script that detects a congested link from telemetry and shifts traffic by changing a routing cost, then verifies the fix"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Testing, change control and reliability",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Build a pipeline that validates a proposed change in a digital twin, checks reachability invariants and rolls back automatically on failure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Work a change management case, choosing the maintenance window, test steps and rollback trigger for a core router upgrade"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E3",
+          "title": "Check reachability and isolation invariants on a modelled network before and after a configuration change and report any violation"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Build a pre-deployment check that rejects any configuration change creating a forwarding loop or exposing an internal subnet, tested on faulty changes"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Research reading and capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Reproduce one published result in the simulator, critique its method, and defend a capstone network design for a regional ISP.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Read an excerpt from a measurement paper and answer questions on its claims, method, data and threats to validity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E3",
+          "title": "Repeat a simulation experiment with ten random seeds, report the mean and confidence interval, and compare it with the paper's single figure"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E3",
+          "title": "Simulate the capstone ISP design under peak load and a double link failure, and report whether the stated service levels are still met"
+        }
+      ]
+    }
+  ]
+}

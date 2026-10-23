@@ -117,5 +117,405 @@
         "Capstone: building and auditing a small double-entry accounting system for a susu group"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Accounting, the equation and the business",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Short problem set: classify 20 items as assets, liabilities, equity, income or expenses and restate each transaction in the accounting equation; then write a one-page note on which accounting concept (accruals, prudence, materiality) a given case breaks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Classify 15 items from a Kumasi provision shop as assets, liabilities or equity and confirm the accounting equation balances after each of five transactions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Advise three entrepreneurs (a sole trader, a partnership and a susu group) on the best form of business, citing liability, tax and regulation evidence in the case file"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Review a draft set of accounts that ignores accruals and materiality, select the evidence of each breach and justify the correction on a scored rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Debits, credits and the trial balance",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Post a month of 25 transactions from a small trader into journals and ledger accounts by hand, then balance each account and extract a trial balance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E5",
+          "title": "Build a chart of accounts table of 20 accounts with types and normal balances, then query it to list all asset accounts that normally carry a debit balance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E5",
+          "title": "Record 15 sales, purchases and cash transactions in a journal table and write SQL posting each entry to ledger accounts, then check total debits equal total credits"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E5",
+          "title": "Find and correct five planted errors (omission, reversal, compensating, commission, one-sided) in a ledger database using a trial balance query, and say which errors the trial balance misses"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Period-end adjustments and reconciliation",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Prepare adjusting entries for a trader's year end (accrued rent, prepaid insurance, depreciation, closing stock, bad debts) and reconcile a mobile money wallet to the ledger.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Post year-end adjustments for accrued wages, prepaid rent and straight-line depreciation of one asset, then query the adjusted trial balance to confirm it still balances"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Reconcile a mobile money agent float account against the ledger using a transaction table, listing each unmatched item and its cause in a reconciliation statement"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E5",
+          "title": "Convert a market trader's sales notebook of 60 lines into journals and ledger, then adjust for stock and bad debts and produce a trial balance that agrees"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Financial statements and cash flow",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "From a given adjusted trial balance, draw up an income statement, a statement of financial position and a cash flow statement, and explain in a paragraph why profit differs from cash.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E5",
+          "title": "Write SQL over a trial balance table to produce an income statement showing revenue, cost of sales, gross profit and net profit for a small shop"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E5",
+          "title": "Query an adjusted trial balance to produce a classified statement of financial position and verify that assets equal liabilities plus equity to the pesewa"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Explain why a profitable bakery runs out of cash by tracing the indirect cash flow reconciliation, then choose financing actions that fix it and score against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Ratio analysis and annual reports",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Calculate ten ratios for two years of a listed company's accounts, comment on trends against a sector benchmark, and list three limitations of your conclusions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E5",
+          "title": "Compute gross margin, current ratio and gearing for two years from a financial statements table using SQL and state whether each ratio improved"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E5",
+          "title": "Build a ratio query comparing three competing retailers across profitability, liquidity and efficiency ratios, and rank them with a written justification of the ranking"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Read an extract of a listed company's annual report, select the evidence behind a lender's decision to extend credit, and justify the choice against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Costing and break-even",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Cost a product three ways (absorption, activity-based, marginal), draw its break-even chart and decide on a special order using relevant costs only.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E5",
+          "title": "Classify 20 cost lines of a small factory as direct, indirect, fixed or variable using a cost table and compute total fixed and variable cost"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E5",
+          "title": "Compute contribution per unit and the break-even point for a bakery from a cost table, then test the margin of safety if sales fall 15 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Cost a bag of shea butter for a women's cooperative, decide whether to accept a bulk export order at a lower price and justify using relevant costs"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Budgets and variances",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Prepare a quarterly cash budget for a seasonal trader, then explain the variances between a flexible budget and actual results for materials, labour and overheads.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E5",
+          "title": "Build a sales, production and purchases budget table for four quarters and check that opening and closing inventory figures reconcile"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E5",
+          "title": "Write queries comparing a flexible budget with actual figures to calculate materials, labour and overhead variances and flag the three largest adverse variances"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Prepare an IT department budget with capital and operating items, compare three-year total cost of ownership of two server options and defend the recommendation"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Time value of money and project appraisal",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Appraise three mutually exclusive projects by payback, ARR and NPV; explain where the methods disagree and which you would recommend.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Use the maths lab to compute the present value of an annuity of GHS 5,000 for six years at 18 percent and check it against the formula"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compute NPV, IRR and profitability index for a minibus purchase over five years and plot the NPV profile to find the discount rate where it crosses zero"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Rank two projects with conflicting NPV and IRR results, plot both NPV profiles to find the crossover rate and explain which project to choose under capital rationing"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Risk, finance and the rural clinic investment",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Prepare a short investment memo for a rural clinic's solar and server installation, with sensitivity analysis on inflation and interest rate, and a recommendation on how to finance it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Recalculate an investment's NPV at inflation rates of 8, 15 and 25 percent and tabulate how the decision changes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Compare a bank loan, an equipment lease and a microfinance loan for a small business, choosing from the evidence provided and scoring against a finance rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Appraise a solar and server investment for a rural clinic under three scenarios, decide whether to proceed and defend the funding mix in front of a review board"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Transaction cycles and double entry in software",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Design a relational schema for ledgers and journals using the REA model, and write the SQL for a transaction that must post balanced debits and credits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Draw a diagram of the revenue cycle from customer order to cash receipt, labelling each document and the ledger accounts it updates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E5",
+          "title": "Design and create an REA-based schema with sales events, customers, items and cash receipts, then load ten sample transactions and query a customer statement"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E5",
+          "title": "Implement a posting transaction that refuses unbalanced entries, add reversal entries instead of deletes, and prove with tests that rounding never leaves a one-pesewa difference"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Accounting documentation and integrations",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Document an existing small-business invoicing process with a data flow diagram and a BPMN model, and write a half-page note on integrating mobile money payment notifications.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E9",
+          "title": "Draw a level 1 data flow diagram for a shop that takes orders, issues invoices and records payments, labelling every data store and external entity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E9",
+          "title": "Model an e-invoicing process between a supplier and the revenue authority as a BPMN diagram with exception paths for rejected invoices and tax errors"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E5",
+          "title": "Match 40 mobile money payment notifications to open invoices with SQL, handle duplicates and partial payments, and post the receipts without breaking the ledger balance"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Payroll, PAYE and VAT",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Compute payroll for five employees with allowances and overtime, apply PAYE bands and SSNIT contributions, and prepare the journal entry for the payroll.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E5",
+          "title": "Calculate gross pay, overtime and net pay for six employees from an attendance table using SQL, and verify the total against a hand calculation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E5",
+          "title": "Apply PAYE income tax bands and the employee and employer SSNIT contributions to a payroll table, then reconcile total deductions to the amount payable to the authorities"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E5",
+          "title": "Generate payslips and the payroll journal for a ten-person firm, post it to the general ledger and find the planted rounding error that breaks the trial balance"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Controls, fraud and the susu capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Build a small double-entry system for a susu group with contributions, payouts and loans, then audit it for control weaknesses and write up your findings.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Review a small firm's cash handling procedure, identify which segregation of duties and authorisation controls are missing and choose the three most urgent fixes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.4",
+          "engine": "E5",
+          "title": "Use a Benford's law first-digit query to screen 500 supplier invoices, flag the suspicious payee and the likely duplicate invoices, and summarise your evidence"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E5",
+          "title": "Build and audit a double-entry ledger for a susu group with contributions, payouts and loans, then find a planted ghost-member fraud using audit-trail queries"
+        }
+      ]
+    }
   ]
 }

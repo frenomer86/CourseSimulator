@@ -115,5 +115,403 @@
         "Capstone: an emulated campus or operator network with a controller application for routing, access control and monitoring, plus one P4 or NFV extension"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Limits of traditional networks",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Describe a real misconfiguration outage in a traditional network, explain which part of the integrated control and data plane design made it hard to prevent, and list what an early programmable approach like Ethane changed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E3",
+          "title": "Configure a three-router chain with static routes from the CLI and note how many separate device configurations a single path change touches"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E3",
+          "title": "Fail a link in a ring of routers running a routing protocol and record the convergence time and the interim loss of packets"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E3",
+          "title": "Build a scripted topology of three virtual hosts and two Open vSwitch switches, verify reachability, and export the topology as a rebuildable script"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "SDN architecture and planes",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw the SDN layers with southbound and northbound interfaces, then argue how many controllers a four-site African operator needs, weighing latency against consistency.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E3",
+          "title": "Label each function of a given switch (forwarding, routing computation, SSH access) as data, control or management plane and test each by disabling it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E3",
+          "title": "Connect three OpenFlow switches to one controller in the simulator and verify the controller discovers all switches and their ports"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E3",
+          "title": "Place one controller in a four-site topology to minimise worst-case switch-to-controller latency, and compare with a two-controller placement"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Abstractions and network virtualisation",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain how a controller turns a topology graph into forwarding rules, and describe how VXLAN lets two tenants share a physical network with overlapping addresses.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Compute the shortest path between two hosts on a given topology graph in Python and list the switch hops a controller would program"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E3",
+          "title": "Create a VXLAN or GRE tunnel between two virtual switches and verify two hosts on different physical subnets share one logical segment"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E12",
+          "title": "Create two tenant virtual networks with overlapping 10.0.0.0/24 ranges on the cloud console and prove that traffic stays isolated between them"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "OpenFlow switches and messages",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "For five packets, decide which flow entry matches in a given flow table with priorities and write the resulting action and the counter values after the packets pass.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E3",
+          "title": "Install one flow entry matching a destination MAC and outputting to a port, send three pings, and read the packet counters in the flow table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E3",
+          "title": "Build a two-table pipeline where the first table filters by VLAN and the second forwards, and verify with test packets that each stage acts"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E3",
+          "title": "Configure a fast-failover group with primary and backup ports, break the primary link, and show traffic switches over without a controller call"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Flow installation and management protocols",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compare reactive and proactive flow installation for a 500-host campus on first-packet delay and table size, and write the NETCONF XML to read an interface configuration.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E3",
+          "title": "Use the switch command line to add, list and delete three flow entries by hand, and verify the packet path changes after each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E3",
+          "title": "Compare reactive and proactive installation by measuring first-packet delay for 10 new flows and counting packet-in messages for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E3",
+          "title": "Fill the flow table to capacity with generated flows, observe the table-full behaviour, and add idle timeouts that keep the table within limits"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Controller architecture and northbound interfaces",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compare Ryu, ONOS and OpenDaylight on language, clustering and typical use, and sketch the REST calls an operator app would make to request a path between two hosts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E3",
+          "title": "Watch LLDP discovery on a four-switch topology and list the links the controller finds in the topology database after startup"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Write a script calling a controller REST API to list switches and install a flow, then verify the flow in the switch table"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Write a small controller event handler in Python that logs host arrivals, tracks host locations, and updates when a host moves ports"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Scalability, failure and consistent updates",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Explain how three controller replicas keep state consistent when one fails, and show with a diagram how an uncoordinated update can create a transient forwarding loop.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E3",
+          "title": "Stop the primary controller in a two-controller setup and verify switches fail over and hosts keep reaching each other"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Step through a leader election among five controller nodes after the leader fails, and record the term and votes at each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E3",
+          "title": "Update a path across four switches in the wrong order to cause a transient loop, then redo it using a two-phase update that avoids it"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Writing SDN applications",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Design a controller application with policy file input that routes by shortest path, blocks listed hosts, and balances two servers, then specify how you would verify it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Complete a learning switch controller app, then ping between four hosts and verify it installs flows only after learning the MAC addresses"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Write a firewall app that reads a policy file of allowed host pairs and verify that blocked pairs fail and allowed pairs succeed"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Write a checker that analyses installed flow rules for loops and black holes and run it on a topology with two planted faults"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Network function virtualisation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Map the ETSI NFV blocks to a virtual firewall deployment, and design a service chain that sends web traffic through firewall then cache while other traffic bypasses it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E3",
+          "title": "Replace a hardware firewall in a diagram of a small office with a virtual firewall on a host and confirm the same traffic is permitted and blocked"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E3",
+          "title": "Steer only HTTP traffic through a virtual firewall using flow rules and verify other protocols take the direct path"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E12",
+          "title": "Deploy a virtual network function on the cloud console behind a load balancer, scale it to three instances, and verify traffic is distributed"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Performance and building chains",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Compare kernel packet processing and DPDK on a 10 Gbit/s link for per-packet cost, and write a plan to containerise a firewall and NAT function with orchestration.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E3",
+          "title": "Measure throughput between two hosts on a software switch at three packet sizes and record how small packets reduce the rate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E3",
+          "title": "Build a service chain of a virtual firewall then NAT between a LAN and server, and verify addresses are translated and blocked ports fail"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E12",
+          "title": "Deploy a containerised NAT function on a managed cluster, autoscale it under generated load, and report throughput before and after scaling"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Programmable data planes with P4",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write the parser, match-action table and deparser for a custom header with a 16-bit tag field in P4, and explain how P4Runtime would populate its table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Read a given P4 program and write down its header definitions, parser states and match-action table keys in a summary table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Add a custom header with a 16-bit tag to a P4 program on a software switch and show packets are forwarded according to the tag"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Write a P4 program that records per-packet queue depth into a header and reports the maximum seen for each hop in a test run"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Data centres, WANs and exchanges",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Design a leaf-spine fabric for 200 servers with ECMP, estimate oversubscription, and explain how a software-defined exchange in Accra could keep local traffic local.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E3",
+          "title": "Build a two-spine four-leaf topology and verify that every pair of leaves has two equal-cost paths by tracing packets"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E3",
+          "title": "Steer traffic between two sites over the cheaper or faster link according to a policy and verify the path changes when the link fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E3",
+          "title": "Build a software-defined exchange with three networks, install policy-based peering rules, and show local traffic never leaves the exchange"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Mobile networks, security and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Prepare a design report for an emulated campus network with a controller application for routing, access control and monitoring, plus one P4 or NFV extension, with a threat analysis of the controller.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E3",
+          "title": "Separate a mobile core into control and user plane nodes in the simulator and verify a handset session passes through the user plane node"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E3",
+          "title": "Flood a switch's flow table with random flows to show exhaustion, then add a defence that limits flow installs per host and re-test"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E3",
+          "title": "Build an emulated campus with a controller app for routing, ACL and monitoring, verify with a test plan, and add one NFV service"
+        }
+      ]
+    }
   ]
 }

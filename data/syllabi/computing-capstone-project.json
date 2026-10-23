@@ -1,0 +1,521 @@
+{
+  "slug": "computing-capstone-project",
+  "description": "A team project that takes one computing idea from proposal to defended demonstration, whatever the domain. In the lab students frame a problem, plan and track the work, build and test a deliverable, evaluate it honestly and present it to a mock panel.",
+  "modelledOn": [
+    "Sommerville, Software Engineering (project management and process chapters)",
+    "Booth, Colomb and Williams, The Craft of Research",
+    "PMBOK Guide, Project Management Institute (planning and risk processes)",
+    "Brooke, SUS: A quick and dirty usability scale (usability evaluation practice)"
+  ],
+  "outcomes": [
+    "Frame a real problem as a scoped proposal with measurable success criteria and an agreed team charter.",
+    "Review prior work systematically and position a project against existing solutions with correct citation.",
+    "Plan a project with a work breakdown, milestones, critical path and a scored risk register.",
+    "Design and run an evaluation with sound metrics, baselines and statistics, and report limits honestly.",
+    "Deliver a versioned, tested and documented artefact through iterative sprints.",
+    "Present and defend the project in a timed demo and a question-and-answer panel."
+  ],
+  "units": [
+    {
+      "title": "Problem framing, scoping and teams",
+      "weeks": "1-2",
+      "topics": [
+        "Finding a problem worth solving: stakeholder interviews, pain points and opportunity statements",
+        "Problem statements, SMART objectives and measurable success criteria",
+        "Scoping: in and out of scope, MoSCoW prioritisation and the minimum viable deliverable",
+        "Team charters, roles, working agreements and conflict resolution",
+        "Feasibility screening: technical, economic, schedule and ethical tests",
+        "Writing the proposal: structure, one-page pitch and supervisor review"
+      ]
+    },
+    {
+      "title": "Literature and prior-art review",
+      "weeks": "3",
+      "topics": [
+        "Searching scholarly databases, patent records, open-source repositories and grey literature",
+        "Reading papers and documentation critically: claims, evidence and limits",
+        "The prior-art matrix: comparing existing solutions on features, cost and constraints",
+        "Citation practice, paraphrasing, plagiarism and referencing styles (IEEE and APA)",
+        "Gap statements and the value claim of a project"
+      ]
+    },
+    {
+      "title": "Planning, process and risk",
+      "weeks": "4-5",
+      "topics": [
+        "Work breakdown structures and estimation: three-point estimates and planning poker",
+        "Milestones, dependencies, Gantt charts, critical path and schedule buffers",
+        "Risk registers: likelihood, impact, mitigation and contingency",
+        "Process models for student teams: iterative, Scrum-lite and Kanban",
+        "Team tooling: Git branching, issue tracking, shared documents and a definition of done",
+        "Budget and resource planning: effort, free-tier cloud services, data and device costs"
+      ]
+    },
+    {
+      "title": "Requirements, design and experiment design",
+      "weeks": "6",
+      "topics": [
+        "Eliciting requirements: user stories, use cases and acceptance criteria",
+        "Functional and non-functional requirements; traceability matrix",
+        "Architecture sketches and architecture decision records",
+        "Design alternatives and trade-off analysis with a weighted decision matrix",
+        "Data and experiment design: datasets, sampling, baselines, hypotheses and consent",
+        "Low-fidelity prototypes and early validation with users"
+      ]
+    },
+    {
+      "title": "Implementation and iteration",
+      "weeks": "7-8",
+      "topics": [
+        "Sprint cycles, vertical slices and incremental delivery",
+        "Version control workflow: branches, pull requests, code review and merge conflicts",
+        "Testing strategy: unit, integration and acceptance tests",
+        "Continuous integration, environments and release with rollback",
+        "Change requests, scope control and technical debt",
+        "Debugging with logs and monitoring",
+        "Reproducibility: pinned dependencies, seeds and recorded configuration"
+      ]
+    },
+    {
+      "title": "Evaluation and results",
+      "weeks": "9-10",
+      "topics": [
+        "Evaluation plans: metrics, baselines and benchmarks",
+        "Usability testing: think-aloud sessions, task success and the SUS questionnaire",
+        "Performance and reliability measurement, including load tests",
+        "Statistical reporting: confidence intervals, effect sizes and threats to validity",
+        "Negative results and honest limitations",
+        "Ethics, privacy, security and social impact review"
+      ]
+    },
+    {
+      "title": "Reporting and documentation",
+      "weeks": "11",
+      "topics": [
+        "Report structure: abstract, method, results and discussion",
+        "Technical documentation: README, user guide, API notes and deployment runbook",
+        "Figures, tables and captions that carry the evidence",
+        "Individual contribution statements and fair peer assessment",
+        "Handover and maintenance plans"
+      ]
+    },
+    {
+      "title": "Presentation, demonstration and defence",
+      "weeks": "12-13",
+      "topics": [
+        "Structuring a talk: story arc, one message per slide and timing",
+        "Live demonstration planning: scripted demo, fallback recording and pre-flight checks",
+        "Explaining the work to a non-technical community partner",
+        "Handling questions: rehearsal with a mock panel and rubric-based assessment",
+        "Marking against a rubric and giving useful peer feedback",
+        "Release and showcase: licence choice, citation file and portfolio"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Choosing and framing a problem",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.4"
+      ],
+      "exercise": "Interview a classmate about a daily frustration, turn the notes into a one-sentence problem statement with two measurable success criteria, and agree a draft team charter.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Interview a simulated stakeholder in the scenario engine, record five pain points with supporting evidence, and rank them by frequency and severity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Rewrite a vague client request as a problem statement with three measurable success criteria, then test each criterion against the interview evidence collected"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Resolve a simulated team conflict over uneven workload by revising the charter, roles and check-in rules, and justify each change you make"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Scope, feasibility and the proposal",
+      "topics": [
+        "1.3",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Cut a brief with twelve wished-for features down to a minimum viable deliverable, screen the idea for feasibility, and draft a one-page proposal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw a context diagram of a given project idea and mark each feature as must, should, could or won't have using MoSCoW labels"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Screen four project ideas for technical, economic, schedule and ethical feasibility in a scenario and justify which idea survives each test"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Write a one-page proposal for a chosen idea and revise it after two simulated reviewer comments, recording which scope cuts and risks you accepted"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Finding and judging prior work",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Find eight sources on a project topic, summarise three of them with claim, evidence and limit, and write a gap statement supported by a prior-art matrix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Write a script that filters a provided CSV of 200 paper records by year, keyword and citation count, and export a shortlist of 15 with reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Build a prior-art matrix comparing four existing solutions on five criteria from provided summaries, and mark the cell that reveals the gap"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Review a draft literature section with four citation errors, one over-close paraphrase and one unsupported claim, and correct each with a proper IEEE reference"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Work breakdown, schedule and risk",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Break a project into at least twenty tasks with estimates, draw its Gantt chart and list the ten biggest risks with mitigations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Break a project brief into a work breakdown structure of at least 20 tasks with owners and three-point estimates in the diagram studio"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Build a Gantt chart for a 12-week project with milestones and dependencies, find the critical path and report the total float of two tasks"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Build a risk register of ten risks for a scenario project, score likelihood and impact, and choose mitigations that fit a fixed budget of effort"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Process, tooling and budget",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Choose a process model for your team and justify it, set up a repository and issue labels, and cost the cloud and data needs of the project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E4",
+          "title": "Create a Git repository with main and feature branches, a README, an issue-labelling convention and a definition-of-done checklist for a team of four"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Pick a process model for a four-person team facing changing client requirements and a hard deadline, and defend the choice in a scenario review"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E12",
+          "title": "Plan the cloud and data budget for a student project on free tiers, set a spending alert, and find which service exceeds its free quota first"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Requirements, design and experiment design",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Write six user stories with acceptance criteria, record two architecture decisions, and design the evaluation experiment for your project hypothesis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Write six user stories with acceptance criteria from stakeholder notes and check that each is independent, testable and small enough for one sprint"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E9",
+          "title": "Draw a block architecture for a given project and record two architecture decision records stating options considered, the choice and the consequences"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Design an evaluation experiment for a given hypothesis by choosing a baseline, sample size and metric, doing a power calculation and listing three threats to validity"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Sprints, version control and testing",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Plan three one-week sprints from a backlog, describe your pull-request and review rules, and write acceptance tests for the first sprint's stories.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E4",
+          "title": "Make a branch, commit two changes, open a simulated pull request and resolve a merge conflict between two team members' edits to the same file"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Write unit tests for a provided function with three planted bugs, and confirm that each bug is caught by at least one failing test"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Plan three one-week sprints from a backlog of 25 stories sliced vertically, and replan after a simulated mid-sprint change request"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Delivery, change and reproducibility",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6",
+        "5.7"
+      ],
+      "exercise": "Describe how your project is built, deployed and rolled back, log one real bug from report to fix, and write the steps that let a stranger reproduce your results.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Add structured logging to a failing program and use the log output to locate the faulty line, then write the one-line fix and a regression test"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.7",
+          "engine": "E1",
+          "title": "Pin dependencies, set a random seed and write a run script so that a provided experiment reproduces identical results on two clean runs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E12",
+          "title": "Deploy a sample web app to a cloud console with a health check, release a faulty version, and roll back to the previous version"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Handle three change requests arriving late in a scenario project by weighing cost, risk and value, and decide which to accept, defer or refuse"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Evaluation design: metrics, users and load",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Choose three metrics and a baseline for your project, plan a five-person usability session, and decide what load your system must survive.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Run a think-aloud usability session in a scenario with five simulated users, record task success and time, and compute the SUS score"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Choose three metrics and a baseline for a provided project, compute them on a supplied results table, and plot them with error bars"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E12",
+          "title": "Run a load test against a sample service at rising request rates, find the breaking point, and recommend a fix backed by the latency graph"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Statistics, honest limits and ethics review",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Compare two versions of a system with a confidence interval, rewrite an overclaiming result honestly, and list four ethical or security risks of your own project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Compute the mean, 95 percent confidence interval and effect size for two versions of a system from 30 runs each, and state whether the difference is real"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Rewrite an overclaiming results section into an honest one that reports a negative result, its likely causes and what was not tested"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Run an ethics, privacy and security review of a scenario project, find four risks to users or communities, and add mitigations to the design"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Writing the report and documentation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Outline the final report with a word budget per section, write a 150-word abstract, and draft the README and handover notes for your project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Write a README with install, run and test steps in a clean virtual machine, and confirm a newcomer can follow it to a running system"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Create three figures from a supplied results file with labelled axes, units, captions and colour-blind-safe styling, and explain what each one shows"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Write individual contribution statements and a fair peer assessment for a four-person scenario team with uneven commit history, citing evidence for each rating"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Talks, demos and community audiences",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Cut a 20-slide draft to a ten-minute talk, write a demo script with a fallback plan, and explain your project to a non-technical visitor in two minutes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Cut a 20-slide draft talk to 10 minutes with one message per slide and a clear story arc, then check the timing against a simulated clock"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Prepare a scripted live demo with a fallback recording and a pre-flight checklist, then recover from a simulated outage injected during the run"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Present a project to a non-technical community partner in a scenario and adapt your explanation after three confused questions"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Defence, assessment and release",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Hold a mock defence with a rubric, give written peer feedback on another team's project, and publish your work with a licence and citation file.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.6",
+          "engine": "E4",
+          "title": "Choose an open-source licence for a finished project from four options by checking dependency compatibility, then add LICENSE and citation files to the repository"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Score a sample capstone report against a four-criterion rubric, justify each mark with evidence, and compare your marks with a reference panel"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Defend a project before a simulated three-person panel, answering twelve questions on scope, method, evidence and limitations, and be scored on a rubric"
+        }
+      ]
+    }
+  ]
+}

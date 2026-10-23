@@ -120,5 +120,403 @@
         "Code style, comments and documentation"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "First programs and vocabulary",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Write a short glossary of ten programming terms with a one-line example of each from your first program.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Run a first program that prints a greeting, then change it to read your name and print it back, checking the output"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Find and label the syntax error, runtime error and logic error in three given short programs and fix each"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Compile or interpret a program in stages, introduce a deliberate mistake at each stage, and record what the tool reports"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Algorithms and flowcharts",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write pseudocode and a flowchart for finding the average of five exam marks and trace it with a sample input.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Trace a given algorithm for the sum of the digits of a number with a trace table for the inputs 523 and 9040"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Convert pseudocode for finding the larger of two numbers into code and test it with four inputs, including equal values"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Write an algorithm that decides whether a number is prime, then test its finiteness and correctness on 10 inputs including 0 and 1"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Everyday algorithms",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Describe, in pseudocode and a flowchart, how to give change in cedis for a purchase, including the smallest notes and coins.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Write a program that finds the largest of three numbers and test it with six inputs, including ties"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Compute a student's GPA from five course grades and credit hours, and verify the result with two worked examples"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Turn a flowchart for giving change in cedis into code, then redraw the flowchart from your finished code and compare"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Types, variables and input",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Explain with five examples how integer division and floating-point rounding can surprise a beginner.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Declare variables of five types, assign values, print each with its type and swap two variables using a third"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Convert user input from text to numbers, compute an average of three marks and show the effect of integer division and rounding"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Read a name, price and quantity from the user and print a formatted receipt with two decimal places and aligned columns"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Operators and expressions",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Evaluate ten expressions by hand using precedence rules, then check each with the computer and explain any mismatch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Evaluate five arithmetic expressions by hand, run them in code, and explain every step where precedence changed the result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Test a boolean expression with short-circuit evaluation where the second part would divide by zero, and show it is skipped"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Find and fix five seeded expression bugs: off-by-one, mixed types, = versus == and wrong operator precedence, with a test for each"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Decisions",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Write the decision table and code for a tax bracket calculator and list the boundary values you would test.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Write an if-else ladder that gives a letter grade for a mark from 0 to 100, and test it at every band boundary"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Decide whether a year is a leap year using nested conditions, and test with 1900, 2000, 2024 and 2023"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Write a tax bracket calculator with four bands and design a test table that exercises every branch and each boundary value"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Loops",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Use a trace table to show how a while loop sums the numbers from 1 to 5, then say what changes if the condition uses less than instead of less than or equal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Write for and while loops that print the numbers 1 to 10 and the even numbers up to 20, and compare their output"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Read a list of marks and compute their sum, average, maximum and minimum in one pass through a loop"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write a sentinel-controlled loop that reads marks until -1 is typed, ignoring invalid values with continue and stopping early with break"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Nested loops and termination",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Predict the output of three nested loop programs by hand, then run them and explain any difference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Print a multiplication table for 1 to 9 and a right-angled triangle of stars using nested loops"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Find three infinite loops in given programs, explain why they never end and fix each so it terminates"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Print a diamond pattern of height 7 and the transpose of a 3x4 matrix using nested loops, with a test for another size"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Functions",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Break a program that reports class statistics into five functions, drawing a top-down decomposition chart before coding.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Write a function that returns the area of a rectangle and call it three times with different arguments, printing each result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Run a program with a local and a global variable of the same name and predict, then check, the value printed in each place"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Decompose a student report program into input, calculate and display functions, and test each function on its own before combining them"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Libraries and recursion",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Trace the calls of a recursive factorial of 4 on paper, showing the stack of waiting calls and the return values.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Use maths, string and random library functions to roll a die 20 times, round a value and change a string to upper case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E6",
+          "title": "Step through recursive factorial and Fibonacci in the visualiser, record the call stack at its deepest point and count the calls for Fibonacci of 6"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Write recursive and loop versions of Fibonacci and compare their results and run time for n up to 30, explaining the difference"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Lists, strings, files and sorting",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Describe how bubble sort and selection sort differ, using the same five numbers and showing every pass.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Store ten marks in a list, then find the position and value of the minimum and maximum and search for a given mark"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Read a text file of student names and marks, compute the average, and write those above average to a new file"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E6",
+          "title": "Step bubble sort and selection sort through the same 8 numbers, count the comparisons and swaps of each, and explain which does less work"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Objects and classes",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Design a BankAccount class on paper with its attributes and methods, and explain what it hides from the user.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Define a Student class with name and mark attributes, create three objects and print each one's details"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Write a BankAccount class with deposit and withdraw methods that refuses overdrafts, and test it with five transactions"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Find five objects already used in earlier programs, such as strings, lists and files, call two methods on each, and explain what each one bundles"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Debugging and good practice",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4",
+        "10.5"
+      ],
+      "exercise": "Write a debugging log for one bug: how you reproduced it, what you suspected, the fix and the test you added.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.2",
+          "engine": "E1",
+          "title": "Read three error messages and stack traces, state the file, line and cause of each, and fix the programs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.3",
+          "engine": "E1",
+          "title": "Find and fix four seeded bugs in a grade calculator using reproduction, print statements and a debugger, and record the cause of each"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.4",
+          "engine": "E1",
+          "title": "Write test cases for a function before fixing a bug, add input checking for bad values, and show the tests pass after the fix"
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,503 @@
+{
+  "slug": "mechanism-design-and-market-microstructure",
+  "description": "A doctoral research seminar on designing rules for markets and on how prices form in them: incentive-compatible mechanisms, auctions, equilibria and automated market makers in decentralised exchanges, order books, consensus-level fairness and credit networks. Students read and critique recent papers, formalise and simulate models, and prepare a research proposal with an executable artefact.",
+  "modelledOn": [
+    "Nisan, Roughgarden, Tardos and Vazirani (eds.), Algorithmic Game Theory",
+    "Hasbrouck, Empirical Market Microstructure and Bouchaud et al., Trades, Quotes and Prices",
+    "Cartea, Jaimungal and Penalva, Algorithmic and High-Frequency Trading",
+    "Recent conference papers on automated market makers, transaction fee design and order fairness"
+  ],
+  "outcomes": [
+    "Prove incentive compatibility, individual rationality and revenue properties of auction and mechanism designs.",
+    "Model decentralised exchange trading as a game and derive equilibrium and optimal routing results.",
+    "Analyse and compare automated market maker designs by their trading functions, liquidity provider returns and loss versus rebalancing.",
+    "Apply order book and price-formation models to explain spreads, impact and optimal execution.",
+    "Critique front-running, fairness and mechanism proposals for consensus protocols against formal definitions and impossibility results.",
+    "Write a research proposal with a precise model, a simulation artefact, a baseline and a stated contribution."
+  ],
+  "units": [
+    {
+      "title": "Foundations of mechanism design",
+      "weeks": "1-2",
+      "topics": [
+        "Social choice, Arrow's theorem and the Gibbard-Satterthwaite theorem",
+        "Bayesian games, dominant-strategy and Bayes-Nash incentive compatibility",
+        "The revelation principle and quasi-linear utilities",
+        "The VCG mechanism, its limits and the impossibility of efficient bilateral trade",
+        "Computational mechanism design: tractability versus incentive compatibility"
+      ]
+    },
+    {
+      "title": "Auctions",
+      "weeks": "3-4",
+      "topics": [
+        "First-price, second-price, English and Dutch auctions; revenue equivalence",
+        "Optimal auctions: virtual values and reserve prices",
+        "Combinatorial auctions and spectrum allocation",
+        "Position auctions and sponsored search with generalised second price",
+        "Simple versus optimal mechanisms and prior-independent design",
+        "Transaction fee mechanism design: first-price versus posted-price fees and incentive compatibility for block producers"
+      ]
+    },
+    {
+      "title": "Equilibrium in decentralised exchanges",
+      "weeks": "5",
+      "topics": [
+        "Constant function market makers as games between traders, arbitrageurs and liquidity providers",
+        "Nash and Stackelberg equilibria in trade routing; price of anarchy",
+        "No-arbitrage pricing and convex analysis of trading functions",
+        "Optimal routing and batch trades as convex programmes; existence and uniqueness of equilibria",
+        "Empirical stylised facts of decentralised exchange volume, fees and liquidity"
+      ]
+    },
+    {
+      "title": "Automated market maker design and optimisation",
+      "weeks": "6-7",
+      "topics": [
+        "Constant-sum, constant-product and constant-mean invariants; trading function design",
+        "Concentrated liquidity, tick design and range orders",
+        "Impermanent loss and loss versus rebalancing; the replication argument",
+        "Dynamic fees and oracle-informed market makers",
+        "Cost-function market makers and the logarithmic market scoring rule for prediction markets",
+        "Liquidity provision as portfolio optimisation under fee income and adverse selection"
+      ]
+    },
+    {
+      "title": "Order book models and price formation",
+      "weeks": "8-9",
+      "topics": [
+        "Limit order book mechanics: matching, price-time priority and order types",
+        "Adverse selection models of the spread: sequential-trade and informed-trader models",
+        "Market impact: the square-root law and optimal execution",
+        "Queueing and point-process models of the order book, including Hawkes processes",
+        "Market making with inventory risk: the optimal quoting model",
+        "Call auctions, frequent batch auctions and continuous trading compared"
+      ]
+    },
+    {
+      "title": "Front-running and fairness in consensus",
+      "weeks": "10-11",
+      "topics": [
+        "Extractable value: front-running, back-running and sandwich attacks; a taxonomy",
+        "Order fairness definitions, Condorcet cycles and impossibility results",
+        "Mitigations: commit-reveal, threshold encryption and batch auctions",
+        "Proposer-builder separation, block-building auctions and centralisation",
+        "Latency, geography and fairness for participants in Africa"
+      ]
+    },
+    {
+      "title": "Credit networks and liquidity",
+      "weeks": "12",
+      "topics": [
+        "Credit networks and trust lines: payment routing as max-flow",
+        "Payment channel networks: liquidity, rebalancing and routing fees",
+        "Clearing, netting and contagion in financial networks",
+        "Mobile-money float, interoperability and community currencies as credit networks"
+      ]
+    },
+    {
+      "title": "Open research problems and project",
+      "weeks": "13",
+      "topics": [
+        "Survey of open problems across mechanism design and market microstructure",
+        "Formalising a research question: model, assumptions and metrics",
+        "Simulation and empirical methodology; artefact evaluation",
+        "Proposal writing and peer review"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Social choice and incentive compatibility",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Read and summarise the proof sketch of the Gibbard-Satterthwaite theorem, and show with the revelation principle why truthful mechanisms lose no generality.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute outcomes of plurality, Borda and pairwise-majority rules on 8 preference profiles and find a profile where one voter gains by misreporting"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Check Bayes-Nash incentive compatibility of a given two-bidder mechanism by best-response search on a discretised value grid"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Convert an indirect mechanism with a known equilibrium into a direct truthful mechanism via the revelation principle and verify it numerically"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "VCG and its limits",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Prove the VCG mechanism is dominant-strategy truthful, and critique the impossibility result for bilateral trade.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute VCG payments for 4 bidders and 3 items with given values, then check truthful reporting is optimal for each bidder"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Simulate bilateral trade with uniform values, compute the efficiency loss of the best budget-balanced mechanism, and compare it with first-best"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Compare an exact VCG allocation with a greedy approximation on knapsack-style combinatorial instances and measure the loss in truthfulness incentives"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Classical auctions and optimal design",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Derive revenue equivalence for first- and second-price auctions, and compute the optimal reserve price for uniform and exponential values.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Simulate first-price and second-price auctions with equilibrium bidding for 10,000 draws and verify that average revenue matches"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Compute virtual values and the optimal reserve price for a value distribution and plot revenue against the reserve price"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement a simple combinatorial auction winner determination solver and test it on 10 generated instances against a greedy approximation"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Position auctions, simplicity and fee mechanisms",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compare generalised second price with VCG for sponsored search, and critique a transaction fee mechanism paper against incentive properties.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Compute equilibrium bids and revenue for generalised second price and VCG in a 3-slot auction and plot revenue against click-through rates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Compare a posted-price mechanism with the optimal auction on regular value distributions and measure the revenue ratio over 100 random instances"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Simulate a first-price fee auction and a posted-price fee mechanism with a strategic block producer, and measure fee volatility and producer gain"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Games on decentralised exchanges",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Model a swap as a strategic interaction between a trader and an arbitrageur, and prove existence and uniqueness of the no-arbitrage pool state.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Plot the constant-product curve, compute the output and slippage of swaps of increasing size, and find the arbitrage trade that restores an outside price"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Solve the optimal split of one large trade across three pools as a convex programme and compare the output with routing through a single pool"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Simulate best-response dynamics between traders routing through shared pools and measure the price of anarchy against the optimal routing"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Trading functions and concentrated liquidity",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compare the constant-sum, constant-product and constant-mean invariants, and derive impermanent loss for a price move of a given size.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Plot reserves and marginal prices for three trading functions, identify which has bounded slippage, and read the price impact of a swap"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Simulate a concentrated liquidity position in a price range over a random price path and compute fees earned against holding"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Simulate loss versus rebalancing against a continuous price process, and compare the result with the closed-form expression"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Dynamic fees, prediction markets and liquidity provision",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Design a dynamic fee that depends on volatility, and show the bounded loss of the logarithmic market scoring rule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compute prices and payments for a logarithmic market scoring rule on a three-outcome market and verify the worst-case loss bound"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Simulate a pool with a volatility-based fee against a fixed fee under informed and uninformed flow and compare liquidity provider profit"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Choose a liquidity range and capital for a provider under fee income and adverse selection, optimise expected utility, and test it out of sample"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Order books and adverse selection",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Derive the spread in a sequential-trade setting, and solve the optimal execution trajectory for a large order with temporary and permanent impact.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Step a limit order book through 20 events with price-time priority and record the book, the trades and the spread after each event"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Simulate a sequential-trade market maker facing informed traders and plot the quoted spread against the share of informed trading"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Compute the optimal execution schedule for a large order with impact and risk aversion, and plot cost against the trading horizon"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Order flow models, market making and batch auctions",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Fit a simple point-process model to order arrivals, derive optimal quotes under inventory risk, and compare batch with continuous trading.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Simulate a self-exciting Hawkes order arrival process and compare the clustering of events with a Poisson process by plotting inter-arrival times"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Simulate an inventory-aware market maker for 1,000 time steps and compare profit and inventory variance with symmetric quoting"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Compare frequent batch auctions with continuous trading under a latency-advantaged trader and measure the transfer from slower participants"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Extractable value and order fairness",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Classify extractable value strategies, state a formal order-fairness definition, and show why Condorcet cycles prevent a perfect fair ordering.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Simulate a sandwich attack on a constant-product pool, compute the attacker's profit and the victim's extra slippage, and find the slippage setting that prevents it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Build the pairwise precedence graph for 6 transactions seen by 5 nodes, find any Condorcet cycle, and propose an ordering"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Simulate commit-reveal and batch-auction ordering against a front-running adversary and measure the adversary's gain under each rule"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Block building and geography",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Model proposer-builder separation as an auction, assess centralisation risks, and analyse how network latency from Africa affects fairness.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Simulate a block-building auction among builders of different sizes and measure how often the largest builder wins as its order flow advantage grows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E3",
+          "title": "Place nodes in Accra, Lagos and Frankfurt on a network model with realistic latencies and measure who sees a transaction first"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Fit a model of builder market share against order flow advantage and use it to project the concentration under three policy options"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Credit networks, channels and contagion",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Model a payment network as a capacity graph, find the maximum payment, and trace default contagion through a network of banks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute the maximum flow between two parties in a credit network and show the residual capacity after the payment"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Simulate a payment channel network with random payments, track channel imbalance, and compare routing policies by success rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compute clearing payments for a network of 8 institutions after a shock and find the node whose failure causes the largest cascade"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Open problems and research proposal",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write and present a research proposal with a precise question, model, baseline, simulation plan and expected contribution.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Write the model of your proposed question as equations with stated assumptions, and check them on a small closed-form special case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Build a simulation artefact for your model with fixed seeds, run it against one baseline, and produce one figure with confidence bands"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Review three anonymised proposals in a case, score each against a rubric for novelty and soundness, and write the report you would give the author"
+        }
+      ]
+    }
+  ]
+}

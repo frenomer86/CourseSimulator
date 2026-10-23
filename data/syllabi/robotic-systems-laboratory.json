@@ -1,0 +1,505 @@
+{
+  "slug": "robotic-systems-laboratory",
+  "description": "A project-based graduate laboratory in which teams specify, build, integrate, test and demonstrate a mobile robot that completes a navigation challenge. Students work on the hardware bench and in the code runner, plan the project with schedules and risk registers, and pass a safety review before the final demonstration.",
+  "modelledOn": [
+    "Siegwart, Nourbakhsh and Scaramuzza, Introduction to Autonomous Mobile Robots",
+    "Murphy, Introduction to AI Robotics",
+    "INCOSE, Systems Engineering Handbook",
+    "Elliott Williams, Make: AVR Programming"
+  ],
+  "outcomes": [
+    "Derive requirements and a functional architecture for a mobile robot and verify them with a test plan.",
+    "Integrate sensors, motor drivers, a microcontroller and a single-board computer into a working robot with documented interfaces.",
+    "Implement odometry, reactive control, obstacle avoidance and grid path planning, and tune them from logged data.",
+    "Debug hardware and software faults systematically using logs, recordings and fault injection.",
+    "Plan a team project with a work breakdown, critical path, risk register and budget.",
+    "Conduct a safety review and present a demonstration and technical report that honestly reports results and failures."
+  ],
+  "units": [
+    {
+      "title": "Systems engineering for robots",
+      "weeks": "1-2",
+      "topics": [
+        "Stakeholder needs, use cases and measurable requirements",
+        "Functional decomposition, block diagrams and interface control documents",
+        "Trade studies and budgets for power, mass, compute and cost in cedis",
+        "The V-model: verification and validation planning",
+        "Robot architecture patterns: sense-plan-act, layered and behaviour-based",
+        "Team tooling: version control, issue tracking and automated checks"
+      ]
+    },
+    {
+      "title": "Hardware and software integration",
+      "weeks": "3-4",
+      "topics": [
+        "Sensor and actuator interfaces: I2C, SPI, UART, PWM and ADC",
+        "Motor drivers, encoders, power distribution and brown-out behaviour",
+        "Microcontroller firmware: timer interrupts and fixed-rate control loops",
+        "Single-board computer integration and publish-subscribe messaging with MQTT",
+        "Sensor calibration and filtering: moving average, complementary and Kalman filters",
+        "Integration testing: bench tests, hardware-in-the-loop and stub drivers"
+      ]
+    },
+    {
+      "title": "Mobile robot navigation challenge",
+      "weeks": "5-7",
+      "topics": [
+        "Differential-drive kinematics and wheel odometry",
+        "Reactive behaviours: line and wall following, PID tuning",
+        "Obstacle sensing with ultrasonic, infrared and lidar sensors",
+        "Occupancy grids and localisation with a particle filter",
+        "Grid path planning with Dijkstra and A*",
+        "Challenge rules, scoring and run strategy"
+      ]
+    },
+    {
+      "title": "Debugging and logging",
+      "weeks": "8",
+      "topics": [
+        "Systematic debugging: reproduce, hypothesise, bisect and verify",
+        "Logging levels, timestamps and structured telemetry",
+        "Data recording, replay and plotting",
+        "Fault injection, failure modes and watchdogs",
+        "Root-cause analysis and blameless post-mortems"
+      ]
+    },
+    {
+      "title": "Team project planning",
+      "weeks": "9",
+      "topics": [
+        "Scope, work breakdown structure and milestones",
+        "Gantt charts and critical path analysis",
+        "Roles, sprints and stand-ups in a hardware project",
+        "Risk register: spares, supply chain delays and mitigation in Ghana",
+        "Bill of materials and budget control"
+      ]
+    },
+    {
+      "title": "Safety review",
+      "weeks": "10",
+      "topics": [
+        "Hazard identification and FMEA for a mobile robot",
+        "Emergency stop, interlocks and fail-safe design",
+        "Electrical safety and lithium battery handling",
+        "Software safety: limits, watchdogs and safe states",
+        "Safety review board: scenario-based review and sign-off"
+      ]
+    },
+    {
+      "title": "Build, test and iterate",
+      "weeks": "11-12",
+      "topics": [
+        "Integration sprints and subsystem acceptance tests",
+        "Regression testing after every change",
+        "Field trials: lighting, floor surface, battery level and interference",
+        "Performance measurement: success rate, time and repeatability",
+        "Design reviews and the iteration decision"
+      ]
+    },
+    {
+      "title": "Demonstration and report",
+      "weeks": "13",
+      "topics": [
+        "Demonstration script, rehearsal and contingency plan",
+        "Technical report structure and figures",
+        "Reporting results and failures honestly",
+        "Peer review, lessons learned and handover documentation"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Requirements, decomposition and budgets",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write ten measurable requirements for a robot that must navigate a corridor course and stop at a target, draw its block diagram with interfaces, and make a power and cost budget for the chosen parts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Turn a stakeholder brief for a corridor delivery robot into ten measurable requirements, each with a test method and pass threshold"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw a functional block diagram of a navigation robot with labelled signals between sensors, controller and motors, and list each interface"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E8",
+          "title": "Build a power budget for motors, sensors and a single-board computer, size the battery for a 45 minute run and check it against the cost limit"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Verification planning, architecture and tooling",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Make a verification matrix linking each requirement to a test, choose an architecture for the challenge and justify it, and set up a repository with a branching rule and issue labels.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.6",
+          "engine": "E4",
+          "title": "Create a repository, commit a firmware skeleton on a feature branch, merge it with a review comment and tag the first release"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Draw a V-model for the robot, linking each requirement to the verification test that closes it and to the test level"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Compare sense-plan-act and behaviour-based architectures for a cluttered corridor in a branching case, choose one and defend the trade-offs"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Sensor, motor and firmware interfaces",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Wire an ultrasonic sensor, a motor driver and an encoder to a microcontroller, write a fixed-rate control loop with a timer interrupt, and verify the loop period with measurement.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E8",
+          "title": "Read a distance from an ultrasonic sensor on a microcontroller, print it every 100 ms and check it against a ruler at five distances"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E8",
+          "title": "Drive two motors with PWM through a motor driver, read encoder ticks and plot speed against duty cycle over ten settings"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E8",
+          "title": "Write firmware with a timer interrupt that runs a 50 Hz control loop, and measure jitter to confirm the period stays within 5 percent"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Messaging, calibration and integration testing",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Publish sensor readings from a microcontroller to a single-board computer over MQTT, calibrate and filter a noisy sensor, and write a bench test that uses stub drivers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Publish distance readings to an MQTT topic from the robot and subscribe to them on the computer, checking message rate and loss"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Calibrate an infrared sensor with a lookup of 10 measured distances and compare a moving average with a complementary filter on noisy data"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Write a stub-driver test harness that replays recorded sensor data into the navigation code and asserts the expected motor commands"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Kinematics, odometry and reactive control",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "Derive the pose update equations for a differential-drive robot, estimate drift over a 4 m square path, and tune a PID wall follower.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Compute the pose of a differential-drive robot from encoder ticks along a 2 m square and plot the path with the final position error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E8",
+          "title": "Implement a proportional line follower with three reflectance sensors and report the mean lateral error for three gain values"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Tune a PID wall-following controller in a simulation, compare rise time, overshoot and steady-state error, and explain the final gains"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Obstacle sensing, mapping and localisation",
+      "topics": [
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Compare ultrasonic, infrared and lidar readings of the same obstacles, build an occupancy grid from a scan log and localise the robot with a particle filter in a known map.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E8",
+          "title": "Measure the same five obstacles with ultrasonic and infrared sensors, tabulate errors and note which surfaces cause bad readings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Build an occupancy grid from a log of range scans and poses, and display cells as free, occupied or unknown"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement a particle filter with 500 particles to localise a robot in a known corridor map and report the position error over 100 steps"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Path planning and challenge strategy",
+      "topics": [
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Plan routes through the challenge map with Dijkstra and A*, compare node counts, and write a run strategy that balances speed against the penalty for touching obstacles.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Run A* and Dijkstra on a 20x20 grid map with obstacles and compare nodes expanded and path length for three goals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Implement A* on the challenge map with inflated obstacles, convert the path to waypoints and drive them in simulation"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Choose a run strategy for the challenge in a scoring case, trading speed for obstacle penalties, and compare expected score across three plans"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Debugging, logging and post-mortems",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Add structured logging to the robot code, replay a failed run, find the root cause of a drifting turn with a hypothesis log, and write a blameless post-mortem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Add timestamped logs at three levels to a navigation program and record a run with sensor, command and state values every 100 ms"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Replay a recorded run, plot commanded against measured wheel speed, and locate the moment the robot first diverges from the plan"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E8",
+          "title": "Inject a stuck sensor and a battery sag into the robot, verify the watchdog drives it to a safe stop, and record the response time"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Project plans, risks and budgets",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Produce a work breakdown, Gantt chart and critical path for the term project, a risk register with at least eight risks including late parts, and a bill of materials within budget.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Draw a work breakdown structure for the robot project with at least 25 tasks, an owner for each and four milestones"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Build a Gantt chart with dependencies, compute the critical path and show how a two-week delay in parts delivery moves the end date"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Respond to a supply chain delay for motor drivers in a branching case, weighing local substitutes, scope cuts and schedule slip against the budget"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Hazards, safe states and safety review",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Run an FMEA for the robot, design an emergency stop and a battery handling procedure, and defend the safety case in front of a mock review board.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "List eight hazards of the robot with cause, effect, severity and a proposed control, in an FMEA table ranked by risk"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E8",
+          "title": "Wire an emergency stop that cuts motor power independently of the microcontroller and test that it works while the firmware is hung"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Present the safety case to a simulated review board, answer questions on battery and collision hazards, and fix the gaps listed in its findings"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Integration sprints and acceptance tests",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Run an integration sprint with acceptance tests per subsystem, add regression tests for each bug fixed, and plan field trials across floor surfaces and battery levels.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E8",
+          "title": "Run an acceptance test for the drive subsystem, driving straight for 3 m five times, and record the cross-track error against the threshold"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Write regression tests that replay three recorded fault cases, run them after each code change and report any test that newly fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E8",
+          "title": "Plan and run field trials on two floor surfaces at full and low battery, and report how drift and stopping distance change with each factor"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Measuring performance and design reviews",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Measure success rate, completion time and repeatability over twenty challenge runs, then hold a design review that decides which of three fixes to make before the demonstration.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compute success rate, mean time and standard deviation over 20 logged challenge runs, and plot completion time per run"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compare two controller versions over 20 runs each with a confidence interval and decide whether the improvement is real"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Decide which fixes to make before the demonstration in a design review case, weighing risk, remaining time and expected score gain"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Demonstration, report and lessons learned",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Rehearse and deliver the challenge demonstration, write the technical report with requirement results and failure analysis, and review another team's report.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Write a demonstration script with timing, roles and a contingency plan for three likely failures, and rehearse it in a scenario"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Generate the report figures from run logs, covering the path, error over time and a results table, and caption each so it stands alone"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Review a draft report that overstates its results, flag claims the data does not support and rewrite three passages to report failures honestly"
+        }
+      ]
+    }
+  ]
+}

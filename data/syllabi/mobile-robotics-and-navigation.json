@@ -113,5 +113,402 @@
         "Capstone: an autonomous robot that maps an unknown simulated market, then navigates deliveries through it"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Mobile robots and their sensors",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Choose a robot type and sensor set for delivering parcels across a campus and write half a page on its three main failure modes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "Drive a simulated differential-drive robot through a given course using wheel speed commands and record the pose after each segment"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Add Gaussian noise to simulated lidar, encoder and GNSS readings and plot error against distance travelled for each sensor"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Compare the position drift of an encoder-only robot and an encoder plus IMU robot on a 50 m loop and choose which to trust in each segment"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Kinematics and odometry",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Derive the pose update equations for a differential-drive robot and show by hand the position after three wheel-speed commands.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Compute the pose of a differential-drive robot from left and right wheel speeds over 10 time steps and plot the path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Drive a robot around a 20 m square using dead reckoning and measure the loop closure error over five runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Sample 500 predicted poses from a noisy velocity motion model and visualise how the cloud spreads over a 10 m path"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Uncertainty and calibration",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain with a plot why the uncertainty of a dead-reckoned pose grows faster in heading than in position.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Plot the covariance ellipse of a pose after 1, 5 and 20 motion steps from sampled particles and describe its shape"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Estimate the wheel radius and wheelbase from simulated ground truth by minimising odometry error over three test paths"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Calibrate a motion model against ground truth, then test it on a held-out path and compare errors before and after calibration"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Bayes filters and Kalman localisation",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Describe the prediction and correction steps of a Kalman filter for a robot in a corridor, using one numeric example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Step a 1D histogram filter through five move and sense cycles on a corridor with three doors and record the belief after each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement a Kalman filter for a robot measuring range to a landmark and plot the estimate against ground truth with its 2-sigma bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Localise a robot from an unknown start on a grid map using histogram localisation and measure the steps needed to converge on symmetric corridors"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Particle filters",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write a short note on why a particle filter suits global localisation and how many particles you would choose.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Run Monte Carlo localisation with 200 particles in a mapped room and watch the cloud converge as the robot moves"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement a resampling step and detect particle depletion by tracking the effective sample size over 100 steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Kidnap the robot to a new location, add random particles for recovery and compare recovery time for 100, 500 and 2000 particles"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Occupancy grid mapping",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Choose a map representation for a market with moving stalls and justify it against two alternatives.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Convert a floor plan into an occupancy grid, a landmark map and a topological map, and compare how each answers a route question"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Build an occupancy grid from 360 lidar scans using an inverse sensor model and display the resulting map against ground truth"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Apply log-odds updates over 200 scans, clear cells where a person walked through, and measure map error before and after clearing"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Scan matching and SLAM basics",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Explain how a small heading error at the start leads to a badly bent map later in a long corridor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Show how odometry error warps a map built from known-pose scans versus noisy-pose scans of the same room and measure the error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Align two lidar scans with an iterative closest point loop and plot the residual error over iterations"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Run a FastSLAM simulation with 50 particles in a building with five landmarks and compare landmark errors with a plain filter"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Graph SLAM and loop closure",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Evaluate a SLAM map by measuring its error against ground truth, and propose two improvements for the largest error.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Build a pose graph from 30 odometry constraints and optimise it with least squares to reduce the error after one loop closure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Detect a loop closure when the robot returns to a known place, apply it, and measure the global map consistency before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E6",
+          "title": "Run a SLAM session in a simulated building, evaluate the map with ground truth, and tune parameters to reduce error by 30 percent"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Path planning",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Plan a route for a delivery robot across a campus map and compare the paths found by Dijkstra, A* and a sampling planner.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Inflate obstacles by the robot radius on a grid map and draw the free space the planner is allowed to use"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Plan a path on a 30x30 grid with Dijkstra and A* using Manhattan and Euclidean heuristics, and compare the nodes expanded"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Run an RRT and a probabilistic roadmap on a cluttered map and compare path length, planning time and success over 20 queries"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Cost maps and re-planning",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Tune the inflation radius and cost decay for a corridor robot, and explain what happens if you set each too small or too large.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Create a cost map with inflation around walls and plan a path that keeps at least 0.5 m clearance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Block a doorway during a run, trigger re-planning, and compare the detour length with the original path"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Smooth a grid path with shortcutting and spline fitting, and compare length, curvature and clearance of the raw and smoothed paths"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Obstacle avoidance",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "List the situations in which potential fields fail and describe the behaviour you would add to escape each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Drive a robot toward a goal with a potential field, find a local minimum in a U-shaped obstacle, and describe the escape behaviour"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Implement a dynamic window planner with velocity and acceleration limits and compare its trajectories on three obstacle layouts"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E6",
+          "title": "Navigate a corridor with a person crossing the path, and tune the avoidance to give zero collisions and a delay below 5 seconds"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Multi-robot coordination",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Design a delivery task assignment for four campus robots, comparing centralised and market-based allocation by total time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E6",
+          "title": "Allocate 10 delivery tasks to 3 robots using centralised assignment and compare the total travel time with a greedy rule"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Deconflict two robots meeting at a narrow door by priority rules and show there is no deadlock over 20 random starts"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E6",
+          "title": "Simulate a fleet of five robots delivering across a campus map, measure completion time and collisions, and improve the plan under a communication limit"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Integrated navigation and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a test report for the capstone robot with results across five maps and a table of failures by cause.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E6",
+          "title": "Connect localisation, planner and local avoider in one stack and complete a delivery on a given map, logging the module active at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Run 30 navigation trials across three maps, compute success rate, path length, time and minimum clearance, and tune one parameter to improve the worst metric"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E6",
+          "title": "Map an unknown simulated market, then complete 10 deliveries through it with recovery from lost localisation and blocked goals"
+        }
+      ]
+    }
   ]
 }

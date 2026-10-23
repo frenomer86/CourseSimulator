@@ -1,0 +1,504 @@
+{
+  "slug": "algorithmic-and-systematic-trading",
+  "description": "The full life cycle of a systematic trading strategy: market microstructure, signal research, honest backtesting, execution and costs, portfolio construction, machine learning signals, trading system design and risk controls. Students simulate order books, code and backtest strategies on historical and synthetic data, and finish by presenting a strategy with a risk review.",
+  "modelledOn": [
+    "Chan, Algorithmic Trading: Winning Strategies and Their Rationale",
+    "Lopez de Prado, Advances in Financial Machine Learning",
+    "Harris, Trading and Exchanges: Market Microstructure for Practitioners"
+  ],
+  "outcomes": [
+    "Simulate a limit order book with price-time priority and explain spread, depth and market impact from it.",
+    "Build and evaluate a trading signal with information coefficient, decay and turnover, and avoid look-ahead and survivorship bias.",
+    "Backtest a strategy with realistic costs and report Sharpe ratio, drawdown and a deflated measure that accounts for multiple testing.",
+    "Choose and compare execution algorithms (TWAP, VWAP, participation) by implementation shortfall.",
+    "Size positions and combine signals into a cost-aware portfolio under risk constraints.",
+    "Design pre-trade risk checks and a monitoring and kill-switch plan for an automated trading system, in line with market rules."
+  ],
+  "units": [
+    {
+      "title": "Markets and microstructure",
+      "weeks": "1-2",
+      "topics": [
+        "Order types, the limit order book and the matching engine with price-time priority",
+        "Spread, depth, liquidity and market impact; reading a depth ladder",
+        "Market structure: exchanges, market makers, dark pools, and thin-liquidity African markets such as the Ghana Stock Exchange",
+        "Modelling order flow: Poisson arrivals, queue position and fill probability",
+        "Adverse selection, informed trading and the sources of the spread"
+      ]
+    },
+    {
+      "title": "Data and signal research",
+      "weeks": "3-4",
+      "topics": [
+        "Market data: ticks, bars, corporate-action adjustment and survivorship bias",
+        "Returns, stationarity and classic signals: momentum, mean reversion, carry and value",
+        "Evaluating a signal: information coefficient, decay, turnover and breadth",
+        "Pairs trading and statistical arbitrage: cointegration, spread z-scores and half-life",
+        "Trend following and volatility signals, and the role of regimes"
+      ]
+    },
+    {
+      "title": "Backtesting",
+      "weeks": "5",
+      "topics": [
+        "Vectorised versus event-driven backtesters and their trade-offs",
+        "Biases: look-ahead, survivorship, data snooping and overfitting; multiple-testing correction and the deflated Sharpe ratio",
+        "Walk-forward analysis and purged cross-validation",
+        "Performance measures: Sharpe, Sortino, maximum drawdown, Calmar ratio and turnover",
+        "Including fees, slippage and capacity limits in a backtest"
+      ]
+    },
+    {
+      "title": "Execution and transaction costs",
+      "weeks": "6-7",
+      "topics": [
+        "Components of cost: spread, market impact, fees and delay; implementation shortfall",
+        "Market impact models: the square-root law and Almgren-Chriss",
+        "Execution algorithms: TWAP, VWAP and percentage-of-volume",
+        "Optimal liquidation trajectories and the risk-impact trade-off",
+        "Smart order routing, venue choice and order slicing",
+        "Transaction cost analysis against arrival price and VWAP benchmarks"
+      ]
+    },
+    {
+      "title": "Portfolio construction for strategies",
+      "weeks": "8",
+      "topics": [
+        "Mean-variance, risk parity and volatility targeting",
+        "The Kelly criterion and fractional Kelly position sizing",
+        "Combining signals and diversifying across strategies; correlation of returns",
+        "Factor exposures and risk models for a strategy book",
+        "Cost-aware optimisation with turnover and position constraints"
+      ]
+    },
+    {
+      "title": "Machine learning for trading signals",
+      "weeks": "9-10",
+      "topics": [
+        "Feature engineering for financial time series and the triple-barrier labelling method",
+        "Regularised linear models, random forests and gradient boosting for return prediction",
+        "Leakage and time-series cross-validation with embargo",
+        "Low signal-to-noise, overfitting, feature importance and interpretability",
+        "Reinforcement learning for execution and market making: setup and pitfalls",
+        "Regime detection with hidden Markov models and change-point methods"
+      ]
+    },
+    {
+      "title": "Trading system design and latency",
+      "weeks": "11",
+      "topics": [
+        "Architecture: market data handler, strategy engine, order management, risk and exchange gateway",
+        "Latency budget, co-location, kernel bypass and efficient order book data structures",
+        "Exchange connectivity: the FIX protocol, market data feeds and sequence handling",
+        "Testing: deterministic replay, simulation, paper trading and staged roll-out",
+        "Monitoring, logging, failover and recovery for unattended systems"
+      ]
+    },
+    {
+      "title": "Risk controls, regulation and project",
+      "weeks": "12-13",
+      "topics": [
+        "Pre-trade risk checks: fat-finger limits, position and loss limits, and order-rate throttles",
+        "Kill switches, circuit breakers, and lessons from an automated trading failure",
+        "Regulation of algorithmic trading: market abuse, spoofing and layering, and Ghana securities rules",
+        "Ethics, market fairness and systemic risk: flash crashes and herding",
+        "Project: research, backtest and risk-review a strategy, with a written model-validation report"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Order books and matching",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Process a given sequence of 20 limit and market orders by hand through a book, and write down the book, trades and spread after each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "Step through a matching engine for 20 orders with price-time priority and record the book, the trades and the best bid and ask after each order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Build a limit order book class in code with add, cancel and market-order functions, and test it by replaying a 100-order scenario against known results"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Compare trading a thinly traded Accra-listed stock with a liquid regional one, using depth and spread evidence, and decide the order size you would accept"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Order flow and adverse selection",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Simulate a market maker who quotes around a fair price, and show how informed traders erode its profit as the spread narrows.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Simulate Poisson order arrivals into a book for 10,000 events and estimate the fill probability of a limit order by queue position"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Simulate a market maker facing 10 percent informed traders, plot profit per trade against the quoted spread, and find the break-even spread"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Estimate the adverse-selection component of the spread from a trade series with the price-impact regression and report its share of the quoted spread"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Market data and signal basics",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Clean a daily price file with splits and delistings, build momentum and mean-reversion signals, and rank them by information coefficient.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Adjust a price series for a 2-for-1 split and a dividend, build bars from tick data, and verify returns against an adjusted source"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Compute 12-1 month momentum and a 5-day reversal signal for 30 stocks and tabulate quintile returns for each over a 10-year sample"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute the information coefficient of a signal at horizons 1 to 20 days, plot its decay and estimate the holding period that maximises net return"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Pairs trading and trend signals",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Find a cointegrated pair, trade its z-score with entry and exit rules, and compare the result with a trend-following rule on the same period.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Test 10 stock pairs for cointegration, estimate the hedge ratio and half-life of the best one, and plot its spread with entry and exit bands"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Backtest a z-score pairs strategy with entry at 2 and exit at 0.5, and report trade count, hit rate and net return after costs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Implement a moving-average crossover trend rule and a volatility-scaled version, compare them across calm and turbulent regimes, and explain the difference"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Honest backtesting",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Take a strategy that looks great, find the look-ahead bug and the overfitting in it, and report the corrected Sharpe ratio with costs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Write a vectorised backtester for a daily signal and check it against an event-driven loop on the same data, reconciling any difference in P&L"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Fix a backtest that uses next-day prices in today signal, then test 200 random parameter sets and compute the deflated Sharpe ratio of the best"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Run a walk-forward test with rolling windows and a purged, embargoed cross-validation, and compare their out-of-sample performance estimates"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Costs, impact and execution algorithms",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compute implementation shortfall for an order of 200,000 shares executed by TWAP and by VWAP given a day of volume, and compare to arrival price.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Split the cost of ten trades into spread, impact, fees and delay, and compute the implementation shortfall of each against arrival price"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement TWAP, VWAP and percentage-of-volume schedules for a 100,000-share order on a volume profile and compare slippage over 50 simulated days"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Fit a square-root impact model to 200 simulated parent orders, report the coefficient and predict the cost of a doubled order size"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Optimal liquidation, routing and TCA",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Choose a liquidation speed that trades impact cost against price risk for a given risk aversion, and justify it in a short note.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute the Almgren-Chriss liquidation trajectory for three risk-aversion levels and plot remaining shares against time for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Split a 50,000-share order across three venues with different fees and depth by a simple router, and compare its cost with a single-venue fill"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Run transaction cost analysis on a table of 500 fills against arrival price and VWAP, and rank the algorithms by cost and its variance"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Portfolio construction and sizing",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Combine three signals into one portfolio with volatility targeting, size positions by fractional Kelly, and report net Sharpe after turnover costs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute minimum-variance and risk-parity weights for five assets from a covariance matrix and compare their volatility and concentration"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Simulate a strategy with 55 percent win rate under full, half and quarter Kelly sizing, and compare growth and maximum drawdown across 1,000 paths"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Optimise portfolio weights with a turnover penalty, scan the penalty, and plot net Sharpe against turnover to choose the best setting"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Machine learning signals: data and models",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Label 5 years of price data with the triple-barrier method, fit a regularised model, and evaluate it with an embargoed time-series split.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Build ten lagged features and triple-barrier labels for a daily series, and check class balance and label overlap in a table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Fit a ridge regression and a boosted tree to predict next-week return and compare out-of-sample information coefficients"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Show how random shuffled cross-validation leaks future information into a financial model, then fix it with an embargoed time split and compare scores"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Overfitting, RL and regimes",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Argue whether a machine learning signal with 52 percent hit rate is tradeable once costs are charged, using bootstrap confidence intervals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Bootstrap the Sharpe ratio of a model signal, report a 95 percent confidence interval and decide whether it is distinguishable from zero"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Fit a two-state hidden Markov model to daily returns, label calm and turbulent regimes, and test whether a strategy works only in one"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Step through a small Q-learning agent that learns to slice an order in a toy market and note where reward design leads to odd behaviour"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Trading system architecture",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Draw the architecture of a small automated system, mark each latency source, and write a test plan covering replay, paper trading and roll-out.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Draw the component diagram of a trading system with data handler, strategy, order manager, risk engine and gateway, labelling messages between them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Parse a short stream of FIX-style messages for new orders and fills, detect a gap in sequence numbers, and request a resend in code"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Implement an order book with a sorted map and with price-level arrays, and compare the per-update latency for 1 million events"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Risk limits, kill switches and rules",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Specify position, order-size, rate and loss limits for a strategy, define the kill-switch triggers, and test each with a simulated runaway order loop.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Add pre-trade checks (price band, size, position, order rate) to a strategy and show each blocks a deliberately faulty order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Handle a runaway algorithm incident minute by minute, deciding when to trigger the kill switch and what to tell the exchange and the clients"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Classify ten order patterns as legitimate, spoofing or layering under market-abuse rules, citing the evidence that decides each case"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Systemic risk and strategy review",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present the strategy: idea, signal evidence, backtest with costs, capacity, risk limits and the main reasons it could fail live.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Simulate many similar stop-loss strategies in one book, show how forced selling amplifies a price fall, and measure the size of the cascade"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Complete the backtest of your project strategy with realistic costs and a deflated Sharpe ratio, and write the validation findings in a table"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Defend the strategy in a mock risk-committee review, answering challenges on overfitting, capacity and failure modes, and record the conditions for approval"
+        }
+      ]
+    }
+  ]
+}

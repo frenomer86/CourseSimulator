@@ -101,5 +101,396 @@
         "A capstone: image transformation or a simple recommendation using vector similarity"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Polynomials and partial fractions",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Divide a cubic by a linear factor, use the remainder theorem to test a root, and decompose a proper rational expression with repeated and quadratic factors.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Divide x^3 - 2x^2 - 5x + 6 by x - 3 using polynomial division and check the remainder against direct evaluation at x = 3"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Decompose (5x + 3)/((x - 1)(x + 2)) into partial fractions and verify by plotting both forms and comparing values at five points"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Decompose (x^2 + 2x + 3)/((x + 1)^2 (x^2 + 4)) into partial fractions, solving for the constants, and verify symbolically"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Rational expressions and starting in R and MATLAB",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Use partial fractions to telescope the sum of 1/(n(n+1)) for n up to 99, and write the commands to plot a rational function with its asymptotes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Create two vectors in R or Python, compute their sum and element-wise product, and plot y = x^2 for x from -5 to 5"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Sum 1/(n(n+1)) for n up to 99 using partial fractions and check against a direct computation in the symbolic tool"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Integrate a rational function with an irreducible quadratic factor through partial fractions and compare with a numerical integration at three limits"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Functions, limits and continuity",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Find the domain, range and inverse of three functions, evaluate limits including at infinity, and decide whether a piecewise function is continuous at its joins.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot f(x) = 2x + 1 together with its inverse and the line y = x, and confirm the graphs are mirror images"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Plot (3x^2 + 1)/(x^2 - 4), find its horizontal and vertical asymptotes, and tabulate values near each to support the limits"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Choose constants a and b that make a three-piece function continuous at both joins, and confirm by plotting the completed function"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Numerical limits and sequences",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Show by hand that a_n = (2n + 1)/(n + 3) converges, find its limit, and explain why subtracting nearly equal floating-point numbers loses accuracy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Print the first 20 terms of a_n = (2n + 1)/(n + 3) and identify the limit they approach"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Evaluate (1 - cos(x))/x^2 for x from 1e-1 to 1e-9 and explain the floating-point breakdown at small x"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Rewrite a cancellation-prone expression into a stable form, compare both across tiny inputs, and report the relative error of each"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Exponentials and logarithms",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Compute the growth of a mobile-money savings balance with monthly and continuous compounding, solve two exponential equations by logarithms, and state how many bits are needed to index 10 million records.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Plot the balance of 1000 cedis at 8 percent with annual, monthly and continuous compounding for 20 years on one graph"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Plot n, n log n and n squared on linear and log-log axes and read off the input sizes where each crosses 1 million steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Count the comparisons binary search takes on sorted arrays of size 2^k for k up to 20, and verify they match log2 n"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Coordinate geometry and trigonometry",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Find the equation of a circle through three points, verify four trigonometric identities, and solve a surveying problem finding the width of a river using the sine rule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Plot a circle, a parabola and an ellipse with given equations and read the centre, vertex and foci from each graph"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Plot sin^2 x + cos^2 x and tan x against sin x / cos x to verify two identities numerically over 200 points"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Compute the width of a river from baseline and two measured angles using the sine rule, and propagate a 0.5 degree angle error"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Polar curves and geometry for graphics",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Convert six points between polar and Cartesian coordinates, sketch the cardioid r = 1 + cos(theta), and rotate a triangle 90 degrees about the origin.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Plot the polar curves r = 1 + cos(theta) and r = 2 sin(3 theta) and count the petals or loops each has"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Plot the parametric cycloid x = t - sin t, y = 1 - cos t for t up to 4 pi and mark the arc length of one arch"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Compute the area of an irregular plot given by 8 survey points using the shoelace formula, then rotate and reflect it and confirm the area is unchanged"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Vectors in two and three dimensions",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "For two given 3D vectors compute magnitude, unit vector, dot product, angle, projection and cross product, and test whether three vectors are linearly independent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Plot two 2D vectors and their sum from tip to tail, and compute the magnitude and unit vector of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Compute the angle between two 3D vectors and the projection of one onto the other, and plot both to verify the result"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Test whether three 3D vectors are linearly independent using the determinant, and express a fourth vector as their linear combination"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Lines, planes and vector applications",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Find the equation of the plane through three points, the distance from a given point to it, and the cosine similarity between two short documents as word-count vectors.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Write the parametric equation of the line through two 3D points and check a third point lies on it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Find the plane through three points using a cross product, compute the distance from a fourth point, and verify by projecting onto the normal"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Represent five short documents as word-count vectors, compute pairwise cosine similarity, and rank the documents most similar to a query"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Matrices, linear systems and determinants",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Solve a 3 by 3 linear system with Gauss-Jordan elimination by hand, state its rank, and check the answer with Cramer's rule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Multiply two 3 by 3 matrices by hand and confirm the result with the matrix tool, then show AB differs from BA"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Solve a 3 by 3 linear system by Gauss-Jordan elimination, listing each row operation, and check the solution by substitution"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Determine for which value of k a 3 by 3 system has no solution, one solution or infinitely many, using determinants and rank"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Inverses, transformations and Markov chains",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Find the inverse of a 3 by 3 matrix, apply a rotation followed by a scaling to a triangle, and compute the steady state of a two-state weather Markov chain.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Find the inverse of a 3 by 3 matrix and verify that multiplying it by the original gives the identity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Apply a 45 degree rotation then a scale by 2 to a square and compare the result with the composed matrix applied once"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E7",
+          "title": "Compute PageRank on a 5-page link graph by power iteration with damping 0.85, and rank the pages by score"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Eigenvalues and eigenvectors",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Find the eigenvalues and eigenvectors of a 2 by 2 matrix, diagonalise it, and use the result to compute its tenth power for a two-stage population model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Find the characteristic polynomial, eigenvalues and eigenvectors of a given 2 by 2 matrix and verify Av = lambda v for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Diagonalise a 2 by 2 matrix and use A^10 = P D^10 P^-1 to compute its tenth power, comparing with direct multiplication"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compute the principal component of a 2D dataset through the covariance matrix eigenvectors and plot the data with the principal axis"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Computational linear algebra capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write up a short report fitting a trend line to ten data points as a least squares matrix problem, and explain how the normal equations produce the coefficients.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Plot a triangle and the result of a shear transformation matrix applied to it on the same axes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Fit a least squares line to ten data points by solving the normal equations and compare the coefficients with a built-in fit"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Build a movie recommender from a small ratings matrix using cosine similarity of user vectors, and test it on one held-out rating"
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,501 @@
+{
+  "slug": "hardware-description-languages-and-fpga-design",
+  "description": "How digital hardware is described in Verilog, simulated with test benches, synthesised to gates and mapped onto an FPGA. Students write modules, verify them with self-checking test benches and finish by assembling a small processor.",
+  "modelledOn": [
+    "Harris and Harris, Digital Design and Computer Architecture",
+    "Chu, FPGA Prototyping by Verilog Examples",
+    "Palnitkar, Verilog HDL: A Guide to Digital Design and Synthesis",
+    "IEEE Std 1364 (Verilog) and IEEE Std 1076 (VHDL)"
+  ],
+  "outcomes": [
+    "Write synthesisable Verilog for combinational and sequential circuits using structural, dataflow and behavioural styles.",
+    "Design finite state machines in HDL and choose a state encoding with a stated reason.",
+    "Build self-checking test benches and use waveforms to find and fix functional bugs.",
+    "Read synthesis and timing reports and close timing on a failing design by pipelining or restructuring.",
+    "Explain the FPGA fabric and map a design onto LUTs, block RAM, DSP slices and pins.",
+    "Implement, simulate and run a small processor from datapath and control unit descriptions."
+  ],
+  "units": [
+    {
+      "title": "Hardware description language fundamentals",
+      "weeks": "1-2",
+      "topics": [
+        "Why HDLs exist: simulation versus synthesis, Verilog versus VHDL, the design flow from RTL to bitstream",
+        "Modules, ports, wires and regs, vectors, and four-valued logic (0, 1, X, Z)",
+        "Literals, operators, bit-select, part-select and concatenation",
+        "Structural modelling with gate primitives and module instantiation; hierarchy",
+        "Dataflow modelling with continuous assignments; parameters and generate blocks"
+      ]
+    },
+    {
+      "title": "Combinational modelling",
+      "weeks": "3",
+      "topics": [
+        "assign statements and always @(*) blocks; sensitivity lists and their pitfalls",
+        "if/else and case statements; avoiding unintended latches and full-case coverage",
+        "Multiplexers, decoders, encoders and priority logic in HDL",
+        "Arithmetic in HDL: adders, subtractors, comparators and a parameterised ALU",
+        "Parameterised designs: generate-for loops for ripple adders and bit-slice arrays"
+      ]
+    },
+    {
+      "title": "Sequential modelling",
+      "weeks": "4",
+      "topics": [
+        "Clocked always blocks; blocking versus non-blocking assignment and race avoidance",
+        "D flip-flops with synchronous and asynchronous reset, and clock enable",
+        "Registers, shift registers and counters including modulo-N and up/down",
+        "Inferred memories: register files, ROM and RAM with synchronous read",
+        "Clock domain crossing: two-flip-flop synchronisers and metastability handling"
+      ]
+    },
+    {
+      "title": "Finite state machine design",
+      "weeks": "5-6",
+      "topics": [
+        "Moore and Mealy machines in HDL: one-, two- and three-process coding styles",
+        "State encoding: binary, Gray and one-hot, and their trade-offs on FPGAs",
+        "Worked designs: sequence detector, vending machine and traffic-light controller",
+        "Handshake protocols and a UART transmitter controller",
+        "Safe state machines: reset behaviour, unreachable states and glitch-free outputs"
+      ]
+    },
+    {
+      "title": "Simulation and test benches",
+      "weeks": "7-8",
+      "topics": [
+        "Event-driven simulation: simulation time, delta cycles and the scheduling regions",
+        "Test bench structure: clock and reset generation, initial blocks and stimulus",
+        "Self-checking test benches with $display, assertions and expected-output comparison",
+        "Waveform debugging, X propagation and common functional bugs",
+        "Verification planning: directed and random stimulus, golden reference models and coverage ideas"
+      ]
+    },
+    {
+      "title": "Synthesis and timing closure",
+      "weeks": "9",
+      "topics": [
+        "The synthesis flow: elaboration, logic optimisation and technology mapping",
+        "Inferred hardware, synthesisable subsets and common coding errors that break synthesis",
+        "Static timing analysis: setup and hold slack, critical path and clock skew",
+        "Timing constraints: clock period, input and output delay, false and multicycle paths",
+        "Closing timing: pipelining, retiming, logic duplication and resource sharing"
+      ]
+    },
+    {
+      "title": "FPGA architecture and toolflow",
+      "weeks": "10-11",
+      "topics": [
+        "Logic fabric: look-up tables, flip-flops, slices, carry chains and routing",
+        "Block RAM, DSP slices, clock managers and PLLs",
+        "Place and route, bitstream generation and device programming",
+        "Pin constraints, I/O standards and board bring-up with switches, LEDs and displays",
+        "Resource and power estimation; FPGA versus ASIC versus microcontroller trade-offs"
+      ]
+    },
+    {
+      "title": "Building a small processor on an FPGA",
+      "weeks": "12-13",
+      "topics": [
+        "Instruction set design for a 16-bit teaching processor: formats, registers and addressing modes",
+        "Datapath in HDL: ALU, register file, program counter and memory interface",
+        "Control unit as a state machine or microcode ROM",
+        "Loading programs, memory-mapped I/O and a UART or display peripheral",
+        "System integration: test programs, timing report, resource report and demonstration"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "From logic design to HDL",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write down the Verilog port list and internal signals for a 4-bit comparator, and say which values a 4-valued signal can hold and what each means.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E2",
+          "title": "Describe a 2-input AND gate as a Verilog module, build the same gate in the circuit bench and compare outputs for all four inputs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Evaluate ten Verilog expressions using concatenation, part-select and reduction operators by hand and confirm each result in the maths lab"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw the design flow from RTL to bitstream as a diagram, labelling the file produced and the check performed at each stage"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Structural and dataflow modelling",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a full adder structurally from gate primitives and again with continuous assignments, then build a 4-bit adder by instantiating it four times.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E2",
+          "title": "Build the structural full adder from XOR, AND and OR gates and verify all eight input rows against the Verilog truth table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E2",
+          "title": "Instantiate four full adders into a 4-bit ripple adder, then check 30 chosen input pairs including carry-out cases"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Write a script that generates the Verilog text of an N-bit ripple adder from a parameter and checks it for N equal to 4, 8 and 16"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Describing combinational logic",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Code a 4-to-1 multiplexer, a priority encoder and a 4-bit ALU with add, subtract, AND and OR, and mark where an incomplete case would create a latch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E2",
+          "title": "Build a 4-to-1 multiplexer in the bench that matches your case-statement description and verify all select and data combinations"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E2",
+          "title": "Fix a priority encoder description whose missing default branch infers a latch, then show in the bench that the output is purely combinational"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E2",
+          "title": "Build a 4-bit ALU with flags matching a given HDL spec and verify 24 operand pairs, including overflow and zero results"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Flip-flops, registers and memories in HDL",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write a clocked shift register and a modulo-12 counter with enable, explain the difference between blocking and non-blocking assignment, and sketch a 2-flip-flop synchroniser.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E2",
+          "title": "Build a D flip-flop with synchronous reset and enable and show in the timing view that reset acts only on the clock edge"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E2",
+          "title": "Build a modulo-12 counter with enable and compare its waveform over 30 clock cycles with the behaviour of your HDL description"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Model a swap of two registers with blocking and non-blocking semantics in code and show which one yields a correct exchange"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Writing state machines in HDL",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Code a 1011 overlapping sequence detector as a Mealy and a Moore machine and compare their state counts and output timing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Step through a given Moore machine in the automata view with a 16-bit input and record the state after every clock"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E2",
+          "title": "Implement the 1011 detector with overlap in the bench and test it on a 24-bit stream with four hidden occurrences"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E2",
+          "title": "Build the same 6-state controller with binary and one-hot encoding, compare gate counts and output glitches, and state which you would use"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Protocol controllers and safe FSMs",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Draw the state diagram of a UART transmitter with start bit, eight data bits and stop bit, and list what happens if the FSM powers up in an illegal state.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Trace a ready/valid handshake between two small machines on a visualiser and mark the clock cycles in which a transfer occurs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E2",
+          "title": "Build a UART transmitter FSM that serialises the byte 0x4B at a divided baud clock and check the 10 line levels in the timing view"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E2",
+          "title": "Add a recovery path to a 5-state one-hot machine so a forced illegal state returns to idle, and demonstrate it by injecting a fault"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "How simulators work and writing test benches",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Trace the delta cycles of a small circuit with a combinational feedback chain, then outline a self-checking test bench for a 4-bit adder.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Step through event-driven simulation of three chained gates and record which signals update in each delta cycle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Write a test bench in code that generates a clock and reset, drives a counter model and prints the count for 20 cycles"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Write a self-checking bench for an adder model that tests all 512 inputs against a reference and reports the first mismatch it finds"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Debugging and verification planning",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Given a waveform showing an X on an output after reset, find the uninitialised register and propose a fix, then list the corner cases for a 4-bit counter test plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E2",
+          "title": "Locate the signal responsible for an X on the output of a given circuit using the timing view and explain how it propagated"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Generate 1,000 random operand pairs for an ALU model, compare against a reference and count how many corner cases they cover"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E2",
+          "title": "Find and fix three injected bugs in a given FSM and counter design using waveforms alone, and write the test that would have caught each"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Synthesis and static timing",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Given a three-stage path with listed cell delays, compute setup slack at 100 MHz, then restructure the logic by pipelining so that it meets 200 MHz.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.3",
+          "engine": "E2",
+          "title": "Read the critical path of a given circuit, add its gate delays and compute the maximum clock frequency by hand and in the timing view"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Compute setup and hold slack for five paths with different skew and constraints, and plot slack against clock period"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E2",
+          "title": "Insert a pipeline register in a failing 4-stage multiply-add path, verify equal results with one extra cycle of latency, and report the new frequency"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Inside the FPGA fabric",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Implement a 4-input function in a 4-input LUT by writing its 16-bit configuration, then explain how a carry chain speeds up an adder.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Fill in the 16-entry configuration table of a 4-input LUT for a given function and verify with the truth table tool"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E2",
+          "title": "Map a 6-input function onto 4-input LUTs by Shannon decomposition and test all 64 input rows in the bench"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Compare the cycle counts of a 16-tap filter built from LUT logic and from a DSP slice with a pipelined multiplier"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Board bring-up and platform choices",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write the constraint lines that connect four switches, four LEDs and a clock pin of an FPGA board, and justify FPGA over a microcontroller for a 100 MHz sensor filter.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E8",
+          "title": "Wire a push-button and an LED to a board model with the correct pull-up and resistor and read the pin state in the monitor"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E8",
+          "title": "Drive a 4-digit seven-segment display by multiplexing with a counter-based refresh and verify that no digit flickers at 1 kHz"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Plot cost, power and latency of FPGA, microcontroller and ASIC options over production volume and choose one for a solar water-pump controller"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Processor architecture and datapath",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Define a 16-bit instruction format with eight instructions, then draw the datapath and write the control word for ADD and LOAD.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E6",
+          "title": "Decode six 16-bit instruction words by hand using the given format and check each against the assembly CPU visualiser"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E2",
+          "title": "Build a datapath with eight registers, an ALU and a program counter, and execute a three-step ADD by setting the controls manually"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E2",
+          "title": "Add a control FSM that sequences fetch, decode and execute for four instructions and verify a short program in the timing view"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Running a program on your processor",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a program that sums the numbers 1 to 10 and writes the result to a memory-mapped LED register, and list the resources and the worst slack from the reports.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E6",
+          "title": "Assemble and run a program summing 1 to 10 on the assembly CPU and record the register values after each loop pass"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E8",
+          "title": "Map a processor output register to an LED bank and a switch bank as memory-mapped I/O and run a program that copies switches to LEDs"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E6",
+          "title": "Run a 20-instruction test program on the full processor, trace pipeline-free execution, and report cycles per instruction and critical path"
+        }
+      ]
+    }
+  ]
+}

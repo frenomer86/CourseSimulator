@@ -1,0 +1,505 @@
+{
+  "slug": "systems-biology-and-biological-networks",
+  "description": "How genes, proteins and metabolites interact as networks, and how those networks are analysed as graphs and simulated as differential-equation, stochastic, Boolean and constraint-based models. In the lab students build small gene circuits, run simulations, optimise metabolic fluxes and fit models to data.",
+  "modelledOn": [
+    "Alon, An Introduction to Systems Biology: Design Principles of Biological Circuits",
+    "Klipp, Liebermeister, Wierling and Kowald, Systems Biology: A Textbook",
+    "Palsson, Systems Biology: Constraint-based Reconstruction and Analysis",
+    "Barabasi and Oltvai, Network Biology: Understanding the Cell's Functional Organization"
+  ],
+  "outcomes": [
+    "Represent gene regulatory, protein interaction and metabolic systems as graphs and compute their topological properties.",
+    "Build and simulate ordinary differential equation models of gene circuits and classify their steady states and oscillations.",
+    "Simulate stochastic cellular processes and explain when noise changes the behaviour predicted by a deterministic model.",
+    "Apply flux balance analysis to predict growth and the effect of gene knockouts in a metabolic network.",
+    "Build and analyse Boolean models of signalling and identify their attractors.",
+    "Fit model parameters to data and judge how well the data constrain them."
+  ],
+  "units": [
+    {
+      "title": "Networks inside the cell",
+      "weeks": "1-2",
+      "topics": [
+        "From genes to systems: levels of abstraction and the central dogma as a network",
+        "Gene regulatory networks: transcription factors, promoters and regulatory interactions",
+        "Protein-protein interaction networks: experimental methods, databases and false positives",
+        "Metabolic and signalling networks: pathways, enzymes and cascades",
+        "Graph representations: adjacency matrices, directed, signed, weighted and bipartite graphs",
+        "Network motifs: negative autoregulation, the feed-forward loop and what each does"
+      ]
+    },
+    {
+      "title": "Network topology and centrality",
+      "weeks": "3",
+      "topics": [
+        "Degree distributions: random, scale-free and hub-dominated networks",
+        "Clustering coefficient, path length and the small-world property",
+        "Centrality: degree, closeness, betweenness and eigenvector measures",
+        "Modules and community detection in interaction networks",
+        "Robustness and essentiality: hubs, bottlenecks and the centrality-lethality idea"
+      ]
+    },
+    {
+      "title": "Deterministic models of gene circuits",
+      "weeks": "4-5",
+      "topics": [
+        "Mass-action kinetics and ordinary differential equation models",
+        "Michaelis-Menten and Hill kinetics; cooperativity and ultrasensitivity",
+        "Production and degradation: steady state and response time of gene expression",
+        "The genetic toggle switch: bistability and hysteresis",
+        "The repressilator and negative-feedback oscillators",
+        "Phase planes, fixed points, stability analysis and bifurcations"
+      ]
+    },
+    {
+      "title": "Stochastic models of cellular processes",
+      "weeks": "6-7",
+      "topics": [
+        "Intrinsic and extrinsic noise in gene expression",
+        "The chemical master equation and its moments",
+        "The stochastic simulation algorithm (direct method)",
+        "Bursty gene expression, the Fano factor and noise-induced switching",
+        "Tau-leaping and when a deterministic model is good enough"
+      ]
+    },
+    {
+      "title": "Metabolic models and flux balance analysis",
+      "weeks": "8-9",
+      "topics": [
+        "Stoichiometric matrices and the steady-state condition S v = 0",
+        "Flux balance analysis as a linear program",
+        "Biomass objectives, growth prediction and gene knockout analysis",
+        "Flux variability analysis and genome-scale reconstructions",
+        "Exchange fluxes, media composition and a worked example of producing a biofuel or food additive from local feedstock"
+      ]
+    },
+    {
+      "title": "Boolean and logic models of signalling",
+      "weeks": "10",
+      "topics": [
+        "Boolean networks: states, update functions and truth tables",
+        "Synchronous versus asynchronous updating",
+        "Attractors, basins of attraction and cell fates",
+        "Logic models of signalling pathways built from literature",
+        "Perturbation analysis and drug-target prediction in logic models"
+      ]
+    },
+    {
+      "title": "Model fitting and parameter estimation",
+      "weeks": "11-12",
+      "topics": [
+        "Least-squares fitting of ODE models to time-course data",
+        "Identifiability and sloppy parameter sets",
+        "Local and global sensitivity analysis",
+        "Optimisation methods: gradient descent, simplex search and global search",
+        "Uncertainty and model selection: bootstrap, AIC and BIC",
+        "A first look at Bayesian parameter estimation with sampling"
+      ]
+    },
+    {
+      "title": "Building, sharing and applying models",
+      "weeks": "13",
+      "topics": [
+        "The modelling workflow from question to validated model, and SBML for exchange",
+        "Reproducible modelling: versioned models, units and annotations",
+        "Case study: host-pathogen networks in malaria and candidate drug targets",
+        "Mini project: build, simulate and fit a model of a small network"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Biological networks and their data",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Draw the lac operon as a regulatory network with signed edges, and list two reasons a high-throughput interaction map contains false positives.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Draw a regulatory network of 8 genes from a given table of transcription factor targets and list each gene's regulators"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Load a 200-edge protein interaction table, build the graph, remove edges below a confidence cut-off, and report how the number of connected components changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Compare a high-throughput interaction list with a curated reference set, compute precision and recall, and estimate the false-positive rate"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Graph representations and network motifs",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Write the adjacency matrix of a signed 5-gene network, trace a path through a signalling cascade, and sketch the response of a coherent feed-forward loop to a pulse.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Write the adjacency matrix of a directed 6-gene network, compute in-degree and out-degree for each node, and identify the master regulator"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Count feed-forward loops and autoregulatory edges in a given 40-gene network and compare with the counts in 100 randomised copies"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E7",
+          "title": "Simulate negative autoregulation against simple regulation after a step input and measure rise time and steady-state level of each circuit"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Topology, centrality and robustness",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compute degree, betweenness and closeness for each node of a 10-node network by hand and rank the nodes by each measure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot the degree distribution of a given interaction network on log axes and decide whether it follows a power law"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Compute degree, betweenness and closeness for all proteins in a 150-node network and compare how the top 10 differ by measure"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Remove nodes from a network by random order and by highest degree, track the largest connected component, and compare with a list of essential genes"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Rate laws and gene expression models",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Write the ODEs for a gene that is transcribed at a constant rate and degraded, solve for the steady state, and find the time to reach 90 percent of it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Plot protein concentration over time for given production and degradation rates, and read off the steady state and half-life from the plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Plot Hill functions for coefficients 1, 2 and 4, and fit the threshold and steepness that best match a given dose-response table"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Simulate a two-step enzyme reaction with mass-action ODEs, compare with the Michaelis-Menten approximation, and report where the approximation breaks down"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Switches, oscillators and stability",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Find the fixed points of a two-gene mutual repression model, classify their stability, and sketch the phase plane with the nullclines.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Draw the phase plane of a two-variable gene model with nullclines and mark the fixed points it contains"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Simulate the toggle switch from many starting points, show two stable states, and sweep an inducer to trace hysteresis"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Simulate the repressilator, vary the Hill coefficient and degradation rate, and map the region of parameters where sustained oscillations appear"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Noise and the stochastic simulation algorithm",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "For a birth-death model of mRNA with production rate k and decay rate g, write the reactions and propensities and find the mean and variance at steady state.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Step through five events of the stochastic simulation algorithm for a birth-death process, recording the random waiting time and reaction chosen each time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement the direct method for mRNA production and decay, run 200 trajectories, and compare the mean with the ODE solution"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Simulate two identical genes in one cell and separate intrinsic from extrinsic noise by comparing their fluctuations over 500 simulated cells"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Bursting, noise-induced switching and approximation",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Explain why bursty expression gives a Fano factor above one, and decide for given molecule numbers whether an ODE model is a safe approximation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute the Fano factor of simulated protein counts for steady and bursty promoters and compare the two histograms"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Implement tau-leaping for a gene model, compare speed and accuracy with the exact method at three step sizes, and report the trade-off"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Simulate the toggle switch stochastically, count how often noise flips the state at low and high copy numbers, and relate flips to the barrier height"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Stoichiometry and flux balance analysis",
+      "topics": [
+        "5.1",
+        "5.2"
+      ],
+      "exercise": "Write the stoichiometric matrix of a five-reaction pathway, find its steady-state flux space, and set up the linear program that maximises one flux.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Build the stoichiometric matrix of a small 4-metabolite pathway and find which flux vectors satisfy S v = 0"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Solve a flux balance problem on a 6-reaction network with uptake limits, report the optimal flux through the objective, and list the active constraints"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Code flux balance analysis with a linear programming routine for a core metabolic model and verify it against a hand-solved small case"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Growth, knockouts and genome-scale models",
+      "topics": [
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Predict whether a bacterium grows when each of five genes is removed, and explain which reactions make a gene essential on a minimal medium.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Knock out each reaction of a core model in turn, record the predicted growth rate, and list the essential reactions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Vary glucose and oxygen uptake over a grid, plot the predicted growth surface, and identify the switch between respiration and fermentation"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Run flux variability analysis on a model with alternative routes, report which fluxes are fixed or flexible, and explain what the flexibility means"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Boolean and logic models",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write the update rules of a 4-node Boolean network, list its state transitions under synchronous updating, and find its attractors.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Step a 4-node Boolean network from 4 starting states under synchronous updates and record each trajectory until it repeats"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Enumerate all 256 states of an 8-gene Boolean network, find every attractor, and report the size of each basin of attraction"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Encode a signalling pathway of 10 nodes from a given interaction list, knock out each node in turn, and rank candidate drug targets by effect on the output"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Fitting models to data",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Fit the decay rate in a one-variable ODE to noisy measurements by least squares, report the residuals, and say which parameters the data cannot determine.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Fit an exponential decay curve to 12 noisy time points by least squares and plot data, fit and residuals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compute local sensitivities of the steady state of a gene model to each of five parameters and rank the parameters by influence"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Fit a two-parameter model whose parameters are correlated, map the cost surface, and show a ridge where the parameters cannot be told apart"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Optimisation, uncertainty and model choice",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Compare two rival models of the same dataset using AIC, and describe how a bootstrap gives a confidence interval for a rate constant.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Run gradient descent on a two-parameter least-squares cost, plot the path across the contour map, and compare it with the exact minimum"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Fit a one-step and a two-step activation model to the same time course and choose between them using AIC and BIC"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Sample the posterior of a degradation rate with Metropolis steps, plot the chain, and compare the credible interval with a bootstrap interval"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Model workflow and mini project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write the model card for your mini project: question, assumptions, equations, parameters with units, data used, and how a reader could re-run it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Add units and annotations to a given gene model and write it out in a structured exchange format so it can be re-run"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Build a small host-parasite network model of the blood stage, simulate a drug that blocks one step, and report the predicted change in parasite load"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Choose a small network, build the model, simulate it, fit it to a given dataset, and report fit quality, sensitivity and one prediction you can test"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,505 @@
+{
+  "slug": "advanced-machine-learning",
+  "description": "Graduate machine learning with the theory behind generalisation and the major families of methods beyond the introductory course: kernels, boosting, Bayesian models, representation learning, bandits, and learning with limited labels. Students derive key results, implement the methods from scratch in the lab, and reproduce and critique a published result.",
+  "modelledOn": [
+    "Shalev-Shwartz and Ben-David, Understanding Machine Learning: From Theory to Algorithms",
+    "Murphy, Probabilistic Machine Learning: An Introduction and Advanced Topics",
+    "Hastie, Tibshirani and Friedman, The Elements of Statistical Learning",
+    "Rasmussen and Williams, Gaussian Processes for Machine Learning"
+  ],
+  "outcomes": [
+    "Derive generalisation bounds from the PAC, VC and Rademacher frameworks and explain what they do and do not guarantee.",
+    "Implement and analyse kernel machines, boosted ensembles and Gaussian process models from first principles.",
+    "Apply approximate Bayesian inference with the Laplace approximation, variational methods and Markov chain sampling.",
+    "Learn low-dimensional and self-supervised representations and judge their quality.",
+    "Design online, bandit, active and transfer learning solutions and bound their regret or label cost.",
+    "Reproduce a published result with statistical rigour and report calibration, uncertainty and failure modes."
+  ],
+  "units": [
+    {
+      "title": "Statistical learning and generalisation",
+      "weeks": "1-2",
+      "topics": [
+        "Empirical risk minimisation, true risk and the generalisation gap",
+        "PAC learning and sample complexity for finite hypothesis classes",
+        "VC dimension and Rademacher complexity; uniform convergence",
+        "Bias-variance decomposition and double descent",
+        "Regularisation, structural risk minimisation and implicit bias of gradient descent",
+        "Cross-validation, model selection and honest evaluation with nested splits"
+      ]
+    },
+    {
+      "title": "Kernel methods and support vector machines",
+      "weeks": "3-4",
+      "topics": [
+        "Maximum margin classification: primal and dual SVM",
+        "Kernels, Mercer's theorem and reproducing kernel Hilbert spaces",
+        "Soft margins, hinge loss and sequential minimal optimisation",
+        "Kernel ridge regression and kernel PCA",
+        "Scaling kernels: random Fourier features and the Nystrom approximation"
+      ]
+    },
+    {
+      "title": "Ensembles and boosting",
+      "weeks": "5",
+      "topics": [
+        "Bagging, random forests and out-of-bag error",
+        "AdaBoost, exponential loss and margin theory",
+        "Gradient boosting as functional gradient descent",
+        "Regularised second-order boosting with histogram splits",
+        "Stacking, diversity and why ensembles generalise"
+      ]
+    },
+    {
+      "title": "Bayesian methods and Gaussian processes",
+      "weeks": "6-7",
+      "topics": [
+        "Bayesian linear regression: conjugate priors and the posterior predictive",
+        "Gaussian processes: kernels as priors over functions, posterior and prediction",
+        "Marginal likelihood and hyperparameter learning",
+        "Approximate inference: Laplace approximation and variational inference",
+        "Markov chain Monte Carlo: Metropolis-Hastings and Hamiltonian Monte Carlo",
+        "Bayesian optimisation with acquisition functions"
+      ]
+    },
+    {
+      "title": "Dimensionality reduction and representation learning",
+      "weeks": "8-9",
+      "topics": [
+        "PCA via the singular value decomposition and probabilistic PCA",
+        "Independent components and sparse coding with dictionaries",
+        "Manifold learning: spectral embeddings, t-SNE and the idea behind UMAP",
+        "Autoencoders and variational autoencoders with the evidence lower bound",
+        "Self-supervised and contrastive representation learning"
+      ]
+    },
+    {
+      "title": "Online learning and bandits",
+      "weeks": "10",
+      "topics": [
+        "Regret and online gradient descent",
+        "Prediction with expert advice: weighted majority and Hedge",
+        "Multi-armed bandits: epsilon-greedy, UCB and Thompson sampling",
+        "Contextual bandits and linear upper confidence bounds",
+        "Application: adaptive advice for smallholder farmers or mobile-money fraud rules"
+      ]
+    },
+    {
+      "title": "Semi-supervised, active and transfer learning",
+      "weeks": "11-12",
+      "topics": [
+        "Self-training, consistency regularisation and label propagation",
+        "Active learning: uncertainty sampling and query by committee",
+        "Transfer learning: fine-tuning and domain adaptation",
+        "Distribution shift: covariate shift, importance weighting and detection",
+        "Learning with few labels in low-resource languages and sensor data",
+        "Calibration and conformal prediction for reliable uncertainty"
+      ]
+    },
+    {
+      "title": "Research practice in machine learning",
+      "weeks": "13",
+      "topics": [
+        "Reproducing a published result: seeds, hyperparameters and discrepancy diagnosis",
+        "Ablations and statistical comparison of learning algorithms across datasets",
+        "Fairness, robustness and responsible deployment checks",
+        "Project report: a method, an experiment and a critical discussion"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Risk, PAC learning and capacity",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Derive the sample size needed to learn a finite hypothesis class to error 0.05 with 95 percent confidence, and compute the VC dimension of intervals on the line.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Fit polynomials of degree 1 to 12 on 20 points, plot training and test error against degree, and mark the generalisation gap"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot the PAC sample-size bound against hypothesis class size and tolerance, then check it against the error of a learner on simulated data"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Estimate the empirical Rademacher complexity of threshold classifiers and linear classifiers on random samples, and compare it with the observed generalisation gap"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Bias, variance, regularisation and evaluation",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Decompose the expected squared error of a ridge regression into bias, variance and noise, and design a nested cross-validation protocol for choosing the penalty.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Simulate 200 training sets, fit models of three complexities, and estimate bias and variance at five test points from the spread of predictions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Sweep the ridge penalty on a 60-feature dataset, plot validation error and coefficient paths, and pick the penalty by cross-validation"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Fit random-feature regression with growing width past the interpolation point, plot test error, and reproduce the double descent curve"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Maximum margin and kernels",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Derive the dual of the hard-margin SVM, identify the support vectors in a 2D example, and show that a polynomial kernel corresponds to an explicit feature map.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot the maximum margin line for 10 separable 2D points, mark the support vectors, and verify that moving a non-support point does not change it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Train an SVM with linear, polynomial and Gaussian kernels on a ring-shaped dataset and compare the decision boundaries and test accuracy"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement a simplified sequential minimal optimisation solver for a soft-margin SVM and verify its dual objective against a library solver"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Kernel regression and scaling kernels",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Show that kernel ridge regression solution lies in the span of the training points, and compare the cost of exact kernels with random features for a million samples.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Fit kernel ridge regression with a Gaussian kernel to 30 noisy points and plot fits for three bandwidths and penalties"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Apply kernel PCA to a two-spirals dataset, plot the top components, and compare with linear PCA for separating the two classes"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Approximate a Gaussian kernel with random Fourier features, measure approximation error against feature count, and time it against the exact method on 20000 points"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Bagging and boosting",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Derive the AdaBoost weight update from exponential loss, and write gradient boosting for squared error as repeated fitting of residuals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Train a random forest on a crop-yield classification dataset, compare out-of-bag error with test error, and plot error against the number of trees"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Step through five rounds of AdaBoost with decision stumps on 10 points, showing the weight update and the combined classifier after each round"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement gradient boosting with shallow trees for squared and logistic loss from scratch and compare with a library model on held-out data"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Bayesian regression and Gaussian processes",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Derive the posterior and predictive distribution of Bayesian linear regression with a Gaussian prior, and show how the Gaussian process predictive follows from conditioning.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Update a Bayesian linear regression one data point at a time and plot the posterior over the line and the predictive band after 0, 1, 5 and 20 points"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Sample functions from a Gaussian process prior with two kernels, condition on 8 observations, and plot the posterior mean and uncertainty band"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Fit length scale and noise by maximising the marginal likelihood on a rainfall time series, and compare with cross-validated choices"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Approximate inference and Bayesian optimisation",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compare the Laplace approximation and a mean-field variational fit to a skewed posterior, and write the acquisition function for expected improvement.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Fit a Laplace approximation to the posterior of a logistic regression coefficient and overlay it on the exact posterior computed on a grid"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Implement Metropolis-Hastings for a two-parameter posterior, tune the step size, and report acceptance rate, trace plots and effective sample size"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Tune two hyperparameters of a classifier with Bayesian optimisation and compare 20 evaluations against 20 random search evaluations over 10 repeats"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Linear representations",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Show that PCA directions are the top singular vectors of the centred data matrix, and explain when independent components differ from principal components.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute PCA of a 5-feature dataset through the SVD, plot the explained variance, and decide how many components keep 90 percent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Mix three known sound signals with a random matrix, recover them with independent component analysis, and measure the correlation with the originals"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Embed a 1000-point image digit dataset with PCA, t-SNE and a spectral embedding, compare neighbourhood preservation, and show how perplexity changes t-SNE"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Autoencoders and self-supervised learning",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Derive the evidence lower bound of a variational autoencoder and explain the roles of the reconstruction and KL terms.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Watch a small autoencoder train on 2D points, and plot reconstruction error against code size of 1, 2 and 3 units"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Train a variational autoencoder on small digit images, sample new images from the prior, and plot the effect of the KL weight"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Pre-train an encoder with a contrastive loss on unlabelled images, then train a linear classifier on 100 labels and compare with training from scratch"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Online learning and bandits",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Prove the sublinear regret of online gradient descent for convex losses, and compare the regret curves of epsilon-greedy, UCB and Thompson sampling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Simulate a 5-arm bandit with epsilon-greedy for 2000 steps over 100 runs and plot average reward and the share of optimal pulls"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Run weighted majority and Hedge with 10 experts on a prediction sequence, and plot cumulative regret against the best expert"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Implement linear UCB to recommend one of 6 fertiliser plans from field features, simulate 5000 rounds, and plot cumulative regret against a fixed-plan baseline"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Learning with few labels",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compare the label budget needed by random and uncertainty-based querying on a pool of 5000 points, and explain when self-training reinforces its own mistakes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Run label propagation on a two-moons dataset with 2 labelled points per class and plot the labels it assigns to the rest"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Compare random sampling, uncertainty sampling and query by committee on a text classification pool by plotting accuracy against labels used"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Fine-tune a pre-trained image model from one crop type to another with 50 target labels, and compare frozen features, full fine-tuning and scratch training"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Shift, few-shot data and calibrated uncertainty",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Show how importance weighting corrects covariate shift, and construct a conformal prediction set with 90 percent coverage on a calibration split.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Plot a reliability diagram for a classifier on 2000 test points, compute the expected calibration error, and fix it with temperature scaling"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Train a classifier where the test inputs come from a shifted distribution, detect the shift with a domain classifier, and reweight to recover accuracy"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Build split conformal prediction sets for a regression model, check coverage over 50 random splits, and show how set width varies with difficulty"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Reproduction, ablation and project report",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write the discrepancy report for a reproduced result, listing every difference from the paper, its likely effect, and the check you ran.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Re-run a given training script with 10 random seeds, report mean and standard deviation of test accuracy, and compare with the single number claimed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Compare three learning algorithms on 8 datasets with a paired test and a rank-based test, and report which differences survive correction for multiple testing"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Reproduce a published learning method on a new dataset, run ablations and a fairness check across groups, and write a critical project report"
+        }
+      ]
+    }
+  ]
+}

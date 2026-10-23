@@ -1,0 +1,507 @@
+{
+  "slug": "security-analytics-and-adversarial-machine-learning",
+  "description": "Machine learning for defence and against it: anomaly and intrusion detection, malware and log analytics, then the attacks and defences that arise when an adversary targets the detector. Students train detectors in code, step through networks to see how perturbations work, and evaluate every model against an adaptive attacker.",
+  "modelledOn": [
+    "Sommer and Paxson, Outside the Closed World: On Using Machine Learning for Network Intrusion Detection",
+    "Goodfellow, Bengio and Courville, Deep Learning (adversarial examples and regularisation chapters)",
+    "MITRE ATT&CK knowledge base and the NIST AI Risk Management Framework"
+  ],
+  "outcomes": [
+    "Build and evaluate anomaly and supervised detectors for network, host and log data, accounting for class imbalance and base rates.",
+    "Extract features for malware and log analytics and explain the drift and obfuscation that degrade them.",
+    "Craft evasion, poisoning and extraction attacks under stated threat models and measure their success.",
+    "Apply and critically assess defences such as adversarial training, certified bounds and data sanitisation.",
+    "Evaluate a detector under adaptive attack and report results that avoid common evaluation errors."
+  ],
+  "units": [
+    {
+      "title": "Anomaly and intrusion detection models",
+      "weeks": "1-2",
+      "topics": [
+        "The detection problem: signature versus anomaly detection, and the base-rate fallacy",
+        "Intrusion datasets, flow features and class imbalance",
+        "Statistical anomaly detection: z-scores, Mahalanobis distance and robust estimators",
+        "Isolation forest and one-class SVM",
+        "Autoencoders and reconstruction error for anomaly scoring",
+        "Supervised detectors: random forest and gradient boosting; precision, recall and ROC analysis"
+      ]
+    },
+    {
+      "title": "Malware classification",
+      "weeks": "3",
+      "topics": [
+        "Static features: byte n-grams, header fields, entropy and strings",
+        "Dynamic features: API call sequences and sandbox behaviour reports",
+        "Feature hashing and treating binaries as images for convolutional models",
+        "Family clustering and classification",
+        "Packing, obfuscation and concept drift in malware streams"
+      ]
+    },
+    {
+      "title": "Log and event analytics",
+      "weeks": "4-5",
+      "topics": [
+        "Log sources: authentication logs, system events, flow records and web access logs",
+        "Parsing and normalisation: regular expressions and log template mining",
+        "Correlation rules and SIEM concepts; mapping detections to attacker techniques",
+        "Sequence models for logs: n-grams, Markov chains and recurrent networks",
+        "Graph analytics on authentication data to expose lateral movement",
+        "Alert triage, false positive management and analyst workload"
+      ]
+    },
+    {
+      "title": "Evasion and poisoning attacks",
+      "weeks": "6-7",
+      "topics": [
+        "Threat models: attacker goals, knowledge and capabilities; white-box and black-box",
+        "Gradient-based evasion: FGSM and PGD on linear models and neural networks",
+        "Problem-space attacks: evading a detector without breaking the malware's function or the packet's validity",
+        "Black-box attacks: transferability and query-based search",
+        "Data poisoning, label flipping and backdoors",
+        "Model extraction and membership inference"
+      ]
+    },
+    {
+      "title": "Model robustness and defences",
+      "weeks": "8-9",
+      "topics": [
+        "Adversarial training and its cost",
+        "Input transformations and gradient masking: why many defences fail",
+        "Certified robustness: randomised smoothing and interval bounds",
+        "Robust feature design and monotonic constraints",
+        "Poisoning defences: data sanitisation, robust statistics and provenance",
+        "Ensembles, adversarial input detection and defence in depth"
+      ]
+    },
+    {
+      "title": "Threat intelligence mining",
+      "weeks": "10",
+      "topics": [
+        "Threat intelligence sources and formats: indicators, STIX and TAXII, ATT&CK techniques",
+        "Extracting indicators and entities from reports with text mining",
+        "Clustering and linking campaigns from shared infrastructure and behaviour",
+        "Detecting phishing, mobile money fraud SMS and scam content",
+        "Enrichment, scoring and sharing of indicators"
+      ]
+    },
+    {
+      "title": "Evaluating detectors under attack",
+      "weeks": "11-12",
+      "topics": [
+        "Metrics at low base rates: precision-recall curves, cost-sensitive evaluation and alert budgets",
+        "Temporal evaluation and drift: time-split testing instead of random splits",
+        "Adaptive attacks and evaluation checklists for defences",
+        "Robust accuracy curves and attack budgets",
+        "Red-team and blue-team exercises as evaluation",
+        "Reproducible evaluation and honest reporting"
+      ]
+    },
+    {
+      "title": "Responsible deployment and project",
+      "weeks": "13",
+      "topics": [
+        "Privacy and legal limits of security analytics, including monitoring staff and customers",
+        "Dual-use research ethics and disclosure of model vulnerabilities",
+        "Project: build and break a detector against an adaptive attacker",
+        "Project presentation and critique"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The detection problem and statistical anomalies",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "A detector has 99 percent true positive and 1 percent false positive rates and attacks occur in 1 in 10,000 flows: compute the probability that an alert is real, and explain what this means for analysts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute precision of an alert for several attack base rates with fixed true and false positive rates and plot the collapse at low rates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Flag outliers in login-count features with z-scores and Mahalanobis distance and compare which catches a planted attacker faster"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Build flow features from a labelled capture, handle 1 percent attack imbalance with weighting, and compare detection with and without it"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Machine learning detectors and evaluation",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Compare an isolation forest, an autoencoder and a random forest on the same intrusion data, choose an alert threshold for a team that can review 50 alerts a day, and justify the choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Train an isolation forest on normal flows only, score a mixed test set, and report which attack types are found"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Train a small autoencoder on benign traffic, set a threshold from reconstruction error, and report false positives on a held-out day"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Train a random forest and boosted trees, plot ROC and precision-recall curves, and pick the threshold that meets an alert budget of 50 per day"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Malware features and classification",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Describe the features you would extract from a Windows executable and from its sandbox report, explain how packing hides them, and design a test that shows drift over six months.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Compute byte-histogram and entropy features for a set of benign and sample files and plot which separate the classes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Classify programs from API call n-gram counts with logistic regression and report accuracy with a confusion matrix"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Train on the first three months of samples, test on the next three, and measure how much accuracy falls as families change"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Log sources, parsing and correlation",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Parse 10,000 authentication log lines into templates and fields, write three correlation rules for brute force, password spraying and impossible travel, and map each to an attacker technique.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Write regular expressions to parse authentication log lines into time, user, source address and result, and count malformed lines"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Group 5,000 unstructured log lines into templates by masking variable tokens and report the top ten templates by frequency"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement three correlation rules over parsed events, run them on logs with planted attacks, and measure detections and false alerts"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Sequences, graphs and alert triage",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Model normal command sequences with a Markov chain, build a user-to-host graph from logins to spot an account moving laterally, and propose a triage score that reduces analyst workload.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Estimate a Markov chain over system call types from normal traces and score unseen traces by log-likelihood"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Build a user-to-host login graph, find a path of new logins from a compromised account, and rank hosts by reachability"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Triage a queue of 30 alerts in a scenario under a time limit, justify each priority, and measure missed true incidents"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Threat models and gradient-based evasion",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "State a threat model for an attacker evading a spam and fraud SMS filter, derive the FGSM perturbation for logistic regression, and explain why changing features is not the same as changing a real message.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Step through a small neural network, compute the gradient with respect to the input, and see a prediction flip from a small perturbation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Implement FGSM against a logistic regression detector and plot accuracy as the perturbation budget grows from 0 to 0.3"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Attack a flow classifier while keeping packet counts and byte totals consistent, and compare success with the unconstrained attack"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Black-box attacks, poisoning and model theft",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Plan a poisoning attack that flips 5 percent of training labels to hide one attack family, and describe how a query-limited attacker can steal a decision boundary.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Flip 5, 10 and 20 percent of training labels at random and plot the detector's recall on a clean test set"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Craft adversarial examples on a surrogate model and measure how often they transfer to a different target classifier"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Query a prediction API with a budget of 2,000 queries, train a copy, and measure agreement between the copy and the original"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Adversarial training and certified robustness",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Argue why a defence that obscures gradients can still be broken, and compute a randomised smoothing radius for a classifier from its top-class probability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Retrain a classifier on its own FGSM examples and compare clean accuracy and robust accuracy before and after"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Add input quantisation as a defence, show it stops FGSM, then bypass it with a different attack and explain why"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Estimate a smoothed classifier's certified radius by Monte Carlo sampling for ten inputs and plot certified accuracy against radius"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Robust features, poisoning defences and defence in depth",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Rank features by how much an attacker can change them cheaply, build a detector that relies on hard-to-change ones, and design a layered pipeline that combines a model, rules and an adversarial input check.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Remove suspicious training points by distance to class medians and show that recall under poisoning recovers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Train a detector on only features that are costly to change and compare its evasion success to the full-feature model"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Combine a classifier, a rule layer and an anomaly check, then measure the attack budget needed to defeat each layer in turn"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Mining threat intelligence and fraud content",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Extract indicators and techniques from five incident reports, cluster them into campaigns, and build a classifier for fraudulent mobile money SMS messages.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Extract IP addresses, domains and file hashes from ten report excerpts with regular expressions and count unique indicators"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Train a text classifier on labelled SMS messages to separate scam from genuine mobile money notices and report precision and recall"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Link indicators that share infrastructure into a graph, cluster it into campaigns, and describe each cluster using ATT&CK techniques"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Metrics, time and adaptive attacks",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Show how a random train-test split overstates a detector's performance compared with a time-ordered split, and list five checks a defence evaluation must pass before its claims are trusted.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Plot a precision-recall curve for a detector on 0.1 percent attack data and compare its area with the ROC area"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Evaluate the same detector with random and time-ordered splits and report how much the performance drops under the honest split"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Design an adaptive attack that knows the defence in a given paper-style setup and measure how much it lowers the reported robust accuracy"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Robustness curves, red teams and reproducibility",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Produce a robust accuracy curve for your best detector, plan a red-team exercise against it, and write a reproducibility checklist covering data, seeds and splits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Plot robust accuracy against perturbation size for a detector with and without adversarial training on one chart"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Play the blue team in a scenario: observe an adaptive attacker's moves, update detections between rounds, and score the outcome"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Re-run an evaluation from a fixed seed and data version on a clean environment, and report any differences from the first run"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Ethics, deployment and project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a detector built to protect a mobile money service, show how a determined attacker defeats or fails to defeat it, and state the privacy limits of the data you used.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Decide in a case whether an employer may analyse staff email for threats, balancing privacy law, necessity and proportionality"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Handle the discovery of a bypass for a widely deployed detector in a case, choosing disclosure steps and timing"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Build a detector, attack it with a white-box evasion, defend it, and attack again with an adaptive attack, reporting results at each stage"
+        }
+      ]
+    }
+  ]
+}

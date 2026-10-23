@@ -1,0 +1,525 @@
+{
+  "slug": "electromagnetics-antennas-and-rf-engineering",
+  "description": "Fields, waves, transmission lines, antennas and radio-frequency circuits, from Maxwell's equations to a working link budget. Students solve fields numerically, match lines on the Smith chart, design signal-integrity fixes on the circuit bench and size radio links for rural Africa.",
+  "modelledOn": [
+    "Hayt and Buck, Engineering Electromagnetics",
+    "Pozar, Microwave Engineering",
+    "Balanis, Antenna Theory: Analysis and Design",
+    "Johnson and Graham, High-Speed Digital Design"
+  ],
+  "outcomes": [
+    "Apply vector calculus and Maxwell's equations to static fields, plane waves and boundary problems.",
+    "Analyse transmission lines with reflection coefficient, VSWR, bounce diagrams and the Smith chart, and design matching networks.",
+    "Diagnose and fix signal-integrity problems on fast digital interconnects using termination, stackup and decoupling.",
+    "Characterise antennas by pattern, gain and impedance, and design simple dipoles, arrays and patches.",
+    "Build a link budget with a propagation model and decide whether a radio link in a given terrain will work.",
+    "Analyse RF chains for gain, noise and nonlinearity, and apply shielding and filtering for electromagnetic compatibility."
+  ],
+  "units": [
+    {
+      "title": "Vector fields and static fields",
+      "weeks": "1",
+      "topics": [
+        "Vector calculus review: gradient, divergence, curl in Cartesian, cylindrical and spherical coordinates",
+        "Electrostatics: Coulomb's law, Gauss's law, potential and capacitance",
+        "Laplace and Poisson equations; numerical solution by finite differences",
+        "Magnetostatics: Biot-Savart law, Ampere's law, flux and inductance",
+        "Materials and boundary conditions: dielectrics, conductors and magnetic media"
+      ]
+    },
+    {
+      "title": "Maxwell's equations and plane waves",
+      "weeks": "2-3",
+      "topics": [
+        "Faraday's law, displacement current and the four Maxwell equations in integral and differential form",
+        "The wave equation and uniform plane waves in lossless media; phase velocity and wave impedance",
+        "Waves in lossy media and good conductors; attenuation and skin depth",
+        "Polarisation: linear, circular and elliptical; polarisation loss",
+        "Power flow and the Poynting vector",
+        "Reflection and transmission at a dielectric interface: normal and oblique incidence, Snell's law, Brewster angle"
+      ]
+    },
+    {
+      "title": "Transmission lines and the Smith chart",
+      "weeks": "4-5",
+      "topics": [
+        "Distributed circuit model and the telegrapher's equations; characteristic impedance and propagation constant",
+        "Lossless and low-loss lines; reflection coefficient, standing waves and VSWR",
+        "Input impedance, the quarter-wave transformer and open and short stubs",
+        "The Smith chart: impedance and admittance, moving along a line",
+        "Impedance matching with single-stub and lumped L-networks",
+        "Transients on lines: step response and the bounce (lattice) diagram"
+      ]
+    },
+    {
+      "title": "Signal integrity for high-speed digital design",
+      "weeks": "6",
+      "topics": [
+        "When an interconnect is a transmission line: edge rate versus trace length",
+        "Microstrip and stripline impedance, PCB stackup and return paths",
+        "Termination schemes: series, parallel and Thevenin; reflections and ringing",
+        "Crosstalk, ground bounce and simultaneous switching noise",
+        "Decoupling, power integrity, eye diagrams and jitter"
+      ]
+    },
+    {
+      "title": "Waveguides, resonators and optical fibre",
+      "weeks": "7",
+      "topics": [
+        "Rectangular waveguide: TE and TM modes and cutoff frequency",
+        "Dispersion, phase and group velocity in guided waves",
+        "Cavity resonators and quality factor",
+        "Planar lines: microstrip, coplanar waveguide and substrate choice",
+        "Optical fibre as a dielectric waveguide: modes, attenuation, dispersion"
+      ]
+    },
+    {
+      "title": "Antennas",
+      "weeks": "8-9",
+      "topics": [
+        "Radiation from a current element; radiation pattern, beamwidth, directivity, gain and efficiency",
+        "Half-wave dipole and monopole: pattern, input impedance and bandwidth",
+        "Antenna arrays: array factor, element spacing, grating lobes and beam steering",
+        "Aperture antennas: horn and parabolic reflector; gain and illumination efficiency",
+        "Microstrip patch antennas: design equations, feeding and bandwidth",
+        "Antenna measurement, polarisation matching and Sub-Saharan deployments: VHF/UHF masts, rural 4G and VSAT dishes"
+      ]
+    },
+    {
+      "title": "Propagation and link budgets",
+      "weeks": "10-11",
+      "topics": [
+        "Free-space propagation: the Friis equation, EIRP and path loss",
+        "Terrestrial models: two-ray ground reflection, log-distance and empirical macro-cell models",
+        "Fading and shadowing: Rayleigh and Rician fading, fade margin",
+        "Line-of-sight microwave links: Fresnel zones, earth bulge, tower height and rain attenuation",
+        "Satellite links: G/T, noise temperature and Eb/N0",
+        "Link budget design and rural coverage planning: cell radius, TV white space and community networks"
+      ]
+    },
+    {
+      "title": "RF circuits and systems",
+      "weeks": "12",
+      "topics": [
+        "Two-port networks and S-parameters; reading a vector network analyser plot",
+        "Noise figure and the Friis cascade formula; receiver sensitivity",
+        "Low-noise and power amplifiers: gain, stability and matching",
+        "Mixers, local oscillators and the superheterodyne receiver; image frequency",
+        "Filters (LC, coupled-line) and nonlinearity: 1 dB compression and third-order intercept"
+      ]
+    },
+    {
+      "title": "Electromagnetic compatibility",
+      "weeks": "13",
+      "topics": [
+        "Sources and victims of interference; conducted and radiated emissions",
+        "Coupling mechanisms: common impedance, capacitive, inductive and radiative",
+        "Shielding effectiveness, apertures and cable shields",
+        "Grounding, filtering and ferrites; lightning and surge protection for tropical installations",
+        "EMC standards and pre-compliance testing practice"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Vector fields and static fields",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Use Gauss's law to find the field of a charged sphere and a line charge, and solve Laplace's equation by hand for a parallel-plate capacitor with one dielectric layer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot a given 2D vector field, compute its divergence and curl symbolically, and mark the regions of positive divergence on the plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Solve Laplace's equation on a 20 by 20 grid by Gauss-Seidel iteration for a coaxial cross-section and compare the capacitance with the analytic value"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Apply boundary conditions at a dielectric interface to find the refracted field angle, and plot how flux density bends for permittivity ratios 1 to 10"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Maxwell's equations and plane waves",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "State the four Maxwell equations and the physical law behind each, derive the wave equation in free space, and compute the skin depth of copper at 1 MHz and 2.4 GHz.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Plot E and H of a 100 MHz plane wave in free space against position and time, and read off wavelength, phase velocity and wave impedance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute attenuation and skin depth for copper, seawater and moist soil from 1 kHz to 10 GHz, and plot the results on a log scale"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Simulate a pulse entering a lossy medium with a finite-difference 1D FDTD loop and measure the pulse amplitude after 1, 2 and 3 skin depths"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Polarisation and reflection at interfaces",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Find reflection and transmission coefficients for a wave going from air to glass at several angles, and decide whether a given pair of antennas suffers polarisation loss.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Plot the tip of E for linear, circular and elliptical polarisation from given amplitudes and phase, and compute the axial ratio"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Plot reflection coefficient against incidence angle for parallel and perpendicular polarisation on glass, and locate the Brewster angle"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Compute average Poynting power for a wave crossing a layered slab and verify that reflected plus transmitted power equals incident power at every angle"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Transmission line theory",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive Z0 for a lossless line from its per-unit-length L and C, then compute the reflection coefficient, VSWR and input impedance of a 75 ohm line terminated in 50 ohms.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Compute Z0, phase velocity and wavelength for a coaxial line and a two-wire line from their dimensions and permittivity, and tabulate the results"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E2",
+          "title": "Drive a lossless line model with a sine source, vary the load, and measure VSWR from the voltage envelope for short, open, matched and 100 ohm loads"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Design a quarter-wave transformer to match a 100 ohm load to a 50 ohm line at 900 MHz and plot return loss against frequency"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Smith chart, matching and transients",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Match a complex load of 30 + j40 ohms to a 50 ohm line with a single stub, and draw the bounce diagram for a step applied to a mismatched line.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Plot four given load impedances on a Smith chart, read each reflection coefficient and move 0.125 wavelengths toward the generator"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Find the stub length and position that match a given complex load to 50 ohms, and verify return loss better than 30 dB at the design frequency"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E2",
+          "title": "Apply a 5 V step to a mismatched line in the circuit bench and capture the staircase waveform, then confirm it against the bounce diagram you drew"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Signal integrity",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Estimate the critical trace length for a 1 ns edge on FR4, choose a termination for a point-to-point clock line, and list three layout changes that reduce crosstalk.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute the trace length at which a line must be treated as a transmission line for rise times of 5 ns, 1 ns and 200 ps on FR4"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E2",
+          "title": "Drive a 50 ohm trace with a fast clock into a CMOS input, observe ringing, then add series termination and measure overshoot before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E2",
+          "title": "Model two coupled traces with mutual capacitance and inductance, measure near-end crosstalk against spacing, and find the spacing that keeps it below 5 percent"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Waveguides, resonators and fibre",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compute the cutoff frequencies of the first five modes of a standard rectangular waveguide, find the resonant frequencies of a cavity, and compute the loss of a 20 km fibre link.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute cutoff frequencies of TE and TM modes for a WR-90 waveguide and list which modes propagate at 10 GHz and 15 GHz"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Plot phase and group velocity against frequency for a rectangular waveguide, and confirm the product of the two equals the square of the speed of light"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Build the power budget for a 20 km single-mode fibre link with splices and connectors, and test if the received power exceeds receiver sensitivity"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Antenna fundamentals and the dipole",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compute directivity and effective area from a given radiation pattern, and sketch the E-plane and H-plane patterns for a half-wave dipole and a quarter-wave monopole.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Plot the polar pattern of a half-wave dipole, read its half-power beamwidth, and estimate directivity by numerical integration of the pattern"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Compute input impedance of a dipole as its length varies from 0.25 to 1 wavelength, and find the length for resonance at 145 MHz"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Compute the array factor of an N-element uniform linear array in code, and find element spacing and phase shift that steer the main beam to 30 degrees"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Aperture antennas, patches and measurement",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Size a parabolic dish for a given gain at 4 GHz, work out the dimensions of a patch antenna at 2.4 GHz on FR4, and describe how to measure a radiation pattern.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Compute gain, beamwidth and effective area of a parabolic reflector for dish diameters 0.6 m to 3 m at 12 GHz and tabulate the results"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Apply patch design equations for a 2.4 GHz rectangular microstrip antenna on FR4, then plot return loss across frequency and read the bandwidth"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Choose antennas for a village broadband site from a case file with terrain, budget and regulator constraints, and justify the gain, polarisation and mast height against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Free-space and terrestrial propagation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compute free-space path loss at 900 MHz and 2.4 GHz over 5 km, compare it with an empirical macro-cell prediction for a rural area, and compute the fade margin for 99.9 percent availability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute free-space path loss with the Friis equation for 868 MHz, 2.4 GHz and 5.8 GHz over distances 100 m to 20 km, and plot all three"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Fit a log-distance path-loss exponent and shadowing deviation to a given set of measured received-power readings, and compare with an empirical macro-cell model"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Monte Carlo simulate Rayleigh fading over 100,000 samples, find the fraction of time the signal drops 20 dB below the mean, and compare with theory"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Microwave, satellite links and link budgets",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Design a 30 km microwave hop between two hills, checking Fresnel clearance, and compute a VSAT downlink budget with rain fade for Accra.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Compute earth bulge and first Fresnel zone radius along a 30 km path from an elevation profile, and decide the minimum tower heights"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Build a complete link budget for a 5 GHz point-to-point link, listing transmit power, gains, losses, noise and margin, and test if the link closes"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Compute Eb/N0 and bit error rate for a satellite downlink across rain-attenuation values, and find the largest rain fade the link can tolerate"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "RF circuits and systems",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Compute the cascaded noise figure and sensitivity of a receiver with a given filter, LNA and mixer, and find the input level at which a given amplifier reaches 1 dB compression.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute cascaded gain and noise figure for a filter, LNA and mixer chain, then see how swapping the order changes the total noise figure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Read S11, S21 and S22 from a given S-parameter table, convert S11 to return loss and VSWR, and judge whether the amplifier is matched at 2 GHz"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Simulate a two-tone test on a nonlinear amplifier, measure third-order products, and extract the 1 dB compression point and IP3 from a power sweep"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Electromagnetic compatibility and project",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Review a given product for EMC risks, choosing shielding, grounding and filters, and present your link or board design project with its measured or simulated results.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E2",
+          "title": "Model capacitive coupling between a noisy switching line and a victim line, measure induced noise, and add a ground guard trace to cut it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E7",
+          "title": "Compute shielding effectiveness of an enclosure for absorption and reflection loss at 100 MHz and 1 GHz, and the effect of a slot aperture"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Investigate a case where a mobile mast near a clinic disrupts medical equipment: gather evidence, choose mitigations and justify them against the rubric"
+        }
+      ]
+    }
+  ]
+}

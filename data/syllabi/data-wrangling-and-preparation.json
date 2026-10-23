@@ -99,12 +99,408 @@
     },
     {
       "title": "Privacy, ethics and the capstone",
-      "weeks": "14",
+      "weeks": "13",
       "topics": [
         "Personal data in datasets: anonymisation, pseudonymisation and re-identification risk",
         "Ghana's Data Protection Act and consent for secondary use of data",
         "Documenting a prepared dataset with a datasheet",
         "Capstone: an end-to-end, validated pipeline from raw public data to an analysis-ready table"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Data life cycle and file formats",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Describe the life cycle of a clinic attendance dataset from collection to analysis and list where wrangling steps occur, with the tidy-data violations you expect.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Identify the three tidy-data violations in a given wide table of weekly cases and rewrite it in tidy form with pandas"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Load a CSV with quoted commas, a Latin-1 encoding and a missing header row by choosing the right read options, and verify row and column counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Read the same records from CSV, JSON and a spreadsheet export, compare dtypes and file sizes, and explain why a columnar format suits large data"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Data sources, APIs and provenance",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Write a short data provenance note for a DHIS2 export covering source, date, licence, known gaps and the steps to reproduce the download.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Parse a DHIS2-style export with period, organisation unit and value columns and reshape it to one row per district per month"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write a loop that pages through a mock API of 120 records, respects a rate limit of 10 calls per minute and stops when the data runs out"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Merge two open datasets with different licences, record the provenance of each column in a metadata table and flag which columns cannot be redistributed"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "pandas fundamentals",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Answer ten short questions about a market prices DataFrame using selection, filtering and descriptive methods, and explain each choice of loc or iloc.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Create a DataFrame from a dictionary of market prices, inspect dtypes and set a meaningful index"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Read a 200000-row file in chunks with chosen dtypes, count rows per region, and compare memory use with a default read"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Answer eight questions about a school dataset using loc, iloc, boolean masks and query, including a combined condition on two columns"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "SQL and efficient wrangling",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Rewrite a slow row-by-row Python loop as a vectorised or SQL solution and explain why it is faster.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Write SQL to select, filter, join and group a farmer and purchases table in SQLite, returning total purchases per village"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Use a window function to rank farmers by purchase value within each society and compute a running total per season"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Replace a row-by-row loop over 100000 records with vectorised pandas and compare run time and memory, and move the join into SQL to compare again"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Missing and inconsistent values",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Choose, with reasons, a treatment (delete, impute or flag) for each of five missing-data situations in a health survey.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Find sentinel values such as -999 and N/A hidden in a dataset, convert them to proper missing values and report the count per column"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Impute missing yields by mean, median and group-wise median, compare resulting distributions and justify the choice for skewed data"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Standardise 40 inconsistent spellings of district names to an official list with a mapping table and verify no unmatched values remain"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Duplicates, outliers and types",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write a decision note on whether to delete, cap or keep each flagged outlier in a cocoa price dataset, with domain reasoning.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Detect exact duplicate rows and remove them, keeping the most recent, in a registry of 500 records"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Flag outliers in farm size using IQR and z-scores, compare the lists and apply a domain rule that farms above 100 hectares need review"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Link two beneficiary lists with misspelt names using fuzzy matching, set a similarity threshold and report precision against a given answer key"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Reshaping and joining",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Draw the join diagram for three tables (farmers, farms, purchases), stating the key and cardinality of each join and the expected row counts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Convert a wide table of monthly rainfall to long form with melt and back to wide with pivot, checking that no values are lost"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Join farmers to purchases with inner, left and outer joins, compare row counts and detect a many-to-many blow-up caused by duplicate keys"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E5",
+          "title": "Use an anti-join in SQL and pandas to find farmers in the registry with no purchases and purchases with no registered farmer"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Grouping and window calculations",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Write a summary of purchases by society and season for a cocoa cooperative, with one paragraph on what you would check before trusting it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Group sales by region and compute count, sum and mean with agg, then add a column showing each row as a share of its region total using transform"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Calculate a 3-month rolling average and a cumulative total of rainfall by station, handling the first rows correctly"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Link purchase records to a farmer registry with imperfect IDs, resolve unmatched records and summarise tonnes bought per society per season"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Dates, text and phone numbers",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write ten regular expressions with test strings for typical cleaning tasks such as phone numbers, receipt codes and district names.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Parse dates in five mixed formats into one standard type, flag the ambiguous ones and resample the series to monthly totals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Extract the receipt number, amount and date from 30 free-text mobile money messages using regular expressions and check against the answer key"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Normalise 100 Ghanaian phone numbers with varied spacing and prefixes to +233 form and validate network prefixes, listing the unfixable ones"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Unicode, categories and geography",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Explain with examples how inconsistent Unicode or changing district codes can silently break a join.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Normalise names containing local-language characters to a single Unicode form so that joins match, and show the match count before and after"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Bin ages into ordered categories, recode a 5-level satisfaction scale, and one-hot encode region for a modelling table"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Map old to new district codes after boundary changes with a crosswalk table, and aggregate historic counts to the new districts without double counting"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Data quality and validation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Write a one-page data dictionary and quality report for a prepared dataset, with agreed fixes for each issue.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Profile a dataset by computing missing percentage, unique counts and ranges per column, and list five suspicious findings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E5",
+          "title": "Write SQL checks for completeness, uniqueness and validity on a patient table and return the failing rows for each rule"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write an assertion-based validation function covering types, ranges, allowed values and referential integrity, and run it on a dataset with seven seeded faults"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Reproducible pipelines",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Refactor a notebook into a script with named functions, and explain how you would run it again after a failure without duplicates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Rewrite a messy notebook as a chain of small functions using method chaining, and confirm the output equals the original"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Create a requirements file with pinned versions and a script that runs the whole cleaning workflow from raw file to clean file"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Make a three-step pipeline idempotent so that rerunning it after a failure at step two produces the same final table with no duplicate rows"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Privacy, ethics and capstone",
+      "topics": [
+        "7.4",
+        "7.5",
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a datasheet for the capstone dataset covering purpose, collection, cleaning steps, known limitations and permitted uses under Ghanaian data protection law.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Pseudonymise a patient table by hashing IDs, generalise age and location, and test with a given attack for the number of unique people remaining"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Add logging and three unit tests to a cleaning function, including a test for a seeded bug, and confirm all tests pass after the fix"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Build an end-to-end pipeline from a raw public dataset to an analysis-ready table with validation checks, logging and a final data quality report"
+        }
       ]
     }
   ]

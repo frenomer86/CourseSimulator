@@ -1,0 +1,505 @@
+{
+  "slug": "analogue-electronics-and-devices",
+  "description": "From the pn junction to power stages: how diodes, transistors and operational amplifiers shape continuous signals. Students build, bias, measure and break amplifiers, filters and oscillators on the circuit bench and check them against hand calculations and Arduino measurements.",
+  "modelledOn": [
+    "Sedra and Smith, Microelectronic Circuits",
+    "Razavi, Fundamentals of Microelectronics",
+    "Horowitz and Hill, The Art of Electronics"
+  ],
+  "outcomes": [
+    "Explain the operation of diodes, bipolar and MOS transistors from their device physics and I-V characteristics.",
+    "Bias a transistor stage at a stable operating point and derive its small-signal gain and impedances.",
+    "Design operational-amplifier circuits for summing, filtering, instrumentation and signal conditioning.",
+    "Predict amplifier frequency response and analyse the effect of negative feedback on gain, bandwidth and stability.",
+    "Design active filters, oscillators and linear power stages to a specification, and verify them by measurement."
+  ],
+  "units": [
+    {
+      "title": "Semiconductors and diodes",
+      "weeks": "1-2",
+      "topics": [
+        "Intrinsic and doped silicon: electrons, holes, drift and diffusion currents",
+        "The pn junction: depletion region, built-in potential, forward and reverse bias",
+        "The Shockley diode equation, temperature dependence and the diode load line",
+        "Rectifiers: half-wave, full-wave and bridge circuits; smoothing capacitor and ripple voltage",
+        "Zener regulators, clippers, clampers, LEDs and photodiodes"
+      ]
+    },
+    {
+      "title": "Bipolar and MOS transistors",
+      "weeks": "3-4",
+      "topics": [
+        "BJT structure and the cutoff, active and saturation regions",
+        "BJT characteristics: common-emitter curves, current gain beta, Early effect",
+        "The BJT as a switch: driving an LED or relay from a logic pin",
+        "MOSFET structure: enhancement mode, threshold voltage, channel formation",
+        "MOSFET characteristics: triode and saturation regions, square-law model, channel-length modulation",
+        "The MOSFET as a switch and the CMOS inverter transfer curve"
+      ]
+    },
+    {
+      "title": "Biasing and small-signal models",
+      "weeks": "5",
+      "topics": [
+        "BJT bias circuits: fixed bias, emitter feedback and voltage-divider bias; stability factor",
+        "MOSFET bias circuits: gate divider, source degeneration, current-source bias",
+        "The Q-point, DC load line and thermal runaway",
+        "Small-signal models: hybrid-pi and T-models for BJT; gm, r-pi and ro for BJT and MOSFET",
+        "AC equivalent circuits, coupling and bypass capacitors"
+      ]
+    },
+    {
+      "title": "Single-stage and multi-stage amplifiers",
+      "weeks": "6-7",
+      "topics": [
+        "Common-emitter and common-source amplifiers: voltage gain, input and output resistance",
+        "Emitter and source followers as buffers",
+        "Common-base, common-gate and the cascode configuration",
+        "Cascaded stages: loading effects, overall gain and Darlington pairs",
+        "The differential pair: differential and common-mode gain, CMRR",
+        "Current mirrors and active loads"
+      ]
+    },
+    {
+      "title": "Operational amplifier circuits",
+      "weeks": "8-9",
+      "topics": [
+        "The ideal op amp, virtual short and the two golden rules",
+        "Inverting, non-inverting, summing and difference amplifiers",
+        "Integrators and differentiators; practical compensation resistors",
+        "The instrumentation amplifier and sensor interfacing: thermistor, strain gauge, load cell",
+        "Comparators, hysteresis and the Schmitt trigger",
+        "Non-ideal behaviour: input offset, bias current, slew rate, gain-bandwidth product"
+      ]
+    },
+    {
+      "title": "Frequency response and feedback",
+      "weeks": "10-11",
+      "topics": [
+        "Decibels, poles, zeros and Bode plots of magnitude and phase",
+        "Low-frequency and high-frequency response of transistor amplifiers; Miller effect",
+        "Gain-bandwidth trade-off and rise time versus bandwidth",
+        "Negative feedback: four topologies and effects on gain, bandwidth, impedance and distortion",
+        "Stability: loop gain, gain margin, phase margin and frequency compensation"
+      ]
+    },
+    {
+      "title": "Filters and oscillators",
+      "weeks": "12",
+      "topics": [
+        "Active low-pass and high-pass filters: Sallen-Key and Butterworth responses",
+        "Band-pass and notch filters; filter Q and cascade design",
+        "Barkhausen criterion; RC phase-shift and Wien-bridge oscillators",
+        "LC oscillators (Colpitts, Hartley) and crystal oscillators",
+        "The 555 timer in astable and monostable mode; relaxation oscillators"
+      ]
+    },
+    {
+      "title": "Power stages and regulators",
+      "weeks": "13",
+      "topics": [
+        "Class A, B and AB output stages: efficiency and crossover distortion",
+        "Power dissipation, thermal resistance and heat-sink sizing",
+        "Linear regulators: series pass transistor, 78xx and low-dropout devices",
+        "Switching regulators: buck and boost converters and efficiency",
+        "Power supply design for an unreliable grid: battery, solar charging and brown-out protection"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Semiconductors and the pn junction",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Explain in a half page how doping creates n-type and p-type silicon, then compute the diode current for a 0.65 V forward bias at 300 K given the saturation current.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E2",
+          "title": "Sweep a silicon diode from 0 to 1 V in the circuit bench and plot current against voltage to find the turn-on voltage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot the Shockley diode equation for three saturation currents and temperatures, and describe how the knee voltage shifts with each"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E2",
+          "title": "Solve a diode and resistor circuit with the load line graphically, then compare the operating point with the bench measurement and with the constant-drop model"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Rectifiers, regulators and special diodes",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Size the smoothing capacitor for a bridge rectifier delivering 12 V at 200 mA with at most 1 V ripple from the 50 Hz Ghana mains, and design a 5.1 V Zener regulator for a sensor board.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E2",
+          "title": "Build a half-wave rectifier with a 10 V peak sine source and record the output waveform with and without a smoothing capacitor"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E2",
+          "title": "Build a Zener shunt regulator and plot output voltage as the load current rises from 0 to 40 mA to find where regulation fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E2",
+          "title": "Design a bridge rectifier and filter for 9 V at 300 mA with under 5 percent ripple, then measure ripple and compare it with your formula"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Bipolar junction transistor operation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "From a given set of measured IC-VCE curves, extract beta and the Early voltage, mark the regions on the plot, and size the base resistor so a BJT switches a 100 mA relay fully on.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E2",
+          "title": "Set the base current of an npn transistor to three values and record which region the transistor is in for each collector supply"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E2",
+          "title": "Sweep VCE at five base currents to draw the IC-VCE family of curves and estimate beta and the Early voltage"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Fit a straight line to the active-region data for three transistors, compute their Early voltages, and explain which would give the highest voltage gain"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "MOSFETs and transistor switching",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compute the drain current of an n-channel MOSFET in triode and saturation for given VGS and VDS, and size the gate resistor and pull-down for a MOSFET that switches a 2 A load from a 3.3 V logic pin.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E8",
+          "title": "Wire an n-channel MOSFET to an Arduino pin to switch a 12 V LED strip, and record the gate voltage at which it turns fully on"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E2",
+          "title": "Sweep VGS on an n-channel MOSFET to plot the transfer curve, mark the threshold voltage and check the square-law fit"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E2",
+          "title": "Build a CMOS inverter, sweep its input from 0 to 5 V, and read off the switching threshold and noise margins from the transfer curve"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Biasing and small-signal models",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Design a voltage-divider bias for a BJT with ICQ of 1 mA from a 12 V supply, compute gm and r-pi from the result, and show how the Q-point moves when beta doubles.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E2",
+          "title": "Build a voltage-divider biased common-emitter stage and measure the quiescent collector current and VCE against the hand calculation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E2",
+          "title": "Replace the transistor with beta 100, then 200, then 300, and compare how much the Q-point moves for fixed bias and for divider bias"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compute gm, r-pi and ro for a transistor at five bias currents and plot each against collector current on log axes"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Single-stage amplifiers",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "For a common-emitter amplifier with given bias values, derive voltage gain, input resistance and output resistance, then compare with a source follower on the same transistor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E2",
+          "title": "Drive a common-emitter amplifier with a 10 mV sine at 1 kHz and measure the voltage gain and the phase inversion"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E2",
+          "title": "Add an emitter follower after a high-resistance source and show by measurement how much loading it removes"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E2",
+          "title": "Build a cascode amplifier, measure its gain and output resistance, and compare both with a single common-emitter stage at the same bias"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Multistage amplifiers, differential pairs and mirrors",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Cascade two common-emitter stages, compute the overall gain including the loading of the second stage on the first, and explain why the product of unloaded gains overestimates it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.6",
+          "engine": "E2",
+          "title": "Build a two-transistor current mirror and verify that the output current follows a 1 mA reference across four load resistors"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E2",
+          "title": "Cascade two common-emitter stages with a coupling capacitor, measure total gain and compare it with the product of the individual gains"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E2",
+          "title": "Build a differential pair with a current-source tail, measure differential gain and common-mode gain, and compute the CMRR in decibels"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Op-amp fundamentals and linear circuits",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Derive the gain of the inverting and non-inverting amplifiers from the golden rules and design a summing amplifier that mixes three audio inputs with gains of 1, 2 and 4.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E2",
+          "title": "Build an inverting amplifier of gain -10 and a non-inverting amplifier of gain 11, and verify both with a 100 mV sine input"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E2",
+          "title": "Build a three-input summing amplifier with weights 1, 2 and 4 and test it with eight combinations of DC inputs against the formula"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E2",
+          "title": "Build an integrator with a reset resistor, feed a square wave, and explain the drift you see before and after adding the resistor"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Op-amp interfacing and limitations",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Design a thermistor interface that maps 20 to 50 degrees Celsius onto 0 to 5 V, then list which op-amp limits (offset, slew rate, bandwidth) would first spoil its accuracy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E2",
+          "title": "Build an op-amp comparator with a 2.5 V reference and show the output switching as a ramp input crosses the threshold"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Connect a thermistor through a conditioning amplifier to an Arduino analogue pin, calibrate with two known temperatures, and log readings"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E2",
+          "title": "Drive a unity-gain follower with a fast square wave, measure the slew rate, and find the highest sine frequency at 5 V peak without distortion"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Frequency response of amplifiers",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Sketch the Bode magnitude plot for a transfer function with one zero and two poles, then find the 3 dB bandwidth of a common-emitter stage given its capacitances and Miller multiplier.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Plot the Bode magnitude and phase of a first-order RC low-pass filter and mark the corner frequency and the -20 dB per decade slope"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E2",
+          "title": "Run an AC sweep from 10 Hz to 10 MHz on a common-emitter amplifier and read off the lower and upper 3 dB frequencies"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E2",
+          "title": "Increase the collector resistor to raise the gain, re-run the sweep, and show that the gain times bandwidth product stays roughly constant"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Feedback and stability",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Show with loop-gain algebra how series-shunt feedback with gain 100 on an amplifier with open-loop gain 10,000 stabilises gain and widens bandwidth, and compute the phase margin from a Bode plot.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E2",
+          "title": "Add a feedback resistor to an op-amp stage and measure closed-loop gain, comparing the result with the 1/beta prediction"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E2",
+          "title": "Apply negative feedback to a transistor amplifier and measure the change in gain, bandwidth and distortion for a 1 kHz sine input"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Plot loop gain magnitude and phase for a three-pole amplifier, extract the phase margin, and choose a compensation capacitor that gives 60 degrees"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Active filters and oscillators",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Design a second-order Butterworth low-pass filter with a 3 kHz corner for a voice line, and select component values for a Wien-bridge oscillator at 1 kHz.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E2",
+          "title": "Build a 555 astable circuit for a 1 Hz LED flasher and verify frequency and duty cycle on the timing view"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E2",
+          "title": "Build a Sallen-Key low-pass filter with a 3 kHz corner, run an AC sweep, and check the corner frequency and roll-off"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E2",
+          "title": "Build a Wien-bridge oscillator at 1 kHz, tune the gain until oscillation starts and holds without clipping, and report the amplitude and distortion"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Power stages, thermal design and regulators",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Compute efficiency and dissipation of a class AB stage delivering 5 W into 8 ohms, select a heat sink for a 7805 dropping 12 V to 5 V at 500 mA, and compare with a buck converter.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.3",
+          "engine": "E2",
+          "title": "Build a linear regulator with a pass transistor and Zener reference, and measure line and load regulation across 9 to 15 V input"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E2",
+          "title": "Build a class B push-pull stage, view the crossover distortion on a sine input, then remove it with a small bias to class AB"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E8",
+          "title": "Compare a linear regulator and a buck converter feeding a 5 V sensor load from a 12 V battery, and compute the battery runtime for each"
+        }
+      ]
+    }
+  ]
+}

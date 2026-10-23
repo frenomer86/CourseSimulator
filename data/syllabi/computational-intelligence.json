@@ -1,0 +1,511 @@
+{
+  "slug": "computational-intelligence",
+  "description": "Nature-inspired and soft-computing methods for search, optimisation and learning: evolutionary algorithms, genetic programming, swarm intelligence, fuzzy systems, artificial immune systems, neuro-evolution and multi-objective optimisation. Students implement each method, visualise its search behaviour and compare algorithms with sound statistics on benchmark and African application problems.",
+  "modelledOn": [
+    "Engelbrecht, Computational Intelligence: An Introduction",
+    "Eiben and Smith, Introduction to Evolutionary Computing",
+    "Poli, Langdon and McPhee, A Field Guide to Genetic Programming",
+    "Deb, Multi-Objective Optimization using Evolutionary Algorithms"
+  ],
+  "outcomes": [
+    "Implement genetic algorithms, evolution strategies and differential evolution and tune their operators and parameters.",
+    "Evolve programs and symbolic models with genetic programming while controlling bloat.",
+    "Apply particle swarm and ant colony optimisation to continuous and combinatorial problems.",
+    "Design, tune and evaluate fuzzy inference systems and immune-inspired detectors.",
+    "Evolve neural network weights and topologies, and solve multi-objective problems with Pareto-based methods.",
+    "Compare stochastic algorithms with proper experimental design and statistical tests and report reproducibly."
+  ],
+  "units": [
+    {
+      "title": "Search landscapes and baselines",
+      "weeks": "1",
+      "topics": [
+        "Fitness landscapes, local optima, ruggedness and the no free lunch theorems",
+        "Benchmark functions (sphere, Rastrigin, Rosenbrock) and performance measures",
+        "Hill climbing, random restarts and simulated annealing",
+        "Exploration versus exploitation and selection pressure"
+      ]
+    },
+    {
+      "title": "Evolutionary algorithms",
+      "weeks": "2-3",
+      "topics": [
+        "Genetic algorithms: representation, fitness-proportional and tournament selection, crossover and mutation",
+        "Evolution strategies, self-adaptation and CMA-ES",
+        "Evolutionary programming and differential evolution",
+        "Schema theorem, building blocks, premature convergence, diversity maintenance and niching",
+        "Constraint handling and parameter control"
+      ]
+    },
+    {
+      "title": "Genetic programming",
+      "weeks": "4",
+      "topics": [
+        "Tree representation, function and terminal sets, and initialisation",
+        "Subtree crossover and mutation; bloat and parsimony pressure",
+        "Symbolic regression and model discovery from data",
+        "Grammatical evolution and Cartesian genetic programming",
+        "Applications: evolved classifiers, controllers and rules"
+      ]
+    },
+    {
+      "title": "Swarm intelligence",
+      "weeks": "5-6",
+      "topics": [
+        "Particle swarm optimisation: velocity update, inertia weight, neighbourhood topologies and stability",
+        "Ant colony optimisation for the travelling salesman problem and routing: pheromone and heuristic information",
+        "Artificial bee colony, firefly and other swarm metaphors, and a critical view of them",
+        "Stigmergy, flocking and swarm robotics",
+        "Applications: delivery routing in Accra traffic and irrigation scheduling"
+      ]
+    },
+    {
+      "title": "Fuzzy systems",
+      "weeks": "7-8",
+      "topics": [
+        "Fuzzy sets, membership functions, set operations and alpha-cuts",
+        "Fuzzy rules, Mamdani inference and defuzzification methods",
+        "Rule-consequent (TSK-type) models and adaptive neuro-fuzzy inference",
+        "Fuzzy control design: irrigation, traffic signals and cold-room thermostats",
+        "Type-2 fuzzy sets and rough sets in outline"
+      ]
+    },
+    {
+      "title": "Artificial immune systems",
+      "weeks": "9",
+      "topics": [
+        "Immune inspiration: clonal selection, negative selection and immune networks",
+        "Clonal selection algorithms for optimisation",
+        "Negative selection for anomaly and fault detection",
+        "Danger theory and the dendritic cell algorithm"
+      ]
+    },
+    {
+      "title": "Neuro-evolution",
+      "weeks": "10-11",
+      "topics": [
+        "Evolving weights versus topologies; direct and indirect encodings",
+        "NEAT: innovation numbers, speciation and complexification",
+        "CPPNs and HyperNEAT for large regular networks",
+        "Evolution strategies as a scalable alternative to gradient reinforcement learning; neural architecture search",
+        "Novelty search, quality-diversity and MAP-Elites"
+      ]
+    },
+    {
+      "title": "Multi-objective optimisation",
+      "weeks": "12",
+      "topics": [
+        "Pareto dominance, Pareto fronts and trade-off analysis",
+        "NSGA-II: non-dominated sorting and crowding distance",
+        "Decomposition and indicator-based methods: MOEA/D, SPEA2 and the hypervolume",
+        "Many-objective problems and decision making; crop planning case",
+        "Memetic algorithms and hybridisation with local search"
+      ]
+    },
+    {
+      "title": "Experimental method and project",
+      "weeks": "13",
+      "topics": [
+        "Experimental design for stochastic algorithms: runs, seeds, budgets and statistical tests (Wilcoxon, Friedman)",
+        "Reproducible reporting, ablation and parameter sensitivity",
+        "Choosing a method for a problem; hyper-heuristics and algorithm selection",
+        "Project presentation and critique"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Search landscapes and baselines",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Plot the landscape of Rastrigin in two dimensions, explain why hill climbing stalls, and compare restarts with annealing at equal evaluation budgets.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot Sphere, Rastrigin and Rosenbrock in two dimensions and mark their global optima and the number of visible local optima"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement hill climbing with random restarts and simulated annealing on Rastrigin in 10 dimensions and compare best fitness over 30 runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Sweep the annealing cooling rate on a travelling salesman instance and plot final tour length against rate to show the exploration and exploitation balance"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Genetic algorithms and evolution strategies",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Hand-simulate one generation of a genetic algorithm on a 6-bit one-max problem, and explain how self-adaptation changes a mutation step size.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step through three generations of a genetic algorithm on a bit-string problem and record selection, crossover points and mutations for each offspring"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Implement a genetic algorithm for 0/1 knapsack with tournament selection and compare one-point and uniform crossover over 30 runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement a (mu, lambda) evolution strategy with self-adaptive step sizes on Rosenbrock and plot step size and fitness against generation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Differential evolution, diversity and constraints",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain the DE/rand/1 mutation, why diversity collapse causes premature convergence, and two ways to handle constraints.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement differential evolution with rand/1/bin and run it on Rastrigin in 20 dimensions, recording the best fitness every 50 generations"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Run a genetic algorithm on a deceptive function with and without fitness sharing, and plot population diversity to see niches form"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Solve a constrained design problem with penalty functions and with a repair operator and compare feasibility rate and final quality over 30 runs"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Genetic programming",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Draw two parent trees, show a subtree crossover, and suggest three ways to control bloat in a symbolic regression run.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Build random expression trees from a function and terminal set, evaluate them on five inputs, and apply subtree crossover to two parents"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Run symbolic regression to recover a hidden formula from noisy data, using parsimony pressure, and compare accuracy and tree size with and without it"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Evolve a rule set for classifying crop disease records with grammatical evolution and compare its test accuracy with a decision tree"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Particle swarm and ant colony optimisation",
+      "topics": [
+        "4.1",
+        "4.2"
+      ],
+      "exercise": "Compute one particle update by hand with inertia, cognitive and social terms, and explain how pheromone evaporation avoids stagnation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Watch a 20-particle swarm on a 2D function, change the inertia weight and topology, and note convergence speed and premature collapse"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Step ant colony optimisation on a 12-city tour, show the pheromone matrix after each iteration, and compare the best tour with the optimum"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Tune inertia and acceleration coefficients of particle swarm on Rastrigin by a grid search and identify the stable region of parameters"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Swarm variants and applications",
+      "topics": [
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Critique a new metaphor-based swarm algorithm for novelty, and plan a vehicle routing model for deliveries in Accra.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Simulate boids with separation, alignment and cohesion rules and describe how changing the weights changes flock patterns"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Use ant colony optimisation to route 15 deliveries in a city with different travel times, and compare the route with nearest-neighbour"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Compare an artificial bee colony and a basic particle swarm on five benchmarks over 30 runs and test whether any difference is significant"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Fuzzy sets and inference",
+      "topics": [
+        "5.1",
+        "5.2"
+      ],
+      "exercise": "Define membership functions for temperature and humidity, evaluate three Mamdani rules for one input, and defuzzify by centroid.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Plot triangular and Gaussian membership functions for soil moisture, then compute union, intersection and complement of two fuzzy sets"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Step a Mamdani inference for one input through fuzzification, rule firing, aggregation and centroid defuzzification, and read the crisp output"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Compare centroid, bisector and mean-of-maxima defuzzification on a rule base for fan speed and plot the three control surfaces"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Fuzzy modelling and control",
+      "topics": [
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Design a fuzzy controller for drip irrigation and compare its behaviour with a simple on-off controller.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Fit a TSK-type fuzzy model to crop yield data and compare its error with a linear regression on a held-out test set"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Build a fuzzy controller for a cold-room thermostat, simulate a hot afternoon, and compare temperature stability and energy use with on-off control"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Tune membership function widths of a fuzzy traffic-light controller with a genetic algorithm to reduce average queue length in a simulated junction"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Artificial immune systems",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Contrast clonal selection with negative selection, and explain how a detector set trained on normal behaviour can flag a fault.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Step a clonal selection algorithm on a multimodal function and record the clones, hypermutation and affinity of the best antibodies per generation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Generate detectors by negative selection from normal sensor readings and measure detection and false alarm rates on injected faults"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Implement the dendritic cell algorithm on a labelled network log and compare its detection against negative selection on the same data"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Evolving neural networks",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compare direct and indirect encodings, and explain how NEAT uses innovation numbers to line up genes during crossover.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Evolve the weights of a fixed small neural net to solve XOR with a genetic algorithm and watch the fitness and weights change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Step through NEAT on the XOR problem, showing mutations that add nodes and links, species, and the champion network per generation"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Use a CPPN to generate the weight pattern of a layer from node coordinates and compare its size and accuracy with a directly encoded net"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Scalable neuro-evolution and quality-diversity",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compare gradient-based reinforcement learning with evolution strategies on a control task, and discuss why novelty search can beat objective-based search.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Train a small policy on a balance task with evolution strategies using 50 perturbations per update and plot return against environment steps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E6",
+          "title": "Run novelty search on a deceptive maze and compare it with fitness-based search on the number of goals reached over 20 runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Implement MAP-Elites for a simulated robot gait with two behaviour descriptors and plot the elite map after 5,000 evaluations"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Multi-objective optimisation",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Sort a set of ten solutions into Pareto fronts, compute crowding distance, and discuss how to pick one solution from a front for a farmer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute Pareto dominance for 20 candidate solutions of two objectives, plot the front, and mark the dominated points"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Step NSGA-II through two generations, showing non-dominated sorting, crowding distance and the selected survivors"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Optimise a crop planning problem for profit, water use and labour with NSGA-II and compare the hypervolume with a weighted-sum approach"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Experimental method and project",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Plan and report a fair comparison of two algorithms with equal budgets, 30 seeds and a Wilcoxon test, and present your project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Run two optimisers on 5 benchmarks with 30 seeds each and report medians, interquartile ranges and a Wilcoxon signed-rank test per function"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E7",
+          "title": "Plot convergence curves with confidence bands and a parameter sensitivity heatmap for your chosen algorithm, and state what the data supports"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Implement a simple algorithm selector that chooses between GA and DE from problem features and evaluate it against always choosing one method"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,501 @@
+{
+  "slug": "probabilistic-graphical-models",
+  "description": "Representation, inference and learning in directed and undirected probabilistic models, from Bayesian networks and hidden Markov models to variational inference, MCMC, causal graphs and deep generative models. Students derive the algorithms and then run them on small networks, sampling problems and real-style datasets in the lab.",
+  "modelledOn": [
+    "Koller and Friedman, Probabilistic Graphical Models: Principles and Techniques",
+    "Bishop, Pattern Recognition and Machine Learning",
+    "Murphy, Probabilistic Machine Learning: Advanced Topics",
+    "Pearl, Causality"
+  ],
+  "outcomes": [
+    "Represent a domain as a Bayesian network or Markov random field and read its independence assumptions from the graph.",
+    "Run and analyse exact inference by variable elimination, belief propagation and the junction tree algorithm, including its complexity.",
+    "Derive and implement maximum likelihood, Bayesian and EM parameter learning for graphical models.",
+    "Derive the evidence lower bound and implement mean-field and stochastic variational inference.",
+    "Implement Metropolis-Hastings, Gibbs and Hamiltonian Monte Carlo and diagnose convergence.",
+    "Use causal graphs to decide what can be identified from observational data, and relate deep generative models to latent-variable inference."
+  ],
+  "units": [
+    {
+      "title": "Directed and undirected models",
+      "weeks": "1-2",
+      "topics": [
+        "Probability review: joint, marginal and conditional distributions, Bayes' rule, independence and conditional independence",
+        "Bayesian networks: factorisation, conditional probability tables and plate notation",
+        "d-separation, Markov blankets, I-maps and I-equivalence",
+        "Markov random fields: Hammersley-Clifford theorem, cliques and log-linear models",
+        "Factor graphs and conversion between representations; Gaussian and conditional linear Gaussian models"
+      ]
+    },
+    {
+      "title": "Temporal and structured models",
+      "weeks": "3",
+      "topics": [
+        "Hidden Markov models: forward, backward and Viterbi algorithms",
+        "Linear dynamical systems: the Kalman filter and smoother",
+        "Dynamic Bayesian networks and particle filtering",
+        "Conditional random fields for sequence labelling",
+        "Topic models: the latent Dirichlet allocation generative process"
+      ]
+    },
+    {
+      "title": "Exact inference",
+      "weeks": "4-5",
+      "topics": [
+        "Variable elimination: elimination orderings, induced width and treewidth",
+        "Sum-product belief propagation on trees and message passing",
+        "The junction tree algorithm: moralisation, triangulation and clique trees",
+        "Max-product and MAP inference; graph cuts for binary MRFs",
+        "Complexity of inference: NP-hardness, loopy belief propagation and its convergence"
+      ]
+    },
+    {
+      "title": "Parameter estimation and EM",
+      "weeks": "6",
+      "topics": [
+        "Maximum likelihood and Bayesian estimation for Bayesian networks: sufficient statistics and Dirichlet priors",
+        "Learning Markov random fields: the partition function, gradients and contrastive methods",
+        "Expectation-maximisation: derivation via the lower bound, Gaussian mixtures and convergence",
+        "EM for HMMs (Baum-Welch) and for missing data; identifiability and local optima",
+        "Learning conditional random fields and structured prediction"
+      ]
+    },
+    {
+      "title": "Variational inference",
+      "weeks": "7-8",
+      "topics": [
+        "KL divergence, the evidence lower bound and exponential families",
+        "Mean-field approximation: coordinate ascent updates, illustrated on the Ising model",
+        "Loopy belief propagation as Bethe free energy minimisation; expectation propagation",
+        "Stochastic variational inference, the reparameterisation trick and black-box variational inference",
+        "Variational Bayes for Gaussian mixtures and latent Dirichlet allocation"
+      ]
+    },
+    {
+      "title": "Sampling and Markov chain Monte Carlo",
+      "weeks": "9-10",
+      "topics": [
+        "Importance sampling, rejection sampling and effective sample size",
+        "Markov chains: stationary distributions, detailed balance and ergodicity",
+        "Metropolis-Hastings, Gibbs sampling, and blocked and collapsed Gibbs samplers",
+        "Hamiltonian Monte Carlo, NUTS and diagnostics such as R-hat, autocorrelation and trace plots",
+        "Sequential Monte Carlo and approximate Bayesian computation"
+      ]
+    },
+    {
+      "title": "Structure learning and causality",
+      "weeks": "11",
+      "topics": [
+        "Score-based structure learning: BIC, K2 and greedy hill climbing",
+        "Constraint-based learning: the PC algorithm and conditional independence tests",
+        "Causal graphs: interventions, the do-operator, the backdoor criterion and adjustment",
+        "Structural causal models, counterfactuals, front-door adjustment and identifiability",
+        "Causal discovery from observational data, with applications to malaria and public health surveillance"
+      ]
+    },
+    {
+      "title": "Deep generative models and probabilistic programming",
+      "weeks": "12-13",
+      "topics": [
+        "Variational autoencoders and amortised inference",
+        "Normalising flows and autoregressive models",
+        "Generative adversarial networks, energy-based models and restricted Boltzmann machines",
+        "Diffusion and score-based models as latent-variable models; links to variational inference",
+        "Probabilistic programming with PyMC or Stan-style languages, and the course project"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Bayesian networks and d-separation",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Build a Bayesian network for diagnosing malaria, typhoid and flu from fever, headache and a rapid test, and list five independence statements read from the graph.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute marginal and conditional distributions from a joint table of three binary variables and check Bayes' rule on two queries."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Apply d-separation to twelve variable pairs in a 7-node network, with and without observed nodes, and verify answers by checking the factorisation."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Write a d-separation checker using the Bayes-ball algorithm and use it to list all conditional independencies of a 6-node network."
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Markov random fields and factor graphs",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Convert a small Bayesian network to its moral graph and to a factor graph, and explain which independencies are lost in each conversion.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Define pairwise potentials on a four-node cycle, compute the unnormalised joint and the partition function, and list the cliques."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Convert a Bayesian network to a factor graph in code and verify both define the same joint distribution on all assignments."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Sample from a 5 by 5 Ising model by brute-force enumeration of states and compare the exact marginal with the Gibbs estimate."
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "HMMs, Kalman filters and topic models",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Model a weather-dependent mobile network outage sequence with an HMM, run forward and Viterbi by hand on four steps, and compare the filtering and smoothing answers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step through the forward algorithm and Viterbi on a three-state HMM with a five-symbol observation sequence and record both trellises."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement a one-dimensional Kalman filter tracking a moving vehicle with noisy GPS readings and plot the estimate against truth."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement a bootstrap particle filter for a nonlinear state-space model, vary the particle count, and measure the error and weight degeneracy."
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Variable elimination, belief propagation and junction trees",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "For an 8-node network, compare two elimination orderings by induced width and number of table operations, then build its junction tree.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Run variable elimination on a five-node network for one query and list each intermediate factor created and its size."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement sum-product message passing on a tree-shaped network and check every node marginal against brute-force enumeration."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Moralise, triangulate and build a junction tree for a 9-node network, then run calibration and verify the clique beliefs agree."
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "MAP inference and the limits of exact inference",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Explain why exact inference is exponential in treewidth, and give a network family of tiny size where it is intractable and one where it is easy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Run max-product on a chain of five variables to find the MAP assignment and compare it with the product of individual marginal maxima."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Denoise a small binary image with an Ising prior using a graph cut, and report the energy before and after."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Run loopy belief propagation on a 6 by 6 grid, compare its marginals with exact ones, and find the coupling strength where it fails to converge."
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Learning parameters and EM",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Derive the EM updates for a two-component Gaussian mixture and show that the log-likelihood never decreases between iterations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Estimate network probability tables by counting from 500 patient records, then compare maximum likelihood with a Dirichlet prior on rare cases."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement EM for a two-component Gaussian mixture on rainfall data and plot the log-likelihood rising across 30 iterations."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement Baum-Welch for an HMM from random starts, compare 20 restarts for local optima, and report which recovers the true parameters."
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "The evidence lower bound and mean-field",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Derive the ELBO and show that maximising it is equivalent to minimising the KL divergence to the true posterior, then write the mean-field update for one Ising variable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute the KL divergence in both directions between two Gaussians and plot how each direction fits a bimodal target."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement mean-field coordinate ascent for an Ising grid and compare the approximate marginals with exact ones at three couplings."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Compare mean-field and loopy belief propagation marginals with exact values on a small loopy network, and explain the differences with the Bethe free energy."
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Stochastic and black-box variational inference",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Explain why the reparameterisation trick lowers gradient variance compared with the score-function estimator, using a one-dimensional Gaussian example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Estimate the gradient of an expectation with the score-function and reparameterised estimators and compare their variances over 1000 trials."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Fit a Gaussian approximation to a skewed posterior by black-box variational inference and plot the ELBO per iteration."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Implement variational inference for a Gaussian mixture on crop yield data, choose the number of clusters by the ELBO, and compare with EM."
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Monte Carlo, Markov chains and Gibbs sampling",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Prove that a Metropolis-Hastings chain satisfies detailed balance with respect to the target, and then explain why it need not be a good sampler.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Estimate a tail probability by importance sampling with two proposals and compare the effective sample sizes."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement random-walk Metropolis-Hastings for a bimodal target, tune the step size, and report the acceptance rate and mixing."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write a Gibbs sampler for the Ising model and a collapsed Gibbs sampler for a small topic model, and compare convergence speeds."
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Hamiltonian Monte Carlo and diagnostics",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Diagnose three sampler outputs given as trace plots and summary statistics: say which have converged and what you would change in each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Compute R-hat and effective sample size from four chains of a simple model and decide whether they have converged."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Implement Hamiltonian Monte Carlo with leapfrog steps for a correlated Gaussian and compare mixing against random-walk Metropolis."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Use approximate Bayesian computation to infer the infection rate of a stochastic outbreak model from summary statistics, and report the posterior."
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Structure learning and causal inference",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Given a causal graph for rainfall, irrigation, pests and yield, decide which effect of irrigation on yield is identifiable from observational data and which adjustment set to use.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E6",
+          "title": "Find valid backdoor adjustment sets for five treatment and outcome pairs in a given causal graph."
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Learn a Bayesian network structure with greedy hill climbing and BIC from 1000 samples, and compare the result with the true graph."
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Run the PC algorithm on simulated data with a confounder, show how the skeleton is found, and report the edges it orients wrongly."
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Latent-variable deep models",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Compare the VAE, flow and GAN on what each gives you: exact likelihood, a sampler, an inference network, and the main failure mode.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute the ELBO terms (reconstruction and KL) for a Gaussian encoder and decoder on a given input and latent."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Train a small variational autoencoder on 2D data, plot the latent space, and sample new points from the prior."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Build a two-layer coupling normalising flow for a 2D target, verify the change-of-variables log-density against samples, and plot the fit."
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Diffusion as latent variables, probabilistic programming and project",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present the project: model, inference method, diagnostics, posterior predictive checks, and a sensitivity analysis of one modelling choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Write a probabilistic program for a coin bias with a Beta prior, run inference, and compare the posterior with the closed form."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Show that a diffusion model's training objective is a sum of per-step KL terms for a one-dimensional example, and compute them."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build a hierarchical model of malaria incidence across 16 regions, fit it by MCMC, check the posterior predictive fit, and report shrinkage."
+        }
+      ]
+    }
+  ]
+}

@@ -92,5 +92,393 @@
         "A glimpse of second-order equations and oscillation"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Functions and limits",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Sketch six assorted functions (polynomial, rational, trigonometric, exponential, logarithmic) by hand with intercepts and asymptotes, then evaluate three limits using limit laws and one with the squeeze theorem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot f(x) = x^3 - 4x and its shifted and stretched versions together, and read off the zeros and turning points from the graph"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot a rational function with a removable discontinuity and a vertical asymptote and estimate both one-sided limits at each point from a table of values"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Verify the squeeze theorem numerically for x^2 sin(1/x) near 0 by plotting the bounding functions and tabulating values at ever smaller x"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Continuity and numerical limits",
+      "topics": [
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Classify the discontinuities of three given piecewise functions as removable, jump or infinite, and use the intermediate value theorem to show that x^3 + x - 1 has a root in (0, 1).",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Plot a piecewise function with one jump and one removable break, and label each discontinuity type directly on the graph"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write an R or Python script that tabulates sin(x)/x for x approaching 0 from both sides and stops when successive values agree to six decimals"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement bisection using the intermediate value theorem to locate a root of x^3 + x - 1 to within 1e-8 and count the iterations needed"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Derivatives and differentiation rules",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Differentiate ten functions using product, quotient and chain rules, including one implicit and one logarithmic differentiation, and check two of them with the limit definition.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Draw secant lines of f(x) = x^2 at x = 1 with shrinking h and watch the slope approach the tangent slope of 2"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Differentiate five composite functions symbolically and plot each function with its derivative to confirm the zeros of the derivative match the turning points"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Use implicit differentiation to find the tangent slope to x^2 + xy + y^2 = 7 at (1, 2) and confirm it by plotting the curve and the tangent line"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Applications of derivatives",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Solve a related-rates problem about a ladder leaning on a wall, then sketch a cubic curve fully using first and second derivative tests and state its intervals of increase and concavity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Plot f(x) = x^3 - 3x and its derivative, and mark the increasing and decreasing intervals and the local maximum and minimum"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Evaluate three indeterminate limits with l'Hopital's rule and confirm each numerically by tabulating the function near the limit point"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Do a full curve sketch of x^4 - 4x^3 plotting f, f' and f'' together and identify extrema and inflection points from the sign changes"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Optimisation and Newton's method",
+      "topics": [
+        "2.6",
+        "2.7"
+      ],
+      "exercise": "Model profit for a market stall selling bags of garri when price affects demand, and find the price maximising profit; then explain when Newton's method fails.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Find the dimensions of a rectangle of perimeter 40 m with the largest area by plotting area against width and checking with the derivative"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.7",
+          "engine": "E1",
+          "title": "Implement Newton's method for the root of cos(x) - x and print the error at each iteration to show quadratic convergence"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Minimise the material for a closed cylindrical water tank of fixed 1000 litre volume, and confirm the optimum radius and height symbolically and by plot"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Integrals and the fundamental theorem",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "Compute a Riemann sum with n = 4 and n = 8 for x^2 on [0, 2], then evaluate the exact integral with the fundamental theorem and compare the three values.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Draw left, right and midpoint Riemann sums for x^2 on [0, 2] with n = 4 and tabulate each approximation against the exact area"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Evaluate five definite integrals with the fundamental theorem and verify each by plotting the integrand and the accumulated area function"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Show numerically that the derivative of the accumulation function F(x) = integral of sin(t^2) from 0 to x equals sin(x^2) at 10 sample points"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Techniques of integration",
+      "topics": [
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Integrate eight functions requiring substitution, integration by parts, trigonometric substitution or partial fractions, naming the technique chosen and the reason for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Integrate x*e^(x^2) by substitution and check the result by differentiating the antiderivative in the symbolic tool"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Integrate x^2 ln x and e^x sin x by parts, and verify each antiderivative symbolically and by comparing definite values numerically"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Decompose (3x + 5)/((x - 1)(x^2 + 4)) into partial fractions, integrate each part, and check the sum against the symbolic result"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Improper integrals and applications",
+      "topics": [
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Decide convergence of three improper integrals by hand, then set up integrals for the area between two curves and the volume of a bowl formed by revolution.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Compute the area between y = x and y = x^2 on [0, 1] by integration and shade the region on a plot to confirm the bounds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Evaluate the integral of 1/x^p from 1 to infinity for p = 0.5, 1, 2 using truncated limits and tabulate which converge"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Find the volume of the solid formed by revolving y = sqrt(x) about the x-axis on [0, 4] by discs and by shells, and compare the results"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Numerical integration and series",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Apply the trapezoidal and Simpson's rules with n = 4 to the integral of e^(-x^2) on [0, 1], compute the error bounds, and decide the n needed for error below 1e-6.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Code the trapezoidal rule and apply it to the integral of x^2 on [0, 3] with n = 6 and n = 12 to see the error shrink"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement midpoint, trapezoidal and Simpson's rules, then compare their errors against the built-in integrator for n = 4, 8, 16, 32 on e^(-x^2)"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Approximate the integral of sin(x)/x on [0, 1] using a Maclaurin series, find how many terms give error under 1e-8, and compare with Simpson's rule"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Partial differentiation",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "For f(x, y) = x^2 + xy + y^2 - 6x, find the gradient, the critical points and classify them with the second-derivative test, then use Lagrange multipliers for the same f on x + y = 4.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Plot level curves of f(x, y) = x^2 + y^2 and x*y, and describe the surface shape each family of contours suggests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute the gradient of f(x, y) = x^2 y + sin(y) at (1, 0), plot it over the contour map, and find the directional derivative towards (1, 1)"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Find and classify all critical points of x^3 - 3xy + y^3 using the Hessian, and verify the saddle and the minimum on a contour plot"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Multiple integrals",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Set up and evaluate a double integral over a triangular region in both orders of integration, then convert one integral over a disc to polar coordinates and evaluate it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Evaluate the double integral of x*y over the rectangle [0, 2] x [0, 3] by iterated integration and check the result symbolically"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Convert the integral of exp(-(x^2 + y^2)) over the unit disc to polar form, evaluate it exactly, and confirm with a numerical double integral"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Compute the volume and centre of mass of a cone of uniform density using cylindrical coordinates and verify it with a Monte Carlo estimate of 100000 points"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "First-order differential equations",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Model a cup of tea cooling in a Kumasi room with Newton's law, solve it by separation of variables, and use the solution to find when the tea reaches 50 degrees Celsius.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Plot the direction field of dy/dx = x - y and sketch the solution curves passing through (0, 1) and (0, -1)"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Solve a linear equation y' + 2y = e^(-x) with an integrating factor and plot the solution family for three initial values"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Fit the logistic model to a given Ghana population series, solve it exactly, and compare the predicted growth with the data on one plot"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Numerical solution of ODEs and oscillation",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Solve y' = y - x^2 + 1 with y(0) = 0.5 using Euler steps of 0.5 by hand, compare with the exact solution, and explain why a smaller step helps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Code Euler's method for y' = -2y with y(0) = 1 on [0, 2] with step 0.2 and tabulate the error against the exact solution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Implement Euler and fourth-order Runge-Kutta for y' = y - x^2 + 1, and plot error against step size on a log scale for both methods"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Solve y'' + 4y = 0 as a first-order system with Runge-Kutta, plot position against velocity, and check that the energy stays near constant"
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,507 @@
+{
+  "slug": "financial-risk-management",
+  "description": "How banks, microfinance institutions and fintech firms measure and control market, credit, liquidity, operational, counterparty and model risk. Students estimate value at risk, build credit scorecards, run stress tests and produce a regulatory-style risk report on portfolios drawn from Ghanaian and regional markets.",
+  "modelledOn": [
+    "Hull, Risk Management and Financial Institutions",
+    "McNeil, Frey and Embrechts, Quantitative Risk Management",
+    "Basel Committee on Banking Supervision, Basel Framework standards",
+    "Jorion, Value at Risk: The New Benchmark for Managing Financial Risk"
+  ],
+  "outcomes": [
+    "Compute and backtest value at risk and expected shortfall with parametric, historical and Monte Carlo methods.",
+    "Build and validate a credit scorecard and estimate expected and unexpected credit loss for a loan portfolio.",
+    "Model liquidity and operational loss exposures, including mobile-money float and fraud scenarios.",
+    "Design macroeconomic stress scenarios and translate them into portfolio losses and capital impact.",
+    "Quantify counterparty exposure and the effect of netting and collateral.",
+    "Assess model risk and prepare a risk report that links measured risk to regulatory capital."
+  ],
+  "units": [
+    {
+      "title": "Risk foundations and measures",
+      "weeks": "1",
+      "topics": [
+        "Risk taxonomy: market, credit, liquidity, operational, counterparty and model risk; risk versus uncertainty",
+        "Returns and stylised facts: log returns, volatility clustering and fat tails",
+        "Risk measures: variance, value at risk, expected shortfall and the coherence axioms",
+        "Risk governance: three lines of defence, risk appetite and limits"
+      ]
+    },
+    {
+      "title": "Market risk",
+      "weeks": "2-4",
+      "topics": [
+        "Parametric (delta-normal) value at risk and the variance-covariance method",
+        "Historical simulation, filtered historical simulation and Monte Carlo value at risk",
+        "Volatility models: EWMA and GARCH(1,1)",
+        "Extreme value theory: peaks over threshold and the generalised Pareto tail",
+        "Backtesting: Kupiec proportion-of-failures test, Christoffersen independence test and the traffic-light approach",
+        "Portfolio risk: factor models, marginal and component value at risk, and exchange-rate exposure to the cedi",
+        "Interest rate risk: duration, convexity, DV01 and key rate durations"
+      ]
+    },
+    {
+      "title": "Credit risk",
+      "weeks": "5-6",
+      "topics": [
+        "Probability of default, loss given default and exposure at default; expected and unexpected loss",
+        "Scorecards: logistic regression, weight of evidence, information value, Gini and KS statistics for microloans",
+        "Structural (Merton) and reduced-form models of default",
+        "Portfolio credit risk: the Vasicek single-factor model, default correlation and credit value at risk",
+        "IFRS 9 expected credit loss: staging and forward-looking provisions",
+        "Rating migration matrices and Markov chain transition models"
+      ]
+    },
+    {
+      "title": "Liquidity and operational risk",
+      "weeks": "7",
+      "topics": [
+        "Funding and market liquidity: bid-ask costs, liquidity-adjusted value at risk, liquidity coverage and net stable funding ratios",
+        "Runs and float risk in mobile money and savings institutions",
+        "Operational risk: the loss distribution approach with frequency and severity models",
+        "Fraud and cyber loss scenarios and key risk indicators",
+        "Business continuity, incident response and risk transfer through insurance"
+      ]
+    },
+    {
+      "title": "Stress testing and scenario analysis",
+      "weeks": "8",
+      "topics": [
+        "Sensitivity analysis, scenario analysis and reverse stress testing",
+        "Macroeconomic scenario design: commodity prices for cocoa, gold and oil, currency depreciation and rate shocks",
+        "Satellite models linking macroeconomic variables to default rates and losses",
+        "Governance of stress tests: management actions, documentation and board challenge",
+        "Case study: sovereign debt restructuring and its effect on bank balance sheets"
+      ]
+    },
+    {
+      "title": "Counterparty risk and collateral",
+      "weeks": "9",
+      "topics": [
+        "Exposure profiles: expected exposure, potential future exposure and expected positive exposure",
+        "Credit valuation adjustment and wrong-way risk",
+        "Netting, close-out and master agreements",
+        "Collateral and margin: variation and initial margin, haircuts and central counterparties",
+        "Settlement risk and payment systems"
+      ]
+    },
+    {
+      "title": "Model risk and validation",
+      "weeks": "10-11",
+      "topics": [
+        "Sources of model risk: specification, estimation, implementation and use",
+        "Validation practice: conceptual soundness, outcome analysis, benchmarking and back-testing",
+        "Model inventory, tiering, documentation and governance",
+        "Parameter uncertainty and model averaging",
+        "Machine learning in risk models: explainability, drift and challenger models",
+        "Case studies of model failures and the lessons for governance"
+      ]
+    },
+    {
+      "title": "Regulatory capital and risk reporting",
+      "weeks": "12-13",
+      "topics": [
+        "The Basel framework: three pillars, capital ratios and risk-weighted assets",
+        "Standardised and internal ratings-based approaches, the Vasicek capital formula and the fundamental review of the trading book",
+        "Prudential requirements of the central bank in Ghana and the region, and how local rules differ from Basel",
+        "ICAAP, risk dashboards and board reporting",
+        "Capstone: a risk report for a bank or microfinance loan and trading portfolio"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Risk taxonomy, returns and risk measures",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Compute volatility, value at risk and expected shortfall for one daily return series and write a short note on why VaR is not coherent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Load two years of daily cedi exchange rates, compute log returns and test for fat tails with a QQ plot and kurtosis"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compute 99 percent VaR and expected shortfall for a normal and a fat-tailed return distribution and compare the two"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Set risk limits and escalation rules for a trading desk in a governance case and score your design against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Parametric and simulation-based value at risk",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Compare delta-normal, historical and Monte Carlo VaR for a portfolio of a cedi bond and a dollar position, and explain the differences in the three numbers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute delta-normal one-day 99 percent VaR for a two-asset portfolio from a covariance matrix and decompose it by asset"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Compute historical and Monte Carlo VaR for the same portfolio from 500 days of data and compare with the parametric result"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement filtered historical simulation using GARCH standardised residuals and show how VaR reacts to a volatility spike"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Volatility models, extremes and backtesting",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Backtest a 99 percent VaR model over 250 days, count exceptions, run the Kupiec and independence tests and decide whether to keep the model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Fit an EWMA with lambda 0.94 and a GARCH(1,1) to a return series and plot both conditional volatilities against realised volatility"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Fit a generalised Pareto tail to the worst 5 percent of losses and estimate the 99.9 percent VaR from the tail"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Run the Kupiec and Christoffersen tests on 500 days of VaR exceptions and assign the Basel traffic-light zone"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Portfolio risk and interest rate risk",
+      "topics": [
+        "2.6",
+        "2.7"
+      ],
+      "exercise": "Report the main risk contributors for a bank's treasury book, and propose a hedge that reduces the largest contributor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.7",
+          "engine": "E7",
+          "title": "Compute modified duration, DV01 and convexity for a 5-year government bond and estimate price change for a 100 basis point shock"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Decompose portfolio VaR into component contributions across four positions and identify which position adds most risk"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Hedge a dollar receivable against cedi depreciation with a forward and compare hedged and unhedged loss distributions by simulation"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Credit risk measures and scorecards",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compute expected loss for a loan book from PD, LGD and EAD by segment, and explain why unexpected loss needs capital.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Compute expected loss for five loan segments given PD, LGD and EAD and rank them by contribution to the total"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Build a mobile-money loan scorecard with weight of evidence bins and logistic regression, then report Gini and KS on a hold-out set"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Compute Merton distance to default and implied default probability for a firm from equity value, volatility and debt"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Portfolio credit risk, provisioning and migration",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Prepare an IFRS 9 provisioning note for a microfinance book, assigning loans to stages and computing the twelve-month and lifetime expected credit loss.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Raise a rating migration matrix to powers to get multi-year default probabilities and read off five-year cumulative default"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Simulate the Vasicek single-factor model for 1,000 loans and estimate the 99.9 percent credit VaR for two asset correlations"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Stage a loan portfolio by days past due and a significant increase in risk, compute lifetime ECL and compare with a flat provision"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Liquidity and operational risk",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a risk assessment of a mobile-money operator covering float, agent liquidity, fraud losses and continuity, with three key risk indicators.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Simulate daily withdrawals and deposits at 20 mobile-money agents and estimate the float needed to keep stock-outs below 1 percent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Fit frequency and severity distributions to operational loss data and compute annual 99.9 percent operational VaR by Monte Carlo"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Respond to a mobile-money fraud incident in a branching case, choose containment and reporting steps and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Stress testing and scenarios",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Design a severe but plausible scenario with a cocoa price collapse and a 30 percent cedi depreciation, and trace its effect on a bank's capital ratio.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Apply a parallel 300 basis point rate shock to a bank balance sheet and compute the change in economic value of equity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Fit a regression of default rates on GDP growth and the exchange rate and use it to project losses under a stress scenario"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Choose management actions for a bank facing a domestic debt exchange in a case and score the capital outcome against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Counterparty risk and collateral",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Show with a worked example how netting and collateral reduce exposure between two banks, and compute the residual exposure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Simulate exposure paths for a currency forward and plot expected exposure and 95 percent potential future exposure over its life"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compute exposure with and without netting for a portfolio of six trades with a counterparty and report the reduction"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Compute a credit valuation adjustment from an exposure profile and a hazard rate, then show the effect of wrong-way risk"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Model risk and validation practice",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Write a validation report for a credit scorecard, covering conceptual soundness, data, performance, stability and your recommendation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Review a model change request in a governance case, identify the model risks and score your approval conditions against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Validate a credit scorecard by comparing its Gini on development and out-of-time samples and benchmarking against a challenger model"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Assign risk tiers and review frequencies to a model inventory of twelve models in a case and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Uncertainty, machine learning and failures",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Analyse a model failure case and write a half-page lesson for the risk committee covering cause, early signs and governance changes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Bootstrap the parameters of a VaR model and show how much the 99 percent VaR changes across the resampled estimates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Compare a gradient-boosted default model with a scorecard on discrimination, stability and explainability, and decide which to approve"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Investigate a failed risk model case, rank the causes from the evidence and score your recommendations against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Regulatory capital",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Compute a bank's capital ratios under the standardised approach from an exposure table, and say how much capital headroom remains after a stress.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute risk-weighted assets and the capital adequacy ratio for a bank from a table of exposures and risk weights"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Compute the internal-ratings-based capital requirement with the Vasicek formula for four PD and LGD pairs and compare with the standardised approach"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Choose a capital plan for a regional bank in a case that must satisfy local and Basel minima, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Risk reporting and capstone",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present the capstone risk report for a bank or microfinance portfolio with VaR, credit loss, liquidity, stress results and recommendations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Build a board risk dashboard with limit utilisation, VaR trend and top concentrations and flag the three most urgent breaches"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Run market, credit and liquidity calculations on a supplied portfolio and combine them in a summary table with a capital impact"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Present your risk report to a simulated board, answer challenges and score your recommendations against the rubric"
+        }
+      ]
+    }
+  ]
+}

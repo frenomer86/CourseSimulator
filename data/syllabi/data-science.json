@@ -109,5 +109,397 @@
         "Capstone: an end-to-end project on a local dataset with a dashboard, model and written story"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What data science is and the project life cycle",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Pick a local problem such as predicting market prices or school attendance, and write the question, data needed, success metric and the stages of the life cycle you would follow.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Load a small CSV of Ghana Statistical Service figures, list each column with its data type and say which are structured or semi-structured"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E5",
+          "title": "Load a table of regional population data into the database engine and write three queries that answer a question a district planner might ask"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Run a mini project from a raw file through cleaning, a simple model and a short written finding, labelling each step with its CRISP-DM phase"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Framing questions and reproducible work",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Rewrite three vague requests from a manager into precise, measurable data questions with a success metric and a data source for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Create a notebook that reads a dataset, prints its summary and is rerun from top to bottom, then fix a cell that depends on hidden state"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compare two candidate metrics for a loan-repayment question on the same data, and explain which one better matches the business goal"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Put an analysis script under version control with a requirements file, make two commits, and show another user can reproduce the same output"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Data wrangling in Python and R",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Convert five common spreadsheet operations (filter, sort, group, join, pivot) into pandas and tidyverse code, and tabulate where the two differ.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Use pandas to filter rows, create a new column and compute group means on a school results table, and check the totals by hand"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Read a CSV and a JSON file with different date formats, parse them into proper dates and merge them on a shared key"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Reproduce a multi-step pandas pipeline in R with dplyr, then check both give identical results on a sales table of 1000 rows"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Exploratory data analysis",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write a one-page exploratory report on a dataset of your choice, listing five observations, the evidence for each and the follow-up questions they raise.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Compute summary statistics and plot a histogram for each numeric column of a farm survey dataset, and note two outliers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Investigate missing values in a household survey, show their pattern across columns and test two imputation choices on a key statistic"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Run the same exploration in Python and in R on one dataset and list every difference in output, defaults or syntax that surprised you"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Collecting, cleaning and blending data",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Write a data dictionary and a data quality log for a messy dataset, describing each column, its allowed values and every correction you made.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Clean a table with duplicate rows, inconsistent region spellings and text numbers, and report how many rows each fix changed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E5",
+          "title": "Join a customer table and a payments table with a SQL query, find customers without payments and reconcile the totals against a control figure"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Match two lists of business names with spelling variations using fuzzy matching, choose a threshold and report precision and recall on a hand-labelled sample"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Warehouses, dimensional models and dashboards",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Design a star schema for a retail chain with sales, products, stores and dates, and list five business questions each table makes easy to answer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E5",
+          "title": "Create fact and dimension tables for a pharmacy chain, load sample rows and write a query that totals sales by region and month"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E5",
+          "title": "Write SQL with window functions to rank stores by monthly sales and compute a running total and the percentage change from the previous month"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E5",
+          "title": "Build a KPI set for a hospital (bed occupancy, waiting time, readmissions) from a star schema and justify each chart choice for managers"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Data visualisation",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Find two misleading charts in a newspaper or report, state what is wrong with each, and redraw one honestly by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Plot the same dataset as a bar, line and scatter chart, and choose which best shows a trend in rainfall by month"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Draw a choropleth or bubble map of a regional indicator for Ghana from supplied data, with a clear legend and a colour-blind-safe palette"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Take a flawed chart with a truncated axis and mixed scales, reproduce it, then correct it and explain every change in a caption"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Supervised learning and evaluation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Explain with a worked example why accuracy is misleading on imbalanced data, and show how precision, recall and F1 give a fairer picture.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Split a dataset into training and test sets, fit a linear regression and compare training and test error to detect overfitting"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Train a logistic regression and a decision tree on the same classification task and compare their confusion matrices on the held-out test set"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Handle a 95 to 5 class imbalance in fraud data using resampling or class weights and report the change in recall and F1"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Features, pipelines and a prediction case",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a short plan for predicting crop yield or student dropout, listing candidate features, risks of bias and how you would evaluate the model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Build a pipeline that imputes missing values, scales numeric columns and one-hot encodes categories, and fit it without data leakage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Predict loan default on a given dataset with a tuned random forest, report cross-validated metrics and name the three most important features"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Compare gradient boosting with a simple baseline on a crop-yield prediction task, test the gain for significance and state when the simple model is preferable"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Unsupervised learning",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Describe how you would use clustering to segment customers of a mobile money agent network and how you would check that the segments are useful.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Run k-means with k from 2 to 8 on a customer dataset, plot the elbow curve and pick a k with a short justification"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Apply PCA to a ten-feature dataset, plot the first two components coloured by class, and report the variance explained"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E5",
+          "title": "Compute support, confidence and lift for item pairs in a market-basket table using SQL and keep the rules that exceed given thresholds"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Big data and scaling",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Estimate whether a given dataset (rows, columns, growth per month) fits on a laptop, and decide when a cloud warehouse or Spark would be justified.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Convert a large CSV into a columnar file, query it with an embedded analytical database and compare run time and file size with pandas"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Run a word count as a map and reduce on a text file split into partitions and compare the result with a single-pass count"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Set up a small cloud data warehouse and storage bucket, load a dataset, run a query and estimate monthly cost in cedis for three usage levels"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Ethics, privacy and fairness",
+      "topics": [
+        "9.1",
+        "9.2"
+      ],
+      "exercise": "Write a one-page privacy impact note for a project that uses hospital records, covering consent, anonymisation, re-identification risk and who may access the data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Remove names and ids from a patient table, then show how date of birth, postcode and sex can still re-identify rows, and measure k-anonymity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Compute approval rates and error rates by gender and region for a given loan model and state whether the gap breaches a fairness threshold"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Reduce a measured fairness gap in a loan model by reweighting or thresholds, and report the accuracy cost of the improvement"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Storytelling and capstone",
+      "topics": [
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Prepare a five-minute presentation with a one-slide executive summary of your capstone, aimed at a district officer who is not a data specialist.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Write an executive summary and one annotated chart that communicates a finding and its uncertainty from a given analysis in under 150 words"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.4",
+          "engine": "E5",
+          "title": "Load a local dataset into the database engine, design a star schema and write the queries that feed three dashboard indicators for the capstone"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Complete an end-to-end project on a local dataset with cleaning, model, evaluation, a dashboard and a short narrative, all runnable from one notebook"
+        }
+      ]
+    }
   ]
 }

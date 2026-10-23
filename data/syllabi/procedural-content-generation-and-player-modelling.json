@@ -1,0 +1,503 @@
+{
+  "slug": "procedural-content-generation-and-player-modelling",
+  "description": "How games generate levels, maps and challenges by algorithm and how they learn from the people who play them. Students build constructive, evolutionary and learned generators, measure their output, and fit player models that drive adaptive difficulty.",
+  "modelledOn": [
+    "Shaker, Togelius and Nelson, Procedural Content Generation in Games",
+    "Yannakakis and Togelius, Artificial Intelligence and Games",
+    "Russell and Norvig, Artificial Intelligence: A Modern Approach (search and learning chapters)",
+    "Bishop, Pattern Recognition and Machine Learning (clustering and generative model chapters)"
+  ],
+  "outcomes": [
+    "Implement constructive generators using noise, cellular automata, grammars, BSP trees and tile-constraint methods.",
+    "Formulate content generation as a search problem and build an evolutionary generator with a justified fitness function.",
+    "Train a simple machine-learned level generator and explain what its latent space and training data limit.",
+    "Evaluate a generator with expressive range analysis, playability checks and diversity metrics.",
+    "Build player models from telemetry using clustering, prediction and skill rating, and discuss their ethical limits.",
+    "Design an adaptive difficulty loop and a mixed-initiative design tool and test them against a stated player experience goal."
+  ],
+  "units": [
+    {
+      "title": "Constructive and grammar-based generation",
+      "weeks": "1-2",
+      "topics": [
+        "Taxonomy of generators: online versus offline, necessary versus optional content, controllability and determinism",
+        "Noise and terrain: value and gradient noise, fractal octaves and diamond-square",
+        "Cellular automata for caves and islands; smoothing rules and connectivity repair",
+        "Dungeon generation: BSP trees, rooms-and-corridors and graph-based layouts",
+        "L-systems and shape grammars for plants, buildings and quests",
+        "Markov chains and wave function collapse for tile-based levels"
+      ]
+    },
+    {
+      "title": "Search-based and evolutionary content generation",
+      "weeks": "3",
+      "topics": [
+        "Genetic algorithms: representation, selection, crossover and mutation for levels",
+        "Fitness functions: direct, simulation-based and interactive evaluation",
+        "Novelty search, quality diversity and MAP-Elites",
+        "Constraint solving and answer set programming for design rules",
+        "Multi-objective search: Pareto fronts and the NSGA-II algorithm"
+      ]
+    },
+    {
+      "title": "Machine-learned generators",
+      "weeks": "4",
+      "topics": [
+        "Learning from existing levels: encoding, training data and its limits",
+        "N-gram and recurrent models for sequences of tiles and rhythm",
+        "Autoencoders and generative adversarial networks; searching the latent space",
+        "Reinforcement learning as a level designer and large generative models for text and art assets",
+        "Data scarcity, copyright and bias in learned generators"
+      ]
+    },
+    {
+      "title": "Evaluating generators and expressive range",
+      "weeks": "5-6",
+      "topics": [
+        "Expressive range analysis: metrics such as linearity, leniency and density, and 2D histograms",
+        "Playability and solvability checks with simulated agents and path search",
+        "Diversity and novelty: edit distance, feature distance and repetition detection",
+        "Human evaluation: surveys, rankings and blind comparison of generated and hand-made content",
+        "Failure modes: degenerate content, bias towards simple outputs and confirmation of metrics"
+      ]
+    },
+    {
+      "title": "Player modelling and telemetry",
+      "weeks": "7-8",
+      "topics": [
+        "Player types and motivation taxonomies; model-based versus model-free approaches",
+        "Telemetry features and clustering players with k-means and hierarchical methods",
+        "Predicting churn, purchase and skill with logistic regression and decision trees",
+        "Skill rating systems: Elo-style updates, Glicko and matchmaking",
+        "Learning from play traces: behaviour cloning, procedural personas and privacy and ethics of modelling"
+      ]
+    },
+    {
+      "title": "Dynamic difficulty and experience-driven generation",
+      "weeks": "9-10",
+      "topics": [
+        "Flow theory: matching challenge to skill and the limits of the flow channel",
+        "Rule-based and model-based dynamic difficulty adjustment; rubber-banding",
+        "The experience-driven PCG loop: model the player, generate, evaluate, adapt",
+        "Affect and preference learning from ranked pairs",
+        "Bandits for content selection; fairness, manipulation and transparency in adaptation"
+      ]
+    },
+    {
+      "title": "Mixed-initiative design tools",
+      "weeks": "11",
+      "topics": [
+        "Co-creative design: suggestion, critique and variation in a designer's tool",
+        "Constraint-based editing and automatic repair of designer sketches",
+        "Interface design for control: sliders, examples and seeds",
+        "Evaluating tools with designers: task time, quality and creative ownership",
+        "Tools for small teams and low-resource studios; explainability of suggestions"
+      ]
+    },
+    {
+      "title": "Applications and project",
+      "weeks": "12-13",
+      "topics": [
+        "Generating quests, stories and dialogue with grammars and planning",
+        "Generating music, textures and shaders procedurally",
+        "Evaluating at scale: simulation, A/B tests and regression tests for generators",
+        "Case study: a mobile roguelike or puzzle game with generated levels and adaptive difficulty",
+        "Project: build, evaluate and report a generator coupled to a player model"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Noise, caves and dungeons",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Classify five well-known generators by the taxonomy, then generate a height map and a cave and explain what controls their roughness and connectivity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Generate a 64 by 64 height map with value noise at four octaves and print the tile counts above and below sea level"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Generate a cave with cellular automata for 5 smoothing passes and report the share of floor tiles in the largest connected region"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Step through a cellular automata cave while varying the fill probability from 40 to 60 percent and find the value where connectivity collapses"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Dungeons, grammars and tile constraints",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Write an L-system for a branching baobab, a BSP rule for placing rooms and a set of tile adjacency rules for a village map.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Expand an L-system for five generations, print the string length at each generation and draw the result with turtle commands"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Generate a BSP dungeon of 8 rooms joined by corridors and check with search that every room can be reached from the start"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E6",
+          "title": "Run wave function collapse on a 12 by 12 grid with four tile types and record the contradictions and restarts across 20 seeds"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Evolving content",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Encode a platformer level as a vector of 40 gene values, define a fitness function that rewards a target difficulty, and explain what MAP-Elites adds over a plain genetic algorithm.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Watch a genetic algorithm evolve a bit string of 40 genes and plot best and average fitness per generation across 50 generations"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Evolve a 20-room dungeon so that the shortest path from start to exit is near 30 steps, and report fitness over generations"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement MAP-Elites over two behaviour axes for generated mazes and show the filled archive and the best maze in each cell"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Generators learned from data",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Train a tile-sequence model on ten levels, sample five new ones, and discuss what the training set bias and size do to the results.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Train a bigram model on tile columns from 10 hand-made levels and sample three new 40-column levels"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Train a small autoencoder on 8 by 8 tile patches in the visualiser and inspect how reconstructions change with the latent size"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Search the latent space of a trained autoencoder for patches that maximise a difficulty score and report the best five"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Expressive range and playability",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compute linearity and leniency for 500 generated levels, plot their expressive range histogram, and test every level for solvability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Plot a two-dimensional histogram of linearity against leniency for 300 supplied level metrics and describe the empty regions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Use A* to test whether 30 generated mazes are solvable and report the share failing and the nodes expanded on average"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Compute pairwise edit distances for 200 generated levels, flag near-duplicates under a threshold and report the generator's diversity score"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Human evaluation and failure modes",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Design a blind comparison of generated and hand-made levels with 12 players, state the hypothesis, and list three ways a generator can score well on metrics while being dull to play.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute mean ranking of generated and hand-made levels from a table of 15 players and chart the two groups"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Test whether players prefer generated levels over hand-made ones with a binomial test on 40 pairwise choices and state the conclusion"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Find the degenerate outputs of a given generator by sampling 1,000 levels and design a repair or reject rule that removes them"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Modelling players from telemetry",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Cluster 300 player sessions into three groups using five features, name each group from its feature means, and predict churn with a simple classifier.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Cluster 100 player sessions into 3 groups with k-means on two features and plot the clusters with their centres"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Cluster 300 sessions using 5 telemetry features with k-means, pick k with the silhouette score and name the player groups"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Train a logistic regression and a decision tree to predict churn after 3 sessions, and compare precision and recall on a held-out set"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Skill, traces and ethics of modelling",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Update Elo-style ratings for a ten-game tournament, then outline how play traces could be used to build a persona and what must be protected.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Update Elo ratings for 6 players over 20 matches and print the table and the rating gap that predicted each upset"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Build a matchmaking function that pairs 50 rated players to keep predicted win probability between 40 and 60 percent and check its fairness"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Clone a player's moves in a small maze game by supervised learning on recorded traces and compare its path lengths with the original player"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Flow and dynamic difficulty adjustment",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Design a rule-based difficulty controller for an endless runner and describe how it changes when a learned player model supplies its input.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Plot challenge against skill on the flow diagram for six player traces and mark when each one is bored or anxious"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement a rule-based difficulty adjuster for an endless runner and show it keeps simulated players near a 60 percent success rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Close the loop: a player model estimates skill, a generator makes a level at that difficulty, and 200 simulated players test the result"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Preference learning and adaptive content",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Learn a preference score from 30 ranked pairs of levels, and discuss when adaptive difficulty crosses into manipulation of the player.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Fit a linear preference score to 30 ranked pairs of levels and report the accuracy on 10 held-out pairs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Implement an epsilon-greedy bandit choosing among 4 level styles and measure regret over 1,000 simulated players"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Compare epsilon-greedy and Thompson sampling for content selection when player taste drifts, and report cumulative reward for both"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Tools that work with designers",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Sketch a mixed-initiative level editor that proposes three completions of a half-drawn level, with controls for the designer, and plan how to test it with five designers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Produce three variations of a designer's half-finished level by random fills that keep their fixed tiles unchanged"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Write a repair function that fixes unreachable rooms in a designer's sketch with the fewest tile edits, and report the edits made"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Analyse a study of 8 designers using the tool versus not, comparing completion time and quality scores with a paired test"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Narrative, audio and scalable testing",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Generate a quest with a grammar, list the checks you would automate for a generator in a nightly build, and design an A/B test for a new difficulty rule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Generate 10 fetch-and-deliver quests from a grammar and check each one has a giver, an item, a place and a reward"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Write a regression test that runs a generator on 500 seeds and fails when solvability or diversity drops below set thresholds"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Size an A/B test of two difficulty rules for retention by computing the sample needed to detect a 3 point difference at 80 percent power"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project: generator plus player model",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present your generator, its evaluation plots and the player model that drives it, with a limitations section on bias, repetition and fairness.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Run the case study roguelike generator for 100 seeds and tabulate level size, solvability and enemy count"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Plot the expressive range of your project generator before and after adding the player model and describe the change"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Run 500 simulated players through your generator with adaptive difficulty on and off and report retention-like measures and fairness across skill groups"
+        }
+      ]
+    }
+  ]
+}

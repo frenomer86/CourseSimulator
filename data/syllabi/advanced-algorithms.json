@@ -1,0 +1,501 @@
+{
+  "slug": "advanced-algorithms",
+  "description": "Graduate algorithm design and analysis: amortisation, randomisation, approximation, linear programming, online and streaming models, parameterised algorithms and lower bounds. Students prove guarantees on paper and then step through, implement and measure each algorithm in the lab, finishing with a research-paper reproduction project.",
+  "modelledOn": [
+    "Cormen, Leiserson, Rivest and Stein, Introduction to Algorithms",
+    "Motwani and Raghavan, Randomized Algorithms",
+    "Williamson and Shmoys, The Design of Approximation Algorithms",
+    "Cygan et al., Parameterized Algorithms"
+  ],
+  "outcomes": [
+    "Analyse data structures with aggregate, accounting and potential arguments and justify their amortised bounds.",
+    "Design randomised algorithms and bound their error and running time using Markov, Chebyshev and Chernoff inequalities.",
+    "Construct approximation algorithms with proven ratios using greedy, rounding and primal-dual techniques.",
+    "Formulate problems as linear programs, derive duals and use duality to certify optimality or design algorithms.",
+    "Evaluate online and streaming algorithms by competitive ratio and space bounds, and analyse FPT and exact exponential algorithms.",
+    "Read, reproduce and critique a research paper on algorithms with a short written report."
+  ],
+  "units": [
+    {
+      "title": "Amortised analysis and advanced data structures",
+      "weeks": "1-2",
+      "topics": [
+        "Aggregate, accounting and potential methods of amortised analysis",
+        "Dynamic arrays, binary counters and splay trees",
+        "Fibonacci heaps, decrease-key and the faster Dijkstra and Prim algorithms",
+        "Union-find with path compression and union by rank; the inverse Ackermann bound",
+        "Persistent data structures and van Emde Boas trees"
+      ]
+    },
+    {
+      "title": "Randomised algorithms and probabilistic analysis",
+      "weeks": "3-4",
+      "topics": [
+        "Probability tools: linearity of expectation, Markov, Chebyshev and Chernoff-type bounds",
+        "Las Vegas and Monte Carlo algorithms; randomised quicksort and selection",
+        "Random contraction algorithm for minimum cut and success amplification",
+        "Universal, perfect and cuckoo hashing",
+        "Randomised primality testing (strong pseudoprime test) and polynomial identity testing",
+        "Derandomisation by the method of conditional expectations"
+      ]
+    },
+    {
+      "title": "Approximation algorithms",
+      "weeks": "5-6",
+      "topics": [
+        "Approximation ratio, PTAS and FPTAS; the 2-approximation for vertex cover",
+        "Greedy set cover with its logarithmic ratio; metric TSP: doubling tree and Christofides",
+        "Dynamic programming and rounding: the knapsack FPTAS",
+        "LP rounding and primal-dual: weighted vertex cover and facility location",
+        "Semidefinite relaxations: hyperplane rounding for max-cut; hardness of approximation and the PCP theorem"
+      ]
+    },
+    {
+      "title": "Linear programming and duality",
+      "weeks": "7-8",
+      "topics": [
+        "Linear program formulations, geometry of polytopes and the simplex method",
+        "Weak and strong duality, complementary slackness and Farkas' lemma",
+        "Max-flow min-cut and bipartite matching as LPs; total unimodularity",
+        "Ellipsoid and interior-point methods overview; integer programming and branch and bound",
+        "The multiplicative weights update method and its applications"
+      ]
+    },
+    {
+      "title": "Online and streaming algorithms",
+      "weeks": "9",
+      "topics": [
+        "Competitive analysis: ski rental and paging with the k-competitive bound for LRU",
+        "Randomised online algorithms and list update",
+        "Streaming model: reservoir sampling and frequent-items summaries heavy hitters",
+        "Count-min sketch, count sketch and HyperLogLog for distinct counts",
+        "MinHash and k-mer sketches for comparing genomes"
+      ]
+    },
+    {
+      "title": "Parameterised and exact exponential algorithms",
+      "weeks": "10-11",
+      "topics": [
+        "Fixed-parameter tractability: kernelisation and bounded search trees for vertex cover",
+        "Treewidth and dynamic programming on tree decompositions",
+        "Colour coding, the W-hierarchy and parameterised hardness",
+        "Exact exponential algorithms: subset dynamic programming, inclusion-exclusion and meet in the middle",
+        "SAT algorithms: DPLL, random-walk and the exponential time hypothesis"
+      ]
+    },
+    {
+      "title": "Lower bounds and the limits of computation",
+      "weeks": "12",
+      "topics": [
+        "Decision-tree lower bounds and adversary arguments",
+        "NP-completeness, reductions, co-NP and the polynomial hierarchy at a glance",
+        "The minimax principle and lower bounds for randomised algorithms",
+        "Communication complexity and lower bounds for streaming",
+        "Fine-grained complexity: 3SUM, all-pairs shortest paths and SETH-based hardness"
+      ]
+    },
+    {
+      "title": "Research project",
+      "weeks": "13",
+      "topics": [
+        "Critical reading of an algorithms paper: claims, proof sketch and assumptions",
+        "Implementation and empirical evaluation methodology for algorithms",
+        "Survey of open problems and how to frame a result",
+        "Project presentation and peer review"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Amortised analysis",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Prove an amortised O(1) bound for increment on a binary counter with each of the three methods, and analyse a dynamic array that grows by doubling versus adding a constant.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "Step through 16 increments of a binary counter, record actual and amortised costs per step, and check the totals against the accounting argument"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Implement a dynamic array with doubling and with fixed-size growth, count element copies over one million appends, and plot the average cost per append"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E6",
+          "title": "Run a sequence of splay tree accesses, track the potential function after each splay, and verify the amortised bound for a skewed access pattern"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Heaps, union-find and persistence",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Show why decrease-key is cheap in a Fibonacci heap, and trace union-find with path compression on a sequence of unions and finds.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Trace union-find with union by rank and path compression through 12 operations and draw the forest after each union"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement Dijkstra with a binary heap and with a Fibonacci heap on random graphs, and compare operation counts as edges grow"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Build a persistent balanced tree using path copying, query three past versions, and measure memory per update against an in-place tree"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Probabilistic tools and basic randomised algorithms",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Bound the failure probability of repeating the random contraction algorithm n squared times, and prove the expected comparison count of randomised quicksort.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Run randomised quicksort and quickselect on 10 inputs with chosen pivots and count comparisons against the expected 2n ln n bound"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Simulate 10,000 sums of independent coin flips, plot the tail, and compare it with the Markov, Chebyshev and Chernoff-type bounds"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement random contraction, run it repeatedly on a given graph, and plot the success probability against the number of repetitions and the theoretical bound"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Hashing and randomised testing",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Show that a universal hash family gives expected constant lookup time, and run the strong pseudoprime test test on a Carmichael number.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Insert 20 keys into a cuckoo hash table, trace the displacement chains, and note when a rehash is triggered"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Implement strong pseudoprime test, test it on 50 primes and 50 composites including Carmichael numbers, and report the observed error rate against the 4 to the minus k bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Derandomise the random-cut 1/2-approximation for max-cut using conditional expectations, and compare the cut with the randomised result on 10 graphs"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Basic approximation algorithms",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Prove the 2-approximation for vertex cover and the doubling-tree bound for metric TSP, and build the knapsack FPTAS for a given epsilon.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Run the maximal-matching vertex cover on five graphs, compare each cover with the optimum found by brute force, and check the ratio never exceeds 2"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement greedy set cover and the doubling-tree TSP tour on random instances and compare their cost with optimal values from a small exact solver"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement the knapsack FPTAS, run it for epsilon 0.5, 0.1 and 0.01 on a fixed instance, and plot solution quality against running time"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "LP rounding, primal-dual and hardness",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Round the LP relaxation of weighted vertex cover to a 2-approximation, and sketch the semidefinite hyperplane rounding argument.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Solve the LP relaxation of weighted vertex cover on a small graph, round at one half, and compare the cost with the optimal integer cover"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement the primal-dual algorithm for facility location, run it on a 20-site instance, and verify the dual feasibility and the cost bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Implement hyperplane rounding for max-cut from a given vector solution, repeat it 1,000 times, and compare the best and average cut with the 0.878 guarantee"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Linear programs and duality",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Formulate a diet or transport LP, take its dual, and use complementary slackness to confirm that a proposed solution is optimal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Plot the feasible region of a two-variable LP, move the objective line to find the optimum, and trace the simplex path through the vertices"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Write the dual of a given LP, solve both, and check strong duality and complementary slackness on the optimal pair"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Formulate max-flow and bipartite matching as LPs, solve them, and confirm the solutions are integral and equal the min-cut value"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Integer programming and multiplicative weights",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compare the LP bound with the integer optimum on a small knapsack by branch and bound, and run multiplicative weights on a zero-sum game.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Step through branch and bound on a knapsack of eight items, showing the LP bound at each node and which branches are pruned"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Run multiplicative weights on a 3x3 zero-sum game, plot average regret per round, and compare the value with the LP solution"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Solve an LP and its integer version for a facility problem and measure the integrality gap as the instance size is increased"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Online and streaming algorithms",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Prove that LRU is k-competitive, derive the ski-rental ratio, and analyse reservoir sampling and a count-min sketch error bound.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Run LRU, FIFO and an optimal offline policy on 5 request sequences, compute each competitive ratio, and find an adversarial sequence for LRU"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Implement reservoir sampling and frequent-items summaries on a stream of 100,000 items and compare the estimated heavy hitters with exact counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Implement MinHash on k-mers of five short genomes, estimate pairwise Jaccard similarity, and check the error against exact values for 3 sketch sizes"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Fixed-parameter tractability",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Give a kernel for vertex cover with size at most k squared, and write the dynamic programme for maximum independent set on a path decomposition.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Step through a bounded search tree for vertex cover with k equal to 4, showing the branching and the number of nodes visited"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement dynamic programming for independent set on a tree decomposition of width 3 and verify against brute force on 10 graphs"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement colour coding to find a simple path of length k, and measure the number of random colourings needed for 95 percent success"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Exact exponential algorithms and SAT",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compare running times of subset dynamic programming, brute force and meet in the middle for TSP and subset sum, and trace DPLL on a small formula.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Implement subset dynamic programming for TSP and brute force, time both for 8 to 16 cities, and plot growth against n squared times 2 to the n"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Trace DPLL with unit propagation on a 12-clause formula, draw the decision tree, and count the backtracks"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Implement the random-walk SAT algorithm, run it on satisfiable 3-SAT instances of growing size, and compare its steps with the 4/3 to the n bound"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Lower bounds and the limits of computation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Prove the n log n comparison bound, a minimax-principle bound for randomised algorithms, and a 3SUM-hardness reduction, and critique a hardness claim.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Draw the decision tree for sorting 4 elements, count its leaves, and play the adversary to force the worst-case number of comparisons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Reduce 3-SAT to independent set for three formulas, build the graphs, and check satisfiability matches the existence of an independent set of size m"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Implement the quadratic 3SUM algorithm, test it on 1,000 random lists, and reduce a geometric collinearity check to 3SUM on a small input"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Research project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Reproduce the main experiment of a chosen algorithms paper, write a two-page critique, and present your results with limitations and open questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Read the claims of a paper in a guided case, mark which are proved and which are only empirical, and be scored against a critique rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Implement the paper's algorithm and a baseline, run both on 5 input families with fixed seeds, and plot running time with confidence intervals"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E6",
+          "title": "Find an input that makes your implementation violate a claimed bound or confirm it, and explain the result in the visualiser trace"
+        }
+      ]
+    }
+  ]
+}

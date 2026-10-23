@@ -1,0 +1,511 @@
+{
+  "slug": "software-safety-and-dependability",
+  "description": "Graduate course on building software whose failure can hurt people: hazard analysis, fault trees and FMEA, safety cases, fault tolerance, safety-critical coding, reliability modelling and the overlap with security. Students analyse real accident patterns in scenarios, model failures mathematically, build redundancy on the hardware bench and assemble a safety case for a medical or transport system.",
+  "modelledOn": [
+    "Leveson, Engineering a Safer World: Systems Thinking Applied to Safety",
+    "Storey, Safety-Critical Computer Systems",
+    "Knight, Fundamentals of Dependable Computing for Software Engineers",
+    "IEC 61508 functional safety standard and the Goal Structuring Notation community standard"
+  ],
+  "outcomes": [
+    "Identify hazards and assess risk for a software-intensive system using HAZOP and STPA.",
+    "Build and analyse fault trees and FMEA tables, computing minimal cut sets and failure probabilities.",
+    "Construct a safety case with explicit claims, arguments and evidence and assess its confidence.",
+    "Design fault-tolerant architectures with redundancy, diversity and error recovery, and quantify their benefit.",
+    "Apply safety-critical coding rules and verification techniques, and model reliability with block diagrams, Markov models and growth models.",
+    "Analyse the interaction of safety and security threats and recommend integrated mitigations."
+  ],
+  "units": [
+    {
+      "title": "Dependability concepts and accidents",
+      "weeks": "1",
+      "topics": [
+        "Dependability attributes: reliability, availability, safety, integrity and maintainability",
+        "Faults, errors and failures: the chain of threats and fault classification",
+        "Accident case studies: Therac-25, Ariane 5 and the Boeing 737 MAX flight control software",
+        "Safety versus reliability versus security: why a reliable system can still be unsafe",
+        "Safety lifecycle and standards: IEC 61508, ISO 26262, DO-178C and IEC 62304"
+      ]
+    },
+    {
+      "title": "Hazard analysis and risk assessment",
+      "weeks": "2-3",
+      "topics": [
+        "Hazard identification: preliminary hazard analysis and HAZOP guide words",
+        "STPA: control structures, unsafe control actions and loss scenarios",
+        "Risk assessment: severity, likelihood, risk matrices and the ALARP principle",
+        "Safety integrity levels: SIL, ASIL and DAL and how they are assigned",
+        "Deriving safety requirements and tracing them to design and tests",
+        "Human factors in hazard analysis: operator error, mode confusion and alarm floods"
+      ]
+    },
+    {
+      "title": "Fault trees, FMEA and event trees",
+      "weeks": "4-5",
+      "topics": [
+        "Fault tree construction: gates, basic events and minimal cut sets",
+        "Quantitative fault tree analysis: top-event probability and importance measures",
+        "FMEA and FMECA: failure modes, effects, detection and risk priority numbers",
+        "Event trees and bow-tie diagrams linking causes to consequences",
+        "Software in fault trees and FMEA: modelling software failure modes and their limits",
+        "Common-cause failures and the beta-factor model"
+      ]
+    },
+    {
+      "title": "Safety cases and assurance arguments",
+      "weeks": "6",
+      "topics": [
+        "Assurance case structure: claims, arguments and evidence",
+        "Goal Structuring Notation: goals, strategies, solutions, contexts and assumptions",
+        "Confidence in arguments: defeaters, assurance deficits and eliminative argumentation",
+        "Certification and regulatory submissions for medical and transport software",
+        "Maintaining a safety case through change and operational feedback"
+      ]
+    },
+    {
+      "title": "Fault tolerance and redundancy",
+      "weeks": "7-8",
+      "topics": [
+        "Redundancy: hardware, information, time and software; triple modular redundancy and voting",
+        "Software diversity: N-version programming and recovery blocks, and their limits",
+        "Error detection: watchdog timers, assertions, checksums and error-correcting codes",
+        "Recovery and degraded modes: checkpointing, rollback, fail-safe, fail-operational and graceful degradation",
+        "Byzantine faults and agreement among redundant channels"
+      ]
+    },
+    {
+      "title": "Coding standards and verification for safety-critical software",
+      "weeks": "9",
+      "topics": [
+        "Coding standards: MISRA C, CERT C and language subsets such as SPARK",
+        "Defensive programming, assertions and design by contract",
+        "Static analysis and abstract interpretation for run-time error freedom",
+        "Testing criteria: statement, branch and MC/DC coverage and requirements-based testing",
+        "Formal methods in safety: model checking and proof of safety properties",
+        "Tool qualification, deterministic timing and worst-case execution time analysis"
+      ]
+    },
+    {
+      "title": "Reliability modelling",
+      "weeks": "10-11",
+      "topics": [
+        "Reliability function, hazard rate, the bathtub curve; exponential and Weibull models",
+        "MTTF, MTBF, MTTR and availability calculations",
+        "Reliability block diagrams: series, parallel and k-out-of-n systems",
+        "Markov models of repairable systems and steady-state availability",
+        "Software reliability growth models: Jelinski-Moranda and Goel-Okumoto",
+        "Statistical testing, operational profiles and the evidence needed for failure-free demonstration"
+      ]
+    },
+    {
+      "title": "Safety, security and organisational practice",
+      "weeks": "12-13",
+      "topics": [
+        "Security attacks with safety consequences: industrial control systems, medical devices and vehicles",
+        "Co-engineering safety and security: STPA-Sec and threat modelling against safety goals",
+        "Incident investigation: root cause analysis, just culture and safety culture",
+        "Safety management systems and organisational factors",
+        "Ethics, liability and regulation, with examples relevant to Ghana such as health devices and power infrastructure",
+        "Capstone: safety case for an infusion pump or a vehicle braking function"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Dependability and learning from accidents",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write the fault-error-failure chain for the Ariane 5 and Therac-25 accidents, and explain with an example why a perfectly reliable component can be unsafe.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Classify the faults, errors and failures in a short accident account, then compare your chain with the expected answer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Investigate a Therac-style overdose case in the scenario engine, find the contributing software and process causes and score your findings against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Argue for or against a design in which a perfectly reliable controller meets its specification yet causes a hazard, scored on the safety versus reliability rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "HAZOP, STPA and risk matrices",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Run a HAZOP on an infusion pump dose calculation, sketch the STPA control structure, and place the identified hazards on a risk matrix with ALARP decisions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Rate severity and likelihood for eight hazards of an infusion pump, place them on the risk matrix and mark which need mitigation to reach ALARP"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E9",
+          "title": "Draw a control loop for a pump with HAZOP guide words applied to each signal and list the deviations and their consequences"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Draw the STPA control structure of a minibus braking system, list unsafe control actions in four categories and write the loss scenarios"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Integrity levels, requirements and human factors",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Assign integrity levels to four functions of a train crossing controller, derive three safety requirements with trace links, and critique an alarm panel for operator overload.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Determine the safety integrity level of four functions from severity, exposure and controllability and check against the reference table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E9",
+          "title": "Trace a hazard through a safety requirement, a design element and a test case on a traceability diagram and find a missing link"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Analyse an alarm flood incident in a power control room case, identifying mode confusion and proposing display and alarm changes scored by rubric"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Fault tree analysis",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "Build a fault tree for loss of braking in a vehicle, find the minimal cut sets, compute the top-event probability and rank the importance of basic events.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Draw a fault tree for no output from a two-sensor alarm, using AND and OR gates, and list its minimal cut sets"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute the top-event probability of a fault tree from basic-event probabilities and rank the events by Fussell-Vesely importance"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Write a program that extracts minimal cut sets from a fault tree description and computes top-event probability, testing against a hand-solved tree"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "FMEA, event trees and common cause",
+      "topics": [
+        "3.3",
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Complete an FMEA table for a pump controller, draw a bow-tie for overdose and show how a common cause failure defeats a redundant pair.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Fill in an FMEA table for a pump, scoring severity, occurrence and detection, and sort the failure modes by risk priority number"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Draw a bow-tie diagram for a medication overdose with causes, preventive barriers, recovery barriers and consequences"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Model a redundant pair with a beta-factor common cause term, and plot system failure probability against beta from 0 to 0.2"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Safety case construction",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a GSN safety case for the claim that an infusion pump software is acceptably safe, listing evidence for each goal and the weakest link in your argument.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Draw the top three levels of a Goal Structuring Notation diagram for an infusion pump with goals, a strategy and contexts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Review a given safety case for missing evidence, invalid inferences and unsupported claims, and list the changes needed"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Identify defeaters in a safety argument and rate assurance deficits, deciding what extra evidence would raise confidence enough to certify"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Redundancy, voting and detection",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compute the reliability of a TMR system against a single module, design a voter, and explain why N-version software is not as independent as hoped.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Step a triple modular redundancy voter with one faulty channel injected and show the output stays correct for each fault position"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E8",
+          "title": "Add a watchdog timer to a microcontroller control loop, inject a hang, and measure the time until the safe reset is triggered"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Run three independently written versions of a function against 10,000 random inputs, measure coincident failures and compare with the independence assumption"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Recovery, degraded modes and agreement",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Design a fail-safe and a fail-operational mode for a train door controller and show how three channels agree when one sends conflicting values.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Build a sensor input with a redundant pair, detect disagreement, and force the output to a safe state with a status LED"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Step a checkpoint and rollback recovery of a small computation through two injected errors and compare final state with the fault-free run"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Step an agreement protocol among four channels with one Byzantine sender, and show how many faulty channels the vote tolerates"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Safe coding, coverage and timing",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Rewrite a C function so it follows six coding rules, identify run-time error sources with static analysis reasoning, and design tests to reach MC/DC.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Fix ten violations of MISRA-style rules (unbounded loops, unchecked returns, implicit conversions) in a C function and rerun its tests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Design the smallest test set achieving MC/DC for a decision with four conditions and verify coverage with an instrumented run"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Use interval analysis on a small function to prove absence of overflow and array index errors, and find an input that breaks the unproved case"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Reliability functions and block diagrams",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compute reliability and availability for a clinic server with repair, draw the reliability block diagram of a duplicated power supply and evaluate k-out-of-n options.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Plot exponential and Weibull reliability curves for the same MTTF and read the probability of survival at 1,000 hours"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Compute the reliability of a series-parallel block diagram and compare it with a 2-out-of-3 arrangement across mission times"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute steady-state availability for a rural clinic power system from failure and repair times and decide whether a second generator pays off"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Markov models and software reliability growth",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Solve a two-state Markov availability model, fit a growth model to defect discovery times and compute how much failure-free testing is needed for a given confidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Build a two-state up and down Markov model with failure and repair rates and solve for steady-state probabilities"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Fit the Goel-Okumoto model to weekly defect counts and predict the remaining defects and the release date at a target failure rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Compute the failure-free test hours needed to claim a failure probability below one in 10,000 per demand at 99 percent confidence and discuss feasibility"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Safety and security together",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Analyse a pump hacking case with safety and security methods together, extend the STPA with attacker-caused unsafe control actions, and write an incident report.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Classify six attacks on medical devices and vehicles by the safety hazards they could trigger in an attack case file"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Extend an STPA control structure with an attacker and list the additional unsafe control actions with a mitigation for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Run a post-incident investigation of a ventilator fault, finding root causes and recommending actions that respect just culture, scored by rubric"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Organisations, ethics and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Present the safety case for the capstone system, including hazards, fault tree, redundancy design, reliability numbers and the residual risk statement.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Choose the key elements of a safety management system for a small hospital engineering team in a case and justify each against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Handle a liability case in which a software update caused harm, weighing duty of care, regulation and disclosure, scored by the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Defend the capstone safety case before a simulated regulator, answering challenges on evidence, assumptions, residual risk and change control"
+        }
+      ]
+    }
+  ]
+}

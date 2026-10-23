@@ -100,9 +100,27 @@ describe('catalogue and programmes', () => {
   const DATA = join(__dirname, '../../../data');
   const catalogue = JSON.parse(readFileSync(join(DATA, 'courses.json'), 'utf8')) as {
     areas: Record<string, string>;
-    programmes: Array<{ slug: string; title: string; description: string; outcomes: string[]; courses: string[] }>;
-    courses: Array<{ slug: string; title: string; area: string; engines: string[]; description?: string; syllabus?: Array<{ title: string; topics: string[] }> }>;
+    programmes: Array<{
+      slug: string;
+      title: string;
+      description: string;
+      outcomes: string[];
+      courses: string[];
+      levels?: Record<'bachelor' | 'master' | 'phd', { award: string; core: string[]; electives: string[]; electivesRequired: number }>;
+    }>;
+    courses: Array<{
+      slug: string;
+      title: string;
+      area: string;
+      engines: string[];
+      description?: string;
+      syllabus?: Array<{ title: string; topics: string[] }>;
+      weeks?: number;
+    }>;
   };
+  type Week = { week: number; topics: string[]; exercise: string; tasks: Array<{ level: string; topic: string; engine: string }> };
+  const scheduleOf = (slug: string): Week[] =>
+    JSON.parse(readFileSync(join(DATA, 'syllabi', `${slug}.json`), 'utf8')).schedule ?? [];
   const slugs = new Set(catalogue.courses.map((c) => c.slug));
   const ENGINES = new Set(['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8', 'E9', 'E10', 'E11', 'E12']);
   const NAMES = /\b(HTU|Ho Technical|MIT|Stanford|Berkeley|Carnegie Mellon|Harvard University|Oxford University|University of Cambridge|Princeton|Coursera|edX|Udacity)\b/;
@@ -118,7 +136,12 @@ describe('catalogue and programmes', () => {
   });
 
   it('puts every course in at least one programme', () => {
-    const used = new Set(catalogue.programmes.flatMap((p) => p.courses));
+    const used = new Set(
+      catalogue.programmes.flatMap((p) => [
+        ...p.courses,
+        ...Object.values(p.levels ?? {}).flatMap((l) => [...l.core, ...l.electives]),
+      ]),
+    );
     expect(catalogue.courses.filter((c) => !used.has(c.slug)).map((c) => c.slug)).toEqual([]);
   });
 
@@ -134,8 +157,44 @@ describe('catalogue and programmes', () => {
     }
   });
 
+  it('lays every course out as 12 or 13 weeks with tasks at three levels on its own topics', () => {
+    for (const c of catalogue.courses) {
+      const refs = new Set((c.syllabus ?? []).flatMap((u, i) => u.topics.map((_, t) => `${i + 1}.${t + 1}`)));
+      const weeks = scheduleOf(c.slug);
+      expect(c.weeks, `${c.slug} week count in the catalogue`).toBe(weeks.length);
+      expect(weeks.length, `${c.slug} weeks`).toBeGreaterThanOrEqual(12);
+      expect(weeks.length, `${c.slug} weeks`).toBeLessThanOrEqual(13);
+      const taught = new Set(weeks.flatMap((w) => w.topics));
+      expect([...refs].filter((r) => !taught.has(r)), `${c.slug} unscheduled topics`).toEqual([]);
+      for (const w of weeks) {
+        expect(w.exercise, `${c.slug} week ${w.week} exercise`).toBeTruthy();
+        for (const level of ['beginner', 'intermediate', 'advanced'])
+          expect(w.tasks.some((t) => t.level === level), `${c.slug} week ${w.week} ${level}`).toBe(true);
+        for (const t of w.tasks) {
+          expect(ENGINES.has(t.engine), `${c.slug} week ${w.week} engine ${t.engine}`).toBe(true);
+          expect(w.topics.includes(t.topic) && refs.has(t.topic), `${c.slug} week ${w.week} topic ${t.topic}`).toBe(true);
+        }
+      }
+    }
+  });
+
+  it('gives every programme bachelor, master and doctoral levels', () => {
+    for (const p of catalogue.programmes) {
+      for (const tier of ['bachelor', 'master', 'phd'] as const) {
+        const l = p.levels?.[tier];
+        expect(l, `${p.slug} ${tier}`).toBeTruthy();
+        if (!l) continue;
+        expect(l.award, `${p.slug} ${tier} award`).toBeTruthy();
+        expect(l.core.length, `${p.slug} ${tier} core`).toBeGreaterThan(0);
+        for (const s of [...l.core, ...l.electives]) expect(slugs.has(s), `${p.slug} ${tier} lists unknown ${s}`).toBe(true);
+        expect(l.electivesRequired).toBeLessThanOrEqual(l.electives.length);
+      }
+      expect(p.courses).toEqual([...p.levels!.bachelor.core, ...p.levels!.bachelor.electives]);
+    }
+  });
+
   it('names no university or course platform', () => {
-    const text = JSON.stringify({ programmes: catalogue.programmes, courses: catalogue.courses.map(({ slug, title, syllabus, description }) => ({ slug, title, syllabus, description })) });
+    const text = JSON.stringify({ programmes: catalogue.programmes, courses: catalogue.courses.map(({ slug, title, syllabus, description }) => ({ slug, title, syllabus, description, schedule: scheduleOf(slug) })) });
     expect(text.match(NAMES)?.[0] ?? null).toBeNull();
   });
 });

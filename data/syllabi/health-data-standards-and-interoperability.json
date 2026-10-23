@@ -98,5 +98,398 @@
         "Project: an integration that sends immunisation or laboratory data from a simulated clinic to a shared record and a district report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Fragmentation and levels of interoperability",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Trace a patient referral from a CHPS compound to a district hospital, mark every point where data is retyped or lost, and classify each gap by interoperability level.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Classify six described data-exchange failures as foundational, structural, semantic or organisational interoperability problems and justify each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Draw a diagram of a CHPS-to-district-hospital referral across four unconnected systems, marking each manual handoff and the data lost there"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Sketch an OpenHIE-style architecture for a regional health directorate connecting facility, lab and reporting systems, and justify each component"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Classifications and clinical terminologies",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Code ten clinical statements to ICD-10 and find a SNOMED CT concept and parent for three of them, noting where the two systems differ in granularity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E5",
+          "title": "Query a loaded ICD-10 table to find and list the codes for five diagnoses, including malaria, typhoid and hypertension"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E5",
+          "title": "Query a SNOMED CT subset to list all descendants of a disorder concept and count how many each level of the hierarchy holds"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Code a set of discharge notes into ICD-10 following the coding rules for the principal diagnosis, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Laboratory and medication codes, and mapping",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Map a clinic's ten local test names and drug names to LOINC, UCUM and ATC codes, and write the value set for malaria tests used in a district report.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Look up LOINC codes for glucose, haemoglobin and malaria RDT in a loaded table and record each code's component and unit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Create a mapping table from 15 local lab codes to LOINC with SQL, and find unmapped rows and ambiguous matches"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Code a batch of NHIS claims for diagnoses and procedures, find the coding errors that would cause rejection, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "HL7 version 2 messaging",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Read an ADT^A01 admission message segment by segment, identify the patient, visit and ward fields, and write the acknowledgement that the receiver should return.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Parse a given HL7 v2 PID segment in Python by splitting delimiters and print the patient name, birth date and identifier"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Write a function that builds an ORU^R01 result message with two OBX segments and check it parses back to the same values"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Build a small router that sends ADT messages to one queue and ORU messages to another, and reports malformed messages in an error log"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "CDA documents and a laboratory interface",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Outline the sections of a discharge summary as a CDA document, and write the field mapping table for a laboratory-to-records interface.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Read a given CDA discharge summary XML in Python and extract the patient, diagnosis and medication sections into a printed summary"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Convert a lab system CSV export of 20 results into HL7 ORU messages and check each contains valid patient, test and result fields"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E5",
+          "title": "Load incoming lab result messages into a records database, de-duplicate resent results, and flag results that arrive for unknown patients"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "FHIR resources and REST interactions",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a Patient, an Encounter and an Observation resource as JSON for a clinic visit, with correct references between them, and the search URL to find the patient's blood pressure readings.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Create a valid FHIR Patient resource in JSON for a given person and print its name, gender and birth date fields"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Use REST calls against a test FHIR server to create a Patient, read it back, and search for it by family name"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Post a transaction bundle that creates a Patient, an Encounter and two Observations atomically, then verify the references resolve by chained search"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "FHIR profiles and terminology",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a profile constraining Observation for malaria RDT results, with a required code and a bound value set, and list the validation errors it would raise on three sample resources.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Validate three FHIR resources against a given profile and report which required elements are missing in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Build a CodeSystem and ValueSet for local malaria test results and check that a given Observation value is a member using the expand operation"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Use a ConceptMap to translate 20 local diagnosis codes to ICD-10 in a script and report unmapped codes with suggested candidates"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "FHIR security and bulk data",
+      "topics": [
+        "4.6",
+        "4.7"
+      ],
+      "exercise": "Describe the OAuth 2.0 authorisation flow for a SMART app reading a patient's immunisations, naming the scopes requested and what audit event should be logged.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Choose the minimum SMART scopes for three app scenarios (immunisation viewer, lab results app, admin tool) and defend each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Write code to record an AuditEvent each time a Patient is read and verify the log contains who, what and when"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.7",
+          "engine": "E1",
+          "title": "Export 500 Immunization resources in bulk as newline-delimited JSON and compute district vaccination coverage counts from the export"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Patient identity and record linkage",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compare 12 patient record pairs by hand using name, birth date and phone, assign each a match, possible match or non-match, and discuss the clinical risk of a false match.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Normalise 30 patient names by case, spacing and common transliteration variants and count how many duplicates the clean-up reveals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Implement deterministic and probabilistic matching on two small registers and compare matches found with a known answer key"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Tune the match threshold of a Fellegi-Sunter linker on labelled pairs and plot false matches against missed matches to justify your cut-off"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Health information exchange architecture",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compare point-to-point, hub-and-spoke and federated exchange for a region of 100 facilities, and sketch which OpenHIE components a referral workflow would call.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Draw point-to-point and hub-and-spoke connections for six systems and count the interfaces each design needs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E9",
+          "title": "Draw a sequence diagram of a referral using the client registry, facility registry and shared health record, naming each message"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E12",
+          "title": "Deploy a document repository and registry on a cloud console, publish and retrieve a test clinical document, and measure retrieval time"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Aggregate exchange, governance and case studies",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write a one-page data sharing agreement outline between a hospital and a research team, covering purpose, consent, security and obligations under the Ghana Data Protection Act.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E5",
+          "title": "Aggregate patient-level visit records into monthly counts by facility and diagnosis with SQL, ready for loading into a district reporting system"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Decide how to respond to a researcher's request for patient data under the Data Protection Act and score against the consent rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Build an ADX-style aggregate payload from clinic data, validate it against a data set definition, and report rows that fail the checks"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Building and testing a FHIR integration",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Create a field-by-field mapping table from a clinic's visit register columns to FHIR Patient, Encounter and Observation elements, noting every column with no home.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E5",
+          "title": "Map each column of a given clinic visits table to a FHIR resource element and list the columns that need a coded value"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Write a client that reads a clinic CSV and creates Patient and Observation resources on a test FHIR server, then searches to verify"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Retrieve the server capability statement, test your client against it, and fix the resources that fail validation in a given batch"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Reliable integration project",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Document your integration project design, including data flow, mapping, error handling, privacy safeguards and a test plan, and present a demonstration with a rural connectivity failure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Add a retry with increasing delay to a function that posts a resource and test it against a server that fails twice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Build an offline queue that stores 20 immunisation records while the link is down and sends them in order when it returns"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Integrate a simulated clinic with a shared record and a district coverage report, handling duplicate and failed messages, and check final counts"
+        }
+      ]
+    }
   ]
 }

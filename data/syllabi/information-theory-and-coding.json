@@ -1,0 +1,488 @@
+{
+  "slug": "information-theory-and-coding",
+  "description": "The mathematics of measuring, compressing and protecting information, from entropy and channel capacity to the codes inside mobile networks and storage. Students compute information measures, build compressors and encoders, and simulate noisy channels to measure error rates against theoretical limits.",
+  "modelledOn": [
+    "Cover and Thomas, Elements of Information Theory",
+    "Lin and Costello, Error Control Coding",
+    "MacKay, Information Theory, Inference, and Learning Algorithms"
+  ],
+  "outcomes": [
+    "Compute entropy, conditional entropy and mutual information for discrete sources and channels.",
+    "Design and analyse prefix, Huffman, arithmetic and dictionary codes and compare them with the entropy bound.",
+    "Derive and compute the capacity of binary and Gaussian channels, and interpret the Shannon limit for real links.",
+    "Encode and decode linear block, cyclic and convolutional codes, including syndrome and trellis decoding.",
+    "Implement CRC and simulate bit error rate curves to measure coding gain.",
+    "Explain how turbo, LDPC and polar codes approach capacity and where they are used."
+  ],
+  "units": [
+    {
+      "title": "Information measures",
+      "weeks": "1-2",
+      "topics": [
+        "Self-information, surprisal and the bit as a unit of uncertainty",
+        "Entropy of a discrete source; binary entropy function; bounds and properties",
+        "Joint and conditional entropy; the chain rule",
+        "Mutual information and relative entropy (KL divergence)",
+        "Data processing inequality and Fano's inequality",
+        "Typical sequences and the asymptotic equipartition property"
+      ]
+    },
+    {
+      "title": "Source coding and compression",
+      "weeks": "3-4",
+      "topics": [
+        "Prefix codes, the Kraft inequality and the source coding theorem",
+        "Huffman coding and its optimality",
+        "Entropy of English and Markov sources; entropy rate",
+        "Shannon-Fano and arithmetic coding",
+        "Dictionary and run-length methods: LZ77, LZW and RLE",
+        "Lossy compression: quantisation, rate-distortion idea and transform coding"
+      ]
+    },
+    {
+      "title": "Channels and capacity",
+      "weeks": "5-6",
+      "topics": [
+        "Discrete memoryless channels; the binary symmetric and binary erasure channels",
+        "Channel capacity and the noisy-channel coding theorem",
+        "Computing capacity numerically with an iterative algorithm",
+        "Gaussian channel, the Shannon-Hartley theorem and the Eb/N0 Shannon limit",
+        "Capacity and modulation: bits per symbol, SNR and rural mobile link budgets"
+      ]
+    },
+    {
+      "title": "Linear block codes",
+      "weeks": "7-8",
+      "topics": [
+        "Error detection and correction; Hamming distance and minimum distance",
+        "Generator and parity-check matrices; systematic form",
+        "Syndrome decoding and the standard array",
+        "Hamming codes and extended Hamming codes",
+        "Code bounds: Singleton, Hamming (sphere-packing) and Gilbert-Varshamov"
+      ]
+    },
+    {
+      "title": "Cyclic codes, CRC and Reed-Solomon codes",
+      "weeks": "9-10",
+      "topics": [
+        "Finite fields: GF(2) and GF(2^m) arithmetic",
+        "Cyclic codes: generator polynomial and encoding by polynomial division",
+        "CRC: standard polynomials, burst-error detection and LFSR hardware",
+        "BCH codes and the idea of multiple-error correction",
+        "Reed-Solomon codes and their use in QR codes, storage and broadcast"
+      ]
+    },
+    {
+      "title": "Convolutional codes and Viterbi decoding",
+      "weeks": "11-12",
+      "topics": [
+        "Convolutional encoders: constraint length, generator polynomials and state diagrams",
+        "Trellis diagrams and free distance",
+        "Maximum-likelihood decoding with the Viterbi algorithm: path metrics, survivors and traceback",
+        "Soft decisions, quantisation and coding gain",
+        "Puncturing and rate matching in mobile standards"
+      ]
+    },
+    {
+      "title": "Modern codes and coding in practice",
+      "weeks": "13",
+      "topics": [
+        "Turbo codes and iterative decoding",
+        "LDPC codes, Tanner graphs and belief propagation",
+        "Polar codes and channel polarisation",
+        "Fountain codes and network coding for lossy links",
+        "Coding in 4G and 5G, satellite links and storage systems"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Surprise, entropy and conditional entropy",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Compute the entropy of a fair die, a loaded die and the letters of a short Twi sentence, then verify the chain rule H(X,Y) = H(X) + H(Y|X) on a 3x3 joint table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute the entropy of a loaded die and a fair die from their probability tables and plot the binary entropy function for p from 0 to 1"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compute joint, marginal and conditional entropies from a 3x3 joint probability table and verify the chain rule numerically"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a program that estimates the entropy of a text file from letter frequencies, and compare English, Twi and random text of equal length"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Mutual information and typicality",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Compute mutual information and KL divergence for two small distributions, and show with a Bernoulli source that most long sequences fall in a typical set of size about 2^(nH).",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute I(X;Y) and the KL divergence D(p||q) for given discrete distributions and check that both are non-negative"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Simulate long Bernoulli sequences and measure the fraction falling in the typical set as n grows from 10 to 1000"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Build a two-stage noisy chain X to Y to Z, compute I(X;Y) and I(X;Z), and verify the data processing inequality on ten random channels"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Prefix codes and Huffman coding",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Check Kraft's inequality for three candidate length sets, build the Huffman code for a six-symbol source and compare its average length with the entropy; estimate the entropy rate of a two-state Markov source.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Test whether five sets of codeword lengths satisfy the Kraft inequality and say which can form a prefix code"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Build a Huffman tree step by step for a six-symbol source and compute its average length and efficiency against the entropy"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Estimate the entropy rate of a text from first, second and third order Markov models and compare it with the Huffman average length per letter"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Arithmetic, dictionary and lossy compression",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Arithmetic-code a short message by hand, run LZ77 and LZW on a repeated string, and quantise a sampled sine wave at 2, 4 and 8 bits to see the distortion trade-off.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Trace LZW compression of a 20-character string, listing the dictionary growth and the output codes at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement an arithmetic coder with exact fractions for a four-symbol source and decode a ten-symbol message back correctly"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Quantise a sampled signal at 2, 4 and 8 bits, plot the rate against mean squared error, and compare with the theoretical rate-distortion curve"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Channel models and the capacity theorem",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive the capacity of the binary symmetric channel and the binary erasure channel, and compute the capacity of a given asymmetric channel with an iterative algorithm.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Plot the capacity of the binary symmetric channel against its crossover probability and mark the points where capacity is 0 and 1 bit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute mutual information of a binary channel for input probabilities from 0 to 1 and locate the capacity-achieving input distribution"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement the iterative capacity algorithm for a 3-input, 3-output channel, show convergence per iteration and check it against a grid search"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Gaussian channels and real links",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Use the Shannon-Hartley formula to find the maximum rate of a 200 kHz channel at several SNRs, and judge whether a rural 4G link at a given SNR is near its capacity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compute and plot channel capacity against SNR in dB for a 200 kHz bandwidth, and read off the SNR needed for 1 Mbit/s"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Derive the minimum Eb/N0 as the code rate approaches zero from the capacity formula and mark the value of about -1.59 dB on a plot"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Given a rural link budget, compute SNR per distance, the Shannon capacity and the rate of each modulation mode, and report the efficiency gap"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Linear block codes and syndrome decoding",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Find the minimum distance of a small code by listing codewords, build the generator and parity-check matrices of a (6,3) code, and decode three received words using syndromes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "List all codewords of a (5,2) code, find its minimum distance and state how many errors it can detect and correct"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Derive the parity-check matrix H from a systematic generator matrix G for a (6,3) code and verify that G times the transpose of H is zero"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement syndrome decoding with a lookup table for a (7,4) code, then correct every single-bit error pattern and report any miscorrections"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Hamming codes and code bounds",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Encode and correct a Hamming(7,4) word, add an overall parity bit for double-error detection, and test which of three proposed codes violate the Singleton and sphere-packing bounds.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E2",
+          "title": "Build a Hamming(7,4) encoder from XOR gates and verify all 16 data words against the expected codewords"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Extend Hamming(7,4) with an overall parity bit, inject single and double errors, and tabulate which are corrected and which are only detected"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Check the Singleton and sphere-packing bounds for ten parameter sets (n, k, d), identify perfect codes, and plot the best possible rates"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Finite fields and cyclic codes",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Build the multiplication table of GF(8), encode a message with a cyclic (7,4) code by polynomial division, and compute a CRC-8 for a short frame by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Construct GF(8) from a primitive polynomial and fill in its addition and multiplication tables, checking that every nonzero element has an inverse"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Encode all 16 messages with a cyclic (7,4) code from its generator polynomial and verify each codeword has zero remainder when divided"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Implement a bitwise CRC-16 and check that it detects all single-bit errors, all burst errors up to 16 bits and a measured share of random errors"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "BCH and Reed-Solomon codes",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Explain how a Reed-Solomon code over GF(256) corrects burst errors, and compute how many damaged symbols a (255,223) code can repair in a scratched storage block.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Compute the error-correcting capability and rate of RS(255,223) and RS(255,239) and compare how many symbol errors each can repair"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Encode a message with a small BCH code from its generator polynomial and correct two injected bit errors with the decoder"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Implement a small Reed-Solomon encoder and erasure decoder over GF(16), then recover a message after dropping the maximum number of symbols"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Convolutional encoders and trellis decoding",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Encode a bit stream with the rate-1/2, constraint length 3 code (7,5), draw its state diagram and trellis, and decode a received sequence with two errors using the Viterbi algorithm.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Step through the encoder of the rate-1/2 (7,5) convolutional code for a 6-bit message and record the state and output at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E6",
+          "title": "Run the Viterbi algorithm on a trellis for a received 12-bit sequence with two errors, listing path metrics and the traceback path"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Compute the free distance of a given convolutional code by searching its state diagram and use it to predict the guaranteed correction capability"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Soft decisions, coding gain and puncturing",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compare hard and soft decision decoding of the same code over an AWGN channel at several Eb/N0 values and estimate the coding gain at a bit error rate of 1e-5.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Plot the theoretical BPSK bit error rate against Eb/N0 and read off the SNR needed for an error rate of 1e-5"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Simulate a convolutional code with hard and soft Viterbi decoding over an AWGN channel for six Eb/N0 values and plot both BER curves"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Puncture a rate-1/2 code to rates 2/3 and 3/4, decode with the matching pattern and quantify the BER penalty for each increase in rate"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Turbo, LDPC, polar and fountain codes",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a one-page comparison of turbo, LDPC and polar codes for a 5G link, a satellite broadcast and a flash-memory controller, and trace one round of belief propagation on a small Tanner graph.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Draw the Tanner graph of a small parity-check matrix, flip one received bit and follow one round of message passing between variable and check nodes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Simulate an LT fountain code for 100 packets over a 20 percent loss link and report how many received packets are needed for full recovery"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Build a rate-1/3 parallel concatenated code from two short convolutional encoders and measure how BER changes over five decoding iterations"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,513 @@
+{
+  "slug": "graduate-research-methods",
+  "description": "A field-neutral course on how to plan, run, report and defend research in any computing discipline: turning a topic into a question, reading the literature, designing reproducible experiments, handling statistical evidence, working ethically, and writing and presenting results. Students practise on ethics scenarios, computational notebooks and a research proposal they develop through the term.",
+  "modelledOn": [
+    "Booth, Colomb and Williams, The Craft of Research",
+    "Wohlin, Runeson, Host, Ohlsson, Regnell and Wesslen, Experimentation in Software Engineering",
+    "Wasserman, All of Statistics",
+    "Committee on Publication Ethics guidelines and the Singapore Statement on Research Integrity"
+  ],
+  "outcomes": [
+    "Formulate a focused, answerable and ethical research question with testable hypotheses in a chosen computing field.",
+    "Search, read and critically appraise the literature and synthesise it to justify a research gap.",
+    "Design a controlled, reproducible study and identify its threats to validity.",
+    "Analyse data with appropriate statistics, quantify uncertainty and report results honestly.",
+    "Identify ethical issues in a study, obtain the right approvals and protect participants and data.",
+    "Write a research proposal and a paper section, review a peer's work, and present and defend a project."
+  ],
+  "units": [
+    {
+      "title": "Research questions and design",
+      "weeks": "1-2",
+      "topics": [
+        "Kinds of research in computing: empirical, theoretical, design science and engineering",
+        "From topic to question: narrowing, feasibility and significance",
+        "Hypotheses, claims, falsifiability and kinds of contribution",
+        "Operationalising constructs: variables, metrics and measurement validity",
+        "Choosing a design: quantitative, qualitative and mixed methods",
+        "Scoping with real constraints: data access, compute, time and local context"
+      ]
+    },
+    {
+      "title": "Literature search and critical reading",
+      "weeks": "3-4",
+      "topics": [
+        "Search strategy: databases, keywords, Boolean queries and citation chasing",
+        "Narrative and systematic reviews; the PRISMA flow diagram",
+        "Reading a paper in three passes; appraisal checklists",
+        "Synthesis: concept matrices, themes and identifying a gap",
+        "Reference managers, citation styles and avoiding plagiarism",
+        "Judging sources: predatory venues, preprints and retractions"
+      ]
+    },
+    {
+      "title": "Experimental design and reproducibility",
+      "weeks": "5-6",
+      "topics": [
+        "Controlled experiments: baselines, controls and ablations",
+        "Sampling, randomisation, blocking and confounds",
+        "Threats to validity: internal, external, construct and conclusion",
+        "Reproducibility and replicability: seeds, environments and containers",
+        "Data and code management: version control, notebooks, documentation and FAIR data",
+        "Benchmarks, measurement error and simulation studies"
+      ]
+    },
+    {
+      "title": "Statistical evidence and reporting",
+      "weeks": "7-8",
+      "topics": [
+        "Descriptive statistics, distributions, outliers and honest graphics",
+        "Estimation, standard errors, confidence intervals and the bootstrap",
+        "Hypothesis tests, p-values, power and sample size",
+        "Effect sizes and multiple comparisons: family-wise error and false discovery rate",
+        "Non-parametric tests and comparing systems across datasets",
+        "Regression models and a Bayesian summary of evidence",
+        "Reporting pitfalls: p-hacking, selective reporting, and the garden of forking paths"
+      ]
+    },
+    {
+      "title": "Qualitative and mixed methods",
+      "weeks": "9",
+      "topics": [
+        "Surveys: questionnaire design, sampling frames and response bias",
+        "Interviews and focus groups, including with low-literacy participants",
+        "Thematic analysis, coding and inter-rater agreement",
+        "Case studies and evaluating a designed artefact",
+        "User studies and usability evaluation"
+      ]
+    },
+    {
+      "title": "Research ethics and integrity",
+      "weeks": "10-11",
+      "topics": [
+        "Core principles: respect for persons, beneficence and justice; informed consent",
+        "Ethics review boards and approval processes; working in Ghana and across Africa",
+        "Misconduct: fabrication, falsification, plagiarism and questionable practices",
+        "Conflicts of interest, authorship and credit; dual-use and responsible technology",
+        "Community engagement, benefit sharing and avoiding extractive research",
+        "Data protection, anonymisation and the secure handling of research data"
+      ]
+    },
+    {
+      "title": "Academic writing, proposals and peer review",
+      "weeks": "12",
+      "topics": [
+        "The structure of a paper: introduction, method, results and discussion",
+        "Abstracts, claims and related work",
+        "Figures, tables and clear reporting of results",
+        "The peer review process: writing a review and responding to reviewers",
+        "Publishing: venues, open access, preprints and author contributions",
+        "Writing a research proposal: aims, plan, timeline and budget"
+      ]
+    },
+    {
+      "title": "Presenting and defending research",
+      "weeks": "13",
+      "topics": [
+        "Structuring a talk and its slides",
+        "Posters and lightning talks",
+        "Handling questions and defending design choices",
+        "Planning a thesis: supervision, milestones and time management"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Kinds of research and good questions",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Take a broad topic from your field, write three candidate research questions, and rate each for feasibility, significance and testability with a short justification.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Classify 8 short project abstracts as empirical, theoretical, design science or engineering work, and justify each label with evidence from the text"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Narrow a broad topic into a focused question across three rounds of feedback in a scenario, and score each version for scope and answerability"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Rewrite 6 vague claims as testable hypotheses, name the observation that would refute each, and check which ones a given dataset can address"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Measurement, design choices and scope",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Operationalise the construct 'usable' or 'accurate' for your own question with a metric, an instrument and a validity argument, and choose a design with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute precision, recall and F1 for a classifier from given counts and state what each metric hides about the construct being measured"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Pick a design for a research problem in a scenario, choosing among experiment, survey and case study, and score the fit with the question"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Rescope a proposal after a scenario cuts its data access and compute budget, keeping the question answerable, and defend the revised plan"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Searching and reading the literature",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write a search string with synonyms and Boolean operators for your question, record the number of hits at each screening stage, and summarise one paper after a three-pass reading.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Refine a search query over four rounds in a scenario, adding synonyms and exclusions, and score recall and precision of the results"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Tabulate 120 screened records into a PRISMA flow count, remove duplicates by title matching in code, and report included and excluded numbers"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Appraise a paper with a hidden flaw in its evaluation in a scenario, listing the evidence for each concern and rating the reliability of its claims"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Synthesis, citation and source quality",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Build a concept matrix for ten papers on your topic and write a paragraph that identifies the gap the matrix shows.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Spot the paraphrasing that counts as plagiarism among 6 passages in a scenario, and repair each with a correct citation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Load a table of 40 papers with their methods and datasets, build a concept matrix with a script, and find the combination no paper has tried"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Judge 8 sources in a scenario, including a retracted paper and an unreviewed preprint, and decide which can support a claim in your review"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Controlled experiments and sampling",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Design an experiment comparing two methods in your field with a baseline, an ablation and a sampling plan, and list the three biggest threats to its validity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Randomly assign 40 participants to two groups with blocking by experience level, and check that the groups are balanced on three covariates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Run a method with and without each of 3 components on a dataset, tabulate the ablation results, and report which components matter"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Find the threats to internal, external and construct validity in a flawed study design in a scenario, and propose a fix for each"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Reproducibility and research data management",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write the README and environment file that would let a stranger reproduce your main experiment, and list what could still differ between machines.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Run a notebook with a random element ten times, show that results differ, then fix the seed and record the environment versions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Organise a messy analysis into a clean project with data, code and results folders, a run script and a short data dictionary"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Run a Monte Carlo simulation study of two estimators over 1000 repetitions, report bias and variance, and test sensitivity to the random seed"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Describing data, estimation and tests",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Compute a confidence interval and a bootstrap interval for a mean difference, run a test, and report the effect size and the sample size you would need for 80 percent power.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Summarise a skewed dataset with mean, median and spread, plot its histogram and box plot, and flag outliers with a stated rule"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Compute a bootstrap confidence interval for a median difference between two groups with 5000 resamples and compare it with a t interval"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Estimate by simulation the power of a two-group test at three effect sizes and four sample sizes, and choose the smallest adequate sample"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Comparing systems and reporting honestly",
+      "topics": [
+        "4.5",
+        "4.6",
+        "4.7"
+      ],
+      "exercise": "Compare three methods across eight datasets with an appropriate test, then write the results paragraph in a way that reports uncertainty and every analysis that was tried.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Run a rank-based test on paired scores of two methods over 10 datasets and report the statistic, p-value and effect size"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Fit a regression of runtime on input size and hardware type, check residuals, and report coefficients with intervals"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.7",
+          "engine": "E1",
+          "title": "Test 40 hypotheses on random noise data, count false positives with and without false discovery control, and show how selective reporting inflates results"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Surveys, interviews and qualitative analysis",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write 8 neutral survey questions for your topic, plan the sampling, and code ten interview excerpts into themes with a second coder.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Fix 8 leading, double-barrelled or ambiguous questions in a draft survey in a scenario, and score the improvement in neutrality"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Compute the kappa agreement statistic for two coders over 60 coded interview segments and decide whether agreement is good enough to proceed"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Plan a usability study of a mobile-money screen in a scenario, choosing tasks, participants and measures, and score threats to the findings"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Ethical principles, review boards and misconduct",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Draft the informed consent text for a study in a Ghanaian community and list what an ethics board would ask you to change.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Review a consent form in a scenario, find 5 missing or unclear elements, and rewrite it in plain language for first-time participants"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Prepare an ethics application for a school study in a scenario, deciding what risks, safeguards and approvals to describe, and score completeness"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Investigate a suspected image duplication in a student's results in a scenario, weighing evidence, due process and the response, and score fairness"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Authorship, community and data protection",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Allocate authorship order for a six-person project from a contribution table and justify it with an agreed set of criteria.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Settle an authorship dispute in a scenario using contribution records and agreed criteria, and score the fairness of the outcome"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Remove direct identifiers and generalise quasi-identifiers in a 500-row study table, then check how many participants remain unique"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Plan engagement with a farming community whose data a research team wants to use in a scenario, covering consent, benefits and sharing of results"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Writing papers, reviews and proposals",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a one-page proposal with aims, method, timeline and budget, and write a half-page review of a peer's proposal listing strengths, weaknesses and questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Redraw a cluttered results plot with clear labels, units, uncertainty bars and a caption that states the finding in one sentence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Write a review of a draft paper in a scenario, scoring soundness, novelty and clarity, and respond to a hostile reviewer comment with evidence"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Assemble a proposal with aims, work plan and a three-month budget in a scenario, and defend it to a funding panel that cuts the budget by a third"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Presenting, defending and planning the thesis",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Deliver a five-minute talk on your proposal, answer three hard questions from peers, and write a milestone plan for the next six months.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Reorder and cut 14 slides of a talk in a scenario to fit five minutes, keeping the question, method, result and take-away"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Answer 6 hard questions from a mock panel in a scenario, including one you cannot answer, and score honesty, evidence and composure"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E9",
+          "title": "Build a six-month thesis plan as a task table with dependencies and compute the critical path and the slack for each task"
+        }
+      ]
+    }
+  ]
+}

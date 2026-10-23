@@ -90,5 +90,390 @@
         "Capstone: a complete decentralised application with a report on whether a blockchain was the right choice"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Hashes and Merkle trees",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Hash five short messages with the hashing tool, record the digests, then write a half-page explanation of why each of preimage, second-preimage and collision resistance matters for a ledger.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Compute SHA-256 digests of ten short strings, change one character in each, and record how many output bits flip to demonstrate the avalanche effect"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E6",
+          "title": "Build a Merkle tree over eight transactions step by step, then produce and verify an inclusion proof for transaction five using only sibling hashes"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Build a hash-pointer list of 20 records, then find and repair a tampered record using only the stored head hash and a verification routine"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Signatures, commitments and puzzles",
+      "topics": [
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Written exercise: explain why a public key can serve as an identity, and describe what an attacker gains from reusing an ECDSA nonce.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Generate an ECDSA secp256k1 key pair, sign a short message, verify the signature, and show that verification fails after changing one byte"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Implement a hash commitment scheme with a random salt, then show that the commitment hides the value yet binds the committer to it"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Implement a proof-of-work puzzle with adjustable leading-zero difficulty and measure average attempts over 50 runs for difficulties 1 to 5"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Blocks, chains and the network",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw a block header diagram with field sizes and write a short account of how a transaction travels from a phone wallet to a confirmed block.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Create a block data structure with previous hash, Merkle root, timestamp, nonce and difficulty, and print its hash after mining three linked blocks"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Simulate two miners finding blocks at nearly the same time, observe the fork, and count confirmations until one branch is orphaned"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Simulate gossip propagation across a 30-node peer network with latency and measure how network delay changes the orphan rate of blocks"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "A minimal chain under attack",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Reading-and-explain: list three guarantees a shared database with audit logs already gives and two extra guarantees a chain adds, with a clear verdict.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Write a minimal blockchain in Python or JavaScript with add-block and validate-chain functions, then validate a chain of five blocks"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Attack your minimal chain by editing an old block, then re-mine every later block and measure the work needed against the number of blocks rewritten"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Work through a case on a district records office and decide with evidence whether a ledger or an audited database better serves it, scored against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Consensus: proof of work and proof of stake",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Short essay: compare the cost of attacking a proof-of-work chain with the cost of attacking a proof-of-stake chain, using numbers from the simulations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Run a double-spend scenario on a small network and identify at which confirmation depth the merchant payment becomes safe against the attacker"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Simulate mining with miners holding 10, 20 and 30 percent hash power and compare the share of blocks each wins over 1000 rounds"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Configure a proof-of-stake validator set, inject a double-signing validator, and show how slashing and finality stop a long-range rewrite"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Permissioned consensus and trade-offs",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Fill in a comparison table of four ledger designs against security, decentralisation, throughput and energy, and justify each cell in one sentence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Step through a Raft leader election with five nodes, crash the leader, and record which node wins the next term and why"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Run PBFT with four replicas and one faulty replica sending conflicting messages, and verify that the honest replicas still agree on one value"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Vary node count and faulty fraction in a consensus simulation, plot throughput against fault tolerance, and argue where the scalability trilemma bites"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Wallets, keys and transactions",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Write a one-page guide for a first-time mobile user on seed phrase backup, covering theft, loss and a family member who needs inheritance access.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Derive a key pair and an address from a random seed, and explain which steps are reversible and which are one-way"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Trace a UTXO transaction with two inputs and two outputs, compute the fee, and verify that inputs equal outputs plus fee"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Construct, sign and verify a 2-of-3 multisignature transaction with a time lock, then show that a single signature or an early spend is rejected"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Smart contracts on Ethereum",
+      "topics": [
+        "5.1",
+        "5.2"
+      ],
+      "exercise": "Explain in prose how gas stops infinite loops, and estimate by hand the gas cost of a simple storage write versus a read.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Write a Solidity-style counter contract in the browser runner with increment and read functions, and record the gas used by each call"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Write an escrow contract for a cocoa purchase with deposit, release and refund functions, then test each path with at least six test cases"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Extend the escrow contract with a deadline and a dispute arbiter, then write tests covering the full state machine and its edge cases"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Tokens, oracles and vulnerabilities",
+      "topics": [
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Audit exercise: read a short vulnerable contract on paper, mark every flaw, and write the fix and the attack for the most severe one.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Implement a minimal ERC-20 token with transfer and balance functions, and check that total supply is conserved across 20 random transfers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Reproduce a reentrancy attack on a vulnerable bank contract and show the attacker draining funds before the balance is updated"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Fix the vulnerable bank contract with the checks-effects-interactions pattern and a reentrancy guard, then show a fuzz test finding no drain in 500 runs"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Layer 2 and cross-chain bridges",
+      "topics": [
+        "5.5"
+      ],
+      "exercise": "Write a short explanation of why a payment channel needs a dispute window, and of why bridges have been the target of the largest thefts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Open a payment channel between two parties, exchange ten off-chain updates, and close it on-chain with the final signed balance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Simulate a cheating party posting an old channel state and show how the honest party challenge within the dispute window recovers the funds"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Compare fees and confirmation delays of 1000 transfers on a base layer versus a rollup batch model, and state where batching stops helping"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Land, supply chains and payments",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Case memo: for a rural land title scheme, list what a ledger fixes, what it cannot fix, and which legal and data-entry steps still need people.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Review a land registry case with conflicting claims and evidence, choose which records to trust, and note what a ledger would not have prevented"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Trace a cocoa shipment provenance record, find where the oracle problem lets false data in, and select controls that reduce the risk"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Model a cedi remittance through bank, mobile money and stablecoin routes with fees and delays, and rank them for a 500-cedi transfer"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Do you need a blockchain?",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Apply a written decision framework to three proposals (voting, certificates, medicine tracking) and deliver a one-paragraph verdict for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Answer the decision-framework questions for a university credential verification proposal and record whether a blockchain is justified"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Evaluate a voting proposal against trust, privacy and auditability criteria, and write a decision with the evidence you used"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Configure a permissioned network of four organisations with endorsement rules, then simulate a transaction that fails endorsement and explain why"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Limits, regulation and capstone",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Capstone report: describe your decentralised application, the tests you ran, and a justified conclusion on whether a blockchain was the right choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Review a fake investment scheme case, flag five fraud indicators from the evidence, and decide what to advise the victim to do"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Compare Bank of Ghana, SEC and FATF positions on a crypto exchange case and recommend compliance steps scored against a rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Build a small decentralised application with a contract, tests and a front end, and measure throughput and cost against a plain database"
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,505 @@
+{
+  "slug": "decentralised-finance-and-digital-assets",
+  "description": "The mechanics, economics and risks of decentralised finance and digital assets: token standards, automated market makers, lending, stablecoins, central bank digital currencies, oracles, exploits, custody and regulation. Students build simulated pools, lending markets and attacks in code, replay real failure patterns and write risk assessments.",
+  "modelledOn": [
+    "Antonopoulos and Wood, Mastering Ethereum",
+    "Harvey, Ramachandran and Santoro, DeFi and the Future of Finance",
+    "Narayanan, Bonneau, Felten, Miller and Goldfeder, Bitcoin and Cryptocurrency Technologies",
+    "Bank for International Settlements, Central bank digital currency reports and principles"
+  ],
+  "outcomes": [
+    "Implement and test token contracts and explain token standards, allowances and common design pitfalls.",
+    "Derive the pricing, slippage and impermanent loss of constant-product market makers and simulate liquidity provision.",
+    "Model overcollateralised lending, liquidations and stablecoin stability mechanisms, and identify when they fail.",
+    "Compare central bank digital currency designs with mobile money and cross-border payment systems in an African setting.",
+    "Analyse oracle manipulation, front-running and contract exploits, and propose defences and audit tests.",
+    "Assess custody, market structure, regulatory, tax and portfolio risk for a digital-asset product."
+  ],
+  "units": [
+    {
+      "title": "Ledgers, keys and execution",
+      "weeks": "1",
+      "topics": [
+        "Consensus recap: proof of work, proof of stake, finality and reorganisations",
+        "Account-based versus UTXO ledgers; transactions, fees and gas",
+        "Digital signatures, wallets, key derivation and seed phrases",
+        "The EVM execution model: storage, memory, calls and events",
+        "Tokens versus coins; why value is recorded on a shared ledger"
+      ]
+    },
+    {
+      "title": "Token standards and smart contracts",
+      "weeks": "2-3",
+      "topics": [
+        "ERC-20: balances, allowances, approve and transferFrom pitfalls",
+        "Non-fungible and multi-token standards (ERC-721, ERC-1155) and metadata",
+        "Contract design: state machines, access control and upgradeable proxies",
+        "Token economics: supply schedules, vesting, inflation and governance tokens",
+        "Testing contracts: unit tests, invariants and property-based fuzzing",
+        "Gas costs and optimisation"
+      ]
+    },
+    {
+      "title": "Automated market makers and liquidity pools",
+      "weeks": "4-5",
+      "topics": [
+        "Order books versus automated market makers",
+        "Constant-product pricing x*y=k: swap formula, slippage and price impact",
+        "Liquidity provision, pool shares, fees and the derivation of impermanent loss",
+        "Concentrated liquidity and stable-swap invariants",
+        "Arbitrage, price convergence and the idea of maximal extractable value"
+      ]
+    },
+    {
+      "title": "Lending, stablecoins and derivatives",
+      "weeks": "6-7",
+      "topics": [
+        "Overcollateralised lending: collateral factor, health factor and liquidation",
+        "Interest-rate models driven by pool utilisation",
+        "Stablecoin designs: fiat-backed, crypto-collateralised and algorithmic; depeg case studies",
+        "On-chain perpetual futures, funding rates and options",
+        "Flash loans: atomic borrowing and legitimate uses"
+      ]
+    },
+    {
+      "title": "Central bank digital currencies and payments",
+      "weeks": "8",
+      "topics": [
+        "CBDC design choices: retail versus wholesale, account-based versus token-based, two-tier architecture",
+        "Pilots in Africa (eNaira, eCedi) and their link to mobile money",
+        "Privacy, programmability and offline payments",
+        "Cross-border settlement and pan-African payment interoperability",
+        "Monetary-policy effects and bank disintermediation risk"
+      ]
+    },
+    {
+      "title": "Oracles, front-running and exploit analysis",
+      "weeks": "9-10",
+      "topics": [
+        "Oracles: price feeds, time-weighted averages and decentralised oracle networks",
+        "Front-running, sandwich attacks, private mempools and transaction ordering",
+        "Reentrancy, integer errors and access-control bugs in classic exploits",
+        "Flash-loan price-manipulation attacks, step by step",
+        "Bridge failures and key compromise",
+        "Auditing: static analysis, fuzzing, invariant tests and writing a post-mortem"
+      ]
+    },
+    {
+      "title": "Custody, exchanges and market structure",
+      "weeks": "11",
+      "topics": [
+        "Custody models: self-custody, custodial, multi-signature and multi-party computation",
+        "Centralised exchanges: matching engines, proof of reserves and collapse case studies",
+        "Market microstructure: spreads, depth, wash trading and manipulation",
+        "On-ramps and peer-to-peer markets in Ghana and Nigeria",
+        "Tokenised real-world assets"
+      ]
+    },
+    {
+      "title": "Regulation, tax and risk",
+      "weeks": "12-13",
+      "topics": [
+        "Regulatory frameworks: securities versus commodities, licensing, travel rule, KYC and AML; African regulatory approaches",
+        "Tax treatment of trading gains, staking income and airdrops",
+        "Risk taxonomy and quantification: smart contract, market, liquidity, counterparty and regulatory risk; value at risk for a crypto portfolio",
+        "Governance and decentralised autonomous organisations",
+        "Capstone: a protocol or product risk assessment report"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Ledgers, keys and the execution model",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compare an account-based and a UTXO ledger for the same five payments, then explain how a signature proves ownership and why a lost seed phrase cannot be recovered.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "Step a small proof-of-work chain through a fork and a reorganisation and note which transactions return to the pool"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Generate a key pair, sign a payment message, verify it, then alter one byte and show the signature check fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Build a small ledger that supports both account balances and UTXO transfers, and detect a double spend attempted in each model"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Writing tokens",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Specify the functions and events of a simple fungible token, then trace the allowance race condition between approve and transferFrom and explain the safer pattern.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Implement an ERC-20 style token in code with balances, transfer, approve and transferFrom, and pass a test list of 12 cases"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Add a non-fungible token registry with unique ids, owner lookup and metadata hashes, and test that duplicate minting is rejected"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Add owner-only minting and a pause switch to the token, then show an unauthorised call fails and a proxy-style upgrade keeps balances"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Token economics, testing and gas",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Design the supply and vesting schedule of a cooperative's governance token for 1000 members and test three invariants, such as total supply equal to the sum of balances.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Plot the circulating supply of a token with a 4-year linear vesting cliff and a halving emission and read the inflation rate in year 3"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Write an invariant test that runs 10000 random transfers and approvals and checks that total supply never changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Count storage writes and loop iterations in two implementations of a batch transfer and pick the cheaper one with a gas estimate"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Constant-product markets",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "Price a swap in a pool with 1000 token A and 1000 token B, compute slippage for trades of 1, 10 and 100 units and compare with an order book of equal depth.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute the output, fee and slippage of three swaps against a pool of 1000 and 1000 tokens using the x*y=k rule"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Simulate an order book and a constant-product pool receiving the same 200 random trades and compare average execution price"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Code a swap function with a fee and a minimum-output check, then show a large trade moves the price along the curve"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Liquidity provision and arbitrage",
+      "topics": [
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Derive impermanent loss as a function of the price ratio, evaluate whether fee income would have covered it for a stable pair and a volatile pair over 30 days.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Plot impermanent loss against price ratio from 0.25 to 4 and read off the loss when one asset doubles"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Simulate a liquidity provider in a pool over 90 days of random prices and compare final value with simply holding, net of fees"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Create two pools quoting different prices, write an arbitrage routine that trades between them and show both prices converge"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Lending markets and liquidation",
+      "topics": [
+        "4.1",
+        "4.2"
+      ],
+      "exercise": "Set parameters for a lending pool of cedi-backed stablecoins and a volatile collateral asset, and test how a 30 percent price fall triggers liquidations and bad debt.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute the health factor of five borrowers from collateral value, debt and liquidation threshold and mark who can be liquidated"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Plot a kinked utilisation interest-rate curve and compute borrower and lender rates at 50, 80 and 95 percent utilisation"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Simulate 100 borrowers through a sudden 40 percent collateral price fall and measure liquidations, bad debt and the effect of a lower liquidation bonus"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Stablecoins, derivatives and flash loans",
+      "topics": [
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compare a reserve-backed stablecoin, a crypto-collateralised one and an algorithmic one under a bank-run scenario, identifying the feedback loop that makes the last unstable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Simulate an algorithmic stablecoin paired with a volatile token through a demand shock and plot the peg until it breaks or recovers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute the funding payments of a perpetual future for a trader holding 10 times leverage over 7 days of given rates"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Write a flash loan that borrows, trades and repays in one transaction and show it reverts when the profit is not enough"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Central bank digital currencies",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Design a retail digital cedi: choose account or token, the intermediary model, privacy and offline rules and the holding limit, then defend how it coexists with mobile money.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Draw the two-tier architecture of a retail CBDC showing the central bank, intermediaries, wallets and ledger, with the flow of one payment"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Compute the deposit outflow from banks if households shift 10 percent of balances into CBDC and the effect of a holding cap"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Work through a scenario on a low-adoption CBDC pilot, choose interventions with agents and mobile money operators, and score against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Oracles and transaction ordering",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Show how a lending protocol using a single pool price can be manipulated in one block, and compare a spot oracle with a time-weighted average price.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Implement a time-weighted average price oracle over 20 blocks and compare it with the spot price during a one-block price spike"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Build a mempool with a victim swap and a sandwiching attacker, compute the attacker profit and the victim's extra slippage"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Exploit a reentrancy flaw in a simple vault contract by recursive withdrawal, then fix it with a checks-effects-interactions pattern"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Attacks and audits",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Replay a flash-loan manipulation attack step by step on a simulated lending pool, then write a one-page post-mortem naming the root cause, the loss, and the fix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Execute a flash-loan price manipulation against a simulated lending market and report the attacker's profit and the pool's loss"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Investigate a bridge-hack scenario by reading logs and key access records, identify how the signers were compromised and decide the response"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Fuzz a staking contract with random calls, find the input that breaks a funds-conservation invariant and write the failing test"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Custody, exchanges and market structure",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Select a custody scheme for a savings group holding digital assets, then evaluate an exchange's proof-of-reserves report and market quality from a depth chart.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Implement a 2-of-3 multi-signature approval for withdrawals and show that one stolen key cannot move funds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Compute the spread and depth at 1 percent from a given order book snapshot and detect wash trades in a short trade log"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Audit a scenario exchange's liabilities against its reserves, decide whether it is solvent and choose the customer communication"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Regulation, tax and portfolio risk",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Classify five token products under a securities test, compute tax on a year of trades and staking rewards, and estimate the one-day 95 percent value at risk of a three-asset portfolio.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Calculate taxable gains using first-in-first-out for a ledger of 12 buys, sells and staking rewards in cedis"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Compute one-day 95 percent historical and parametric value at risk for a portfolio of three assets with given returns"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Advise a mobile-money firm entering digital-asset custody in a regulatory scenario, choosing licensing, know-your-customer and reporting steps"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Governance and capstone risk assessment",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write and present a risk assessment of a lending or exchange protocol, covering contract, oracle, market, governance and regulatory risk, with a quantified stress test and mitigations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Simulate a governance vote with token-weighted voting and a whale, and measure how many voters decide the outcome"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Run a stress test on a protocol model with a 50 percent price crash and a 3-day oracle delay, reporting insolvency and recovery"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Present the protocol risk assessment to a scenario board and answer challenges, scored on completeness, quantification and recommended controls"
+        }
+      ]
+    }
+  ]
+}

@@ -107,5 +107,395 @@
         "End-to-end: compiling and running test programs; performance comparison against a reference compiler"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Compilers, phases and project setup",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Draw the phase diagram of a compiler for a small C-like language, naming the data structure passed between each pair of phases, and write the project test plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "Step a tiny expression through lexing, parsing and code generation in the visualiser and record the data structure produced after each phase"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Write a driver script that runs a toolchain of lexer, compiler stub, assembler and linker on a hello program and reports which stage failed on a broken input"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Build a test harness with 12 source programs and expected outputs, run it against a stub compiler and report pass and fail counts with positioned error messages"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Regular expressions, NFAs and DFAs",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Prove by construction that a given regular expression for cedi amounts matches exactly the intended strings, with a Thompson NFA and a subset-construction table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Write regular expressions for identifiers, integers, decimals and comments and test each against 20 accepted and 20 rejected strings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Convert the regular expression (a|b)*abb to an NFA with Thompson construction, then to a DFA by subset construction, and trace the input babb"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Minimise a given 9-state DFA by partition refinement and verify the minimal automaton accepts the same 30 test strings"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Building scanners",
+      "topics": [
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Compare a hand-written scanner and a generated one on the same token set in a short report covering speed, readability and error handling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Write a hand-coded scanner for a small language that returns token type, lexeme and line number, using longest match for operators like <= and =="
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Extend the scanner with a table-driven DFA for numbers and identifiers and prove equal output on 15 given programs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Make the scanner recover from illegal characters and unterminated strings, reporting line and column and continuing so one run lists every lexical error"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Grammars and LL(1) parsing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Rewrite an ambiguous expression grammar into an unambiguous LL(1) grammar and show the FIRST and FOLLOW tables and a parse of two sample inputs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Show two different parse trees for 1 + 2 * 3 under an ambiguous grammar, then fix the grammar so precedence and left associativity hold"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Eliminate left recursion from an expression grammar, then compute its FIRST and FOLLOW sets and fill the LL(1) parse table"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Write a recursive-descent parser for statements with if, while and assignments and verify it accepts 10 valid programs and rejects 10 invalid ones"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Error recovery and Pratt parsing",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Take five programs with typical student errors and write the single error message you would want the compiler to print for each, justifying the wording.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Add panic-mode recovery with synchronising tokens to a recursive-descent parser and confirm it reports three separate syntax errors in one file"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Implement a Pratt parser for expressions with binding powers and test precedence of unary minus, exponent and ternary operators on 15 inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Add right-associative operators and a function-call postfix operator to the Pratt parser and compare its parse trees against a given reference"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Shift-reduce and LR parsing",
+      "topics": [
+        "4.1",
+        "4.2"
+      ],
+      "exercise": "Build the LR(0) item sets by hand for a five-production grammar and explain where the first conflict appears and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Trace a shift-reduce parse of id + id * id on a given stack table, marking each handle and the action taken at every step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Construct the LR(0) automaton and the SLR table for a small grammar and parse two strings using the table"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Show that a given grammar is SLR-conflicted but LALR(1) clean by building the LR(1) lookaheads, and list the merged states"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Parser generators and parsing strategies",
+      "topics": [
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Write a short comparison table of LL, LR, PEG and generalised parsing for three kinds of language feature, and recommend one for the course language.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Write a yacc-style grammar for a calculator, resolve its shift-reduce conflicts with precedence declarations and test 15 expressions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement a small PEG parser with ordered choice for arithmetic and show a case where PEG and CFG readings of the same grammar differ"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Diagnose and fix the conflicts reported for a faulty dangling-else grammar, and justify the chosen resolution with parse traces of three programs"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Abstract syntax trees and attributes",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Design the AST node classes for the course language on paper, then argue which information belongs in the AST and which was dropped from the parse tree.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Define AST node classes for expressions, assignments and if statements and print the tree for five source snippets using a pretty-printer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Write a visitor that evaluates constant expressions on the AST and another that counts nodes by type, and check results on 10 programs"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Compute synthesised and inherited attributes for a binary-number grammar on a given parse tree and show the dependency graph and evaluation order"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Symbol tables and type checking",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Write the typing rules in inference-rule form for assignment, addition and function calls in the course language and test them on examples.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Implement a symbol table with nested scopes, then resolve every identifier in three programs and report undeclared uses with line numbers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Write a type checker for expressions with int, float and bool, including implicit int to float coercion, and check 15 programs with expected errors"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Add semantic checks for break outside loops, missing return paths and duplicate declarations, and verify the compiler finds all seeded errors in a faulty program"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Intermediate code and runtime environments",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Translate a loop with a short-circuit condition into three-address code by hand, draw its control-flow graph and the stack frame for a recursive call.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Generate three-address code for arithmetic expressions and if-else statements and print the quadruples for five programs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Convert a given control-flow graph with a loop into SSA form by placing phi functions at dominance frontiers and rename the variables"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E6",
+          "title": "Trace the stack and frame pointers through a recursive factorial call with a nested function, drawing each activation record and returning the correct value"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Local optimisation and dataflow analysis",
+      "topics": [
+        "8.1",
+        "8.2"
+      ],
+      "exercise": "Optimise a short basic block by hand with constant folding, copy propagation and dead code removal, listing each step and justifying its safety.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Implement constant folding and algebraic simplification passes on three-address code and show before and after listings for five blocks"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Run reaching definitions iteratively on a given six-block flow graph, listing the in and out sets in every round until a fixed point"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Implement live-variable analysis and use it to eliminate dead stores from three-address code, verifying program output stays equal on 10 inputs"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Global optimisation and LLVM",
+      "topics": [
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Pick a nested loop from a numerical routine and describe, with code, which global optimisations apply and what each saves.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Move a loop-invariant computation out of a loop in three-address code by hand and count how many instructions execute before and after"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Implement strength reduction of i * 4 to an additive induction variable on a loop and confirm identical results on 10 inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Compare unoptimised and optimised output of a real compiler on a small function, identify four applied passes and relate each to a taught technique"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Code generation and end-to-end compiler",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a one-page evaluation of the finished compiler comparing generated code size and speed against a reference compiler on five programs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Generate stack-machine or register assembly for arithmetic expressions by tree pattern matching and run the output on a simulator for 10 inputs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E6",
+          "title": "Build the interference graph for a given live-range table, colour it with three registers and spill one variable where necessary"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Compile and run 12 test programs through the full pipeline, compare outputs and run time against a reference compiler, and report three failures with causes"
+        }
+      ]
+    }
   ]
 }

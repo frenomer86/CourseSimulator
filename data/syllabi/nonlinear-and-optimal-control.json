@@ -1,0 +1,518 @@
+{
+  "slug": "nonlinear-and-optimal-control",
+  "description": "Control of nonlinear dynamical systems and optimal control at graduate depth: phase-plane analysis, Lyapunov stability, feedback linearisation, linear quadratic regulation, model predictive control, trajectory optimisation, dynamic programming and control through contact. Students derive controllers on paper, then simulate and compare them on pendulums, cart-poles, drones and walking models in the maths lab and code runner.",
+  "modelledOn": [
+    "Khalil, Nonlinear Systems",
+    "Tedrake, Underactuated Robotics: Algorithms for Walking, Running, Swimming, Flying, and Manipulation",
+    "Rawlings, Mayne and Diehl, Model Predictive Control: Theory, Computation, and Design"
+  ],
+  "outcomes": [
+    "Linearise nonlinear models, draw phase portraits and classify equilibria and limit cycles.",
+    "Prove stability of an equilibrium with a Lyapunov function and estimate its region of attraction.",
+    "Design feedback-linearising, backstepping and sliding-mode controllers for low-order nonlinear plants.",
+    "Derive and tune linear quadratic regulators and Kalman filters, and extend them to trajectory tracking.",
+    "Formulate and solve model predictive control and trajectory optimisation problems with constraints.",
+    "Apply dynamic programming to compute optimal policies and explain its limits and links to reinforcement learning."
+  ],
+  "units": [
+    {
+      "title": "Nonlinear systems and the phase plane",
+      "weeks": "1-2",
+      "topics": [
+        "State-space models, equilibria, linearisation and the Jacobian",
+        "Phase portraits: nodes, saddles, foci, centres and limit cycles; Poincare-Bendixson theorem",
+        "Canonical examples: pendulum, cart-pole, Van der Pol oscillator and a planar quadrotor",
+        "Existence and uniqueness, Lipschitz conditions and finite escape time",
+        "Bifurcations and chaos: pitchfork and Hopf bifurcations, the Lorenz system"
+      ]
+    },
+    {
+      "title": "Lyapunov stability",
+      "weeks": "3-4",
+      "topics": [
+        "Stability definitions: stable, asymptotically stable, exponentially stable, global",
+        "Lyapunov direct method: positive definite functions and the derivative along trajectories",
+        "LaSalle invariance principle",
+        "Linear systems: the Lyapunov equation and converse theorems",
+        "Region of attraction estimates and sum-of-squares certificates",
+        "Control Lyapunov functions and constructive stabilising feedback"
+      ]
+    },
+    {
+      "title": "Feedback linearisation and nonlinear design",
+      "weeks": "5-6",
+      "topics": [
+        "Input-state linearisation: Lie derivatives, relative degree and the controllability conditions",
+        "Input-output linearisation, zero dynamics and minimum phase systems",
+        "Backstepping for strict-feedback systems",
+        "Sliding mode control: sliding surface, reaching condition and chattering reduction",
+        "Passivity and energy shaping: swing-up of a pendulum",
+        "Computed-torque control of robot manipulators and robustness to model error"
+      ]
+    },
+    {
+      "title": "Linear quadratic optimal control",
+      "weeks": "7",
+      "topics": [
+        "The optimal control problem, cost functionals and the Hamilton-Jacobi-Bellman equation",
+        "Linear quadratic regulator: Riccati equation, infinite-horizon gain and guaranteed margins",
+        "Kalman filter, LQG and the separation principle",
+        "Weight tuning, integral action and tracking with LQR",
+        "Time-varying LQR, linearisation about a trajectory and iterative LQR"
+      ]
+    },
+    {
+      "title": "Model predictive control",
+      "weeks": "8-9",
+      "topics": [
+        "Receding-horizon formulation with state and input constraints",
+        "Linear MPC as a quadratic program; terminal cost and sets; recursive feasibility and stability",
+        "Nonlinear MPC: sequential quadratic programming and real-time iteration",
+        "Tuning: horizon length, soft constraints, disturbance models and offset-free tracking",
+        "Applications: quadrotor tracking, a solar-battery microgrid for a Ghanaian clinic, and irrigation scheduling"
+      ]
+    },
+    {
+      "title": "Trajectory optimisation",
+      "weeks": "10",
+      "topics": [
+        "Calculus of variations and Pontryagin minimum principle",
+        "Direct methods: single and multiple shooting, direct collocation and transcription to a nonlinear program",
+        "Differential flatness and minimum-snap trajectories",
+        "Sequential convex programming and differential dynamic programming",
+        "Time-optimal control: bang-bang solutions and switching curves"
+      ]
+    },
+    {
+      "title": "Dynamic programming and learning",
+      "weeks": "11",
+      "topics": [
+        "Principle of optimality, the Bellman equation and value iteration on a grid",
+        "Hamilton-Jacobi-Bellman equation and the curse of dimensionality",
+        "Approximate dynamic programming: policy iteration and function approximation",
+        "Links to reinforcement learning: policy gradient and actor-critic; safety concerns",
+        "Stochastic optimal control and Markov decision processes"
+      ]
+    },
+    {
+      "title": "Control through contact",
+      "weeks": "12",
+      "topics": [
+        "Hybrid dynamics: impacts, Coulomb friction, stick-slip and complementarity conditions",
+        "Walking as a hybrid limit cycle: passive walkers, Poincare maps and stability of gaits",
+        "Contact-implicit trajectory optimisation",
+        "Hybrid MPC and mode scheduling; grasping and pushing with contact",
+        "Contact models: rigid versus compliant, and the simulation-to-reality gap"
+      ]
+    },
+    {
+      "title": "Design project and comparison",
+      "weeks": "13",
+      "topics": [
+        "Choosing a plant, deriving its model and stating performance and constraint requirements",
+        "Controller comparison: feedback linearisation, LQR and MPC under disturbance, delay and model error",
+        "Robustness evaluation with Monte Carlo parameter variation",
+        "Technical report: results, limits, and what would be needed for hardware implementation"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "State space, equilibria and phase portraits",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Find the equilibria of a damped pendulum, linearise at each, classify them by eigenvalues, and sketch the global phase portrait.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute the Jacobian of a damped pendulum symbolically at its two equilibria, find the eigenvalues, and classify each equilibrium"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot the phase portrait of a damped pendulum with 12 initial conditions and mark the stable and unstable manifolds of the saddle"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot the Van der Pol oscillator for three damping values, show the limit cycle from inside and outside, and measure its amplitude and period"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Models, existence and bifurcations",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Build state-space models of a cart-pole and a planar quadrotor, check Lipschitz conditions, and describe a Hopf bifurcation in words and a plot.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Simulate a cart-pole with a numerical integrator, compare step sizes and check that the energy is conserved for the frictionless case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Solve x-dot equals x squared from three initial conditions, show finite escape time, and explain which Lipschitz condition fails globally"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Plot the bifurcation diagram for a pitchfork system and for the Lorenz system and mark where behaviour changes qualitatively"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Lyapunov functions and invariance",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Prove asymptotic stability of three nonlinear systems with Lyapunov functions, using LaSalle where the derivative is only negative semidefinite.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Show that V equals x1 squared plus x2 squared is a Lyapunov function for a damped system, plot level sets and the derivative along trajectories"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Apply LaSalle to a damped pendulum with energy as V, identify the invariant set in which V-dot is zero, and conclude asymptotic stability"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Simulate a system with an equilibrium that is stable but not asymptotically stable and one that is exponentially stable, and fit the decay rates"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Regions of attraction and control Lyapunov functions",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Estimate the region of attraction of a nonlinear system with a quadratic Lyapunov function, then design a control Lyapunov function for a pendulum.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Solve the Lyapunov equation for a stable matrix with chosen Q, verify P is positive definite, and plot the level sets of V"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Estimate the largest level set of a Lyapunov function that fits within the region where V-dot is negative and verify with simulated trajectories"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Design a control Lyapunov function for a pendulum with torque limits, simulate the resulting controller and check that V decreases along trajectories"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Feedback linearisation and zero dynamics",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compute relative degree and a linearising feedback for a system, find its zero dynamics, and derive a backstepping controller for a second-order plant.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Compute the Lie derivatives of a pendulum output, find its relative degree and the control that cancels its nonlinearity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Find the zero dynamics of a system with relative degree below its order and decide whether the system is minimum phase"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Design a backstepping controller for a strict-feedback system, simulate it from five initial conditions and plot the Lyapunov function decay"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Sliding mode, passivity and manipulators",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compare a sliding-mode controller, an energy-shaping swing-up and computed-torque control on a pendulum, and test each against a 30 percent mass error.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement a sliding-mode controller for a second-order plant with bounded disturbance, observe chattering, and reduce it with a boundary layer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Implement energy-shaping swing-up for a pendulum, switch to a balancing controller near the top, and test from ten starting angles"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Simulate computed-torque control of a two-link arm with a 30 percent mass error and plot the tracking error with and without a robust term"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Linear quadratic regulation and estimation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Derive the LQR gain for a double integrator, solve the Riccati equation numerically for the cart-pole, and add a Kalman filter for noisy measurements.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Solve the algebraic Riccati equation for a double integrator, compute the gain for three Q and R pairs, and plot the step responses"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Combine an LQR and a Kalman filter for a cart-pole with noisy sensors, simulate the closed loop, and verify that the separation principle holds"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Linearise a quadrotor about a figure-eight trajectory, compute a time-varying LQR tracker, and compare its tracking error with a fixed-gain LQR"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "MPC formulation and stability",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write a linear MPC problem for a double integrator with input limits as a quadratic program, and explain what terminal cost and set guarantee.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Write the constrained finite-horizon problem for a double integrator, solve it for one step by hand, and compare with the unconstrained LQR input"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement linear MPC as a quadratic program with a terminal cost from the Riccati solution, and show recursive feasibility from ten initial states"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Implement a nonlinear MPC for a pendulum swing-up using a sequential quadratic program and report solve time per step against the 50 ms sampling time"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "MPC tuning and applications",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Tune an MPC for a solar-battery microgrid serving a clinic, with constraints on battery state and a forecast of load and sun.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Tune horizon length and soft-constraint weights for an MPC under a step disturbance, and tabulate settling time, overshoot and constraint violation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Build an MPC energy manager for a clinic microgrid with 24-hour forecasts, compare its diesel use with a rule-based controller over a simulated week"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Run the quadrotor tracking MPC with a wind gust and a 100 ms delay, and find the longest horizon that still meets the compute limit"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Trajectory optimisation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compute a minimum-time and a minimum-effort trajectory for a double integrator, and set up a collocation problem for a pendulum swing-up.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Derive the bang-bang minimum-time control of a double integrator from the Pontryagin conditions and plot the switching curve in the phase plane"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Transcribe a pendulum swing-up with direct collocation into a nonlinear program, solve it and check that the dynamics defects are below tolerance"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Implement iterative LQR for a cart-pole swing-up from the downward position, plot cost per iteration and compare with the collocation solution"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Dynamic programming and learned policies",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compute the optimal cost-to-go for a discretised double integrator by value iteration, extract the policy, and compare it with LQR.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Run value iteration on a gridworld with a cliff, step through the sweeps, and read the optimal policy from the converged values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Discretise the double integrator on a grid of increasing resolution, run value iteration and plot compute time against grid size to see the curse of dimensionality"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Train a small policy-gradient controller for a pendulum and compare its swing-up success rate and torque cost with the optimal controller"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Contact, impacts and hybrid control",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Model a bouncing ball and a simple passive walker as hybrid systems, find their periodic orbits, and discuss why contact makes optimisation hard.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Simulate a bouncing ball with restitution 0.8, detect impacts with event handling, and show the finite-time accumulation of bounces (Zeno behaviour)"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Find the periodic gait of a passive walker on a 3 degree slope, build its Poincare map and test the stability from the eigenvalues"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Optimise a pushing motion of a block with Coulomb friction using contact-implicit optimisation and report if the solver finds the sticking and sliding modes"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Design project and report",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Present your project: the plant model, three controllers, a robustness study and a clear statement of which controller you would build and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Build the model of your chosen plant, validate it against energy conservation and a known response, and write down the requirements and constraints"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Implement feedback-linearising, LQR and MPC controllers for your plant and compare settling time, effort and constraint handling in one table"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Run 200 Monte Carlo trials with 20 percent parameter error, sensor noise and a 50 ms delay, and report success rate and worst-case behaviour per controller"
+        }
+      ]
+    }
+  ]
+}

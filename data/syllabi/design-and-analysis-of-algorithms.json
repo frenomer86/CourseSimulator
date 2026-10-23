@@ -1,0 +1,505 @@
+{
+  "slug": "design-and-analysis-of-algorithms",
+  "description": "The core paradigms for designing algorithms and the mathematics for proving how fast and how correct they are: divide and conquer, dynamic programming, greedy methods, graph and flow algorithms, NP-completeness, and randomised and approximation methods. In the lab students step through each algorithm, plot growth rates, and measure running time against the predicted bound.",
+  "modelledOn": [
+    "Cormen, Leiserson, Rivest and Stein, Introduction to Algorithms",
+    "Kleinberg and Tardos, Algorithm Design",
+    "Dasgupta, Papadimitriou and Vazirani, Algorithms",
+    "Sedgewick and Wayne, Algorithms"
+  ],
+  "outcomes": [
+    "Analyse the running time and space of an algorithm using asymptotic notation, recurrences and amortised analysis.",
+    "Choose and apply divide and conquer, dynamic programming or a greedy strategy to a new problem and prove it correct.",
+    "Solve shortest-path, spanning-tree, matching and maximum-flow problems and justify the choice of algorithm.",
+    "Prove a problem NP-complete by a polynomial-time reduction and recognise intractable problems in practice.",
+    "Design and analyse randomised and approximation algorithms with stated expected-time or approximation guarantees.",
+    "Compare predicted and measured performance and explain any gap."
+  ],
+  "units": [
+    {
+      "title": "Foundations of algorithm analysis",
+      "weeks": "1-2",
+      "topics": [
+        "The RAM model, input size, and worst-case, average-case and best-case analysis",
+        "Big-O, Omega, Theta and little-o: definitions, proofs from the definition, growth-rate ordering",
+        "Analysing loops and nested loops; common summations",
+        "Solving recurrences: substitution method and recursion trees",
+        "The master theorem and when it does not apply",
+        "Amortised analysis: aggregate, accounting and potential methods on dynamic arrays and binary counters"
+      ]
+    },
+    {
+      "title": "Divide and conquer",
+      "weeks": "3",
+      "topics": [
+        "Merge sort and counting inversions",
+        "Quicksort with random pivots and its expected running time",
+        "Linear-time selection with median of medians",
+        "Integer multiplication by Karatsuba and fast matrix multiplication with seven products",
+        "Closest pair of points in the plane"
+      ]
+    },
+    {
+      "title": "Dynamic programming",
+      "weeks": "4-5",
+      "topics": [
+        "Optimal substructure and overlapping subproblems; memoisation versus tabulation",
+        "Longest common subsequence and edit distance",
+        "0/1 knapsack and pseudo-polynomial time",
+        "Matrix-chain multiplication and optimal binary search trees",
+        "Shortest paths by dynamic programming: Bellman-Ford and DAG paths",
+        "Reconstructing solutions and reducing space"
+      ]
+    },
+    {
+      "title": "Greedy algorithms and matroids",
+      "weeks": "6",
+      "topics": [
+        "The greedy-choice property and exchange arguments; interval scheduling",
+        "Huffman coding and optimal prefix codes",
+        "Minimum spanning trees: the cut property, Kruskal and Prim",
+        "Matroids and the greedy algorithm on weighted independence systems",
+        "Dijkstra's algorithm: correctness and priority-queue implementations"
+      ]
+    },
+    {
+      "title": "Graph algorithms and network flow",
+      "weeks": "7-8",
+      "topics": [
+        "Breadth-first and depth-first search, topological sort, strongly connected components",
+        "All-pairs shortest paths: Floyd-Warshall and reweighting for sparse graphs",
+        "Maximum flow: residual graphs, augmenting paths, shortest-augmenting-path analysis, max-flow min-cut theorem",
+        "Bipartite matching, edge-disjoint paths and other reductions to flow",
+        "Union-find with path compression and union by rank"
+      ]
+    },
+    {
+      "title": "NP-completeness and reductions",
+      "weeks": "9-10",
+      "topics": [
+        "The classes P and NP, certificates and polynomial-time verification",
+        "Polynomial-time reductions and what they prove",
+        "Satisfiability as the first NP-complete problem; 3-SAT",
+        "Classic reductions: independent set, vertex cover, clique, Hamiltonian cycle, subset sum",
+        "Coping with hardness: backtracking, branch and bound, parameterised ideas, SAT solvers"
+      ]
+    },
+    {
+      "title": "Randomised and approximation algorithms",
+      "weeks": "11-12",
+      "topics": [
+        "Las Vegas and Monte Carlo algorithms; random contraction for minimum cut",
+        "Universal hashing and expected-case guarantees",
+        "Randomised primality testing and error amplification",
+        "Approximation ratios; a 2-approximation for vertex cover",
+        "Metric travelling salesman: the double-tree 2-approximation and its tightness",
+        "Greedy set cover with ratio ln n; a fully polynomial approximation scheme for knapsack"
+      ]
+    },
+    {
+      "title": "Lower bounds and algorithm engineering",
+      "weeks": "13",
+      "topics": [
+        "The comparison-sorting lower bound with decision trees",
+        "Adversary arguments and information-theoretic bounds",
+        "Empirical analysis: fitting measured times to predicted growth, constant factors and cache effects",
+        "Choosing a paradigm: a short design project on a transport, market or mobile-money routing problem"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Asymptotic analysis",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Prove from the definition that 3n^2 + 10n is Theta(n^2), rank twelve functions by growth rate, and count the basic operations of a triple nested loop exactly.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot n, n log n, n^2, 2^n and n! on log axes for n up to 30 and read off the order of growth for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Step through insertion sort on sorted, reversed and random arrays of size 16 and tabulate comparisons against the best, average and worst-case formulas"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Time linear search, binary search and a nested-loop pair counter for doubling input sizes, then fit each curve and state the estimated order"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Recurrences and amortised analysis",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Solve T(n) = 3T(n/2) + n by recursion tree and by the master theorem, then compute the amortised cost of n increments of a binary counter with the potential method.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Apply the master theorem to six given recurrences, plot each solution against its predicted growth, and note which case applies"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Count operations of a recursive algorithm for n = 2 to 1024, tabulate the counts, and verify them against the closed-form solution you derived by recursion tree"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E6",
+          "title": "Trace 33 appends to a doubling dynamic array, plot the cumulative copy cost, and show the accounting-method charge that keeps the credit non-negative"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Divide and conquer",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write the recurrence for merge sort and for the closest-pair algorithm, argue why the combine step is linear, and show where quicksort with a fixed pivot goes quadratic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step through merge sort on 12 numbers, record the recursion tree, and count the inversions found during each merge"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement quicksort with first-element and random pivots, run both on 2000 sorted inputs, and compare comparison counts and variance"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Implement closest pair of points by divide and conquer, test it on 500 random points against the brute-force answer, and plot the speed-up"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Dynamic programming foundations",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Define the subproblems and recurrence for edit distance between two words, fill the table by hand, and explain why the 0/1 knapsack table is not polynomial in the input length.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Compare naive recursion with memoised recursion for Fibonacci(30) and count the calls made by each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Fill the edit-distance table for two given words step by step and trace back the optimal sequence of edits"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Solve a 0/1 knapsack for choosing market stalls under a budget, then scale the weights by 1000 and measure how table size and time grow"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Dynamic programming on structures",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Find the optimal parenthesisation of a chain of five matrices, run Bellman-Ford by hand on a six-node graph with a negative edge, and describe a rolling-array trick for LCS.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Fill the matrix-chain cost table for four matrices with given dimensions and read off the best multiplication order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Run Bellman-Ford on a 7-node graph with a negative edge, record distances after each round, and detect a planted negative cycle"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Implement longest common subsequence with the full table and with two rows, reconstruct the answer in both, and compare memory use on 5000-character strings"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Greedy algorithms and matroids",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Give an exchange argument for earliest-finish-time interval scheduling, show a counterexample where greedy fails for coin change, and verify that the forests of a graph form a matroid.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Build a Huffman tree for a 6-letter frequency table, list the codes, and compute the saving against a fixed 3-bit code"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Run Kruskal and Prim on the same 9-node weighted road network, compare the order edges are added, and confirm both trees have equal weight"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Test the greedy rule on a given weighted independence system by brute force and report whether the exchange property holds or find a violating pair"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Graph traversal, all-pairs paths and union-find",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.5"
+      ],
+      "exercise": "Compute a topological order and the strongly connected components of a task-dependency graph, then run Floyd-Warshall by hand on a four-node graph for two values of k.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Run breadth-first and depth-first search from the same node of a 10-node graph and record discovery and finish times for every vertex"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Step through Floyd-Warshall on a 6-town road graph and show the distance matrix after each choice of intermediate node"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Implement union-find with and without path compression, run 100000 random unions and finds, and plot the average find depth for each version"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Maximum flow and matching",
+      "topics": [
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Find a maximum flow in a small network, exhibit the minimum cut with equal capacity, and model assigning five nurses to five shifts as bipartite matching.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Run augmenting-path max flow on a 6-node network, draw the residual graph after each path, and report the final flow value"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Find the minimum cut of a given network from the final residual graph and verify that its capacity equals the maximum flow"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Model assigning 8 drivers to 8 delivery routes as a flow problem, solve it in code, and check the result against brute-force matching"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "P, NP and polynomial reductions",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write a polynomial-time verifier for Hamiltonian cycle, reduce 3-SAT to a graph problem on a tiny formula, and explain what a polynomial reduction does and does not prove.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Write a verifier that checks a proposed certificate for subset sum and for graph colouring, and test it on valid and invalid certificates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Evaluate all assignments of a 4-variable 3-SAT formula in the logic tool, list the satisfying ones, and add a clause that makes it unsatisfiable"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement the reduction from 3-SAT to independent set, convert 5 formulas, and check satisfiability of each formula agrees with the graph answer"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "NP-complete problems and coping with hardness",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Chain the reductions independent set to vertex cover to clique, and decide whether a given scheduling problem is likely tractable or NP-hard, with a justification.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Find a minimum vertex cover of a 9-node graph by exhaustive search and show its complement is a maximum independent set"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Implement backtracking for graph colouring with pruning, count nodes explored against plain enumeration on 12-node graphs, and report the saving"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Measure the running time of exact subset sum for n from 10 to 28, plot the exponential growth, and estimate the largest n solvable in one second"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Randomised algorithms",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compute the probability that random contraction finds a minimum cut, say how many repetitions give error below 1 percent, and show why universal hashing beats a fixed hash function on adversarial keys.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Simulate randomised quicksort pivot choices 10000 times with Monte Carlo and plot the distribution of comparison counts for n = 100"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Insert adversarial keys into a fixed-hash table and a universal-hash table, and compare the longest chain lengths over 20 random hash choices"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Implement a randomised primality test, check it on primes and Carmichael numbers, and measure the error rate as the number of rounds grows"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Approximation algorithms",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Prove that the matching-based vertex cover is within factor 2 of optimal, and build a bad instance for greedy set cover to show the ln n factor is tight.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E6",
+          "title": "Run the maximal-matching vertex cover on three graphs, compare each cover size with the optimum found by search, and confirm ratio at most 2"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E6",
+          "title": "Build a minimum spanning tree on 10 points, take the double-tree tour, and compare its length with the optimal tour from search"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Implement greedy set cover for placing mobile-money agents to cover villages, compare with the optimum on 8 small instances, and report the ratios"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Lower bounds and algorithm design project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Draw the decision tree for sorting three elements, derive the log2(n!) bound, and write a one-page design memo that picks and justifies a paradigm for a routing problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Plot log2(n!) against n log2 n for n up to 100 and compare with the comparison counts of merge sort on random inputs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Time three sorting implementations on arrays of sizes 1000 to 1000000, fit each to its predicted growth, and explain the constant-factor gap"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Choose and implement an algorithm for assigning minibus routes to depots under a capacity limit, prove its bound, and compare with a brute-force optimum"
+        }
+      ]
+    }
+  ]
+}

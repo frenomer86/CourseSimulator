@@ -96,5 +96,397 @@
         "Project: a complete program such as a calculator, a traffic-light controller or a text game on the simulator"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Architecture, registers and the instruction cycle",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Draw a block diagram of a CPU with its three buses and explain, in one paragraph, why a Harvard design can fetch an instruction and read data at the same time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E6",
+          "title": "Step a three-instruction program one cycle at a time and record the program counter, accumulator and flags after each step in a table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Trace the fetch, decode and execute phases of an ADD instruction and label which registers and buses are active in each machine cycle"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Given a trace of a faulty program that never halts, find the instruction whose fetch address is wrong and explain the corrupted program counter"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Case processors and the toolchain",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a short comparison table of x86, ARM Cortex-M and RISC-V (word size, register count, instruction length) and justify which one suits a low-cost lab kit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E6",
+          "title": "Assemble and load a four-line program in the simulator, run it to completion and read the final register values from the debugger"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E6",
+          "title": "Set a breakpoint, single-step a loop that sums 1 to 10 and watch the register that accumulates the total reach 55"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Port a small add-and-store routine from one instruction set to the lab CPU and list every instruction that had to change and why"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Instruction encoding and addressing modes",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Hand-encode five instructions into binary and hex using the lab CPU's format table, then decode three machine words back into assembly.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Hand-encode a MOV, an ADD and a JMP instruction into 16-bit words, then load them into memory and confirm the CPU executes them as intended"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Write one program that loads the same value using immediate, direct, register-indirect and indexed modes and compare the effective address each one uses"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Decode a dump of eight unknown machine words into assembly, identify which fields are opcode, register and immediate, and predict the final register state"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Data layout and array access",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain why a 32-bit value stored at an odd address can be slow or illegal on some processors, with a worked memory diagram for both byte orders.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Store the 16-bit value 0x1234 at address 0x20 and read it back byte by byte to show which end of the word is stored first"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Use indexed addressing to sum an array of ten bytes in memory and store the total, then verify it against a hand calculation"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Access the fields of a record array holding a student id and score using base-plus-offset addressing, and find the highest score without using a fixed address"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Data movement and arithmetic",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Work through a problem set on signed versus unsigned results of ADD, SUB, MUL and DIV for 8-bit values and predict the carry and overflow flags before running.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Declare three data values with directives, load them into registers with MOV and store the sum back to memory, checking the memory window"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Add two 32-bit numbers held in register pairs using ADD and ADC and confirm the carry propagates correctly with a result that overflows 16 bits"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Compute the average of five unsigned test scores with MUL and DIV, then fix a version that gives a wrong answer when the sum exceeds 8 bits"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Logic, flags and number conversion",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Predict, on paper, the flag values after ten short instruction sequences, then check them against the simulator and explain any mismatch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Use AND, OR and XOR with masks to set, clear and toggle individual bits of a status byte standing for relay outputs, and verify each result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Run a CMP between two numbers and show which flags are set, then use them to pick the larger value without any conditional jump"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E6",
+          "title": "Write a routine that converts a 16-bit binary number into five printable ASCII decimal digits and test it with three values including 0 and 65535"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Branches, loops and subroutines",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Translate three short if-else and loop fragments from pseudocode into assembly on paper, then write the flowchart that matches each translation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Translate an if-else that classifies a mark as pass or fail at 50 into compare and conditional jump instructions and test with four input values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Write a counted loop that multiplies two numbers by repeated addition and compare the number of cycles it needs with the MUL instruction"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Write a subroutine that returns the maximum of an array passed by pointer and length, call it twice, and confirm the stack returns to its starting depth"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Calling conventions, strings and compiler output",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Read a small piece of compiler-generated assembly for a C function and annotate each instruction with the C statement it came from.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E6",
+          "title": "Write strlen in assembly for a zero-terminated string and test it with an empty string, a one-character string and a ten-character string"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Implement a recursive factorial function with a stack frame per call and watch the stack grow and shrink as the recursion unwinds for input 5"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E6",
+          "title": "Implement a bubble sort over eight bytes in memory, count the swaps performed, and then add an early-exit check to cut the passes on already sorted data"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Stack and interrupt vectors",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw the stack contents after a sequence of PUSH, CALL and POP instructions and explain what happens if RET is executed with the wrong value on top.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Push five values onto the stack, pop them back and show on the memory window that they come out in reverse order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Reserve space for two local variables on the stack using a frame pointer, use them in a function and release them before returning"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Debug a program that crashes after a subroutine returns because of an unbalanced PUSH, locate the extra push by single-stepping and repair it"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Interrupt service routines and system calls",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write a short design note on how a nested, prioritised interrupt system decides which handler runs first and what must be saved on entry.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Trigger a software interrupt, follow the CPU as it saves the flags and return address, runs the handler and resumes the main program"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Write a timer interrupt handler that increments a tick counter every interrupt while the main loop runs, and show the counter rising independently"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Handle two interrupt sources with different priorities so the higher one can pre-empt the lower, and demonstrate a nested interrupt in the trace"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Memory map and parallel I/O",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Design an address map for a small board with 4 KB of ROM and 2 KB of RAM and show the decoder equations for each chip select.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E2",
+          "title": "Build an address decoder from gates that selects a RAM chip for addresses 0x8000 to 0x87FF and test it with six sample addresses"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Write to a memory-mapped output port address to light eight LEDs in a chasing pattern and read a switch port to reverse the direction"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E8",
+          "title": "Drive a seven-segment display from a GPIO port to count from 0 to 9 and debug a version that shows wrong digits because of the segment table"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Serial I/O, timing and polling versus interrupts",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Compare polling and interrupt-driven input for a keypad in a prepaid meter, with a table of CPU utilisation and response delay for both.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Transmit the ASCII string HELLO through a simulated UART by polling the status flag before each byte and check the received characters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Read a key press once by polling and once by interrupt, and measure how many instruction cycles the CPU wastes in the polling version"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E6",
+          "title": "Choose a UART baud rate divisor and delay loop for a 9600 baud link at the given clock, then verify the timing against the bit period in the trace"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Assembly toolchain, debugging and project",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a one-page design for a traffic-light controller or calculator in assembly, listing modules, memory use, test cases and a state diagram.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E6",
+          "title": "Use breakpoints, a watch window and the disassembly view to find a deliberately planted off-by-one error in a given array-copy routine"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Perform a two-pass assembly by hand on a ten-line program with forward labels, build the symbol table and check it against the assembler listing"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E6",
+          "title": "Build and test a traffic-light controller with a timer interrupt, a pedestrian request input and a state machine, and demonstrate all four phases in order"
+        }
+      ]
+    }
   ]
 }

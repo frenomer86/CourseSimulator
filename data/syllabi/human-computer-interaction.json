@@ -101,5 +101,395 @@
         "Final project: a complete design cycle from research to tested prototype"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Human-centred design, human factors and Norman's principles",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Redesign exercise: pick an everyday object or kiosk and annotate its affordances, signifiers, mapping and feedback, then sketch one improvement for each failing principle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Judge six everyday interface photos in a scenario by naming the affordance, signifier and feedback that is missing in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Work through a branching case on a ticket-machine redesign, applying Fitts's law and Hick's law to choose button size and menu length"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw the human-centred design cycle for a bus-ticket app as a diagram, placing research, prototype and test activities with their inputs and outputs"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Heuristic evaluation and design ethics",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Evaluate three screens of a Ghanaian banking app against Nielsen's ten heuristics, rate each problem's severity, and write the top five fixes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Evaluate a banking app transfer screen against Nielsen's ten heuristics and log each violation with its heuristic number and severity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Run a heuristic evaluation of a mobile money menu in a case scenario, merge the findings of three evaluators, and rank problems by severity"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Review a sign-up flow in a branching case for dark patterns and consent problems, and decide which changes to demand, scoring against the ethics rubric"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Needfinding and synthesis",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Plan three user interviews on how traders manage stock, write the guide and consent text, then transform sample notes into an affinity diagram and one persona.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Choose the right method (interview, observation, diary or survey) for six research questions in a scenario and justify each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Prepare a consent script and recruit participants for a study at a rural clinic in a branching case, handling language and literacy needs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E9",
+          "title": "Synthesise twenty interview notes into an affinity diagram, one persona, one journey map and three point-of-view statements"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Task analysis and a field study",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Do a short field exercise: observe and write the hierarchical task analysis of a market trader selling and recording a sale, and list the pain points found.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Draw a hierarchical task analysis of withdrawing cash at an ATM with three levels of subtasks and a plan for each level"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Build a hierarchical task analysis of a clinic registration process from supplied observations and mark the steps where errors are likely"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Conduct a simulated field study of clinic staff in a branching case, choosing questions and observations to uncover three unstated needs"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Ideation and low-fidelity prototyping",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Run a crazy-eights session for a bus-arrival app, pick one idea, and produce a six-frame storyboard and three paper-prototype screens.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Sketch a six-frame storyboard of a farmer checking market prices on a phone, with each frame stating user, context and result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Draw the wireframes and information architecture of a school-fees payment app and label the navigation structure"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Run a Wizard-of-Oz test of a paper prototype in a scenario, choosing tasks, handling unexpected user actions, and recording issues for scoring"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Higher fidelity and choosing fidelity",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Build a small component library with five reusable components and write a short rationale for what fidelity you used at each design stage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Draw a design-system sheet with a colour palette, type scale, button and input components, and state the spacing rules"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Choose the right prototype fidelity for five research questions in a case scenario, justifying the cost and the learning of each choice"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Design a three-screen clickable flow for a mobile wallet using a shared component set, and annotate each interaction with its state change"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Interaction patterns and visual design",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Audit an app for navigation, form and error-message patterns, then redesign one form to apply progressive disclosure, sensible defaults and undo.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Wireframe an empty state, an error state and a loading state for a transport app's search screen"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Redesign a long registration form using progressive disclosure and defaults, and show the reduced number of fields on the first screen"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E9",
+          "title": "Create a visual hierarchy for a market-price screen using a grid, type scale and colour contrast, and justify each choice against platform guidelines"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Feedback, microinteractions and low-resource interfaces",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Design a USSD menu for checking a school-fees balance within a 160-character-per-screen limit and four steps, then write its test script.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Specify the feedback for a button press, a pending request and a failure on a payment screen in a short state diagram"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E9",
+          "title": "Design a USSD menu tree for checking a balance and sending money in at most four steps, with every screen under 160 characters"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Redesign a service for feature-phone users in a branching case with Twi and English menus, choosing between USSD, voice and SMS with evidence"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Accessibility and universal design",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Check one web page against four WCAG success criteria, record the failures, and rewrite the markup or design to fix each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Classify twelve interface problems in a scenario under the four WCAG principles and mark each as a pass or a fail"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Review a form in a case scenario for keyboard navigation, contrast and screen-reader labels, and decide the fix for each problem"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Test a chart-heavy dashboard with simulated assistive technology in a branching case, and choose the fixes that bring it to AA conformance"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Building the interface and instrumenting it",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Specify an MVC structure for a small attendance app: list models, views, controllers, events, validation rules and the analytics events you would log.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Draw a model-view-controller diagram for a to-do app that lists the events passing between the three parts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E9",
+          "title": "Design the input validation and feedback states for a registration form including an offline state, and show them as a state diagram"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Instrument a small web page so it logs clicks, errors and task times, then analyse the log to find the step where users drop out"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Evaluation methods and experiments",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Plan a five-person think-aloud test of a campus portal: write tasks, success criteria, metrics and a note-taking sheet, then run through a pilot.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Plan a think-aloud usability test in a scenario by writing three tasks, success measures and the questions to ask after each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Perform a cognitive walkthrough of an app's registration task in a case scenario, answering the four questions at each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Analyse an A/B test of two checkout buttons, compute the conversion difference and p-value, and decide whether to ship the change"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Questionnaires and reporting findings",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compute the SUS score from ten participants' responses, summarise the qualitative comments into themes, and write a one-page findings report with three prioritised changes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Score ten System Usability Scale questionnaires, convert them to the 0 to 100 scale, and report the mean and range"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Analyse think-aloud comments from six participants in a scenario into themes and rank each by frequency and severity"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Prepare a findings report for a product team in a branching case, choosing which problems to fix first under a limited budget and justifying the order"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Designing for low-resource contexts and the final project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Final project deliverable: a research summary, a tested prototype and a report on three iterations, for a service used on low-end phones with expensive data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "List the constraints of a rural user's phone, network and data budget in a scenario and match each constraint to a design response"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Draw an offline-first architecture for a clinic-visit app, showing local storage, sync and the behaviour when the network drops"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Complete a full design-cycle case from research to tested prototype, making every decision on method, fidelity and iteration for rubric scoring"
+        }
+      ]
+    }
   ]
 }

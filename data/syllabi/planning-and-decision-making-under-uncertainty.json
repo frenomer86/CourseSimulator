@@ -1,0 +1,503 @@
+{
+  "slug": "planning-and-decision-making-under-uncertainty",
+  "description": "A doctoral research seminar on sequential decision making when outcomes and observations are uncertain, from Markov decision processes and POMDPs to online planning, learned models and safety. Students read and critique recent papers, implement solvers, probe their limits experimentally, and write a research proposal.",
+  "modelledOn": [
+    "Puterman, Markov Decision Processes: Discrete Stochastic Dynamic Programming",
+    "Kochenderfer, Wheeler and Wray, Algorithms for Decision Making",
+    "Sutton and Barto, Reinforcement Learning: An Introduction",
+    "Bertsekas, Dynamic Programming and Optimal Control"
+  ],
+  "outcomes": [
+    "Prove convergence properties of dynamic programming methods for MDPs and state their dependence on the discount factor.",
+    "Explain the computational hardness of partially observable and decentralised problems and compare exact, point-based and online solvers.",
+    "Implement and analyse sampling-based planners such as sparse sampling, UCT and belief-tree search.",
+    "Critique methods for hierarchical planning, learned models and model-based reinforcement learning, including their failure modes.",
+    "Formulate safety and risk requirements with constrained, robust and risk-sensitive objectives and verify them.",
+    "Write a research proposal that identifies an open problem, a benchmark and an evaluation plan."
+  ],
+  "units": [
+    {
+      "title": "Markov decision processes",
+      "weeks": "1-3",
+      "topics": [
+        "MDP definition, policies, value functions and Bellman equations",
+        "Value iteration and policy iteration; the contraction mapping argument",
+        "Linear programming formulation and its dual",
+        "Discounted, average-reward and stochastic shortest path criteria",
+        "Approximate dynamic programming and error bounds with function approximation",
+        "Seminar: reading classic and recent convergence results"
+      ]
+    },
+    {
+      "title": "Partially observable models",
+      "weeks": "4-5",
+      "topics": [
+        "POMDPs, belief states and the piecewise-linear convex value function",
+        "Exact solution with alpha vectors and the complexity of POMDPs",
+        "Point-based solvers: PBVI, HSVI and SARSOP",
+        "Decentralised POMDPs and multi-agent decision problems",
+        "Belief representations: particles, predictive states and recurrent policies"
+      ]
+    },
+    {
+      "title": "Online and Monte Carlo planning",
+      "weeks": "6-7",
+      "topics": [
+        "Sparse sampling and bounds independent of state-space size",
+        "UCT and regret analysis of Monte Carlo tree search",
+        "POMCP, DESPOT and belief-tree search",
+        "Continuous spaces: progressive widening and continuous-action search",
+        "Anytime and receding-horizon planning under real-time limits"
+      ]
+    },
+    {
+      "title": "Hierarchical and temporal planning",
+      "weeks": "8",
+      "topics": [
+        "Options and semi-Markov decision processes",
+        "MAXQ and task hierarchies",
+        "Temporal logic specifications and product MDPs",
+        "Temporal planning with durative actions and concurrency",
+        "Skill discovery and abstraction"
+      ]
+    },
+    {
+      "title": "Planning with learned models",
+      "weeks": "9-10",
+      "topics": [
+        "Model-based reinforcement learning: Dyna and ensemble models",
+        "Latent-space planning and value-equivalent models",
+        "Compounding model error and the simulation lemma",
+        "Bayesian reinforcement learning, exploration and posterior sampling",
+        "Offline reinforcement learning and pessimism",
+        "Open problems: model misspecification and distribution shift"
+      ]
+    },
+    {
+      "title": "Safe and risk-sensitive decisions",
+      "weeks": "11",
+      "topics": [
+        "Constrained MDPs and Lagrangian methods",
+        "Risk measures: CVaR, entropic risk and mean-variance",
+        "Robust MDPs and uncertainty sets",
+        "Shielding, safe exploration and barrier functions",
+        "Probabilistic model checking of policies"
+      ]
+    },
+    {
+      "title": "Planning for robots and agents",
+      "weeks": "12",
+      "topics": [
+        "Motion planning under uncertainty: belief-space planning and chance constraints",
+        "Task and motion planning",
+        "Language-model agents as planners and the role of verification",
+        "Multi-agent coordination and humans in the loop",
+        "Case studies: crop-spraying drones, ambulance dispatch and clinic supply planning"
+      ]
+    },
+    {
+      "title": "Research proposal",
+      "weeks": "13",
+      "topics": [
+        "Finding a gap in the literature",
+        "Formulating hypotheses and designing a benchmark",
+        "Writing the proposal and the evaluation plan",
+        "Panel questions and peer review"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "MDPs and Bellman equations",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Prove that the Bellman optimality operator is a contraction in the max norm, and compute two sweeps of value iteration by hand on a small MDP.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "Step value iteration on a 3x3 stochastic grid world, recording the value table after iterations 1, 2 and 10 and the greedy policy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute the error after each value iteration sweep on a 20-state MDP and compare it with the gamma-to-the-k contraction bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Compare policy iteration, value iteration and modified policy iteration on random MDPs with 100 to 1000 states and plot sweeps and time to convergence"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Linear programming and other criteria",
+      "topics": [
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Write the primal and dual linear programs of a small MDP, interpret the dual variables as state-action visitation frequencies, and explain when average reward and discounted criteria give different policies.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Solve the linear program of a 4-state MDP, compare its solution with value iteration and read the dual variables as occupancy measures"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Find the optimal policy of a machine replacement MDP under discount factors 0.9, 0.99 and 0.999, and show where the policy changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Solve a stochastic shortest path problem with dead ends using value iteration, show where it fails without a proper-policy assumption, and fix it"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Approximation and the research literature",
+      "topics": [
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Present a recent paper on approximate dynamic programming, state its main bound in your own words, find an assumption that is hard to check in practice, and run a small experiment that probes it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Fit a linear value function to a 50-state chain MDP by fitted value iteration and plot the error against the number of features"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Show fitted value iteration diverging for a chosen feature set on a small MDP, then repair it and report the Bellman error before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Reproduce a figure from a recent approximate dynamic programming paper at small scale, and report which of its claims your results support"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "POMDPs and exact solutions",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Update beliefs in a two-state tiger-style POMDP for a sequence of observations, draw its alpha vectors for horizon three, and explain why exact solving is PSPACE-hard.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Update the belief in a two-state sensor POMDP for five actions and observations, and plot the belief against time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Compute the horizon-3 alpha vectors of a small POMDP step by step and plot the piecewise-linear value function over the belief"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement point-based value iteration with 50 belief points on a 10-state POMDP and compare value with the exact solution at horizon 5"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Decentralised problems and belief representations",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Show with a two-agent example why decentralised problems are harder than single-agent POMDPs, and compare particle beliefs with a recurrent policy on a partially observed navigation task.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Evaluate two joint policies of a two-agent clinic delivery problem with no communication, and compute the expected team reward of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Track belief with 100 and 1000 particles on a noisy localisation task and compare the error and the degeneracy of the particle set"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Train a recurrent policy on a partially observed grid task and compare it with a belief-based policy on return and sample efficiency"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Sparse sampling and UCT",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive the depth and width needed by sparse sampling for a target accuracy, state the regret behaviour of UCT, and explain how POMCP handles belief without enumerating states.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Run sparse sampling with different widths on a small MDP and plot the value estimate error against the number of samples"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement UCT for a 10x10 grid MDP, vary the exploration constant and report the value reached against simulation budget"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement POMCP on a rock sampling problem, compare it with a point-based solver and report return against planning time"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Continuous spaces and real-time planning",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Use progressive widening to plan in a continuous action space, and design an anytime planner with a fixed time budget for a control loop at 10 Hz.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Run a receding-horizon planner on a car-following task with horizons 1, 3 and 8 and record the cost and computation per step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Add progressive widening to tree search for a one-dimensional continuous action problem and compare with a fixed discretisation"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Build an anytime planner that stops at a 100 ms deadline and measure how decision quality improves with the time budget"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Options, hierarchies and temporal specifications",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Define options for a two-room task and show how they change planning depth, build a product MDP for a temporal logic goal, and compare temporal planners on a durative-action domain.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Add door-seeking options to a two-room grid world and compare value iteration iterations with and without the options"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Build a product MDP of a grid world and a temporal logic goal, solve for the policy maximising satisfaction probability and report it"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Learn bottleneck states as option subgoals from trajectories in a four-room task and test whether they speed up learning over primitive actions"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Model-based RL and compounding error",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "State the simulation lemma and show its bound on a learned model, then compare a Dyna agent with a model-free agent on sample efficiency and an ensemble model with a single model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Run Dyna with 0, 5 and 50 planning steps per real step on a grid task and plot the return against real interactions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Roll a learned model forward for 1 to 50 steps, measure prediction error growth against the true system and compare with the theoretical bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Train a latent dynamics model that predicts only reward and value, plan in it with tree search and compare with a pixel-level model"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Exploration, offline learning and open problems",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compare posterior sampling with epsilon-greedy exploration, show how offline data with poor coverage misleads a naive agent, and write a one-page note on an open problem about misspecified models.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compare posterior sampling and epsilon-greedy on a 10-armed Bernoulli bandit over 1000 rounds, plotting cumulative regret for 50 runs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Learn a policy from a fixed dataset with poor coverage, show overestimated values for unseen actions and fix them with a pessimistic penalty"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Plan with a misspecified model after a shift in dynamics, measure the loss against the true-model policy and test one robustness remedy"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Constraints, risk and verification",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Solve a constrained MDP with a safety budget, compare policies optimised for expected return, CVaR and worst case, and model check a policy against a probabilistic safety property.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Compute expected return and CVaR at 10 percent for two policies from simulated return samples, and say which a cautious planner prefers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Solve a constrained grid MDP with a Lagrange multiplier search, and plot return and constraint cost against the multiplier"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Solve a robust MDP with an interval uncertainty set, compare it with the nominal policy under perturbed dynamics and report the worst-case value"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Planning for robots, agents and field systems",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Model drone crop spraying with wind uncertainty as a planning problem, choose a solver with justification, and critique how a language-model planner would be verified before field use.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E6",
+          "title": "Model ambulance dispatch for a district as an MDP with random calls and run value iteration to find a dispatch policy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Plan a path with a chance constraint on collision probability in a grid with noisy motion, and compare it with a shortest-path plan"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Use a language model to propose plans for a delivery domain, verify each against a formal model and measure the rate of unsafe plans caught"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Proposal writing and peer review",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a four-page proposal with a problem statement, related work gap, hypotheses, benchmark design and evaluation plan, and defend it to a panel of peers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Tabulate ten papers by problem setting, assumptions, solver and benchmark, and mark the combinations that nobody has tested"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Design a benchmark of five planning problems with controlled difficulty, and justify the metrics, number of seeds and confidence intervals"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Run the pilot experiment from a peer's proposal, report whether the baseline behaves as they predicted and suggest two changes"
+        }
+      ]
+    }
+  ]
+}

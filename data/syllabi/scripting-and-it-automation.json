@@ -1,0 +1,527 @@
+{
+  "slug": "scripting-and-it-automation",
+  "description": "Automating routine IT administration with shell and PowerShell scripts, schedulers and simple configuration tools. In the lab students write, schedule, test and break scripts that manage accounts, parse logs, install software and back up data on simulated Linux and Windows servers.",
+  "modelledOn": [
+    "Shotts, The Linux Command Line and Shell Scripting (selected chapters)",
+    "Jones and Hicks, PowerShell in a Month of Lunches",
+    "Nemeth et al., UNIX and Linux System Administration Handbook",
+    "Sweigart, Automate the Boring Stuff with Python (system tasks)"
+  ],
+  "outcomes": [
+    "Write structured shell and PowerShell scripts with arguments, functions, error handling and meaningful exit codes.",
+    "Schedule recurring jobs with cron and the Windows task scheduler, making them safe to overlap and to re-run.",
+    "Automate bulk creation, change and removal of local and directory accounts from a data file.",
+    "Parse system and application logs into summaries and reports using text tools and Python.",
+    "Provision and configure a server repeatably with packages, files and services, and detect configuration drift.",
+    "Test scripts safely using dry runs, disposable environments, automated tests and rollback plans."
+  ],
+  "units": [
+    {
+      "title": "Shell scripting fundamentals",
+      "weeks": "1-2",
+      "topics": [
+        "Shell basics: variables, quoting, exit codes, pipes, redirection and here-documents",
+        "Conditionals, test expressions, loops and case statements",
+        "Functions, positional parameters, getopts, shebang lines and strict mode (set -euo pipefail)",
+        "Text processing toolbox: grep, sed, awk, cut, sort, uniq, tr, xargs and find",
+        "Regular expressions: basic and extended syntax, anchors and groups",
+        "Safe file handling: mktemp, traps and cleanup on exit"
+      ]
+    },
+    {
+      "title": "PowerShell for administration",
+      "weeks": "3-4",
+      "topics": [
+        "Cmdlets, verb-noun naming, Get-Help, Get-Member and the object pipeline",
+        "Filtering and shaping objects: Where-Object, Select-Object, Sort-Object, Group-Object and calculated properties",
+        "Variables, arrays, hashtables, string handling and here-strings",
+        "Functions and advanced functions with typed, validated parameters",
+        "Error handling: try, catch, finally, ErrorAction and Write-Verbose",
+        "Modules, execution policy, CSV and JSON import and export, and remoting basics"
+      ]
+    },
+    {
+      "title": "Scheduling and task automation",
+      "weeks": "5",
+      "topics": [
+        "cron syntax, crontab files and systemd timers",
+        "Windows Task Scheduler: triggers, actions, run-as accounts and Register-ScheduledTask",
+        "Safe recurring jobs: lock files, overlapping runs, exit codes and alerting",
+        "Backup automation: rsync, tar and Robocopy, retention rotation and restore verification",
+        "Health-check and watchdog scripts for services, disk space and certificate expiry"
+      ]
+    },
+    {
+      "title": "Bulk user and account management",
+      "weeks": "6-7",
+      "topics": [
+        "Linux accounts in scripts: useradd, usermod, groups, password ageing and sudoers drop-ins",
+        "Creating accounts in bulk from a CSV file with input validation",
+        "Active Directory with PowerShell: New-ADUser, Get-ADUser, organisational units and group membership",
+        "Onboarding and offboarding workflows: home folders, quotas, permissions, disabling and archiving",
+        "Handling secrets: initial passwords, SecureString and avoiding plaintext credentials",
+        "Idempotent re-runs, dry runs and audit trails of every decision"
+      ]
+    },
+    {
+      "title": "Log parsing and reporting",
+      "weeks": "8-9",
+      "topics": [
+        "Log formats: syslog, authentication logs, web server access logs and the Windows Event Log",
+        "Extracting fields with awk, regular expressions, Select-String and Get-WinEvent filters",
+        "Aggregation: top clients, failed logins per user and address, and errors per hour",
+        "Detecting suspicious patterns: brute-force thresholds and time windows",
+        "Producing reports in CSV, JSON and HTML; log rotation with logrotate",
+        "Python for administration: pathlib, subprocess, re, csv, json and argparse"
+      ]
+    },
+    {
+      "title": "Configuration and package automation",
+      "weeks": "10-11",
+      "topics": [
+        "Package managers: apt, dnf, winget and Chocolatey; version pinning and unattended updates",
+        "Provisioning a server from a script: packages, users, services, firewall rules and SSH keys",
+        "Configuration files as code: idempotent edits, templating and drift detection",
+        "Desired-state tools: declarative versus imperative, playbooks, inventories and idempotency",
+        "Containers as repeatable environments: Dockerfile and compose basics",
+        "Calling REST APIs from scripts: curl, Invoke-RestMethod, tokens, retries and JSON parsing"
+      ]
+    },
+    {
+      "title": "Safe testing of scripts",
+      "weeks": "12",
+      "topics": [
+        "Dry runs and tracing: WhatIf, Confirm, set -x, shellcheck and PSScriptAnalyzer",
+        "Disposable test environments: snapshots, virtual machines and containers",
+        "Automated tests for scripts with bats and Pester, using test data and mocks",
+        "Defensive scripting: least privilege, quoting, injection through eval, path hazards and guard rails around rm",
+        "Change management: version control, review, signing, staged rollout and rollback plans"
+      ]
+    },
+    {
+      "title": "Automation project and its value",
+      "weeks": "13",
+      "topics": [
+        "Designing an end-to-end workflow from onboarding to backup to reporting",
+        "Documentation: runbooks, comments and usage text",
+        "Measuring value: time saved, errors avoided and payback for a school lab or small ISP",
+        "When not to automate: maintainability, rare tasks and handover"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "First shell scripts",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write a script that takes a directory name, counts files by extension and prints a table, then explain each quoting choice you made.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E4",
+          "title": "Write a shell script that prints the date, hostname and disk usage, redirect its output to a file, and check its exit code"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E4",
+          "title": "Write a script using if, for and case that classifies every file in a directory by extension and prints a count per category"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E4",
+          "title": "Write a script with functions and getopts that accepts a directory and a --dry-run flag, uses strict mode and exits with a distinct code for each error"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Text processing and regular expressions",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Build a pipeline that lists the ten most frequent words in a file, and write regular expressions for Ghana phone numbers and email addresses.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Use grep, cut, sort and uniq in one pipeline to list the five most frequent words in a provided text file"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Write extended regular expressions to extract email addresses and Ghana phone numbers from a messy text file, and count false positives and misses"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E4",
+          "title": "Write a script that makes a workspace with mktemp, processes a file, and cleans up on exit and on Ctrl-C using trap, proving no temporary files remain"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "PowerShell objects and the pipeline",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Use Get-Member to explore a service object, then build a pipeline that groups and ranks processes and exports the result.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E4",
+          "title": "In PowerShell list running services, use Get-Help and Get-Member to find the properties of a service object, and display only name and status"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E4",
+          "title": "Use the PowerShell pipeline to group processes by company, show total memory per group with a calculated property, and export the top five to CSV"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E4",
+          "title": "Write a PowerShell script that builds a hashtable of disk volumes with percent free and prints a formatted warning table for volumes under 15 percent free"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "PowerShell functions, errors and modules",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write a validated function, make a script survive bad input with try and catch, and package your functions into a module.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E4",
+          "title": "Write an advanced PowerShell function with a validated parameter that returns the size of a folder in megabytes, and call it with good and bad input"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E4",
+          "title": "Add try, catch and finally to a script that reads a list of file paths, logs each failure and continues, then summarises successes and failures"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E4",
+          "title": "Package three functions into a PowerShell module, import it, and use it to read a CSV of servers and write a JSON status report"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Scheduling, backups and watchdogs",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Schedule a nightly backup on Linux and Windows, explain what happens if two runs overlap, and test a restore.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E4",
+          "title": "Write a crontab entry that runs a cleanup script at 02:30 every weekday and check its next five scheduled times"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E4",
+          "title": "Register a Windows scheduled task with a daily trigger and a service account using PowerShell, run it on demand, and confirm the result code"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E4",
+          "title": "Make a backup script safe to run twice at once by adding a lock file, log rotation and an alert on failure, and test two overlapping runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E4",
+          "title": "Automate a nightly backup with rsync and seven-day retention, then restore into a clean directory and verify that checksums match"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Linux accounts and bulk creation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Create users and groups by hand, then script bulk account creation from a CSV of new staff in a school computer lab, skipping bad rows.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Create three users and a group with useradd and usermod, set password ageing, grant one user a limited sudo rule, and verify with id and sudo -l"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E4",
+          "title": "Read a CSV of 20 new staff and create accounts and groups in bulk, skipping malformed rows and writing a report of created, skipped and failed users"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E4",
+          "title": "Create organisational units, 15 Active Directory users and role groups from a CSV using New-ADUser, and verify membership with Get-ADGroupMember"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Onboarding, offboarding and idempotent runs",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Write an onboarding and offboarding workflow, remove every plaintext password from it, and show that running it twice changes nothing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E4",
+          "title": "Write an offboarding script that disables an account, removes group memberships and moves the home folder to an archive, with a WhatIf preview first"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E4",
+          "title": "Generate random initial passwords, force a change at first login, store none in plaintext in the script or log, and audit that for all new accounts"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E4",
+          "title": "Make the bulk-account script idempotent: run it twice on the same CSV, prove the second run changes nothing, and keep an audit log of every decision"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Reading logs and extracting fields",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Identify the fields in three log formats, extract client addresses and status codes, and compute top-N and per-hour summaries.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E4",
+          "title": "Identify timestamp, source and message fields in sample syslog, authentication and web access log lines, and write one regular expression for each format"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E4",
+          "title": "Use awk and Select-String to extract the client address and status code from a 10,000-line web log and count responses by code"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E4",
+          "title": "Report the top ten client addresses, failed logins per user and errors per hour from a provided log in one script, and check totals against a hand count"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Detecting abuse and reporting with Python",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Flag brute-force login attempts, then write a Python tool that turns raw logs into a CSV and an HTML summary for a manager.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E4",
+          "title": "Flag any address with more than five failed SSH logins in 10 minutes in a provided authentication log, and list the user names it tried"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Write a Python script with argparse that reads a log, aggregates errors per hour, and writes both a CSV file and a simple HTML report"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Extend the report script to read rotated gzip logs, mixed time zones and malformed lines, and test it against a provided file of tricky cases"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Packages and provisioning a server",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Install and pin packages, write a script that provisions a web server from a bare machine, and make a configuration edit idempotent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E4",
+          "title": "Install, upgrade, pin and remove a package with apt in the simulated machine, and list the files and services the install added"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Write a provisioning script that installs nginx, creates a deploy user, opens ports 22 and 80 in the firewall, and passes a post-run checklist"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E4",
+          "title": "Make a configuration edit idempotent with sed or PowerShell regardless of starting state, and write a drift check reporting differences from a golden file"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Desired state, containers and APIs",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Describe a server's desired state in a file and apply it, rebuild an application in a container, and poll a status API with retries.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E4",
+          "title": "Write a Dockerfile for a small Python script and run it in a container, then rebuild it after changing one dependency"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Write a YAML-style desired-state file for a web server and a small script that applies it and reports changed or unchanged for each item"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Write a script that calls a provided mock JSON status API with a token, retries with back-off on failure, and raises an alert if a service is down"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Testing scripts safely",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Review a risky script line by line, run it in dry-run mode, test it on a snapshot, and write the rollback steps before running it for real.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E4",
+          "title": "Run a provided script with WhatIf and set -x tracing, and explain what each command would change before approving it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Test a risky script on a snapshot of the simulated machine, cause a failure, restore the snapshot, and write the rollback steps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Write five Pester or bats tests for the account script covering normal input, empty input, duplicates, bad characters and missing files"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E4",
+          "title": "Audit a provided script containing an unquoted variable in rm, an eval of user input and a hard-coded password, fix each hazard, and demonstrate the original failure"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Automation project and its value",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Combine onboarding, a nightly backup, log parsing and a weekly report into one documented workflow, and estimate its payback for a school lab.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E4",
+          "title": "Write a runbook page and a --help usage text for a backup script covering purpose, inputs, schedule, failure signs and who to contact"
+        },
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Judge three tasks in a scenario for automation using frequency, risk and variability, and recommend which to automate, script or leave manual"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Estimate time saved per month and payback period of automating account creation for a school lab with 200 students, with a sensitivity range"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E4",
+          "title": "Build an end-to-end workflow in the simulated environment that onboards accounts from CSV, schedules a nightly backup, parses logs and reports weekly, with tests and a dry run"
+        }
+      ]
+    }
+  ]
+}

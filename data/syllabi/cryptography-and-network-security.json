@@ -114,5 +114,402 @@
         "Capstone: a secure messaging or file-sharing tool with authenticated key exchange and authenticated encryption"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Security goals and classical ciphers",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write a threat model for a village mobile money agent in half a page, then break a short Caesar and a short substitution cipher by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Encrypt and decrypt a 30-letter message with a Caesar cipher using the maths lab, and brute-force a given ciphertext by trying all 25 shifts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Break a 300-letter monoalphabetic substitution ciphertext using letter frequency analysis and report the key you recover and the steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Find the key length of a Vigenere ciphertext with a Kasiski examination and index of coincidence, then recover the key and plaintext"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "One-time pad and computational security",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Short essay: why a reused one-time pad fails, and why practical ciphers rely on computational rather than perfect security.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Encrypt a short message with a one-time pad using XOR and decrypt it again, checking that a wrong key gives a different plausible message"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Recover two plaintexts from two ciphertexts encrypted with the same pad by XORing them together and using crib dragging"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Estimate how many years brute force needs for 56, 80 and 128-bit keys at one trillion guesses a second and tabulate what counts as secure"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Number theory toolkit",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Problem set: compute modular inverses, fast exponentiation, a CRT reconstruction and a Miller-Rabin test by hand and with code.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Compute the modular inverse of 17 mod 3120 with the extended Euclidean algorithm and verify that the product equals 1 mod 3120"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Implement Miller-Rabin and use it to find a 64-bit probable prime, then compare the number of witnesses needed with a Carmichael number"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Implement multiplication in GF(2^8) with the AES polynomial and verify that the inverse table matches known values for ten bytes"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Block ciphers and AES",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Trace one full AES round on a given 16-byte state and write a short note on why DES keys are too short.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Run two rounds of a toy Feistel cipher by hand and measure the avalanche effect after flipping one input bit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Implement SubBytes, ShiftRows, MixColumns and AddRoundKey and check one round against a published test vector"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Encrypt a bitmap image in ECB and in CBC mode, and mount a padding oracle attack that recovers a plaintext block from error responses"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Authenticated encryption and side channels",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Short analysis: explain why nonce reuse breaks GCM and how a timing side channel leaks a password check.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Encrypt and authenticate a message with a toy authenticated scheme, then flip one ciphertext bit and show the tag check rejects it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Implement a ChaCha20 quarter round and a keystream generator, and show that identical key and nonce yield identical keystreams"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Exploit a variable-time string comparison to recover a four-character secret by timing, then rewrite it as a constant-time comparison and retest"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "RSA and Diffie-Hellman",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Hand-calculate a small RSA key pair, encrypt and decrypt a number, and draw a man-in-the-middle attack on unauthenticated Diffie-Hellman.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Generate an RSA key pair from p=61 and q=53, encrypt the number 65 and decrypt it again, showing every intermediate value"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Break textbook RSA with a small public exponent by taking the cube root, then explain how padding prevents the attack"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E3",
+          "title": "Simulate Alice and Bob exchanging Diffie-Hellman values through a network where Mallory sits in the middle, and show both derived keys differ"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Elliptic curves and post-quantum ideas",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Short lab: add points on a small curve by hand, and write a half-page note on why quantum computers threaten RSA and elliptic curves.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Add two points and double a point on y^2 = x^3 + 2x + 2 over GF(17) and plot every point on the curve"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Implement double-and-add scalar multiplication on a small curve and run an ECDH exchange between two parties, confirming both obtain the same point"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compare key and ciphertext sizes of RSA, ECDH and a lattice-based key encapsulation, and design a hybrid scheme for a payment app"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Hashes and MACs",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Short problem set: estimate birthday-bound collision effort for several hash sizes, and explain salted password hashing in your own words.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Find a collision in a hash truncated to 24 bits using the birthday attack and compare the number of tries with the theory"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Show that a naive hash(key||message) MAC allows length extension, then fix it using HMAC and verify both against test vectors"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Crack a list of unsalted password hashes with a dictionary, then repeat on salted bcrypt-style hashes and compare the time per guess"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Signatures and PKI",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Draw a certificate chain for a bank website and write a half-page assessment of what happens when a CA is compromised.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Sign and verify a short message with textbook RSA and a hash, then show the signature fails after changing a single character"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Recover an ECDSA private key from two signatures that reused the same nonce, using the algebra of the signing equation"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E3",
+          "title": "Configure a simulated client to trust a root CA, and trace validation of a three-link certificate chain that includes a revoked intermediate"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "TLS and secure protocols",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Annotate a TLS 1.3 handshake diagram, labelling each key and the point where forward secrecy is gained.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E3",
+          "title": "Trace a TLS 1.3 handshake as packets between client and server in the network simulator and label the messages that carry key shares"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E3",
+          "title": "Configure a server to refuse SSL3 and weak ciphers, then test a downgrade attempt by a simulated attacker and show it fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E3",
+          "title": "Set up a WireGuard-style tunnel between two branch networks in the simulator and verify that traffic across the internet link is encrypted"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "DNS, email and protocol analysis",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Review a short authentication protocol, name its attacker model and propose a fix for any replay or reflection weakness.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E3",
+          "title": "Inspect DNS and email records for a domain, identify the SPF and DKIM entries, and decide whether a sample message would pass DMARC"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Replay a captured authentication message against a naive login protocol, then add a nonce challenge so the replay fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Find Lowe's attack on the Needham-Schroeder protocol by tracing the message flow, then apply the fix and verify the attack no longer works"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Key management",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a key management policy for a small payments firm covering generation, storage, rotation and recovery.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Generate 128 bits from a weak entropy source and from a good one, then measure the entropy of each with a frequency test"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Derive separate encryption and MAC keys from one master secret with HKDF and show that different context labels give unrelated keys"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Split a secret into five Shamir shares with a threshold of three, reconstruct it from three shares, and show two shares reveal nothing"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Applied cryptography and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Capstone design document: a secure messaging or file-sharing tool with authenticated key exchange, authenticated encryption and a threat model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E7",
+          "title": "Use a library-style API to encrypt and decrypt a message with authenticated encryption, then list three primitives you must never write yourself"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E7",
+          "title": "Review a code listing of a toy messaging app, find five cryptographic mistakes such as ECB mode and hard-coded keys, and propose fixes"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E3",
+          "title": "Design and simulate a secure file transfer between two hosts with authenticated key exchange and authenticated encryption, then test it against an active attacker"
+        }
+      ]
+    }
   ]
 }

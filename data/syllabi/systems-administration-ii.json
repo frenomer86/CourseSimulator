@@ -121,5 +121,409 @@
         "Capstone: build, secure and document a complete departmental server"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The administrator's role and Linux basics",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Write a one-page description of a sysadmin's duties in a small Kumasi company, compare three Linux distribution families, and list where you would look for help on a failing service.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Use man, info and --help in the virtual terminal to find the option that makes ls sort by size, and record the commands used"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E4",
+          "title": "Identify the distribution, kernel version, init system and package manager of a given virtual machine using only shell commands, and record the output"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E4",
+          "title": "Take a snapshot of a lab VM, deliberately break a system file, roll back to the snapshot, and show the file is restored"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Installation, partitioning and boot",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Design a disk layout for a 500 GB office server with separate /home and /var, justify the file system choices, and describe each stage of the boot process.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E4",
+          "title": "Create two partitions and a swap area on a blank virtual disk, format them with ext4, mount them, and verify with df and lsblk"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E4",
+          "title": "Create an LVM volume group from two disks, make a logical volume, extend it by 2 GB while mounted, and confirm the file system grows"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E4",
+          "title": "Boot a lab VM with a broken GRUB entry into rescue mode, repair the configuration, and confirm the default target is reached"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "File system and the shell",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain the purpose of ten top-level directories in the file system hierarchy, then write one pipeline that finds the five largest files under /var/log.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E4",
+          "title": "Create a nested directory tree, copy and move files within it, and use find and du to locate the three biggest files"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E4",
+          "title": "Create hard and symbolic links to a file, delete the original, and show which link still works using ls -li"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E4",
+          "title": "Compose a pipeline with redirection and quoting that archives all .log files older than 7 days to a dated tar.gz, and verify its contents"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Text processing and editors",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write a pipeline using grep, awk, sort and uniq to count failed SSH logins per source address from a log file, and explain each stage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E4",
+          "title": "Use grep with a regular expression to find all lines containing an IPv4 address in a given log and count them with wc"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E4",
+          "title": "Use awk and sort to total bytes transferred per client from a web log and list the top five clients"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E4",
+          "title": "Use sed to rewrite a configuration file in place replacing a port number and commenting out a line, and prove the edit with diff"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Bash scripting",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a script that takes a directory argument, checks it exists, and prints the number of files and total size, with sensible exit codes and error messages.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Write a script with a shebang that takes a name argument, prints a greeting, and exits with status 1 if no argument is given"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E4",
+          "title": "Write a script that reads a list of hostnames from a here document and pings each, printing a one-line status per host"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E4",
+          "title": "Add set -euo pipefail, logging and a cron entry to a cleanup script, then force a failure and confirm the log shows the error"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Administration scripts",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Design a script to create 30 student accounts from a CSV file with home directories and a first-login password change, covering errors and duplicates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E4",
+          "title": "Write a script that creates five users from a list, sets a default shell, and verifies the entries exist in /etc/passwd"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E4",
+          "title": "Write a health check script reporting disk use, memory and failed services, and exiting non-zero when disk use passes 90 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Write a Python script that parses an authentication log, summarises failed logins per user and address, and flags more than 10 failures"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Users, permissions and sudo",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Plan the accounts, groups, permissions and sudo rules for a department of 20 staff and a shared project directory, and justify each rule against least privilege.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E4",
+          "title": "Create a user with a home directory, set a password policy with chage, lock the account, and verify the entry in /etc/shadow"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E4",
+          "title": "Set up a shared directory with setgid and sticky bit so group members can add files but not delete each other's, and test with two users"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E4",
+          "title": "Use ACLs and a disk quota to let one extra user read a project folder and limit another to 100 MB, then verify both rules"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Backup and recovery",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Design a backup plan for a small clinic with 3 servers and frequent power cuts, applying the 3-2-1 rule, giving retention periods and a restore test schedule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Create a tar.gz backup of a directory, delete the directory, restore it from the archive, and verify with a checksum comparison"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Use rsync to make a full backup and two incremental backups with hard links, and compare the disk space used by each"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E4",
+          "title": "Recover a lab VM whose root password is forgotten and whose boot loader is damaged, documenting each step in a recovery log"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Networking, SSH and firewalls",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Document the network configuration, SSH hardening choices and firewall rules for a two-server office, and diagnose a case where a service is up but unreachable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E4",
+          "title": "Set a static IP, gateway and DNS server on a lab VM with the ip command and a config file, and verify with ping and ip route"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Set up key-based SSH login between two VMs, disable password login, and confirm that a password attempt is rejected"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E3",
+          "title": "Configure a Linux router with NAT and a port forward to an internal web server, then verify access from outside with tests"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Package management and patching",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Compare how to install, query and remove software with zypper and apt, and write a patching policy for a set of servers including testing, windows and rollback.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E4",
+          "title": "Install, query, update and remove a package using the package manager and list the files and dependencies it brought in"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E4",
+          "title": "Add a third-party repository with its signing key, install a package from it, and show the signature check passes"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E4",
+          "title": "Configure unattended security upgrades on a lab VM, simulate a pending update, and verify it applies and logs the result"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Web and DNS servers",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3"
+      ],
+      "exercise": "Plan a web server serving two sites from one machine with HTTPS and basic authentication on an admin area, and write the DNS zone records needed for both.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E4",
+          "title": "Install Apache, publish a static page from a custom directory, and verify it loads from a second VM using curl"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E4",
+          "title": "Configure two virtual hosts on one Apache server and confirm each name serves a different page with curl using Host headers"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E3",
+          "title": "Set up a BIND server with forward and reverse zones for a small domain and verify the lookups from a client with dig"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "DNS testing and other services",
+      "topics": [
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Diagnose three broken DNS configurations from dig output, and plan file sharing with NFS for Linux and Samba for Windows clients in a computer lab.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.4",
+          "engine": "E4",
+          "title": "Use dig and nslookup to query A, MX and NS records for a lab domain and explain each field of the answer section"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.4",
+          "engine": "E4",
+          "title": "Find and fix three planted DNS errors (missing dot, wrong serial, bad CNAME) in a zone file using named-checkzone and dig"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E4",
+          "title": "Export a directory over NFS with read-only and read-write clients, mount it on two VMs, and verify the permissions behave as configured"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Hardening, troubleshooting, monitoring and capstone",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4",
+        "10.5"
+      ],
+      "exercise": "Write a runbook for a departmental server covering build, hardening checklist, monitoring thresholds, backup and restore procedures, and a triage guide for common failures.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E4",
+          "title": "Disable unused services, enable the firewall, and install fail2ban on a lab VM, then verify with ss and the firewall rule list"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.2",
+          "engine": "E4",
+          "title": "Diagnose a lab VM with a failing web service by reading journalctl, checking ports and disk, and fix the single planted fault"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.3",
+          "engine": "E4",
+          "title": "Find which of CPU, memory or disk is the bottleneck on a loaded VM using vmstat and iostat, tune one setting, and show the improvement"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.5",
+          "engine": "E4",
+          "title": "Build, harden and document a complete departmental server with web, DNS, backup and monitoring, and pass a test checklist of 15 items"
+        }
+      ]
+    }
   ]
 }

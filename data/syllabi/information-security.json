@@ -120,5 +120,402 @@
         "Capstone: a security assessment and ISMS plan for a small organisation"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Security principles and the threat landscape",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "List the assets, threats and controls for a mobile money agent kiosk and rate each risk as likely or unlikely with a reason.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Classify 10 incidents as breaches of confidentiality, integrity or availability and note which control would have helped"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw a data flow diagram of a mobile money transfer and mark trust boundaries and at least six STRIDE threats"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E3",
+          "title": "Redesign a flat office network using defence in depth and least privilege, then test that a compromised PC cannot reach the finance server"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Malware and infection",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compare a worm, a trojan and ransomware in a table by how they spread, what they do and how you would detect them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Match 12 malware descriptions to their types and read how each famous case spread, then check your answers against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Judge 10 emails and messages as phishing or genuine, mark the clues and choose a response for each in the scenario"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E4",
+          "title": "Write a signature rule and a behaviour rule for a harmless test file in the lab VM and compare detection after the file is repacked"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Malware analysis and vulnerabilities",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Read a CVE entry and its CVSS vector, and decide how soon a clinic should patch it and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E4",
+          "title": "Inspect a harmless sample in the isolated lab VM with strings and file hashes, and record three observations in an analysis note"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E4",
+          "title": "Find and fix an SQL injection flaw in a small sample web page by using parameterised queries and retest with the same attack"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Prioritise a list of 10 vulnerabilities by CVSS score, exposure and asset value for a small hospital, and defend the patch order"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Passwords and hashing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain why a salted slow hash protects users after a database leak, and write a password policy of five rules for a school portal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Hash the same password with and without a salt in Python, show that two users with equal passwords get different salted hashes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E4",
+          "title": "Crack a given file of 10 unsalted hashes with a wordlist in the lab VM and report which passwords fell and how long it took"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Calculate the guessing time for passwords and passphrases at a given hash rate and recommend a policy that balances strength and usability"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Authentication and access control",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compare SMS codes with authenticator apps and hardware keys for a bank customer, and explain a SIM-swap attack.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Generate time-based one-time codes from a shared secret in Python and verify that a code expires after its 30 second window"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E4",
+          "title": "Set up users, groups and file permissions in the lab VM so a clerk can read, a manager can edit and an outsider has no access"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Design role-based access for a clinic system with at least five roles, test it against ten requests and fix any privilege conflicts found"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Applied cryptography",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Explain which tool you would use to keep a file private, prove who sent it and detect tampering, and why one tool is not enough.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Encrypt and decrypt a message with a symmetric cipher and then compute a hash, showing one changed letter alters the hash completely"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E4",
+          "title": "Create a self-signed certificate, serve a page over TLS in the lab VM and inspect the certificate's subject, issuer and expiry date"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Show that ECB mode leaks patterns in an encrypted image, then repair it with CBC or GCM and spot a hard-coded key in sample code"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Intrusion detection and monitoring",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Explain the trade-off between false positives and false negatives in an IDS, and write three Snort-style rules in plain words.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E3",
+          "title": "Place an IDS sensor on a mirrored switch port and write a rule that alerts on any ICMP echo request to the server"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E3",
+          "title": "Run a port scan against the lab network and write a rule that detects it, then confirm the alert and the source address"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E4",
+          "title": "Correlate web server and firewall logs in the lab VM to reconstruct an attack timeline and write a rule that alerts on its pattern"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Firewalls, honeypots and segmentation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Draw a screened subnet for a small bank branch and list which traffic each firewall rule allows or blocks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E3",
+          "title": "Write ACL rules on a router to allow web and DNS from the LAN to the internet and block everything else, then test with pings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E3",
+          "title": "Build a screened subnet with a web server in the DMZ and verify the internet can reach it but not the internal LAN"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E3",
+          "title": "Segment a flat network into VLANs for staff, finance and guests with inter-VLAN rules, and prove guests cannot reach finance"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Penetration testing method",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Write the scope and rules of engagement for a test of a school's web portal, stating what is out of bounds.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Decide which of 8 testing actions are authorised under a given scope and rules of engagement and explain each ruling"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Scan the lab target with nmap, enumerate its services and list three vulnerabilities with the evidence for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Find and exploit an XSS and an IDOR flaw in the lab web app, then write the fix for each and retest"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Wireless, social engineering and reporting",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Draft the executive summary of a penetration test report for a non-technical manager, with three prioritised recommendations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Respond to a pretexting phone call scenario, choose what to disclose at each step and review the feedback on your choices"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E3",
+          "title": "Audit a simulated wireless network, find the weak encryption setting and the rogue access point and recommend fixes"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Write a report from five test findings with severity ratings, evidence and remediation steps, and have it scored against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Network attacks and hardening",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Describe how ARP spoofing enables a man-in-the-middle attack and which controls stop it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E3",
+          "title": "Capture packets on a hub-based LAN, find an unencrypted login in the capture and explain why HTTPS would have prevented it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E3",
+          "title": "Flood a server with SYN packets in the simulator, observe the effect and apply a rate limit or SYN cookies to restore service"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E4",
+          "title": "Harden a default Linux server against a benchmark checklist of 15 items, then rescan to show the number of failures reduced"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Governance, risk and incident response",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a one-page acceptable use policy and a short incident response checklist for a small microfinance office.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E7",
+          "title": "Compute single loss expectancy and annualised loss expectancy for five risks and rank them to choose where to spend a budget"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Lead the response to a ransomware incident through the life cycle phases and be scored on containment, evidence and communication"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Advise a company on a data breach notification under the local data protection law and score the choices on timing and content"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Security frameworks, continuity and capstone",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4"
+      ],
+      "exercise": "Present your ISMS plan for a small organisation, listing top risks, chosen controls, owners and review dates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.3",
+          "engine": "E7",
+          "title": "Calculate RTO and RPO fit for three systems against backup schedules and mark which backup strategy fails the target"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.1",
+          "engine": "E10",
+          "title": "Map ten security controls to the ISO 27001 and NIST CSF functions in a scenario and justify each placement"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.4",
+          "engine": "E10",
+          "title": "Assess a small organisation, build a risk register of at least 10 risks and write an ISMS plan scored against the rubric"
+        }
+      ]
+    }
   ]
 }

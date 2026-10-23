@@ -110,12 +110,421 @@
     },
     {
       "title": "Signals and systems in practice",
-      "weeks": "14",
+      "weeks": "13",
       "topics": [
         "Removing 50 Hz mains hum from an ECG recording with a notch filter",
         "Communication systems in outline: modulation, multiplexing and channel distortion",
         "State-space descriptions in brief",
         "Capstone: model, simulate and filter a real recorded signal end to end"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Signals and their transformations",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Sketch x(t) shifted, scaled and reversed for a given piecewise signal, writing the value at three points after each operation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Plot a triangular pulse and its shifted, time-scaled and time-reversed versions on one set of axes, and read off five values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Split five signals into even and odd parts, classify each as energy or power, and compute the energy or average power numerically"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Decide for ten given signals whether they are periodic, find the fundamental period of those that are, and verify by plotting"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Elementary signals and real data",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Show by hand why a discrete sinusoid is periodic only when its frequency is a rational multiple of 2 pi, with two examples.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Plot the unit step, ramp, decaying exponential and a sinusoid, and express a rectangular pulse using shifted unit steps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Plot discrete sinusoids at frequencies that differ by 2 pi and show they give identical sample values, explaining the uniqueness range"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Load an ECG trace and a day of grid demand data, measure the dominant period of each, and describe the signal features you can identify"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "System properties",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Test four given systems for linearity, time invariance, causality and memory, with a counter-example for each property that fails.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Classify five systems as having memory or not, causal or not, and stable or not, and check each with a bounded test input"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Test a squaring system, a moving sum and a time-reversal system for linearity and time invariance with numerical counter-examples"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Simulate a system described by a difference equation, test its BIBO stability for several coefficients, and relate the result to the interconnection of blocks"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Convolution",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Convolve two short sequences by hand with the flip-and-slide method and check the result against the tool.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute the convolution of two finite sequences of length four by the sum and verify the output length and the sum of values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Convolve a rectangular pulse with an exponential in continuous time, plot the stages of the overlap, and compare with the closed form"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Verify the commutative, associative and distributive properties of convolution numerically, and find the single impulse response of a series-parallel interconnection"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Impulse and step responses",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Solve a first-order difference equation for its zero-input and zero-state responses and show that their sum equals the total response.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Find the impulse and step responses of a first-order system and decide causality and stability from the impulse response"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Split the response of a second-order system into natural and forced parts, and into zero-input and zero-state parts, with plots"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Smooth 90 days of daily mobile money transaction counts with moving averages of length 3, 7 and 14, and compare noise reduction against lag"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Fourier series",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compute the Fourier series coefficients of a square wave by hand and sketch the first three partial sums.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute the Fourier series coefficients of a square wave and plot the sum of the first 1, 3 and 5 harmonics"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Show the Gibbs phenomenon by adding up to 50 harmonics of a square wave, measure the overshoot, and check Parseval's relation"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E7",
+          "title": "Pass a distorted mains waveform through an LTI filter and compute the power in each harmonic before and after, relating the result to non-linear loads"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Continuous-time Fourier transform",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Use transform pairs and properties to find the transform of a shifted, scaled rectangular pulse without integrating, and then check it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute and plot the magnitude of the Fourier transform of a rectangular pulse and read off its first zero crossing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Verify the time-shift, scaling and duality properties of the Fourier transform numerically on a Gaussian pulse, with plots"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Remove high-frequency noise from a signal by multiplying its spectrum with a low-pass mask, then compare the result with time-domain convolution"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "DTFT, frequency response and modulation",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Sketch the magnitude response of an ideal low-pass filter and a practical filter, and list three ways the practical one departs from the ideal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Plot the magnitude and phase response of a 5-point moving average filter and identify its null frequencies"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute the DTFT of a short sequence over one period, show that it repeats every 2 pi, and find the response to a sinusoidal input"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E7",
+          "title": "Amplitude-modulate a message onto a carrier, demodulate it with a low-pass filter, and measure the distortion when the filter cut-off is moved"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Sampling",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Explain why 8 kHz is enough for telephone speech, and what happens to a 5 kHz tone sampled at that rate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Sample a 100 Hz sine at 1000 Hz and at 150 Hz, plot both and show which one aliases"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Reconstruct a sampled signal with zero-order hold and ideal interpolation, and compare the errors for three sampling rates"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Design an anti-aliasing filter and sampling rate for a 4 kHz band-limited signal, simulate the chain, and measure the aliasing error"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "The Laplace transform",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Find the inverse Laplace transform of a rational function by partial fractions on paper, then confirm by simulation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Find a partial fraction expansion of a rational Laplace transform with distinct poles and the corresponding time function"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Use the initial and final value theorems on three transforms and check each result against the time response"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Find the region of convergence for a two-sided exponential and show how different regions give causal, anti-causal and two-sided signals"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "System functions and circuits",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Solve an RLC circuit with initial conditions in the s-domain and compare it with the time-domain solution.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Plot the poles and zeros of a system function and decide stability and causality from the region of convergence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Use the unilateral Laplace transform to solve a second-order differential equation with initial conditions, and plot the response"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Close a feedback loop around a plant, find the poles as the gain changes, and identify the gain at which the system becomes unstable"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "The z-transform",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Find the inverse z-transform of a rational function by partial fractions and by long division, and show that both agree.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute the z-transform of a few simple sequences and state the region of convergence of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Invert a rational z-transform by partial fractions and by power series, and verify the first eight samples against the first method"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Use the convolution property to find the output of a difference-equation system for a given input and check it against direct simulation"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Applications and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6",
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Capstone report: describe the signal, the model, the filter design and the results, with the before and after spectra of the recorded signal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Place the poles and zeros of a discrete system on the z-plane and decide whether it is stable from the unit circle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E7",
+          "title": "Design a notch filter at 50 Hz, apply it to a noisy ECG recording, and compare the spectra before and after"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.6",
+          "engine": "E7",
+          "title": "Map s-plane poles to the z-plane with a sampling period of 1 ms and compare the analogue and discrete responses of a second-order system"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Model, simulate and filter a recorded signal end to end, choosing sampling rate and filter, and report the measured improvement in signal-to-noise ratio"
+        }
       ]
     }
   ]

@@ -1,0 +1,505 @@
+{
+  "slug": "causal-inference-and-experimental-design",
+  "description": "How to tell whether an intervention caused an outcome, from randomised experiments and A/B tests to observational designs such as matching, difference-in-differences and instrumental variables. Students simulate trials, compute power, estimate effects with code and probe the assumptions behind each design.",
+  "modelledOn": [
+    "Hernan and Robins, Causal Inference: What If",
+    "Angrist and Pischke, Mostly Harmless Econometrics",
+    "Kohavi, Tang and Xu, Trustworthy Online Controlled Experiments",
+    "Montgomery, Design and Analysis of Experiments"
+  ],
+  "outcomes": [
+    "Formulate a causal question as a target estimand using potential outcomes and state the assumptions needed to identify it.",
+    "Design, randomise and analyse an experiment, including blocking, clustering and noncompliance.",
+    "Calculate power and sample size and control error rates when many metrics or repeated looks are used.",
+    "Estimate treatment effects from observational data with matching, weighting, regression, difference-in-differences and instrumental variables.",
+    "Read a causal graph to choose adjustment sets and avoid collider and mediator bias.",
+    "Assess how sensitive a causal conclusion is to unmeasured confounding and report it honestly."
+  ],
+  "units": [
+    {
+      "title": "Causal questions and potential outcomes",
+      "weeks": "1-2",
+      "topics": [
+        "Association versus causation; Simpson's paradox with a worked example",
+        "The potential outcomes framework: Y(1), Y(0) and the fundamental problem of causal inference",
+        "Estimands: average treatment effect, effect on the treated, conditional effects; SUTVA and interference",
+        "Identification assumptions: ignorability, positivity and consistency",
+        "Framing a causal question: target population, treatment definition, outcome and time zero"
+      ]
+    },
+    {
+      "title": "Randomised experiments",
+      "weeks": "3-4",
+      "topics": [
+        "Randomisation schemes: complete, Bernoulli, stratified and blocked designs",
+        "Difference-in-means estimator, Neyman variance and the Fisher randomisation test",
+        "Cluster-randomised trials: intracluster correlation and the design effect",
+        "Noncompliance: intention-to-treat versus per-protocol; complier average causal effect",
+        "Factorial designs, main effects and interactions"
+      ]
+    },
+    {
+      "title": "A/B testing in practice",
+      "weeks": "5-6",
+      "topics": [
+        "Two-sample z and t tests for conversion and revenue metrics",
+        "Power, minimum detectable effect and sample-size calculation",
+        "Multiple testing: Bonferroni, Holm and false discovery rate control",
+        "Peeking, group-sequential tests and the sequential probability ratio test",
+        "Variance reduction with pre-experiment covariates (regression adjustment, CUPED)",
+        "Pitfalls: novelty effects, sample ratio mismatch and network interference"
+      ]
+    },
+    {
+      "title": "Observational studies and confounding",
+      "weeks": "7",
+      "topics": [
+        "Confounders, mediators and colliders; the structure of bias",
+        "Selection bias and survivorship bias in real datasets",
+        "Covariate balance, standardised mean differences and overlap plots",
+        "Bad controls: M-bias and conditioning on a collider",
+        "Case study: observational evidence on mobile-money training and smallholder income"
+      ]
+    },
+    {
+      "title": "Matching, weighting and regression adjustment",
+      "weeks": "8-9",
+      "topics": [
+        "Regression adjustment and the meaning of a coefficient as a causal effect",
+        "Propensity scores: logistic estimation, overlap and trimming",
+        "Matching: nearest neighbour, caliper and exact matching; balance checks",
+        "Inverse probability weighting and stabilised weights",
+        "Doubly robust estimation: augmented inverse probability weighting",
+        "Bootstrap standard errors for matched and weighted estimators"
+      ]
+    },
+    {
+      "title": "Quasi-experiments",
+      "weeks": "10-11",
+      "topics": [
+        "Difference-in-differences: the parallel-trends assumption and the two-by-two estimator",
+        "Event studies, pre-trend tests and staggered adoption",
+        "Instrumental variables: relevance, exclusion and the Wald estimator",
+        "Two-stage least squares and weak-instrument diagnostics",
+        "Regression discontinuity: sharp and fuzzy designs, bandwidth choice",
+        "Synthetic control for a single treated unit"
+      ]
+    },
+    {
+      "title": "Causal graphs",
+      "weeks": "12",
+      "topics": [
+        "Directed acyclic graphs, paths and d-separation",
+        "The back-door criterion and choosing an adjustment set",
+        "The front-door criterion and the do-operator",
+        "Testable implications of a graph and checking them in data",
+        "Mediation: direct and indirect effects"
+      ]
+    },
+    {
+      "title": "Heterogeneity, sensitivity and reporting",
+      "weeks": "13",
+      "topics": [
+        "Heterogeneous treatment effects: subgroup analysis and causal forests",
+        "Sensitivity to unmeasured confounding: the E-value and bounds",
+        "Placebo outcomes and negative-control tests",
+        "Pre-registration, reporting standards and honest communication of causal claims"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why correlation is not enough",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Work through a two-group admissions or loan-approval table where pooled and group rates disagree, then write each unit's two potential outcomes and mark which one is missing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Tabulate a two-group success table, compute pooled and stratified rates, and show how Simpson's paradox reverses the apparent winner"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Simulate 1000 units with both potential outcomes known, reveal only one per unit, and compare the true effect with the naive difference in means"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Build a simulation where treatment depends on a hidden health score and show how the naive estimate changes sign as selection strength increases"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Estimands and identification",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "For three real questions (a school-feeding scheme, a mobile-money fee cut, a clinic reminder SMS) write the estimand, the population, the time zero and the assumptions that identify it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compute the ATE and the effect on the treated for a ten-unit table of both potential outcomes and explain why they differ"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Simulate a design with a positivity violation and show with a covariate overlap histogram why effects for some groups cannot be estimated"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Rewrite a vague business question as a precise estimand, then simulate an interference setting where one unit's treatment changes a neighbour's outcome and show the bias"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Randomisation and the experimental estimator",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Randomise 40 villages into treatment and control by complete and by blocked schemes, compare the balance achieved, and compute the difference in means with a confidence interval.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Randomise 40 units by complete, Bernoulli and blocked designs, repeat 500 times and compare how often each scheme leaves covariates imbalanced"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Compute the difference in means and Neyman standard error for a small trial table and build the 95 percent confidence interval"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Run a Fisher randomisation test by permuting labels 10000 times, then compare its p-value with the t-test on skewed outcome data"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Clusters, compliance and factorial designs",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "A radio campaign is assigned by district but measured on households: compute the design effect, then analyse a trial where only 70 percent of those offered the treatment took it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute the design effect for cluster sizes of 20 and ICC of 0.05, and the effective sample size of 60 clusters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Simulate noncompliance, estimate intention-to-treat and the complier effect with the Wald ratio, and verify the compliers' true effect"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Analyse a 2x2 factorial trial of two messaging factors with regression, plot the interaction, and judge whether main effects can be interpreted alone"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Tests, power and sample size",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Size a conversion-rate test for a payments app: choose the baseline, the minimum detectable effect, alpha and power, then say what happens to the sample size if the effect is halved.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Run a two-proportion z-test on given conversion counts for two app variants and interpret the p-value and interval in plain words"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Plot a power curve against sample size for a 10 percent baseline and find the sample needed to detect a one point lift at 80 percent power"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Simulate 100 null metrics, count false positives with no correction, Bonferroni, Holm and false discovery rate control, and compare power on added true effects"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Sequential testing, variance reduction and pitfalls",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Review a screenshot-style report of an experiment that was stopped early and one with a sample ratio mismatch, and list what is wrong and what you would rerun.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Simulate an A/A test checked daily for 30 days and show the false positive rate inflating, then fix it with a group-sequential boundary"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Reduce metric variance with a pre-experiment covariate, report the percent drop in standard error and the saving in required sample size"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Detect a sample ratio mismatch with a chi-square test on given allocation counts and simulate a novelty effect that decays over weeks"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Confounding, bias and bad controls",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Using a survey of farmers who did and did not attend a mobile-money training, list likely confounders, draw the bias story, and decide which variables you would and would not adjust for.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Classify given variables in a small scenario as confounder, mediator or collider and compute stratum-specific effects to see which adjustment helps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Compute standardised mean differences before and after adjustment for a farmer-training dataset and draw a covariate balance plot"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Simulate a collider structure, show that adjusting for it creates a spurious association, and compare it with the correct unadjusted estimate"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Regression adjustment and propensity scores",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Estimate the effect of a farm-extension visit on yield by regression, then by matching on a propensity score, and compare the two answers and their balance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Fit a regression of yield on treatment and covariates, read the treatment coefficient as an effect, and compare it with the unadjusted difference"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Estimate propensity scores by logistic regression and draw overlap histograms for treated and untreated units, trimming units outside common support"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Do 1-to-1 nearest-neighbour matching with a caliper, check balance, and compare the matched estimate with the known true effect in simulated data"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Weighting, doubly robust methods and uncertainty",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compute stabilised weights, check the effective sample size, and report a doubly robust estimate with a bootstrap interval for the extension-visit data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute inverse probability weights for eight units from given propensity scores and the weighted treated and control means"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Implement an augmented inverse probability weighting estimator and show it stays unbiased when only the outcome model or only the propensity model is correct"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Bootstrap a matched estimate with 1000 resamples and compare the interval with the naive standard error to see why the latter is too narrow"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Difference-in-differences",
+      "topics": [
+        "6.1",
+        "6.2"
+      ],
+      "exercise": "Evaluate a fuel-subsidy or mobile-money fee change that hit some regions first: draw the pre-trend plot, compute the two-by-two estimate and discuss threats to parallel trends.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute the two-by-two difference-in-differences estimate from four group means and sketch the counterfactual line on the trend plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Fit an event-study regression on a panel with leads and lags and judge from the lead coefficients whether parallel trends is plausible"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Simulate staggered adoption with effects that grow over time and show how a single two-way fixed-effects estimate misleads compared with cohort-specific estimates"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Instruments, discontinuities and synthetic controls",
+      "topics": [
+        "6.3",
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Choose a valid instrument for a given question (distance to a school, a lottery), argue relevance and exclusion, and decide when a score cutoff supports a discontinuity design.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compute the Wald estimator from the reduced-form and first-stage coefficients of a given lottery instrument and interpret it as an effect for compliers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Fit a local linear regression on both sides of a score cutoff, vary the bandwidth and plot how the estimated jump changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Implement two-stage least squares, check the first-stage F-statistic with a weak instrument, and show the bias toward the OLS estimate"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Causal graphs and identification",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Draw a graph for a clinic-attendance study, list every back-door path from treatment to outcome, name a minimal adjustment set and test one implication of the graph in data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Draw a six-variable causal graph and list every path from treatment to outcome with each path marked open or blocked given a conditioning set"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Apply the back-door criterion to three given graphs and write the minimal adjustment set for each, justifying every excluded variable"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Simulate data from a known graph, test the conditional independencies it implies with partial correlations, and detect the one edge that was wrongly omitted"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Heterogeneity, sensitivity and honest reporting",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a one-page causal report on an extension-visit evaluation: estimand, design, estimate, subgroup results, an E-value for hidden confounding and a limitations paragraph.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute the E-value for a risk ratio of 1.8 and state in words how strong an unmeasured confounder must be to explain it away"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Estimate subgroup effects by region and age band with interaction terms and decide whether differences are real or consistent with chance"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Run a negative-control outcome test on a matched study and show that a nonzero effect on the placebo outcome reveals residual confounding"
+        }
+      ]
+    }
+  ]
+}

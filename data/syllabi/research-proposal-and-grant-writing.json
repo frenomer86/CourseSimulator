@@ -1,0 +1,507 @@
+{
+  "slug": "research-proposal-and-grant-writing",
+  "description": "A doctoral seminar on turning a research idea into a fundable, defensible proposal: framing the question, synthesising literature, writing aims, planning methods and budgets, and surviving review. Candidates draft each section, plan the work in the diagram studio, and take part in mock panels run in the scenario engine.",
+  "modelledOn": [
+    "Przeworski and Salomon, The Art of Writing Proposals",
+    "Booth, Colomb and Williams, The Craft of Research",
+    "Funder guidance for research grants and the FAIR data principles"
+  ],
+  "outcomes": [
+    "Frame a research problem as a significant, feasible and original question with a clear contribution.",
+    "Synthesise the literature into a gap analysis using a documented and reproducible search strategy.",
+    "Write specific aims and testable hypotheses with defined success criteria and contingency plans.",
+    "Justify methods, feasibility, timeline and budget in a form a review panel can score.",
+    "Critique a peer proposal using funder criteria, respond to critique, and prepare a data management and research ethics plan."
+  ],
+  "units": [
+    {
+      "title": "Framing a fundable research question",
+      "weeks": "1-2",
+      "topics": [
+        "From topic to problem: significance, innovation and the contribution statement",
+        "Criteria for a good question: feasible, interesting, novel, ethical and relevant",
+        "Research paradigms in computing and health: design science, empirical, computational and mixed methods",
+        "Stakeholder needs and local relevance: problems that matter for health and biology in Africa",
+        "The one-page concept note and the two-minute pitch",
+        "The funder landscape: matching an idea to a programme"
+      ]
+    },
+    {
+      "title": "Literature synthesis and gap analysis",
+      "weeks": "3-4",
+      "topics": [
+        "Search strategy: databases, keywords, Boolean queries and recording the search",
+        "Screening and selection: inclusion criteria and PRISMA-style flow diagrams",
+        "Critical appraisal of studies: bias, validity and strength of evidence",
+        "Synthesis matrices and thematic synthesis",
+        "Types of gap and positioning a contribution against prior work",
+        "Reference management, paraphrasing and citation practice"
+      ]
+    },
+    {
+      "title": "Specific aims and hypotheses",
+      "weeks": "5",
+      "topics": [
+        "Anatomy of an aims page: problem, gap, objective, approach and impact",
+        "Testable hypotheses: null, alternative and falsifiability",
+        "Aim hierarchy, independence and contingencies",
+        "Expected outcomes, deliverables and success criteria",
+        "Revising aims through critique"
+      ]
+    },
+    {
+      "title": "Methods, preliminary data and feasibility",
+      "weeks": "6-7",
+      "topics": [
+        "Choosing a study design: observational, experimental, computational and simulation",
+        "Data sources, sampling and power analysis",
+        "Computational methods: baselines, benchmarks, validation and error analysis",
+        "Preliminary data and pilot studies as evidence of feasibility",
+        "Risks, pitfalls and alternative approaches",
+        "Rigour, reproducibility and threats to validity"
+      ]
+    },
+    {
+      "title": "Timelines, milestones and budgets",
+      "weeks": "8",
+      "topics": [
+        "Work breakdown, milestones and the critical path",
+        "Budget categories: personnel, equipment, cloud compute, data, travel and indirect costs",
+        "Budget justification narrative",
+        "Currency, inflation and funder rules in a cedi and dollar budget",
+        "Risk register and mitigation plan"
+      ]
+    },
+    {
+      "title": "Writing for reviewers",
+      "weeks": "9",
+      "topics": [
+        "Narrative structure and plain, precise language",
+        "Abstracts, lay summaries and titles",
+        "Figures and visual abstracts that carry the argument",
+        "Reading funder guidelines and compliance checks",
+        "Responding to feedback and planning a resubmission"
+      ]
+    },
+    {
+      "title": "Mock review panel and peer critique",
+      "weeks": "10-11",
+      "topics": [
+        "Reviewer roles and scoring criteria: significance, approach, innovation, investigator and environment",
+        "Scoring calibration and the pitfalls of reviewer bias",
+        "Writing a constructive written critique",
+        "Panel discussion and consensus ranking",
+        "Writing a rebuttal and a revised aims page",
+        "Preparing for an oral defence of the proposal"
+      ]
+    },
+    {
+      "title": "Data management plans and responsible research",
+      "weeks": "12-13",
+      "topics": [
+        "Data management plans: types of data, storage, formats, metadata and FAIR sharing",
+        "Consent, sensitive health data and data protection requirements",
+        "Research integrity: authorship, conflicts of interest and misconduct",
+        "Open science, preregistration and community benefit-sharing",
+        "Final submission checklist and the oral pitch"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "From topic to researchable problem",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Turn a broad interest such as antimicrobial resistance genomics or maternal-health records into three candidate research questions, and test each against the criteria for a good question.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Score five draft research questions against feasibility, novelty, relevance and ethics criteria and keep the strongest with reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw a problem tree from symptom to root causes for a health informatics topic and mark which cause your question targets"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Choose a research paradigm and design family for a case question and defend it against a sceptical reviewer's objections"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Relevance, the concept note and funders",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Write a one-page concept note for your question, record a two-minute pitch, and shortlist three funders with the fit and eligibility rules for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Edit a rambling concept note to one page covering problem, gap, approach and impact, and compare it against a scoring rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Map the stakeholders of a community health data project, their needs and influence, and show how the question serves them"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Match an idea to one of four funding calls in a case, judge eligibility, scope and budget limits, and justify the choice"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Searching and screening the literature",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write a documented search protocol with databases, query strings and inclusion criteria, run it, and record how many records were found, screened and kept.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Build Boolean query strings for a research question and choose the query that balances recall and precision from sample result counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Draw a PRISMA-style flow diagram from search and screening counts and check the numbers at every stage reconcile"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Appraise four studies in a case for bias and validity, rate the strength of each, and decide how much weight it carries"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Synthesis, gaps and citation practice",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Build a synthesis matrix of twelve papers, write a gap statement of two sentences, and paraphrase two paragraphs correctly with citations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Identify which of six paraphrased passages are acceptable and which need citation or rewriting, and correct the weak ones"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Organise eight papers into a matrix of method, data, finding and limitation and mark the empty cells that reveal a gap"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Write a gap statement for a case literature, test it against a reviewer's challenge that it is already solved, and refine it"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Specific aims and testable hypotheses",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Draft a one-page aims section with a hypothesis for each of three aims, success criteria, and a contingency if the first aim fails, then revise it after peer comments.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Turn five vague objectives into testable hypotheses with a null and alternative and a stated measure of success"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Draw the dependencies among three aims, show which can proceed if another fails, and add one fallback aim"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Revise a flawed aims page in a case after three reviewer comments, and show how each comment changed the text"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Study design, data and computational methods",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Select a study design for your first aim, estimate the sample size or data volume needed, and define baselines and validation for the computational method.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Pick the right study design for four research questions from a menu and give a reason for each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Work through a sample size decision for a clinical data study, adjust effect size and power, and see how cost changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E9",
+          "title": "Draw a validation design for a prediction method including baselines, held-out data, external test set and error analysis"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Feasibility, risks and rigour",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Describe the pilot result that proves your approach could work, list the three biggest risks with alternatives, and name four threats to validity with mitigations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Choose which of four pilot results gives the strongest feasibility argument for a case proposal and justify the choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E9",
+          "title": "Build a risk matrix of likelihood and impact for six project risks and pair each high risk with an alternative approach"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Find the threats to validity in a described study, rank them, and recommend design changes that address the worst two"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Timeline, milestones and budget",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Produce a three-year Gantt chart with milestones for your proposal and a costed budget with justification, in cedis and dollars, within a stated funder ceiling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Build a Gantt chart for a three-year project from a work breakdown list with six milestones and mark the critical path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Assemble a budget across categories under a funder ceiling, cut it when a reviewer reduces funds by 15 percent, and justify what stays"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E9",
+          "title": "Add a delay to a critical activity in a project network, find the effect on completion, and add a mitigation to the risk register"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Writing for reviewers",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Rewrite your abstract to 250 words and a lay summary of 100 words, add one figure that carries the argument, and run a compliance check against the funder guidelines.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Compare three abstracts for the same project, rate them for clarity and completeness, and write the best final version"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E9",
+          "title": "Design a single overview figure showing problem, aims, methods and outcomes, and test whether a reader can follow it in one minute"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Check a draft proposal against a funder's guidelines in a case, find the compliance failures, and fix the ones that would reject it"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Reviewing and scoring proposals",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Score two anonymised proposals on the funder criteria, write a half-page critique of each with strengths and weaknesses, and compare your scores with those of two peers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Score a sample proposal on five criteria with the rubric and record one sentence of evidence for each score"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Calibrate your scores against three other reviewers on the same proposals and discuss where bias or harshness explains differences"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Write a written critique of a proposal that is constructive, specific and actionable, and be judged against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Panel discussion, rebuttal and oral defence",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Take part in a mock panel that ranks six proposals, write a one-page rebuttal to your own panel critique, and defend your aims in a ten-minute oral presentation with questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Join a mock panel discussion in a scenario and argue for your assigned proposal's ranking using the evidence in your critique"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Respond to three critiques of your proposal, deciding which to accept, rebut or partly address, and record revised text"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Answer six hostile questions in a simulated oral defence, and be scored on accuracy, honesty about limits and clarity"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Data management and sensitive health data",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write a two-page data management plan for your project covering data types, storage, metadata, retention and sharing, and describe the consent and protection steps for sensitive patient data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Complete a data management plan template for a genomic study, choosing formats, repository and access conditions for each dataset"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Decide how to obtain consent and protect identifiable data in a case involving rural clinic records, and justify the safeguards"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Resolve an authorship dispute and a conflict of interest in a case, citing research integrity principles for each decision"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Open science, community benefit and final submission",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Complete the final submission checklist for your proposal, write a plan for returning findings to the community, and give a five-minute pitch to the class.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Work through a submission checklist for a full proposal, tick each requirement, and fix the three items that are incomplete"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E9",
+          "title": "Draw a plan showing preregistration, data release and community feedback steps across your project timeline"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Design a benefit-sharing plan for a study using community health data and evaluate it against a panel's expectations"
+        }
+      ]
+    }
+  ]
+}

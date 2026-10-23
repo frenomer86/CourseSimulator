@@ -114,5 +114,402 @@
         "Capstone: lead the response to a simulated ransomware outbreak and present the after-action review"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The SOC mission and metrics",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write a one-page brief explaining dwell time, mean time to detect and mean time to respond to a manager who has never seen them before.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Match five SOC activities (monitor, detect, triage, respond, improve) to the stage of the mission they belong to, for a described alert"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Decide which tier of analyst should handle three described alerts, and explain what should trigger an escalation to the next tier"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Compute dwell time and mean time to respond from a timeline of a described incident, and judge whether the SOC met its target"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "People, process, technology and the console",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a short recommendation on build-versus-outsource for a small Ghanaian bank's SOC, weighing cost, skills and coverage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Weigh build-versus-outsource for a described small organisation's SOC across people, process and technology, and justify a recommendation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Open the monitored-network simulation and the analyst console, and locate where alerts, logs and host status are each shown"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Walk through the analyst console for a described quiet shift and identify which of ten log entries is worth a closer look, with reasons"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Log sources and searching",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write a checklist of the log sources a SOC needs to reconstruct a login followed by a suspicious file access, and why each source matters.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E4",
+          "title": "List the log sources (endpoint, server, network device, authentication) that a described incident would touch, and what each would show"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E4",
+          "title": "Search and pivot through a set of logs to reconstruct the order of events in a described login-then-access incident"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E4",
+          "title": "Check a batch of logs for time synchronisation and integrity problems, and explain how an unsynchronised clock would break an investigation"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Baselining and fraud parsing",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain, with an example, how knowing what is normal for a shared internet-cafe machine helps an analyst spot what is not.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E4",
+          "title": "Establish a baseline of normal login times and locations for a described user, and flag the one login that breaks the pattern"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E4",
+          "title": "Parse a set of authentication and transaction logs to find the sequence consistent with an attempted mobile-money fraud, and state the evidence"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E4",
+          "title": "Compare baselines for two shared machines with different usage patterns, and decide which anomaly thresholds would suit each"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Detection technologies",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Explain the difference between signature and anomaly detection with one example each of a threat that only one of them would catch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E4",
+          "title": "Decide whether five described detections came from a signature rule or anomaly detection, and explain the evidence for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E4",
+          "title": "Write a detection rule for a described scan pattern, tune it against a quiet baseline, and show it no longer fires on normal traffic"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E4",
+          "title": "Review a captured sequence of traffic for a scan, an exploitation attempt and command-and-control activity, and label which stage each log entry shows"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "SIEM, detection engineering and ATT&CK",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Map three described attack techniques to MITRE ATT&CK, and identify one technique the current detection set does not cover.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Aggregate three log sources into a SIEM view, write a correlation rule linking two of them, and show it fires only on the intended pattern"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E4",
+          "title": "Turn a described attack technique into a reliable detection rule, and show it fires on the technique without firing on normal activity"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E4",
+          "title": "Map five existing detection rules to MITRE ATT&CK techniques, and identify the coverage gap that most needs a new rule"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Threat intelligence",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Explain the pyramid of pain with one indicator type at each level, and say which level is hardest for an attacker to change.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Decide which audience (strategic, operational, tactical) a described piece of threat intelligence serves, and what they would do with it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Rank three indicators of compromise by the pyramid of pain, and explain why the hardest one to change is the most valuable detection"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Form a threat-hunting hypothesis from a described ATT&CK technique, and list the log evidence that would confirm or disprove it"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Incident response preparation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write the first page of an incident response plan for a small organisation, covering roles, a RACI table and communication contacts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Map a described security event onto the incident response phases (preparation through lessons learned), and identify which phase is missing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Build a RACI table for a described incident response team, and resolve a case where two roles both claim ownership of a decision"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Classify three described incidents by impact and urgency, and decide which should be declared a major incident"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Evidence and declaring an incident",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write the chain-of-custody log entries you would expect for evidence collected from a compromised host, and explain why each field matters.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Complete a chain-of-custody log for evidence collected during a described incident, and identify the one missing entry that would weaken a prosecution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Declare a described incident, stand up the response team and assign the first three actions, scored against a response rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Decide what evidence handling steps a described incident needs to remain usable under the Cybersecurity Act 2020, and flag one step that was skipped"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Containment, eradication and forensics",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Write the trade-off between isolating a host immediately and leaving it running briefly to preserve volatile evidence, with a recommendation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E4",
+          "title": "Isolate a compromised host in the simulated network without powering it off, and explain what evidence this preserves compared with disconnecting power"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Remove a described malware's persistence mechanism and close its entry vector, then verify the host no longer shows signs of compromise"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Build a timeline of a described incident from disk and memory evidence, and identify the first and last moments of attacker activity"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Recovery under constraints",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write an offline runbook for restoring a service from backup during a power outage, listing every step an analyst could follow without network access.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Decide which of three available backups is safe to restore from after a described incident, and justify rejecting the other two"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Walk through an incident response using an offline runbook during a simulated brown-out, and identify which steps would have failed without it"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Validate the integrity of a restored service against a described checklist, and decide whether monitoring should continue before declaring recovery complete"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Post-incident review and reporting",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write the after-action review structure (what happened, what worked, what to change) for a described incident, keeping it free of blame.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Run a blameless post-incident review for a described incident, separating contributing factors from individual blame"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Track a described post-incident remediation item to completion, and decide what evidence shows it was actually fixed rather than just logged"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Draft the report sections a described incident needs for management and for the regulator, and decide what detail each audience needs"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Tabletop exercise and the capstone response",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a one-page after-action summary for a simulated ransomware outbreak, covering detection, decisions made under pressure and the lessons for the playbook.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Run a tabletop exercise for a described breach scenario, deciding the first three actions each role should take in the first ten minutes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Coordinate containment, communication and recovery for a described incident under a tight deadline, and justify the order chosen"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Lead the response to a simulated ransomware outbreak from detection through recovery and present the after-action review, scored on a capstone rubric"
+        }
+      ]
+    }
   ]
 }

@@ -108,5 +108,402 @@
         "Project: a playable browser game for learning, such as a game about local history or an Ananse story, with a design document and playtest report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What games are and how they are designed",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Choose a traditional game such as oware or ludo and write its rules as a formal-element table, then say which element you would change and what effect it would have.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw a diagram of ludo with its players, objectives, procedures, rules, resources, boundaries and outcomes, labelling each formal element"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Work through a case study of oware, identify its resources and winning conditions, and decide what a rule change to capturing would do to play"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Match four player profiles to a set of game features using Bartle types and self-determination theory, justifying the choice against given player feedback"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "MDA, mechanics and dynamics",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Describe a game you know in terms of its mechanics, the dynamics they produce and the aesthetics a player feels.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E9",
+          "title": "Draw an MDA diagram for a card game, listing three mechanics, the dynamics that arise from them and the player experience on the other side"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E9",
+          "title": "Diagram the feedback loops in a racing game with rubber-banding, marking each as positive or negative and predicting how a race ends"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Diagnose a case-study game where the leader always wins by snowballing, choose a mechanic change, and justify it with the expected dynamics"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Aesthetics, choice and deconstruction",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write a one-page MDA deconstruction of a mobile game you have played, citing specific mechanics for each type of fun.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Match eight scenario descriptions of play to the eight kinds of fun and justify each match"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Assess five choices in a branching case study for meaningful choice, uncertainty and risk, and rate whether the choice matters to the outcome"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E9",
+          "title": "Deconstruct a popular mobile game by diagramming its core loop, systems and rewards, and rank which mechanics drive retention"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Prototyping and design documents",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Make a paper prototype of a short dice game, run it with two friends and record three rule changes you made.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Draw the core loop of a quick mobile game for a 3-minute session, marking where the player is rewarded and where they decide to quit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Draw a one-page design as a labelled diagram, covering concept, audience, core loop, key mechanic and win and lose conditions"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Evaluate a game concept against a low-end phone with a small screen and intermittent data, choose features to cut, and justify using the rubric"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Level design and pacing",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Sketch a level for a puzzle platformer that teaches one mechanic, tests it and adds a twist, annotating the player experience.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Lay out a three-room tutorial level that teaches, tests and twists a jump mechanic, with annotated player goals in each room"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Draw a level map with sightlines, a landmark and a chokepoint, and mark the path you intend the player to follow and why"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E9",
+          "title": "Plot an interest curve for a 10-minute level with tension peaks and rest areas, then place enemies and rewards to match the curve"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Procedural levels and puzzles",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Critique a set of five puzzle levels for difficulty progression, fairness and hint quality, and propose revisions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Specify the constraints and seed inputs of a procedural level generator and diagram the checks that reject unplayable results"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Judge four puzzle designs for clarity, aha moment and hint quality in a scored case study and choose the design to ship"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E9",
+          "title": "Design a level set of eight puzzles that ramps difficulty, introducing each mechanic once, and document the intended solution of each"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Balance and economies",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Analyse the economy of a trading game, listing sources and sinks of coins and predicting whether inflation will occur.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Identify dominant strategies and intransitive relations in four balance scenarios and choose the fix for each with a justification"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Draw a resource flow diagram with sources, sinks and converters for a farming game and mark where inflation can occur"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Tune a difficulty curve and a dynamic difficulty rule for a case-study game so struggling players recover without making the game trivial"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Progression, balancing tools and monetisation",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write a short ethics statement for a free-to-play game identifying three monetisation features you would refuse and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E9",
+          "title": "Design a skill tree with 12 nodes and unlock costs and diagram the intended progression order and the one choice that matters most"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E5",
+          "title": "Model a card game's win rates in a spreadsheet-style table over 1000 simulated matches and adjust one cost until no card exceeds a 55 percent win rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Review a free-to-play game case for loot boxes and dark patterns, score each feature against a fairness rubric and propose an ethical alternative"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Story, characters and cultural narratives",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Adapt an Ananse story into a game narrative outline with a core mechanic that carries the story's meaning.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Diagram a branching story with four endings, marking choice points and which endings are reachable from which decisions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Decide which of three mechanics fits a story about a trader's honesty and score each for ludonarrative harmony in a case study"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E9",
+          "title": "Map an Ananse tale to quests, characters and a mechanic that expresses its trickster theme, in a story flow diagram"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Playtest planning and onboarding",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Write a playtest plan with goals, five tasks, a recruiting method and the observation notes template.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Choose goals, participants and a script for a playtest of a given prototype and score the plan against a rubric for bias and clarity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Select playtest methods for four design questions from think-aloud, questionnaires, interviews and telemetry, and defend each choice"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E9",
+          "title": "Redesign a confusing first-time experience as a flow diagram that teaches three controls through play without a text tutorial"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Analysing and iterating on playtests",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Summarise two playtest rounds in a table of observations, causes, changes and results.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Sort 15 playtest observations into symptoms and causes, rank them by impact and choose the three changes to make first"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Evaluate a remote playtest on phones with telemetry data in a scored scenario, choose the cause of drop-off at level 3, and recommend a change"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E9",
+          "title": "Document a prototype's change between two playtest rounds in a before and after diagram of its flow and a table of what each change fixed"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Serious games and learning outcomes",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write a learning-outcome map for a game teaching savings, linking each mechanic to an outcome and a measure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Judge whether points and badges help in four gamification scenarios and justify each judgement against learner motivation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Map the learning outcomes of a fractions game to its mechanics and mark where content and play are intrinsically integrated or separate"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Design in-game feedback, scaffolding and an assessment check for a literacy game and score it on whether learning could be measured"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Learning game project",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Write the project design document and playtest report outline for your learning game, with the audience, outcomes and test plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Analyse a susu savings game as a case study, identify what it teaches and where it fails to, and score it with the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E9",
+          "title": "Adapt a game flow for a classroom with one shared device per group of six and plan turn-taking, roles and offline fallback"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E9",
+          "title": "Produce the design diagrams for a browser game about local history: core loop, level or scene flow, learning outcomes and feedback points"
+        }
+      ]
+    }
   ]
 }

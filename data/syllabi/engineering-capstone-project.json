@@ -1,0 +1,505 @@
+{
+  "slug": "engineering-capstone-project",
+  "description": "A team capstone in which students take an embedded, robotic or communications system from client need to a demonstrated prototype. They draw the architecture, build and wire the hardware and firmware in the lab, plan and test the system, and defend their decisions in design reviews.",
+  "modelledOn": [
+    "Dieter and Schmidt, Engineering Design",
+    "Barr and Massa, Programming Embedded Systems",
+    "ISO/IEC/IEEE 15288, Systems and software engineering: System life cycle processes",
+    "Project Management Institute, A Guide to the Project Management Body of Knowledge"
+  ],
+  "outcomes": [
+    "Convert a stakeholder need into measurable requirements, a feasibility case and a project proposal.",
+    "Decompose a system into hardware, firmware and software blocks and specify every interface between them.",
+    "Build, wire and integrate a working prototype in stages, debugging faults with measurement tools.",
+    "Plan and execute verification against traceable requirements and report results with stated uncertainty.",
+    "Plan and track a project with a work breakdown structure, Gantt chart, critical path, budget and risk register.",
+    "Present and defend design decisions, safety and ethical judgements in a review and a final demonstration."
+  ],
+  "units": [
+    {
+      "title": "Project proposal and requirements",
+      "weeks": "1-2",
+      "topics": [
+        "Choosing a problem: stakeholder interviews and needs analysis (cold-chain monitoring, solar pumping, rural connectivity, farm robotics)",
+        "Requirements: functional and non-functional, MoSCoW priority and a traceability matrix",
+        "Feasibility: technical, economic and schedule checks and a first risk register",
+        "Prior-art and standards search: what exists, what can be reused, what must be respected",
+        "Writing the proposal: problem statement, objectives, deliverables and success criteria"
+      ]
+    },
+    {
+      "title": "System architecture and interface specification",
+      "weeks": "3-4",
+      "topics": [
+        "Functional decomposition and block diagrams across hardware, firmware and software",
+        "Hardware and software partitioning: choosing a microcontroller or single-board computer, sensors, actuators and radios",
+        "Interface specification: signal levels, pin maps and protocols (UART, SPI, I2C, CAN, MQTT) and data formats",
+        "Power budget, timing budget and memory budget",
+        "Interface control documents and change control",
+        "Architecture trade study with a weighted decision matrix"
+      ]
+    },
+    {
+      "title": "Hardware design and prototyping",
+      "weeks": "5-6",
+      "topics": [
+        "Schematic capture, component selection and the bill of materials",
+        "Breadboard to perfboard to PCB: grounding, decoupling, layout and electromagnetic compatibility",
+        "Sensor and actuator interfacing: ADC, PWM, H-bridges and signal conditioning",
+        "Power supplies, batteries and solar charging; protection against reverse polarity, overcurrent and surges",
+        "Enclosure and environment: heat, dust, humidity and vibration in West African conditions"
+      ]
+    },
+    {
+      "title": "Firmware and system integration",
+      "weeks": "7-8",
+      "topics": [
+        "Firmware architecture: super-loop, interrupt-driven design and RTOS tasks",
+        "Drivers and the hardware abstraction layer; unit-testable firmware",
+        "Communication stack: MQTT over GSM or Wi-Fi, LoRa links and over-the-air updates",
+        "Incremental integration: bottom-up builds, stubs and mocks, hardware-in-the-loop",
+        "Debugging toolkit: logic analyser, serial trace, watchdogs and fault injection"
+      ]
+    },
+    {
+      "title": "Verification and test planning",
+      "weeks": "9",
+      "topics": [
+        "Test strategy: V-model, unit, integration, system and acceptance tests",
+        "Test cases traced to requirements with pass/fail criteria",
+        "Measurement uncertainty, calibration and data logging",
+        "Reliability: burn-in, failure modes and effects analysis and mean time between failures",
+        "Planning a field trial and a data-collection protocol"
+      ]
+    },
+    {
+      "title": "Project management and Gantt planning",
+      "weeks": "10",
+      "topics": [
+        "Work breakdown structure, Gantt charts and the critical path",
+        "Agile for hardware: sprints, milestones and prototype iterations",
+        "Budget, procurement lead times and supply-chain risk",
+        "Team roles, version control, issue tracking and documentation habits",
+        "Risk monitoring, earned value and re-planning after a slip"
+      ]
+    },
+    {
+      "title": "Design review, safety and ethics",
+      "weeks": "11",
+      "topics": [
+        "Preliminary and critical design reviews: what evidence a panel expects",
+        "Safety: electrical, battery, mechanical and radio-frequency exposure; applying standards",
+        "Professional ethics and codes of conduct; engineering responsibility when a design fails",
+        "Environmental impact, e-waste and sustainability",
+        "Regulation and licensing: spectrum, type approval and data protection",
+        "Intellectual property and open hardware and software licences"
+      ]
+    },
+    {
+      "title": "Final demonstration and report",
+      "weeks": "12-13",
+      "topics": [
+        "Demonstration plan, script and rehearsal with a fallback",
+        "Technical report structure, figures, tables and references",
+        "Poster and oral presentation for technical and non-technical audiences",
+        "Evaluation against requirements, lessons learned and future work",
+        "Handover package: user manual, maintenance guide and source repository"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Finding the problem",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Interview a (role-played) clinic manager or farmer about a monitoring problem, then write ten requirements, classify them functional or non-functional and rank them with MoSCoW.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Run a stakeholder interview scenario for a vaccine cold-chain problem, choose the questions that expose real needs, and score the notes gathered"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Build a requirements traceability table for ten requirements linking each to a stakeholder need and a planned verification method"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Resolve a scenario where two stakeholders give conflicting requirements for a solar pump controller and justify your prioritisation against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Feasibility and the proposal",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a three-page proposal with a problem statement, objectives, deliverables, success criteria, a literature and standards list, a feasibility argument and a risk register of eight risks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Create a risk register for a capstone with eight risks scored by likelihood and impact, each with an owner and a mitigation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Review a prior-art scenario with three existing products and decide what to reuse, what to build and what standard constrains the design"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Critique a flawed project proposal against a rubric covering objectives, measurable success criteria and feasibility, and rewrite its weakest section"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "From needs to architecture",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw a block diagram for your project that splits the system into hardware, firmware and software blocks, assign a microcontroller and write the interface table for every connection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E9",
+          "title": "Draw a block diagram of a soil-moisture irrigation controller with sensor, controller, valve driver, radio and power blocks, labelling every signal between them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E8",
+          "title": "Wire an Arduino to an I2C temperature sensor and an SPI display, record the pin map and verify readings against the written interface table"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E8",
+          "title": "Choose between an AVR board and a Raspberry Pi for a camera-based counter, justify with pin, speed, power and cost data, and prototype the choice"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Budgets, interfaces and trade studies",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Produce a power budget and timing budget for the design, an interface control document with version numbers, and a weighted decision matrix for one major component choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Measure the current draw of a sensor node in active and sleep states and compute battery life for a 2000 mAh cell"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E9",
+          "title": "Write an interface control document entry for an MQTT topic tree including payload fields, units, rates and a version number"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Score three radio options (GSM, LoRa, Wi-Fi) for a rural monitoring site in a trade-study scenario and defend the weighted decision before a panel"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Schematics, parts and prototypes",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Capture a schematic for the sensor and driver stage, produce a bill of materials with two suppliers per part and build the stage on a breadboard, then compare the measurement with the design values.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Draw a schematic block with a sensor, op-amp stage and ADC input, and generate a bill of materials with part numbers, quantities and unit costs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E8",
+          "title": "Drive a DC motor through an H-bridge with PWM from an Arduino and measure speed against duty cycle at five settings"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E8",
+          "title": "Diagnose a noisy analogue sensor reading in a prototype, apply decoupling and a filter, and show with logged samples that noise is reduced"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Power, protection and the physical product",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Design a solar and battery supply for a field node: size the panel and battery for three cloudy days, add reverse-polarity and overcurrent protection and sketch an enclosure for dust and humidity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E8",
+          "title": "Size a solar panel and battery for a node drawing 120 mA average, check the daily energy balance and test a regulator under load"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E8",
+          "title": "Add a fuse and a reverse-polarity diode to a power rail, then inject a fault and verify the protection limits current as designed"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Work through an environment scenario of a failed unit returned from a humid site, choose the root cause from evidence and specify a design change"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Firmware architecture and drivers",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Structure the firmware as drivers, a hardware abstraction layer and an application layer, and write a telemetry loop that publishes sensor readings over MQTT.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E8",
+          "title": "Convert a blocking super-loop sensor program to an interrupt-driven design that samples at 10 Hz, and verify the timing on the serial trace"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E8",
+          "title": "Write a sensor driver behind a small interface, then swap in a mock driver so the application logic runs without hardware"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E8",
+          "title": "Publish temperature readings from a Raspberry Pi to an MQTT broker with a retained status message and a last-will message, and check delivery"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Integration and debugging",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Integrate sensors, actuator and communications in three increments, logging what broke at each step, and fix one injected fault using a logic analyser or serial trace.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E8",
+          "title": "Integrate a sensor, a relay and an MQTT link in stages, with a passing check recorded after each stage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E8",
+          "title": "Find an intentionally wrong I2C address and a swapped SPI clock phase in a given sketch using the trace view and fix both"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E4",
+          "title": "Use a terminal on a Linux gateway to read the serial log, filter the faulty messages and add a watchdog that restarts the service on failure"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Verification and test planning",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a test plan with at least fifteen test cases traced to requirements, include calibration and uncertainty for one measurement, and plan a failure modes and effects analysis for the five riskiest parts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Build a test matrix of ten test cases that each trace to a requirement, with inputs, expected results and pass/fail criteria"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E8",
+          "title": "Calibrate a temperature sensor against two reference points, fit the correction, and state the measurement uncertainty from ten repeated readings"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Perform a failure modes and effects analysis in a scenario for a battery-powered sensor, ranking failures by risk priority and proposing controls"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Planning, scheduling and risk",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Build a work breakdown structure and a Gantt chart for the remaining weeks, mark the critical path, set a budget with lead times and reschedule after a two-week part delay.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Draw a Gantt chart from a work breakdown structure of 15 tasks with dependencies and highlight the critical path and total float"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E9",
+          "title": "Re-plan a project after a component with a three-week lead time arrives late and report the new finish date and the tasks that moved"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Handle a management scenario with budget overrun and a team member leaving, choosing re-planning options and scoring against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Design reviews, safety and ethics",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Hold a mock critical design review: present the design, evidence and open risks to a panel, then write a safety and ethics statement covering batteries, radio exposure, e-waste and licensing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Present a design review scenario, choose the evidence that answers the panel's five questions and decide whether to proceed to build"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Assess the safety case for a lithium battery pack in a scenario and select protections required by the relevant standard"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Resolve an ethics case in which a client asks to hide a known calibration defect, scoring each decision against a professional code"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Demonstration and report",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Rehearse the final demonstration with a fallback plan, draft the report outline with figures and tables, and prepare a one-page poster for a non-technical audience.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E8",
+          "title": "Run the demonstration script end to end on the prototype three times, record failures and add a recovery step for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Produce the system architecture figure and the Gantt summary figure for the report with consistent labels and captions"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Deliver an oral presentation scenario to a mixed panel and choose how to explain a failed test honestly, scored on clarity and candour"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Evaluation and handover",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Evaluate the prototype against every requirement in a results table, write lessons learned and future work, and assemble the handover package with a user manual and repository.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E9",
+          "title": "Fill in a requirements compliance table marking each requirement met, partly met or not met with the evidence reference"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Run a retrospective scenario, sort what went well and what failed, and propose three changes ranked by effect on the next team"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E4",
+          "title": "Prepare a handover repository with a README, a tagged release and a clear build and flash procedure, and test it on a clean machine"
+        }
+      ]
+    }
+  ]
+}

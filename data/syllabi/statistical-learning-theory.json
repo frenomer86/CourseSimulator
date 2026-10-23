@@ -1,0 +1,535 @@
+{
+  "slug": "statistical-learning-theory",
+  "description": "A doctoral research seminar on why learning algorithms generalise: PAC and VC theory, Rademacher and PAC-Bayes bounds, online learning, boosting, active and semi-supervised learning, differential privacy and over-parameterised models. Students prove core results, test bounds numerically against simulated learners, critique recent papers and write a research proposal on an open problem.",
+  "modelledOn": [
+    "Shalev-Shwartz and Ben-David, Understanding Machine Learning: From Theory to Algorithms",
+    "Mohri, Rostamizadeh and Talwalkar, Foundations of Machine Learning",
+    "Vershynin, High-Dimensional Probability",
+    "Dwork and Roth, The Algorithmic Foundations of Differential Privacy"
+  ],
+  "outcomes": [
+    "Prove sample-complexity and generalisation bounds using concentration inequalities, VC dimension and Rademacher complexity.",
+    "Analyse online learning algorithms through regret and mistake bounds, and relate online guarantees to statistical ones.",
+    "Explain boosting, active learning and semi-supervised learning through margin and label-complexity arguments.",
+    "Design and analyse differentially private learning mechanisms and quantify the accuracy cost of privacy.",
+    "Critique recent theoretical work on over-parameterised models, identifying which assumptions and bounds do and do not explain observed behaviour.",
+    "Formulate an open problem and write a research proposal with a precise question, related work, approach and evaluation plan."
+  ],
+  "units": [
+    {
+      "title": "The learning problem and concentration",
+      "weeks": "1",
+      "topics": [
+        "Empirical risk minimisation, true risk, hypothesis classes and the realisable and agnostic settings",
+        "No-free-lunch theorem and the approximation-estimation trade-off",
+        "Concentration inequalities: Hoeffding, Bernstein and McDiarmid bounded differences",
+        "Uniform convergence for finite classes by the union bound",
+        "Surrogate losses and classification calibration",
+        "Bayes-optimal predictors and statistical consistency"
+      ]
+    },
+    {
+      "title": "PAC learning and VC theory",
+      "weeks": "2-3",
+      "topics": [
+        "PAC and agnostic PAC learning; sample complexity definitions",
+        "Growth function, Sauer-Shelah lemma and VC dimension",
+        "Fundamental theorem of statistical learning: equivalence of learnability, uniform convergence and finite VC dimension",
+        "VC dimension of halfspaces, polynomial thresholds and neural networks",
+        "Lower bounds on sample complexity and the no-free-lunch argument",
+        "Computational complexity of learning: proper versus improper learning and hardness results"
+      ]
+    },
+    {
+      "title": "Rademacher complexity and generalisation bounds",
+      "weeks": "4-5",
+      "topics": [
+        "Rademacher complexity, symmetrisation and generalisation bounds",
+        "Contraction lemma and bounds for linear classes with norm constraints",
+        "Margin bounds for support vector machines and kernel methods",
+        "Covering numbers, Dudley's entropy integral and chaining",
+        "Algorithmic stability and generalisation of regularised ERM",
+        "PAC-Bayes bounds and their use for non-vacuous bounds on learned models",
+        "Data-dependent and local complexity bounds; fast rates"
+      ]
+    },
+    {
+      "title": "Online learning and regret",
+      "weeks": "6",
+      "topics": [
+        "The online protocol; mistake bounds, the Halving algorithm and Littlestone dimension",
+        "Perceptron mistake bound and online-to-batch conversion",
+        "Experts, weighted majority and Hedge",
+        "Online convex optimisation: online gradient descent and regret of order square root of T",
+        "Multi-armed and contextual bandits: UCB and EXP3",
+        "Adversarial versus stochastic settings; best-of-both-worlds algorithms"
+      ]
+    },
+    {
+      "title": "Boosting and margin theory",
+      "weeks": "7",
+      "topics": [
+        "Weak learnability and the boosting question",
+        "AdaBoost: algorithm, training-error bound and the role of weak-learner edge",
+        "Margin explanation of generalisation and its criticisms",
+        "Boosting as coordinate descent and functional gradient descent; relation to support vector machines",
+        "Boosting under noise: convex and non-convex losses and robustness"
+      ]
+    },
+    {
+      "title": "Active, semi-supervised and transfer learning theory",
+      "weeks": "8-9",
+      "topics": [
+        "Active learning: label complexity, disagreement coefficient and exponential savings",
+        "Query by committee and margin-based active learning",
+        "Semi-supervised learning: cluster and manifold assumptions, and when unlabelled data provably helps",
+        "Co-training and multi-view learning",
+        "Domain adaptation: discrepancy distances and generalisation bounds under shift",
+        "Learning with few labels in low-resource settings: transfer, weak supervision and what theory says about it"
+      ]
+    },
+    {
+      "title": "Differential privacy",
+      "weeks": "10",
+      "topics": [
+        "Definition of pure and approximate differential privacy; post-processing and group privacy",
+        "Laplace, Gaussian and exponential mechanisms",
+        "Composition: basic and advanced composition, and privacy accounting",
+        "Private empirical risk minimisation and DP-SGD; the sample-complexity cost of privacy",
+        "Privacy and generalisation: adaptive data analysis and the reusable holdout",
+        "Privacy for health and mobile data: local differential privacy and federated analytics"
+      ]
+    },
+    {
+      "title": "Theory of over-parameterised models",
+      "weeks": "11-12",
+      "topics": [
+        "Classical bias-variance versus double descent; interpolation and the failure of classical bounds",
+        "Benign overfitting in linear regression and minimum-norm interpolation",
+        "Implicit bias of gradient descent: convergence to the maximum-margin solution",
+        "Neural tangent kernel, lazy training and the limits of the kernel regime",
+        "Feature learning and mean-field analysis of two-layer networks",
+        "PAC-Bayes and compression-based bounds for deep networks",
+        "Limits of uniform convergence and stability explanations; open debates"
+      ]
+    },
+    {
+      "title": "Research frontiers and proposal",
+      "weeks": "13",
+      "topics": [
+        "Reading a theory paper critically: assumptions, constants, tightness and empirical relevance",
+        "Scaling behaviour of generalisation and sample complexity in modern learning systems",
+        "Robust learning, calibration and uncertainty: theoretical guarantees and gaps",
+        "Open problems in the course and ways to formulate them as precise questions",
+        "Proposal workshop: structure, related work, preliminary results and evaluation plan"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The learning problem, concentration and finite classes",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Prove the finite-class generalisation bound using Hoeffding and the union bound, then discuss in a one-page note why no learner is universally best and how surrogate losses relate to the 0-1 loss.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Estimate by simulation how often an empirical mean of bounded variables deviates by more than epsilon, and compare with the Hoeffding and Bernstein bounds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Run ERM on a finite class of 50 thresholds for training sizes 10 to 1000, and plot the generalisation gap against the finite-class bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Compare the 0-1, hinge, logistic and exponential losses as functions of margin, and check classification calibration numerically for each"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "PAC learning and VC dimension",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Show that intervals on the line have VC dimension 2, derive the growth function bound, and sketch the proof that finite VC dimension implies uniform convergence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Compute the growth function for thresholds and intervals on the line for sample sizes 1 to 10, and compare it with the Sauer-Shelah bound"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Shatter-test axis-aligned rectangles in the plane by brute force on 3, 4 and 5 points and confirm the VC dimension is 4"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute the sample size from the VC bound for target error 0.05 and confidence 0.95 across VC dimensions 5 to 50, and plot how it scales"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "VC dimension of common classes and lower bounds",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Prove that halfspaces in d dimensions have VC dimension d + 1, discuss a lower-bound argument, and critique a paper on the hardness of improper learning.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Verify that halfspaces in the plane shatter 3 points but not 4 by enumerating labelings and testing linear separability of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Construct a hard distribution for a class with VC dimension d, estimate the error of ERM across sample sizes, and show the lower-bound rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Review a recent hardness-of-learning paper in a seminar case file, identify its assumptions, and judge what it implies for practical learners"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Rademacher complexity and linear classes",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Prove the Rademacher bound via symmetrisation, derive the complexity of norm-bounded linear classes, and compare the resulting margin bound with the VC bound.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Estimate the empirical Rademacher complexity of a class of thresholds and a class of linear predictors by Monte Carlo with 2000 sign draws"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute the Rademacher bound for linear classes with bounded weight norm for various data radii, and plot it against sample size"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Train a support vector machine on 5 datasets, compute the margin bound, and compare it with the observed test error in a table"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Chaining, stability and PAC-Bayes",
+      "topics": [
+        "3.5",
+        "3.6",
+        "3.7"
+      ],
+      "exercise": "Compare uniform-convergence, stability and PAC-Bayes explanations of generalisation, and evaluate whether a published bound for a trained network is non-vacuous.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Measure the leave-one-out stability of ridge regression as the regulariser varies, and compare the gap to the stability bound"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Compute a PAC-Bayes bound for a Gaussian posterior around a trained linear classifier and tune the prior variance to tighten it"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.7",
+          "engine": "E10",
+          "title": "Critique a paper claiming a tight bound for deep networks in a seminar case file, listing assumptions, constants and where the bound could break"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Online learning and regret",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Prove the regret bound of Hedge and online gradient descent, convert an online learner into a batch learner, and compare UCB and EXP3 on stochastic and adversarial bandit instances.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Run Hedge against experts with different loss patterns, plot regret against T, and compare it with the square-root bound"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute online gradient descent regret on a convex loss sequence for several step sizes, and find the step size that minimises the bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Compare UCB and EXP3 on a stochastic bandit and on an adversarial schedule, plotting cumulative regret over 10,000 rounds for each"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Boosting and margins",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Prove the AdaBoost training-error bound, discuss the margin explanation of its resistance to overfitting and the objections to it, and relate boosting to coordinate descent on exponential loss.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Step through five rounds of AdaBoost with decision stumps, showing sample weights, weak-learner error and the combined classifier each round"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Run AdaBoost for 500 rounds, plot training error, test error and the margin distribution, and relate changes in margins to test error"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Add label noise of 5 and 20 percent to a dataset, compare AdaBoost with logistic-loss boosting, and explain the difference in robustness"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Active and semi-supervised learning",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Show an exponential label saving for active learning of thresholds, then state the assumptions under which unlabelled data provably helps and give a counterexample.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Compare active learning of a threshold by binary search with passive learning, and plot label count against target error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement margin-based active learning for linear separators on 2D data, and compare labels needed with random sampling"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compare a supervised classifier with a cluster-assumption semi-supervised one on two datasets, one satisfying the assumption and one violating it"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Domain adaptation and learning with few labels",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Derive a domain-adaptation bound with a discrepancy term, and write a critique of a paper that claims transfer learning helps in a low-resource African language setting.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Estimate the discrepancy between source and target distributions on a simulated shift, and compare it with the target-error increase of a trained classifier"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Train a classifier on a source distribution, evaluate it on shifted targets, and test whether importance weighting reduces the gap"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Evaluate in a seminar case file a weak-supervision approach for a low-resource language, deciding what theory can promise and what it cannot"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Differential privacy",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Prove that the Laplace mechanism satisfies epsilon-differential privacy, compose three queries under basic and advanced composition, and analyse the accuracy cost of DP-SGD.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Apply the Laplace mechanism to a counting query across epsilon values 0.1 to 5, and plot expected error against the privacy budget"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Compute total privacy loss after 100 queries under basic and advanced composition and find when advanced composition gives a tighter bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Train a classifier with DP-SGD using clipping and noise, and plot test accuracy against epsilon on a health-style dataset"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Classical and modern generalisation",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Reproduce the double-descent curve in a random-features regression, explain benign overfitting for minimum-norm interpolation, and show gradient descent finds the maximum-margin separator.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Fit random-features regression for feature counts from 10 to 500 on 100 samples and plot test error to reveal double descent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Run gradient descent on logistic loss on separable data, track the direction of the weights, and show it converges to the max-margin direction"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Compute the neural tangent kernel of a small two-layer network at initialisation and compare kernel regression with the trained network"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Feature learning, deep-network bounds and open debates",
+      "topics": [
+        "8.5",
+        "8.6",
+        "8.7"
+      ],
+      "exercise": "Compare feature-learning and kernel regimes for a two-layer network, discuss why uniform convergence may fail for deep models, and prepare a paper-critique seminar presentation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E6",
+          "title": "Train a two-layer network at large and small width, and compare how far the hidden features move from initialisation in each regime"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Compute a compression-based or PAC-Bayes bound for a trained small network, and report whether it is non-vacuous against the observed error"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.7",
+          "engine": "E10",
+          "title": "Present and defend a critique of a recent paper on generalisation of deep networks in a seminar case file against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Open problems and proposal workshop",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Choose an open problem from the course, write a two-page research proposal with a precise question, related work, approach, preliminary experiment and evaluation plan, and present it for review.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Review a theory paper for a mock conference in a case file, assessing assumptions, constants and tightness, and recommend accept or reject"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Run a small experiment testing whether a published guarantee on calibration or robustness holds on a simulated task, and report the gap"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E7",
+          "title": "Plot a preliminary result from your proposal, such as a bound versus empirical curve, and write the caption and claim it supports"
+        }
+      ]
+    }
+  ]
+}

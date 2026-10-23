@@ -1,0 +1,507 @@
+{
+  "slug": "data-governance-and-information-management",
+  "description": "How organisations make data trustworthy, lawful and useful: governance structures, master data, quality, privacy law, records, metadata and the oversight of analytics models. Students work SQL profiling and lineage exercises in the database engine and decide governance cases in the scenario engine.",
+  "modelledOn": [
+    "DAMA International, DAMA-DMBOK: Data Management Body of Knowledge",
+    "Ladley, Data Governance: How to Design, Deploy and Sustain an Effective Data Governance Program",
+    "ISO 8000 data quality and ISO 15489 records management standards"
+  ],
+  "outcomes": [
+    "Design a data governance operating model with defined roles, policies, decision rights and maturity measures.",
+    "Apply master data and entity resolution techniques to build a golden record from conflicting sources.",
+    "Profile, measure and improve data quality with SQL rules, lineage tracing and issue management.",
+    "Assess a processing activity against the Ghanaian Data Protection Act and comparable African and international laws.",
+    "Build records retention, metadata catalogue and model risk controls proportionate to the risk of a dataset."
+  ],
+  "units": [
+    {
+      "title": "Data governance frameworks and roles",
+      "weeks": "1-2",
+      "topics": [
+        "Data as an asset: value, cost, risk and the knowledge areas of data management",
+        "Governance operating models: centralised, federated and hybrid",
+        "Roles: data owner, steward, custodian, protection officer and the governance council",
+        "Policies, standards, controls and decision rights; RACI charts",
+        "Maturity models and governance metrics",
+        "Data strategy and the business case for governance"
+      ]
+    },
+    {
+      "title": "Master and reference data management",
+      "weeks": "3",
+      "topics": [
+        "MDM implementation styles: registry, consolidation, coexistence and centralised hub",
+        "Golden records: matching rules and survivorship",
+        "Entity resolution: blocking, fuzzy string matching and thresholds",
+        "Reference data, code lists and hierarchies",
+        "National and organisational identifiers as master keys: lessons from national ID and health ID systems"
+      ]
+    },
+    {
+      "title": "Data quality and lineage",
+      "weeks": "4-5",
+      "topics": [
+        "Data quality dimensions: accuracy, completeness, consistency, timeliness, uniqueness and validity",
+        "Data profiling with SQL: null rates, distinct counts, patterns and outliers",
+        "Quality rules, constraints and validation at the point of entry",
+        "Cleansing and deduplication workflows",
+        "Lineage: table-level and column-level lineage, impact analysis",
+        "Quality KPIs, issue management and root cause analysis"
+      ]
+    },
+    {
+      "title": "Privacy and data protection law",
+      "weeks": "6-7",
+      "topics": [
+        "Privacy principles: purpose limitation, minimisation, accuracy, storage limitation and accountability",
+        "Ghana's Data Protection Act and its regulator, compared with laws in Nigeria, Kenya, South Africa, the continental convention and the EU GDPR",
+        "Lawful basis, consent and data subject rights",
+        "Privacy impact assessments and privacy by design",
+        "De-identification: pseudonymisation, k-anonymity and the idea of differential privacy",
+        "Cross-border transfers and breach notification duties"
+      ]
+    },
+    {
+      "title": "Records and lifecycle management",
+      "weeks": "8",
+      "topics": [
+        "The data and information lifecycle from creation to disposal",
+        "Retention schedules, legal holds and regulatory minimums",
+        "Archiving, disposal and secure deletion",
+        "Records management principles and digital preservation",
+        "Storage tiers, backup versus archive and cost of keeping data"
+      ]
+    },
+    {
+      "title": "Metadata and data catalogues",
+      "weeks": "9-10",
+      "topics": [
+        "Business, technical and operational metadata",
+        "Data dictionaries and business glossaries",
+        "Catalogue architecture: harvesting, search and stewardship workflow",
+        "Classification and tagging by sensitivity",
+        "Metadata standards: Dublin Core, DCAT and the FAIR principles",
+        "Querying the database information schema to build a catalogue"
+      ]
+    },
+    {
+      "title": "Analytics governance and model risk",
+      "weeks": "11-12",
+      "topics": [
+        "Governing the analytics lifecycle: approval, deployment and monitoring",
+        "Model inventories, tiering and independent validation",
+        "Bias and fairness audits of automated decisions such as credit scoring",
+        "Explainability and documentation: model cards and datasheets for datasets",
+        "Responsible AI policy and emerging regulation",
+        "Data sharing agreements, open data and third-party data"
+      ]
+    },
+    {
+      "title": "Governance programme in practice",
+      "weeks": "13",
+      "topics": [
+        "Designing a governance programme for a bank, a hospital or a ministry",
+        "Access control and security classification: RBAC, ABAC and least privilege",
+        "Audit, compliance monitoring and regulator engagement",
+        "Roadmap, quick wins and presenting to an executive board"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why govern data, and who decides",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Estimate the annual cost of poor data in a mid-size bank from duplicated customers and failed mobile money reconciliations, and propose who in the organisation should own customer data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Assign data owner, steward and custodian roles to six people in a hospital scenario and justify each assignment"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Choose centralised, federated or hybrid governance for a large college with five faculties and defend the trade-offs"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E5",
+          "title": "Query a sample bank database to count duplicate customers and failed reconciliations and convert the numbers into an annual cost of poor data"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Policies, maturity and strategy",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Write a RACI chart for approving a new data field, assess an organisation on a five-level maturity model, and draft a one-page case for a governance programme.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Complete a RACI chart for a data-access request from a sample process and spot where no one is accountable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Rate an organisation on six governance capabilities from interview evidence and plot a maturity profile with the biggest gaps first"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Select governance initiatives within a limited budget in a case, estimate benefit and cost for each, and argue the portfolio to the board"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Master data and entity resolution",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Merge three customer lists from a bank, a telecom and a retailer into one golden record per person, defining match rules, survivorship rules and a review band for uncertain matches.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Create a reference table of region codes, join it to a transactions table, and list rows with invalid or retired codes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E5",
+          "title": "Write SQL that groups customer records by normalised name and phone, picks a surviving record per group, and counts merged rows"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E5",
+          "title": "Match 200 messy customer records using blocking and a similarity threshold, then compute precision and recall against the true links"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Quality dimensions, profiling and rules",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Profile a patient registration table for completeness, validity and uniqueness, write ten quality rules in SQL, and report the failing percentage for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E5",
+          "title": "Profile a customer table for null rates, distinct counts and value patterns on every column and summarise the findings"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E5",
+          "title": "Write constraints and ten SQL checks for a patient table, then run them and report the percentage of failing rows per rule"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E5",
+          "title": "Map each of six data quality problems in a sample dataset to a dimension and compute a weighted overall quality score"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Cleansing, lineage and quality management",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Trace a wrong revenue figure on a dashboard back through three transformations to its source, and set up a quality KPI with threshold and escalation path.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E5",
+          "title": "Remove duplicate rows from a contacts table with SQL, keeping the most recent per person, and show counts before and after"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E9",
+          "title": "Draw column-level lineage for a dashboard figure through three SQL views and mark the transformation that introduced the error"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Work a quality incident case: find the root cause across three systems, assign a fix owner, and define the KPI that proves the fix"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Privacy principles and the legal landscape",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compare how the Ghanaian law and the EU regulation treat consent and data subject rights, and decide which lawful basis fits a clinic sending appointment reminders.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Match ten data practices in a loan app to the privacy principle each violates or satisfies, with a reason for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Handle a data subject access request in a case: verify the person, find the data across systems, and respond within the deadline"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Advise a fintech operating in Ghana and Kenya on which obligations differ between the two laws, scoring your advice against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Privacy by design, de-identification and breaches",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Run a privacy impact assessment for a school-attendance app, de-identify a sample table, check k-anonymity, and draft a breach notification timeline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E5",
+          "title": "Replace names and phone numbers in a table with pseudonyms, keep a separate mapping table, and confirm joins still work"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E5",
+          "title": "Generalise age and postcode in a health table until every combination appears at least 5 times and report the information lost"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Manage a data breach case: contain, assess harm, decide whom to notify and when, and justify the cross-border transfer questions"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Records, retention and disposal",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Draft a retention schedule for six record types in a hospital, decide how a legal hold suspends deletion, and estimate the storage saved by archiving and disposal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Assign retention periods to eight record types from a given regulatory table and explain the trigger for each period"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E5",
+          "title": "Write SQL that flags rows past their retention date, excludes those under legal hold, and moves the rest to an archive table"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Compare the five-year cost of keeping all data online versus tiering by age, and judge the saving against retrieval delays"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Metadata, dictionaries and catalogues",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Create a business glossary entry and data dictionary rows for five fields, and sketch a catalogue workflow that keeps stewards' descriptions current.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E5",
+          "title": "Write dictionary entries for the columns of a loans table with definition, type, owner and sample values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E5",
+          "title": "Query the information schema to list every table and column with its type and nullability and store the result as a catalogue table"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E9",
+          "title": "Design a catalogue architecture showing harvesting, search, stewardship workflow and lineage, and mark where manual effort remains"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Classification and metadata standards",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Classify twenty columns by sensitivity, describe a public health dataset with DCAT fields, and score it against the four FAIR principles.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E5",
+          "title": "Tag columns in a sample database as public, internal, confidential or restricted using name patterns and review the misses"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E5",
+          "title": "Build a catalogue view showing each table's columns with sensitivity class and steward, then query for all restricted columns"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Score a published dataset against FAIR criteria, list what is missing in its metadata, and write the fixes in priority order"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Governing analytics and model risk",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Tier five models in a lender's inventory by impact, set validation requirements for each tier, and compute approval-rate gaps for a credit score across two groups.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Place six models in risk tiers by decision impact and data sensitivity and list the validation each tier needs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Approve or reject a model release in a case by checking its documentation, validation results and monitoring plan"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E5",
+          "title": "Compute approval rates and false negative rates by group for a scored loan table and judge whether a disparity needs action"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Documenting models, responsible AI and data sharing",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a model card and dataset datasheet for a clinic-triage model, and draft the clauses of a data sharing agreement with a research partner.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Fill in a model card from given facts about purpose, data, metrics and limits, and mark what is still unknown"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Choose the clauses for a data sharing agreement between a hospital and a research team from a clause bank, with justification"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Rule on a request to deploy a face-matching system in a case, weighing responsible AI policy, law, benefits and risks"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Programme design, access control and audit",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a twelve-month governance roadmap for a regional hospital group, showing quick wins, owners, access rules and how compliance will be audited.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E5",
+          "title": "Create roles and grant read access so a nurse sees only her ward's patients, then test with queries as each role"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E5",
+          "title": "Query an access log table to find users who read records outside their role and summarise the findings for an auditor"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Design and defend a governance roadmap for a bank in a scenario, balancing quick wins, regulator deadlines and limited staff"
+        }
+      ]
+    }
+  ]
+}

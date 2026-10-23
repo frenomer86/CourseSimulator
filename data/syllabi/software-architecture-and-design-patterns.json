@@ -97,7 +97,7 @@
     },
     {
       "title": "Documenting and evaluating architecture",
-      "weeks": "13-14",
+      "weeks": "13",
       "topics": [
         "Views and viewpoints: the 4+1 view model and the C4 model",
         "Architecture decision records and documenting rationale",
@@ -105,6 +105,403 @@
         "Architecture fitness functions and conformance checking in code",
         "Technical debt and architectural erosion",
         "Capstone: design, document and evaluate the architecture for a city transport and fare-payment platform"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Modularity and SOLID",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Pick a class from any program you have written and list which SOLID principles it follows and breaks, with one improvement for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw a module diagram of a school fees system and mark the coupling between modules as low, medium or high, with a reason for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Refactor a notification class that sends SMS, email and logs to separate classes that follow single responsibility and dependency inversion, and test them"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Replace an inheritance hierarchy of seven report classes with composition, remove duplicated code and check that all old outputs still match"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Design notation and refactoring",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Read a 60-line code listing and list five code smells you can see with a suggested refactoring for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Draw a class diagram and a sequence diagram for a customer withdrawing cash from an agent, using correct notation for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Find and remove four code smells in a given order-processing module using small refactorings, running the tests after each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Refactor a long conditional-heavy function towards the Strategy pattern, proving with tests that behaviour is unchanged and a new case needs no edits"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Creational patterns",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write a table listing each creational pattern, the problem it solves and a one-line example from a payments or transport application.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Implement a factory method that creates mobile money provider objects by name, and test it with three providers and one unknown name"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Use the builder pattern to create a complex report configuration with optional fields, and compare the clarity with a constructor with ten arguments"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Replace a singleton configuration class with dependency injection, then show how a test can supply a fake configuration without global state"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Structural patterns I: adapter, facade, proxy, decorator",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain with an example how a proxy and a decorator differ when both wrap an object with the same interface.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Wrap two incompatible mobile money APIs behind one payment interface using adapters and run the same checkout code against both"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Add a caching proxy in front of a slow exchange-rate service, and show with a call counter that repeated lookups hit the cache"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Stack logging, retry and caching decorators on a payment gateway client in different orders, and show how the order changes behaviour on failures"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Structural patterns II: composite, bridge, flyweight",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compare the adapter, decorator, proxy and facade patterns in a table by intent, structure and when to prefer each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Model a company organisation chart as a composite tree and draw the class diagram showing leaf and composite roles"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Use the bridge pattern to separate message types from delivery channels, then add a new channel without touching message classes"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Apply flyweight to a map with 50000 markers for a low-end phone, measure the memory saved against the naive version and state the trade-off"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Behavioural patterns I",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a short design note on how a ride fare calculator can change pricing rules without redeploying the application.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Implement pluggable fare rules for tro-tro routes with Strategy, adding a student discount rule and testing three journeys"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Build an observer system where a ticket booking notifies SMS and dashboard subscribers, and show that unsubscribing stops updates"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Add undo and redo to a text editor with command and memento, and validate it on a script of 15 edits"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Behavioural patterns II and anti-patterns",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Review a given piece of code that uses five patterns and say which ones are justified and which are over-engineering.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Draw the state diagram of a mobile money transaction from initiated to completed, failed or reversed, with the allowed transitions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement the transaction life cycle with the State pattern and prove illegal transitions are rejected in 10 test cases"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Simplify an over-engineered module that uses visitors, mediators and a singleton for a simple task, and justify each pattern you remove"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Architectural structures and styles",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Describe the structure, components and connectors of an application you use daily and name the architectural style it most resembles.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Draw component and deployment views for a school portal and label each connector with the protocol or call type used"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Redesign a monolithic ordering application as layered and then as MVC, and compare changes needed to add a new report in each"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E9",
+          "title": "Convert a layered application into a hexagonal design with ports and adapters, and show how a database can be swapped without touching business rules"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Event-driven, microservices and other styles",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write a half-page argument for starting a new startup product as a modular monolith rather than microservices.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E9",
+          "title": "Draw an event-driven design for order placement with a broker, publishers and subscribers, and trace one order across all components"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E9",
+          "title": "Split a transport booking monolith into services with domain-driven boundaries, drawing the contexts and the data each one owns"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E9",
+          "title": "Compare a modular monolith with a microservices design for a team of four developers on cost, deployment and failure handling, and recommend one"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Quality attributes and tactics",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write two quality attribute scenarios for a fare payment platform, one for performance and one for availability, with measurable response measures.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Write a complete quality attribute scenario with source, stimulus, environment, response and response measure for a payment peak at month end"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E9",
+          "title": "Choose three tactics to keep a ticketing platform available during peak load and mark where each fits on the architecture diagram"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Evaluate competing designs against security, modifiability and testability scenarios in a case, and justify the trade-off you accept"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Distributed trade-offs and constraints",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Explain with an example why a payment system on poor connectivity may choose eventual consistency, and what it must do to stay safe.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Simulate two replicas with a network partition, show a conflicting write and implement a simple reconciliation rule"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Build an offline queue with retries, backoff and idempotent operations, and show that a duplicated payment request is applied once"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Balance cost, time to market and team structure in a case study of a start-up architecture, applying Conway's law to the proposed split"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Integration and resilience patterns",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Describe how a circuit breaker stops one failing service from taking the whole system down, with a short timeline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Place an API gateway and a backend-for-frontend for web and mobile clients on a system diagram, and show routing for three requests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Implement timeout, retry with backoff and a circuit breaker around a flaky service call and show the state changes over 30 calls"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Implement a saga with compensating actions across payment, inventory and delivery services, and show recovery when the delivery step fails"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Documenting, evaluating and the capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Write one architecture decision record for a major choice in your capstone, covering context, options, decision and consequences.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Draw C4 context and container diagrams for a city fare-payment platform, and label the technology of each container"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Run an architecture evaluation of a proposed design in a case by building a utility tree and identifying sensitivity points and risks"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E9",
+          "title": "Design, document and evaluate the architecture for a city transport and fare-payment platform, with views, decision records and a risk register"
+        }
       ]
     }
   ]

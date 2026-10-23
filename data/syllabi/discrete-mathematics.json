@@ -107,5 +107,402 @@
         "Planar graphs and Euler's formula; modelling road networks and timetables as graphs"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Propositional logic and inference",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Show with truth tables that an implication equals its contrapositive but not its converse. Then test three short arguments for validity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Build the truth table of (p implies q) and (q implies r) for all 8 rows and classify the formula as tautology, contradiction or contingent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Use the logic tool to show that three pairs of formulas obey De Morgan's laws and conditional equivalences, checking every row"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Decide validity of five arguments in propositional form with a truth table, identify the rule behind each valid one and find a counterexample to the invalid ones"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Quantifiers and normal forms",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Negate four nested quantified statements about a student database and say which variable order changes the meaning.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Evaluate 'for every x there exists y with x + y = 0' over the integers 0 to 5 and over a small finite set, and negate it correctly"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Convert a four-variable formula to CNF and DNF by tabulating its truth table and confirm both forms agree on all 16 rows"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Encode a 5-person seating or knights-and-knaves puzzle as propositional clauses, test all assignments and report the unique solution"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Proof techniques",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write full proofs of three statements by direct, contrapositive and contradiction methods, and spot the flaw in a given false proof.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Search integers 1 to 100 for counterexamples to 'n squared plus n plus 41 is prime' and report the first one found"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Check by computer that the sum of two odd integers is even for 1000 pairs, then write the algebraic proof that it holds for all"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Examine a flawed proof that 1 equals 2 via division by zero, locate the invalid step with a numeric check and write a corrected argument"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Sets, operations and functions",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Prove one set identity with element-wise reasoning and verify it with a Venn diagram. Classify five functions as injective, surjective or bijective.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "List the power set of {a, b, c, d}, count its 16 elements and compute A union B, A intersect B and A minus B for two given sets"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Test closure, associativity, identity and inverses of addition mod 6 and multiplication mod 6 on the integers 0 to 5 using tables"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Classify five functions on finite domains as injective, surjective or bijective, compose two of them and compute inverses where they exist"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Relations, orders and infinity",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Show that congruence mod 5 is an equivalence relation and list its classes. Explain Cantor's diagonal argument in your own words.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Test a relation matrix on 5 elements for reflexive, symmetric, antisymmetric and transitive properties and state which hold"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Draw the Hasse diagram of divisibility on the numbers 1 to 12, find maximal, minimal and the greatest lower bound of 4 and 6"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Compute the reflexive, symmetric and transitive closures of a relation on 6 elements with Warshall's algorithm and verify each against its definition"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Number theory foundations",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Run Euclid's algorithm by hand on two three-digit numbers, then back-substitute to express the gcd as a combination.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Convert five decimal numbers to binary, octal and base 7 and convert two back, checking each result by evaluating the digits"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Factor ten integers between 100 and 1000 into primes with a sieve and verify the factorisation multiplies back to the original"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Run the extended Euclidean algorithm on 5 pairs to find Bezout coefficients and use them to solve linear Diophantine equations"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Modular arithmetic and RSA",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Find the inverse of 7 mod 40 by hand and use it to decrypt a short RSA message built from tiny primes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute a modular inverse table for mod 11 and verify Fermat's little theorem for a = 2, 3 and 5"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Solve a system of three congruences with the Chinese remainder theorem and confirm the answer against each modulus"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Generate an RSA key pair from two primes below 100, encrypt and decrypt a short message and then factor the modulus to break it"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Sums, induction and recursion",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Prove that the sum of the first n odd numbers is n squared by induction, then spot the error in a flawed induction proof.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Evaluate arithmetic and geometric series for 10 terms using formulas, compare with direct sums and verify a telescoping sum numerically"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Check an induction claim numerically for n up to 50, then write the base and inductive steps for it as a formal proof"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Define a set of balanced bracket strings recursively, generate all strings up to length 8 and verify a structural induction property on each"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Recurrences and growth rates",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Solve a second-order linear recurrence with its characteristic equation and compare the closed form with the first ten terms.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute the first 20 Fibonacci numbers and compare them with Binet's closed form, reporting the maximum rounding error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Step through towers of Hanoi for 4 disks and merge sort on 8 numbers, count moves and comparisons and match them to their recurrences"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E7",
+          "title": "Plot five functions such as n log n, n squared and 2 to the n on log axes and find the crossover points that justify their big-O ordering"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Counting and probability",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Count the arrangements of the letters in a word with repeats, then compute the chance a random mobile money PIN has no repeated digit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute permutations and combinations for five small cases and show the binomial coefficients in rows 0 to 8 of Pascal's triangle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Count the integers from 1 to 1000 divisible by 3, 5 or 7 using inclusion-exclusion and confirm by brute-force enumeration"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Estimate the probability two of 30 students share a birthday by Monte Carlo with 10000 trials and compare it with the exact count"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Boolean algebra and logic circuits",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Simplify a four-variable function with a Karnaugh map, draw the gate circuit and show that NAND alone can build it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Write the truth table for a 3-input majority function and derive its sum-of-products and product-of-sums expressions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Minimise a 4-variable function with a Karnaugh map, list the prime implicants and check the result against the truth table"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E2",
+          "title": "Build the minimised function using only NAND gates on the circuit bench and verify all 16 input combinations against the truth table"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Graph basics, paths and trees",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Prove the handshaking lemma and use it to show no graph has exactly one odd-degree vertex. Decide whether given graphs have Euler circuits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Build the adjacency matrix and list of a 6-vertex graph, compute all degrees and verify the handshaking lemma"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Test five graphs for Euler circuits by degree rule and find one by hand, then check connectivity and count components"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Count the spanning trees of a small graph with the matrix-tree theorem and confirm the count by enumerating them"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Graph algorithms and modelling",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Model a small town's roads and a school timetable as graphs and state what shortest path, spanning tree and colouring mean for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E6",
+          "title": "Step through Dijkstra on an 8-vertex road network, record the distance table after each step and read off the shortest route"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E6",
+          "title": "Build a minimum spanning tree of a 7-vertex network with both Kruskal and Prim, and show they give the same total weight"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Colour the conflict graph of a school exam timetable with the fewest slots, prove the chromatic number and check planarity with Euler's formula"
+        }
+      ]
+    }
   ]
 }

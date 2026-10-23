@@ -1,0 +1,505 @@
+{
+  "slug": "cognitive-science-for-artificial-intelligence",
+  "description": "An introduction to how minds perceive, remember, reason, decide and learn, and how those findings shape the design and evaluation of artificial intelligence. Students run virtual experiments, build small cognitive and neural models and work through human-AI trust case studies in the lab.",
+  "modelledOn": [
+    "Thagard, Mind: Introduction to Cognitive Science",
+    "Russell and Norvig, Artificial Intelligence: A Modern Approach (cognitive foundations chapters)",
+    "Kahneman, Thinking, Fast and Slow",
+    "Rumelhart and McClelland, Parallel Distributed Processing (connectionist models)"
+  ],
+  "outcomes": [
+    "Explain the computational view of mind and compare symbolic, connectionist and embodied accounts of cognition.",
+    "Analyse perception and attention experiments using psychophysics and signal detection theory.",
+    "Model human memory, category learning and associative learning with simple quantitative models.",
+    "Evaluate heuristics and biases in judgement and decision making against normative probability and utility theory.",
+    "Build and test a small neural or cognitive model and compare its behaviour with human data.",
+    "Assess trust, explanation and over-reliance in human-AI systems using case evidence and a rubric."
+  ],
+  "units": [
+    {
+      "title": "Mind, computation and representation",
+      "weeks": "1",
+      "topics": [
+        "The computational theory of mind and the three levels of analysis: computational, algorithmic, implementational",
+        "Symbolic, connectionist, embodied and enactive views of cognition; the Chinese room argument",
+        "Mental representation: symbols, images, prototypes, schemas and scripts",
+        "Cognitive architectures: production systems, working memory and the recognise-act cycle",
+        "Methods of cognitive science: behavioural experiments, reaction times, model fitting and replication"
+      ]
+    },
+    {
+      "title": "Perception and attention",
+      "weeks": "2-3",
+      "topics": [
+        "Psychophysics: thresholds, Weber's law, psychometric functions and signal detection theory with d-prime",
+        "Early vision: receptive fields, edge detection, Gestalt grouping principles",
+        "Perception as Bayesian inference: priors, likelihoods and illusions",
+        "Attention: selective and divided attention, bottleneck and spotlight models, saliency maps and visual search",
+        "Auditory and speech perception: the cocktail party problem and categorical perception"
+      ]
+    },
+    {
+      "title": "Memory and learning in humans",
+      "weeks": "4-5",
+      "topics": [
+        "Sensory, working and long-term memory; capacity limits and the modal model",
+        "Encoding and forgetting: the forgetting curve, interference and the spacing effect",
+        "Episodic, semantic and procedural memory; semantic networks and spreading activation",
+        "Associative learning: classical conditioning, the Rescorla-Wagner rule and temporal-difference learning",
+        "Category learning: prototype, exemplar and rule-based models",
+        "Memory in machines: Hopfield associative memory, capacity and spurious attractors"
+      ]
+    },
+    {
+      "title": "Language and reasoning",
+      "weeks": "6-7",
+      "topics": [
+        "Levels of language: phonology, syntax, semantics and pragmatics; first-language acquisition",
+        "Sentence processing: garden-path sentences, incremental parsing and surprisal",
+        "Statistical learning of words and grammar; the poverty-of-stimulus debate; language models as cognitive models",
+        "Deductive reasoning: the Wason selection task, mental logic versus mental models",
+        "Problem solving and analogy: means-ends analysis, insight and structure mapping"
+      ]
+    },
+    {
+      "title": "Decision making and heuristics",
+      "weeks": "8-9",
+      "topics": [
+        "Expected utility theory and its violations: the Allais and Ellsberg paradoxes",
+        "Prospect theory: reference dependence, loss aversion and probability weighting",
+        "Heuristics and biases: availability, representativeness, anchoring and base-rate neglect",
+        "Bounded rationality: satisficing and fast-and-frugal heuristics such as take-the-best",
+        "Bayesian cognition: probabilistic judgement, calibration and the Brier score",
+        "Choice architecture and nudges in everyday finance such as mobile money savings and loans"
+      ]
+    },
+    {
+      "title": "Neural models of cognition",
+      "weeks": "10-11",
+      "topics": [
+        "Neurons, synapses and cortical areas; EEG, fMRI and what imaging can and cannot show",
+        "Connectionist models: perceptrons, Hebbian learning and backpropagation",
+        "Parallel distributed processing models of word reading and past-tense formation",
+        "Attractor networks, competitive learning and self-organising maps",
+        "Deep networks and the ventral visual stream; representational similarity analysis",
+        "Predictive coding and reinforcement-learning accounts of dopamine and the basal ganglia"
+      ]
+    },
+    {
+      "title": "Human-AI interaction and trust",
+      "weeks": "12",
+      "topics": [
+        "Mental models of AI systems; anthropomorphism and the ELIZA effect",
+        "Trust calibration, automation bias and over-reliance on advice",
+        "Explanations people can use: cognitive load, explanation types and their evaluation",
+        "Human-AI teaming in practice: clinic triage support and crop-advice apps for smallholder farmers",
+        "Fairness perceptions, ethics of studying people and responsible reporting"
+      ]
+    },
+    {
+      "title": "Synthesis project",
+      "weeks": "13",
+      "topics": [
+        "Choosing a phenomenon and building a cognitive model of it",
+        "Fitting to human benchmark data and comparing against a null model",
+        "Critical evaluation: parameters, falsifiability and model comparison with AIC",
+        "Open questions: common sense, consciousness and the limits of current AI"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Mind, computation and representation",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a one-page argument on whether a thermostat, a chess program and a mobile-money fraud detector can be said to represent anything, using the three levels of analysis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Work through a branching case on the Chinese room argument, choose which replies hold at each step and score your reasoning against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Step a small production system through a task, recording working memory contents and which rule fires on each recognise-act cycle"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Simulate a reaction-time experiment with 30 virtual participants in Python, recover the condition effect with a t-test and report the effect size"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Psychophysics and early vision",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Plot psychometric functions for two simulated listeners and compute d-prime for a radiologist who adopts a strict versus a lenient criterion.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot a psychometric function for a simulated listener, read off the 75 percent threshold and estimate the Weber fraction from three baseline intensities"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute hit and false-alarm rates for a simulated radiologist at three response criteria, plot the ROC curve and report d-prime for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Convolve a 16 by 16 image with oriented edge filters and a centre-surround filter, then build a simple edge map and explain which Gestalt cues it captures"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Bayesian perception, attention and hearing",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain in a page why the same visual illusion can be modelled as a strong prior, and design a visual search experiment that separates feature from conjunction search.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Combine a Gaussian prior and a Gaussian likelihood for a line-length judgement by hand, then plot the posterior and show how it shifts toward the prior"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Build a saliency map from intensity, colour and orientation contrast on a small image and rank the first five predicted fixations"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Estimate the prior width of a simulated observer from 200 noisy judgements by maximum likelihood and check the fit with posterior predictive plots"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Memory systems and forgetting",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw the modal model of memory and annotate where interference, decay and spacing act. Plan a revision timetable for WASSCE vocabulary using the spacing effect.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Fit an exponential forgetting curve to ten recall scores, plot it with the data and report the half-life of the memory trace"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Simulate massed versus spaced practice over 30 days with a power-law decay model and compare retention at a delayed test"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Step spreading activation through a 12-node semantic network from a cue, show which nodes pass threshold and predict priming reaction times"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Learning and categories",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compare in writing how Rescorla-Wagner learning, prototype models and a Hopfield network each explain a different memory phenomenon, with one failure case each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Apply the Rescorla-Wagner update by hand for ten acquisition and five extinction trials, then plot associative strength against trial number"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Fit prototype and exemplar models to a 40-item category-learning dataset and compare their log-likelihoods to decide which fits the learners better"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E6",
+          "title": "Train a Hopfield network on four 25-unit patterns, corrupt one pattern, step recall to convergence and find the load at which spurious attractors appear"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Language processing and acquisition",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Take five garden-path sentences, explain the misparse for each and predict which words would show a reading-time slowdown.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Write a parser for a ten-rule toy grammar and show two different parse trees for one structurally ambiguous sentence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Compute word-by-word surprisal from a bigram model trained on 2,000 sentences and compare garden-path sentences with matched controls"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Build a word-segmentation learner using transitional probabilities on an unsegmented syllable stream and report boundary precision and recall"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Reasoning and problem solving",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Solve the Wason selection task in both abstract and social-contract forms and write a paragraph explaining why people perform differently on the two.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Evaluate the four cards in a Wason selection task with a truth table and identify exactly which cards must be turned to test the rule"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Judge a loan officer's reasoning in a branching case, flag the fallacy at each step and score your diagnosis against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E6",
+          "title": "Run means-ends analysis on the water-jug puzzle in the search visualiser and compare states expanded with a typical human move count"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Utility, prospects and biases",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Present six gambles to classmates, tabulate the choices and check whether the pattern is consistent with expected utility or with prospect theory.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Plot the prospect-theory value function with loss aversion 2.25 and compute the subjective value of four mixed gambles"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Show that no utility function satisfies both common Allais choices by writing the two inequalities and solving them symbolically"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Simulate base-rate neglect for a malaria rapid test with given prevalence, sensitivity and specificity, comparing the Bayes answer with a typical intuitive estimate"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Bounded rationality, Bayes and nudges",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Design a nudge for a mobile-money savings prompt, state the bias it targets and describe how you would test that it works without harming users.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Choose among three mobile-money loan offers in a time-pressured case using satisficing, then compare your pick with a full weighted-sum ranking"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Compare take-the-best with multiple regression on predicting the larger of two towns and report out-of-sample accuracy over 100 random splits"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Check the calibration of 100 simulated forecasts with a reliability diagram and Brier score, then recalibrate and show the improvement"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Neurons and connectionist models",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Contrast a biological neuron with an artificial unit in a table, then explain what an fMRI result can and cannot say about a connectionist model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Train a single perceptron on AND and then OR step by step, then show why it cannot learn XOR using the decision boundary plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Train a two-layer network by backpropagation on XOR and inspect the hidden-unit activations to see the learned internal representation"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Train a small network to map spellings to pronunciations for regular and exception words, then test its generalisation to unseen nonwords"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Attractors, deep networks and prediction",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write a short comparison of a deep convolutional network and the ventral visual stream, listing two similarities and two clear differences.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Run a competitive learning network on two-dimensional clusters and watch winner weights move to the cluster centres across epochs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Compute representational dissimilarity matrices from a small CNN for 20 images and correlate them with a supplied human similarity matrix"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Simulate a temporal-difference learner in a cue-reward task and plot prediction errors when the reward is omitted or delayed"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Human-AI interaction and trust",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Draft a one-page guideline for a clinic deploying an AI triage assistant, covering trust calibration, explanation style and what staff should do when the AI seems wrong.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Read a chatbot transcript case, label every point where the user attributes understanding to the system and score your labels against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Make decisions in a clinic triage case where the AI advice is wrong one time in five and measure your over-reliance rate"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Choose and justify an explanation style for a crop-disease app used by smallholder farmers, then evaluate it with a cognitive-load rubric"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Synthesis project and open questions",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a short project: a cognitive model of one phenomenon, its fit to benchmark human data, a comparison with a null model and a discussion of what it cannot explain.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Plot human benchmark data for a chosen phenomenon and state the effect size and pattern that your model must reproduce"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Fit your model to the benchmark data, report the parameters and compare it with a null model using AIC"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Work through a human-subject study case, decide on consent, data protection and honest reporting, and score your choices against the rubric"
+        }
+      ]
+    }
+  ]
+}

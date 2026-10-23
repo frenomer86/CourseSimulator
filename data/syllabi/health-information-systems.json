@@ -117,5 +117,405 @@
         "Project: a configured district reporting system with a written evaluation and improvement plan"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Health information as a building block",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Pick one Ghana Health Service level of care and list, for one week, every piece of information its staff produce and every decision that information supports.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Match five health information needs (patient, clinician, district director, ministry) to the report or system that should serve each, scored on fit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Decide which data source (routine facility data, a survey, civil registration) best answers four stated health questions, with reasons"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Trace one piece of clinic data from collection to a district decision, naming the step where it could be delayed or lost, and propose a fix"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Components of a national health information system",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Draw a diagram of how a paper tally sheet becomes an electronic district report, labelling every hand-off and where errors can enter.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Draw a BPMN or flow diagram of a paper register being tallied, summarised and entered into a computer, marking each point data can be miscopied"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Decide, for a district running five separate vertical-programme systems, which to integrate first and justify the order"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Compare DHIS2, OpenMRS, OpenLMIS and iHRIS for a district's needs and recommend which to deploy first, with a reason for each remaining gap"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "DHIS2 concepts",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain the difference between aggregate and tracker data in DHIS2 with one example of each for a maternal health programme.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Design an organisation unit hierarchy and a data set with data elements for a district's monthly immunisation report"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Decide whether five indicators (bed count, individual patient visit, monthly stock count, birth record) need aggregate or tracker capture, with reasons"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E11",
+          "title": "Capture a week of outreach immunisation data offline on a simulated Android device and walk through what happens when it synchronises over a weak network"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Aggregation and district configuration",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Design the validation rules you would add to a district data set to catch an impossible monthly figure before it is submitted.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Configure a district instance with three facilities, a monthly reporting data set and two validation rules, then test them against a bad submission"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Disaggregate a year of facility visit counts by age and sex and compute the share each group contributes to the district total"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Compare Ghana's DHIS2 rollout approach with one other African country's and recommend one lesson a new district adoption should apply"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Patient journeys and workflows",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Map the steps a patient follows from registration to discharge at an outpatient department, marking where waiting time is longest.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Draw a swimlane diagram of an outpatient visit from registration through triage, consultation, laboratory, pharmacy and billing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E9",
+          "title": "Model the workflow of a community outreach immunisation session as a BPMN diagram, including the community health nurse's steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Map an inpatient admission, ward stay, transfer and discharge pathway and mark two steps where a referral could be lost between levels of care"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Insurance claims and supply workflows",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Explain the steps of an NHIS claim from treatment to payment and identify where a data entry error would cause a rejection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Walk a simulated outpatient visit through NHIS membership verification and claims preparation, and decide how to handle a lapsed membership"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Track a month of pharmacy stock movements, detect an impending stock-out and decide what order quantity would avoid it"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E9",
+          "title": "Redraw a workflow that currently records the same vital signs twice, removing the duplication while keeping every needed record point"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Indicator design",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write a numerator, denominator, target and data source for three programme indicators of your choice, and state what an increase would mean for policy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Write the numerator, denominator and target for an outcome indicator and an output indicator from a given programme goal, and justify the choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Compute a coverage rate for skilled delivery from catchment population and facility delivery counts, and flag if the denominator looks wrong"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Choose three indicators from a national framework that best track a malaria programme's progress and justify dropping two candidates"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Reporting cycles and data use",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Design a one-page scorecard for a district management meeting that compares facilities on three indicators and flags the two needing attention.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Build a district league table from monthly indicator data and decide which two facilities most need a supervisory visit, with evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Redesign a reporting calendar that currently causes facilities to miss two deadlines a quarter, and justify the new deadlines and feedback loop"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Chair a simulated district review meeting that turns a league table into three agreed actions, scored on how well data supported each decision"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Data quality",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Explain the five dimensions of data quality with one concrete health-reporting example of each dimension failing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Classify ten data problems found in a district's monthly report under the correct data quality dimension"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Write two validation and consistency rules that would have caught a reported figure that contradicts a related data element"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Audit a facility's monthly report against its register by re-counting a sample, and compute the verification factor"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Causes and culture of data quality",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write a short root-cause analysis for a facility that consistently under-reports, considering workload, training, forms, incentives and supervision.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Diagnose the root cause of a facility's repeated reporting errors from five clues (workload, form design, training, supervision, incentives)"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Design a data review meeting agenda using the PRISM framework that turns a facility's recurring errors into a feedback and improvement plan"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Run a data quality review on a simulated district's monthly reports, find the root causes behind three flagged figures and propose fixes"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Why systems fail and evaluation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Pick one real class of digital health failure (design-reality gap, pilot that never scaled, unsustainable funding) and explain how you would have avoided it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Diagnose which design-reality gap caused a described pilot health system to fail, and propose the single change most likely to have saved it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Apply the DeLone and McLean success model to rate a described system on its information quality, use and net benefits, with evidence for each score"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Estimate the total cost of ownership of a district health information system over five years and flag the year sustainability funding runs short"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Governance and infrastructure realities",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a one-page case for who should own and fund a district health information system, weighing ministry, donor and facility roles.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Decide which actor (ministry, donor, district, facility) should own three disputed decisions about a shared health information system, with reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Plan how a facility with unreliable power and connectivity should capture and later submit its monthly report, choosing offline-capable steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Review a scenario for a breach of health data and decide the notification and remediation steps required under Ghana's Data Protection Act 843"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "District reporting capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Assess the information needs of a chosen district, then write a one-page evaluation of your finished reporting system against the DeLone and McLean dimensions, naming its biggest remaining weakness.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Assess the information needs of a chosen district from a short scenario and list the three most urgent gaps, with reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E9",
+          "title": "Design two data sets, three indicators and a dashboard view that address the district's needs, and diagram the data flow from facility to ministry"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Configure a district reporting system project with organisation units, data sets and validation rules, write an evaluation against a success model, and an improvement plan, scored on a capstone rubric"
+        }
+      ]
+    }
   ]
 }

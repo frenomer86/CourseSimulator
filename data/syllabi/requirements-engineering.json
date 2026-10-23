@@ -111,12 +111,414 @@
     },
     {
       "title": "Security, privacy, safety and the capstone",
-      "weeks": "14",
+      "weeks": "13",
       "topics": [
         "Security requirements, misuse cases and abuse cases",
         "Privacy requirements and Ghana's Data Protection Act; consent and data minimisation",
         "Safety-critical and regulated systems: hazards and safety requirements",
         "Capstone: a validated, traceable requirements specification for a local organisation"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Foundations of requirements engineering",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Sort 12 statements from a project brief into business, user and system requirements, and flag which are really design decisions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Classify 15 statements as business, user or system requirements, or as design choices, and compare with the rubric's answers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw the requirements process as a BPMN diagram with elicitation, analysis, specification, validation and management and their outputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Review a failed project case, find which requirement errors caused rework, estimate their cost and recommend three early checks"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Stakeholders and interviews",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write ten interview questions for a mobile money agent, mixing open and closed, and mark any that lead the answer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E9",
+          "title": "Draw an onion model and a power-interest grid for a mobile money agent app, placing at least 10 stakeholders"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Interview a simulated agent about float shortages, choose questions at each turn and list the needs you uncovered"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Run a contextual inquiry at a simulated market stall, record observations against stated needs and identify three tacit requirements"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "More elicitation techniques",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Prepare a workshop agenda and a short questionnaire for gathering requirements from clinic staff in two languages.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Pick the best elicitation technique for 6 situations such as many users, hidden practice or early vision, and justify each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Conduct an interview through an interpreter in a branching case, avoid leading questions and score the accuracy of the notes you take"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Interview district health officers about routine reporting, uncover pain points and conflicting needs and write 10 candidate requirements with sources"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Writing good requirements",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Rewrite ten vague statements such as 'fast' and 'user friendly' as measurable requirements with a fit criterion.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Find the ambiguity in 12 requirement sentences, mark the vague words and rewrite each using a template"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Convert eight non-functional wishes into Planguage requirements with scale, meter, must and plan levels, and have them scored"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Draw a quality tree from ISO 25010 for a wallet app, attach measurable fit criteria to six leaves and mark conflicts between them"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Use cases and user stories",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a fully dressed use case for withdrawing cash at an agent, with two exception flows and the post-conditions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Draw a use case diagram for a school fees payment app with four actors and six use cases, using include and extend correctly"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Write a fully dressed use case with main success scenario, three alternative flows and pre- and post-conditions for a customer cash-in"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Split an epic into user stories that meet INVEST, spot the five stories that fail it and rewrite them, then be scored against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Acceptance criteria and backlogs",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Write Given-When-Then criteria for a tro-tro ticket purchase with insufficient funds and a network timeout.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Write Given-When-Then criteria for four user stories and check each is testable and free of design detail"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E9",
+          "title": "Build a story map of the buying journey for tro-tro tickets and cut a first release slice with a clear goal"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E9",
+          "title": "Produce a use case diagram, one detailed use case, six user stories and acceptance criteria for buying a tro-tro ticket by mobile money"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Models of the system",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Explain which model you would use to show data stored, process flow and state changes for a loan application and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Draw a context diagram and level-1 data flow diagram for a clinic appointment system with at least five processes and stores"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Model the entities of a mobile money agent app as a class or entity-relationship diagram with correct multiplicities and attributes"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E9",
+          "title": "Model a loan approval process as BPMN with exceptions and a state machine of the loan's states, checking both for consistency"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Goals, formal specs and value chains",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Decompose the goal 'farmers get paid on time' into subgoals and obstacles and say which one would justify a formal specification.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E9",
+          "title": "Draw a goal model with one top goal, four subgoals and two softgoals for a farmer payment service, linking each with AND or OR"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Pick which of 6 system parts deserve a formal specification given their risk, and write one invariant in plain logic for the funds transfer"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E9",
+          "title": "Model the cocoa purchasing chain from farmer to port as a process model with actors, documents and payments and mark three failure points"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Validation and prioritisation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Inspect a 10-requirement specification with a checklist, record defects by type and prioritise the requirements with MoSCoW.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Inspect a short specification against a checklist and log the defects found by type, severity and location"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Rank 12 requirements by MoSCoW and cost-value, then compare the resulting release plan for a fixed budget"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Compute analytic hierarchy process weights for six requirements from pairwise comparisons, check consistency and explain any contradictions"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Negotiation and estimation",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write down the interests behind two conflicting positions and propose a solution that meets both.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Count function points for a small registration app from its inputs, outputs, files and queries, and convert them to effort"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Resolve a conflict between a security officer and a field agent over login steps using a win-win approach and be scored on the outcome"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Chair a review meeting with disagreeing stakeholders, record decisions and open issues and be scored on balance and traceable outcomes"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Managing and documenting requirements",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Build a small traceability matrix for 8 requirements and assess the impact of one change on design, code and tests.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E9",
+          "title": "Build a traceability matrix linking eight requirements to design elements and test cases, and spot the unlinked ones"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Act as a change control board for five change requests, assess impact and cost and be scored on your accept or reject rulings"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E9",
+          "title": "Assemble a specification outline following ISO 29148 for a school records system and populate it with 20 attributed requirements"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Requirements for African contexts",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "List the constraints a user with a feature phone and an unreliable power supply puts on a savings app, and turn them into requirements.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Turn six field observations about power cuts and cheap phones into measurable non-functional requirements"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Design a USSD menu flow diagram for checking balance and sending money with no more than four steps per task"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Specify an offline-first sync for a health data app with conflict rules, data budget and recovery, and draw the flow for a clash of two edits"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Inclusion, security, safety and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6",
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Review the capstone specification with a peer for traceability, privacy and inclusion gaps, then revise it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Check an app's screens against accessibility criteria and write six requirements for contrast, text size, labels and navigation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E9",
+          "title": "Draw misuse cases for a mobile wallet showing three attackers and their abuse paths, and add a security requirement that stops each"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Produce a validated, traceable specification for a local organisation with at least 30 requirements, privacy and consent clauses and a review record"
+        }
       ]
     }
   ]

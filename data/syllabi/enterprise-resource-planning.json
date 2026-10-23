@@ -113,5 +113,401 @@
         "Capstone: configuring and running the full business cycle of a simulated Ghanaian company with an implementation plan"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "From silos to integrated enterprise systems",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Describe how an order placed by a customer touches sales, stores, finance and delivery in a company with separate spreadsheets, and what an ERP changes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E5",
+          "title": "Load three separate departmental tables with the same customer entered differently and count the duplicate and conflicting records an integrated system would remove"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Trace one customer order through the sales, warehouse and finance modules of a simulated company and record each document created"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Review a failed ERP project case, list the five decisions that caused the failure and propose what should have been done instead"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Organisation, master data and document flow",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw the organisational structure of a small company in ERP terms, naming its company code, plants, warehouses and sales and purchasing organisations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Configure the organisational units of a two-plant company in the scenario and check that a sales order resolves to the correct plant"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E5",
+          "title": "Clean a master data table of 30 customers with duplicates and missing tax numbers, using queries, and report how many records you fixed"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E5",
+          "title": "Link quotation, order, delivery, invoice and payment tables by document reference and write a query that traces a payment back to its quotation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "ERP data model and extension",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write a short explanation for a manager of when to change the configuration, when to customise and when to use an API instead.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Create header and line tables for a purchase order, insert three orders and write a query that totals each order by joining them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Given a business document number, write queries that find all related tables and show a complete document chain with item and price details"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Decide for six requested changes whether to configure, customise or use an API, and score each against upgrade risk and cost"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Financial accounting",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Post by hand the journal entries for a sale on credit, its receipt in mobile money, and a month of depreciation, and show the ledger balances.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E5",
+          "title": "Create a chart of accounts table and write queries that post the automatic ledger entries for 5 sales and purchase transactions and check the trial balance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E5",
+          "title": "Reconcile a receivables subledger to the general ledger from given data and find the two entries that cause a difference"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E5",
+          "title": "Match a month of mobile money settlement records to bank statement lines with queries and list the unmatched items with likely causes"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Controlling, period-end and taxes",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Explain in a paragraph why period-end closing must be completed in a fixed order and what goes wrong if sales are posted after closing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E5",
+          "title": "Allocate shared electricity costs to three cost centres using given drivers in a query and show the resulting cost per centre"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E5",
+          "title": "Revalue open dollar invoices into cedis at the closing rate, post the exchange differences and produce a simple income statement"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Configure VAT and levy rules for a company in Ghana, post six taxed transactions in the scenario and correct the one with a wrong tax code"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Procure-to-pay, order-to-cash and inventory",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Draw a swim-lane flow of procure-to-pay and order-to-cash for a shop, marking where a document is created and which department owns it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E5",
+          "title": "Match a purchase order, goods receipt and supplier invoice for 10 items in a three-way match query and list the lines that fail the tolerance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Run an order-to-cash cycle in the scenario with an availability check, partial delivery, billing and a late payment, and record the documents created"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E5",
+          "title": "Value stock movements with FIFO and weighted average costing from 20 movements and show how each method changes profit"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Inventory planning, MRP and the shea butter supply chain",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compute the economic order quantity and reorder point for a fast-moving item from given demand and cost figures, and explain the result.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E5",
+          "title": "Classify 40 items by ABC analysis with a query and set a reorder point and safety stock for the A items from demand data"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E5",
+          "title": "Explode a bill of materials for 100 units of a finished product, net it against stock and list the purchase requirements"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Plan the supply chain of a shea butter cooperative from village collection to export, handling a shortage and a late shipment, and score the plan"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Human resources and payroll",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Describe the steps from hiring to exit for one employee and the ERP records and approvals created at each step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E5",
+          "title": "Model positions, jobs and reporting lines in tables and write a recursive query that lists everyone reporting up to a given manager"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E5",
+          "title": "Compute gross to net pay for 10 employees with PAYE and SSNIT contributions in a query and post the payroll journal"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Set access to salary and personal data for HR, managers and employees in the scenario, then handle a request that breaks the rule"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Reporting, integration and controls",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "List five integration points a Ghanaian shop's ERP needs with banks, mobile money and tax systems and what data crosses each one.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E5",
+          "title": "Write a query that produces an operational sales report by product and month from the ERP tables, and add a total and a percentage column"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E5",
+          "title": "Build a role and permission table, then query for users who can both create a vendor and approve payments to find segregation conflicts"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E5",
+          "title": "Examine an audit trail table of 50 changes to find the three suspicious edits, such as backdated or self-approved entries, and report them"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Business case, vendor selection and fit-gap",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Write the cost side of a business case for an ERP over five years, including licences, training, hosting and hidden costs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Compare on-premise, hosted and SaaS ERP for a mid-size firm with a five year total cost of ownership and choose one in the case"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Score three vendor proposals against weighted requirements from a request for proposal and recommend one with reasons"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Complete a fit-gap analysis of 15 requirements and decide for each gap whether to change the process or modify the software"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Implementation and change management",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a one-page lessons learned note comparing big bang and phased implementation for a company with five branches.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Choose an implementation approach and schedule for a company with limited downtime tolerance and justify the risk trade-offs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E5",
+          "title": "Migrate 200 legacy customer rows into the new schema with cleaning rules, reconcile the counts and balances and list the rejected rows"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Manage resistance, training and go-live support in a failing implementation case, and select the interventions that rescue the project within budget"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "ERP for small and medium enterprises",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Interview a shop owner about their record keeping and list which ERP functions they would actually use in the first year.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Choose the minimum set of ERP modules for a cash-based trader with a small budget in the scenario and defend what you left out"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E5",
+          "title": "Set up customers, items and stock in a small open-source ERP style schema and record 10 sales to produce a profit report"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Plan the ERP implementation for a pharmacy chain in Ghana with expiry tracking, intermittent power and branch stock transfers, and score it"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Modern ERP and the capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Prepare a short briefing for a board on the security and data protection duties that come with moving ERP to the cloud.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Compare cloud ERP and two-tier ERP for a company with a subsidiary abroad and choose the architecture with reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Audit a simulated ERP for security and data protection gaps, rank the findings by risk and propose controls"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E5",
+          "title": "Run the full business cycle of a simulated Ghanaian company, from purchasing to payroll and period-end, and reconcile the final ledger and stock reports"
+        }
+      ]
+    }
   ]
 }

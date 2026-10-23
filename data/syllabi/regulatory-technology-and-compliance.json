@@ -119,5 +119,413 @@
         "Capstone: a compliance platform for a mobile money provider covering KYC, monitoring, reporting and a risk register"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why regulation exists",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Pick one market failure (information asymmetry, systemic risk or consumer harm) and explain with a Ghanaian example how regulation addresses it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Match four regulatory objectives (stability, consumer protection, market integrity, inclusion) to the rule that best serves each, with reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Decide which regulator (Bank of Ghana, Securities and Exchange Commission, National Insurance Commission) should handle five described complaints"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Explain, for a described market failure scenario, which objective of regulation it threatens and why unregulated firms would not fix it alone"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Prudential and conduct regulation",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Summarise one lesson from Ghana's 2017 to 2019 banking sector clean-up and state the rule change it led to.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Decide whether three described rules are prudential or conduct regulation, and explain what failure each is meant to prevent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Read a short account of a bank failure and identify the capital or liquidity weakness that a Basel-style rule would have caught earlier"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Explain, for a described compliance task, whether RegTech or SupTech would help more, and sketch what it would automate"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Assess a bank's capital and liquidity position against a stated requirement and decide whether it would pass or fail, with the numbers shown"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Customer due diligence and digital identity",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Design a tiered KYC table for a mobile money service showing what identification is needed at three transaction limits, and explain why a politically exposed person needs enhanced checks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Review a customer onboarding case and decide what identification, verification and beneficial ownership information is still missing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Verify a simulated Ghana Card identity check against a liveness check and decide whether the onboarding should pass, need review, or be declined"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Build a KYC onboarding flow with identity checks and a risk score for five simulated customers, and justify the resulting risk tier for each"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Money laundering and sanctions screening",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain the three stages of money laundering with one mobile money example of each stage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Classify five simulated transaction patterns as placement, layering or integration, and justify each classification"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Screen a batch of customer names against a sanctions list with fuzzy matching, and decide which of three partial matches are true hits"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Assess whether a simulated country's AML/CFT weaknesses described in a short brief would risk a grey listing, and recommend one priority fix"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Reporting obligations and emerging risks",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write the criteria you would use to decide whether a transaction pattern merits a suspicious transaction report.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Decide, for five simulated transactions, which require a suspicious transaction report or a cash transaction report, and draft one report"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Assess how a correspondent bank's de-risking decision would affect a remittance corridor into Ghana, and propose one mitigation"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Decide what additional checks a virtual asset service provider must apply under the travel rule for a described cross-border transfer"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Data protection principles",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a short note applying the principles of lawfulness, purpose limitation and minimisation to a mobile money data collection form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Review a data collection form against the data protection principles and flag two fields that breach purpose limitation or minimisation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Decide whether a described data controller must register under Ghana's Data Protection Act 843, and list the obligations that follow"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Compare Ghana's Act 843 with the GDPR on one chosen principle, and state the practical difference for a company operating in both markets"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Data subject rights and privacy by design",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Design a data protection impact assessment outline for a new mobile money feature that shares location data with merchants.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Run a data protection impact assessment on a described new feature, identifying the privacy risk and the mitigation (pseudonymisation, encryption, retention)"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Decide whether a described cross-border data transfer is permitted under Ghana's rules, and what safeguard would make a borderline case acceptable"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Resolve a conflict between a data subject's erasure request and a KYC record-keeping obligation, and justify which rule prevails and why"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Regulatory reporting and data standards",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Explain, with an example field, how an ISO 20022 or XBRL tag turns a bank's internal figure into a machine-readable regulatory submission.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E5",
+          "title": "Prepare a prudential return's capital and liquidity figures from a simulated bank's ledger and check them against the reporting template"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E5",
+          "title": "Tag three figures from a bank's return with the matching data dictionary codes, and flag one figure that does not match any defined tag"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E5",
+          "title": "Generate a regulatory return from a simulated loan book, validate it against two consistency rules, and correct one flagged discrepancy"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Transaction monitoring",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Design three rule-based scenarios (thresholds, structuring, velocity) for monitoring mobile money transactions, and state what each is meant to catch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E5",
+          "title": "Write threshold and velocity monitoring rules in SQL against a transaction table and report how many simulated accounts they flag"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Review an anomaly-scored alert from a described network analysis of money flows and decide whether it warrants escalation"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E5",
+          "title": "Measure the precision and recall of a tuned monitoring rule set against a labelled sample of simulated transactions, and adjust one threshold to cut false positives"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Governance of automated decisions",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write the case file structure an investigator would need to review an automated alert, including what explanation the system must provide.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Review an automated transaction-monitoring decision and decide what audit trail and explanation it must produce to satisfy a model governance rule"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Build a case management workflow for a flagged alert, from assignment through evidence gathering to a closing decision"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E5",
+          "title": "Tune a transaction monitoring engine against a simulated set of mobile money fraud and laundering cases, and report the change in false positives after tuning"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Regulatory sandboxes",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a one-page sandbox application for a fictional fintech product, covering eligibility, testing limits, safeguards and exit criteria.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Design the eligibility criteria, testing limits and exit criteria for a sandbox cohort of three fintech applicants"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Compare the Bank of Ghana's regulatory sandbox with one other African country's sandbox and recommend one feature Ghana's could adopt"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Prepare a sandbox application for a described fintech product, defending the testing parameters and safeguards against a reviewer's questions"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Enterprise and operational risk",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Build a risk register with five entries for a mobile money provider, each with a category, likelihood, impact and a key risk indicator.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Classify five described risk events by category (credit, market, liquidity, operational, compliance, reputational) and justify two borderline cases"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Write a risk appetite statement and three key risk indicators for a described mobile money provider, and justify the thresholds chosen"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Assess the outsourcing risk of a described cloud provider and agent network, and propose the contractual safeguard that most reduces it"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Compliance governance capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Design a compliance platform outline for a mobile money provider covering KYC, monitoring, reporting and a risk register, and justify one build-versus-buy decision in it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Decide who should have final sign-off (compliance officer, board, internal audit) for three described compliance decisions, and justify each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Compare two RegTech vendor options for a described compliance need and justify a build-versus-buy recommendation"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Build a compliance platform outline for a mobile money provider covering KYC, monitoring, reporting and a risk register, scored on a capstone rubric"
+        }
+      ]
+    }
   ]
 }

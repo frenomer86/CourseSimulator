@@ -116,5 +116,404 @@
         "Capstone: a physics-driven browser game with a documented, stable and deterministic simulation"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Vectors, kinematics and the game loop",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Short problem set: compute a projectile's range with vectors, then explain why a fixed time step with an accumulator is better than a variable one.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute dot and cross products of two vectors, project one onto the other and plot the vectors and projection"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Simulate a thrown ball with a fixed time step, compare its landing point with the analytic solution and report the error"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement a fixed-step loop with an accumulator and render interpolation, then show the motion stays smooth when frame rate varies from 20 to 120 fps"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Numerical integration",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Hand-calculate three steps of explicit Euler, semi-implicit Euler and RK4 for a spring and compare with the exact solution.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Write the equation of motion of a mass on a spring as a first-order system and plot its exact solution for given initial conditions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement explicit Euler, semi-implicit Euler and velocity Verlet for a spring and plot position error against the exact answer"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement RK2 and RK4, then find the step size where RK4's extra cost per step is repaid by a larger allowed step"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Stability and integrator comparison",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write a one-page recommendation on which integrator to use for a game orbit and for a stiff spring, supported by your energy plots.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Increase the step size on a stiff spring until explicit Euler blows up and record the step size at which it first fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Implement implicit Euler for a stiff spring and compare its stability and energy loss with explicit Euler at a large step"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Compare four integrators on a planetary orbit over 100 periods, plot total energy against time and rank the integrators by drift"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Forces and Newton's laws",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Work out terminal velocity for a falling object with linear and quadratic drag, then compare it with a simulation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Apply Newton's second law to a 5 kg block under three forces, sum the forces and plot its velocity for ten seconds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Add quadratic drag and friction to a sliding crate and verify the terminal velocity and stopping distance against the formulae"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Simulate an okada braking on a wet laterite road with tyre friction and compute the stopping distance at 30, 50 and 70 km/h"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Particles and springs",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Tune a damped spring to be critically damped and describe how you would build a fire effect with a particle system.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Build a particle emitter with lifetimes, random velocities and gravity, and render a smoke plume that fades as particles age"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Plot the response of a damped spring for under, critical and over damping and find the damping coefficient that is critical"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Build a soft-body square from a mass-spring network with structural, shear and bending springs and show it keeps its shape when dropped"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Constraints and the rope bridge",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Short design: explain why a rope bridge made of stiff springs explodes and how position constraints avoid it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Make a spring chain unstable by raising its stiffness, then stabilise it by reducing the step size and by adding damping"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Replace springs with distance constraints in a hanging chain and relax them with a fixed number of iterations per frame"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Build a rope bridge with ten planks that holds a rolling ball, stays stable for 60 seconds and breaks when the load exceeds a limit"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Collision detection",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Draw a bounding volume hierarchy for eight objects and write the separating axis test for two boxes in 2D.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Implement a uniform grid broad phase for 500 circles and count how many narrow-phase tests it avoids compared with testing every pair"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement the separating axis theorem for two rotated boxes in 2D and return the contact normal and penetration depth"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Show a fast ball tunnelling through a thin wall with discrete detection, then fix it using swept collision and the time of impact"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Collision response and the marbles game",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Calculate the post-collision velocities of two marbles by hand and then check a simulation of the same case conserves momentum.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute the impulse and resulting velocities for a head-on collision between two balls for restitution values 0, 0.5 and 1"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Add Coulomb friction impulses to a block sliding on a ramp and verify that it stops when friction exceeds the tangent force"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Simulate seeds dropped into an oware board with restitution and friction, count how many settle in each pit and keep a stack stable for 10 seconds"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Rigid body rotation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compute the moment of inertia of a plank and a disc, and write a note on why quaternions need normalising.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute moment of inertia for a rod, a disc and a box and find the angular acceleration for a given torque"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Represent an orientation as a matrix, an angle and a quaternion, rotate a vector with each and confirm the three results agree"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Integrate a spinning rigid body in 3D with quaternions for 10,000 steps and show that drift stays small only if you renormalise"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Contacts, joints and the ragdoll",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Design a ragdoll joint layout of eleven bones and list the joint type and angular limits for each joint.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Apply an impulse at an off-centre contact point of a box and check that the resulting spin matches the cross product of the offset and impulse"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Build a hinge joint pendulum with a sequential impulse solver and compare the swing period with the analytic value"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Build a 2D rigid body engine with stacking boxes and a ragdoll, and make a pyramid of ten boxes sleep without jitter"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Cloth and fluids",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Describe the differences between grid and particle fluids in half a page, and say which suits a phone game.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Create a cloth from a grid of particles pinned at two corners and show it hangs and sways under gravity with structural springs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Write the incompressible Navier-Stokes terms in outline and identify which term each of advection, pressure and viscosity corresponds to"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Implement smoothed particle hydrodynamics with density, pressure and viscosity for 500 particles and keep a dam break stable"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Flags, smoke and cheap water",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Choose a fluid or cloth method for three phone game effects and justify each choice with a performance estimate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Implement stable-fluids advection and diffusion on a 64x64 grid and watch smoke from a source drift in a steady wind"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build a height-field water surface with wave propagation and a boat that floats on it, and keep it running at 60 fps"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Simulate a flag in the wind with a position-based cloth, wind force that varies in time and a pole collision, and keep it stable"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Stability, determinism and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Capstone deliverable: a design note documenting your game's fixed step, solver iterations, determinism strategy and performance budget.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Find the largest time step and mass ratio at which a stack of five boxes stays stable and record where it first jitters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Run the same simulation in floating point and in fixed point, show where they diverge and make a replay reproduce exactly from recorded input"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E1",
+          "title": "Build a physics-driven browser game with a fixed step, sleeping bodies and a deterministic replay, and prove two runs match frame by frame"
+        }
+      ]
+    }
   ]
 }

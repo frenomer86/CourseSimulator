@@ -101,5 +101,395 @@
         "Capstone: an event-driven application with functions, a managed database, a queue, an API gateway, tracing and a cost estimate"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Cloud-native principles",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Review a given monolith against the twelve-factor list and write the five changes needed first, with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E12",
+          "title": "Move hard-coded configuration of a sample app into environment variables and verify it runs unchanged in two environments"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E12",
+          "title": "Choose between monolith, modular monolith, microservices and serverless for three apps and justify using team size, load and cost"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Add timeouts, retries with backoff, a circuit breaker and a bulkhead to a client calling a flaky service, and test with 30 percent failures"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Functions and the FaaS model",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write a note comparing three FaaS platforms for a Ghanaian start-up, covering region, cold start and price.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E12",
+          "title": "Create a function with an HTTP trigger, set memory and timeout, invoke it five times and read its logs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E12",
+          "title": "Measure cold start latency across 50 invocations, then add provisioned concurrency and compare the median and tail latency"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E12",
+          "title": "Raise concurrency until throttling occurs, then set limits and a queue so no request is lost during a burst of 500 calls"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Packaging and serverless containers",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Decide whether a given image-resizing service should be a function or a serverless container, and justify.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Write a function with a dependency layer and unit tests that run locally with a mocked event, and show them passing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Package a function with its dependencies and environment settings, deploy it, and fix a missing-dependency failure seen in the logs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E12",
+          "title": "Deploy the same service as a function and as a serverless container, compare start time, limits and cost at 100000 monthly requests, and choose"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Storage and databases",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw the access patterns of a school results portal and choose a data store for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E12",
+          "title": "Create a bucket with a lifecycle rule, upload five files, generate a signed URL and verify it expires"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E12",
+          "title": "Connect a function to a managed SQL database through a connection pool and run 100 concurrent invocations without exhausting connections"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E12",
+          "title": "Design a single-table key-value layout with partition and sort keys for three access patterns of an orders app and load and query it"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Consistency and choosing a data store",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Justify a data store for a mobile money ledger, a ride-hailing app and a school results portal in a three-row table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E12",
+          "title": "Use a conditional write to prevent two functions overwriting the same record and test with 20 concurrent updates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E12",
+          "title": "Add a cache in front of a database, measure the hit rate and stale reads at three TTLs, and select a TTL for a price list"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E12",
+          "title": "Design the storage for a mobile money ledger with transactions, balances and audit trail, and pass a failure test that kills a function mid-transfer"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Events, queues and streams",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Describe the event flow of an order system, choosing events, commands and queues, and what happens when a consumer fails.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E12",
+          "title": "Publish an order event to a topic with two subscribers and show each receives it independently"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E12",
+          "title": "Set up a queue with a dead-letter queue and visibility timeout, send a poison message and show it moves to the dead-letter queue after 3 tries"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Process a partitioned stream with two consumers, show per-key ordering holds, and replay from an earlier offset after a bug"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Reliable delivery and workflows",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Explain why a duplicate mobile money callback must not credit an account twice and how you would prevent it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Make a consumer idempotent with a deduplication key and verify that 50 duplicate messages change the balance once"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E12",
+          "title": "Build a payment workflow with steps for validate, charge, notify and compensate, and run it with a failure injected at each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Implement the outbox pattern so an order record and its event are never out of step, and prove it by crashing between the two writes"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "APIs, gateways and identity",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write an OpenAPI outline for a small bookings API, including versioning and error format.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E12",
+          "title": "Define a REST API in an OpenAPI contract with three routes, deploy it, and call each with valid and invalid requests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E12",
+          "title": "Configure an API gateway with request validation, throttling at 10 requests per second, a usage quota and a response cache, and verify each limit"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E12",
+          "title": "Protect an API with a JWT authoriser and scoped permissions, then show that expired, forged and under-scoped tokens are rejected"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Real-time and low-bandwidth APIs",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Design an API for a USSD banking menu and a low-bandwidth mobile app, and list how each keeps payloads small.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E12",
+          "title": "Deploy a WebSocket endpoint that broadcasts order status and test it with three connected clients"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E12",
+          "title": "Compose three backend calls behind one endpoint for a mobile client and measure payload size and latency against the three direct calls"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Build a stateless USSD session handler with a menu, session timeout and fallback, and run 20 scripted sessions with correct state"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Observability",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Define three service level indicators and their alert thresholds for a payments API.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E12",
+          "title": "Add structured logs with a correlation ID to two functions and follow one request through both logs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E12",
+          "title": "Instrument a request across a function, a queue and a database with tracing, and find the slowest span from the trace"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E12",
+          "title": "Build a dashboard with error rate and latency and an alert on 5 percent errors, then trigger the alert with injected failures"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Debugging and testing distributed apps",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a post-incident review of a retry storm that overloaded a database, with timeline, cause and prevention.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Diagnose a queue where one poison message blocks processing, using logs and metrics, and fix it with a dead-letter policy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Write a contract test and an integration test for a function and a queue, and run them against an ephemeral environment"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Find and fix a retry storm and a timeout mismatch causing cascading failures in a given system, and prove the fix under load"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Serverless cost",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Prepare a monthly cost estimate in dollars and cedis for a start-up expecting 500000 requests, with three assumptions listed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E12",
+          "title": "Calculate the monthly bill for a function by invocations, duration and memory, and check it against the console estimate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E12",
+          "title": "Compare monthly cost of functions, containers and a virtual machine at 10000, 1 million and 100 million requests, and find the crossover points"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E12",
+          "title": "Reduce the cost of a given design by at least 40 percent using batching, caching, right-sized memory and less data transfer, and show the new estimate"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Delivery, security and capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write the deployment and rollback plan for the capstone, including who approves each environment.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E12",
+          "title": "Describe a function and its API in an infrastructure template, deploy it to dev, and promote it to staging through a pipeline"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Reduce a function role to least privilege, move a secret to a secrets manager, and check that an over-privileged call is denied"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E12",
+          "title": "Build an event-driven app with functions, a managed database, a queue and a gateway, with tracing and a cost estimate, and pass a failure-injection test"
+        }
+      ]
+    }
   ]
 }

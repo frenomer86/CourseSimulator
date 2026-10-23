@@ -1,0 +1,517 @@
+{
+  "slug": "software-analysis-and-verification",
+  "description": "The tools and theory for finding bugs and proving their absence: dataflow analysis, abstract interpretation, symbolic execution, software model checking, fuzzing, human review and deductive proof. Students write small analysers, run symbolic and fuzzing tools on real-style programs, and prove selected functions correct.",
+  "modelledOn": [
+    "Nielson, Nielson and Hankin, Principles of Program Analysis",
+    "Moller and Schwartzbach, Static Program Analysis",
+    "Ammann and Offutt, Introduction to Software Testing",
+    "Kroening and Strichman, Decision Procedures"
+  ],
+  "outcomes": [
+    "Explain soundness, completeness and the limits set by undecidability, and classify analyses by the guarantees they give.",
+    "Implement dataflow analyses with the worklist algorithm over a control-flow graph and prove that they terminate.",
+    "Design an abstract domain, apply widening, and argue the soundness of an abstract interpreter for a small language.",
+    "Use symbolic execution, bounded model checking and fuzzing to find and reproduce defects, and interpret their counterexamples.",
+    "Plan and run a code review or inspection, and combine reviews, tools and testing into a verification strategy for a given risk level.",
+    "Specify and prove a small program correct with contracts and invariants using a deductive verifier."
+  ],
+  "units": [
+    {
+      "title": "Foundations of program analysis",
+      "weeks": "1",
+      "topics": [
+        "Static versus dynamic analysis; soundness, completeness, false positives and false negatives",
+        "Undecidability of semantic properties (Rice's theorem) and why analyses approximate",
+        "Representations: abstract syntax trees, control-flow graphs, call graphs and static single assignment form",
+        "A small imperative language and its operational semantics for analysis",
+        "Bug classes worth analysing: null dereference, overflow, injection, resource leaks and races"
+      ]
+    },
+    {
+      "title": "Dataflow analysis",
+      "weeks": "2-3",
+      "topics": [
+        "Lattices, monotone transfer functions and the fixed-point theorem",
+        "Reaching definitions, live variables and available expressions",
+        "The worklist algorithm, ordering and complexity",
+        "Constant propagation and its non-distributive nature",
+        "Interprocedural analysis: call graphs, context sensitivity and summaries",
+        "Pointer and alias analysis: Steensgaard and Andersen styles",
+        "Taint analysis for security: sources, sinks and sanitisers"
+      ]
+    },
+    {
+      "title": "Abstract interpretation",
+      "weeks": "4-5",
+      "topics": [
+        "Concrete and abstract semantics; Galois connections and soundness",
+        "Non-relational domains: signs, parity and intervals",
+        "Widening and narrowing for loops",
+        "Relational domains: octagons and polyhedra; cost versus precision",
+        "Building a sound abstract interpreter for a small language and proving its key lemmas",
+        "Industrial analysers: absence of runtime errors, alarms triage and tuning precision"
+      ]
+    },
+    {
+      "title": "Symbolic execution",
+      "weeks": "6-7",
+      "topics": [
+        "Symbolic states, path conditions and forking at branches",
+        "Constraint solving with SMT solvers: bit-vectors, arrays and integers",
+        "Path explosion and mitigation: search heuristics, state merging and summaries",
+        "Concolic execution: concrete runs guiding symbolic exploration",
+        "Modelling memory, pointers, loops and the environment; floating point and its difficulties",
+        "Applications: test generation, exploit finding, equivalence checking and regression analysis"
+      ]
+    },
+    {
+      "title": "Model checking software",
+      "weeks": "8",
+      "topics": [
+        "From programs to transition systems; state-space explosion in software",
+        "Predicate abstraction and counterexample-guided abstraction refinement",
+        "Bounded model checking of C-like programs: loop unwinding, assertions and SAT/SMT encodings",
+        "Concurrency: interleavings, data races, lockset and happens-before analysis",
+        "Checking protocols and device drivers; interpreting counterexample traces"
+      ]
+    },
+    {
+      "title": "Fuzzing and property-based testing",
+      "weeks": "9-10",
+      "topics": [
+        "Property-based testing: generators, properties and shrinking",
+        "Random and mutation-based fuzzing; coverage-guided fuzzing with feedback",
+        "Grammar-based and structure-aware fuzzing for parsers and protocols",
+        "Sanitizers and runtime checkers for memory and undefined behaviour",
+        "Test oracles and metamorphic testing",
+        "Mutation testing and coverage criteria as measures of test strength",
+        "Fuzzing in continuous integration; triage, deduplication and reporting of crashes"
+      ]
+    },
+    {
+      "title": "Reviews and inspections",
+      "weeks": "11",
+      "topics": [
+        "Formal inspection: roles, preparation, inspection rate and exit criteria",
+        "Modern code review: tool support, review size, turnaround and effectiveness evidence",
+        "Reading techniques and checklists: perspective-based and security-focused reviews",
+        "Human factors in review: bias, fatigue and psychological safety",
+        "Combining reviews with static analysis in the pipeline; review metrics and their limits"
+      ]
+    },
+    {
+      "title": "Proof of program correctness",
+      "weeks": "12-13",
+      "topics": [
+        "Specification with contracts: preconditions, postconditions, frame conditions and ghost code",
+        "Verification-condition generation and automated provers",
+        "Loop invariants and variants in a deductive verifier",
+        "Separation logic and heap-manipulating programs",
+        "Interactive proof assistants for software and what verified systems have achieved",
+        "Assurance cases and choosing among techniques by risk, cost and criticality",
+        "Project: verify or analyse a chosen module and report on the evidence"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Foundations: soundness, limits and representations",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Classify five tools by their soundness and completeness claims, sketch why a perfect null-pointer checker cannot exist, and draw the control-flow graph of a loop with a break.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Build the control-flow graph of a given function with a loop and a conditional, and label basic blocks and edges"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Convert a straight-line program with branches into static single assignment form with phi functions, and check semantic equivalence by running both"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Write a small checker that flags use of a variable before assignment across branches, and test it on 10 programs with known results"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Classical dataflow analyses",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Compute reaching definitions and live variables for a program with a loop by iterating to a fixed point, and show why the lattice height bounds the iterations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Iterate live-variable analysis on a control-flow graph by hand, showing the in and out sets of every block until the fixed point"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement a generic worklist solver and instantiate it for reaching definitions and available expressions on 5 test graphs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement constant propagation, show a program where merging at a join loses precision, and compare with a path-sensitive result"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Interprocedural, pointer and taint analysis",
+      "topics": [
+        "2.5",
+        "2.6",
+        "2.7"
+      ],
+      "exercise": "Build a call graph for a small program, compute points-to sets by the Andersen method, and list the taint flows from user input to a database query.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Build a call graph with virtual calls resolved by class hierarchy, and mark which edges are imprecise"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Implement Andersen-style points-to analysis with constraint propagation for 20 statements, and compare it with the unification-based result"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.7",
+          "engine": "E1",
+          "title": "Write a taint analysis that finds flows from request parameters to query calls through assignments and calls, and test it with and without sanitisers"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Abstract domains and soundness",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Define the concrete and abstract semantics for sign analysis, show the abstraction and concretisation maps form a Galois connection, and analyse a short program by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Define a sign domain with join and abstract addition and multiplication, and prove soundness of the abstract addition on all cases"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement an interval domain with abstract arithmetic and use it to analyse straight-line programs, checking results against concrete runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Analyse a loop with intervals in the visualiser, watching the bounds climb, then apply widening and narrowing and compare the final invariants"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Relational domains and building an analyser",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Show an assertion that intervals cannot prove but octagons can, and build an interval analyser for a small imperative language that reports possible division by zero.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Represent the constraints of a program state as an octagon, take a join, and show a relational fact lost by intervals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Build an abstract interpreter with intervals and widening for a while-language, and report array-bound and division-by-zero alarms for 8 programs"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Triage 20 alarms from an analyser into true bugs and false positives, find their causes, and tune the domain to remove half the false ones"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Symbolic execution basics",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Symbolically execute a function with three branches, write the path conditions, solve them with an SMT solver, and list the test inputs that cover every path.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Step a symbolic executor through a function with two branches, tracking symbolic state and path conditions, and list reachable paths"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Solve the path conditions of a function with the SMT solver and produce a concrete test input for each feasible path"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Run symbolic exploration on a program with a loop over symbolic input, count paths at several bounds, and test search heuristics for coverage"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Concolic testing and applications",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Run a concolic execution loop by hand on a program with a hash check, and explain which program features defeat symbolic execution.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement a small concolic loop that runs the program, negates the last branch condition, solves, and repeats until all paths are covered"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Model symbolic memory with arrays for a program that indexes a buffer, and find the input that causes an out-of-bounds write"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Use symbolic execution to check that two versions of a function are equivalent, and produce a distinguishing input for a buggy refactoring"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Software model checking",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Run bounded model checking on a C-like program with an off-by-one bug, read the counterexample trace, and explain how predicate abstraction and refinement would prove a lock protocol correct.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Check an assertion in a C program with bounded model checking at unwind bounds 2, 4 and 8, and read the counterexample trace"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Walk through abstraction and refinement of a lock-usage program, showing each spurious counterexample and the predicate added to remove it"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Find the data race in a two-thread counter program by exploring interleavings, then fix it with a lock and recheck for races"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Property-based testing and fuzzing",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Write properties for a sorting function and a parser, shrink a failing case to a minimal one, and fuzz a small file-format parser for crashes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Write property-based tests for a sort function, find the bug in a faulty version, and shrink the failing input to the smallest example"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Build a mutation-based fuzzer with coverage feedback for a toy parser, and compare crashes found against pure random inputs in 10,000 runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write a grammar-based generator for a small expression language and use it to find crashes in an evaluator that random bytes miss"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Oracles, mutation testing and fuzzing in practice",
+      "topics": [
+        "6.5",
+        "6.6",
+        "6.7"
+      ],
+      "exercise": "Define metamorphic relations for a routing function, measure a test suite with mutation score, and set up a fuzzing job that triages and deduplicates crashes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Write metamorphic tests for a route-length function, such as symmetry and triangle inequality, and catch two injected bugs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Mutate a function with 20 mutation operators, run its test suite, compute the mutation score, and add tests to kill the survivors"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.7",
+          "engine": "E1",
+          "title": "Deduplicate 200 fuzzer crashes by stack signature, rank the unique ones by exploitability, and write a clear report for the top one"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Reviews and inspections",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Run a structured inspection on a short module with defect log and rates, then compare what review found with what a static analyser and a test suite found.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Conduct a formal inspection in a case file with assigned roles, log defects found at a given inspection rate, and decide the exit outcome"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Review a pull request for a payment function using a security checklist, list the defects found, and rank them by severity in the case file"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Analyse review data for 100 changes, relate review size to defects found with a plot and regression, and recommend a maximum change size"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Contracts and deductive verification",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write contracts for a bounded stack and a binary search, generate the verification conditions, and discharge them with a prover or by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Write preconditions, postconditions and a class invariant for a bounded stack, and check them with runtime assertions on random operation sequences"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Annotate a binary search with an invariant and variant in a deductive verifier, and fix the annotation when the verifier rejects it"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Prove by hand the correctness of list reversal on a linked list in separation logic, using the points-to and separating conjunction notation"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Choosing techniques and the verification project",
+      "topics": [
+        "8.5",
+        "8.6",
+        "8.7"
+      ],
+      "exercise": "Choose a combination of review, analysis, testing and proof for three systems of different criticality, and present your analysis or verification project and its evidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Choose verification techniques for a mobile-money ledger, a clinic scheduler and an infusion pump controller in a case file, and defend each plan"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E6",
+          "title": "Compare the guarantees given by static analysis, bounded model checking and proof on the same function, tabulating what each can and cannot show"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.7",
+          "engine": "E1",
+          "title": "Verify a chosen module with at least two techniques, report bugs found, residual risk and the cost in effort for each technique"
+        }
+      ]
+    }
+  ]
+}

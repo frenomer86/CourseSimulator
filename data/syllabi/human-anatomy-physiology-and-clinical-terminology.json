@@ -1,0 +1,505 @@
+{
+  "slug": "human-anatomy-physiology-and-clinical-terminology",
+  "description": "The body systems, how they fail, and the language clinicians use to describe them, taught for future health informaticians who must read and code clinical records. Students step through physiology processes, decode terms and notes, query lab results and work branching patient cases drawn from Ghanaian health practice.",
+  "modelledOn": [
+    "Tortora and Derrickson, Principles of Anatomy and Physiology",
+    "Chabner, The Language of Medicine",
+    "World Health Organization, ICD-10 and ICD-11 classification and the Model List of Essential Medicines",
+    "Bickley, Bates' Guide to Physical Examination and History Taking"
+  ],
+  "outcomes": [
+    "Describe the structure and function of the major body systems and explain how homeostasis is maintained.",
+    "Build, split and interpret medical terms from word roots, prefixes and suffixes, and decode common abbreviations safely.",
+    "Explain how common diseases in Ghana present, are diagnosed with procedures and laboratory tests, and are classified for coding.",
+    "Describe how common drug classes act and calculate simple weight-based doses and half-life effects.",
+    "Measure, record and interpret vital signs and clinical measurements, including units, reference ranges and early warning scores.",
+    "Read a clinical note and chart end to end and extract the problems, medications, results and plan."
+  ],
+  "units": [
+    {
+      "title": "Organisation of the body and the language of medicine",
+      "weeks": "1-2",
+      "topics": [
+        "Levels of organisation from cell to organism; homeostasis and negative and positive feedback",
+        "Anatomical position, body planes, directional terms and body cavities",
+        "Word roots, combining forms, prefixes and suffixes; building and splitting terms",
+        "Abbreviations, eponyms and error-prone shorthand; do-not-use lists",
+        "Spelling, pronunciation and plural forms of Greek and Latin terms"
+      ]
+    },
+    {
+      "title": "Cardiovascular, blood and respiratory systems",
+      "weeks": "3-4",
+      "topics": [
+        "Heart anatomy, the cardiac cycle, the conduction system and the electrocardiogram",
+        "Blood vessels, blood pressure regulation and circulation",
+        "Blood: cells, haemoglobin, clotting, blood groups and sickle cell disease",
+        "Airways, lungs, ventilation and gas exchange",
+        "Lung volumes, oxygen transport and acid-base balance",
+        "Common diseases: hypertension, heart failure, anaemia, asthma, pneumonia and tuberculosis"
+      ]
+    },
+    {
+      "title": "Digestive, renal, endocrine and reproductive systems",
+      "weeks": "5-6",
+      "topics": [
+        "Digestive tract and accessory organs; digestion and absorption",
+        "Liver function, metabolism and viral hepatitis",
+        "Kidney and nephron: filtration, fluid and electrolyte balance, urinary tract infection",
+        "Endocrine glands and hormones; insulin, glucose regulation and diabetes mellitus",
+        "Reproductive system, pregnancy, antenatal care and childbirth",
+        "Common diseases: peptic ulcer, cholera, typhoid, chronic kidney disease, thyroid disorders"
+      ]
+    },
+    {
+      "title": "Nervous, musculoskeletal, skin and immune systems",
+      "weeks": "7-8",
+      "topics": [
+        "Brain, spinal cord, neurons, action potentials and reflexes",
+        "Special senses: eye, ear, taste and smell",
+        "Bones, joints and muscles; fractures and their healing",
+        "Skin structure, wound healing and burns",
+        "Immune system: innate and adaptive immunity, vaccines and HIV infection",
+        "Common diseases: stroke, epilepsy, meningitis, osteoporosis and skin infections"
+      ]
+    },
+    {
+      "title": "Diseases, diagnoses, procedures and laboratory tests",
+      "weeks": "9",
+      "topics": [
+        "Disease processes: infection, inflammation, neoplasia and degeneration; malaria, tuberculosis, HIV and non-communicable diseases in Ghana",
+        "Symptoms, signs and syndromes; history taking and differential diagnosis",
+        "Diagnosis classification and coding with ICD-10, ICD-11 and SNOMED CT concepts",
+        "Imaging and procedures: X-ray, ultrasound, CT, MRI and endoscopy; procedure coding",
+        "Laboratory tests: full blood count, malaria rapid test, glucose, liver and kidney panels, urinalysis; reference ranges and LOINC"
+      ]
+    },
+    {
+      "title": "Medications and pharmacology basics",
+      "weeks": "10-11",
+      "topics": [
+        "Drug names, classes and the essential medicines list; generic versus brand",
+        "Pharmacokinetics: absorption, distribution, metabolism, excretion and half-life",
+        "Pharmacodynamics: receptors, dose-response curves and the therapeutic index",
+        "Routes, dosage forms, weight-based dose calculation and prescription abbreviations",
+        "Adverse reactions, interactions, allergies, counterfeit medicines and pharmacovigilance"
+      ]
+    },
+    {
+      "title": "Vital signs and clinical measurements",
+      "weeks": "12",
+      "topics": [
+        "Temperature, pulse, respiratory rate, blood pressure and oxygen saturation",
+        "Anthropometry: height, weight, BMI, growth charts and mid-upper arm circumference",
+        "Early warning scores and triage categories",
+        "Units, reference ranges and conversions such as mg/dL and mmol/L; device error and data quality",
+        "Consciousness and pain: Glasgow coma scale and pain scales"
+      ]
+    },
+    {
+      "title": "Reading a clinical note and chart",
+      "weeks": "13",
+      "topics": [
+        "SOAP note structure: history, examination, assessment and plan",
+        "Medication charts, orders and administration records",
+        "Referral letters, discharge summaries and the problem list",
+        "Decoding a complete chart end to end, with confidentiality of patient records"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Levels of organisation and anatomical language",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Label the planes, directional terms and body cavities on a diagram, and trace a feedback loop for body temperature with sensor, control centre and effector.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Describe the location of six injuries to a triage nurse using correct directional terms and planes, and score each description for precision"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E6",
+          "title": "Step through a negative feedback loop for blood glucose, change the set point and disturbance, and record how the response variable returns to normal"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot body temperature against time with a faulty sensor and a positive feedback loop, and compare how each loop reacts to the same disturbance"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Building and decoding medical terms",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Split twenty terms into prefix, root and suffix, build five new terms from definitions, and rewrite ten ambiguous abbreviations in full.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E5",
+          "title": "Query a table of 200 word parts to split twenty clinical terms into prefix, root and suffix, then give the meaning of each term"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Review 12 handwritten orders for dangerous abbreviations, rewrite each safely, and be scored on the harm avoided in the branching ward case"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Write a small program that splits a medical term using a word-part dictionary, then test it on 30 terms and list the ones it gets wrong"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Heart, vessels and blood",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw the path of blood through the heart, annotate one cardiac cycle on an ECG trace, and match blood groups for four transfusion pairs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step through the cardiac cycle and conduction pathway, and mark where each ECG wave P, QRS and T appears in the sequence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Plot blood pressure against changing heart rate and vessel resistance with a simple model, and identify which change raises mean arterial pressure most"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Cross-match four transfusion cases for ABO and Rhesus groups, release or refuse each unit, and justify the choice against the safety rubric"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Breathing, gas exchange and common conditions",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Explain how an asthma attack changes airflow and gas exchange, and interpret one arterial blood gas for acidosis or alkalosis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Step through inhalation and exhalation, changing lung compliance and airway resistance, and note how tidal volume and oxygen exchange respond"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Plot the oxygen-haemoglobin dissociation curve, shift it for acidity and temperature, and read oxygen saturation at three given partial pressures"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Assess a child with cough, fever and fast breathing in a case, decide between pneumonia, asthma and tuberculosis, and be scored on safe referral"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Digestion, liver and kidney",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Follow a meal from mouth to absorption, explain what hepatitis B does to liver function tests, and calculate net filtration pressure in the glomerulus.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Step through digestion of a meal of fufu and soup, recording the organ, enzyme and product at each stage of absorption"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E5",
+          "title": "Query liver function results for 40 patients, list those with raised bilirubin and transaminases, and group the pattern by likely cause"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Step through filtration, reabsorption and secretion in the nephron, then change the blood pressure and fluid intake and note how urine volume responds"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Hormones, reproduction and gut infections",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Contrast type 1 and type 2 diabetes with insulin action, list antenatal visits and their checks, and describe how cholera causes dehydration.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Plot blood glucose over 24 hours for a healthy person and a person with diabetes after meals, and find where insulin action fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Run an antenatal clinic case: schedule visits, interpret blood pressure and haemoglobin results, and spot the pre-eclampsia warning signs in time"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Manage a cholera outbreak case in a market town: triage patients, start rehydration and report cases, and be scored on lives saved and spread contained"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Nervous system, senses and the skeleton",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Draw the pathway of a reflex arc, describe how the eye forms an image, and classify four fractures with their treatment.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Step through a neuron action potential, changing the stimulus strength, and record threshold, depolarisation, repolarisation and the all-or-none response"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Examine a patient with sudden weakness on one side, choose the right neurological checks, and decide whether the findings fit a stroke"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E5",
+          "title": "Query a trauma register to count fractures by bone and age band, and identify the groups where osteoporosis is the most likely cause"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Skin, immunity and related diseases",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compare innate and adaptive immune responses, explain how a vaccine works, and describe the course of untreated HIV infection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E6",
+          "title": "Step through an immune response to a first and second exposure of the same antigen and compare antibody levels and speed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Plot CD4 count and viral load over ten years for a patient with and without treatment, and mark when opportunistic infection risk rises"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Work up a patient with fever, neck stiffness and headache in a case, order the right tests and treatment, and be scored on speed to treatment"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Disease, diagnosis, procedures and tests",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Take a history for fever and rash, list a differential diagnosis, assign ICD codes, and interpret a full blood count and malaria test.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E5",
+          "title": "Query a laboratory table for haemoglobin and white cell results, flag values outside reference ranges, and count abnormal results by ward"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E5",
+          "title": "Map 20 diagnoses written in free text to ICD-10 codes in a lookup table, and list the ones that need a more specific code"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Work up a patient with fever through history, examination, imaging and lab tests, narrow the differential, and be scored on tests chosen versus cost"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Drug names, kinetics and dynamics",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Group ten medicines into classes using the essential medicines list, and sketch the plasma concentration curve for an oral dose.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E5",
+          "title": "Search an essential medicines table by class to find generic names for five brand-name drugs and list their routes and dose forms"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Plot plasma concentration over 24 hours for repeated doses with a given half-life, and find when steady state is reached"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Plot dose-response curves for two drugs, read the median effective dose of each, and compare their therapeutic index from the curves"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Dosing, safety and adverse effects",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Calculate a weight-based paracetamol dose for a child, decode five prescription abbreviations, and report an adverse reaction to a pharmacovigilance form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Write a small program that computes weight-based doses for ten children from mg per kg and flags any dose above the maximum"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Review a patient's medication list in a case, find a dangerous interaction and an allergy conflict, and change the prescription safely"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Investigate a batch of suspected counterfeit antimalarials in a district case: trace the supply, report to the regulator and protect patients"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Vital signs and measurements",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Record vital signs for four patients, compute BMI and early warning scores, and convert glucose and creatinine values between unit systems.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Measure and record vital signs for four simulated patients on a ward round, spot the one deteriorating, and escalate at the right time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Code an early warning score from respiratory rate, oxygen saturation, pulse, blood pressure and consciousness, and test it on 20 patient observations"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Convert 15 glucose, cholesterol and creatinine results between mg/dL and mmol/L, then plot growth for a child on a standard chart"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Reading a clinical note and chart",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Read a complete record for a patient with diabetes and hypertension and write a one-paragraph summary with problems, medicines, results and plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Read a SOAP note and highlight the subjective, objective, assessment and plan statements, scoring each correct classification"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E5",
+          "title": "Query medication orders and administration records for ward patients to find doses ordered but not given and drugs given without an order"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Review an entire chart in a case, extract the problem list and key results, decode all abbreviations, and brief the next shift without missing a risk"
+        }
+      ]
+    }
+  ]
+}

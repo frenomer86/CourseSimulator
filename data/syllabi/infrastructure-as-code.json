@@ -101,5 +101,395 @@
         "Capstone: provision, configure, test and deliver through GitOps a complete environment, then detect and fix injected drift"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why infrastructure as code",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Write a short account of a server that nobody dares to touch, naming the manual steps that caused it and how code would have prevented each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E12",
+          "title": "Build a web server by hand in the cloud console, document every click, then destroy it and time how long a rebuild takes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Show that a provisioning script is idempotent by running it three times and checking that the second and third runs change nothing"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Review a risky infrastructure change request with a large blast radius, decide what to approve, split or reject, and justify against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Terraform fundamentals",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Read a given plan output line by line and explain what will be created, changed or destroyed and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E12",
+          "title": "Write a configuration with a provider, one virtual machine, a variable and an output, then run init, plan and apply"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E12",
+          "title": "Read a plan that shows a resource replacement, find the argument that forces it, and change the code to update it in place"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E12",
+          "title": "Use for_each, a conditional and a dynamic block to create security group rules for three environments from a single variable map"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Provisioning networks and servers",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Draw the network diagram for a two-subnet web and database environment and label every security group rule with its purpose.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Provision a VPC with one public subnet and one virtual machine, and confirm the machine is reachable only on port 80"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Provision a VPC with public and private subnets, a database server and an object storage bucket with restricted access, then test the paths"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E12",
+          "title": "Express the same small environment in Terraform and in a cloud-native template, compare readability and drift handling, and write the trade-offs"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Modules and composition",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Write the interface documentation of a module, listing every input, output and default, and one example call.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E12",
+          "title": "Turn a repeated virtual machine definition into a module with inputs and outputs and call it twice with different names"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E12",
+          "title": "Version a module with Git tags following semantic versioning, upgrade a caller to a new minor version, and read the plan for surprises"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E12",
+          "title": "Compose network, compute and database modules into a stack with separate development, staging and production layouts that differ only by variables"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Environments and reusable modules",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Compare workspaces with separate directories for three environments, listing the risk each approach carries.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E12",
+          "title": "Create development and production variable files for the same configuration and apply each, comparing the resources created"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E12",
+          "title": "Switch between two workspaces, show the state is separate for each, and describe the mistake that applying to the wrong workspace would cause"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E12",
+          "title": "Design a reusable three-tier web application module with load balancer, autoscaling group and database, used by two teams with different sizes"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "State and drift",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Explain in a paragraph why state files may contain secrets and list three controls that reduce the risk.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Inspect a state file from a small deployment and match each resource entry to the real resource it records"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E12",
+          "title": "Move state to a remote backend with locking, run two applies at the same time, and show that the lock stops the second"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E12",
+          "title": "Change a security group by hand in the console, detect the drift with a plan, and decide whether to revert the change or adopt it into code"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Refactoring state and recovery",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a recovery runbook for a lost state file, listing the steps in order and the checks that prove the rebuilt state is correct.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Rename a resource using a moved block and show in the plan that nothing will be destroyed or recreated"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Import two existing console-created resources into state, write matching code, and reach a plan with no changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E12",
+          "title": "Recover from a deleted state file by importing every resource of a three-tier stack, then verify with a clean plan and record the recovery time"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Configuration management with Ansible",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write a playbook outline for a web server setup, marking each task and handler and explaining why each is safe to run repeatedly.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E4",
+          "title": "Write an inventory and run an ad hoc command to check disk space and uptime on three virtual machines"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E4",
+          "title": "Write a playbook that installs a web server, templates its configuration with Jinja2 and restarts it only through a handler when the file changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E4",
+          "title": "Refactor a playbook into a role, move the database password into Ansible Vault, and show that the playbook runs idempotently"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Immutable images and combined workflows",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Argue in writing whether a fleet of 50 mobile money agent servers should be patched in place or rebuilt from images, with costs and risks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E12",
+          "title": "Build a golden image from a base machine with the web server installed and launch two identical instances from it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E12",
+          "title": "Provision five servers with Terraform and configure them with Ansible, then show a re-run produces no changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E12",
+          "title": "Roll out a configuration change to a fleet of 20 servers in batches, with a health check that halts the rollout when a batch fails"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Testing infrastructure code",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Place ten checks of your own project on the testing pyramid and say how long each takes and what bug class it catches.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Run format, validate and a linter on a configuration with three planted errors and fix each one until all checks pass"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Run a security scanner on a stack with an open storage bucket and an open admin port, then fix each finding and re-scan"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E12",
+          "title": "Write integration tests that create an ephemeral environment, check that it serves a page and then destroy it, and estimate the cost per run"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Policy as code and cost control",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write three policies in plain words for a bank's cloud account, then say which could be automated as code and which could not.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Write a policy that blocks any public storage bucket and show a plan that violates it being rejected before apply"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Add a data residency policy that allows resources only in approved regions and test it with one compliant and one non-compliant plan"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E12",
+          "title": "Estimate the monthly cost of a pull request that adds autoscaling, set a budget threshold, and decide when the change needs approval"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "GitOps and pipelines",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Draw the pipeline from pull request to production for infrastructure, marking the human approvals, the automated checks and what each blocks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E4",
+          "title": "Keep a configuration in a Git repository, make a change by pull request, and show the history that explains who changed what and why"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Build a pipeline that runs plan on pull request and apply on merge to main, with a protected production environment requiring approval"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E12",
+          "title": "Replace a long-lived cloud key in a pipeline with short-lived credentials from OIDC, and show that a leaked token expires and cannot be reused"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Recovery, platforms and capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Capstone report: describe the environment you built, the tests and pipeline you used, the injected drift you found and how you fixed it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E12",
+          "title": "Destroy a complete test environment and rebuild it from code, recording the time taken and the manual steps still needed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E12",
+          "title": "Add required tags and region rules to a stack, run a compliance check, and produce a change history report for an auditor"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E12",
+          "title": "Provision, configure and deliver a full environment through a pipeline, then detect and fix three drift items planted by the examiner"
+        }
+      ]
+    }
   ]
 }

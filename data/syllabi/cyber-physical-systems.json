@@ -1,0 +1,503 @@
+{
+  "slug": "cyber-physical-systems",
+  "description": "A graduate course on systems where computation, networks and physical processes are tightly coupled: hybrid models, real-time scheduling, sensing and control networks, safety, formal verification, security and edge-to-cloud deployment. Students model plants, schedule tasks, verify controllers, attack and defend sensor networks, and deploy a small monitored system from edge device to cloud.",
+  "modelledOn": [
+    "Lee and Seshia, Introduction to Embedded Systems: A Cyber-Physical Systems Approach",
+    "Alur, Principles of Cyber-Physical Systems",
+    "Buttazzo, Hard Real-Time Computing Systems",
+    "IEC 61508, Functional Safety of Electrical, Electronic and Programmable Electronic Safety-Related Systems"
+  ],
+  "outcomes": [
+    "Model a cyber-physical system as a hybrid automaton with continuous dynamics, modes, guards and resets, and simulate it.",
+    "Analyse a task set for schedulability using utilisation tests and response-time analysis, and handle shared resources and priority inversion.",
+    "Design sensing, estimation and networked actuation chains that tolerate noise, delay and packet loss.",
+    "Conduct hazard analysis and build redundant, fail-safe designs with quantified reliability.",
+    "Specify controller requirements in temporal logic, check them by model checking, reachability or falsification, and interpret counterexamples.",
+    "Threat-model a connected device and deploy a monitored edge-to-cloud pipeline with secure updates and tested failure modes."
+  ],
+  "units": [
+    {
+      "title": "Modelling hybrid systems",
+      "weeks": "1-2",
+      "topics": [
+        "CPS architecture and examples: smart grid, vehicles, medical devices and precision farming",
+        "Continuous dynamics: state-space models, linearisation, zero-order-hold discretisation and numerical simulation",
+        "Discrete dynamics: finite state machines and timed automata",
+        "Hybrid automata: modes, guards and resets; Zeno behaviour; the thermostat and bouncing ball",
+        "Co-simulation and model-based design: fidelity versus cost"
+      ]
+    },
+    {
+      "title": "Real-time scheduling and timing analysis",
+      "weeks": "3-4",
+      "topics": [
+        "Tasks, periods, deadlines and jitter; hard versus soft real-time",
+        "Fixed-priority scheduling: rate-monotonic priorities, the utilisation bound and response-time analysis",
+        "Earliest-deadline-first scheduling and exact schedulability tests",
+        "Shared resources: priority inversion, priority inheritance and priority ceiling protocols",
+        "Worst-case execution time: measurement versus static analysis, caches and pipelines",
+        "Control-scheduling co-design: effect of sampling jitter and delay on stability"
+      ]
+    },
+    {
+      "title": "Sensing, networking and actuation",
+      "weeks": "5-6",
+      "topics": [
+        "Sensor models, noise and calibration; complementary and weighted fusion",
+        "State estimation: the Kalman filter and its extended form",
+        "Control and industrial buses: CAN arbitration and message response times, Modbus",
+        "Low-power wireless links (LoRa, BLE, Zigbee), duty cycles and MQTT publish-subscribe",
+        "Time synchronisation: clock drift, NTP, PTP and time-triggered architectures",
+        "Actuator limits and networked control with delay and packet loss"
+      ]
+    },
+    {
+      "title": "Safety and fault tolerance",
+      "weeks": "7-8",
+      "topics": [
+        "Hazard analysis: HAZOP, FMEA and fault trees",
+        "Safety standards, integrity levels and safety cases",
+        "Redundancy: dual and triple modular redundancy, voting and watchdog timers",
+        "Fault models (crash, transient, Byzantine); detection, isolation and recovery",
+        "Reliability metrics: failure rate, MTBF, availability and Markov models",
+        "Graceful degradation and fail-safe design"
+      ]
+    },
+    {
+      "title": "Formal verification of controllers",
+      "weeks": "9-10",
+      "topics": [
+        "Requirement specification: LTL, CTL and signal temporal logic",
+        "Model checking: state-space exploration, safety and liveness, counterexamples",
+        "Reachability analysis for hybrid systems; invariants and barrier certificates",
+        "Lyapunov functions and stability certificates for controllers",
+        "Falsification and runtime monitoring of CPS using search and robustness measures",
+        "Assume-guarantee contracts and compositional verification"
+      ]
+    },
+    {
+      "title": "Security of connected devices",
+      "weeks": "11",
+      "topics": [
+        "CPS threat models: spoofing, replay and false data injection on sensors and actuators",
+        "Secure boot, signed firmware updates and hardware roots of trust",
+        "Securing device protocols: TLS and MQTT authentication under key-management limits",
+        "Case studies in power-grid and industrial control incidents; physics-based anomaly detection"
+      ]
+    },
+    {
+      "title": "Edge-to-cloud deployment",
+      "weeks": "12",
+      "topics": [
+        "Edge, fog and cloud tiers: latency budgets and placement of computation",
+        "Data pipelines: MQTT ingestion, stream processing and time-series storage",
+        "Digital twins: model synchronisation, cloud state estimation and what-if analysis",
+        "Fleet management: over-the-air updates, orchestration, cost, resilience and failure injection"
+      ]
+    },
+    {
+      "title": "Project: an end-to-end CPS",
+      "weeks": "13",
+      "topics": [
+        "Requirements and architecture for an end-to-end CPS",
+        "Verification and safety argument for the controller",
+        "Evaluation under injected faults and attacks",
+        "Technical report and demonstration"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Hybrid systems and state-space models",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Model a greenhouse heater as a state-space plant plus a thermostat state machine, discretise it, and simulate temperature for a 24 hour day.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Discretise a first-order thermal model with zero-order hold at two sampling periods and compare the step responses with the continuous solution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Step a timed automaton for a crossing gate in the visualiser and record the state and clock values for a train arrival trace"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Simulate a linearised inverted pendulum with state feedback and report the largest sampling period for which it stays stable"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Hybrid automata and co-simulation",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Specify the bouncing ball and a thermostat as hybrid automata with guards and resets, and explain Zeno behaviour and how to detect it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Simulate a bouncing ball hybrid automaton with event detection, plot height over time and detect the accumulation of bounces"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Build a two-mode thermostat hybrid model, add a hysteresis band, and measure the switching frequency for three band widths"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Co-simulate a plant model and a controller running at different rates and quantify the error against a single monolithic simulation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Real-time tasks and fixed-priority scheduling",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Check whether a set of three periodic sensor tasks is schedulable under rate-monotonic and earliest-deadline-first, using utilisation and response-time analysis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Run a three-task set under rate-monotonic scheduling in the visualiser and mark the first deadline miss, if any, on the timeline"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Compute response times for a 4-task set by fixed-point iteration and compare the results with the utilisation bound test"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Find the task set utilisation at which earliest-deadline-first still meets every deadline but rate-monotonic fails, and demonstrate it on the timeline"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Resources, WCET and control timing",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Explain how priority inversion can disrupt a flight-controller task, apply priority inheritance, and quantify the effect of timing jitter on loop stability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Reproduce a priority inversion with three tasks and a shared lock, then enable priority inheritance and compare the high-priority delay"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E8",
+          "title": "Measure the execution time of a sensor-processing routine over 1000 runs on the bench and report the mean, maximum and a safe WCET bound"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Simulate a feedback loop with growing sampling jitter and find the jitter level at which the closed loop loses stability"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Sensors, fusion and state estimation",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Fuse an accelerometer and a gyroscope to estimate tilt, derive a Kalman filter for a 1D position tracker, and compute CAN message response times.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E8",
+          "title": "Read an accelerometer and a gyroscope on the bench, apply a complementary filter and compare the tilt estimate with a known angle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement a Kalman filter for a 1D position and velocity tracker with noisy readings and plot estimate error against the raw measurement"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Simulate CAN bus arbitration among five message identifiers and compute worst-case response time of the lowest-priority message"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Wireless links, time and networked control",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Design a soil-moisture sensor network for a farm using low-power radio, compute battery life, and find how packet loss degrades remote control.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E8",
+          "title": "Publish simulated soil-moisture readings from a node over MQTT with retained messages and a last-will message, and verify subscribers receive them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Simulate two clocks with different drift rates synchronised by periodic exchange and report the maximum offset for three sync intervals"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Close a control loop over a network with random delay and 5 to 30 percent packet loss, and plot the performance against loss rate"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Hazards, standards and redundancy",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Build a fault tree for loss of braking in an electric tricycle taxi, assign probabilities, and show the effect of triple redundancy on the top-event probability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Draw a fault tree for a failed infusion pump alarm with at least six basic events and compute the top-event probability"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E8",
+          "title": "Implement a watchdog timer on the microcontroller, force a program hang and show the board recovers within the timeout"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Simulate triple modular redundancy with a majority voter under independent faults and compare reliability with a single channel across 5 failure rates"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Fault models, reliability and degradation",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Model the availability of a solar-powered clinic fridge monitor with a Markov chain, and design a degradation plan for a failed sensor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compute steady-state availability from a two-state Markov model for three repair rates and plot availability against repair time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Run a consensus protocol in the visualiser with one crashed node and then one Byzantine node, and record when agreement fails"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E8",
+          "title": "Inject a stuck-at fault into a sensor on the bench, detect it by a plausibility check and switch the controller to a safe fallback mode"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Temporal logic and model checking",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write five requirements for a traffic-light controller in temporal logic, check them by model checking, and interpret a counterexample trace.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Translate five plain-language requirements for a level-crossing controller into LTL formulas and check each on three given traces"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Explore the state space of a given controller model, find the state violating a safety property and read the counterexample path"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Compute the reachable set of a 2D linear system from an initial box for 20 steps and decide whether it reaches an unsafe region"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Stability certificates, falsification and contracts",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Prove stability of a closed-loop system with a Lyapunov function, falsify a cruise controller specification by search, and write an assume-guarantee contract.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Verify a candidate quadratic Lyapunov function for a 2-state system by checking its derivative is negative on a grid"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Search for input signals that violate a cruise controller specification using random sampling and report the robustness of the best trace"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Write assume-guarantee contracts for a sensor and a controller and check by simulation that composing them meets the system requirement"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Securing connected devices",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Threat-model a smart meter, show a replay attack on its readings, and add defences: nonces, signed firmware and an anomaly detector based on physics.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E3",
+          "title": "Capture and replay a meter reading message in a simulated network and then block replay with a sequence number check"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E8",
+          "title": "Configure an MQTT broker with authentication and topic access control, and verify that an unauthorised client cannot publish a command"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Build a residual-based anomaly detector for a water tank level using a physics model, and measure detection delay for an injected false reading"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Edge, fog and cloud deployment",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Deploy sensor ingestion, a time-series store and an alert rule in the cloud, place control at the edge and test what happens when the uplink fails.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E12",
+          "title": "Create a queue, a function and a time-series bucket to ingest simulated sensor messages and verify 1000 messages are stored"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E12",
+          "title": "Place a control loop at the edge and analytics in the cloud, measure the latency of each path and check it against a 50 ms budget"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E12",
+          "title": "Inject a regional outage and a slow network into the console, observe the pipeline, and add retry and local buffering to avoid data loss"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project: build and evaluate an end-to-end CPS",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Demonstrate your CPS, present its requirements, model, safety argument and verification results, and report its behaviour under injected faults and attacks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Draw the architecture of your CPS with sensors, controller, network, edge and cloud, and annotate latency and failure assumptions on each link"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Verify two safety requirements of your controller by reachability or simulation sweeps and report the margin to the unsafe set"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E8",
+          "title": "Run your system on the bench with a sensor fault, a delayed message and a spoofed command, and record how it behaves in each case"
+        }
+      ]
+    }
+  ]
+}

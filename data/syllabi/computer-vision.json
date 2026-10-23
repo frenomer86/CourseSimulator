@@ -102,5 +102,396 @@
         "Capstone: an end-to-end vision application with a dataset card, evaluation report and deployment demonstration"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Images as numbers",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Explain how a Bayer sensor produces a full colour pixel and why sampling a fine pattern too coarsely creates aliasing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Load a cassava leaf image, split it into R, G and B channels, convert to greyscale and print the shape and value range of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Apply gamma correction and histogram equalisation to a dark photo and compare the before and after histograms and mean intensity"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Downsample a striped test image by factors 2, 4 and 8 with and without pre-blurring, and explain which factor first creates aliasing"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Filtering in space and frequency",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Convolve a 3 by 3 kernel with a 5 by 5 patch by hand and show how separability reduces the number of multiplications.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Blur a noisy image with a 5 by 5 box filter and a Gaussian filter and compare noise level using the standard deviation of a flat region"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Remove salt-and-pepper noise with a median filter, then clean a thresholded leaf mask using opening and closing, and report pixel counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Compute the 2D Fourier transform of an image, design a low-pass mask, reconstruct and compare it with the Gaussian result in the spatial domain"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Edges and shapes",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write the Canny pipeline as five numbered steps and say what goes wrong in the output if the hysteresis thresholds are set too high.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Compute Sobel gradients of a road photo, display the magnitude and direction images and threshold the magnitude to a binary edge map"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement Canny from scratch with smoothing, gradients, non-maximum suppression and hysteresis, and compare the output with a library version"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Detect lane markings in 10 road frames with edges, a region mask and a Hough transform, then report frames where the detected lines are wrong"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Keypoints, descriptors and matching",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Describe why a corner is a better landmark than an edge point or flat region, using the eigenvalues of the structure tensor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Run Harris corner detection on a checkerboard image and a plain-wall photo and count corners above threshold in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Extract ORB descriptors from an image and its 30 degree rotated copy and report how many keypoints match correctly"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Match two views of a building with nearest neighbours, sweep the ratio test threshold from 0.5 to 0.9 and plot correct versus incorrect matches"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Geometry and stitching",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Show that four point correspondences are the minimum needed to solve for a homography and explain why RANSAC is needed on real matches.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Apply a given affine matrix to a unit square, plot the original and warped shapes and read off the scale, rotation and shear"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Estimate a homography from noisy matches with RANSAC, vary the inlier threshold and report the inlier count and reprojection error"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Stitch three overlapping photos into a panorama with feature matching and homographies, and fix visible seams by blending the overlaps"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Convolutional networks",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compute the output size and parameter count of a small stack of convolution and pooling layers by hand, then check it in code.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Step a 3 by 3 filter over a 6 by 6 input, record the feature map and max-pool it to confirm the output dimensions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Train a small CNN on 2000 leaf images with and without augmentation, and compare validation accuracy curves for overfitting"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Build a plain 8-layer network and a residual version, train both on the same data and compare convergence speed and final accuracy"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Transfer learning and interpretation",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a short note on why a model trained on clean lab photos of leaves may fail on photos taken in a farmer's field.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Freeze a pretrained network, replace its last layer and train it to classify 4 cassava disease classes, reporting test accuracy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Produce a Grad-CAM heatmap for 10 test leaf images and mark which ones attend to the lesion and which to the background"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Craft a small gradient-based adversarial perturbation that flips a correct prediction, measure its size and test a simple defence against it"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Object detection",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compute the intersection over union of three box pairs by hand and run non-maximum suppression on a list of overlapping detections.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Write an IoU function and test it on 8 box pairs, including identical, disjoint and contained boxes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Implement non-maximum suppression and apply it with thresholds 0.3, 0.5 and 0.7 to a set of 20 raw detections, comparing kept boxes"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Run a pretrained one-stage detector on 20 street images, study missed small objects and test whether higher input resolution improves recall"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Evaluating and building detection datasets",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Draft labelling guidelines for motorbikes, tricycles and cars, covering occlusion, truncation and minimum box size.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Sort detections by confidence for a worked example, compute the precision and recall at each rank and plot the precision-recall curve"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Compute average precision per class and mean average precision for a detector's output on 50 labelled images at IoU 0.5"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Label 40 Accra traffic frames, split train and test by location, fine-tune a detector and report per-class AP and common failure types"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Segmentation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Explain how a U-Net skip connection recovers detail lost in downsampling and why Dice is preferred to pixel accuracy for small parasites.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Segment a blood smear image with Otsu thresholding, count connected components and compare the count with a manual count"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Compute pixel accuracy, mean IoU and Dice for a predicted and ground-truth mask pair and show how accuracy hides errors on rare classes"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Train a small U-Net on satellite tiles to mask farmland, report mean IoU and compare against k-means colour clustering on the same tiles"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Camera models and two views",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Project three 3D points through a pinhole camera by hand using a given intrinsic matrix and pose, and verify the pixel coordinates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Build an intrinsic matrix from focal length and principal point, project eight cube corners to the image plane and plot the result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Calibrate a camera from 12 checkerboard photos, report the intrinsics and reprojection error and undistort one image"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Estimate the fundamental matrix with the eight-point algorithm from noisy matches, add normalisation, and compare epipolar line errors with and without it"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Stereo and 3D reconstruction",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Derive the depth formula from baseline, focal length and disparity, and say how depth error grows with distance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Compute depth from disparity for 10 pixel pairs given baseline and focal length, then plot depth against disparity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compute a disparity map for a rectified stereo pair with block matching, tune the window size and compare against given ground truth"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Triangulate points from three calibrated views, refine them with a small bundle adjustment and report the reprojection error before and after"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Video, generation, deployment and capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a one-page dataset card and a bias and privacy statement for your capstone application.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Quantise a small trained classifier to 8-bit, then compare its file size, accuracy and inference time with the original"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Track objects across a 30 frame clip using detection plus a Kalman filter, then count identity switches against the given ground truth"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build an end-to-end crop disease classifier with a dataset card, a held-out evaluation by subgroup and a latency budget measured on a phone-class CPU"
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,537 @@
+{
+  "slug": "advanced-digital-communications",
+  "description": "Graduate treatment of digital transmission over noisy, dispersive and fading channels: optimal detection, modulation performance, equalisation, synchronisation, coding, OFDM and MIMO. In the lab students derive error rates, then build and validate a link-level simulation that reproduces theory and a published result.",
+  "modelledOn": [
+    "Proakis and Salehi, Digital Communications",
+    "Tse and Viswanath, Fundamentals of Wireless Communication",
+    "Goldsmith, Wireless Communications",
+    "Moon, Error Correction Coding: Mathematical Methods and Algorithms"
+  ],
+  "outcomes": [
+    "Derive optimal receivers and error-probability bounds for signals in additive Gaussian noise using signal-space methods.",
+    "Compare modulation formats by bit error rate, spectral efficiency and robustness to fading.",
+    "Design and simulate equalisers and carrier and timing recovery loops for dispersive channels.",
+    "Evaluate channel codes against capacity limits, including convolutional, turbo, LDPC and polar codes.",
+    "Analyse and simulate OFDM and MIMO links, including diversity, multiplexing and precoding trade-offs.",
+    "Build a validated Monte Carlo link simulator and report results with confidence intervals against theory."
+  ],
+  "units": [
+    {
+      "title": "Signal space and detection theory",
+      "weeks": "1-2",
+      "topics": [
+        "Gram-Schmidt orthonormalisation and the vector representation of signals and constellations",
+        "The AWGN channel, sufficient statistics, correlator and matched-filter receivers",
+        "Hypothesis testing: MAP and ML detection, decision regions and Bayes risk",
+        "Union bound and nearest-neighbour approximation for error probability",
+        "Q-function, Eb/N0 versus Es/N0 and bit error rate definitions",
+        "Noncoherent detection with random phase; Rayleigh and Rician envelopes",
+        "Maximum-likelihood estimation and the Cramer-Rao bound for phase and timing"
+      ]
+    },
+    {
+      "title": "Modulation and demodulation performance",
+      "weeks": "3",
+      "topics": [
+        "PAM, PSK and QAM: exact and approximate error rates, Gray mapping",
+        "Orthogonal signalling, FSK, MSK and continuous-phase modulation: spectrum and efficiency",
+        "Differential and noncoherent schemes: DPSK and noncoherent FSK",
+        "Pulse shaping: the Nyquist criterion, raised-cosine and root-raised-cosine filters, eye diagrams",
+        "Performance in fading: Rayleigh and Rician average BER, outage and link budgets for mobile networks"
+      ]
+    },
+    {
+      "title": "Equalisation and synchronisation",
+      "weeks": "4-5",
+      "topics": [
+        "Intersymbol interference, the discrete-time equivalent channel and the whitened matched filter",
+        "Zero-forcing and MMSE linear equalisers and noise enhancement",
+        "Decision-feedback and maximum-likelihood sequence equalisation; adaptive LMS and RLS algorithms",
+        "Carrier phase recovery: phase-locked loops, the Costas loop and decision-directed methods",
+        "Symbol timing recovery: early-late gate and zero-crossing timing error detectors",
+        "Frame synchronisation, preambles and training sequences; frequency offset estimation"
+      ]
+    },
+    {
+      "title": "Channel coding and capacity limits",
+      "weeks": "6-7",
+      "topics": [
+        "Shannon capacity of the AWGN channel, the -1.59 dB limit and binary-input capacity",
+        "Linear block codes: generator and parity-check matrices, syndrome decoding, BCH and Reed-Solomon codes",
+        "Convolutional codes: trellis, hard and soft Viterbi decoding, free distance",
+        "Turbo codes and iterative MAP decoding",
+        "LDPC codes: Tanner graphs, belief propagation and density evolution",
+        "Polar codes: channel polarisation and successive-cancellation decoding",
+        "Coded modulation, coding gain and hybrid ARQ"
+      ]
+    },
+    {
+      "title": "OFDM and multicarrier systems",
+      "weeks": "8-9",
+      "topics": [
+        "Multicarrier principle, subcarrier orthogonality and FFT implementation",
+        "Cyclic prefix, guard interval and one-tap frequency-domain equalisation",
+        "Peak-to-average power ratio, clipping, selective mapping and amplifier nonlinearity",
+        "Preamble-based timing and frequency offset estimation; pilot-aided channel estimation",
+        "Bit loading, water-filling and adaptive modulation",
+        "OFDMA, SC-FDMA and the numerology of Wi-Fi, LTE and 5G NR"
+      ]
+    },
+    {
+      "title": "MIMO and diversity",
+      "weeks": "10-11",
+      "topics": [
+        "Time, frequency and space diversity; selection, equal-gain and maximal-ratio combining; diversity order",
+        "Two-antenna orthogonal space-time block codes and space-time trellis codes",
+        "The MIMO channel model, capacity, singular value decomposition and water-filling",
+        "Spatial multiplexing receivers: ZF, MMSE, successive interference cancellation and sphere decoding",
+        "The diversity-multiplexing trade-off",
+        "Beamforming, precoding and massive MIMO with channel hardening"
+      ]
+    },
+    {
+      "title": "Link-level simulation",
+      "weeks": "12",
+      "topics": [
+        "Monte Carlo BER estimation: sample size, confidence intervals and importance sampling",
+        "Building a simulation chain from source to BER counter in baseband-equivalent form",
+        "Channel models: AWGN, flat Rayleigh, tapped delay line and Doppler spectra",
+        "Validation against theory, seeds, vectorisation and reproducibility",
+        "Link adaptation, BLER-versus-SNR curves and throughput"
+      ]
+    },
+    {
+      "title": "Reproduction, design and research critique",
+      "weeks": "13",
+      "topics": [
+        "Reproducing a published BER result and quantifying the mismatch",
+        "Link design for rural broadband and TV white space in Africa",
+        "Capstone: designing and tuning a coded OFDM link to a throughput target",
+        "Open problems: short-packet communication, massive access and non-terrestrial links"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Signal space, matched filters and MAP detection",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Represent a four-signal set in signal space, derive the matched-filter output SNR, and bound the symbol error rate with the union bound.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Apply Gram-Schmidt to four given waveforms, find an orthonormal basis, and plot each signal as a point in signal space"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Simulate BPSK over AWGN with a matched filter at Eb/N0 from 0 to 10 dB and plot measured BER against the Q-function theory"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement the MAP decision rule for unequal priors with 8-ary signals, plot the decision regions, and show how they shift as the priors change"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Error rates, noncoherent detection and estimation",
+      "topics": [
+        "1.5",
+        "1.6",
+        "1.7"
+      ],
+      "exercise": "Convert between Eb/N0, Es/N0 and SNR, derive the noncoherent FSK error probability, and compute a Cramer-Rao bound for phase estimation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Convert between Eb/N0, Es/N0 and SNR for QPSK and 16-QAM at four bandwidth settings and tabulate the Eb/N0 needed for a BER of 1e-5"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Simulate noncoherent binary FSK in noise and compare the measured BER with the exact expression 0.5 exp(-Eb/2N0)"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.7",
+          "engine": "E1",
+          "title": "Estimate a carrier phase offset by maximum likelihood from 200 noisy samples, compute the Cramer-Rao bound, and show the variance approaches it as SNR rises"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Modulation formats, pulse shaping and fading",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compare PSK, QAM and FSK by SNR needed and bandwidth used, sketch an eye diagram, and estimate the average BER of QPSK in Rayleigh fading.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot the theoretical symbol error probability of 4, 16 and 64-QAM against Eb/N0 and read off the SNR penalty for each doubling of constellation size"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Simulate DPSK and coherent BPSK over AWGN and measure the SNR penalty of differential detection at BER 1e-4, expecting about 1 dB"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Generate a root-raised-cosine pulse train with roll-off 0.25 and 0.5, plot the eye diagram and power spectrum, and measure the occupied bandwidth"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Simulate 16-QAM over Rayleigh flat fading, compute the average BER, compare it with the closed form, and estimate outage probability for a 10 dB threshold"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Linear equalisation and the ISI channel",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compute the output SNR of zero-forcing and MMSE equalisers for a two-path channel, and explain when maximum-likelihood sequence detection is worth its cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Convolve a symbol sequence with a three-tap ISI channel, plot the received samples, and show how ISI closes the eye opening for BPSK"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Design zero-forcing and MMSE linear equalisers with 11 taps for a given channel, and compare output SNR and noise enhancement at 5 and 15 dB"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement a trellis-search sequence detector for a 3-tap channel, compare its BER with a decision-feedback equaliser at 8 dB, and explain the gap"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Carrier, timing and frame synchronisation",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Choose the loop bandwidth of a carrier-tracking loop trading noise against tracking speed, and design a preamble for reliable frame detection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Correlate a received signal with a known preamble to locate the frame start, and measure detection probability at 0, -3 and -6 dB SNR"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Build a second-order phase-locked loop for QPSK carrier recovery, choose its bandwidth, and plot phase error as it locks onto a 1 kHz offset"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Implement early-late gate timing recovery for oversampled root-raised-cosine BPSK with a 100 ppm clock offset, and plot timing error and BER"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Capacity and block, convolutional codes",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compute the minimum Eb/N0 for a given spectral efficiency, decode a Hamming word by syndrome, and trace Viterbi decoding on a short trellis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Plot AWGN channel capacity and binary-input AWGN capacity against SNR, and mark the Eb/N0 limit of -1.59 dB at zero spectral efficiency"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Build Hamming(7,4) and (15,11) encoders with syndrome decoders and compare coded and uncoded BER over a binary symmetric channel at crossover 0.001 to 0.1"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement soft-decision Viterbi decoding for a rate-1/2, constraint length 3 convolutional code and measure the coding gain over hard decisions at BER 1e-4"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Modern codes: turbo, LDPC, polar and HARQ",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6",
+        "4.7"
+      ],
+      "exercise": "Run bit-flipping decoding on a Tanner graph, choose frozen bits for an (8,4) polar code, and compare codes by the Eb/N0 each needs at BER 1e-5.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Draw the Tanner graph of a small parity-check matrix, run bit-flipping decoding on a word with two errors, and record which checks fail at each round"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Construct an (8,4) polar code by ranking synthetic channels for frozen bits, and decode it with successive cancellation over AWGN"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement a two-branch turbo decoder with log-MAP component decoders and plot BER over 1 to 8 iterations at 1 dB"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.7",
+          "engine": "E7",
+          "title": "Compare the Eb/N0 needed at BER 1e-5 for uncoded, Hamming, convolutional and LDPC codes from supplied curves, and rank them by coding gain and rate loss"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "OFDM fundamentals and the cyclic prefix",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Show why a cyclic prefix turns a multipath channel into parallel flat subchannels, and size the prefix for a given delay spread.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Build an OFDM symbol with 64 subcarriers using an inverse FFT, plot the waveform and spectrum, and confirm orthogonality by recovering each subcarrier"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Add a cyclic prefix, pass the symbol through a 4-tap multipath channel, equalise with one tap per subcarrier, and plot BER with and without the prefix"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Measure the PAPR distribution for 64 and 256 subcarriers, reduce it with clipping and filtering, and report the BER penalty"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "OFDM estimation, loading and standards",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Estimate a channel from pilots, allocate power across subcarriers by water-filling, and compare the numerology of Wi-Fi, LTE and 5G NR.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Apply water-filling to eight subcarriers of known gains and a power budget, and compute the capacity gain over equal power"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Estimate the channel from pilot subcarriers by least squares with linear interpolation, and plot MSE against pilot spacing at 15 dB"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.6",
+          "engine": "E7",
+          "title": "Compare the subcarrier spacing, symbol duration and cyclic prefix of Wi-Fi, LTE and 5G NR from supplied parameters, and compute each one's tolerable delay spread"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Estimate and correct carrier frequency offset in OFDM using a repeated training symbol, showing BER with offsets of 0.1, 0.3 and 0.5 subcarrier spacings"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Diversity combining and space-time codes",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Derive the diversity order of maximal-ratio combining, show that a two-antenna space-time code achieves second-order diversity, and compute MIMO capacity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Simulate selection, equal-gain and maximal-ratio combining with 1, 2 and 4 branches in Rayleigh fading, and read the diversity order from the BER slopes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement the two-antenna orthogonal space-time block code encoder and combiner, and measure its 3 dB loss against 1x2 combining at equal total transmit power"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compute ergodic capacity of 2x2, 4x4 and 8x8 Rayleigh MIMO channels by Monte Carlo and compare with the singular value and water-filling prediction at 10 dB"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Spatial multiplexing and massive MIMO",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Compare ZF, MMSE and successive-cancellation receivers for a 2x2 link, and explain how massive MIMO makes the channel nearly deterministic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Compare zero-forcing and MMSE detection for a 2x2 spatial multiplexing link with 4-QAM and plot BER from 0 to 20 dB"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Estimate the diversity-multiplexing trade-off for a 2x2 system from simulated outage probability at several rates, and compare it with the ideal curve"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Simulate a base station with 64 antennas serving four users by zero-forcing precoding, and show channel hardening and sum-rate growth as antennas increase"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Building a link-level simulator",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Plan a simulation chain, decide how many bits are needed for a BER of 1e-6, and validate your simulator against two closed-form results.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Run a BPSK Monte Carlo simulation with 1e3, 1e5 and 1e6 bits at 8 dB and compute a 95 percent confidence interval for each BER estimate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Implement a tapped-delay-line channel from a given power-delay profile with Jakes Doppler, and verify the simulated Doppler spectrum and delay spread against targets"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Plot BLER and throughput against SNR for six modulation-and-coding settings, and pick the best setting per SNR as a link-adaptation table"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Build a modular link chain with source, coder, modulator, channel, receiver and BER counter, with configuration and unit tests, and reproduce a published BER curve within 0.2 dB"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Reproduction, rural link design and open problems",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Reproduce a published BER curve, design a rural fixed link with a link budget, and write a one-page critique naming one open problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute the link budget for a 20 km rural fixed link with margin for rain and fading, and find the highest modulation order meeting BER 1e-6"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Reproduce a BER curve from a described paper using its parameters, list each assumption you had to guess, and quantify the mismatch"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Design, simulate and tune a coded OFDM link to meet 5 Mbit/s at BER 1e-5 in a 5 MHz channel over a fading profile, and report the trade-offs"
+        }
+      ]
+    }
+  ]
+}

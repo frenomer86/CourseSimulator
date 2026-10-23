@@ -115,5 +115,403 @@
         "Project: a structure-based screening report for a target relevant to health in Africa"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Backbone geometry and protein folds",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Short problem set: compute phi and psi from four atoms, classify five residues on a Ramachandran plot and name the hydrogen-bond pattern of a helix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Compute the phi, psi and omega torsion angles of three residues from backbone coordinates and mark them on a Ramachandran plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Classify the residues of a short PDB chain as helix, sheet or coil using hydrogen-bond patterns and torsion angles, and compare with the file annotation"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Identify the hydrophobic core, salt bridges and disulphide bonds of a small protein from its coordinates and report the residue pairs"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Quaternary structure and sickle cell disease",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Write a half-page explanation of how the HbS mutation causes polymerisation, with a diagram of the contact it creates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compare the four chains of haemoglobin in a PDB file and measure the distances between subunits to describe the interfaces"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Plot a simple energy landscape for a folding protein and use Levinthal's calculation to show why random search of conformations cannot work"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Compare normal and sickle haemoglobin structures at position 6, measure the new hydrophobic contact and explain how it favours polymerisation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Experimental methods and structure databases",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compare X-ray, NMR and cryo-EM models of one protein, and write down what each reports about uncertainty.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Parse a PDB file to list its chains, residue counts, B-factors and occupancies, and print a summary of each chain"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Assess the quality of three structures of one protein from resolution, R-free and Ramachandran outliers and rank which to trust"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Select a binding site by residue and distance, compute its surface and electrostatic character and report which residues line it"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Superposition and fold comparison",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Superimpose two structures by hand on a small set of points and compute their RMSD.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Superimpose two sets of five points with the Kabsch algorithm and compute the RMSD before and after alignment"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Compute a structural alignment of two proteins of different sequence, report RMSD, TM-score and aligned length and say if they share a fold"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Classify five proteins into CATH-style classes and architectures from their structural similarity matrix and explain a possible convergent evolution case"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Contact maps and remote homology",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Draw the contact map for a small protein and mark the helices and strands it reveals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Compute a distance matrix and a contact map at an 8 Angstrom threshold for a small protein and identify the helices as diagonal bands"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Compute solvent accessibility for each residue, classify buried versus exposed, and compare to hydrophobicity along the sequence"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Detect a remote homologue pair with low sequence identity but high structural similarity and report the evidence for the relationship"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Secondary structure assignment and prediction",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Apply Chou-Fasman rules by hand to a short sequence and compare with the DSSP assignment.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Assign secondary structure from coordinates using a simplified DSSP-style hydrogen-bond rule and compare with the file's annotation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Implement Chou-Fasman propensity prediction for a sequence and report Q3 against the true assignment"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Predict transmembrane helices and signal peptides in five sequences with a hydropathy window and check the predictions against known annotations"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Protein structure prediction",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write a short plan for modelling a protein with 40 percent identity to a known template, including checks on the model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Align a target sequence to a template and build a homology model by copying the template backbone, noting which regions are loops"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Predict residue contacts from coevolution by computing mutual information on a small alignment and compare with true contacts"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Compare homology modelling, threading and fragment assembly on three targets of different template quality and recommend the best for each"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Deep learning models and malaria targets",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Short report on how much you trust each region of a predicted structure, with reasons from the confidence scores.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Read pLDDT and PAE values for a predicted structure and mark regions of low confidence on the sequence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Validate a predicted model with Ramachandran statistics and clash checks and decide which regions should not be trusted"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Model a Plasmodium falciparum protein with no experimental structure, assess confidence regions and list what questions the model can and cannot answer"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Force fields and molecular dynamics",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Calculate a Lennard-Jones and Coulomb energy for two atoms by hand and explain why periodic boundaries are used.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Plot the Lennard-Jones potential for two atoms, find its minimum and add a Coulomb term for two partial charges"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Minimise the energy of a small peptide with steepest descent and conjugate gradients and compare how fast each converges"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write a small molecular dynamics loop for 30 particles with velocity Verlet, a thermostat and periodic boundaries, and monitor total energy"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Docking preparation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Prepare a receptor and a ligand for docking and write a checklist of the preparation steps with the reason for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Count hydrogen bonds and hydrophobic contacts between a bound ligand and protein in a PDB file and list the interacting residues"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Prepare a receptor by removing waters, adding hydrogens and filling a missing side chain, then identify the pocket from the co-crystal ligand"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Convert five SMILES strings into 3D conformers with sensible charges and tautomers, and check the ligand properties against a database record"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Docking and validation",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a validation plan for a docking protocol and the criteria that would make you distrust its scores.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Dock a ligand into a rigid receptor with a simple scoring function, score five poses and rank them by energy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Redock a crystal ligand, calculate pose RMSD to the experimental position and decide whether the protocol passes a 2 Angstrom threshold"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Dock ten candidate inhibitors into the P. falciparum dihydrofolate reductase site, rank them, and discuss which scores you would not trust"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Drug discovery workflows",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a one-page plan for a virtual screen against a neglected tropical disease target, including filters and validation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Place activities on the drug discovery pipeline from target selection to clinical trials, choosing the next step at each stage with evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Apply Lipinski's rule of five and a toxicity filter to 30 compounds and list the ones that pass each criterion"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Build a QSAR model on an activity dataset, validate it with a hold-out set and report which structural features drive predicted activity"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Screening project",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Project report: a structure-based screen for a health target in Africa, with figures, confidence assessment and limitations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Select a disease target, fetch its structure and ligand data and summarise the quality and coverage of the available evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Prepare a structure, run a small virtual screen of 50 compounds, and rank the hits with a pose-quality check"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Produce a structure-based screening report for an African health target with a validated docking protocol, a hit table and limitations section"
+        }
+      ]
+    }
   ]
 }

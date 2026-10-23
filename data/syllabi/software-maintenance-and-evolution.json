@@ -1,0 +1,502 @@
+{
+  "slug": "software-maintenance-and-evolution",
+  "description": "What happens to software after its first release: handling change requests, understanding legacy code, refactoring, measuring debt, mining version history, migrating systems and shipping patches. Students take over a small legacy system in the lab and improve it step by step without breaking it.",
+  "modelledOn": [
+    "Feathers, Working Effectively with Legacy Code",
+    "Fowler, Refactoring: Improving the Design of Existing Code",
+    "Mens and Demeyer (eds.), Software Evolution",
+    "ISO/IEC/IEEE 14764, Software Life Cycle Processes: Maintenance"
+  ],
+  "outcomes": [
+    "Classify a change request by maintenance type and estimate its impact using dependency and traceability information.",
+    "Understand unfamiliar code by tracing it, drawing its structure and writing characterisation tests before changing it.",
+    "Apply a catalogue of refactorings to remove code smells while keeping all tests green.",
+    "Measure complexity, coupling and churn and use the numbers to prioritise technical debt repayment.",
+    "Mine a repository history to find hotspots, change coupling and the commit that introduced a defect.",
+    "Plan a migration and a release or patch process with versioning, rollback and communication."
+  ],
+  "units": [
+    {
+      "title": "Software maintenance and change requests",
+      "weeks": "1-2",
+      "topics": [
+        "The laws of software evolution and why systems that are used must keep changing",
+        "Corrective, adaptive, perfective and preventive maintenance; the maintenance process",
+        "Change request lifecycle: logging, triage, prioritisation, approval and closure",
+        "Impact analysis: dependency analysis, traceability matrices and ripple effects",
+        "Maintenance cost, effort estimation and service-level agreements for support"
+      ]
+    },
+    {
+      "title": "Legacy code and program comprehension",
+      "weeks": "3",
+      "topics": [
+        "Comprehension strategies: top-down, bottom-up and as-needed reading of code",
+        "Characterisation tests and capturing existing behaviour before change",
+        "Call graphs, dependency graphs and recovering a design with reverse engineering",
+        "Breaking dependencies: seams, adapters and extracting interfaces to make code testable",
+        "Reading logs, stack traces and debugging a production fault"
+      ]
+    },
+    {
+      "title": "Refactoring and code smells",
+      "weeks": "4",
+      "topics": [
+        "Catalogue of code smells: long method, large class, duplicated code, feature envy, shotgun surgery",
+        "Extract method, extract class, move method and rename as behaviour-preserving steps",
+        "Replacing conditionals with polymorphism and introducing parameter objects",
+        "The refactoring workflow: tests first, small steps, commit often",
+        "Automated refactoring tools and their limits; when not to refactor"
+      ]
+    },
+    {
+      "title": "Technical debt and software metrics",
+      "weeks": "5-6",
+      "topics": [
+        "The technical debt metaphor: deliberate, accidental, interest and principal",
+        "Cyclomatic complexity, lines of code, Halstead measures and the maintainability index",
+        "Coupling and cohesion metrics: afferent and efferent coupling, instability, LCOM",
+        "Static analysis tools, linters and quality gates in a build",
+        "Prioritising debt repayment by cost, risk and business value; recording debt in a backlog"
+      ]
+    },
+    {
+      "title": "Mining version history",
+      "weeks": "7-8",
+      "topics": [
+        "Inspecting history with git log, blame, diff and bisect",
+        "Code churn, hotspots and the link between change frequency and defects",
+        "Change coupling: files that change together and hidden dependencies",
+        "Finding bug-introducing commits and linking commits to issue trackers",
+        "Visualising evolution and simple defect prediction from process metrics"
+      ]
+    },
+    {
+      "title": "Migration and modernisation",
+      "weeks": "9",
+      "topics": [
+        "Modernisation options: retain, rehost, refactor, re-architect, rewrite and replace",
+        "The strangler pattern and incremental replacement of a monolith",
+        "Database schema evolution and data migration with verification",
+        "API versioning and backward compatibility",
+        "Case study: moving a bank's batch system to services without downtime"
+      ]
+    },
+    {
+      "title": "Release and patch management",
+      "weeks": "10-11",
+      "topics": [
+        "Semantic versioning, changelogs and release notes",
+        "Branching strategies, hotfixes and back-porting a fix to supported versions",
+        "Patch management: vulnerability disclosures, dependency updates and software bills of materials",
+        "Continuous delivery safeguards: feature flags, canary releases and rollback plans",
+        "Deprecation, long-term support and end of life of software and APIs"
+      ]
+    },
+    {
+      "title": "Evolution in practice and capstone",
+      "weeks": "12-13",
+      "topics": [
+        "Maintaining open source projects: contributors, issue triage and governance",
+        "Maintenance where connectivity and budgets are limited: offline fixes and field updates",
+        "Post-incident reviews and learning from failures",
+        "Documenting a system for the next maintainer: architecture notes and decision records",
+        "Capstone: take over a legacy system, assess it, plan its evolution and deliver the first improvements"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why software changes and the maintenance process",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Classify twelve change requests for a school fees portal by maintenance type and order them by priority with a sentence of reasoning each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Sort ten user tickets into corrective, adaptive, perfective and preventive maintenance and assign a severity to each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw the change request lifecycle for a mobile money support team as a flowchart with decision points and roles at each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot size and defect data over 12 releases of a given system and test whether it follows continuing change and growing complexity"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Impact analysis and the cost of support",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Use a traceability matrix and a dependency list to find everything affected by changing the tax rate field, then estimate the effort and testing needed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Mark every module and test case affected by a change to one function in a given dependency diagram"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write a script that builds a dependency graph of a small project and lists everything reachable from a changed file"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Estimate yearly support effort for three products from ticket history and compute the staffing level that meets a 4-hour response target"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Understanding code you did not write",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Read a 150-line legacy billing function, draw its call graph, write five characterisation tests, and list the seams where you could safely insert changes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E9",
+          "title": "Draw the call graph and a class diagram for a short unfamiliar program, then mark the three functions that look most central"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Write characterisation tests that record the current outputs of an undocumented pricing function on 15 inputs, including odd ones"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Break a hard-wired database dependency using an interface, substitute a fake in tests, and show the unchanged behaviour on all prior tests"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Refactoring safely",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Identify five smells in a 200-line order-processing class and apply a named refactoring to each, running the tests after every step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Label the code smells in a supplied class and name the refactoring that would remove each one"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Apply extract method and move method to a long function and show all 12 existing tests still pass after each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Replace a nested conditional for fee calculation with polymorphic classes, keeping behaviour identical on 25 test cases and measuring complexity before and after"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Technical debt and code metrics",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compute cyclomatic complexity and coupling for six modules of a given system and name the two with the highest debt interest.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Compute the cyclomatic complexity of five given functions by counting decision points and check with a metric script"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Write a script that computes afferent and efferent coupling and instability for modules in a small project and ranks them"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Decide whether to repay or defer five debt items in a start-up case, weighing interest cost against a launch deadline, and defend the choice"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Quality gates and debt prioritisation",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Define a quality gate with thresholds for complexity, duplication and coverage, and rank a backlog of ten debt items by risk and business value.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Run a linter on a small project, fix the ten highest-severity warnings and record the count before and after"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E4",
+          "title": "Add a pre-commit hook in a repository that blocks commits when a complexity limit or test run fails, and demonstrate both outcomes"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Score twelve debt items by cost, risk and value, plot them on a priority matrix and propose the order of repayment over three sprints"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Reading repository history",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Use log, blame and diff on a supplied repository to answer who changed the discount function last, how often it changed, and which files change with it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E4",
+          "title": "Use git log and blame in a supplied repository to find who last changed a named line and what the commit message said"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E4",
+          "title": "Count commits per file over a repository history with shell commands and list the ten most changed files as hotspot candidates"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Compute change coupling between all file pairs from commit data and report pairs that change together in over 70 percent of commits"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Finding defects in history",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Use bisect to find the commit that broke a test, link it to its issue, and describe what a churn-based predictor would have flagged.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E4",
+          "title": "Run git bisect on a 64-commit history with a failing test and name the first bad commit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Link commit messages to issue numbers by pattern matching and list which issues were fixed by more than two commits"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Build a simple model from churn and complexity to rank files by defect risk and check its ranking against known bug-fix commits"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Migrating and modernising systems",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Pick a modernisation option for a monolithic payroll system, draw the strangler stages, and write the data migration checks needed at each stage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Choose between rehost, refactor and rewrite for three legacy systems in a case file and justify each choice with cost and risk evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E9",
+          "title": "Draw the three stages of a strangler migration of a clinic booking monolith, marking the routing layer and the retired modules"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E5",
+          "title": "Migrate a customer table to a new schema with split name fields and reconcile row counts and checksums to prove no data was lost"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Versions, branches and hotfixes",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Assign semantic version numbers to six changes, then plan how a security fix reaches versions 2.3 and 3.1 through a back-port.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Assign the correct major, minor or patch bump to eight described changes and write a one-line changelog entry for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Create a hotfix branch from a release tag, apply a fix, merge it to main and cherry-pick it to an older release branch"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Respond to a published vulnerability in a dependency: assess exposure, choose the patch order across five services and write the advisory"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Safe delivery and retiring software",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a rollout plan using a feature flag and a 5 percent canary for a new payment screen, with the rollback trigger and communication steps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Wrap a new feature in a feature flag and show behaviour switching between old and new code with a configuration change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E12",
+          "title": "Roll out a new version to 10 percent of instances behind a load balancer, watch the error rate and roll back when it exceeds a limit"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Plan the end of life of an API used by 40 clients: set the notice period, migration help and the criteria for the final shutdown"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Sustaining systems over time",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a post-incident review and a short architecture decision record for a failed clinic-record sync that happened over an unreliable mobile network.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E9",
+          "title": "Document a small system as a context diagram and a one-page decision record listing three design choices and their reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Run a blameless review of a mobile money outage from a timeline of evidence, identifying causes and three preventive actions"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Design a patch that a field agent can apply offline from a small signed file, and simulate applying it twice without harm"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Capstone: taking over a legacy system",
+      "topics": [
+        "8.1",
+        "8.5"
+      ],
+      "exercise": "Present an assessment of the supplied legacy inventory system with its metrics, hotspots, risks and a three-release evolution roadmap, and show your first merged improvements.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Run the metric script on the legacy inventory system and write down the five worst modules by complexity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E4",
+          "title": "Cut the first two improvements on separate branches with tests, merge them with clean history and tag release 1.1"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Take over the legacy system as the new maintainer, handling open requests, a security alert and a stakeholder budget cut, scored on the rubric"
+        }
+      ]
+    }
+  ]
+}

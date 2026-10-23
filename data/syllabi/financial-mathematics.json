@@ -116,5 +116,404 @@
         "Capstone: build and evaluate a credit scoring model for a microfinance lender on a synthetic loan book"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Interest, discounting and equations of value",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Problem set: find accumulated value under simple, compound and continuous interest for the same principal, and solve an equation of value for an unknown rate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute the value of GHS 5000 after 3 years at 18 percent under simple and annual compound interest, and plot both growth curves"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Convert between nominal rates with monthly, quarterly and continuous compounding and the effective annual rate, and tabulate the six results"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Solve for the unknown interest rate in an equation of value with three payments using a root-finding routine, and check it by reaccumulating the cash flows"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Inflation, real rates and saving options",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compare three ways to save GHS 200 a month (bank deposit, mobile money interest, susu collector) by effective annual rate and real return after inflation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Apply the Fisher equation to nominal rates and inflation figures for five years and compute the real interest rate for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Convert a susu collector's monthly fee into an implied annual interest rate for three contribution sizes and compare it with a bank deposit"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Simulate the real value of a one-year GHS 10000 deposit under three inflation paths, and rank savings options by real return"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Annuities, NPV and IRR",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Evaluate two investment projects by NPV, IRR and payback, explain why they can disagree, and say which you would choose for a small solar-pump business.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute the present value of a 5-year annuity-immediate and annuity-due of GHS 1000 at 12 percent and compare them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute NPV, IRR and payback for a solar-pump project with a given cash-flow table and decide whether to invest"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Build a cash-flow model with a growing payment stream in code or a spreadsheet, and run a sensitivity analysis on the discount rate from 8 to 24 percent"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Loans, amortisation and the true cost of credit",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write a customer-friendly comparison of a flat-rate loan and a reducing-balance loan with the same stated rate, showing the APR of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Build the amortisation schedule of a GHS 12000 loan over 12 months, listing interest, principal and outstanding balance each month"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Convert a flat rate of 2 percent per month into the equivalent reducing-balance APR and show the schedule for both"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Price a mobile nano-loan with a 5 percent fee over 14 days, convert it to an annual rate, and test the price against a cap of 120 percent"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Bonds, bills and Treasury auctions",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Price a 5-year coupon bond at three yields, find its yield from a quoted price, and compute the discount and interest yields of a 91-day bill.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Price a 3-year 10 percent coupon bond at yields of 8, 10 and 12 percent and classify each as premium, par or discount"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Convert a 91-day treasury bill bid into discount rate, interest yield and annualised yield, and compare it with a 182-day bill"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Compute the yield to maturity of a bond from its market price by root finding, and plot price against yield to show the convex relation"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Yield curves, duration and credit risk",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Bootstrap spot rates from three coupon bonds, compute duration and convexity of a liability, and explain how to immunise it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Bootstrap the 1-, 2- and 3-year spot rates from given bond prices and plot the yield curve"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compute Macaulay duration, modified duration and convexity of a 5-year bond and estimate its price change for a 1 percent yield rise"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Advise a pension fund in a branching case on holdings affected by a sovereign debt exchange, using evidence on yields, exposure and creditor losses"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Returns, risk and market data",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compute daily and annualised returns and volatility for two Ghana Stock Exchange stocks from price data, and discuss why the normal model may understate losses.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute holding-period and annualised geometric returns for a stock from a table of monthly prices"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Compute mean, variance and correlation of two stocks' returns from a price series and tabulate the covariance matrix"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Estimate 95 percent value at risk for a stock by the normal model and by historical simulation, and compare them on a fat-tailed sample"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Portfolio theory and the efficient frontier",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Show on paper that a two-asset portfolio's risk falls as correlation falls, and find the minimum-variance weights for given volatilities and correlation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Plot the risk of a two-asset portfolio against the weight of the first asset for correlations of 1, 0 and -0.5"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Find the minimum-variance portfolio and the efficient frontier for three assets from given means and covariances"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Add a risk-free asset, locate the tangency portfolio and the capital market line, and compute the Sharpe ratio of three candidate portfolios"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "CAPM, factor models and numerical frontiers",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Estimate beta of a stock by regression against a market index, and say what the intercept and residual risk mean for a diversified investor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Regress a stock's returns on a market index to estimate beta, and plot the security market line with the stock marked"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Fit a two-factor model to a set of stock returns and explain how much of the variance each factor and the residual contribute"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Compute an efficient frontier numerically from 200 random portfolios and an optimiser for five African stocks, and compare the two results"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Forwards, futures and option pricing",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Problem set: price a cedi-dollar forward from interest rates, draw profit diagrams of a covered call and a straddle, and price a two-period option on a binomial tree.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Draw payoff and profit diagrams for a long call and a long put with given premiums and mark the break-even points"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Price a six-month cedi-dollar forward from spot and interest rates, and find the arbitrage profit if the market quote is different"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Build a three-period binomial tree for a European and an American put, and compare their values and exercise boundaries"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Black-Scholes, Monte Carlo and commodity hedging",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Compare binomial, Black-Scholes and Monte Carlo prices of one option, and explain how a cocoa exporter could hedge with futures.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Price a European call with the Black-Scholes formula and compute delta, gamma and vega for it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Price a European call by Monte Carlo with 100000 paths, and compare it with the Black-Scholes value including the standard error"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E7",
+          "title": "Evaluate a cocoa exporter's hedge with futures across three price scenarios, and show when hedging lowers risk and when it adds exposure"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Microfinance and digital lending",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Analyse a 10-member susu group: compute each member's implied interest rate by payout position, and say who gains and who pays.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Model a 10-member rotating savings group of GHS 100 each and compute the implied interest rate for the first and last payout positions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Compute the break-even interest rate for a microfinance lender from operating cost, loan size and portfolio at risk"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Review a mobile lender's pricing in a branching case on repeat nano-loan borrowers, judging over-indebtedness evidence against consumer protection rules"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Credit scoring and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Capstone report: describe a credit scoring model for a microfinance lender, its variables, validation metrics, fairness checks and recommended cut-off.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E7",
+          "title": "Compute expected loss from probability of default, loss given default and exposure for a portfolio of ten loans"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Compute an ROC curve, the Gini coefficient and the KS statistic for a given set of scores and outcomes"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E1",
+          "title": "Build a logistic-regression scorecard on a synthetic loan book, scale scores to points, choose a cut-off, and report fairness across groups"
+        }
+      ]
+    }
   ]
 }

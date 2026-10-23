@@ -110,5 +110,399 @@
         "Packaging as a runnable JAR; documentation and code review"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The JVM, program structure and primitive types",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write a short paragraph tracing what happens from typing javac to seeing output on screen, naming the JVM, bytecode and the class loader.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a Hello World program organised into a package, compile and run it from the command line, and explain each line including the import"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Write a program that declares each primitive type, prints its size-related behaviour (overflow of a byte, truncation of a cast) and explains the result"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Set up a Maven or Gradle project with one dependency, build it, and explain in writing what the build tool did that javac alone would not"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Control flow and input",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Rewrite a program that uses nested if-else chains as an equivalent switch expression, and explain why the switch version is easier to verify by inspection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write a program using if, switch and a for loop that classifies ten exam scores into grade bands and prints a summary count per band"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Read a list of numbers from the console with Scanner until a sentinel value, and print their sum, average and the largest value"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Debug a given loop that off-by-one skips the last element of an array, fix it, and explain why the original bound was wrong"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Methods, arrays and unit testing",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Write three JUnit test cases, including one edge case, for a method that finds the maximum value in an array before you write the method itself.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Write an overloaded method that computes area for a circle, rectangle and triangle, and call all three overloads from a test"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement a method that reverses a two-dimensional array in place and verify it with JUnit tests covering a square and a non-square array"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Write a recursive method to compute the nth Fibonacci number, compare it with an iterative version on timing for n equals 30, and explain the difference"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Classes, encapsulation and object design",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Design a class for a mobile-money wallet from a problem statement, choosing fields, constructors and which operations must be validated, before writing any code.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Write a class with private fields, a constructor and getters, create two objects and show that changing one does not affect the other"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Design an immutable class representing money with validation that rejects a negative amount, and write a test proving it cannot be mutated"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Add a static counter field and a named constant to a class so every object can report how many instances exist, and verify the count with a test"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Object identity, relationships and diagrams",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Draw a UML class diagram for a wallet, a transaction and a customer, correctly showing association, aggregation or composition for each relationship.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Override equals, hashCode and toString for a class, and show with a test that two logically equal objects are treated as equal in a HashSet"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Draw a UML class diagram showing association, aggregation and composition between three given classes, justifying each relationship choice"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Design and implement a student register class from a problem statement, including invariants that stop an invalid age or score being set"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Inheritance, polymorphism and interfaces",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Design an abstract class and two interfaces for a set of payment methods, and explain which behaviour belongs in the abstract class versus the interfaces.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Create a base class and two subclasses that override a method, and show dynamic dispatch choosing the right version at runtime"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Define an interface with a default method and two implementing classes, and write a lambda that implements a functional interface for a third behaviour"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Use pattern-matching instanceof to process a list of mixed shape objects polymorphically and compute the total area without a type-checking chain of ifs"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Design patterns",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Pick two design patterns (Strategy, Observer, Factory, Singleton) and explain, for a described system, which one solves its stated problem and why the other does not.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Refactor a class hierarchy that favours inheritance into one using composition, and show the Liskov substitution problem the original design had"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Implement the Strategy pattern for a billing system choosing between two fee calculation methods at runtime, selected without modifying the billing class"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Implement the Observer pattern so that three listener objects are notified when a wallet balance changes, and verify all three fire exactly once"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Exception handling",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Design a custom exception hierarchy for a banking system with at least one checked and one unchecked exception, and justify each choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Write a method that throws a checked exception, catch it with a specific catch block and a general one, and show the order they are tried"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Use try-with-resources to open and automatically close a file resource, and show with a test that the resource is closed even when an exception occurs"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Debug a program that silently swallows an exception and corrupts data, add proper validation and logging, and show the fixed version fails fast with a clear message"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Files, streams and serialisation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Write a short note on when to use byte streams versus character streams, with one file type that needs each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Read a text file line by line, transform each line, and write the result to a new file using java.nio.file"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Serialise a list of objects to JSON with a library, then deserialise it back and confirm the result equals the original list"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Read a CSV file of open-data figures, compute a summary statistic per category, and handle a row with a missing or malformed field without crashing"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Generics and collections",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Compare List, Set and Map for three described use cases and justify which collection fits each, including the expected time complexity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Choose the right collection type for three described scenarios (lookup by key, unique items, insertion order) and justify each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Sort a list of custom objects two different ways using Comparable and a separate Comparator, and verify both orderings with a test"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Write a generic method bounded to Comparable types that finds the maximum of any list, and use the Streams API to filter and collect a derived result"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Concurrency",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Explain, with a short example, how a race condition on a shared counter happens and show two different fixes (synchronized and an atomic type).",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Start two threads that each increment a shared counter without synchronisation, show the final count is wrong, and explain why"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Fix the race condition with synchronized or a lock, and show with a test that the final count is now always correct across repeated runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Build a producer-consumer pipeline using an ExecutorService and a blocking queue, and verify every produced item is eventually consumed exactly once"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Networking",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3"
+      ],
+      "exercise": "Compare TCP and UDP for a chat application and a sensor-reading broadcast, and justify which protocol fits each use case.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Write a TCP echo server and client that exchange messages, then extend the server to handle multiple clients with threads"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Use HttpClient to call a public REST API, parse the JSON response, and print three extracted fields"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Write a simple HTTP server with com.sun.net.httpserver that serves one JSON endpoint, and test it by calling it from a separate client program"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Final project and packaging",
+      "topics": [
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Write a one-page design for a multi-user chat, quiz or inventory application, listing its classes, the collections and threads it needs, and its test plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Design and implement a multi-user application combining files, collections, threads and networking, with JUnit tests for its core logic"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Add a test suite covering at least one concurrency scenario and one networking scenario for the built multi-user application"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E1",
+          "title": "Package the finished application as a runnable JAR with manifest and documentation, and verify it runs correctly on a clean checkout"
+        }
+      ]
+    }
   ]
 }

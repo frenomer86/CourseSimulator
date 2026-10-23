@@ -99,5 +99,399 @@
         "Project: a sensing and actuation system such as an automatic irrigation controller or a small delivery robot with odometry"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Measurement systems and static characteristics",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Problem set: from a calibration table of a pressure sensor, compute range, sensitivity, linearity error, hysteresis and resolution, and state which characteristic limits accuracy most.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compute sensitivity, offset and linearity error from a ten-point calibration table of a temperature sensor and plot the fit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E8",
+          "title": "Wire a thermistor to an Arduino analogue pin, read it through the serial monitor, and show the signal path from sensor to number"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Choose the best sensing principle for six field measurements in a branching case, balancing accuracy, power and cost against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Dynamic response, errors and datasheets",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Estimate the time constant of a temperature probe from a step test, compute its 95 percent settling time, and propose a correction for the lag.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Fit a first-order step response to measured data and read the time constant and the 95 percent settling time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Fit a least-squares calibration line to noisy data, report its slope and intercept uncertainties, and plot the residuals"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E8",
+          "title": "Select between two soil moisture sensors from their datasheets for a battery-powered node, then wire and read the chosen one"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Position, speed and rotation sensing",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compute the resolution and maximum speed of a 1000-count quadrature encoder, and design a method to measure low and high speeds accurately.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E8",
+          "title": "Read a quadrature encoder with two Arduino pins and display the position count as the shaft turns"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E8",
+          "title": "Measure motor speed from encoder pulses using frequency counting and period counting, and compare the accuracy of the two at low and high speed"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E8",
+          "title": "Fix an encoder reader that loses counts at high speed by moving to interrupts, and verify zero missed counts over 10000 pulses"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Distance, proximity and line sensing",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compute how the speed of sound changes with temperature and the resulting distance error of an ultrasonic sensor at 15 and 40 degrees Celsius.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Read an ultrasonic sensor's echo time, convert it to distance, and compare readings at five known distances"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E8",
+          "title": "Correct an ultrasonic distance reading for air temperature and test the error with and without correction at 40 degrees"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E8",
+          "title": "Build a line-following array reading with weighted-position calculation for a delivery robot, and verify the position estimate on a curved line"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Inertial, thermal and magnetic sensors",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Calibrate a magnetometer from sample data by estimating hard-iron offsets, and explain how soft-iron distortion changes the plotted circle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E8",
+          "title": "Read a digital temperature sensor over I2C and compare it with a thermistor reading at three temperatures"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E8",
+          "title": "Measure accelerometer bias and noise from 1000 samples at rest and report the bias and the noise standard deviation"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Calibrate a magnetometer by fitting an offset and scale to rotated data, and compute heading error before and after"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Environmental sensors and weighing",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Design a weather station for a Ghanaian farm: list the sensors, ranges, power budget and the placement of each, and the calibration needed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E8",
+          "title": "Read a capacitive soil moisture sensor, calibrate it with dry and wet samples, and convert readings to percent moisture"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Compute the Wheatstone bridge output for a load cell under five loads and fit a calibration line to read weight"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E8",
+          "title": "Build a grain-store monitor that reads temperature and humidity, publishes readings, and raises an alert when spoilage conditions are met"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Signal conditioning circuits",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Design an instrumentation amplifier stage for a 0 to 20 mV bridge output into a 0 to 3.3 V ADC, giving the gain, resistor values and expected error.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E2",
+          "title": "Build a 4-20 mA current loop receiver with a 250 ohm resistor and verify the voltage at 4, 12 and 20 mA"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E2",
+          "title": "Design a differential amplifier stage that scales a 0 to 20 mV bridge signal to 0 to 3.3 V, and measure its gain and error"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E2",
+          "title": "Design an active anti-aliasing filter for a 1 kHz ADC rate and verify that a 3 kHz interference tone is attenuated by at least 40 dB"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Sampling, digital filtering and noise control",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compare moving average, exponential smoothing and median filtering on a noisy signal with spikes, and recommend a filter for each of three sensors.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Sample a 100 Hz sine at three rates, show aliasing in the sampled values, and choose a safe rate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E8",
+          "title": "Filter a noisy analogue reading on an Arduino with a moving average and an exponential filter, and compare noise and lag"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E8",
+          "title": "Reduce the noise on a sensor reading disturbed by a nearby motor by changing grounding, filtering and shielding, and measure the improvement in standard deviation"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Electromagnetic principles and DC motors",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Derive the torque-speed line of a brushed motor from its equivalent circuit, compute stall torque and no-load speed, and identify the peak-efficiency point.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Plot the torque-speed and efficiency curves of a brushed DC motor from its constants and mark the stall point"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Model a DC motor's transfer function from its constants and plot the speed step response and time constant"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Choose between brushed and brushless motors for a pump and a robot wheel in a branching case, weighing efficiency, cost and electronics"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Steppers, servos and motor selection",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Select a motor and gearbox for a robot wheel from torque, speed and voltage requirements, showing the calculation and the safety margin.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Drive a stepper motor in full-step and half-step modes from an Arduino and count the steps for one revolution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E8",
+          "title": "Tune a PID controller for motor speed using encoder feedback in the simulator and record the overshoot and settling time"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E7",
+          "title": "Size a motor and gearbox for an irrigation valve or a robot wheel from the load torque, speed and inertia, and justify the selection"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Driving loads and motor power electronics",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Design a motor driver for a 12 V motor: choose the transistor or H-bridge, flyback protection and PWM frequency, and give the expected switching loss.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E8",
+          "title": "Switch a 12 V load with a MOSFET controlled by an Arduino pin and add a flyback diode across an inductive load"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E8",
+          "title": "Control motor speed and direction with an H-bridge and PWM from an Arduino, and plot speed against duty cycle"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E8",
+          "title": "Configure a stepper driver with current chopping to avoid missed steps at higher speed, and check the driver temperature against its limit"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Protection, power and batteries",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Prepare a power budget for a solar-powered sensor node, including load currents, duty cycle, battery capacity for three cloudy days and panel size.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E8",
+          "title": "Measure the current drawn by a motor and trip an overcurrent cut-off when it passes a threshold"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Compute battery runtime for a sensor node at several duty cycles, including self-discharge, and compare lithium and lead-acid choices"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E7",
+          "title": "Size the panel and battery for an off-grid pump or sensor node over three cloudy days, and test the design against a month of weather data"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Sensor fusion and final project",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Project proposal: specify the sensors, actuators, filters, control logic and test plan for an automatic irrigation controller or a delivery robot with odometry.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Combine two noisy sensors measuring the same quantity by weighted averaging and show that fused error is smaller than either input's"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Fuse accelerometer and gyroscope readings with a complementary filter to estimate tilt, and tune the blend to reject vibration and drift"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E8",
+          "title": "Build an automatic irrigation controller with a soil moisture sensor, pump relay and logging, and test it over simulated wet and dry days"
+        }
+      ]
+    }
   ]
 }

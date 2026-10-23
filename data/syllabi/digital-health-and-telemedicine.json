@@ -108,5 +108,402 @@
         "Project: a working prototype with an evaluation plan and a pitch to a district health directorate"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What digital health is and what the evidence says",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Pick one digital health tool used in Ghana and write a half-page note placing it in the WHO classification and stating what evidence exists for it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Classify eight real digital health interventions into the WHO categories of client, provider, system and data services and justify each placement"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Match four health system gaps in a district to the digital tools that address them and score each match on feasibility in the case rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Appraise a pilot study of an SMS reminder programme, decide whether the evidence supports scaling, and explain the pilot problem in the debrief"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Strategy, stakeholders and principles",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Summarise Ghana's eHealth strategy in a table with its goals, owners and one risk for each, and add your own comment on gaps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Map each strategy component of a national eHealth plan to a responsible ministry or agency and spot the two components with no owner"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Choose a sustainable partnership model among a ministry, a donor, a start-up and a mobile network operator for a new app and defend the split of costs"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Audit a proposed health app against the Principles for Digital Development and list which principles it breaks, with fixes ranked by impact"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Mobile channels for basic phones and smartphones",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write the text of three appointment reminder messages in plain English with a local-language version of one, and justify the wording choices.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E11",
+          "title": "Design a USSD menu flow for checking a clinic appointment in three levels, then test every path on the phone emulator including a wrong input"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E11",
+          "title": "Build an offline-first screen that stores patient visits locally and syncs them when a connection returns, then test it with the network off and on"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E11",
+          "title": "Compare SMS, USSD and an app for four use cases in a rural district and recommend one channel per case within a data budget"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Human-centred design and mobile money for health",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Interview a classmate playing a community health nurse for 10 minutes and list three pain points that your design must address.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E11",
+          "title": "Adjust a given health app screen for a shared, low-end phone by simplifying text, enlarging controls and reducing images, then test it on a small screen"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Walk through a mobile NHIS renewal case, choose payment and confirmation steps for a market trader, and score the result for access and risk"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E11",
+          "title": "Prototype an SMS or USSD reminder service for antenatal visits with scheduling, language choice and opt-out, and test five user journeys"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Telemedicine modes and specialties",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw a diagram showing how a rural health worker, a district hospital and a specialist exchange information in a hub-and-spoke teleconsultation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Choose between synchronous video, store-and-forward and remote monitoring for five patient cases and explain each choice in the scenario"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Decide which of six specialties suit telemedicine at a rural clinic given bandwidth and staff constraints, and rank them for rollout"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Run a hub-and-spoke teleconsultation from a rural facility to a referral hospital, deciding what to send and when to escalate, and score the outcome"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Telemedicine technical and clinical governance",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write a short protocol for a teledermatology consultation, covering image quality, consent, documentation and follow-up.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Choose bandwidth, image resolution and secure messaging settings for a teleradiology link under a given data cap, and check the diagnostic quality"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Resolve a liability and licensing question in a cross-border teleconsultation case by selecting the correct protocol and documentation steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E11",
+          "title": "Build a simulated teleconsultation workflow from a CHPS compound to a specialist with referral, image upload and reply screens, and test a failed upload"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Community health workers and decision support",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Draw a one-page job aid for a community health worker classifying a child with fever and fast breathing, with clear referral signs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Plan a day of household visits for a community health worker in a CHPS zone and prioritise visits using the risk information in the scenario"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E11",
+          "title": "Build a decision-support form for malaria, pneumonia and diarrhoea in a child and test it on 8 patient cases for correct classification"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E11",
+          "title": "Create household registration, visit scheduling and referral screens that work offline and flag an overdue follow-up, then test a full month of visits"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Platforms, supervision and evaluation",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Design a short monthly feedback report for community health workers showing three indicators that motivate rather than punish.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E11",
+          "title": "Configure an offline data collection form for a household survey, enter 10 records without a network, and confirm they sync with no loss"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Use dashboards of visit counts and data quality to decide which three health workers need supervision this month in a district case"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Evaluate a community case-management tool from given test results for sensitivity, workload and data quality, and recommend whether to adopt it"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Remote monitoring and connected devices",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Explain in a paragraph how a pregnant woman's blood pressure readings could be monitored from home and when an alert should be raised.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Choose a remote monitoring plan for a hypertensive patient in a case scenario, setting reading frequency, thresholds and escalation steps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E11",
+          "title": "Show a blood pressure reading from a connected device as a standard observation record on a phone screen and test it with five readings"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Evaluate a consumer pulse oximeter against reference readings on darker skin tones and set alert thresholds that balance missed cases and false alarms"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Regulation, privacy and consent",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write a plain-language consent paragraph for a remote care programme, covering what data is collected, who sees it and how to withdraw.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Classify three health apps by software as a medical device risk level and list the regulatory steps each would need"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Review a clinic app's data flow against Ghana's Data Protection Act and decide which transfers to a foreign cloud need consent or safeguards"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Handle a request from a family member for a patient's results on a shared phone, balancing confidentiality and care, and score your decision"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Equity, AI ethics and security",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write a short note proposing three design changes that would make a health app usable by people with low literacy or disability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Identify who is excluded by a proposed telemedicine rollout using given household data and propose two changes that widen access"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E11",
+          "title": "Add login, local encryption and remote wipe for a lost device to a health app and test with a stolen-phone scenario"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Audit a symptom-screening AI tool that performs worse on one group, decide whether to deploy and set safeguards in the scenario"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Scale, cost and sustainability",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Prepare a one-page case for a district health director on why a pilot should or should not be scaled, with costs and risks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Plan the move of a successful pilot to government ownership by choosing integration, funding and training steps against a given timeline"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Compare total cost of ownership and cost-effectiveness of two digital health options per patient served, and recommend one"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Design a monitoring and evaluation framework for a national telemedicine programme and rate its maturity against a given model"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project: a digital health intervention",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present your intervention to a panel in five minutes, covering the problem, users, design, regulatory steps and how you will measure success.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Conduct a needs assessment from interview notes and data in a district case and write a problem statement naming the users affected"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E11",
+          "title": "Prototype the main screens of your intervention and test them with five users, then record three changes you made from the feedback"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Write the regulatory, data protection and sustainability plan for your intervention and defend it in a role-played district health directorate meeting"
+        }
+      ]
+    }
   ]
 }

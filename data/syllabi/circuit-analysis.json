@@ -120,7 +120,7 @@
     },
     {
       "title": "Diodes and transistors as circuit elements",
-      "weeks": "13-14",
+      "weeks": "13",
       "topics": [
         "The pn-junction diode: I-V characteristic; ideal, constant-voltage-drop and piecewise-linear models",
         "Half-wave and full-wave rectifiers; smoothing capacitors and ripple voltage",
@@ -128,6 +128,413 @@
         "The bipolar junction transistor: regions of operation, DC biasing and the load line; the BJT as a switch and as a small-signal amplifier",
         "The MOSFET as a switch for driving loads",
         "Capstone: design and test a mains-to-5 V phone charger on the simulated bench"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Circuit variables, sources and measurement",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Solve a problem set on power and energy sign conventions, and estimate a month of prepaid electricity cost for a household from appliance ratings and hours of use.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E2",
+          "title": "Build a series circuit with a 12 V source and a 470 ohm resistor, predict the current with Ohm's law and confirm it on the simulated meter"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E8",
+          "title": "Measure a 10 kilohm divider output with a voltmeter of 100 kilohm input resistance and calculate the percentage loading error against the unloaded value"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E2",
+          "title": "Build a circuit with a current-controlled voltage source, find the gain that makes the output power exactly 1 W, and verify by sweeping the gain"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Kirchhoff's laws and resistive networks",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Reduce three resistor networks to a single equivalent resistance by hand, showing each series, parallel and delta-wye step, and verify one numerically.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E2",
+          "title": "Build a voltage divider from two resistors for a 3.3 V output from a 12 V supply and verify the output and each branch current"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E2",
+          "title": "Balance a Wheatstone bridge using a variable resistor until the detector reads zero and compute the unknown resistance from the ratio"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E2",
+          "title": "Diagnose a lighting circuit with one dead branch by comparing node voltages to hand-calculated values and identify the open resistor"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Nodal and mesh analysis",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Write the node-voltage and mesh-current equations for three given circuits, including one with a dependent source, and solve each by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Write node equations for a three-node resistor circuit, solve them as a 2 by 2 system and check the node voltages on the circuit bench"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E2",
+          "title": "Solve a two-mesh circuit with a shared current source using a supermesh and confirm the mesh currents by measurement"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Set up the conductance matrix for a four-node circuit with a voltage-controlled current source, solve it and compare with the bench result"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Solving systems and operational amplifiers",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Solve a 3 by 3 circuit system using both Gaussian elimination and Cramer's rule, then decide in writing which analysis method suits two further circuits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Solve a 3 by 3 mesh system with Cramer's rule in the maths lab and check each determinant and mesh current against the circuit simulation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E2",
+          "title": "Build an inverting amplifier with a gain of minus 10 and verify the output for three input voltages, noting where the output saturates"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E2",
+          "title": "Design a summing amplifier that mixes three sensor voltages with weights 1, 2 and 4 and verify the output for four input combinations"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Network theorems and sources",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Find the Thevenin equivalent of a bridge circuit and a circuit with a dependent source by hand, then state when superposition cannot be applied directly.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E2",
+          "title": "Apply superposition to a two-source circuit by turning each source off in turn, add the partial currents and confirm the total on the bench"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E2",
+          "title": "Measure the open-circuit voltage and short-circuit current of a network, derive its Thevenin equivalent and show the load current matches the original"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E2",
+          "title": "Model a solar panel and battery as Thevenin sources, find the load resistance giving maximum power and report the efficiency at that point"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Capacitors, inductors and first-order circuits",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Derive the time constant and voltage equation for an RC charging circuit and use it to compute how long a capacitor takes to reach 99 percent of the supply.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E2",
+          "title": "Discharge a 100 microfarad capacitor through a 10 kilohm resistor, read the voltage after one time constant and compare it with 36.8 percent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E2",
+          "title": "Record the step response of an RL circuit on the simulated oscilloscope and extract the time constant graphically from the 63.2 percent point"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Plot capacitor voltage and stored energy for an RC circuit with several resistor values and determine which value stores most energy at 2 ms"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Singularity functions, transients and op-amp circuits",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write the response of an RC circuit to a pulse of finite width using step functions, and sketch the waveform with the time constants marked.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Plot a unit step, a ramp and a pulse made from two shifted steps in the maths lab and verify the pulse area numerically"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E2",
+          "title": "Simulate switching on a capacitive load after a power cut and read the peak inrush current, then add a series resistor to limit it to 5 A"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E2",
+          "title": "Build an op-amp integrator, feed it a square wave, and check the output is a triangle wave with the amplitude predicted by the component values"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Second-order circuits",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Classify five RLC circuits as overdamped, critically damped or underdamped from their component values, and compute damping ratio and natural frequency for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute the roots of the characteristic equation for a series RLC circuit and state whether the response is over, under or critically damped"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E2",
+          "title": "Vary the resistance in a series RLC circuit until the response is critically damped and record the value that stops oscillation"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E2",
+          "title": "Measure percentage overshoot and ringing frequency of an underdamped step response on the oscilloscope and compare with the damping ratio from theory"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Sinusoids, phasors and impedance",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Convert six sinusoids between time-domain and phasor form, and compute the impedance of series and parallel RLC combinations at 50 Hz.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E2",
+          "title": "Measure the amplitude, frequency, phase and RMS value of a 230 V, 50 Hz sinusoid on the simulated oscilloscope and check the RMS equals peak over root two"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Add three sinusoids of the same frequency by converting them to phasors in the maths lab and plot the sum against the time-domain waveform"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E2",
+          "title": "Find the impedance of a series R-L-C branch at 50 Hz, predict the current phase angle and verify the measured phase shift on the bench"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "AC circuit analysis and measurements",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Solve a two-mesh AC circuit with complex arithmetic, draw its phasor diagram to scale and state which element dominates the phase angle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.6",
+          "engine": "E2",
+          "title": "Draw the phasor diagram of an RL series circuit from measured voltages and check that the resistor and inductor voltages add at 90 degrees"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Write and solve the nodal equations of a two-node AC circuit with complex numbers and compare node voltage magnitudes with the simulator"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E2",
+          "title": "Find the Thevenin impedance of an AC network and use superposition to compute the output when two sources at 50 Hz and 150 Hz act together"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "AC power and electrical safety",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Compute power triangle quantities for a workshop load, size the capacitor that corrects its power factor to 0.95 and estimate the saving on the utility bill.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E2",
+          "title": "Measure real, reactive and apparent power of an inductive load and check that apparent power equals the square root of the sum of squares"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E2",
+          "title": "Add a parallel capacitor to a 0.7 power factor motor load and raise the factor to 0.95, then verify the line current falls as predicted"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Compute line and phase currents and total power for a balanced three-phase load in wye and delta and compare the two connections for the same supply"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Frequency response, resonance and transformers",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Derive the cut-off frequency of an RC low-pass filter and the bandwidth of a series resonant circuit, then explain how a phone charger transformer steps mains voltage down.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.3",
+          "engine": "E2",
+          "title": "Build an RC low-pass filter with a 1 kHz cut-off, sweep the input frequency and mark the minus 3 dB point on the response plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E2",
+          "title": "Tune a series RLC circuit to resonate at 10 kHz and measure its quality factor and bandwidth from the half-power points"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.1",
+          "engine": "E7",
+          "title": "Plot the Bode magnitude and phase of a second-order band-pass filter and design component values for a given centre frequency and bandwidth"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Diodes, transistors and the phone charger capstone",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4",
+        "10.5",
+        "10.6"
+      ],
+      "exercise": "Write a design report for a mains-to-5 V phone charger that gives the circuit diagram, component values, expected ripple, and a list of safety checks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.2",
+          "engine": "E2",
+          "title": "Build a full-wave bridge rectifier with a smoothing capacitor and measure the ripple voltage for two capacitor values against the formula"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.4",
+          "engine": "E2",
+          "title": "Bias a BJT to drive a small relay as a switch, choose the base resistor and show the transistor reaches saturation when the input goes high"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.6",
+          "engine": "E8",
+          "title": "Design and test a transformer, rectifier, capacitor and Zener regulator chain delivering 5 V at 500 mA, and report ripple, regulation and power dissipated"
+        }
       ]
     }
   ]

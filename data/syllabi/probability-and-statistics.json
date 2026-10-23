@@ -101,5 +101,396 @@
         "Project: simulate a mobile-money transaction system or a classroom's exam scores and compare with theory"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Probability foundations and counting",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Solve eight counting problems by hand, including the birthday problem for a class of 40, and check each against a simulation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "List the sample space for two dice, compute the probabilities of five events by counting, and confirm them with a simulation of 10000 rolls"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute the probability of a hash collision among n random 16-bit values for several n and compare with the birthday approximation"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Apply the law of total probability to a three-supplier quality problem and check the answer with a Monte Carlo run of 100000 items"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Bayes and independence",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Explain in plain words why a positive result on an accurate test can still mean a low chance of disease, using a numeric example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute the probability of malaria given a positive rapid test for a given prevalence, sensitivity and specificity, and tabulate the four outcomes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Train a spam filter on word counts with Bayes' theorem and test it on ten messages, reporting its false positive and false negative counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Compare the reliability of series, parallel and mixed designs for a mobile-money server, and find the cheapest design that meets 99.9 percent availability"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Random variables and expectation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Derive the mean and variance of a fair die and of the sum of two dice, then verify with a simulation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Tabulate the pmf and CDF of the number of heads in four tosses, plot both, and compute the mean"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Define a density on an interval, check that it integrates to one, compute probabilities from its CDF, and plot the density and the CDF together"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Use linearity of expectation to find the mean of a sum of dependent variables, then check it with a simulation of 100000 trials"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Functions of random variables and indicators",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Use indicator variables to find the expected number of fixed points of a random permutation of n items, and show the answer does not depend on n.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Find the expectation of a squared die roll and of twice a die roll plus one, then compare them with simulated averages"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Compute the expected number of collisions when hashing 100 keys into 365 slots with indicator variables and verify it by simulation"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Derive the distribution of Y equal to X squared for a continuous X, plot it, and check it against a histogram of simulated values"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Standard discrete and continuous distributions",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Choose the right distribution for six real situations, such as customers arriving at a bank or defective items in a batch, and justify each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Compute binomial probabilities for a batch of 20 items with a 5 percent defect rate and plot the pmf with its mean and spread"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Model arrivals at a bank as a Poisson process, compute the chance of more than ten arrivals in an hour, and compare with simulated counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Show the memoryless property of the exponential distribution by simulation and explain why a gamma distribution models waiting for the third event"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "The normal distribution and fitting",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Standardise three values by hand, find probabilities from a table, and then check each with software.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Standardise exam scores with a given mean and spread and find the share of students above 70 using the normal curve"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Approximate a binomial with a normal curve with continuity correction for several sample sizes and report the error of each approximation"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Fit exponential, gamma and normal models to a data set of service times in R, compare them with a Q-Q plot, and choose the best model"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Moments and generating functions",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Show how to get the mean and variance from the moment generating function of a Poisson variable by differentiating.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute the first four moments, skewness and kurtosis of a small data set and say what each tells you about its shape"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Derive the moment generating function of a binomial variable and use it to recover the mean and variance"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Use MGFs to prove that the sum of independent Poisson variables is Poisson and confirm it by simulating 100000 sums"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Joint distributions and conditioning",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compute the marginals, the covariance and the conditional expectation of a given joint pmf on a three-by-three grid by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Build a joint probability table for two discrete variables and compute its marginal and conditional distributions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Compute covariance and correlation for a joint distribution, and give an example where the variables are uncorrelated but dependent"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Verify the law of iterated expectation by computing the conditional expectation exactly and by simulation for a two-stage random process"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Sums, extremes and the bivariate normal",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Derive the distribution of the maximum of n independent uniform variables and explain what happens as n grows.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute the distribution of the sum of two dice by convolution and plot it against a simulation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Find the distribution of the minimum of the waiting times of three servers, each exponential, and test it with a simulation"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Simulate bivariate normal data with a chosen correlation, plot the contours, and compare the conditional means with the theoretical regression line"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Limit theorems",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Prove the Chebyshev inequality in a few lines and use it to bound the chance a sample mean is far from the true mean.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Plot the running average of 5000 coin tosses for several runs and observe the law of large numbers in action"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Simulate the sampling distribution of the mean for uniform, exponential and skewed data at several sample sizes, and show the normal shape emerging"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Estimate the margin of error of a poll of 1000 voters by theory and simulation, and find the sample size needed for a margin of 2 percent"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Descriptive statistics and estimation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compute a mean, median and standard deviation by hand for a small sample, then explain which summary you would report for skewed income data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Draw a histogram and boxplot of 100 exam scores, compute the five-number summary and flag any outliers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Find the maximum likelihood estimate of the rate of an exponential distribution from data, and compare it with the method of moments"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Compute 95 percent confidence intervals for a mean from 1000 simulated samples and check how often the true value is covered"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Hypothesis testing and regression",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a short report of an A/B test of two web page designs, giving the hypothesis, the test, the p-value and an honest conclusion.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Carry out a one-sample t test on 25 delivery times against a target, and state the hypotheses, the p-value and the conclusion"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Fit a simple linear regression of exam score on study hours, report the slope, the correlation and a confidence interval, and plot the residuals"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Run a chi-square test of independence on a table of survey data, compute the expected counts, and estimate the test's power by simulation"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Simulation and the project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Project report: compare simulated results from your model with the theoretical values and explain every gap greater than the expected random error.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Generate 10000 uniform and normal random numbers with a fixed seed, show that the same seed repeats the run, and plot their histograms"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Generate exponential samples by the inverse transform method and a triangular sample by rejection sampling, and compare each with its true density"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Simulate a mobile-money transaction system with random arrivals and failures, and compare queue length and waiting time with the theoretical queue model"
+        }
+      ]
+    }
   ]
 }

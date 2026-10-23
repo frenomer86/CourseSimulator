@@ -1,0 +1,500 @@
+{
+  "slug": "financial-econometrics-and-quantitative-methods",
+  "description": "Statistical and econometric methods for financial data at graduate level: regression, time series, volatility and risk models, cointegration, panel data, event studies, simulation and model validation. Students estimate and test models on market and macroeconomic series in the maths lab and in R or Python, and finish by replicating and extending an empirical finance result.",
+  "modelledOn": [
+    "Brooks, Introductory Econometrics for Finance",
+    "Tsay, Analysis of Financial Time Series",
+    "Campbell, Lo and MacKinlay, The Econometrics of Financial Markets"
+  ],
+  "outcomes": [
+    "Describe the stylised facts of financial returns and test distributional assumptions with appropriate statistics.",
+    "Estimate regression models with robust standard errors and instruments, and interpret asset pricing regressions.",
+    "Identify, estimate and forecast with ARMA, VAR and GARCH-family models and evaluate forecasts out of sample.",
+    "Test for unit roots and cointegration and build error-correction models for long-run relationships.",
+    "Run event studies and panel regressions with correct inference, and use Monte Carlo and bootstrap methods to check test properties.",
+    "Backtest and validate risk and forecasting models, and report the limits of a model clearly."
+  ],
+  "units": [
+    {
+      "title": "Statistical foundations for financial data",
+      "weeks": "1",
+      "topics": [
+        "Simple and log returns; stylised facts: fat tails, volatility clustering, skewness and leverage effect",
+        "Return distributions: normal, Student t and stable laws; QQ plots and the Jarque-Bera test",
+        "Estimation: method of moments and maximum likelihood; consistency, efficiency and standard errors",
+        "Hypothesis testing: size, power, p-values and the multiple-testing problem",
+        "Matrix algebra for regression and asymptotic theory in brief: law of large numbers and central limit theorem"
+      ]
+    },
+    {
+      "title": "Regression models and asset pricing",
+      "weeks": "2-3",
+      "topics": [
+        "Ordinary least squares: assumptions, Gauss-Markov theorem and inference",
+        "Heteroskedasticity and autocorrelation: White and Newey-West standard errors, generalised least squares",
+        "Endogeneity, instrumental variables and two-stage least squares",
+        "Asset pricing regressions: CAPM, Fama-French factors and Fama-MacBeth cross-sectional tests",
+        "Model selection and multicollinearity: information criteria, ridge and lasso"
+      ]
+    },
+    {
+      "title": "Time-series models",
+      "weeks": "4-5",
+      "topics": [
+        "Stationarity, autocorrelation and partial autocorrelation functions, and unit root tests (ADF, KPSS)",
+        "ARMA models and Box-Jenkins identification, estimation and diagnostics",
+        "Forecasting and forecast evaluation: RMSE, MAE and the Diebold-Mariano test",
+        "Vector autoregressions: Granger causality and impulse response functions",
+        "Structural breaks and regime-switching models"
+      ]
+    },
+    {
+      "title": "Volatility and risk models",
+      "weeks": "6-7",
+      "topics": [
+        "Realised volatility, rolling windows and exponentially weighted moving averages",
+        "ARCH and GARCH: specification, estimation by maximum likelihood, asymmetric extensions (GJR, EGARCH)",
+        "Multivariate volatility: conditional correlation models and covariance forecasting",
+        "Value at Risk and expected shortfall: historical, parametric and filtered historical simulation",
+        "Extreme value theory: block maxima, peaks over threshold and tail index estimation"
+      ]
+    },
+    {
+      "title": "Cointegration and long-run relationships",
+      "weeks": "8",
+      "topics": [
+        "Spurious regression and the Granger representation",
+        "Engle-Granger two-step test and residual-based cointegration",
+        "Johansen procedure: rank tests and vector error-correction models",
+        "Error correction in practice: pairs spreads, exchange rates and purchasing power parity",
+        "Application: commodity prices, the cedi and inflation in Ghana as a cointegration study"
+      ]
+    },
+    {
+      "title": "Panel data and event studies",
+      "weeks": "9-10",
+      "topics": [
+        "Pooled, fixed-effects and random-effects panel models; the Hausman test",
+        "Clustered standard errors and cross-sectional dependence",
+        "Difference-in-differences and policy evaluation, such as the effect of a mobile money levy",
+        "Event-study methodology: market model, abnormal and cumulative abnormal returns, test statistics",
+        "Testing market efficiency: variance ratios, predictability and anomalies"
+      ]
+    },
+    {
+      "title": "Monte Carlo and bootstrap methods",
+      "weeks": "11",
+      "topics": [
+        "Simulating asset paths: geometric Brownian motion, GARCH and jump models; antithetic variates",
+        "The bootstrap: iid, residual, block and stationary bootstrap",
+        "Monte Carlo studies of size and power of tests and of estimator bias",
+        "Simulation-based risk: scenario generation for Value at Risk and stress testing",
+        "Reproducible computational workflow: seeds, version control and documented code"
+      ]
+    },
+    {
+      "title": "Backtesting, validation and project",
+      "weeks": "12-13",
+      "topics": [
+        "Backtesting Value at Risk: Kupiec, Christoffersen and traffic-light tests",
+        "Out-of-sample evaluation, rolling windows and the model confidence set",
+        "Data snooping and reality checks: White reality check and superior predictive ability",
+        "Model risk, validation reports and governance",
+        "Project: replicate and extend a published empirical finance result, with a full robustness section"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Returns, distributions and estimation",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compute log returns for a cedi exchange-rate series, document four stylised facts with plots and tests, and fit a normal and a t distribution by maximum likelihood.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute daily log returns from a price series, plot returns and squared returns, and show fat tails and volatility clustering with a histogram and autocorrelation plot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Run QQ plots and the Jarque-Bera test on three return series and decide, with the statistics, which are plausibly normal"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Fit normal and Student t distributions by maximum likelihood to returns, compare log-likelihoods and information criteria, and report standard errors"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "OLS and robust inference",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Regress stock returns on market returns, test for heteroskedasticity, report White and Newey-West errors, and find an instrument for an endogenous regressor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Estimate a simple regression of a stock return on a market return by matrix algebra, compute standard errors and t-statistics, and test beta equals one"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Test residuals for heteroskedasticity and autocorrelation, then report OLS, White and Newey-West standard errors in one table and comment on changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Simulate an endogenous regressor, show that OLS is biased, fix it with two-stage least squares using a valid instrument, and test instrument strength"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Asset pricing regressions and selection",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Estimate CAPM and a three-factor model on 25 portfolios, run Fama-MacBeth regressions, and compare models by information criteria.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Estimate CAPM alphas for 10 portfolios and test with a joint test whether all alphas are zero, interpreting the result for market efficiency"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Run Fama-MacBeth cross-sectional regressions on 25 portfolios, compute time-series standard errors, and report the estimated factor risk premia"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Compare ridge, lasso and OLS for predicting returns with 30 correlated regressors, select the penalty by cross-validation and compare out-of-sample error"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Stationarity and ARMA models",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Test inflation, interest rate and price series for unit roots, identify an ARMA model with Box-Jenkins steps, and compare two forecasts with the Diebold-Mariano test.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Plot autocorrelation and partial autocorrelation of 3 series, run ADF and KPSS tests, and decide for each whether to difference"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Identify, estimate and check an ARMA model for monthly inflation, inspect residual autocorrelation with a Ljung-Box test, and justify the order chosen"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Produce one-step rolling forecasts from two competing models over 60 months and test equal accuracy with the Diebold-Mariano statistic"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "VAR models and structural change",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Estimate a VAR for the cedi rate, inflation and the policy rate, test Granger causality, plot impulse responses and check for a break.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Fit a three-variable VAR with lag order chosen by information criteria, test Granger causality in each direction and tabulate the results"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Plot the impulse response of inflation to a policy rate shock with confidence bands and describe its timing and persistence"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Test for a structural break at an unknown date, estimate a two-regime model and compare its forecasts with a single-regime model"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "GARCH models and covariance",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Fit GARCH(1,1) and GJR-GARCH to daily returns, compare them, and forecast volatility for 10 days against realised volatility.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute rolling-window and EWMA volatility for a return series with lambda 0.94 and compare how fast each reacts to a shock"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Estimate GARCH(1,1) by maximum likelihood on daily returns, check standardised residuals for remaining ARCH effects, and report persistence"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Estimate a two-asset conditional correlation model, plot the time-varying correlation, and compare it with a constant-correlation estimate in crisis periods"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "VaR, expected shortfall and tails",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compute 99 percent VaR and expected shortfall three ways for a portfolio, and estimate the tail index from the extreme losses.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Compute 1-day 99 percent VaR and expected shortfall by historical, parametric normal and Student t methods, and tabulate how they differ"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement filtered historical simulation with a GARCH filter and compare its VaR with the unfiltered historical VaR during a turbulent month"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Fit a generalised Pareto distribution to losses above the 95th percentile, estimate the tail index and a 99.9 percent VaR, and test threshold choice"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Cointegration and error correction",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Test cocoa prices, the cedi rate and consumer prices for cointegration, estimate the error-correction model and interpret the adjustment speed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Regress two independent random walks 1,000 times, count how often the t-statistic exceeds 2, and relate the result to spurious regression"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Apply the Engle-Granger two-step test to a pair of related price series, report the residual unit-root test and the cointegrating vector"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Run a Johansen rank test on three series, estimate the vector error-correction model and interpret the speed of adjustment and long-run weights"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Panel models and policy evaluation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Estimate pooled, fixed and random effects for firm panel data, run a Hausman test, then a difference-in-differences for a tax change.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Estimate pooled, fixed-effects and random-effects models on a panel of 100 firms and choose between them using the Hausman test"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Compare conventional and firm-clustered standard errors on a panel regression, and show a case where the conventional errors are too small"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Estimate a difference-in-differences effect of a mobile money levy on transaction volumes, check the parallel-trends assumption and report an effect size"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Event studies and efficiency tests",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Run an event study of 30 earnings announcements, compute cumulative abnormal returns around day zero, and test significance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Estimate the market model on a 120-day window, compute abnormal returns for an event at day zero, and plot the cumulative abnormal return for 11 days"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Run an event study for 30 firms, aggregate cumulative abnormal returns and test with a standardised cross-sectional statistic and a sign test"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Compute variance ratios at lags 2, 5 and 10 for an equity index and a thin market index, and test the random walk hypothesis in each"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Monte Carlo, bootstrap and reproducibility",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Use simulation to study the size and power of a unit root test, and compare bootstrap and asymptotic confidence intervals for a Sharpe ratio.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Simulate 10,000 geometric Brownian motion paths with antithetic variates and compare the standard error of an option payoff with plain simulation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Bootstrap the Sharpe ratio of a strategy with a stationary block bootstrap and compare its confidence interval with the asymptotic one"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Run a Monte Carlo study of the ADF test size and power for a near-unit-root process with 100 and 500 observations, and tabulate rejection rates"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "VaR backtests and forecast evaluation",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Backtest a one-day 99 percent VaR over 500 days with Kupiec and Christoffersen tests and compare three models over a rolling window.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Count VaR exceptions over 500 days for three models, run the Kupiec and independence tests, and place each in a traffic-light zone"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Evaluate 5 volatility models by rolling out-of-sample forecasts against realised volatility, and rank them with a loss function and test"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Search 100 trading rules on one dataset, report the best raw result, then adjust it with a reality check and explain what remains"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Model risk and research project",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present your replication: the original result, your reproduction, your extension, robustness checks and a statement of model limits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Review a risk model validation report with three flaws (stale data, untested assumptions, no benchmark), rate each and recommend actions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Replicate the main table of a published empirical finance paper using given data, and document every difference from the reported numbers"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Extend the replication with a new sample period or an African market, run three robustness checks, and say whether the conclusion survives"
+        }
+      ]
+    }
+  ]
+}

@@ -102,5 +102,396 @@
         "Capstone: secure a mobile money style payment platform in the cloud, with a threat model, hardened configuration, detection rules and a compliance report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Shared responsibility and cloud threats",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Draw a responsibility table for IaaS, PaaS, SaaS and serverless, then write a STRIDE threat list for a small clinic appointment app.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E12",
+          "title": "Find and fix a publicly readable storage bucket in a sample account, then confirm an anonymous request is now denied"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Draw an architecture diagram of a three-tier web app and annotate it with at least eight STRIDE threats and one mitigation each"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Work through a case in which a leaked access key is found in a repository, choose investigation steps and score the response against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Identity and access management basics",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Evaluate three sample policies by hand with an allow, a deny and an implicit deny, and state the final decision for each request.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E12",
+          "title": "Create a read-only role for one bucket, attach it to a test user and confirm that reads succeed and writes are denied"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E12",
+          "title": "Tighten an over-broad wildcard policy to least privilege using the access analyser findings, and verify the three required actions still work"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E12",
+          "title": "Set up federated sign-in with enforced multi-factor authentication for an admin group, then test that a session without the second factor is blocked"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Workload identity and escalation paths",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "List five IAM permissions that can lead to privilege escalation and explain the chain of calls an attacker would use for one of them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Replace a long-lived access key in a function's configuration with an attached instance role and confirm the function still reads its bucket"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E12",
+          "title": "Review a set of five roles, identify the one allowing policy attachment that enables escalation, and remove the dangerous permission safely"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E12",
+          "title": "Trace a three-step escalation path from a low-privilege developer to administrator in a seeded account, then break the path at the cheapest point and document why"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Virtual networks and private access",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain in writing the difference between a stateful security group and a stateless network ACL, using one return-traffic example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E12",
+          "title": "Build a virtual network with a public and a private subnet and security groups allowing only HTTPS from the internet to the web tier"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E12",
+          "title": "Remove the public IP from a database server, add a private endpoint and NAT for updates, and verify only the app tier can connect"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E3",
+          "title": "Replace open SSH access to servers with a bastion host behind a restrictive ACL on the topology and prove other external hosts cannot reach them"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Perimeter defence and hybrid links",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write rate-limit and WAF rule ideas for a public payment API, with the attack each rule is meant to stop.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E12",
+          "title": "Attach a web application firewall rule blocking a SQL injection pattern to a load balancer and confirm a crafted request is rejected"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E3",
+          "title": "Build a site-to-site tunnel between a branch and a data centre in the simulator and verify encrypted traffic reaches the private server"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E12",
+          "title": "Read a day of flow logs from a seeded account, identify the host scanning internal ports and the one exfiltrating data, and write the blocking rules"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Data protection and encryption keys",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Classify twelve fields of a patient record by sensitivity and choose masking, tokenisation or encryption for each with a reason.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E12",
+          "title": "Turn on customer-managed key encryption for a storage bucket and confirm an unauthorised principal cannot decrypt an uploaded object"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E12",
+          "title": "Create a key with a rotation schedule and separate key administrator and key user roles, then test that neither role can do the other's job"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Implement envelope encryption of a file with a data key wrapped by a master key, then re-wrap after rotation and verify decryption still works"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Transit security, secrets and backups",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "List what must be backed up, where, and how it is protected from deletion, for a mobile money payments database facing ransomware.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Attach a certificate to a load balancer, redirect HTTP to HTTPS and reject TLS versions below 1.2, then verify with test requests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E12",
+          "title": "Move a database password from environment variables into a secrets vault, grant access to one role and confirm the application still starts"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E12",
+          "title": "Design immutable cross-region backups with retention locks and then simulate a ransomware deletion attempt to prove recovery within the stated RPO"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Logging, posture and detection",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Pick five controls from a benchmark, say how each would be checked automatically, and describe one alert you would not want to be noisy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E12",
+          "title": "Enable audit logging in all regions, send logs to a locked-down bucket and confirm a deleted log object cannot be removed by the admin"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E12",
+          "title": "Run a posture scan against a seeded account, triage 15 findings by severity and fix the five that expose data to the internet"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E12",
+          "title": "Write detection rules for root login, disabled logging and unusual key use, then test them against replayed activity and report false positives"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Incident response in the cloud",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a one-page runbook for a leaked access key covering containment, evidence preservation and recovery steps in order.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E12",
+          "title": "Revoke a compromised access key, snapshot the affected server's disk for forensics and isolate the instance with a quarantine security group"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Respond to a branching ransomware scenario by choosing containment and communication steps and score the decisions against a response rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E12",
+          "title": "Investigate a simulated breach from audit logs, build a timeline from key leak to data exfiltration, and state what data was taken"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Containers and serverless security",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Review a short Kubernetes manifest and list every setting that violates a restricted pod standard, with the fix for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E4",
+          "title": "Scan a container image with a vulnerability tool, list critical findings and rebuild from a patched base image until none remain"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Create a role binding granting one service account read access to one namespace and a network policy that denies all other pod traffic"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E12",
+          "title": "Reduce an over-privileged serverless function to the least permissions it needs and add a concurrency cap to defend against denial of wallet"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "API and pipeline security",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Apply the OWASP API Top 10 to a mobile money wallet API and list the three risks most likely to matter, with a test for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Add token authentication, request schema validation and a rate limit to an API gateway route and test an invalid and a valid call"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Write a small policy-as-code check that rejects infrastructure templates with public buckets or open SSH, and test it on five sample templates"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Find and fix a broken object-level authorisation flaw in a seeded API so users cannot read other customers' records, and retest all cases"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Law, residency and compliance",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a half-page memo advising a Ghanaian fintech on where to host customer data, citing the relevant duties on registration and cross-border transfer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E12",
+          "title": "Deploy a storage bucket and database in an approved region only, then add a policy denying creation of resources in any other region"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Decide how to handle a data subject request and a cross-border transfer in a branching case and score the choices against a rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E12",
+          "title": "Map ten controls from an assurance framework to account configurations, collect evidence for each and list the gaps for audit preparation"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Landing zones and capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present your capstone design to a mock review board, defending each major control with the threat it answers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E12",
+          "title": "Create separate accounts for production, development and logging, and attach a guardrail policy blocking disabling of central log delivery"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Review a seeded workload against security pillar questions, score each area and rank five improvements by risk reduction per effort"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E12",
+          "title": "Secure a mobile money style payment platform with network segmentation, encryption, least-privilege roles and detection rules, then test with failure injection"
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,517 @@
+{
+  "slug": "telecommunications-network-planning-and-regulation",
+  "description": "How telecommunications networks are forecast, dimensioned and designed, and how regulators manage spectrum, prices, access and quality. In the lab students size traffic and links, build and break network topologies, and play operator and regulator in scenarios drawn from Africa's mobile and rural-connectivity markets.",
+  "modelledOn": [
+    "Freeman, Telecommunication System Engineering (traffic and network planning chapters)",
+    "ITU, Handbook on Telecommunication Regulation and the ICT Regulation Toolkit",
+    "Intven, Telecommunications Regulation Handbook",
+    "Rappaport, Wireless Communications: Principles and Practice (propagation and capacity)"
+  ],
+  "outcomes": [
+    "Forecast subscriber demand and dimension voice and data capacity using Erlang and queueing models.",
+    "Design access, backhaul and backbone networks with survivability and power constraints, and test them in simulation.",
+    "Explain spectrum allocation, licensing and auction design and choose among licensing regimes.",
+    "Analyse retail and wholesale tariffs, interconnection and market power using cost and revenue models.",
+    "Design universal service and community network interventions and compare their cost per person covered.",
+    "Build a discounted cash-flow business case and a regulatory impact assessment for a network plan."
+  ],
+  "units": [
+    {
+      "title": "The sector and the planning process",
+      "weeks": "1",
+      "topics": [
+        "The planning process: demand, coverage, capacity, quality and cost; planning horizons",
+        "Sector structure: operators, tower companies, regulator, ministry, ITU and regional bodies; Ghana's institutions",
+        "Technology options: mobile generations, fibre, microwave, satellite, fixed wireless and TV white space",
+        "Demand and geography: population density, terrain, GIS data and revenue per user in Africa",
+        "Digital divide measures: coverage gap versus usage gap"
+      ]
+    },
+    {
+      "title": "Traffic forecasting and dimensioning",
+      "weeks": "2-3",
+      "topics": [
+        "Demand forecasting: logistic S-curves, Bass diffusion, regression and scenarios",
+        "Traffic measures: Erlang, busy hour, calls per hour and data per subscriber",
+        "Erlang B and Erlang C for trunk and call-centre dimensioning",
+        "Packet traffic and queueing: M/M/1, utilisation, delay and contention ratios",
+        "Cell capacity dimensioning: sectors, spectrum, spectral efficiency and frequency reuse",
+        "Link budgets and coverage: free space, Hata and COST 231 path loss, shadowing margin and cell radius"
+      ]
+    },
+    {
+      "title": "Access and backbone network design",
+      "weeks": "4-5",
+      "topics": [
+        "Access technologies: fibre to the home and PON, copper, fixed wireless, mobile radio access and community mesh Wi-Fi",
+        "Microwave backhaul: Fresnel zone clearance, fade margin and link availability",
+        "Topology and hierarchy: ring, mesh and star; core, aggregation and access; dual homing",
+        "Optimisation and survivability: minimum spanning trees, shortest paths, protection routing and availability calculations",
+        "IP core, peering, internet exchange points, international gateways and submarine cables",
+        "Power for off-grid sites: solar and battery sizing"
+      ]
+    },
+    {
+      "title": "Spectrum management and licensing",
+      "weeks": "6",
+      "topics": [
+        "Spectrum basics: bands, propagation, ITU radio regulations and harmonisation",
+        "Licence types: individual, general authorisation and licence-exempt use",
+        "Assignment methods: comparative selection and auctions (ascending, clock, combinatorial), reserve prices and obligations",
+        "Spectrum sharing: TV white space, dynamic access and cross-border coordination",
+        "Spectrum fees, efficient use and monitoring"
+      ]
+    },
+    {
+      "title": "Tariffs and interconnection",
+      "weeks": "7",
+      "topics": [
+        "Retail pricing: flat, tiered and two-part tariffs, bundles and zero rating",
+        "Wholesale pricing: termination rates, bill-and-keep versus calling-party-pays, and long-run incremental cost models",
+        "Market power: significant market power tests, access remedies, MVNOs and infrastructure sharing",
+        "Net neutrality, regional roaming and competition between operators and mobile-money or messaging services",
+        "Sector taxes and levies and their effect on affordability"
+      ]
+    },
+    {
+      "title": "Universal service and community networks",
+      "weeks": "8-9",
+      "topics": [
+        "Universal access funds, reverse auctions, least-cost subsidy and coverage obligations",
+        "Community networks: governance, licensing, spectrum, sustainability and business models",
+        "Rural technology choice: TV white space, long-distance Wi-Fi, small cells and satellite",
+        "Affordability and inclusion: income share targets, devices, skills and the gender gap",
+        "School and public Wi-Fi connectivity and impact evaluation",
+        "Rural coverage planning: cost per person covered and prioritisation under a budget"
+      ]
+    },
+    {
+      "title": "Quality of service regulation",
+      "weeks": "10-11",
+      "topics": [
+        "QoS parameters: call setup success, drop rate, throughput, latency and availability",
+        "Measurement: drive tests, crowdsourced data, probes, sampling and statistical confidence",
+        "Targets, benchmarking, publication, sanctions and consumer complaint handling",
+        "Quality of experience: MOS and the E-model for voice",
+        "Resilience, outage reporting and emergency communications",
+        "SIM registration, lawful interception, data protection and cybersecurity obligations"
+      ]
+    },
+    {
+      "title": "Network economics and business cases",
+      "weeks": "12-13",
+      "topics": [
+        "Cost modelling: CAPEX, OPEX, total cost of ownership and bottom-up network costing",
+        "Discounted cash flow: NPV, IRR, payback and sensitivity analysis",
+        "Revenue and subscriber modelling: ARPU, churn, take-up and Monte Carlo risk analysis",
+        "Business cases for rural networks and fibre: public-private partnerships and open-access wholesale",
+        "Regulatory impact assessment, cost-benefit analysis and multi-criteria decisions",
+        "Public consultation, policy writing and defending a network plan"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The sector, technologies and the digital divide",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Map which institution decides each part of the telecom value chain, compare technology options for a village, and compute the coverage gap by district.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Identify who regulates, licenses and operates each part of a country's telecom value chain in a scenario, and match five complaints to the right institution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute population coverage and uncovered people for 12 districts from a supplied table, rank districts by gap, and plot the result"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Draft a planning brief for a three-year national rural network plan covering demand, coverage, capacity, quality and cost assumptions, and score it against a checklist"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Demand forecasting and traffic engineering",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Fit an S-curve to subscriber history, convert busy-hour calls into Erlangs, and dimension trunks with Erlang B at two blocking targets.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Convert 2,000 subscribers each making 1.5 calls of 90 seconds in the busy hour into Erlangs, and plot offered load against subscriber growth"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Fit a logistic S-curve and a Bass diffusion model to 8 years of mobile subscriptions, and forecast the next five years with a range"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Dimension trunks for five routes with Erlang B at 1 percent blocking, then repeat at 2 percent and compute the circuit saving"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Packet traffic, cell capacity and link budgets",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Find the contention ratio that keeps delay under 100 ms, estimate a cell's range from its link budget, and size a three-sector site for a busy town.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Compute path loss with free-space and Hata models at 900 and 1800 MHz for 1 to 20 km, and find the cell radius for a given link budget"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Model a shared link as M/M/1 and compute delay and utilisation as subscribers grow, to find the contention ratio that keeps delay under 100 ms"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E3",
+          "title": "Dimension a three-sector cell for 8,000 users with given spectrum and busy-hour rate, and test in the network simulator that it meets the throughput target"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Access networks, backhaul and hierarchy",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw an access network for a district, compute the fade margin of a 30 km microwave hop, and explain why dual homing improves availability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E3",
+          "title": "Build in the network simulator an access network of 20 customer nodes feeding an aggregation switch and an uplink, and verify connectivity and VLAN separation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Plan a 30 km microwave hop by computing Fresnel zone clearance, free-space loss, fade margin and availability, and decide the tower height"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E3",
+          "title": "Design a three-level hierarchical network for a region with dual-homed aggregation sites, and test traffic paths in the simulator when the primary uplink fails"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Optimisation, core networks and off-grid power",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Choose the cheapest fibre route linking ten towns, trace what happens when a submarine cable fails, and size solar power for a remote site.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Size the solar panel, battery and autonomy days for a 120 W remote site with 4.5 peak sun hours, and check the result against a cost cap"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Find the minimum spanning tree and shortest paths linking 10 towns for a fibre plan with given trench costs, then compare its cost with a ring design"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E3",
+          "title": "Simulate a national backbone with an international gateway and an internet exchange point, cut a submarine cable link, and measure rerouting and added latency"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Spectrum allocation, licensing and auctions",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Match bands to services, pick the right licence type for three operators, design an auction for two blocks, and assign white-space channels to avoid interference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Match ten spectrum bands to their typical services and propagation traits in a scenario, and explain which are best for rural coverage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Choose between individual licence, general authorisation and licence-exempt use for a village mesh, a regional ISP and a mobile operator, and justify each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Design an auction for two 4G blocks in a scenario by choosing format, reserve price and coverage obligations, and test bidder behaviour over three rounds"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E3",
+          "title": "Plan TV white space channels for three neighbouring rural links given broadcaster locations, assign channels to avoid interference, and verify in the simulator"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Tariffs, interconnection and market power",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Compare three tariff structures for five customer types, compute the effect of termination rates on two operators, and decide whether an operator has market power.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compare a flat, a tiered and a two-part tariff for five customer profiles, compute each monthly bill, and find who gains or loses"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Compute the effect of termination rates on the revenues of two operators of different sizes under calling-party-pays and under bill-and-keep"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Decide whether a dominant operator has significant market power from share, entry barriers and pricing evidence in a scenario, and set remedies such as wholesale access or tower sharing"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Universal service funds and community networks",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Run a reverse auction for rural coverage, compare four technologies by cost per covered person, and draft a governance model for a community network.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Allocate a universal service fund to four districts in a scenario with a reverse auction, ranking bids by subsidy per person covered"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compare cost per covered person for macro cell, TV white space, long-distance Wi-Fi and satellite for three villages of different sizes, including solar power"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Design the governance, funding and licensing model of a community network, then handle disputes over tariffs, spectrum and volunteer burnout in a scenario"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Affordability, schools and coverage priorities",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Test the affordability target for three income groups, choose which villages to cover first under a budget, and design school connectivity for a shared uplink.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Compute the share of monthly income needed for 1 GB of data for three income groups, and test it against a 2 percent affordability target"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E7",
+          "title": "Choose which of 15 villages to cover first under a limited budget by maximising people covered per cedi, and report the plan"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E3",
+          "title": "Design connectivity for 10 schools sharing one uplink, simulate student load in the network simulator, and set caching and filtering rules to meet a delay target"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "QoS parameters, measurement and enforcement",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compute QoS indicators from raw counters, plan a drive-test sample, and decide enforcement after a wave of consumer complaints.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Calculate call setup success, drop rate and throughput indicators from a raw counter table for three operators, and compare them with regulatory targets"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Design a drive-test sampling plan by finding how many measurements per district give a 2 percent margin of error, and estimate coverage from the sample"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Investigate a wave of consumer complaints in a scenario, judge the evidence against licence targets, choose enforcement action, and write the public notice"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Experience, resilience and security obligations",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Convert delay and loss into voice quality scores, test a network's behaviour during a power outage, and balance SIM registration with data protection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Map packet loss, delay and jitter to a MOS score with the E-model for four voice-over-IP links and rank them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E3",
+          "title": "Test network resilience during a power or fibre outage in the simulator, measure the affected users, and check them against outage reporting thresholds"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Balance a SIM registration mandate, a lawful interception request and data protection duties for a mobile operator in a scenario, and draft the regulator's guidance"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Costs, cash flows and risk",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Cost 50 rural sites over five years, compute NPV and IRR for a fibre rollout, and test the business case against cost overruns and low take-up.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Build a CAPEX and OPEX table for 50 rural sites over 5 years including towers, radios, power, backhaul and staff, and compute total cost of ownership"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute NPV, IRR and payback for a fibre rollout case, and show how a 20 percent cost overrun or 20 percent lower take-up changes each"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Run a Monte Carlo of ARPU, churn and subscriber growth over 1000 trials, and report the probability of positive NPV and a 90 percent range"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Business models, policy analysis and the plan defence",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Compare a public-private partnership with open-access wholesale, score three regulatory options, and defend a full network plan before a mock national panel.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Compare a public-private partnership and an open-access wholesale model for a rural fibre backbone in a scenario, listing who carries which risk"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Score three regulatory options on cost, coverage, competition and consumer benefit with weighted multi-criteria analysis, and test the ranking's sensitivity"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Present a full network plan and regulatory proposal to a mock national panel, defend assumptions on demand, spectrum, tariffs and universal service, and answer objections"
+        }
+      ]
+    }
+  ]
+}

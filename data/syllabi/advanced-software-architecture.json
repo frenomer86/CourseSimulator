@@ -1,0 +1,509 @@
+{
+  "slug": "advanced-software-architecture",
+  "description": "A graduate course on designing, evaluating and evolving large software systems around their quality attributes. Students model architectures in the diagram studio, run them on the cloud console, write code to enforce structural rules and defend decisions in review sessions.",
+  "modelledOn": [
+    "Bass, Clements and Kazman, Software Architecture in Practice",
+    "Richards and Ford, Fundamentals of Software Architecture",
+    "ISO/IEC/IEEE 42010, Architecture description"
+  ],
+  "outcomes": [
+    "Specify quality attribute requirements as testable scenarios and select tactics that achieve them.",
+    "Evaluate an architecture with structured trade-off analysis and report risks, sensitivity points and trade-off points.",
+    "Design service-based and event-driven systems with explicit consistency, resilience and observability decisions.",
+    "Structure systems for modularity and evolution using fitness functions and migration strategies.",
+    "Document architecture with views and decision records, and measure and prioritise architectural technical debt."
+  ],
+  "units": [
+    {
+      "title": "Quality attributes and tactics",
+      "weeks": "1-2",
+      "topics": [
+        "Quality attribute scenarios: source, stimulus, environment, artefact, response and measure",
+        "Availability tactics: redundancy, heartbeat, failover and circuit breaker",
+        "Performance tactics: caching, concurrency, resource arbitration and load shedding",
+        "Security tactics: authentication, authorisation, least privilege, audit and zero trust boundaries",
+        "Modifiability and testability tactics: encapsulation, indirection, seams and dependency injection",
+        "Utility trees and prioritising conflicting requirements"
+      ]
+    },
+    {
+      "title": "Architecture evaluation and trade-off analysis",
+      "weeks": "3-4",
+      "topics": [
+        "ATAM: scenarios, approaches, sensitivity points, trade-off points and risks",
+        "Cost-benefit analysis of architectural strategies",
+        "Quantifying qualities: latency budgets, availability arithmetic and capacity models",
+        "Prototyping and load testing to validate an architectural decision",
+        "Lightweight architecture reviews and checklists",
+        "Conformance checking: dependency rules and architecture tests"
+      ]
+    },
+    {
+      "title": "Microservices and event-driven styles",
+      "weeks": "5-6",
+      "topics": [
+        "Service decomposition with domain-driven design: bounded contexts and aggregates",
+        "Synchronous and asynchronous communication: REST, gRPC and message brokers",
+        "Event-driven architecture: publish-subscribe, event sourcing and CQRS",
+        "Distributed data consistency: sagas, the outbox pattern and idempotency",
+        "Resilience patterns: timeouts, retries with backoff, bulkheads and rate limiting",
+        "API gateways, service discovery and observability: logs, metrics and traces",
+        "When not to use microservices: the modular monolith"
+      ]
+    },
+    {
+      "title": "Architecture of data-intensive and ML systems",
+      "weeks": "7",
+      "topics": [
+        "Batch, stream, lambda and kappa architectures",
+        "Data platforms: warehouse, lake and lakehouse; pipeline orchestration",
+        "ML system anatomy: training pipeline, feature store, model registry and serving",
+        "Monitoring ML systems: data drift, feedback loops and hidden technical debt",
+        "Architectures for low-connectivity settings: offline-first mobile money and health apps"
+      ]
+    },
+    {
+      "title": "Modularity and evolvability",
+      "weeks": "8-9",
+      "topics": [
+        "Coupling, cohesion, information hiding and connascence",
+        "Layered, hexagonal and clean architecture",
+        "Dependency inversion and plug-in architectures",
+        "Evolutionary architecture and fitness functions",
+        "API versioning, backward compatibility and schema evolution",
+        "Migration strategies: the strangler fig pattern and branch by abstraction"
+      ]
+    },
+    {
+      "title": "Architecture documentation and decision records",
+      "weeks": "10",
+      "topics": [
+        "Views and viewpoints: the C4 model, module, component-connector and allocation views",
+        "Architecture decision records: context, decision, consequences and status",
+        "Architecture description standards and stakeholder concerns",
+        "Diagrams as code and keeping documentation in the repository",
+        "Communicating architecture to executives, developers and operators"
+      ]
+    },
+    {
+      "title": "Architectural technical debt",
+      "weeks": "11-12",
+      "topics": [
+        "The technical debt metaphor: principal, interest, deliberate and inadvertent debt",
+        "Finding debt: dependency cycles, hotspots, change coupling and code churn",
+        "Structural metrics: instability, abstractness, distance from the main sequence and design structure matrices",
+        "Quantifying interest and prioritising repayment",
+        "Architectural refactoring: breaking cycles, extracting modules and splitting databases",
+        "Governance: debt registers, quality gates and architecture review boards"
+      ]
+    },
+    {
+      "title": "Capstone: architecture in practice",
+      "weeks": "13",
+      "topics": [
+        "Architecture kata: design a system from a short business brief under time pressure",
+        "Defending trade-offs to a review panel",
+        "Peer architecture review with written findings",
+        "Emerging concerns: AI-assisted development, sustainability and sovereignty"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Quality attribute scenarios and early tactics",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write six quality attribute scenarios for a mobile money transfer service, then pick one availability tactic and one performance tactic for each and state its cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Rewrite five vague requirements such as 'must be fast' as six-part scenarios with measurable response measures and record them in a table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Add a circuit breaker with timeout and fallback around a flaky service call in code, and test its open and half-open states"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E12",
+          "title": "Add a cache and a load-shedding rule to an overloaded service, and compare 99th percentile latency before and after under a load spike"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Security, modifiability and conflicting qualities",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Build a utility tree for an online health-records system, rate each scenario by importance and difficulty, and identify two pairs of attributes that conflict.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Mark trust boundaries and the authentication and audit tactics on an architecture diagram for a payment gateway"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Introduce a seam and dependency injection to make a hard-wired payment module testable, and write a test with a fake provider"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Rank competing quality attribute scenarios for a rural clinic system with limited budget, justify the priorities, and record the stakeholder reaction"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Structured architecture evaluation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Run a mini ATAM on a ride-hailing backend: list scenarios, approaches, sensitivity points, trade-off points and risks, then compare two strategies with cost-benefit scores.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Classify findings from a sample evaluation into risks, sensitivity points and trade-off points and map each to a scenario"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Score three architectural strategies on benefit, cost and uncertainty, compute their return ratios, and rank them"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Compute end-to-end availability and latency budget for a chain of five services and find which one violates the stated scenario"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Validating decisions and conformance",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Design a load test that validates the throughput claim behind a messaging decision, and write three dependency rules that an automated architecture test should enforce.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Walk a one-page checklist review of a sample design and record the five issues you would raise with evidence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Load test two designs, one with a queue and one without, increase request rate, and report the saturation point of each"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Write an architecture test that fails the build when a domain package imports an infrastructure package, and show it catching a violation"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Decomposition, communication and events",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Decompose an online marketplace into bounded contexts, choose synchronous or asynchronous calls for each interaction, and show where event sourcing would help audit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Draw bounded contexts and a context map for an e-commerce domain, naming the aggregates and relationships between contexts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement the same order flow as a synchronous call chain and with a message queue, and compare failure behaviour when one service is down"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Build an event-sourced account that rebuilds balance from events, add a CQRS read model, and show eventual consistency under load"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Consistency, resilience and observability",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6",
+        "3.7"
+      ],
+      "exercise": "Design a saga for booking a bus seat with payment and notification steps, list the compensation for each, and explain when a modular monolith is the better choice for a team of five.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Add timeouts and retries with exponential backoff to a client and show how unbounded retries create a retry storm"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement a saga with compensation for a three-step booking, inject a failure at step three, and verify the system returns to consistent state"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.7",
+          "engine": "E12",
+          "title": "Deploy the same application as three services and as a modular monolith, compare latency, cost and operational steps, and recommend one"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Data-intensive and ML system architecture",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Sketch the architecture of a crop-disease detection service from phone photos, covering training, serving, drift monitoring and offline operation for farmers with poor coverage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E9",
+          "title": "Draw an ML system showing data ingestion, feature store, training, registry and serving, and label where each can fail"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Compute a rolling count from a stream of events in batch and in streaming style and compare latency and correctness for late events"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Detect data drift in a feature stream with a statistical test, raise an alert, and describe the retraining trigger and the rollback plan"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Coupling, layering and plug-ins",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Take a layered application with a database call inside a controller, refactor it to a hexagonal structure with ports and adapters, and justify each dependency direction.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Identify three kinds of coupling in a given code sample and reduce one of them by introducing an interface"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Redraw a layered system as ports and adapters and show how the domain is isolated from the database and the web framework"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Build a plug-in architecture for payment providers, add a third provider without changing core code, and prove it with tests"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Evolving systems safely",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Plan a staged migration of a legacy billing monolith to services using the strangler fig pattern, with fitness functions that guard performance and coupling at each stage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Evolve a JSON API by adding an optional field and show an old client still works, then break compatibility deliberately"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Write two fitness functions, one for response time and one for dependency direction, and run them in a build pipeline"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E12",
+          "title": "Route 10, 50 then 100 percent of traffic from a legacy service to a replacement, and roll back when an error rate threshold is crossed"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Documenting architecture and decisions",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Document one system at the context, container and component levels of the C4 model, and write three decision records including one you would now reverse.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Produce context and container diagrams for a school management system and check each element has a name, technology and purpose"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E9",
+          "title": "Write a decision record for choosing a message broker, listing options considered, drivers, decision, and consequences accepted"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Present the same architecture to a finance director, a developer and an operations lead, and adapt the content to each concern"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Detecting and measuring architectural debt",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Given a dependency graph and commit history, find cycles and change-coupled files, compute instability and abstractness for each module, and list the three worst offenders.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Classify ten described shortcuts as deliberate or inadvertent and prudent or reckless debt, and say which would you accept"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Detect dependency cycles in a module graph with code and list the smallest set of edges whose removal breaks them all"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compute instability and abstractness for twelve modules, plot distance from the main sequence, and flag modules in the zone of pain"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Paying down debt and governing it",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Estimate the interest paid per sprint on three debt items from lost developer hours, rank them by return on repayment, and propose a debt register and quality gate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.6",
+          "engine": "E9",
+          "title": "Draft a debt register for a system with six items, giving each an owner, impact, cost to fix and review date"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Compute interest and payback for five debt items from lost developer hours and rank them for a two-sprint repayment budget"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Break a cycle between two modules by extracting an interface, then re-run the dependency analysis to show the cycle is gone"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Architecture kata, review and reflection",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Design an architecture for a national vaccination tracking service from a one-page brief, present its main trade-offs, and write a review of a peer's design.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Produce a context diagram and three key decisions for a short business brief within a fixed time box"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Review a peer's architecture, list strengths, risks and questions with scenario references, and rate the findings by severity"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Deploy the core of your kata design, test one stated quality scenario with load or failure, and report whether the design meets it"
+        }
+      ]
+    }
+  ]
+}

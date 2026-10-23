@@ -1,0 +1,507 @@
+{
+  "slug": "digital-banking-lending-and-insurance-technology",
+  "description": "How banks, lenders and insurers run on software: core ledgers, open APIs, digital identity, credit scoring, peer-to-peer platforms, insurance pricing, fraud and inclusion. In the lab students query ledgers, score borrowers, price policies, run fraud rules and work through branching case studies set in Ghana and across Africa.",
+  "modelledOn": [
+    "Chishti and Barberis, The FinTech Book",
+    "Siddiqi, Intelligent Credit Scoring",
+    "Bank for International Settlements and FATF published guidance on digital identity, open finance and AML",
+    "Anderson, Security Engineering (fraud and payment systems chapters)"
+  ],
+  "outcomes": [
+    "Explain how a core banking system records money using double-entry ledgers, batch and real-time processing, and expose it safely through open APIs.",
+    "Design a digital onboarding flow that balances identity assurance, regulation and customer drop-off.",
+    "Build and evaluate a credit scorecard and a loan product, and assess it for bias and portfolio risk.",
+    "Price a simple insurance product and design a parametric cover, then evaluate its loss ratio and basis risk.",
+    "Apply rule-based and graph techniques to detect fraud and money laundering and manage the resulting cases.",
+    "Assess a mobile banking or lending service for inclusion, consumer protection and operational resilience."
+  ],
+  "units": [
+    {
+      "title": "Core banking and open banking APIs",
+      "weeks": "1-2",
+      "topics": [
+        "Core banking architecture: accounts, double-entry ledgers, transaction posting and end-of-day batch",
+        "Real-time and event-driven cores versus legacy mainframe cores; ISO 20022 message structure",
+        "Open banking: consent, OAuth 2.0 authorisation, financial-grade API profiles and sandboxes",
+        "Banking as a service, API marketplaces and partner banks",
+        "Resilience: idempotent payments, reconciliation, settlement and outage handling"
+      ]
+    },
+    {
+      "title": "Digital onboarding and identity verification",
+      "weeks": "3",
+      "topics": [
+        "Know-your-customer tiers and customer due diligence, including tiered KYC for mobile money wallets",
+        "National ID and biometric verification: Ghana Card matching, face match and liveness detection",
+        "Document verification, OCR and onboarding fraud: synthetic and stolen identities",
+        "Digital identity models: centralised, federated and self-sovereign; consent and data protection",
+        "Onboarding funnel design: conversion, drop-off analysis and assurance levels"
+      ]
+    },
+    {
+      "title": "Credit scoring and algorithmic lending",
+      "weeks": "4-5",
+      "topics": [
+        "Credit risk basics: probability of default, loss given default, exposure and expected loss",
+        "Scorecard development: weight of evidence, logistic regression, Gini and KS statistics",
+        "Alternative data: mobile money histories, airtime and utility payments, consent and privacy",
+        "Machine learning scorers, explainability, bias and fairness testing",
+        "Loan products and pricing: flat versus reducing balance, APR, nano-loans and buy-now-pay-later",
+        "Collections, provisioning and portfolio monitoring: PAR30, roll rates and vintage curves"
+      ]
+    },
+    {
+      "title": "Crowdfunding and peer-to-peer lending",
+      "weeks": "6-7",
+      "topics": [
+        "Crowdfunding models: donation, reward, equity and debt",
+        "Peer-to-peer platform design: risk grading, matching, auto-invest and secondary markets",
+        "Investor protection, disclosure, default handling and platform failure",
+        "Diversification and returns of loan pools under correlated defaults",
+        "Savings groups (susu) and digitised rotating credit",
+        "Agricultural and small business funding cases in West Africa"
+      ]
+    },
+    {
+      "title": "Insurance technology and underwriting",
+      "weeks": "8-9",
+      "topics": [
+        "Insurance fundamentals: pooling, premium, claims, reinsurance and loss ratio",
+        "Underwriting and pricing: risk classification, frequency and severity models",
+        "Claims automation: workflow, image-based assessment and straight-through processing",
+        "Parametric and index insurance for farmers: triggers, payouts and basis risk",
+        "Microinsurance and mobile distribution",
+        "Telematics and usage-based insurance for transport operators"
+      ]
+    },
+    {
+      "title": "Fraud detection and anti-money-laundering",
+      "weeks": "10-11",
+      "topics": [
+        "Fraud typologies: SIM swap, account takeover, social engineering and mule accounts",
+        "Rules and anomaly detection: features, thresholds and the precision-recall trade-off",
+        "Graph analytics for mule networks and collusion rings",
+        "AML transaction monitoring: structuring, sanctions screening and suspicious transaction reports",
+        "Case management and investigation workflow",
+        "Regulatory frameworks: FATF recommendations, Bank of Ghana directives and financial intelligence reporting"
+      ]
+    },
+    {
+      "title": "Financial inclusion and mobile banking",
+      "weeks": "12",
+      "topics": [
+        "Mobile money architecture: wallets, agents, float and USSD versus app channels",
+        "Interoperability: instant payment switches and wallet-to-bank transfers",
+        "Inclusion metrics: access, usage, quality and the Global Findex survey",
+        "Designing for low literacy, low connectivity and trust; agent liquidity management",
+        "Consumer protection: transparency, complaints handling and over-indebtedness"
+      ]
+    },
+    {
+      "title": "Capstone: a digital bank for a rural community",
+      "weeks": "13",
+      "topics": [
+        "Product design: accounts, savings and loan products for smallholder farmers",
+        "Compliance and risk review: KYC, AML, data protection and credit policy",
+        "Cloud deployment and resilience of the banking stack",
+        "Presentation of the business case and risk register"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Core banking and ledgers",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Post ten transactions in a double-entry ledger by hand, prove the trial balance, and explain what an end-of-day batch changes compared with real-time posting.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E5",
+          "title": "Create account and ledger tables, post 10 deposits and transfers as paired debit and credit rows, and check the trial balance sums to zero"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Work through an open banking consent case: choose scopes for a budgeting app, grant or deny access, and score the choices against a data-minimisation rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw an architecture diagram of an event-driven core with a message queue, ledger service and payment switch, then mark where an ISO 20022 message is created"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Banking as a service and resilience",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compare two partner-bank models for a Ghanaian fintech start-up, and write the reconciliation steps that follow a payment timeout.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E5",
+          "title": "Write SQL joining a bank statement table to the internal ledger to list unmatched and duplicated payments after a simulated network timeout"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Run a case where a fintech picks a sponsor bank and API partners, weigh cost, licence and exit risk, and defend the decision against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E12",
+          "title": "Deploy a payment service behind a load balancer, inject a zone failure, and show that idempotency keys prevent any customer being charged twice"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Digital onboarding and identity",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Design a tiered KYC ladder for a mobile wallet, set limits per tier, and estimate drop-off at each onboarding screen.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Onboard five simulated customers at the right KYC tier by checking documents and evidence, and justify each tier decision against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E5",
+          "title": "Query a funnel table of 5,000 onboarding sessions to find the step with highest drop-off, then compare conversion for two form designs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Review 10 onboarding files containing forged and synthetic identity signals, flag the fraudulent ones, and keep false rejections of genuine customers below two"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Credit risk and scorecards",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compute expected loss for three loan books from default probability, loss given default and exposure, then explain weight of evidence for one variable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Compute expected loss for a portfolio of 100 loans given PD, LGD and exposure, then plot loss against changing default rates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Fit a logistic regression scorecard on a loan dataset, convert coefficients to points, and report Gini and KS on a held-out sample"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Add mobile money features to a thin-file borrower dataset, measure the lift in Gini over the baseline, and note which consent each feature needs"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Machine learning scoring, pricing and collections",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Price a 6-month loan under flat and reducing-balance interest, and decide which of three borrower segments to restructure using roll-rate evidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Compute the monthly instalment, total cost and APR of a 6-month loan under flat and reducing-balance interest and compare them in a table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E5",
+          "title": "Calculate PAR30 and monthly vintage curves from a loan performance table with SQL and flag the branch whose portfolio is deteriorating"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Compare approval rates and error rates of a tree-ensemble scorer across gender and region groups, then reduce the gap and report the accuracy cost"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Crowdfunding models and P2P platforms",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Classify five campaigns by funding model, and draw the money and obligation flows between investors, platform and borrowers in a peer-to-peer lender.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Match six fundraising cases to the correct crowdfunding model and legal treatment, and explain the investor risk in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Draw a sequence diagram of a P2P loan from application and risk grade through funding, disbursement, repayment and default"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Handle a platform failure case: freeze new loans, notify investors, apply the default policy, and be scored on disclosure and fairness"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Loan pools, susu and agricultural funding",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Simulate a diversified pool of 200 small loans under independent and correlated defaults, and compare the ROSCA payout rule with a digital savings group ledger.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E5",
+          "title": "Model a rotating susu group of 10 members in tables, record contributions, apply the payout order, and check each member receives the full pot once"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Run a Monte Carlo of 200 loans with 5 percent default and compare the spread of returns for independent versus correlated defaults"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E10",
+          "title": "Fund a cocoa-farmer cooperative through a platform case: choose tenor and grading, handle a drought shock, and be scored on investor return and borrower viability"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Insurance basics, underwriting and claims",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compute premium and loss ratio for a motor insurance book, and map claims steps that could be automated with straight-through processing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E5",
+          "title": "Compute loss ratio by product from policy and claim tables with SQL, and flag the line that loses money after reinsurance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Fit frequency and severity models to claim data, price a policy for three risk classes, and test that portfolio premium covers expected claims"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E9",
+          "title": "Design a claims workflow as a diagram with an image-assessment step and a fraud check, and mark which paths are fully automated"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Parametric, micro and telematics insurance",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Choose a rainfall trigger for a maize index cover, estimate basis risk, and design a mobile premium collection flow for farmers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Pick a rainfall deficit trigger and payout from 30 years of data, then compute how often farmers lose crops without a payout"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Launch a mobile microinsurance product in a case: set price, enrolment channel and claims rules, then handle low take-up and a premium default wave"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Score 500 driver trips from telematics features, assign a premium discount, and check the discount does not make the portfolio unprofitable"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Fraud typologies and detection",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Describe how a SIM-swap fraud unfolds step by step, then tune a fraud rule and report its precision and recall.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Investigate a SIM-swap case from alerts and call records, freeze the right accounts in the right order, and be scored on loss prevented"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Tune a rule and an anomaly score on a labelled transaction file, then plot precision against recall and choose a threshold with 30 daily reviewers"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Build a graph of accounts and transfers, find the connected components that look like a mule ring, and rank accounts by centrality"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Anti-money-laundering and regulation",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Walk one structuring pattern from alert to suspicious transaction report, and map a policy requirement to the control that satisfies it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E5",
+          "title": "Write SQL to detect structuring: repeated cash deposits just below the reporting limit across linked accounts in a 7-day window"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Work three AML alerts through a case management flow, escalate or close each, and file any suspicious transaction report correctly and on time"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E10",
+          "title": "Respond to an inspection case: map FATF recommendations to your controls, spot the gaps in a simulated policy, and plan remediation"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Mobile banking and financial inclusion",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compute inclusion indicators for a district, redesign a USSD menu for low literacy, and balance agent float across three locations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Simulate agent float over 30 days with deposits and withdrawals, and find the rebalancing rule that avoids stock-outs at lowest cost"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E5",
+          "title": "Compute account ownership, active use and gender-gap indicators from survey tables with SQL and chart them by district"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Handle a customer-complaint case about hidden fees and over-indebtedness, choose remedies, and be scored on consumer protection principles"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Capstone: a rural digital bank",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present a product, compliance and resilience plan for a rural digital bank, with a risk register and a deployment diagram.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Draw the customer journey and system architecture for a smallholder savings and loan product and label every data flow"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E12",
+          "title": "Deploy the banking stack across two zones with autoscaling, run a failure test, and report recovery time against a one-hour target"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Defend the capstone before a regulator panel: answer KYC, AML, credit policy and data protection challenges and be scored on the rubric"
+        }
+      ]
+    }
+  ]
+}

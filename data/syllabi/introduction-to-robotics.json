@@ -1,0 +1,505 @@
+{
+  "slug": "introduction-to-robotics",
+  "description": "A hands-on first course in robotics: how robots sense, decide and move, from a single motor to a team-built mobile robot. Students wire motors and sensors on the hardware bench, program a microcontroller, tune feedback loops and finish with a robot challenge.",
+  "modelledOn": [
+    "Siegwart, Nourbakhsh and Scaramuzza, Introduction to Autonomous Mobile Robots",
+    "Mataric, The Robotics Primer",
+    "Dudek and Jenkin, Computational Principles of Mobile Robotics",
+    "Arduino and AVR microcontroller documentation"
+  ],
+  "outcomes": [
+    "Describe a robot as a sense-plan-act system and draw the block diagram of a given robot.",
+    "Select, drive and size DC, servo and stepper motors for a given load using PWM and an H-bridge.",
+    "Choose, calibrate and filter sensors, and convert raw readings to physical units.",
+    "Program a microcontroller with digital and analog I/O, timers, interrupts and state machines.",
+    "Implement and tune proportional and PID feedback controllers for speed, position and line following.",
+    "Build, test and demonstrate a mobile robot as part of a team, documenting design decisions and safety measures."
+  ],
+  "units": [
+    {
+      "title": "What a robot is and its components",
+      "weeks": "1",
+      "topics": [
+        "Definitions and history; types of robot (arm, mobile, legged, aerial) and levels of autonomy",
+        "Components of a robot: structure, actuators, sensors, controller and power, and the sense-plan-act loop",
+        "Degrees of freedom, joints, workspace and a first look at the geometry of a two-link arm",
+        "Robots in Africa: farm spraying, mining inspection, medical drone delivery and the safety and ethics questions they raise",
+        "Electronics for robots: voltage, current, Ohm's law, power budget and battery selection"
+      ]
+    },
+    {
+      "title": "Actuators and motors",
+      "weeks": "2-3",
+      "topics": [
+        "The brushed DC motor: torque, speed, back-EMF and stall current",
+        "H-bridge drivers and PWM speed control; reversing direction",
+        "Hobby servo motors: pulse widths, position control and range limits",
+        "Stepper motors: full, half and micro-stepping, steps per revolution, open-loop positioning",
+        "Gearboxes, the torque-speed trade-off, wheel size and motor power sizing",
+        "Motor driver protection: flyback diodes, current limits and electrical noise"
+      ]
+    },
+    {
+      "title": "Sensors and signal conditioning",
+      "weeks": "4-5",
+      "topics": [
+        "Sensor characteristics: range, resolution, accuracy, precision, noise and response time",
+        "Light, line and proximity sensing: infrared reflectance, ultrasonic ranging, time of flight",
+        "Quadrature encoders: counting ticks, speed estimation and wheel odometry",
+        "Inertial sensing: accelerometer, gyroscope, IMU and gyro drift",
+        "Analog conditioning: voltage dividers, op-amp amplifiers, the ADC and quantisation error",
+        "Digital filtering: moving average, exponential low-pass and median filters for spikes"
+      ]
+    },
+    {
+      "title": "Microcontroller programming",
+      "weeks": "6-7",
+      "topics": [
+        "Microcontroller architecture (AVR): GPIO, timers, ADC and interrupts",
+        "Digital I/O, analog read and PWM output: buttons, LEDs and motor speed",
+        "Reading sensors, serial debugging and calibration routines",
+        "Timers and interrupts: non-blocking loops and encoder interrupt handlers",
+        "Behaviour as a finite state machine in code",
+        "A single-board computer in the loop: serial, I2C and MQTT messaging between boards"
+      ]
+    },
+    {
+      "title": "Basic feedback control",
+      "weeks": "8-9",
+      "topics": [
+        "Open loop versus closed loop; setpoint, error and actuator saturation",
+        "On-off control with hysteresis",
+        "Proportional control and steady-state error",
+        "PID control: integral windup, derivative kick and discrete-time implementation",
+        "Step-response tuning: rise time, overshoot, settling time and the Ziegler-Nichols rules",
+        "Line following and wall following as feedback problems"
+      ]
+    },
+    {
+      "title": "Mobile robot motion and navigation",
+      "weeks": "10-11",
+      "topics": [
+        "Differential-drive kinematics: wheel speeds to forward and turning velocity",
+        "Odometry and dead reckoning; how errors accumulate",
+        "Reactive obstacle avoidance and Braitenberg-style behaviours",
+        "Grid maps and path search: breadth-first search and A-star on an occupancy grid",
+        "Behaviour-based control: subsumption and behaviour arbitration"
+      ]
+    },
+    {
+      "title": "Building a mobile robot",
+      "weeks": "12",
+      "topics": [
+        "Requirements, chassis design, wheel placement and centre of mass",
+        "Wiring, power distribution and subsystem testing",
+        "Integration, test plans and debugging with logs",
+        "Safety: emergency stop, fail-safe states and battery handling"
+      ]
+    },
+    {
+      "title": "Team robot challenge",
+      "weeks": "13",
+      "topics": [
+        "Challenge specification, scoring rules and project planning",
+        "Team roles, version control and design documentation",
+        "Demonstration, run analysis and failure review",
+        "Reflection: reliability, cost, ethics and local impact of the robot"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What is a robot?",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Draw the sense-plan-act block diagram of a robot vacuum and of a spraying drone, list their sensors and actuators, and compute the battery life of a 2000 mAh pack at a given load.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E8",
+          "title": "Wire an LED and a resistor on the bench, measure current against Ohm's law for three resistor values, and record the battery drain of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw a sense-plan-act block diagram of a farm irrigation robot naming each sensor, actuator and the controller, and link signals between them"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Plot the reachable workspace of a two-link arm with given link lengths and joint limits and decide if a target point is reachable"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "DC motors, H-bridges and servos",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Estimate the stall current and no-load speed of a motor from its datasheet, and explain how PWM duty cycle changes average voltage in an H-bridge.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E8",
+          "title": "Drive a DC motor through an H-bridge from a microcontroller pin and change speed with PWM duty at 25, 50 and 100 percent"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E8",
+          "title": "Attach a servo, sweep it from 0 to 180 degrees with pulse widths from 1 to 2 ms, and record the real angle at five widths"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Fit a motor speed-versus-voltage line from measured data, estimate the back-EMF constant and predict speed at an unseen voltage"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Steppers, gears and driver protection",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Size a motor and gearbox so that a 1 kg robot climbs a 10 degree ramp at 0.3 m/s, showing torque, speed and power numbers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Drive a stepper through 200 full steps and 400 half steps, count revolutions and compute steps per revolution and the angle error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Compute the required wheel torque for a robot on a ramp, choose a gear ratio from a table and plot torque against speed"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E8",
+          "title": "Find the fault in a motor circuit that resets the microcontroller when the motor starts, and fix it with a flyback diode and decoupling"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Sensor characteristics, ranging and encoders",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compare an infrared and an ultrasonic distance sensor on range, resolution and noise, and compute wheel odometry for a robot that travels a measured square.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E8",
+          "title": "Measure distance with an ultrasonic sensor at 10 known distances and plot reading against truth to estimate error and range limit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E8",
+          "title": "Count encoder ticks while a wheel turns one revolution, compute distance travelled and compare it with a ruler measurement"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Collect 200 readings of a distance sensor, compute the mean, standard deviation and resolution, and report the sensor accuracy"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Inertial sensing, conditioning and filtering",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Show with a short dataset how a gyroscope drifts, pick the cut-off of a low-pass filter for a noisy signal, and compute ADC resolution in millivolts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E8",
+          "title": "Read a potentiometer with the 10-bit ADC, convert counts to volts and compute the quantisation step for the 5 V range"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Filter a noisy sensor trace with moving-average and exponential filters, and compare lag and noise reduction for three window sizes"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Integrate a gyro rate trace to estimate heading, measure the drift over 60 s, and correct it by fusing with a compass reading"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Programming the microcontroller",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a program that reads a button, an analog light sensor and a distance sensor, prints readings over serial and lights an LED when a threshold is crossed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E8",
+          "title": "Program a button to toggle an LED and a potentiometer to dim a second LED with PWM, then verify behaviour on the bench"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E8",
+          "title": "Calibrate a light sensor by reading it in light and dark conditions and map its range onto 0 to 100 percent in code"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Write C code that configures a timer to output a 1 kHz PWM and verify its period with a counter-based measurement routine"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Timers, interrupts and state machines",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Convert a blocking blink-and-read program into a non-blocking one, and draw the state machine of a robot that waits, drives and stops at an obstacle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E8",
+          "title": "Replace delay calls with a millis-based scheduler so that an LED blinks at 2 Hz while a sensor is read every 100 ms"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E6",
+          "title": "Step through a three-state drive-turn-stop machine in the visualiser and record the state sequence for a given sensor input stream"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E8",
+          "title": "Send sensor readings from a microcontroller to a single-board computer by MQTT and plot the live values on a dashboard"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Open loop, on-off and proportional control",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compare open-loop and closed-loop motor speed under a load change, and compute the steady-state error of a proportional controller for three gains.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E8",
+          "title": "Build an on-off controller with hysteresis for a heater or fan and show on a plot how the band changes switching frequency"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Simulate proportional control of a motor speed model for gains 1, 5 and 20 and tabulate steady-state error and overshoot"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Simulate a motor with actuator saturation under open and closed loop, then identify which gain makes the response unstable"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "PID tuning and line following",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Tune a PID controller from a measured step response using a rule of thumb, and explain integral windup with a saturating actuator.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Read rise time, overshoot and settling time from a given step response plot and compare two tuning candidates against a spec"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.6",
+          "engine": "E8",
+          "title": "Program a line follower with proportional steering on two reflectance sensors and complete a test track in under a time limit"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Implement a discrete PID with anti-windup and derivative filtering, and compare it with a plain PID on a saturating plant"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Kinematics, odometry and avoidance",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compute the pose of a differential-drive robot after a given sequence of wheel speeds, and quantify how an encoder error of 1 percent grows over 10 m.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Convert left and right wheel speeds into forward and turning velocity and plot the path for five wheel-speed pairs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Dead-reckon a square path of 1 m sides with a simulated wheel slip error and report the position error at the end of each lap"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E8",
+          "title": "Program obstacle avoidance with two ultrasonic sensors, and record the robot trajectory when it meets a wall at three angles"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Path search and behaviour-based control",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Run breadth-first and A-star search on a grid map of a warehouse, count the cells expanded by each, and arrange three behaviours by priority.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Run breadth-first search on a 10x10 grid map with obstacles in the visualiser and record the path length and number of cells expanded"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Compare A-star with two heuristics against breadth-first on the same map and explain which expands fewer cells and why"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Implement a subsumption controller with avoid, wander and seek-light behaviours and test the arbitration against a simulated sensor stream"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Build and test the robot",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Draw the wiring diagram and test plan of your team robot, with a power budget, a safety checklist and a plan to test each subsystem before integration.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E8",
+          "title": "Wire motors, sensors and a battery to the controller with separate power rails, then power-up test each subsystem in order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E8",
+          "title": "Log sensor and motor values during a test run, find why the robot veers left, and correct the cause with calibration"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E9",
+          "title": "Draw a fault-tree for a robot that does not stop on command, and add an emergency stop and fail-safe default that remove the branch"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Team robot challenge",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Demonstrate the robot on a set challenge, submit a design report with plan, test results and failure review, and reflect on cost, reliability and local use.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Draw a Gantt chart for a 4-week robot challenge with tasks, owners and dependencies, and mark the critical path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E8",
+          "title": "Run the robot on the challenge course five times, record time and errors for each run, and report the mean and the main failure"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E4",
+          "title": "Put the team code under version control with branches for sensing, control and navigation, and merge them into a tagged release"
+        }
+      ]
+    }
+  ]
+}

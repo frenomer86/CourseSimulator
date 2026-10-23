@@ -1,0 +1,505 @@
+{
+  "slug": "advanced-statistical-modelling",
+  "description": "Modern statistical modelling for data that is clustered, censored, multivariate, sequential or high dimensional, covering generalised, mixed, Bayesian, survival and state-space models. Students fit and diagnose models in code, derive key estimators and finish with an analysis of a public-health or agricultural dataset.",
+  "modelledOn": [
+    "Gelman, Hill and Vehtari, Regression and Other Stories",
+    "McCullagh and Nelder, Generalized Linear Models",
+    "Wood, Generalized Additive Models: An Introduction with R",
+    "Hyndman and Athanasopoulos, Forecasting: Principles and Practice"
+  ],
+  "outcomes": [
+    "Specify, fit and diagnose generalised linear and additive models for binary, count and skewed outcomes.",
+    "Build mixed-effects and hierarchical models for clustered and longitudinal data and interpret variance components and shrinkage.",
+    "Implement and check Bayesian inference with MCMC, including convergence diagnostics and posterior predictive checks.",
+    "Analyse censored time-to-event data with Kaplan-Meier, Cox and parametric models.",
+    "Apply multivariate methods, missing-data handling and state-space forecasting appropriately.",
+    "Validate models with resampling and calibration at scale and communicate uncertainty reproducibly."
+  ],
+  "units": [
+    {
+      "title": "Generalised linear and additive models",
+      "weeks": "1-2",
+      "topics": [
+        "Exponential family, link functions and fitting by iteratively reweighted least squares",
+        "Logistic, Poisson and negative binomial regression; overdispersion and zero inflation",
+        "Deviance, residuals, influence and model selection with AIC and BIC",
+        "Penalised regression: ridge, lasso and elastic net",
+        "Generalised additive models: splines, smoothing penalties and effective degrees of freedom"
+      ]
+    },
+    {
+      "title": "Mixed-effects and hierarchical models",
+      "weeks": "3-4",
+      "topics": [
+        "Random intercepts and slopes; variance components and the intraclass correlation",
+        "Estimation: maximum likelihood, REML and the Laplace approximation for generalised mixed models",
+        "Longitudinal data: repeated measures and correlation structures",
+        "Multilevel designs: patients within clinics within districts; crossed random effects",
+        "Shrinkage, best linear unbiased predictors and comparing mixed models"
+      ]
+    },
+    {
+      "title": "Bayesian modelling and MCMC",
+      "weeks": "5-6",
+      "topics": [
+        "Priors, conjugacy, posterior summaries and credible intervals",
+        "Metropolis-Hastings and Gibbs sampling",
+        "Hamiltonian Monte Carlo and the No-U-Turn sampler; divergent transitions",
+        "Convergence diagnostics: trace plots, R-hat and effective sample size",
+        "Posterior predictive checks, WAIC and leave-one-out cross-validation",
+        "Hierarchical Bayesian models and partial pooling"
+      ]
+    },
+    {
+      "title": "Survival and event-history analysis",
+      "weeks": "7",
+      "topics": [
+        "Censoring, survival and hazard functions; the Kaplan-Meier estimator",
+        "The log-rank test and Cox proportional hazards with partial likelihood",
+        "Parametric survival: Weibull and accelerated failure time models",
+        "Time-varying covariates and competing risks",
+        "Frailty models and recurrent events"
+      ]
+    },
+    {
+      "title": "Multivariate methods and missing data",
+      "weeks": "8-9",
+      "topics": [
+        "Principal components and factor analysis",
+        "Canonical correlation and multivariate analysis of variance",
+        "Discriminant analysis and clustering: k-means, hierarchical and Gaussian mixtures with EM",
+        "Multidimensional scaling and distance-based methods",
+        "Missing data mechanisms (MCAR, MAR, MNAR) and multiple imputation",
+        "Dimension reduction for compositional and count data"
+      ]
+    },
+    {
+      "title": "State-space and forecasting models",
+      "weeks": "10-11",
+      "topics": [
+        "ARIMA and seasonal ARIMA: identification, estimation and diagnostics",
+        "State-space form, the Kalman filter and smoother",
+        "Exponential smoothing and structural time-series models",
+        "Dynamic regression and intervention analysis",
+        "Forecast evaluation: rolling origin, proper scoring rules and prediction intervals",
+        "Count time series for disease surveillance (weekly malaria and cholera counts)"
+      ]
+    },
+    {
+      "title": "Resampling and model validation at scale",
+      "weeks": "12",
+      "topics": [
+        "The bootstrap: percentile and bias-corrected intervals; bootstrapping dependent data",
+        "Cross-validation, leakage and nested validation",
+        "Calibration and proper scoring rules for probabilistic predictions",
+        "Large-scale multiple testing and permutation tests",
+        "Computation at scale: sparse matrices, subsampling and stochastic optimisation"
+      ]
+    },
+    {
+      "title": "Workflow, interpretation and project",
+      "weeks": "13",
+      "topics": [
+        "A model-building workflow: exploration, assumptions, fitting, diagnostics and revision",
+        "Predictive versus explanatory models: interpretation pitfalls",
+        "Reproducible reporting of models and uncertainty",
+        "Project: an end-to-end analysis of a health or agriculture dataset"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Generalised linear models",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Derive the IRLS update for logistic regression, fit it by hand for four observations and interpret the odds ratios of a malaria-test dataset with deviance residuals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute two IRLS iterations for a logistic regression with four data points and check the coefficients against the closed-form likelihood gradient"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Fit Poisson and negative binomial models to clinic visit counts, compare dispersion and choose between them with a residual check"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Compare six candidate GLMs by AIC and BIC, plot Cook's distance and decide if the best model is supported by diagnostics"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Penalisation and additive models",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compare ridge and lasso paths on a correlated predictor set and explain what a smoothing penalty does when fitting a spline to rainfall and maize yield.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Plot ridge and lasso coefficient paths against lambda on a 10-predictor dataset and say which variables the lasso drops first"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Fit a spline smooth of yield on rainfall, vary the smoothing parameter and show the trade-off between wiggliness and effective degrees of freedom"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Fit an additive model with two smooth terms and a factor, use cross-validation to pick penalties, and plot partial effects with intervals"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Random effects and variance components",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Model blood-pressure readings of patients nested in clinics with a random intercept, compute the intraclass correlation and interpret how much variation lies between clinics.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Compute the intraclass correlation from given between-clinic and within-clinic variances and the shrinkage factor for a clinic with 5 patients"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Fit random intercept and random slope models to repeated visits and test whether the slope variance is needed using a likelihood ratio"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Compare ML and REML variance estimates on a small clinic dataset by simulation and show the downward bias of ML"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Longitudinal and multilevel structures",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Analyse a trial where children are measured four times in schools within districts, choose a correlation structure and compare fixed-effect conclusions across three random structures.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Fit a repeated-measures model with compound symmetry and an autoregressive structure and pick one by AIC and residual correlation plots"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Fit a three-level model for pupils in schools in districts, report variance at each level and say where an intervention should target"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Plot raw group means against shrunken predictions for 20 clinics of varying size and explain why small clinics move more"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Bayesian inference and sampling",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "Update a Beta prior for vaccine uptake with survey data, compare informative and flat priors, then implement Metropolis-Hastings for a two-parameter posterior.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Update a Beta(2,8) prior with 30 successes in 100 trials, plot prior, likelihood and posterior, and give a 95 percent credible interval"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Code a random-walk Metropolis sampler for a logistic regression posterior and tune the proposal scale to reach about 25 percent acceptance"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement a Gibbs sampler for a normal model with unknown mean and variance and verify it against the analytic posterior"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Hamiltonian sampling, checking and hierarchies",
+      "topics": [
+        "3.3",
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Fit a hierarchical model of district-level immunisation rates, check chains, run a posterior predictive check and compare partial pooling with complete and no pooling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Read trace plots, R-hat and effective sample size for four chains and decide which of three runs has not converged"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Code a leapfrog Hamiltonian step on a 2D correlated Gaussian target and compare effective sample size per second with random-walk Metropolis"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Fit eight-school-style hierarchical data with centred and non-centred parameterisations, count divergences and compare WAIC for pooled models"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Survival analysis",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Estimate survival curves of patients on two treatment pathways, compare them with a log-rank test and fit a Cox model with age and a time-varying covariate, checking proportional hazards.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute a Kaplan-Meier curve by hand for 12 censored follow-up times and read off the median survival and its meaning"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Fit a Cox proportional hazards model to a HIV-care dataset, interpret hazard ratios and test proportional hazards with scaled Schoenfeld residuals"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Fit Weibull and log-normal accelerated failure time models, compare with the Cox fit and predict survival at 12 months for two profiles"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Principal components and discriminant methods",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Reduce a 12-variable household-survey table with principal components, decide the number of components with a scree plot, then cluster households using a Gaussian mixture.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute the principal components of a 4-variable covariance matrix and the proportion of variance explained by each component"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Fit k-means with k from 2 to 8 and a Gaussian mixture with EM and compare silhouette and BIC to select the number of groups"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Carry out MANOVA on three crop-quality measures across fertiliser types and follow up with discriminant analysis on the significant contrasts"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Distances, missing data and compositions",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Create 30 percent missing values under MCAR and MAR in a health dataset, impute multiply and compare estimates and intervals with complete-case analysis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute a classical multidimensional scaling map from a 5x5 distance table between regions and interpret the first two axes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Impose MAR missingness, run multiple imputation with 20 datasets, pool the results with the standard combining rules and compare bias against the complete-case estimate"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Transform compositional soil-nutrient data with a log-ratio transform before PCA and show how the raw percentages mislead the correlation"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "ARIMA and state-space models",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Identify and fit a seasonal ARIMA model to monthly electricity-demand data, write the same model in state-space form and run a Kalman filter on a local-level model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Read ACF and PACF plots for three simulated series and propose an ARIMA order for each with a reason"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement a Kalman filter for a local-level model, filter noisy sensor data and plot the estimated level with its 95 percent band"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Fit exponential smoothing and a structural time-series model to monthly rainfall, then compare their forecasts for the next 12 months"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Forecast evaluation and surveillance data",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Build a weekly forecast for cholera cases with prediction intervals, evaluate it by rolling origin and report both point error and interval coverage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Add an intervention term to a mobile-money transaction series for a fee change and estimate the size and decay of its effect"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Evaluate three forecasting methods with rolling-origin cross-validation and compare their continuous ranked probability scores"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Fit a negative binomial regression with seasonal terms to weekly case counts and forecast the next 8 weeks with intervals"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Resampling, calibration and scale",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Validate a clinical risk model with nested cross-validation and bootstrap, assess calibration with a reliability plot and a Brier score, and discuss a leakage that inflated an earlier result.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Bootstrap the median of a skewed income sample 2000 times and compare the percentile and bias-corrected intervals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Show data leakage by scaling before splitting, then repair the pipeline with nested cross-validation and report the honest error"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Draw a calibration plot and compute the Brier score for a risk model, then recalibrate it with isotonic regression"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Workflow and project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present an end-to-end analysis of a maternal-health or crop-yield dataset: question, model choice, diagnostics, uncertainty, limitations and a reproducible report.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Run the full model-building workflow on a given dataset and record each diagnostic check, revision and the reason for it"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Show on simulated data how a good predictive model can give a misleading causal reading of one coefficient"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Produce a reproducible notebook for the project analysis that regenerates all tables and figures from raw data with one command"
+        }
+      ]
+    }
+  ]
+}

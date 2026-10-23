@@ -114,5 +114,402 @@
         "Capstone: an NLP system for a Ghanaian language with a datasheet, evaluation report and model card"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why language is hard: text basics",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Short essay: three examples of ambiguity or code-switching in Ghanaian speech and what each does to a naive text-processing pipeline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Count word frequencies in a text sample and plot rank against frequency on a log-log scale to check Zipf's law"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Normalise a text with Ewe diacritics and tone marks to Unicode NFC, then write regular expressions that strip URLs and emojis"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Implement Levenshtein edit distance and use it to build a spell corrector with a dictionary, evaluating it on 50 misspelled words"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Subword tokenisation and corpora",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a short corpus plan: sources, licensing, consent and annotation guidelines for a Twi corpus built from radio transcripts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Train a byte-pair encoding tokeniser on a small Akan text for 200 merges and print the first 20 merges it learns"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compare BPE and unigram tokenisers on an Akan corpus by vocabulary size and tokens per word, and explain what each does to rare words"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Build a cleaned, deduplicated corpus from raw news and radio transcript samples and report its size, language mix and consent status"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "n-gram language models",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compute bigram probabilities and perplexity for a small corpus by hand, then check with code.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Estimate bigram probabilities from a 1,000-word corpus and use them to score two candidate sentences"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Add Laplace smoothing and Kneser-Ney style interpolation to a trigram model and compare held-out perplexity of each approach"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Evaluate unigram, bigram and trigram models by perplexity on held-out text and explain why the lowest perplexity may not help a downstream task"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Neural language models and decoding",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Short analysis: compare text generated with greedy, beam and nucleus sampling and describe the failure modes you observe.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Train a small recurrent language model on a character corpus with teacher forcing and plot its training and validation loss"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Implement greedy, beam search and top-p decoding and show how temperature changes the diversity of the generated text"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Compare an LSTM and a GRU language model on the same corpus for equal parameter budgets and report perplexity and generation quality"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Word embeddings",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compute a PMI matrix for a small corpus, factorise it and interpret the nearest words for five terms.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Build a co-occurrence matrix from a small corpus, convert to PPMI and list the nearest neighbours of three words by cosine similarity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Implement skip-gram with negative sampling in NumPy, train for 20 epochs and check that related words move closer together"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Evaluate embeddings with similarity benchmarks and analogies, visualise them with t-SNE and compare word2vec with fastText on rare words"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Sentence embeddings and retrieval",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Design a semantic search for a clinic's FAQ in Twi and English and list the failure cases you expect.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Build sentence vectors by mean-pooling word embeddings and rank ten sentences by similarity to a query"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Index 500 short documents in a vector index and evaluate retrieval by recall at 5 against a keyword search baseline"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Measure gender or profession bias in an embedding space with a similarity test and try one debiasing step, reporting its effect on task quality"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Text classification",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Annotate 50 mobile money complaints, compute inter-annotator agreement and write down the guideline changes that raise it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Build a TF-IDF plus naive Bayes baseline for sentiment on 300 labelled tweets and report accuracy and the confusion matrix"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Classify mobile money customer complaints into intents with logistic regression and a neural model, and compare macro F1 under class imbalance"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Find five spurious cues and adversarial edits that fool a sentiment classifier, retrain with fixes and test on out-of-domain text"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Sequence labelling",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Run the Viterbi algorithm by hand on a three-word sentence with a small HMM, then evaluate span-level NER on news text.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Convert a short NER annotation into BIO tags and decode a tag sequence back into entity spans"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement the Viterbi algorithm for a part-of-speech HMM and measure tagging accuracy on a small treebank"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Train an NER tagger on Hausa or Yoruba news text from a community dataset and report span-level precision, recall and F1 per entity type"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Attention and the transformer",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Hand-calculate attention weights for a three-token input and annotate a transformer block diagram with tensor shapes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Implement dot-product attention over an encoder's states and print the attention weights for a four-word source sentence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement multi-head self-attention with positional encodings and a causal mask in NumPy and unit-test its output shapes and masking"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Pretrain a tiny transformer with a masked language modelling objective and a causal objective on the same corpus and compare their strengths"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Pretrained models and adaptation",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Short report: which pretrained models cover your target African language, and how would you adapt one with limited data and compute?",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Tokenise sentences in Twi, Ewe, Hausa and English with a multilingual tokeniser and compare token counts per word"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Fine-tune a small pretrained encoder on a labelled classification task using a LoRA-style adapter and compare it with full fine-tuning"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Benchmark a multilingual model on classification in three African languages and explain gaps in coverage by tokeniser fertility and pretraining data"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Machine translation",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Short comparison: rule-based, statistical and neural translation for English to Twi, with an example of where each fails.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Build a word-for-word dictionary translator for ten English sentences into Twi and list the errors from word order and idioms"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compute BLEU and chrF for ten translations against references and explain why chrF is fairer for morphologically rich languages"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Train a small English to Twi translation model with back-translation of monolingual text and measure the BLEU gain over the baseline"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "African language technology",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a participatory research plan for collecting speech or text data in a Ghanaian community with fair pay and informed consent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Analyse a Twi or Yoruba text for tone marks, noun classes or affixes with regular expressions and summarise morphological variation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Build a simple spell checker and a keyboard layout map for a Ghanaian language from a word list and evaluate its recall"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Benchmark a model on classification and NER in five African languages and report results per language with confidence intervals"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Large language models and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Capstone deliverable: a datasheet, evaluation report and model card for an NLP system in a Ghanaian language.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Build a small retrieval-augmented question answering system over ten short health documents and show the retrieved passages beside each answer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Evaluate a generative system for hallucination and toxicity with a hand-labelled test set and check whether the test set leaked into training"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Complete an NLP system for a Ghanaian language with data collection plan, evaluation per dialect, datasheet and model card, and report limitations"
+        }
+      ]
+    }
   ]
 }

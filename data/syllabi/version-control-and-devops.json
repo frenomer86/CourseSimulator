@@ -120,5 +120,402 @@
         "Working with low bandwidth: shallow clones, partial clones, caching, offline-first workflows"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why version control and Git internals",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Explain, with a diagram, how Git stores a commit as blobs, trees and a commit object and what the index is for.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E4",
+          "title": "Make a commit, then use cat-file to inspect its commit, tree and blob objects and show how their hashes link"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E4",
+          "title": "Configure Git identity, create a repository and make three commits, then verify author details with git log"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Use pipes, environment variables and paths to count the commits per author in a log and save the result to a file"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Everyday Git and branching",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write a short guide on good commit messages with three before and after examples.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E4",
+          "title": "Initialise a repository, add a .gitignore, stage and commit three files with clear messages, and check status after each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E4",
+          "title": "Use log, diff, show and blame to find which commit introduced a given line and who wrote it"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E4",
+          "title": "Create two branches, make a fast-forward merge and a three-way merge, and draw the resulting commit graph from log output"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Undoing and rewriting history",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Explain which command you would use to undo a pushed commit versus a local commit, and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E4",
+          "title": "Stash work in progress, switch branches, restore it, tag a release and amend the last commit message"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E4",
+          "title": "Undo changes with restore, revert and reset in soft, mixed and hard modes, and record what each does to the working tree and index"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E4",
+          "title": "Clean five messy commits with an interactive rebase, then recover a commit dropped by mistake using reflog"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Remotes, collaboration and review",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Describe the branching workflow you would give a team of five on a school project, and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E4",
+          "title": "Clone a repository, make a branch, push it to a remote and set the tracking branch, then pull a colleague's change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E4",
+          "title": "Run the forking workflow: fork, branch, commit, push and prepare a pull request with a clear description"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E4",
+          "title": "Tag releases with semantic versioning across three changes (patch, minor, major) and write release notes from the commit log"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Merge conflicts",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Write a conflict-resolution checklist and use it on the conflict from the team exercise.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Create and resolve a merge conflict in one file by reading the markers, and check the final content by running the tests"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E4",
+          "title": "Resolve conflicts during a rebase and a cherry-pick of three commits, and enable rerere to reuse a resolution"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E4",
+          "title": "Recover from a bad merge and a lost branch with reflog, then split one large commit into two clean commits"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Automated testing",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Design a test plan for a small grading function, labelling which tests are unit, integration and end-to-end.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Write five unit tests for a grading function including boundary values and run them with a test runner"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E4",
+          "title": "Add a linter and formatter with a pre-commit hook that blocks a commit with a style error, and show it blocking one"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Build a function from scratch using test-driven development over six red-green-refactor cycles, and report coverage and one flaky test fix"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Continuous integration",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Draw the stages of a CI pipeline for a web app and mark where a failure should stop the run.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E4",
+          "title": "Run the tests, a linter and a build in sequence from a script, stopping at the first failure and reporting the failing stage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Write a workflow with a test matrix on two language versions, dependency caching and a secret, and read its job log"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E4",
+          "title": "Create a pipeline with lint, test, build, package and publish stages and diagnose a red stage from seeded errors"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Pull request checks and supply chain",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write the branch protection rules and status checks you would require for the main branch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E4",
+          "title": "Configure required status checks so a pull request with failing tests cannot merge, and show the block"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E4",
+          "title": "Pin dependencies with a lock file, rebuild twice and compare results to show the build is reproducible"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Audit a project's dependencies for a vulnerable and an abandoned package, replace one, and confirm the tests still pass"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Containers and Docker",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Explain environment drift with an example from your own project and how a container removes it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E4",
+          "title": "Show that two containers share the host kernel but see separate process lists, and compare with a virtual machine"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Write a Dockerfile for a small app, build it, run it with a volume, an environment variable and a published port, and test it with curl"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Convert a 1 GB image to a multi-stage build under 100 MB, tag it with a version and push it to a registry"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Compose and Kubernetes basics",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Argue whether a three-person start-up needs Kubernetes, listing what Compose cannot do for them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E4",
+          "title": "Run an app, a database and a cache with Compose, and show data survives a restart of the app container"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E4",
+          "title": "Fix a Compose file with wrong network names and a missing volume that stops the app reaching the database"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E12",
+          "title": "Deploy a pod, scale a deployment to three replicas, expose it with a service, and kill a pod to watch it return"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Deployment and delivery strategies",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Choose a deployment strategy for a database change on a busy payments app, and write the rollback plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E4",
+          "title": "Set different configuration and secrets for development and production using environment files, without committing a secret"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E4",
+          "title": "Deploy a web app to a VPS from CI over SSH and verify the new version responds"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E12",
+          "title": "Compare rolling, blue-green and canary releases of a service, measure errors seen by users during each, and choose one with a migration step"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Monitoring, incidents and rollback",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a blameless post-mortem for a failed release using the timeline of an incident.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E4",
+          "title": "Add structured logs and a health endpoint to a service, then find a failing request by searching the logs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Compute an availability SLI and error budget from 30 days of request logs and decide whether to freeze releases"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E4",
+          "title": "Roll back a bad release by reverting a commit and redeploying a previous image tag, and record time to restore"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "DORA metrics, DevSecOps and capstone",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4"
+      ],
+      "exercise": "Prepare a short review of your capstone pipeline using the four DORA metrics and a list of improvements.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E1",
+          "title": "Compute deployment frequency, lead time, change failure rate and time to restore from a log of 40 deployments"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.2",
+          "engine": "E4",
+          "title": "Add secret scanning, dependency scanning and container scanning to a pipeline, and fix the findings in a seeded repository"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.3",
+          "engine": "E4",
+          "title": "Take a small app from repository to monitored deployment with a CI pipeline, container build, staged release, health checks and a rollback test"
+        }
+      ]
+    }
   ]
 }

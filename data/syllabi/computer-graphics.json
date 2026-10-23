@@ -100,5 +100,395 @@
         "Project: an interactive 3D scene such as a model of a Ghanaian landmark or a data visualisation"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Pixels, colour and vector graphics",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Short lab report: compute the memory needed for a 1080p frame buffer at three colour depths, convert five colours between RGB and HSV by hand, and explain when SVG beats a bitmap.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute frame buffer sizes in megabytes for 640x480 at 8, 16 and 24 bits per pixel and check them against a table of resolutions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a program that converts RGB to HSV and applies gamma correction, then verify it against ten known colour values"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Evaluate a cubic Bezier curve with de Casteljau subdivision, render it on a canvas, and compare file size with an equivalent raster image"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "The pipeline and the canvas",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Draw a labelled diagram of the graphics pipeline for a single triangle and write a half-page comparison of PNG and JPEG for photographs versus diagrams.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write code that pushes one triangle through modelling, transformation and rasterisation stages, printing the vertex coordinates after each stage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Draw a gradient and a checkerboard pixel by pixel on a canvas, then export it and compare the sizes of PNG and JPEG versions"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Implement a run-length encoder for a 256x256 image, measure compression on a flat graphic versus a photograph and explain the difference"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Lines, circles and polygon fill",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Trace the Bresenham algorithm by hand for two lines, then program line, circle and polygon fill routines on a pixel grid.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Implement the DDA line algorithm, draw five lines of different slopes on a pixel grid and compare each with the exact line"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement the midpoint circle algorithm using only integer arithmetic and verify that all eight symmetric octants line up for radii 5 to 50"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement scan-line polygon fill with an edge table for a concave polygon and compare it against flood fill on the same shape"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Anti-aliasing and text rasterisation",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compare aliased and anti-aliased renderings of the same diagonal lines and write up the cost in extra samples per pixel.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Render a diagonal line with and without 4x supersampling on a small grid and count how many pixels change intensity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement Wu's line algorithm, render it beside Bresenham's and measure the coverage error against an exact area calculation"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Rasterise a letter from a bitmap font at three scales, draw thick dashed lines, and compare jaggedness with and without anti-aliasing"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "2D transformations",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Problem set: write the 3x3 matrices for five transformations, compose them for rotation about a point, and explain why order matters.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Apply translation, rotation and scaling matrices to a triangle with vertices you choose and plot the original and transformed shapes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compose a matrix that rotates a square 45 degrees about its own centre, then show that reversing the order gives a different result"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Build a 2D articulated robot arm with a shoulder, elbow and wrist using nested matrix transforms, and animate it to reach a given point"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "3D transforms, scene graphs and meshes",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Build a small scene graph for a toy truck with wheels, write out its model matrices, and describe how an OBJ file stores a mesh.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Rotate a cube vertex set about the X, Y and Z axes with 4x4 matrices and print the new coordinates for 45 degrees"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Build a scene graph for a toy truck whose four wheels spin relative to the body, and print each node's final model matrix"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Parse an OBJ file, compute vertex normals by averaging face normals, and report the triangle count and bounding box of the model"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Camera and projection",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Derive the perspective projection matrix for a given field of view and aspect ratio, and track a vertex through to pixel coordinates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Build a view matrix from eye, look-at and up vectors for a camera at (4,3,5) and transform three scene points into camera space"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Construct orthographic and perspective projection matrices for the same view volume and compare how a row of cubes appears in each plot"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Project a vertex through the full pipeline to pixel coordinates, then show how the depth value loses precision when the near plane moves closer to zero"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Clipping and culling",
+      "topics": [
+        "6.1",
+        "6.2"
+      ],
+      "exercise": "Clip five line segments against a window with both Cohen-Sutherland and Liang-Barsky by hand and compare how many steps each used.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Implement Cohen-Sutherland line clipping against a rectangular window and report the outcode of each endpoint for 20 test lines"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Implement Sutherland-Hodgman polygon clipping against a rectangle and test it on a concave polygon that produces degenerate edges"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Implement back-face culling for a cube using face normals and the view direction, and verify that exactly half the faces are rejected from any angle"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Visibility",
+      "topics": [
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Write a short comparison of the z-buffer, painter's algorithm and ray casting in memory, speed and failure cases, with a sketch of a cyclic overlap.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement a z-buffer for three overlapping triangles and render the result, checking that draw order no longer changes the picture"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Show the painter's algorithm failing for three mutually overlapping triangles, then fix it with a BSP split of one polygon"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Cast one ray per pixel against a sphere and a plane, add a bounding volume test and measure how many intersection tests it saves"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Lighting and shading",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compute Lambertian and Blinn-Phong intensities for a point on a sphere by hand, then compare flat, Gouraud and Phong shading renders.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Calculate the intensity at three surface points for a point light with inverse-square attenuation and plot intensity against distance"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Implement Lambertian diffuse plus Blinn-Phong specular on a sphere and render it with three different shininess values"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Render the same low-polygon sphere with flat, Gouraud and Phong shading and explain why Gouraud misses a highlight inside a triangle"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Textures and global effects",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a design note on how you would add textures, shadows and reflections to a market stall scene on a low-end phone.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Map a checkerboard texture onto a quad with bilinear filtering and show the aliasing at a distance, then add a mipmap level and compare"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Implement normal mapping on a flat quad by perturbing the lighting normal from a normal map and check it responds to a moving light"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Add a hard shadow to a ray-traced scene with two spheres and a plane, then add one mirror reflection bounce and count the extra rays"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "WebGL basics and shaders",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write a vertex and fragment shader pair that draws a coloured, spinning triangle and annotate each line of the GLSL.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Create a WebGL context, upload a triangle's vertex buffer and write a fragment shader that colours it with a per-vertex gradient"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Animate a spinning cube with model, view and projection matrices from a maths library driven by requestAnimationFrame"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Write a fragment shader implementing Blinn-Phong lighting on a textured model and add a uniform to toggle the texture"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Interaction and the 3D project",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Project plan: a one-page proposal for an interactive 3D scene (landmark or data visualisation) with a frame-rate budget for a low-end phone.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Implement an orbit camera controlled by the mouse that never flips past the poles and test it with a spinning model"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Profile a scene of 2,000 cubes, then reduce draw calls with instancing and measure the frame time before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Build an interactive 3D bar chart of regional cocoa output with picking, an orbit camera and a frame budget of 30 frames per second"
+        }
+      ]
+    }
   ]
 }

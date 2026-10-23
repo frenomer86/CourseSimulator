@@ -1,0 +1,507 @@
+{
+  "slug": "systems-and-software-security",
+  "description": "A graduate course on securing the layers beneath applications: memory safety, isolation, privilege separation, program analysis, trusted hardware, operating system design and the software supply chain. Students exploit and then defend instrumented programs in a sandboxed lab, and finish by auditing and hardening a service.",
+  "modelledOn": [
+    "Anderson, Security Engineering",
+    "Szekeres, Payer, Wei and Song, SoK: Eternal War in Memory",
+    "Saltzer and Schroeder, The Protection of Information in Computer Systems",
+    "NIST Secure Software Development Framework (SP 800-218) and the SLSA supply chain specification"
+  ],
+  "outcomes": [
+    "Explain and exploit classic memory corruption bugs in a controlled lab, and evaluate which mitigations stop them.",
+    "Design isolation and privilege separation for a service using processes, system call filters, namespaces and mandatory access control.",
+    "Find vulnerabilities with coverage-guided fuzzing, sanitizers, taint analysis and symbolic execution, and triage the results.",
+    "Describe how secure boot, measured boot and trusted execution environments establish trust, and their known attack classes.",
+    "Reason about secure operating system design, from the reference monitor to capability kernels and kernel hardening.",
+    "Assess and harden a software supply chain with provenance, signing, reproducible builds and pipeline controls."
+  ],
+  "units": [
+    {
+      "title": "Security principles and threat models",
+      "weeks": "1",
+      "topics": [
+        "Design principles: least privilege, complete mediation, minimal trusted computing base and defence in depth",
+        "Threat modelling with STRIDE and attack trees; adversary capabilities and assumptions",
+        "Vulnerability classes, the CVE and CVSS lifecycle and coordinated disclosure",
+        "The execution stack as an attack surface: hardware, firmware, operating system, runtime and application"
+      ]
+    },
+    {
+      "title": "Memory safety and exploit mitigations",
+      "weeks": "2-3",
+      "topics": [
+        "Stack layout, buffer overflows and return address overwrite",
+        "Heap bugs: use-after-free, double free and heap overflow, and allocator metadata attacks",
+        "Format string bugs, integer overflows and type confusion",
+        "Mitigations: stack canaries, non-executable memory, ASLR, PIE and RELRO",
+        "Code reuse attacks: return-oriented programming and return-to-libc; control-flow integrity and shadow stacks",
+        "Memory-safe languages, bounds-checked hardware such as CHERI and sanitizers such as AddressSanitizer"
+      ]
+    },
+    {
+      "title": "Isolation and sandboxing",
+      "weeks": "4",
+      "topics": [
+        "Process isolation, virtual memory and the system call boundary",
+        "seccomp-bpf, namespaces, cgroups and chroot: how containers isolate and where they leak",
+        "Software fault isolation and WebAssembly sandboxes",
+        "Hypervisors and virtual machine attack surface; microarchitectural side channels such as Spectre and Meltdown",
+        "Browser site isolation and mobile application sandboxes"
+      ]
+    },
+    {
+      "title": "Privilege separation",
+      "weeks": "5",
+      "topics": [
+        "Capabilities versus access control lists; Linux capabilities and setuid pitfalls",
+        "Privilege-separated design: monitor and worker processes",
+        "Confused deputy attacks and time-of-check to time-of-use races",
+        "Mandatory access control: SELinux type enforcement and AppArmor profiles",
+        "Refactoring a service for least privilege: a worked design review"
+      ]
+    },
+    {
+      "title": "Symbolic execution and fuzzing",
+      "weeks": "6-7",
+      "topics": [
+        "Fuzzing: black-box, grammar-based and coverage-guided (AFL-style) with corpus and mutation strategies",
+        "Fuzz harness design with sanitizers; crash triage and deduplication",
+        "Symbolic execution: path constraints, SMT solving and path explosion",
+        "Concolic execution and hybrid fuzzing",
+        "Static analysis: taint analysis, abstract interpretation and the soundness versus false positive trade-off",
+        "Dynamic taint tracking and binary analysis basics"
+      ]
+    },
+    {
+      "title": "Trusted computing and enclaves",
+      "weeks": "8-9",
+      "topics": [
+        "Roots of trust, secure boot, measured boot and TPM platform configuration registers",
+        "Remote attestation protocols and what an attestation does and does not prove",
+        "Trusted execution environments: SGX-style enclaves, TrustZone and confidential virtual machines",
+        "Attacks on enclaves: side channels, controlled-channel and rollback attacks",
+        "Secure elements and hardware security in mobile money devices, SIM cards and payment terminals"
+      ]
+    },
+    {
+      "title": "Secure operating system design",
+      "weeks": "10-11",
+      "topics": [
+        "The reference monitor, TCB minimisation, and microkernel versus monolithic designs",
+        "Capability systems and formally verified kernels such as seL4",
+        "Kernel hardening: KASLR, SMEP and SMAP, kernel control-flow integrity and the kernel attack surface",
+        "Information flow control: Bell-LaPadula and Biba models",
+        "Secure inter-process communication, driver isolation and the IOMMU",
+        "Case study: hardening a Linux server with auditing, sysctl settings and security modules"
+      ]
+    },
+    {
+      "title": "Software supply chain security",
+      "weeks": "12-13",
+      "topics": [
+        "Dependency risks: typosquatting, dependency confusion and compromised maintainers",
+        "SBOMs, SLSA levels, build provenance and reproducible builds",
+        "Signing and transparency: package signing, TUF-style update frameworks and keyless signing",
+        "CI/CD pipeline security: secrets, runners and container image scanning",
+        "Trusting trust: compiler backdoors, firmware and over-the-air update security",
+        "Capstone: audit and harden a service from source to deployment"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Principles, threat models and vulnerabilities",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Produce a STRIDE threat model and attack tree for a mobile-money agent app and its back end, listing the trust boundaries and the top five threats.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Build a threat model for a mobile-money agent system in a scenario, rank the threats and score the mitigations against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E4",
+          "title": "Audit a Linux server against the principle of least privilege, list every excess permission found and fix three of them"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Handle a vulnerability report in a coordinated disclosure case, decide timelines and communication, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Stack and heap memory corruption",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Explain with stack and heap diagrams how an overflow, a use-after-free and an integer overflow each give the attacker control, and name one fix for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step a function call in the stack visualiser, overflow a buffer and watch the saved return address change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Reproduce a use-after-free in the heap visualiser, track the freed chunk and show how a reallocation hijacks a stale pointer"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E4",
+          "title": "Exploit a format string bug in a lab program to leak a stack value, then patch the source and confirm the leak is gone"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Mitigations and code reuse",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write a table of mitigations against the attacks of the previous week, with the attack each stops, its cost and a known bypass.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E4",
+          "title": "Compile a vulnerable program with and without canaries, NX and ASLR, and record which exploit attempts succeed in each build"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Chain three gadgets in the instruction visualiser to build a return-oriented program that calls a function with chosen arguments"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E4",
+          "title": "Run a program with AddressSanitizer, read the report for an out-of-bounds write and port the faulty function to a bounds-checked version"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Isolation and sandboxing",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Compare containers, virtual machines and WebAssembly sandboxes for running untrusted code from third-party developers, with threats and costs for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E4",
+          "title": "Show process isolation by attempting to read another process's memory and files as an ordinary user, and explain each denial"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E4",
+          "title": "Confine a program with a seccomp filter and a new namespace, then list the system calls you allowed and why"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Run a cache timing probe in the simulator, observe a speculative-execution leak and apply a mitigation to close it"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Privilege separation and access control",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Redesign a monolithic network daemon into a privileged monitor and an unprivileged worker, and draw the interface between them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Find setuid binaries on a lab system, drop capabilities from one of them and verify its function still works"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E4",
+          "title": "Exploit a time-of-check to time-of-use race on a temporary file in a lab script, then fix it with an atomic open"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E4",
+          "title": "Write an AppArmor or SELinux policy that lets a web service read its content but not the host's configuration, and test it"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Fuzzing and crash triage",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write a fuzzing plan for a file parser: seeds, harness, sanitizers, time budget and how you will decide a crash is exploitable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E4",
+          "title": "Fuzz a small parser with random mutation and with coverage guidance for ten minutes and compare the coverage reached"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E4",
+          "title": "Triage twenty crashes from a fuzzing run, deduplicate them by stack hash and classify the three most severe"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Step a symbolic executor through a small program, write the path constraints and solve them to produce a crashing input"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Analysis tools: concolic, static and taint",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compare fuzzing, symbolic execution and static analysis on one vulnerable program in a table of bugs found, false positives, time and effort.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Run a concolic engine on a program with a nested checksum check and show how it passes a barrier that a plain fuzzer cannot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E4",
+          "title": "Run a taint analysis on a small web handler, list tainted sinks and mark which findings are real and which are false positives"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E4",
+          "title": "Track tainted bytes through a binary with dynamic taint tracking and show the path from the input to a vulnerable call"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Secure boot, attestation and enclaves",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Explain what a remote attestation proves about a server, and what a malicious cloud operator could still do.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Step a measured boot sequence, record each hash extended into a TPM register and detect a modified bootloader"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Evaluate an attestation report for a cloud workload in a scenario, decide whether to release keys and score against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Choose between a trusted execution environment and a plain virtual machine for processing health data in a case, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Enclave attacks and embedded hardware security",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a threat model for the secure element of a mobile-money handset, covering physical, side-channel and supply chain attacks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Simulate a controlled-channel attack that infers a secret from page access patterns of an enclave and apply a mitigation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E8",
+          "title": "Examine a microcontroller key store, show why a debug port exposes the key and apply a lock-bit configuration to close it"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Respond to a stolen payment terminal in a case, decide on key revocation and customer notices, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Reference monitors and capability kernels",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Compare a monolithic kernel, a microkernel and a verified capability kernel on attack surface, performance and driver support in a short essay.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E4",
+          "title": "List the kernel modules loaded on a lab server, remove or blacklist those not needed and measure the reduction in attack surface"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Trace capability delegation and revocation among four components in the capability visualiser and show what each can access"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Apply KASLR, SMEP and sysctl hardening on a lab kernel and re-run a prepared exploit to confirm it now fails"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Information flow, IPC and system hardening",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Deliver a hardening report for a Linux server that records each change, its threat, its test and its side effects.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Apply Bell-LaPadula and Biba rules to a records system in a scenario and decide which flows to permit, scored against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E4",
+          "title": "Isolate a device driver process, restrict its device access and show that a fault in it cannot reach the rest of the system"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E4",
+          "title": "Harden a lab server with auditd rules, sysctl settings and a security module, and run a checklist to verify the result"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Dependency risk, provenance and signing",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Create a risk assessment of the dependencies in a small web project, listing the riskiest packages, the controls you apply and the evidence for them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E4",
+          "title": "Detect a typosquatted package and a dependency confusion case in a lab project by inspecting names, versions and registries"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E4",
+          "title": "Generate an SBOM for a project, find the dependencies with known vulnerabilities and rank the fixes by exposure"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E4",
+          "title": "Sign a release artifact and verify the signature, then tamper with the file and show that verification fails"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Pipelines, trusting trust and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Present the capstone audit of a service from source to deployment with findings ranked by risk and a plan to fix the top three.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E4",
+          "title": "Find and remove a hard-coded secret and an over-privileged runner from a sample CI pipeline configuration, then re-test the build"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Handle a case about a compromised update server, decide how to revoke trust and ship a safe update, scored against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E4",
+          "title": "Audit a lab service end to end, apply five fixes across code, isolation and pipeline, and re-test to show each finding is closed"
+        }
+      ]
+    }
+  ]
+}

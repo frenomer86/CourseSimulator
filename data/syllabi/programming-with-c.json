@@ -102,5 +102,397 @@
         "Project: a small system utility or data manager combining files, structs and pointers"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "First programs and types",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write, compile and run a program that prints the size and range of each basic type, and explain in two sentences what happens when an int overflows.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Compile and run a hello program with gcc, then add a second function and observe the compiler error when its prototype is missing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Print sizeof and the limits.h range of every integer type, then demonstrate unsigned wraparound and signed overflow on a 16-bit value"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Write a temperature table program using constants, typedef and floating point, and show a precision bug caused by integer division"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Operators and formatted I/O",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Problem set: predict the output of ten expressions mixing operators and conversions, then check each by running it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Evaluate ten arithmetic and bitwise expressions by hand using precedence rules and confirm each result by running the program"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write a program that sets, clears and toggles bits in an 8-bit register value using masks and prints the results in binary"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Read a price and quantity with scanf, handle bad input by checking the return value, and print a formatted receipt with aligned columns"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Control flow and functions",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write a menu-driven calculator with separate functions, then explain how arguments are copied on each call.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Write a program using for and while loops to print the multiplication table and the first 20 Fibonacci numbers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Split a prime-checking program into a header, an implementation file and a main file, and compile all three together"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Demonstrate call by value with a failed swap function, then use static and global variables to count function calls and explain scope"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Recursion and modular design",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Trace the call stack for a recursive factorial of 5 on paper and design the file layout for a small calculator project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Step through a recursive factorial of 5 and record the stack frames as they are pushed and popped"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Write recursive functions for Fibonacci and binary search, count the calls each makes and show an overflow of the stack with a missing base case"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Split a 150-line program into modules with clear interfaces, then compile it with separate object files and check no function is defined twice"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Arrays and strings",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Implement your own strlen, strcpy and strcmp, and test them against the library versions on edge cases.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Fill an array with ten marks, compute the mean and maximum, and show what happens when the loop runs one element past the end"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Write your own strlen, strcpy and strcmp and test each against the standard library on empty strings and long inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Write a Caesar cipher and a word counter that read text from input, and sort the words by frequency with a function you write"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Pointers",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Draw a memory diagram of three pointer variables and an array and trace pointer arithmetic on it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Declare an int, a pointer to it and a pointer to the pointer, then follow the arrows on the memory view and print each address"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Rewrite array indexing as pointer arithmetic and walk an integer array with a pointer, verifying that a[i] equals *(a+i)"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Write functions that return the minimum, maximum and mean of an array through pointer parameters, and a swap that actually works"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Memory map and dynamic memory",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Label the segments of a process memory map for a small program and list where each of its variables lives.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Locate a global, a static, a local and a malloc'd variable in the process memory map and print their addresses to confirm the layout"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Allocate and resize an array of student marks with malloc and realloc, and free it with no leak, checking each return value"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Fix a program with a memory leak, a double free and a use after free, and prove it is clean with a debug tool"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Linked structures and function pointers",
+      "topics": [
+        "4.6",
+        "4.7"
+      ],
+      "exercise": "Draw the diagram for inserting and deleting a node in a linked list, and explain how qsort uses a comparison callback.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.6",
+          "engine": "E6",
+          "title": "Build a singly linked list with insert-at-head and print it, stepping the visualiser to see each pointer change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Implement a stack with a linked list and a binary search tree with insert and in-order traversal, freeing every node at exit"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.7",
+          "engine": "E1",
+          "title": "Sort an array of structs with qsort using function pointers for three different keys, then write a table-driven menu using an array of function pointers"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Structures, unions and enums",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Design a record layout for a student register and explain the size reported by sizeof for each field order.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Define a student struct with name, index number and marks, fill an array of five and print them using the arrow operator"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Print offsetof and sizeof for a struct, reorder its fields to remove padding and show that the size shrinks"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Build an inventory program with structs, enums for category and a union for variable data, with add, search and report functions"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Files and records",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Design a record file format for a student register and describe how you would detect a corrupted record.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Open a text file with fopen, write ten lines with fprintf, close it and read them back, checking that every call succeeded"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Read a text file line by line with fgets, parse the fields with sscanf and report the lines that are malformed"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write an array of structs to a binary file and update the fifth record in place with fseek, then read the file back and verify it"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Error handling and the CSV project",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a usage message and error table for a command-line tool that summarises sales by region from a CSV file.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Open a file that does not exist, print the error with errno and perror, and exit with a non-zero status"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Read a CSV of sales from a file named on the command line and print totals per region, rejecting rows with the wrong number of fields"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Write a robust CSV summary tool that handles missing files, quoted fields, empty lines and very long lines without crashing, and test it on five bad inputs"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Preprocessor, compilation and building",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Write a Makefile for a three-file project that builds a static library and a program, and explain each linking step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Write a macro to square a number, show how it breaks with the argument a+b, and fix it with parentheses and an inline function"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Write a Makefile that builds a three-file program and rebuilds only the changed file, then run make twice and observe the output"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Compile a program in four separate stages with gcc flags, inspect the assembly and object file, and link a static library into the final binary"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Debugging, safety and the project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Project plan: specify a small data manager utility, its tests, its error handling and a safety checklist for it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E4",
+          "title": "Run a program in gdb, set a breakpoint, step through a loop and print a variable and the call stack at a chosen line"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Find and fix an off-by-one buffer overflow, an uninitialised variable and a signed overflow in a given program, using AddressSanitizer output"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build a small data manager combining files, structs and dynamic lists, then test it with assertions and a leak checker and fix every defect found"
+        }
+      ]
+    }
   ]
 }

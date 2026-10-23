@@ -115,5 +115,403 @@
         "Project: a dated phylogeny of a public pathogen dataset with an interpretation for public health"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Evolution and reading trees",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Explain why the sickle cell allele persists in malaria regions, then draw a tree from a Newick string and name its clades.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Parse five Newick strings into drawn trees, label clades and count tips, internal nodes and branch length totals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Root an unrooted tree with an outgroup and with the midpoint, then compare which clades change between the two rootings"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Simulate genetic drift in populations of 20, 200 and 2000 for 100 generations and compare time to fixation of a neutral allele"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Models of sequence evolution",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Derive the Jukes-Cantor distance from the proportion of differing sites and explain why it exceeds the raw p-distance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Compute Jukes-Cantor and Kimura two-parameter distances for 6 sequence pairs and compare them with raw p-distances"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Exponentiate a rate matrix to get transition probabilities at several times and watch them converge to the base frequencies"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Compare JC, HKY and GTR plus gamma on a given alignment using likelihood ratio tests, AIC and BIC, and justify the chosen model"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Distance methods",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Build a tree from a 5-taxon distance matrix by hand with UPGMA, then explain which assumption fails when rates differ between lineages.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Step through UPGMA on a 5-taxon distance matrix, record each merge and the updated matrix, and draw the final tree"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Step through neighbour joining on a 6-taxon matrix, computing net divergences and Q values, then compare the tree with UPGMA's"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement neighbour joining in code, test it on a matrix with unequal rates and check it recovers the true tree where UPGMA fails"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Metrics and scaling distance methods",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Test whether a 4-taxon matrix satisfies the four-point condition and use the result to choose the tree topology.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Check the four-point condition on three 4-taxon matrices and state which are additive and which are ultrametric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Measure how far a noisy distance matrix is from additivity by fitting a tree and reporting the residual squared error"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Time neighbour joining on simulated datasets of 50, 200 and 800 taxa, fit the growth curve and estimate runtime for 10000 taxa"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Parsimony",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Count the number of unrooted binary trees for 4 to 10 taxa and explain why heuristic search is unavoidable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Mark informative and uninformative sites in a 6-taxon alignment and score two candidate trees by minimum changes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Run the Fitch algorithm on a 7-taxon tree for three characters and reconstruct the ancestral state at every internal node"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Simulate data from a tree with two long branches, show parsimony recovers the wrong tree, and test that a model-based method does not"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Maximum likelihood",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compute the likelihood of a 3-taxon tree for one site by hand using Felsenstein's pruning recursion.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Step through pruning on a 4-taxon tree for one site, writing the conditional likelihood vector at each node and the final site likelihood"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Implement Felsenstein's pruning for a JC69 model and compare tree log-likelihoods for the three topologies of a 4-taxon alignment"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Optimise branch lengths and then apply NNI rearrangements to a starting tree until the likelihood stops improving, reporting each accepted move"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Assessing support and comparing trees",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Interpret bootstrap values of 55, 80 and 99 on three clades and write what each does and does not claim.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Compute Robinson-Foulds distances between five trees on the same 8 taxa and report the pair that disagrees most"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Run 100 bootstrap replicates of a distance tree, tally clade frequencies and add the support values to the original tree"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Compare two competing topologies with a paired site likelihood test, then explain why the test cannot favour the best tree without selection bias"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Bayesian phylogenetics and MCMC",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Explain in words how a Metropolis-Hastings accept or reject step moves a chain toward regions of high posterior probability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Run Metropolis-Hastings on a one-parameter likelihood for 50 steps, recording each proposal, acceptance probability and decision"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Sample the posterior of a substitution rate with MCMC, vary proposal width and compare acceptance rate and mixing"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Run two independent chains on a 5-taxon problem, compute effective sample size and the split-frequency difference, and decide if they converged"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Summarising posteriors and software",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compare a bootstrap proportion with a posterior probability for the same clade and explain why they differ.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Tally clade frequencies in 1000 sampled trees, report the majority-rule consensus and the 95 percent credible set of topologies"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Pick the maximum clade credibility tree from a sample of 500 trees and annotate it with posterior probabilities and mean branch lengths"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Rerun an analysis under three priors on branch lengths, compare the posterior for one clade and report sensitivity to the prior"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Molecular clocks and selection",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Estimate a substitution rate from a root-to-tip plot and explain the evidence for and against a strict clock.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Plot root-to-tip distance against sampling date for 30 isolates, fit a regression and read off the rate and root date"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Calibrate a tree with two dated tips under strict and relaxed clocks and compare the estimated root ages and rate variation"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Count synonymous and non-synonymous changes in an aligned gene, compute dN/dS per site and flag sites under positive selection in a drug target"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Phylodynamics and phylogeography",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Explain how branching times in a tree encode the growth rate of an outbreak and why uneven sampling can distort the inference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Simulate a coalescent tree for constant and exponentially growing populations of 30 samples and compare their branch length patterns"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Reconstruct the most likely location of ancestors on a tree of 25 isolates from 4 districts and count migration events between each pair"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Simulate an outbreak and a biased sample, build the phylogeny and show how sampling changes the apparent source of introductions"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Outbreak genomics in practice",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Draft a half-page briefing for an outbreak response team stating what a tree shows, what it cannot show and how sure you are.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Place 5 new genomes onto a reference tree by nearest relative and report each sample's lineage label from its closest neighbour"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Estimate the date of introduction and spread of an Ebola-like outbreak from a dated tree of 40 sequences and plot the lineage timeline"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Brief an outbreak response team in a branching case, choose how to report uncertain tree evidence and be scored on accuracy and clarity"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Phylogenomics, recombination and project",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Present your dated phylogeny with a short public health interpretation and a list of the analysis files that make it reproducible.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Write a script that runs alignment, tree building and plotting end to end and records tool versions, then rerun it to verify identical output"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Build gene trees for 5 loci and a concatenated tree, quantify their disagreements and say whether incomplete lineage sorting could explain them"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Build a dated phylogeny of a public pathogen dataset with model choice, support values and root-to-tip checks, and write the public health interpretation"
+        }
+      ]
+    }
   ]
 }

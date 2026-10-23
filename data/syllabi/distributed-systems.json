@@ -111,5 +111,399 @@
         "Capstone: a fault-tolerant replicated key-value store with a client library and chaos tests"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Foundations and fallacies",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Choose an architecture style for a campus portal under exam-week load and write half a page on which of the eight fallacies would hurt most.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E3",
+          "title": "Send requests across a three-hop topology while raising link latency from 5 ms to 300 ms and plot the end-to-end response time at each setting"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E3",
+          "title": "Disable one link mid-transfer and record which of a client, a server and a router sees the partial failure first and what each observes"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Compare client-server, peer-to-peer and microservice layouts for a file sharing app by counting messages and single points of failure per design"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Case studies and the failure lab",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a one-page failure analysis of a mobile-money platform, listing three components, how each can fail and what the customer sees.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Model a mobile-money platform topology with agent, gateway and ledger servers, send a transaction and trace each packet hop"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E3",
+          "title": "Inject a 30 percent packet loss on the gateway link and measure the change in transaction completion rate over 100 requests"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Place a cache or CDN node in a university portal topology and tune it to cut origin load by at least half under a given request mix"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "RPC and messaging",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Compare REST, gRPC and a message queue for a payment notification service and state the delivery semantics each provides.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E3",
+          "title": "Trace a request-reply exchange between client and server in the packet view and list the marshalled fields in each message"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E3",
+          "title": "Simulate an RPC with a lost reply under at-least-once and at-most-once semantics and count how many times the server executes the call"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Simulate a publish-subscribe broker with three consumers where one fails mid-stream and compare at-most-once and at-least-once delivery counts"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Reliability patterns and gossip",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Design the retry policy for a payment call, giving timeouts, backoff schedule, idempotency key and when the circuit opens.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Retry a failing request with exponential backoff and jitter and plot the load seen by the server versus fixed-interval retries"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E6",
+          "title": "Add idempotency keys so a retried payment is applied once, then run 50 duplicated requests and check the ledger total is correct"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E6",
+          "title": "Spread an update through a 30-node gossip cluster with fanout 2 and measure rounds to full coverage, then vary the fanout and loss rate"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Time, clocks and causality",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Explain why two servers disagreeing by 200 ms can make a wall-clock ordering of bank transactions wrong, with an example timeline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Run two drifting clocks with periodic NTP corrections and plot their offset to see how often it exceeds 50 ms"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Assign Lamport timestamps to events across three processes in a given message diagram and list the pairs that are ordered by happens-before"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Compute vector clocks for a six-message trace, identify the concurrent events and detect which two writes conflict"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Coordination, naming and membership",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Compare bully election, ring election and an etcd lease for choosing a leader in a five-node cluster, with message counts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Run the bully election algorithm on five nodes when the leader fails and count messages until a new leader is announced"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Place 10 nodes and 40 keys on a consistent-hash ring, add one node and count how many keys move"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Tune a heartbeat failure detector with timeouts and a phi threshold against a simulated slow network and compare false positives and detection time"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Replication and consistency",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Choose a replication scheme for a school results database and justify the consistency level you offer to parents and to teachers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Run a primary-backup group where the primary crashes and show which committed writes survive under synchronous and asynchronous replication"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Classify five read/write histories as linearizable, sequentially consistent or eventually consistent, justifying each with the ordering evidence"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Configure a three-replica quorum store with N=3, R and W settings, partition it, and show which settings reject requests and which return stale data"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Conflicts and caching",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Explain when last-writer-wins loses data and how a CRDT counter or set prevents it, using two concurrent edits as an example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Simulate a cache in front of a database with TTL expiry and measure hit rate and stale reads at three TTL values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Merge concurrent updates from two replicas using last-writer-wins and version vectors and show which updates each rule loses"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Implement a grow-only counter and an observed-remove set CRDT and verify replicas converge after random message reordering over 100 trials"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Consensus: FLP, Paxos and Raft",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write a short explanation of why consensus is hard with failures, using the FLP result, and when Raft still makes progress.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Step through a consensus attempt among three nodes with one crashed node and show why a timeout is needed to guess the failure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Trace single-decree Paxos with two competing proposers through both phases and show which value is chosen and why"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E6",
+          "title": "Run a Raft cluster of five nodes, kill the leader during replication, and show the new election and which log entries are preserved"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Raft testing and state machine replication",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Design five fault scenarios that a Raft implementation must survive and state the expected result of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Partition a Raft cluster into a majority of three and a minority of two, write to both sides, heal it, and verify the logs converge"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Replicate a key-value state machine over Raft and show all replicas reach identical state after 50 commands with message loss"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Run PBFT with four nodes and one Byzantine node sending conflicting values, and show the honest nodes still agree"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Failure models, transactions and recovery",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Describe the saga for booking a bus ticket with mobile money payment, including the compensating action at each step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Classify seven observed behaviours as crash, omission, timing or Byzantine failures and choose the redundancy that tolerates each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E6",
+          "title": "Run two-phase commit across three participants, crash the coordinator after prepare, and show participants blocked until recovery"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E6",
+          "title": "Design a saga for a mobile money transfer between two ledgers with compensation, then inject a failure at each step and verify balances stay correct"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Distributed storage and sharding",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Pick a storage architecture for photos, user profiles and transaction logs in a Ghanaian marketplace app and justify each choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E6",
+          "title": "Place files as chunks with three replicas across five nodes, fail one node and show the system restores the replication factor"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Write 20 keys into an LSM-tree simulation, trigger memtable flush and compaction, and count reads and files touched for a lookup"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E6",
+          "title": "Shard a table by hash and by range, then rebalance after adding a node and compare data movement and hotspot load on a skewed key set"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Operations, security and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a runbook for the capstone key-value store covering monitoring signals, failure drills and the order of recovery steps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E3",
+          "title": "Trace one request through four services in a simulated network, find the slowest hop using per-hop latency and propose a fix"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E3",
+          "title": "Configure a load balancer with health checks across three servers, take one down, and show traffic moving away without dropped requests"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E6",
+          "title": "Run chaos tests against a replicated key-value store with crashes, partitions and delays and show that acknowledged writes are never lost"
+        }
+      ]
+    }
   ]
 }

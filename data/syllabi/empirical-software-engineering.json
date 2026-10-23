@@ -1,0 +1,507 @@
+{
+  "slug": "empirical-software-engineering",
+  "description": "Graduate methods course on studying software and its makers with evidence: experiments, surveys, case studies, literature reviews, repository mining and the statistics that go with them. Students design studies, mine real git histories, run the analyses in code, and judge validity and replicability of published work.",
+  "modelledOn": [
+    "Wohlin et al., Experimentation in Software Engineering",
+    "Shull, Singer and Sjoberg (eds.), Guide to Advanced Empirical Software Engineering",
+    "Kitchenham and Charters, Guidelines for Performing Systematic Literature Reviews in Software Engineering",
+    "Runeson et al., Case Study Research in Software Engineering"
+  ],
+  "outcomes": [
+    "Formulate software engineering research questions as testable hypotheses and choose a fitting research strategy.",
+    "Design and analyse a controlled experiment, including treatment allocation, power and effect size.",
+    "Plan a systematic literature review or mapping study with a documented protocol and quality assessment.",
+    "Mine a version control repository to build a dataset and state the biases in it.",
+    "Select and apply appropriate statistical tests, effect sizes and intervals, and interpret them without over-claiming.",
+    "Critique the validity and replicability of a published empirical study and report your own results transparently."
+  ],
+  "units": [
+    {
+      "title": "Science and measurement in software engineering",
+      "weeks": "1",
+      "topics": [
+        "The scientific method in software engineering: theories, research questions and hypotheses",
+        "Research paradigms: positivist, interpretivist and design science",
+        "Research strategies compared: experiment, survey, case study, action research and field study",
+        "Measurement theory: scale types, reliability, validity and the goal-question-metric approach",
+        "Research ethics: informed consent, anonymising developer data and the ethics of mining public repositories"
+      ]
+    },
+    {
+      "title": "Software metrics and their limits",
+      "weeks": "2",
+      "topics": [
+        "Size and complexity metrics: lines of code, cyclomatic complexity and Halstead measures",
+        "Object-oriented metrics: coupling, cohesion and the Chidamber-Kemerer suite",
+        "Process metrics: code churn, ownership, developer turnover and the bus factor",
+        "Defect metrics and defect prediction models: precision, recall and cross-project transfer",
+        "Metric pitfalls: construct validity, Goodhart law and gaming of measures"
+      ]
+    },
+    {
+      "title": "Controlled experiments",
+      "weeks": "3-4",
+      "topics": [
+        "Hypotheses, independent and dependent variables, treatments and confounders",
+        "Experimental designs: between-subjects, within-subjects, factorial, crossover and Latin square",
+        "Participants: students versus professionals, sampling and recruitment, including in Ghana",
+        "Threats in human-subject experiments: learning effects, fatigue, experimenter bias",
+        "Running and analysing an experiment: pilot, instrumentation, pre-registration and reporting",
+        "Quasi-experiments, A/B tests and natural experiments in industry"
+      ]
+    },
+    {
+      "title": "Surveys, case studies and qualitative methods",
+      "weeks": "5",
+      "topics": [
+        "Survey design: sampling frames, response rates and non-response bias",
+        "Questionnaire construction and the analysis of Likert-scale data",
+        "Case study research: protocol, units of analysis, propositions and evidence chains",
+        "Interviews, thematic analysis and coding in the style of grounded theory",
+        "Triangulation and mixed-methods designs"
+      ]
+    },
+    {
+      "title": "Systematic literature reviews and mapping studies",
+      "weeks": "6-7",
+      "topics": [
+        "Review protocol: research questions, search strings and databases",
+        "Study selection, quality assessment and data extraction forms; inter-rater agreement",
+        "Snowballing and systematic mapping studies versus full reviews",
+        "Synthesis: narrative, thematic and quantitative meta-analysis of effect sizes",
+        "Grey literature, tertiary studies and the limits of publication-biased evidence"
+      ]
+    },
+    {
+      "title": "Mining software repositories",
+      "weeks": "8-9",
+      "topics": [
+        "Data sources: git history, issue trackers, code review systems and package registries",
+        "Extracting history with git; the SZZ algorithm for bug-introducing commits",
+        "Cleaning mined data: identity merging, bots, time zones and tangled changes",
+        "Sampling bias in repository studies: forks, toy projects, time-travel and survivorship",
+        "Text mining of commit messages and issue reports",
+        "Software ecosystems: dependency graphs, release cadence and developer community analysis"
+      ]
+    },
+    {
+      "title": "Statistical analysis",
+      "weeks": "10-11",
+      "topics": [
+        "Descriptive statistics, distributions and checking assumptions",
+        "Hypothesis tests: t-test, Mann-Whitney, Wilcoxon and chi-square; statistical power and sample size",
+        "Effect sizes and intervals: Cohen d, Cliff delta, Vargha-Delaney A and confidence intervals",
+        "Regression: linear, logistic and mixed-effects models for repeated measures",
+        "Multiple comparisons, p-hacking, and an introduction to Bayesian estimation",
+        "Resampling: bootstrap and permutation tests"
+      ]
+    },
+    {
+      "title": "Validity, replication and reporting",
+      "weeks": "12-13",
+      "topics": [
+        "Threats to validity: internal, external, construct and conclusion",
+        "Replication, reproducibility and open science: registered reports and artefact evaluation",
+        "Reporting guidelines and writing for a peer-reviewed venue",
+        "From evidence to practice: evidence briefings for engineering managers",
+        "Mini research project: design, execute and report a small empirical study"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Research questions, strategies and ethics",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Turn a practitioner worry (does code review slow delivery?) into a research question, hypothesis, strategy and goal-question-metric tree, and list the ethical issues of using public developer data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Build a goal-question-metric tree for the claim that pair programming improves quality, choosing measures and scale types in the scenario rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Choose the research strategy for five research questions and justify what each strategy can and cannot show, scored against expert answers"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Decide how to handle an ethics case about scraping developer emails and mining a private Ghanaian company repository, and defend your consent plan"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Metrics and defect prediction",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compute metrics on a small program, then explain how each one could be gamed and what construct it fails to capture.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Write a script that computes lines of code and cyclomatic complexity for ten functions and flags those above a threshold of 10"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Train a logistic defect predictor on module metrics, report precision and recall and compare with the always-defective baseline"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Show Goodhart effect: optimise a team to a coverage target in a simulated project and measure how defect detection changes versus true quality"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Experimental design and participants",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Design a within-subjects experiment comparing two code review checklists, with counterbalancing, a power analysis and a recruitment plan for 24 student participants.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Generate a Latin square allocation of three tools to three task sets for 12 participants and check each order appears equally often"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "List the variables, treatments and confounders of a test-driven development experiment and fix the design so a flagged confound is controlled"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Run a power analysis for a two-group experiment at effect sizes 0.3, 0.5 and 0.8 and chart sample size per group against power"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Analysis, pre-registration and quasi-experiments",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write the pre-registration for the review checklist experiment, listing analysis plan and stopping rule, and compare it with an A/B test on an app.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Identify the threats in a flawed experiment report (learning effect, unequal experience, experimenter bias) and propose one fix per threat"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Simulate a pilot, compute the variance, and revise the sample size plan, writing out the analysis script before seeing the main data"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E7",
+          "title": "Analyse a simulated A/B test of a mobile money app screen with sequential looks, and show how peeking inflates the false positive rate"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Surveys, case studies and qualitative analysis",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Design a survey of Ghanaian developers on testing practices, then code ten interview excerpts into themes and write a short case study protocol.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Summarise Likert responses from 60 developers with medians and stacked percentage bars, and say why the mean is questionable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Simulate a survey with 30 percent response and a biased non-response mechanism, and measure how far the estimate is from the true value"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Code interview excerpts into themes with a codebook, resolve disagreement with a second coder and report agreement using Cohen kappa"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Review protocol and study selection",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write a review protocol on microservice migration with research questions, search string, inclusion criteria, quality checklist and extraction form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E5",
+          "title": "Run Boolean searches over a table of 500 paper records, record hits for three search strings and choose the best on precision against a known set"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E5",
+          "title": "Apply inclusion and exclusion criteria to 100 records in SQL, log reasons for each exclusion and report the screening flow counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Run backward and forward snowballing over a citation graph from five seed papers and measure how many known relevant papers it finds beyond the search"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Evidence synthesis and publication bias",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Pool the effect sizes from eight studies of pair programming, draw a funnel plot to look for publication bias, and write the limitations of the synthesis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Plot a forest plot of eight standardised mean differences and read the pooled estimate with its confidence interval"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Compute a random-effects pooled effect and the I-squared statistic for the eight studies, and run a leave-one-out sensitivity check"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Draw a funnel plot, test its asymmetry, and simulate how unpublished null results would change the pooled estimate"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Mining git history",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Extract a year of history from a repository, rebuild bug-fixing and bug-introducing commits with SZZ, and document the cleaning steps and data you removed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Use git log with format options to list commits per author per month for a sample repository and save the counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Trace a bug fix with git blame to find the commit that introduced the faulty line, then record both commits in the dataset"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Merge developer identities with name and email heuristics, remove bot accounts, and report how the top-10 contributor ranking changes"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Biases, text mining and ecosystems",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Draw a sample of repositories two ways and compare them, classify commit messages with keywords, and sketch a dependency network of a package ecosystem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Classify 200 commit messages into bug fix, feature and refactoring by keyword rules and report accuracy against hand labels"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E5",
+          "title": "Compare a random sample and a most-starred sample of repositories on size, age and activity, and list the biases each introduces"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Build a dependency graph from package manifests, find the most depended-on packages, and simulate the impact of removing one critical package"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Choosing tests and effect sizes",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "For three datasets pick the right test, check assumptions, report the effect size with an interval and write the interpretation in plain words.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Describe a skewed dataset of review times with histogram, median and interquartile range, and test for normality"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compare two groups of task completion times with a t-test and a Mann-Whitney test, and explain why the results differ on skewed data"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compute Cohen d, Cliff delta and a bootstrap confidence interval for two groups, and write the report sentence a reviewer would accept"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Regression, multiple comparisons and resampling",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Fit a logistic regression for defect-proneness, correct for multiple comparisons in a table of 20 tests, and use a permutation test to check a claim.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Fit a linear regression of bug count on size and churn for 100 modules and interpret each coefficient with its interval"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Run 20 tests on random data, count false positives at 0.05, and apply Bonferroni and Benjamini-Hochberg corrections to compare"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Use a permutation test and bootstrap to analyse repeated measures from a crossover experiment, and compare with a mixed-effects model"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Validity, replication and reporting",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Critique a published study on its four validity threats, attempt to reproduce one table from its shared data, and draft a reporting checklist.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Classify ten stated limitations of a study into internal, external, construct and conclusion validity threats"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Reproduce a results table from a shared dataset and analysis script, record each discrepancy and decide whether it matters"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Peer review a flawed paper in the scenario engine, listing validity threats, unsupported claims and the reanalysis that would settle them"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Evidence into practice and the mini project",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present the mini project: question, design, data, analysis, threats and an evidence briefing for a software manager.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Write a half-page evidence briefing for a manager on whether code review reduces defects, and have it scored for accuracy and over-claiming"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Run the planned analysis for your mini project end to end from raw data to figures, and check it reruns from a clean start"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Test the robustness of your mini project result by varying filtering rules, models and outlier handling, and report which conclusions survive"
+        }
+      ]
+    }
+  ]
+}

@@ -110,5 +110,399 @@
         "Project presentation: the complete analysis and design package"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Information systems and the development life cycle",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Describe the components and stakeholders of a school fee-payment system, then compare waterfall, iterative and agile approaches for building it, concluding with a recommendation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw a diagram of a clinic information system showing people, data, processes, hardware and software, and mark the five main stakeholders"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Pick a development life cycle model for three different project cases, justify each choice, and score the decisions against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Advise an SME on moving from structured to object-oriented analysis for a stock system, weighing cost, skills and risk, and score the decision"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "The analyst's role and tools",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a short profile of the skills and ethical duties of a systems analyst and pick the organisation (SME, school or clinic) for your course project with a one-paragraph description.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Respond to an ethical dilemma where a client asks the analyst to hide a known system weakness, and score the choices against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Create a simple project organisation chart and context sketch for your course project in the diagram studio and save it to the project folder"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Compare two modelling tools by drawing the same use case diagram in each and list differences in notation support and export"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Project selection and feasibility",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Prepare a feasibility study for a mobile-money agent tracking system, covering operational, technical, economic and schedule feasibility, with payback and NPV calculations.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Calculate payback period and ROI for a proposed system from a table of costs and annual benefits and say whether it is worthwhile"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute the NPV of two competing system options over five years at a 15 percent discount rate and recommend the better option"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Conduct a preliminary investigation of a failing clinic records process, choosing fact-finding steps and feasibility checks, and score the report"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Requirements and fact-finding",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Write 12 requirements for a school timetable system, tag each as functional or non-functional, and rewrite three vague requirements so they are testable.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Sort a list of 15 statements into functional and non-functional requirements and flag the five that are ambiguous or untestable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Interview a simulated shop owner to elicit requirements for a sales system, choosing questions and follow-ups, and score the coverage"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Plan and run a JAD workshop scenario with conflicting stakeholders, decide the agenda and prototype scope, and score the resolution"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Use cases, user stories and the backlog",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write a use case description with main and alternate flows for a pharmacy stock reorder, and convert it into five user stories with acceptance criteria and priorities.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Draw a use case diagram with four actors and eight use cases for a library system and add include and extend relationships"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Write a fully dressed use case description for registering a student including preconditions, main flow and two alternate flows"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Prioritise a 20-item backlog under a fixed budget, trace each item to a requirement, and score the traceability and value order"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Data flow diagrams and process specification",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "From a short interview narrative about a canteen ordering process, draw a context diagram, a level 0 diagram and a data dictionary entry for each data store.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Draw a context diagram for a canteen ordering system with external entities and the main data flows between them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Expand a context diagram into a balanced level 0 DFD with five processes and three stores, and check there are no black holes or miracles"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E9",
+          "title": "Write structured English, a decision table and a decision tree for a discount policy with four conditions, and show all three agree"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Logical models and a worked case",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Turn interview notes about hospital billing into a logical DFD and an ER diagram, then explain what changes when you move to a physical design.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Draw an entity-relationship diagram with five entities, attributes and cardinalities for a school admissions system"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Convert a physical DFD that names a particular paper form and till into a logical DFD that describes only the underlying data and processes"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E9",
+          "title": "Model an admissions system from interview notes with a context diagram, level 0 DFD and ER diagram, and cross-check names and flows between them"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Object-oriented modelling with UML",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Identify candidate classes from a use case narrative for an online bus ticket system, assign responsibilities with CRC cards, and draw the class diagram.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Draw a class diagram for a library with Book, Member and Loan classes, including attributes, methods and multiplicity on each association"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E9",
+          "title": "Draw a sequence diagram of a customer buying a bus ticket across four objects, with one alternate fragment for a failed payment"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E9",
+          "title": "Build CRC cards for an order system, derive the class diagram, and draw a state machine for the Order class with five states"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Development strategies and vendor evaluation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Compare in-house, packaged and SaaS options for a clinic appointment system on cost, control and risk, and draft a short request for proposal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Choose between in-house, packaged, outsourced and SaaS for four cases and justify each with cost and risk, scored against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Score three vendor proposals on weighted criteria in a decision matrix and recommend a vendor, checking the result with changed weights"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Present a system requirements document and recommendation to management in a scenario, responding to challenging questions, and score the outcome"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Input, output, interface and data design",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Design the input form, a monthly report and a dashboard for a school fees system with validation rules, and normalise the underlying tables to third normal form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Sketch a registration form with six fields and write a validation rule and an error message for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E5",
+          "title": "Normalise a given unnormalised student fees table to third normal form, create the tables, and check no data is lost with a join"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Review a poorly designed screen against usability principles, choose the fixes with the best effect, and score against the heuristic rubric"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Architecture, design patterns and security",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Choose an architecture for a mobile-money agent app on poor connectivity, draw its deployment diagram, and apply the Observer pattern to its notifications.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E9",
+          "title": "Draw a deployment diagram of a web-based school system with browser, web server, application server and database nodes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E9",
+          "title": "Draw a class diagram applying the Strategy pattern to a payment system with mobile money, card and cash methods"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E10",
+          "title": "Select security controls for a payroll system with limited budget, defending each against the threat it addresses, and score against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Testing, documentation and installation",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a test plan with ten test cases for the registration use case and choose a changeover strategy for rolling the system out to 30 branches.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Draw the testing levels as a V-model diagram mapping each test level to the design document it verifies"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Choose direct, parallel, pilot or phased changeover for three organisations, justify each choice, and score against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Run a post-implementation review of a new records system from usage and cost data, deciding recommendations, and score the final report"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Maintenance, trends and final presentation",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Assemble the full analysis and design package for your course project and prepare a ten-minute presentation covering requirements, models, architecture, testing and rollout.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Classify twelve change requests as corrective, adaptive, perfective or preventive maintenance and score the classifications against the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Respond to a capacity and security incident on a live fee system by choosing monitoring actions and fixes, and score against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E9",
+          "title": "Produce a consistent package of use cases, class diagram, sequence diagram and DFD for one project and check that the names agree across all of them"
+        }
+      ]
+    }
   ]
 }

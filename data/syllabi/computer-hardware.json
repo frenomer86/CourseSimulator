@@ -122,5 +122,405 @@
         "Writing a repair report and talking to a non-technical user"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Safety, form factors and a tour of the PC",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Write a one-page safety checklist for a repair bench in a dusty workshop covering ESD, mains and lifting, and photograph or sketch a system before opening it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E8",
+          "title": "Choose the correct ESD precautions and tools from a given toolkit for opening a desktop, and fix three unsafe steps in a given repair sequence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E8",
+          "title": "Identify and label all 14 parts and cables inside a disassembled desktop in the bench, then say what each connects to"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E8",
+          "title": "Select a case and board form factor for three client briefs and justify each by airflow, expansion slots and space constraints"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Motherboard, CPU and cooling",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Using a motherboard manual excerpt, list the socket, chipset, memory slots and front-panel header pin layout and say what each one is for.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E8",
+          "title": "Locate the sockets, slots, headers and jumpers on a virtual ATX motherboard and match each to the connector it takes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E8",
+          "title": "Install a CPU, apply thermal paste and mount a cooler on a virtual board, then confirm the idle temperature stays below the throttle limit"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E8",
+          "title": "Match three CPUs to boards by socket and chipset, rejecting incompatible pairs, and compare cores, cache and TDP for a given workload"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Memory, buses and interfaces",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Make a table comparing PCIe, SATA, M.2 and USB generations by speed and typical use, with one sentence on when to pick each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Install two DDR4 DIMMs in the correct slots for dual-channel mode and confirm the detected capacity and speed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E8",
+          "title": "Fit an NVMe drive, a graphics card and a SATA SSD so each gets full lanes, and read the resulting link speeds from the board report"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Diagnose a build with mixed DIMM speeds that boots at a lower clock, then rebuild the memory layout and enable the right profile to restore full speed"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Storage, power and backup",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Calculate a power budget for a given build and write a short note on the PSU rating, efficiency class and UPS you would specify for unstable mains.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E8",
+          "title": "Add up component wattages for a mid-range build and choose a PSU with 20 percent headroom, then check the connectors it needs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E8",
+          "title": "Set up four disks in RAID 0, 1, 5 and 10, then compare usable capacity and fault tolerance after failing one drive in each"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E8",
+          "title": "Size a UPS and surge protection for a computer lab that loses mains twice a day, estimating run time on battery for the connected load"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Expansion cards and displays",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compare an IPS, a VA and an OLED display for a school computer lab, considering viewing angle, brightness in daylight and cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E8",
+          "title": "Install a graphics card in a virtual build, connect its power cables and confirm it appears in the device report"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E8",
+          "title": "Fit a network card and a sound card in free slots of a virtual desktop and fix the one that conflicts with a case slot"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E8",
+          "title": "Choose a display for three user profiles by panel type, refresh rate and resolution, and explain the trade-off between cost and use"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Video interfaces and peripherals",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "List the cables you would stock for a small repair shop and explain which connector standard each one replaces or supports.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E8",
+          "title": "Connect two monitors to a PC using HDMI and DisplayPort, then set resolution and arrangement to match a given desk layout"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E8",
+          "title": "Set up a KVM switch with two PCs, a keyboard, a mouse and a barcode scanner, and test that every device is recognised on each PC"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E8",
+          "title": "Test a bench of eight cables for continuity and pin faults, identify the faulty ones and replace them with the right type"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Firmware, BIOS and boot",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Write a short guide for a non-technical user explaining what happens between pressing the power button and seeing the desktop.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E8",
+          "title": "Interpret three beep or LED error codes from a virtual board and name the failed component for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Step through the boot process from firmware to bootloader to kernel and mark where a missing boot file would stop the machine"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Set a safe overclock and fan curve in firmware for a given CPU and cooler, keeping temperature under the limit while measuring the performance gain"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Installing operating systems",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Plan a dual-boot layout for a 512 GB drive with Windows and Linux, writing the partition sizes and boot order you would use.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E4",
+          "title": "Create bootable installation media steps for a lab of 20 PCs and select the right image method for clean install or deployment"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Partition a virtual disk and install a Linux system alongside a second system in a dual-boot layout, then verify that both boot"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E4",
+          "title": "Install missing drivers and updates on a fresh virtual machine, using a package manager, and confirm all devices show as working"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Post-install hardening and recovery",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write a checklist of ten tasks you would do after installing an operating system for a small office, in priority order.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E4",
+          "title": "Create user accounts, enable updates and set a restore point on a fresh virtual machine, then restore it after a deliberate change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E4",
+          "title": "Build a virtual machine for practice installs, take snapshots before and after a risky change, and roll back to the clean state"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E4",
+          "title": "Recover a virtual machine that fails to boot after a bad update, using safe mode and rescue media, and document the steps taken"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Printers and print servers",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Compare running costs of laser and inkjet printing for a school office that prints 2000 pages a month, in cedis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E8",
+          "title": "Match laser, inkjet, thermal and 3D printers to five printing needs and list the consumables each one uses"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E3",
+          "title": "Add a network printer to a small office network with a static address, install its driver and print a test page from two PCs"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E3",
+          "title": "Fix a printer that shows offline for users by diagnosing address, driver and queue faults across a small network, and write what you changed"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Laptops, batteries and mobile devices",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Read a service manual excerpt and write a numbered disassembly plan for replacing a laptop keyboard, flagging the steps most likely to cause damage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E8",
+          "title": "Identify the battery, SO-DIMM slot, M.2 drive, display cable and hinge screws in a virtual laptop teardown"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E8",
+          "title": "Replace the screen and battery of a virtual laptop following the service manual order, without leaving any connector or screw unaccounted for"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E8",
+          "title": "Diagnose a laptop that will not charge by testing the adapter, charging circuit and battery health, and decide whether to repair or replace"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Specifying and building a machine",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a one-page recommendation for a client choosing between a new PC and an upgrade, with a cost in cedis and the reasoning.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E8",
+          "title": "Check a parts list for socket, chipset, RAM, PSU and case clearance mismatches and correct the two incompatible items"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E8",
+          "title": "Design a build for a video editing workstation within a stated budget and justify each part against the workload"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Cost three builds in cedis from local and online suppliers including import duty and warranty, and recommend one in a client scenario"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Troubleshooting method and repair report",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4",
+        "10.5"
+      ],
+      "exercise": "Write a repair report for a client with a machine that randomly reboots, explaining the cause and the fix in plain language.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E10",
+          "title": "Apply the six-step troubleshooting method to a reported no-display fault in a case scenario, choosing the next step with evidence at each stage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.2",
+          "engine": "E8",
+          "title": "Diagnose seven faults, such as no power, no POST, overheating and random reboots, on virtual PCs using the right tool for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.3",
+          "engine": "E8",
+          "title": "Use a multimeter reading, POST card code and memory test result together to find the single failed part in a PC with two symptoms"
+        }
+      ]
+    }
   ]
 }

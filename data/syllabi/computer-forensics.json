@@ -111,5 +111,399 @@
         "Capstone: full investigation of a prepared disk image with report and mock testimony"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The discipline and the forensic process",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Write a one-page comparison of the six stages of the forensic process, giving one example of what goes wrong at each stage when it is skipped.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Put the six forensic process stages in order for a stolen-laptop case and justify each decision from the evidence listed in the scenario"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E4",
+          "title": "Examine a prepared virtual machine to find five traces a user left behind, linking each to Locard's principle in a short note"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Set up a forensic workstation image with a hash tool and a read-only mount, then document the set-up so another examiner can reproduce it"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Computer crime, offenders and law",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Short essay: choose one mobile-money fraud pattern and map its offender motive, the law that applies and the agency that would investigate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Classify eight reported incidents, including a romance scam and a SIM-swap fraud, into crime categories and name the key evidence source for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Work a case with a cross-border suspect and decide which Cybersecurity Act or Budapest Convention steps apply, scored against a rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Investigate a suspected insider leak at a company, rank suspects by access and motive from the evidence, and justify what you would not conclude"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Tools, hashing and safe examination",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Explain in writing why a matching SHA-256 value proves integrity but not authenticity, and when MD5 is still acceptable in a lab.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E4",
+          "title": "Hash a file with MD5 and SHA-256 in the shell, change one byte, hash again, and record both values to show integrity checking"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E4",
+          "title": "Build a known-file hash set from a clean directory, then filter a suspect directory to list only the files not in the set"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E4",
+          "title": "Detonate a suspicious sample in an isolated virtual machine, record the files and processes it creates, and write the containment steps you used"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Storage, boot and file systems",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Draw a labelled map of an MBR disk with two partitions showing where slack space and unallocated space can hold hidden data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E4",
+          "title": "Read the partition table of a disk image, list each partition's type and start sector, and identify whether it uses MBR or GPT"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E4",
+          "title": "Compare the timestamps of a file before and after copying, moving and editing it on a simulated NTFS volume and explain each change"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Find data hidden in slack space, unallocated space and an alternate data stream of a prepared image, and document where each item sits"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Operating system artefacts and anti-forensics",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a short note listing the Windows artefacts that would show a USB drive was plugged in, with the question each artefact answers.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E4",
+          "title": "Open a prepared event log and list every logon event for one user on a given day, noting time, type and source"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E4",
+          "title": "Combine registry, prefetch and shellbag entries from an image to prove which program opened a document and when"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Investigate a suspect machine with an encrypted volume and a wiping tool, decide lawful next steps, and justify what can and cannot be proved"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "First response and acquisition",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw up a first-response checklist for a small business office raided after a fraud report, with the reason for each item.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Order eight volatile and non-volatile data sources by volatility for a running laptop and justify what to capture first"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E4",
+          "title": "Create a bit-for-bit image of a virtual disk, hash the source and the image, and confirm the two values match"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Handle a live-versus-dead acquisition scenario at a cyber cafe, choosing actions at each decision point and being scored on evidence preserved"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Chain of custody and mobile money evidence",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Fill in a complete chain-of-custody form for three items seized in a mobile-money fraud case, including every hand-over and storage location.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Complete a chain-of-custody form for a seized phone and laptop, then spot the gaps a defence lawyer would attack in a sample form"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Review a mobile-money statement and chat export from a fraud case and identify the transactions and messages that link the suspect to the victim"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Decide, within a warrant's limits, what a team may seize and search in a mixed home and office raid, and defend each decision"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Carving, timelines and memory",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Prepare a short method statement describing how you would validate a file-carving result before trusting it in a report.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E4",
+          "title": "Recover three deleted files from a prepared disk image by their header signatures and verify each opens correctly"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E4",
+          "title": "Build a timeline of a prepared image from file times and logs, and find the window in which the suspect activity occurred"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E4",
+          "title": "Analyse a memory dump to find a hidden process, the network connection it holds and an injected code region, then report the evidence"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Email, mobile and network forensics",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write up how you would tell a spoofed email from a genuine one by reading its headers, using two examples side by side.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E4",
+          "title": "Read the full headers of a phishing email, trace the sending path hop by hop, and mark the line that exposes the spoofing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E4",
+          "title": "Query the SQLite message database from a phone image to list all messages between two numbers in a one-week window"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E4",
+          "title": "Correlate a packet capture, router logs and a web server log to reconstruct how data left the network, with a timeline of events"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Case planning and attribution",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Draft an investigation plan for a case of payroll fraud, stating hypotheses, data sources, legal limits and what would disprove each hypothesis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Write three hypotheses and the evidence sources for each in a payroll fraud case, then rank them by how testable they are"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E4",
+          "title": "Search a prepared image with keywords and patterns, filter out known files, and reduce thousands of files to the few relevant to the case"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E10",
+          "title": "Assess an attribution claim that rests on an IP address and a shared account, and write what the evidence supports and what it cannot"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Reporting and the case exercise",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a two-page report extract giving findings, methods and exhibits for the fraud case so that a second examiner could repeat every step.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Rewrite five technical findings from an examiner's notes into plain wording for a judge, keeping each fact accurate and each claim tied to an exhibit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E4",
+          "title": "Work through a seized-laptop fraud image to find the spreadsheet, the deleted emails and the payment records, noting each artefact's location"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Complete a fraud investigation from seizure to written report, scored against a rubric on method, accuracy, objectivity and clarity"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Evidence law, testimony and ethics",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Prepare answers to six likely cross-examination questions about your tools, your methods and the limits of your findings.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Judge whether five items of electronic evidence meet authenticity, integrity and relevance tests, and give a reason for each decision"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Take part in a mock cross-examination, answering questions on a report and being scored on clarity, honesty and staying within expertise"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Handle a case where illegal material turns up during an unrelated search, choosing steps that respect the law, privacy and proportionality"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Organisations, incident response and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Capstone: write an acceptable-use policy clause and a litigation-hold notice that would let an organisation preserve evidence before an investigation starts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Place forensic steps at the right stages of an incident response life cycle for a ransomware case and explain what each preserves"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Issue a litigation hold for a dispute, list the data sources to preserve, and decide how to handle staff who have already deleted files"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E4",
+          "title": "Investigate a prepared disk image end to end, produce a report with exhibits and give a mock testimony on your findings"
+        }
+      ]
+    }
   ]
 }

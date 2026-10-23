@@ -1,7 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { LEVEL_LABEL, LEVEL_ORDER, masteryRank, type LabLevel } from '@cslab/lab-runtime';
-import { AREAS, checkForTopic, courseBySlug, ENGINE_NAMES, labsForCourse, labsForUnit, programmesForCourse } from '../lib/catalogue';
+import {
+  AREAS,
+  checkForTopic,
+  courseBySlug,
+  ENGINE_NAMES,
+  labsForCourse,
+  labsForUnit,
+  loadSchedule,
+  programmesForCourse,
+  TIER_LABEL,
+  topicByRef,
+  type Course,
+  type ScheduleWeek,
+} from '../lib/catalogue';
 import { topicMastery, useProgress } from '../store/progress';
 import { track } from '../lib/telemetry';
 import { MasteryDot, MasteryLegend } from '../components/Mastery';
@@ -43,7 +56,10 @@ export function CoursePage() {
         <span>{AREAS[course.area]}</span>
       </nav>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight">{course.title}</h1>
-      <p className="mt-2 text-ink-soft text-sm">{course.engines.map((e) => ENGINE_NAMES[e] ?? e).join(', ')}</p>
+      <p className="mt-2 text-ink-soft text-sm">
+        {course.level !== 'bachelor' && `${TIER_LABEL[course.level]} course · `}
+        {course.engines.map((e) => ENGINE_NAMES[e] ?? e).join(', ')}
+      </p>
       {course.description && <p className="mt-4 max-w-[70ch] leading-relaxed">{course.description}</p>}
       <InProgrammes slug={course.slug} />
       <p className="mt-3 flex flex-wrap gap-2 text-sm">
@@ -133,6 +149,8 @@ export function CoursePage() {
           </ul>
         </section>
       )}
+
+      {course.weeks && <WeeklyPlan course={course} />}
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1fr]">
         <section>
@@ -225,5 +243,64 @@ function InProgrammes({ slug }: { slug: string }) {
       ))}
       .
     </p>
+  );
+}
+
+/** The course laid out as teaching weeks, each with an exercise and simulation tasks a lecturer can assign. */
+function WeeklyPlan({ course }: { course: Course }) {
+  const [weeks, setWeeks] = useState<ScheduleWeek[]>([]);
+  useEffect(() => {
+    let live = true;
+    setWeeks([]);
+    loadSchedule(course.slug).then((w) => live && setWeeks(w ?? []));
+    return () => {
+      live = false;
+    };
+  }, [course.slug]);
+  return (
+    <section className="mt-10">
+      <h2 className="text-xl font-semibold">Week by week</h2>
+      <p className="text-sm text-ink-soft mt-1">
+        {course.weeks} teaching weeks. Each has an exercise and simulation tasks at three levels that a lecturer can assign.
+      </p>
+      <ol className="mt-4 space-y-2">
+        {weeks.map((w) => (
+          <li key={w.week}>
+            <details className="rounded-lg border border-line bg-surface px-4 py-3">
+              <summary className="cursor-pointer">
+                <span className="font-mono text-sm text-ink-faint mr-3">Week {w.week}</span>
+                <span className="font-medium">{w.title}</span>
+              </summary>
+              <div className="mt-3 space-y-3 text-[15px] leading-relaxed">
+                <ul className="list-disc pl-5 text-ink-soft">
+                  {w.topics.map((ref) => (
+                    <li key={ref}>
+                      <Link to={`/courses/${course.slug}/units/${ref.split('.')[0]}`} className="hover:text-ink">
+                        {topicByRef(course, ref)}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <p>
+                  <span className="font-medium">Exercise.</span> {w.exercise}
+                </p>
+                <ul className="space-y-1.5">
+                  {w.tasks.map((t) => (
+                    <li key={t.level + t.title} className="flex gap-2">
+                      <span className="shrink-0 self-start rounded border border-line px-1.5 py-0.5 text-xs font-mono">
+                        {LEVEL_LABEL[t.level]}
+                      </span>
+                      <span>
+                        {t.title} <span className="text-sm text-ink-faint">· {ENGINE_NAMES[t.engine] ?? t.engine}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </details>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }

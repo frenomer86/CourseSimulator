@@ -115,5 +115,403 @@
         "Capstone: presenting the as-is model, analysis, simulation and to-be process to stakeholders"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Processes, roles and the BPM lifecycle",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Pick a process you know, such as registering for a national ID or buying at a market stall, and list its events, activities, decisions, actors and outputs in a table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw a first flow diagram of a cash deposit at a bank branch, labelling the start event, five activities, one decision and the end event"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Build a RACI matrix for an eight-step student admission process and check that every activity has exactly one accountable role"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Classify the processes of a small hospital as core, support or management, and justify your choice for each against a scoring rubric in a case scenario"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Process architecture, discovery and modelling quality",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Write a one-page plan describing how you would discover the real order-fulfilment process of a shop using two discovery methods and their trade-offs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E9",
+          "title": "Draw a three-level process landscape for a cocoa buying company, decomposing each level 1 process into level 2 processes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Rank five candidate processes for improvement by importance, health and feasibility using given evidence, and defend the top choice in the scenario debrief"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Review a deliberately messy model of a loan request against the seven process modelling guidelines and produce a corrected version with a list of fixes"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "BPMN flow objects, gateways and pools",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Take a short written description of a customer order and mark in the text which words become tasks, events and gateways before drawing it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E9",
+          "title": "Model a simple library book request using start and end events, four tasks and sequence flow, with no dangling flows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Model an order that is checked in parallel for stock and payment, with an exclusive gateway for fraud and correctly paired split and join gateways"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Build a collaboration diagram between a customer, a shop and a courier with pools, lanes and message flows, and trace one order end to end"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Data, sub-processes and the cocoa purchasing process",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Write a short note on when to use a sub-process, a call activity and a loop, with one example of each from a purchasing process.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Add data objects and a data store for farmer records to an existing purchasing model and mark each task that reads or writes them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E9",
+          "title": "Model weighing of multiple bags per farmer with a multi-instance sub-process and a reusable call activity for quality grading"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E9",
+          "title": "Model the full cocoa purchase from farm gate to licensed buying company across farmer, buying agent and company pools, covering rejection, payment and haulage"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Events, exceptions and process correctness",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Take a BPMN model with a suspected deadlock, trace the tokens by hand and write what is wrong and how to fix it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Add a timer boundary event to an approval task so an escalation occurs after 48 hours, and describe the token path for both outcomes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E9",
+          "title": "Trace tokens through a given model, find the deadlock caused by a mismatched gateway pair, and redraw it so it is sound"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Write a DMN decision table for loan eligibility using age, income and group savings history, and test it on eight applicant cases in the scenario"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "As-is analysis, waste and flow measures",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Calculate cycle time efficiency for a three-step process with given processing and waiting times and write two sentences interpreting the result.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E9",
+          "title": "Mark every activity of a given 10-step claims process as value-adding, business value-adding or non-value-adding and count each type"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute cycle time, waiting time and cycle time efficiency for a process with sequential and parallel branches from given figures, and check your sums against the tool"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Analyse a rework loop in a passport-style application process using Little's law and cost per case, then recommend one change in the scenario and score the effect"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Queueing and discrete-event simulation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Explain in a paragraph why a server with 90 percent utilisation produces long queues even though it is not overloaded.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Plot the average queue length of an M/M/1 queue for utilisation from 0.1 to 0.95 and mark where waiting becomes unacceptable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E9",
+          "title": "Attach arrival rates, task durations and a pool of three clerks to a service model and run the simulation to read waiting times and utilisation"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E9",
+          "title": "Find the bottleneck in a simulated five-step process with given resource calendars, then test whether adding one resource moves the bottleneck elsewhere"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Scenario comparison and the outpatient department",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a short report recommending one of two redesigned queue layouts, citing mean waiting time and a confidence interval for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E9",
+          "title": "Run a model with 10 replications and a warm-up period, then report the mean waiting time and a 95 percent confidence interval"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Compare two staffing scenarios by computing the difference in mean waiting time and checking whether the confidence intervals overlap"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Redesign the flow of a district hospital outpatient department with triage and extra consulting rooms, simulate three options and select one within a budget limit"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Redesign heuristics, Lean and Six Sigma",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Pick a slow process from daily life and apply three redesign heuristics to it, noting for each what is gained and what could go wrong.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E9",
+          "title": "Apply task elimination and resequencing to a given order process diagram, and redraw the model showing which tasks were removed or moved"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E9",
+          "title": "Draw a value stream map for a bakery order from raw flour to delivered bread, including process time, lead time and inventory between steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Plot a control chart from 30 measurements of delivery time, flag out-of-control points and compute process capability against a target"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Re-engineering and the rural bank loan redesign",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a half-page lesson learned from a failed re-engineering project and say how you would avoid the same mistake in a rural bank.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Decide in a re-engineering case which process changes to push through and which to pilot, and score your choices against the lessons rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Compute time, cost, quality and flexibility scores for an as-is and a to-be design, and plot both on a devil's quadrangle chart"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E9",
+          "title": "Redesign loan approval for a rural bank serving susu groups, producing as-is and to-be models, and justify each change with a measured gain"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Workflow automation and executable models",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "List which tasks in a given process should be user tasks, service tasks or business rule tasks, giving a reason for each choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Mark each element of a leave request model with the information system role that supports it and note what the system stores or decides"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E9",
+          "title": "Make a loan approval model executable by adding forms, a service task for credit check and a business rule task, listing the data each needs"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Choose and configure a process engine for a small business in a scenario, balancing cost, skills and support, and justify the choice to the owner"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Automation choices, process mining and adoption",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Draft a short staff communication explaining what an automated approval process changes for clerks, and how you will support them during the switch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Choose between robotic process automation and workflow orchestration for four given tasks and record the reasons in the scenario rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Discover the process model from a small event log of 20 cases by counting directly-follows pairs, and list the variants found"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Plan the rollout of an automated process, choosing training, pilot sites and feedback steps under a limited budget, and handle resistance from two staff groups"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Mobile money agent network case study",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Prepare a ten-minute stakeholder presentation outline that moves from the as-is model to the measured to-be design for the agent network.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E9",
+          "title": "Model cash-in and cash-out between a customer, an agent and the operator, showing where float moves at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E9",
+          "title": "Add KYC checks, transaction limits and a reversal path to the cash-out model as gateways and sub-processes, and test with five sample transactions"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E9",
+          "title": "Simulate the as-is and a to-be agent model for a market day with float rebalancing, and report waiting time, shortages and cost for both"
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,505 @@
+{
+  "slug": "investments-and-portfolio-management",
+  "description": "How securities are traded, priced and combined into portfolios, with attention to Ghanaian and African markets. Students compute risk and return, build efficient portfolios, value bonds and shares, price options and design and evaluate a simple robo-advisor.",
+  "modelledOn": [
+    "Bodie, Kane and Marcus, Investments",
+    "Elton, Gruber, Brown and Goetzmann, Modern Portfolio Theory and Investment Analysis",
+    "CFA Institute curriculum, Portfolio Management and Fixed Income readings"
+  ],
+  "outcomes": [
+    "Describe how securities markets are organised and compute returns, risk and correlation from price data.",
+    "Construct mean-variance efficient portfolios and select an allocation on the capital allocation line.",
+    "Price bonds and compute yield, duration and convexity, and value equities by discounted cash flow and multiples.",
+    "Compute payoffs and prices of simple options and futures and design a hedge.",
+    "Design and evaluate a rules-based robo-advisor using time-weighted return, Sharpe ratio and drawdown."
+  ],
+  "units": [
+    {
+      "title": "Securities and market structure",
+      "weeks": "1-2",
+      "topics": [
+        "Asset classes: equities, bonds, money-market instruments, funds and derivatives",
+        "Primary and secondary markets: exchanges, brokers, order types, the order book and bid-ask spread",
+        "Ghana's markets: the stock exchange, treasury bills, bonds and mobile investment platforms",
+        "Market efficiency: weak, semi-strong and strong forms; behavioural biases",
+        "Transaction costs, settlement, custody and the regulator's role"
+      ]
+    },
+    {
+      "title": "Risk, return and diversification",
+      "weeks": "3-4",
+      "topics": [
+        "Returns: holding-period, arithmetic and log returns; annualisation",
+        "Mean, variance, standard deviation, covariance and correlation of returns",
+        "Diversification: systematic versus idiosyncratic risk",
+        "The CAPM: beta, security market line and alpha",
+        "Value at Risk and downside measures",
+        "Inflation, real returns and currency risk for a cedi investor"
+      ]
+    },
+    {
+      "title": "Portfolio construction",
+      "weeks": "5-6",
+      "topics": [
+        "Two-asset portfolios: expected return, variance and the effect of correlation",
+        "Markowitz mean-variance optimisation and the efficient frontier",
+        "Capital allocation line, tangency portfolio and the Sharpe ratio",
+        "Asset allocation: strategic versus tactical, rebalancing rules",
+        "Estimation error, constraints and shrinkage",
+        "Factor models: single-index and multi-factor models"
+      ]
+    },
+    {
+      "title": "Bond and fixed income basics",
+      "weeks": "7-8",
+      "topics": [
+        "Bond pricing as present value; coupon, par, premium and discount",
+        "Yield to maturity, spot rates and the yield curve",
+        "Duration, modified duration and convexity; price sensitivity",
+        "Ghanaian government securities: treasury bills, notes and bond auctions",
+        "Credit risk: ratings, spreads and default probability",
+        "Immunisation and bond portfolio strategies"
+      ]
+    },
+    {
+      "title": "Equity valuation",
+      "weeks": "9-10",
+      "topics": [
+        "Dividend discount model and the Gordon growth formula",
+        "Discounted cash flow valuation: free cash flow and terminal value",
+        "Relative valuation: price-earnings, price-to-book and enterprise value multiples",
+        "Financial statement analysis: ROE, DuPont decomposition and cash-flow quality",
+        "Technical analysis: moving averages, momentum and why backtests mislead",
+        "Funds, ETFs and index tracking"
+      ]
+    },
+    {
+      "title": "Options and futures basics",
+      "weeks": "11",
+      "topics": [
+        "Forwards and futures: payoffs, margin and basis; cocoa and gold hedging",
+        "Call and put payoffs; put-call parity",
+        "The binomial option pricing model",
+        "Black-Scholes pricing and the Greeks",
+        "Hedging and option strategies: protective put, covered call, straddle"
+      ]
+    },
+    {
+      "title": "Robo-advisor design and performance measurement",
+      "weeks": "12",
+      "topics": [
+        "Risk profiling: questionnaires, capacity versus tolerance for risk",
+        "Automated allocation and rebalancing algorithms",
+        "Performance metrics: time-weighted and money-weighted return, Sharpe, Sortino, maximum drawdown",
+        "Benchmarks and performance attribution",
+        "Fees, fiduciary duty and consumer protection for digital advice"
+      ]
+    },
+    {
+      "title": "Investment policy and professional practice",
+      "weeks": "13",
+      "topics": [
+        "The investment policy statement: objectives, constraints and horizon",
+        "Investor behaviour, scams and Ponzi schemes: warning signs from Ghanaian cases",
+        "Backtesting pitfalls: look-ahead bias, survivorship bias and overfitting",
+        "Portfolio project: build, defend and review a portfolio"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Asset classes, exchanges and the order book",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Classify twelve instruments by asset class, risk and liquidity, and explain how a limit order and a market order differ when the bid-ask spread is wide.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Match ten described instruments to asset classes in a short quiz scenario and justify the liquidity and risk rating you give each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Code a simple order book that matches market and limit orders by price and time priority, and test it on twenty orders"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compare the yields of treasury bills at four maturities against inflation over three years and judge the real return to a cedi saver"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Market efficiency, costs and regulation",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compute the total cost of buying and selling a share including brokerage, spread and levies, and write a paragraph on whether a thinly traded market can be semi-strong efficient.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Compute the round-trip cost of a GH 10,000 equity trade from commission, spread and levy percentages and find the break-even price move"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Test whether a stock's daily returns are autocorrelated by computing lag-1 correlation over 250 days and interpret the result for weak-form efficiency"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Work through a case on investors chasing a rising stock, identify two behavioural biases from the evidence, and choose the debiasing steps"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Returns, risk and correlation",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "From five years of monthly prices for three stocks, compute monthly and annualised return, volatility and the correlation matrix, and say which pair diversifies best.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Convert twelve monthly prices into simple and log returns, then compound them into an annual return and compare the two methods"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Compute mean, standard deviation and the 3x3 correlation matrix for three stocks from a price file with code"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Simulate equal-weight portfolios of 1 to 30 stocks from random draws and plot portfolio volatility against count to show diversification levelling off"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "CAPM, downside risk and inflation",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Estimate the beta of one stock against a market index by regression, use CAPM to find its required return, and compute a 95 percent one-day Value at Risk for a GH 50,000 position.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Regress a stock's monthly returns on market returns, read the beta, and compute the CAPM required return with a given risk-free rate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Compute 95 percent historical Value at Risk for a portfolio from 500 daily returns and compare with the normal-distribution estimate"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Convert a dollar-asset return to cedi terms using exchange-rate moves and separate the asset return from the currency effect over three years"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Efficient portfolios and the capital allocation line",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "For two risky assets with given means, volatilities and correlation, find the minimum-variance weights, trace the frontier, and choose the tangency portfolio with a risk-free rate of 5 percent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Plot expected return against risk for two-asset portfolios at weights from 0 to 100 percent for correlations of -1, 0 and 1"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Solve the minimum-variance portfolio of three assets with matrix algebra and plot the frontier from random weight portfolios"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Compute the tangency portfolio and capital allocation line for five assets in code, and find the weights for an investor with risk aversion of 4"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Allocation, estimation error and factor models",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Compare a 60/40 portfolio with threshold rebalancing at 5 percent drift versus annual rebalancing, and explain why optimiser weights change so much with small input changes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Rebalance a 60/40 portfolio annually over ten years of returns and report the final value against buy-and-hold"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Perturb the expected returns of an optimiser by 1 percent at random 100 times and plot how the weights vary, then add a 40 percent cap"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Fit a single-index model to ten stocks, split risk into market and specific parts, and compare the covariance matrix with the sample one"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Bond pricing, yields and duration",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Price a 5-year 12 percent annual coupon bond at yields of 10, 12 and 14 percent, compute its duration, and use duration and convexity to estimate the price change for a 1 percent rise in yield.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Price a 5-year bond with a 12 percent coupon at yields of 8, 12 and 16 percent and plot the price-yield curve"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Code functions for bond price, Macaulay duration, modified duration and convexity, and test them on three bonds"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Bootstrap a spot-rate curve from four coupon bond prices and use it to price a fifth bond, then compare with its quoted price"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Government securities, credit risk and immunisation",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Compare an auction yield on a Ghanaian treasury bill with a corporate bond of the same maturity, quantify the credit spread, and build a portfolio that immunises a liability due in 6 years.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Convert a treasury bill discount rate to a yield and annualised return for 91, 182 and 364-day maturities"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Compute the credit spread for four rated bonds against a risk-free curve and estimate the implied default probability"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Choose weights in two bonds that match the duration of a GH 1 million liability due in 6 years and test the hedge against yield shifts"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Discounted cash flow and multiples",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Value a dividend-paying share with the Gordon model and a company with a five-year free cash flow forecast and terminal value, and compare both with the market price using a P/E multiple.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Value a share with the Gordon growth model for three growth rates and discount rates and tabulate the sensitivity"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Build a five-year discounted cash flow model with terminal value for a company and report the value per share"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Value a company from the median P/E and EV/EBITDA of five peers and reconcile the answer with your cash flow value"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Financial statements, technical analysis and funds",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Decompose a company's ROE with DuPont analysis over three years, then test a 50/200-day moving-average rule on index data and compare it to buy-and-hold net of costs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute margin, turnover, leverage and ROE for a company over three years and say which factor drove the change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Backtest a 50/200-day moving-average crossover on ten years of prices and compare return and drawdown with buy-and-hold"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Compute the tracking error and cost drag of an index fund against its benchmark from daily returns and fee data"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Futures, options and hedging",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Draw payoff diagrams for a long call, long put, protective put and straddle, price a one-step binomial call, and design a futures hedge for a cocoa exporter.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Plot the payoff and profit of a long call and a long put at strikes of 100 for prices from 60 to 140"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Price a European call with a 3-step binomial tree and compare with the Black-Scholes value"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E10",
+          "title": "Decide how many futures contracts a cocoa exporter should sell to hedge a harvest, and score the outcome under three price scenarios"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Designing and judging a robo-advisor",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Draft a five-question risk profile that maps to three model portfolios, and report time-weighted return, Sharpe ratio and maximum drawdown for each model over a simulated decade.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Answer a risk questionnaire as three different clients and see which model portfolio each scores into, then flag a mismatch"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Code a robo-advisor that maps a risk score to weights and rebalances when drift exceeds 5 percent, then run it on ten years of data"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compute time-weighted return, Sharpe, Sortino and maximum drawdown for three model portfolios and rank them under two different investor goals"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Investment policy and portfolio project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Write a one-page investment policy statement for a pension-fund trustee and a short review of a collapsed high-yield scheme, listing the warning signs a prudent investor would have seen.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Complete an investment policy statement for a young teacher, choosing objectives, horizon, constraints and an asset mix from options"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Review a case of a scheme promising 10 percent monthly returns, spot the warning signs, and decide what advice to give a relative"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Show how a strategy chosen after viewing the full data looks better than it should, then redo the test with an out-of-sample split"
+        }
+      ]
+    }
+  ]
+}

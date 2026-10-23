@@ -1,0 +1,501 @@
+{
+  "slug": "asset-pricing-and-derivatives",
+  "description": "The theory and numerics of pricing financial claims: no-arbitrage and state prices, equilibrium models, forwards and swaps, options in discrete and continuous time, interest-rate and credit derivatives, and numerical methods. Students derive prices analytically, then verify and extend them with simulation, trees and finite-difference code in the lab.",
+  "modelledOn": [
+    "Hull, Options, Futures and Other Derivatives",
+    "Shreve, Stochastic Calculus for Finance I and II",
+    "Cochrane, Asset Pricing",
+    "Glasserman, Monte Carlo Methods in Financial Engineering"
+  ],
+  "outcomes": [
+    "Derive prices from the no-arbitrage principle using state prices, replication and risk-neutral measures.",
+    "Explain and test equilibrium pricing models, from the CAPM to multi-factor models, against data.",
+    "Price and hedge forwards, futures, swaps and options in binomial and Black-Scholes frameworks and compute the Greeks.",
+    "Build and compare interest-rate and credit models and use them to value caps, swaptions and credit default swaps.",
+    "Implement Monte Carlo, finite-difference and Fourier pricing methods and quantify their numerical error.",
+    "Assess model risk by calibrating models to market quotes and testing hedging performance."
+  ],
+  "units": [
+    {
+      "title": "One-period markets and state prices",
+      "weeks": "1-2",
+      "topics": [
+        "Securities, payoffs and portfolios; complete and incomplete markets",
+        "No-arbitrage and the law of one price; detecting arbitrage with linear programming",
+        "State prices and the fundamental theorem of asset pricing in one period",
+        "The stochastic discount factor and the pricing kernel",
+        "Risk-neutral probabilities, replication, uniqueness and market completeness"
+      ]
+    },
+    {
+      "title": "Portfolio theory and equilibrium asset pricing",
+      "weeks": "3-4",
+      "topics": [
+        "Mean-variance portfolio choice, the efficient frontier and the two-fund theorem",
+        "The CAPM: derivation, the security market line and beta estimation",
+        "Expected utility, risk aversion and consumption-based pricing; the equity premium puzzle",
+        "Multi-factor models: APT, Fama-French factors and cross-sectional tests",
+        "Market efficiency and behavioural critiques; evidence from frontier markets such as the Ghana Stock Exchange"
+      ]
+    },
+    {
+      "title": "Forwards, futures, bonds and swaps",
+      "weeks": "5-6",
+      "topics": [
+        "Cost-of-carry forward pricing with storage costs and convenience yield; cocoa and gold forwards",
+        "Futures versus forwards: margining, marking to market, basis risk and the minimum-variance hedge ratio",
+        "Bonds and the yield curve: bootstrapping, forward rates, duration and convexity",
+        "Interest-rate and currency swaps priced as bond portfolios; hedging cedi exposure",
+        "Foreign exchange forwards and covered interest parity"
+      ]
+    },
+    {
+      "title": "Options in discrete time",
+      "weeks": "7",
+      "topics": [
+        "Option payoffs and strategies, put-call parity and no-arbitrage bounds",
+        "One-period binomial replication and risk-neutral valuation",
+        "Multi-period Cox-Ross-Rubinstein trees and American options with early exercise",
+        "Convergence of the binomial model to Black-Scholes and discrete delta hedging",
+        "Trinomial trees and implied trees"
+      ]
+    },
+    {
+      "title": "Option pricing in continuous time",
+      "weeks": "8-9",
+      "topics": [
+        "Brownian motion, geometric Brownian motion, the Ito integral and Ito's lemma",
+        "The Black-Scholes PDE by delta hedging and the Black-Scholes formula",
+        "Risk-neutral measure, Girsanov's theorem, Feynman-Kac and change of numeraire",
+        "The Greeks: delta, gamma, vega, theta and rho; delta-gamma hedging and hedging error",
+        "Implied volatility, the smile and skew; local volatility and the Heston stochastic volatility model",
+        "Exotic options: barrier, Asian and lookback payoffs"
+      ]
+    },
+    {
+      "title": "Interest-rate and credit derivatives",
+      "weeks": "10-11",
+      "topics": [
+        "Short-rate models: Vasicek, CIR and Hull-White; affine bond pricing",
+        "The HJM framework and market models; caps, floors and swaptions priced with Black's formula",
+        "Credit risk: the Merton structural model and reduced-form intensity models",
+        "Credit default swap pricing and bootstrapping hazard rates from spreads",
+        "Counterparty risk: credit valuation adjustment and collateral; pricing sovereign Eurobonds"
+      ]
+    },
+    {
+      "title": "Numerical pricing methods",
+      "weeks": "12",
+      "topics": [
+        "Monte Carlo pricing and variance reduction: antithetic and control variates; standard errors",
+        "Pathwise and likelihood-ratio Greeks; the Longstaff-Schwartz method for American options",
+        "Finite-difference schemes: explicit, implicit and Crank-Nicolson; stability and boundary conditions",
+        "Fourier methods: characteristic functions, the Carr-Madan formula and FFT pricing",
+        "Calibration and model risk: least-squares fitting to quotes and hedging performance backtests"
+      ]
+    },
+    {
+      "title": "Project and market practice",
+      "weeks": "13",
+      "topics": [
+        "Comparing pricing frameworks: when each model fails and what it assumes",
+        "Project: price and hedge a structured product, such as a cocoa-linked note with a protective floor",
+        "Critical reading of a derivatives pricing paper and its model risk discussion",
+        "Market structure and regulation: central clearing, margin rules, Basel treatment and derivative market development in Africa"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Arbitrage and state prices",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Given a three-state market with two securities and a bond, decide whether an arbitrage exists, and if not, find the set of state prices.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Check three small one-period markets for arbitrage by solving the payoff matrix, and exhibit an arbitrage portfolio where one exists."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Solve for the state price vector in a complete three-state market with matrix algebra and price a new payoff with it."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a linear program that tests for arbitrage in a market with eight assets and five states, and return the arbitrage portfolio found."
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Discount factors and risk-neutral pricing",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Show that pricing with state prices, with the stochastic discount factor and with risk-neutral probabilities give the same price, and say what changes when the market is incomplete.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Compute risk-neutral probabilities from state prices and a risk-free rate, and price a call payoff in a two-state market."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Find the stochastic discount factor for a market with real-world probabilities and verify it prices all traded securities exactly."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "In an incomplete market with four states and two assets, compute the no-arbitrage price interval for a third payoff by optimising over state prices."
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Portfolio choice and the CAPM",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Derive the minimum-variance portfolio for two risky assets and then show the market portfolio is on the efficient frontier under CAPM assumptions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Plot the efficient frontier for three stocks from given means and covariances and mark the minimum-variance portfolio."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Estimate betas for five listed Ghanaian stocks from monthly return data by regression and draw the security market line."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Optimise a portfolio under a no-short-selling constraint and compare its frontier and out-of-sample Sharpe ratio with the unconstrained solution."
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Utility, factors and market efficiency",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Read a paper on size and value factors and write a one-page critique of its method, then discuss whether the evidence should transfer to a small frontier market.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Compute the certainty equivalent and risk premium for a gamble under log and power utility with two risk-aversion values."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Run a Fama-MacBeth cross-sectional regression on 30 stocks and 60 months of data, and report the estimated factor risk premia."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Test weak-form efficiency on daily returns of a frontier market index with autocorrelation and runs tests, and discuss the effect of thin trading."
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Forwards, futures and bond mathematics",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "A cocoa exporter must sell 500 tonnes in six months. Price a forward with storage costs and design a futures hedge, stating the basis risk left.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Price a six-month gold forward from spot, interest rate and storage cost, and check for an arbitrage if the quoted forward is higher."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Bootstrap a zero curve from five bond prices and compute the implied forward rates and the duration of a ten-year bond."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Estimate the minimum-variance hedge ratio from spot and futures price changes, and measure hedge effectiveness before and after a basis shock."
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Swaps and currency forwards",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Value a five-year fixed-for-floating interest-rate swap from a given discount curve, then explain how a firm with cedi revenue and dollar debt would use a currency swap.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compute the fixed swap rate for a three-year annual swap from a given discount factor table and the swap's value after rates rise."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Check covered interest parity for cedi and dollar rates, and construct the arbitrage when the quoted forward breaks it."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Value a cross-currency swap by discounting both legs on their own curves, and stress the value under a 15 percent cedi depreciation."
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Binomial option pricing",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Price a one-year American put on a three-step tree by hand, identify the nodes where early exercise is optimal, and compare with the European value.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Replicate a call on a one-period binomial stock with shares and bonds, and check the cost equals the risk-neutral price."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Build a Cox-Ross-Rubinstein tree for American and European puts and mark the nodes where early exercise is optimal."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Show that binomial prices converge to the Black-Scholes value as steps grow from 5 to 1000, and plot the oscillating error."
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Stochastic calculus and Black-Scholes",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Derive the Black-Scholes PDE by constructing a riskless hedged portfolio, then show how the formula follows from the risk-neutral expectation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Simulate 20 geometric Brownian motion paths and check that the mean and variance of log returns match the theoretical values."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement the Black-Scholes call and put formulas and verify put-call parity across 100 random parameter sets."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Apply Ito's lemma to derive the dynamics of ln S and S squared, and confirm each with simulation to within sampling error."
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Greeks, smiles and exotics",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "A trader sold 1000 calls. Compute the delta hedge, rebalance daily in a simulated path, and explain the hedging error in terms of gamma and volatility mismatch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Plot delta, gamma and vega of a call against the stock price and identify where gamma is largest."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Invert Black-Scholes by root-finding to compute implied volatilities for a table of option quotes and plot the smile."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Price a down-and-out barrier call and an arithmetic Asian call by simulation, and compare each with its vanilla counterpart."
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Short-rate and market models",
+      "topics": [
+        "6.1",
+        "6.2"
+      ],
+      "exercise": "Derive the Vasicek zero-coupon bond price and explain why the model can produce negative rates and how Hull-White fits today's curve.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Simulate Vasicek short-rate paths and verify the simulated mean reversion matches the model's long-run mean and speed."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Compute zero-coupon bond prices from the Vasicek formula and fit its parameters to a given yield curve by least squares."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Price a cap as a strip of caplets with Black's formula, and compare the result with a Monte Carlo price in a short-rate model."
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Credit risk and counterparty risk",
+      "topics": [
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Use the Merton model to compute the default probability and credit spread of a firm with given assets, debt and volatility, and discuss the model's failings.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compute the Merton default probability and credit spread for a firm with given asset value, debt, volatility and horizon."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Bootstrap a piecewise-constant hazard rate curve from five CDS spreads and price a new CDS at an intermediate maturity."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Estimate the credit valuation adjustment of a five-year swap by simulating exposure paths and applying the counterparty hazard rate."
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Monte Carlo, finite differences, Fourier and calibration",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Price the same European call by Monte Carlo, Crank-Nicolson finite differences and Fourier inversion, and tabulate error against computing time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Price a European call by Monte Carlo with 10000 and 1000000 paths and report the standard error against the closed-form price."
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Solve the Black-Scholes PDE with explicit and implicit finite differences and show the explicit scheme becoming unstable when the time step is too large."
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Price an American put with the Longstaff-Schwartz regression method and compare the price and exercise boundary with the binomial tree result."
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Model risk, structured products and regulation",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Present the project: the product design, the model chosen, the price and hedge, the model risk, and a stress test of the hedge under a volatility spike.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compare Black-Scholes, binomial and Heston prices for one option and tabulate the assumptions and differences in each."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Decide how an exporter's hedging programme should be cleared and margined under three regulatory scenarios, and score the choices against the case rubric."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Price a cocoa-linked note with a floor by simulation, build a delta hedge, and report hedging profit and loss across 1000 simulated price paths."
+        }
+      ]
+    }
+  ]
+}

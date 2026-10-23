@@ -1,0 +1,499 @@
+{
+  "slug": "multiplayer-and-network-game-programming",
+  "description": "How online games keep many players in agreement over an unreliable network: transport choices, state synchronisation, lag compensation, client-side prediction, cheating defences and scalable servers. Students write client and server code, impair simulated links and watch packets, then build a small authoritative multiplayer game.",
+  "modelledOn": [
+    "Stevens, Fenner and Rudoff, UNIX Network Programming, Volume 1",
+    "Glazer and Madhav, Multiplayer Game Programming: Architecting Networked Games",
+    "Kurose and Ross, Computer Networking: A Top-Down Approach",
+    "Gregory, Game Engine Architecture (networking chapters)"
+  ],
+  "outcomes": [
+    "Choose and justify a client-server or peer-to-peer architecture and tick rate for a given game and network budget.",
+    "Implement a reliability layer on UDP with sequence numbers, acknowledgements and channel semantics.",
+    "Synchronise game state with snapshots, delta compression, interpolation and interest management.",
+    "Reduce perceived latency with client-side prediction, reconciliation and server-side lag compensation, and measure the result under emulated loss and jitter.",
+    "Design a server-authoritative protocol that resists common cheats and spoofing.",
+    "Plan matchmaking, regional server fleets and capacity for a game with a target concurrent user count and a data-cost limit."
+  ],
+  "units": [
+    {
+      "title": "Networked game architectures",
+      "weeks": "1-2",
+      "topics": [
+        "Client-server, listen-server, peer-to-peer and relay architectures compared",
+        "The game loop, fixed timestep, tick rates and determinism",
+        "The sockets API: UDP and TCP sockets in code and non-blocking I/O",
+        "Network budget of a game: packets per second, bandwidth, MTU and fragmentation",
+        "Case study: mobile multiplayer on 3G and 4G in Africa, data caps and cost per player"
+      ]
+    },
+    {
+      "title": "Transport and reliability",
+      "weeks": "3-4",
+      "topics": [
+        "TCP versus UDP for games: head-of-line blocking and Nagle's algorithm",
+        "A reliability layer over UDP: sequence numbers, acknowledgement bitfields and retransmission",
+        "Channels: reliable ordered, unreliable sequenced and reliable unordered messages",
+        "Packet loss, congestion and bandwidth estimation",
+        "Serialisation: binary encoding, bit-packing, quantisation and delta compression"
+      ]
+    },
+    {
+      "title": "State synchronisation",
+      "weeks": "5-6",
+      "topics": [
+        "Lockstep simulation and input delay for strategy games",
+        "Snapshot replication: full and delta snapshots and acknowledgement-based baselines",
+        "Entity interpolation, extrapolation and dead reckoning",
+        "Replicated state versus remote procedure calls and events; priority accumulators",
+        "Interest management: area-of-interest filtering and relevancy"
+      ]
+    },
+    {
+      "title": "Latency, jitter and lag compensation",
+      "weeks": "7",
+      "topics": [
+        "Measuring round-trip time, jitter and loss; clock synchronisation between client and server",
+        "Interpolation delay and jitter buffers",
+        "Server-side lag compensation: rewinding the world for hit detection",
+        "Network emulation: delay, loss, duplication and reordering as a test tool",
+        "Fairness: peeker's advantage and how tick rate and ping interact"
+      ]
+    },
+    {
+      "title": "Client-side prediction and rollback",
+      "weeks": "8",
+      "topics": [
+        "Predicting local input and reconciling with authoritative server state",
+        "Smoothing prediction errors without visible snapping",
+        "Rollback netcode with deterministic re-simulation for fighting games",
+        "Misprediction with non-deterministic physics and other players' actions"
+      ]
+    },
+    {
+      "title": "Cheating, trust and server authority",
+      "weeks": "9",
+      "topics": [
+        "Server authority: validating every client command",
+        "A taxonomy of cheats: speed hacks, aimbots, packet tampering, replay and information leaks",
+        "Authentication and encryption: connect tokens, DTLS, spoofing and amplification attacks",
+        "Anti-cheat approaches: statistical detection, server-side checks and replay review",
+        "Player privacy, data protection and safe play for children"
+      ]
+    },
+    {
+      "title": "Matchmaking and scaling game servers",
+      "weeks": "10-11",
+      "topics": [
+        "Lobbies and skill-based matchmaking with rating systems (Elo and Glicko style)",
+        "Dedicated server fleets: containers, regions and autoscaling",
+        "NAT traversal: hole punching with STUN-style discovery and relay fallback",
+        "World sharding, instancing and seamless borders for persistent worlds",
+        "Persistence: player profiles, leaderboards and transactional inventories",
+        "Capacity and cost planning for peak concurrent users"
+      ]
+    },
+    {
+      "title": "Operations and project",
+      "weeks": "12-13",
+      "topics": [
+        "Telemetry, logging and tracing netcode problems in production",
+        "Load testing with bots and soak tests",
+        "Protocol versioning, backwards compatibility and live patching",
+        "Project: a two-player authoritative game with prediction, interpolation and lag compensation"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Architectures for online play",
+      "topics": [
+        "1.1",
+        "1.2"
+      ],
+      "exercise": "Compare client-server and peer-to-peer designs for a four-player card game, a 16-player shooter and a 4-player kart racer, and pick tick rates with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E3",
+          "title": "Build a star topology with one server and four clients, send state updates and count the packets each node sends and receives per second"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a fixed-timestep game loop that decouples simulation at 30 Hz from rendering, and show it stays deterministic across runs with the same input"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E3",
+          "title": "Model a four-player peer-to-peer mesh and compare its total traffic and per-node upload with a client-server layout as player count grows to 16"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Sockets and the network budget",
+      "topics": [
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Calculate monthly data use for a mobile game sending 20 snapshots per second of 200 bytes, and decide how far the rate must drop to fit a 500 MB bundle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Write a UDP echo client and server that exchange 100 numbered packets on loopback and report the number received and the order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compute bytes per second for several snapshot sizes and rates with headers included and find the largest payload below a 1200-byte MTU"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E3",
+          "title": "Set a cellular link with 200 ms delay and 3 percent loss in the simulator, run a game stream and judge playability against a data budget"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "TCP, UDP and acknowledgements",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Explain why a lost TCP segment stalls later position updates, then sketch the header of a UDP packet that carries a sequence number and an acknowledgement bitfield.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E3",
+          "title": "Send a position stream over a lossy link with TCP and with UDP, record the worst gap between updates and explain head-of-line blocking"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Implement sequence numbers and a 32-bit acknowledgement bitfield in a UDP sender and receiver and verify which packets are acknowledged under 10 percent loss"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Add retransmission with a smoothed round-trip estimate to the reliability layer and measure delivery of 1000 reliable messages at 20 percent loss"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Channels, congestion and compact encoding",
+      "topics": [
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Pack a player state of position, rotation and health into the fewest bits you can with quantisation, and calculate the saving against a naive JSON message.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Quantise a position to centimetre precision within a 1000 m map, bit-pack it with a health value, and check the maximum decoding error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement a reliable-ordered and an unreliable-sequenced channel on one connection and show that stale unreliable packets are dropped but chat is not"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E3",
+          "title": "Ramp up send rate on a bottleneck link, observe loss and queueing delay, then add a simple congestion-aware rate limiter and compare latency"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Lockstep and snapshots",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "For a strategy game with 200 units, compare the bandwidth of lockstep (inputs only) with snapshots of all units, and list what must be deterministic for lockstep to work.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Simulate two lockstep clients with an input delay of 3 ticks and show their states match after 300 ticks using identical inputs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Send full snapshots at 20 Hz, then convert to delta snapshots against an acknowledged baseline and report the bytes saved on a 50-entity world"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Introduce a floating-point order difference between two lockstep clients, detect the desync with state hashes, and fix it with fixed-point maths"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Interpolation, replication and relevancy",
+      "topics": [
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Decide which entities in a battle-royale map each player must receive each tick and design a priority scheme so a bandwidth cap is never exceeded.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Render a remote player by interpolating between two snapshots 100 ms behind real time and plot the smoothed path against the raw updates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement a priority accumulator that fills a 1000-byte packet with the most urgent entities each tick and measure the update age of far objects"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Add a grid-based area-of-interest filter to a 200-player world and measure the bandwidth drop against sending everything to everyone"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Latency, jitter and lag compensation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Explain with a timeline why a player with 150 ms ping fires at a target that has already moved, then work out how far the server must rewind to count the hit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E3",
+          "title": "Measure round-trip time and jitter on a link with 80 ms delay and 20 ms variation by sending 200 probes and plot the distribution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Choose an interpolation delay as two snapshot intervals plus jitter, and show smoothness improves as the delay grows from 0 to 150 ms"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Implement server-side rewind that stores 1 second of positions and test that a shot fired at 120 ms ping is judged against the target's past position"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Prediction, reconciliation and rollback",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Walk through a timeline in which a client predicts five moves, the server rejects the third because of a wall, and the client replays the remaining inputs from the corrected state.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Implement client-side prediction with numbered inputs and reconciliation that replays unacknowledged commands after each server state, and count corrections"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Blend a prediction error over 100 ms instead of snapping and compare the visible position jump with and without smoothing"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Build a two-player fighting-game rollback loop with 4 frames of input delay and measure how many frames are re-simulated at 100 ms latency"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Server authority, cheats and secure connections",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a threat model for an online racing game listing five cheats, the system component each attacks and the server-side check that stops it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Add server-side validation for maximum speed and fire rate to a movement server and prove a modified client sending 3x speed is rejected"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E3",
+          "title": "Show how a spoofed source address could turn a small connect request into a large reply, then limit it with a token handshake"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Detect an aimbot in logged shot data by computing the headshot rate and angular snap speed per player and flagging outliers statistically"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Matchmaking, lobbies and NAT",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Design a lobby and matchmaking flow for a Ghanaian esports league, with a skill rating that updates after each game and a region choice that limits ping to 80 ms.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Implement an Elo update for 20 games between four players and show how ratings converge to the true skill order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E3",
+          "title": "Place two clients behind separate NAT gateways and show a direct connection failing, then succeed with a rendezvous server and hole punching"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E12",
+          "title": "Launch dedicated game-server instances in two regions of a cloud console with an autoscaling rule on player count, and test a surge of players"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Persistent worlds, storage and cost",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Partition a persistent world into four shards, design the inventory transaction that moves an item between players safely and estimate the monthly server bill for 5000 peak players.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Split a 2D world into a grid of shards and hand an entity across a border without duplicating or dropping it, verifying with a log"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E5",
+          "title": "Write the SQL transaction for trading an item between two players with a rollback on a failed payment, and test concurrent trades"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E12",
+          "title": "Estimate hourly and monthly cost for a fleet that follows a daily player curve and find the instance size that keeps cost below a given budget"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Telemetry, load tests and live updates",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Plan a load test with 500 bot clients, define the metrics and pass limits, and write a versioning rule that lets a patched server accept the previous client for two weeks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Instrument a game server to log tick duration, packets per client and dropped inputs, and chart the three metrics over a 5-minute match"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Run 200 scripted bot clients against a game server and find the player count at which tick time exceeds its budget"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Add a protocol version field and negotiation so old and new clients can both join a server, and test a mismatch is refused politely"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project demonstration",
+      "topics": [
+        "8.4"
+      ],
+      "exercise": "Demonstrate a two-player authoritative game on an emulated 150 ms, 5 percent loss link, show prediction and lag compensation working and report measured correction rates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Build the two-player game with an authoritative server and prediction, and record the number of corrections per minute at 50 and 150 ms latency"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E3",
+          "title": "Test the finished game under three network profiles (fibre, 4G, congested 3G) and tabulate input latency, packet loss and playability for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Profile the project's bandwidth and fix the largest cost with delta compression, relevancy or a lower send rate, showing before and after figures"
+        }
+      ]
+    }
+  ]
+}

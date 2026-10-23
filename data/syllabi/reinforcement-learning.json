@@ -110,5 +110,398 @@
         "Capstone: an agent for a simulated problem such as microgrid battery scheduling or traffic lights at an Accra junction, with an experiment report"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The reinforcement learning problem and environments",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Define the agent, environment, state, action and reward for three problems (irrigation, traffic lights, recommendations), and write one reward function for each with a way it could go wrong.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Run a random agent in a grid world environment for 100 episodes and record the mean return and the episode length"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Compute the discounted return of a given reward sequence for three discount factors and show how discounting changes the preferred action"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Define an irrigation scheduling environment with state, actions and a reward in the Gymnasium interface, and test it with random and rule-based agents"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Multi-armed bandits",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Derive the incremental mean update and explain why a constant step size suits non-stationary bandits, then choose an exploration method for a promotions problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Run a 10-armed bandit with epsilon-greedy and watch the action-value estimates and average reward converge"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Compare epsilon-greedy, optimistic initial values, UCB and Thompson sampling on a 10-armed testbed over 1000 steps"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Build a contextual bandit that picks which SMS reminder to send mobile money customers, and compare its reward with a random policy"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Markov decision processes and Bellman equations",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Write the MDP of a small recycling-collection robot, derive the Bellman optimality equations for it, and solve for the values by hand.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Run through a four-state MDP in the visualiser and list the transition probabilities and rewards for each action"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Solve the Bellman expectation equations for a three-state MDP and a fixed policy as a linear system, and state each value"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Find the optimal value function and policy of a five-state MDP from the Bellman optimality equations, and verify it is a fixed point"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Dynamic programming for MDPs",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Explain why policy evaluation converges, using the contraction argument, and compare policy iteration with value iteration on a pharmacy inventory problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Run iterative policy evaluation on a 4 by 4 grid world and record the value table after each sweep"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Run policy iteration and value iteration on the same grid world and compare the number of sweeps to the optimal policy"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Model the stock of a community pharmacy as an MDP with demand uncertainty, solve it by value iteration, and compare the policy with a fixed reorder rule"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Monte Carlo and temporal-difference prediction",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Compute first-visit Monte Carlo and TD(0) estimates by hand for three episodes, and explain the bias-variance difference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Estimate state values with first-visit Monte Carlo on a small random walk and track the error as episodes increase"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Compare TD(0) and Monte Carlo prediction on a random walk over many episodes for several step sizes"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Compare ordinary and weighted importance sampling for off-policy Monte Carlo evaluation and report the bias and variance of each"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "n-step methods and SARSA",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a short note on how eligibility traces unify TD and Monte Carlo, and how SARSA and Q-learning differ on the cliff-walking task.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E6",
+          "title": "Run SARSA on cliff walking and trace the path that the learned policy takes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Compare 1-step, 4-step and TD(lambda) prediction on a random walk and choose the best setting"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Run SARSA and expected SARSA on cliff walking, and explain the difference in the paths and online return"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Q-learning, planning and function approximation",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Show on paper how maximisation bias arises, and why double Q-learning removes it, using a two-state example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Run Q-learning on a grid world and watch the Q-table converge to the optimal policy"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Add model-based planning steps to Q-learning (Dyna-Q) and measure how many episodes are saved on a maze"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Solve mountain car with tile coding and semi-gradient SARSA, tune the step size, and plot the learned value function"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "The deadly triad and batch methods",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write an explanation of why bootstrapping, off-policy learning and function approximation together can diverge, using Baird's counter-example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Run the standard divergence example and watch the weights grow while the true values stay finite"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Solve a prediction problem with least-squares TD and compare it with semi-gradient TD in data efficiency"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Implement fitted Q iteration with a regression model on a logged data set, and compare its policy value with plain Q-learning"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Policy gradient and actor-critic",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Derive the policy gradient theorem step by step, and explain why a baseline lowers variance without adding bias.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Run REINFORCE on a small grid world and plot the return per episode"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Add a baseline to REINFORCE and compare the variance of the return and the learning speed across ten seeds"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Implement an actor-critic with generalised advantage estimation, tune lambda, and compare it with REINFORCE on cart-pole"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Trust regions and continuous control",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Explain in a note the clipped objective of proximal policy optimisation and why it limits policy change, and list when to prefer SAC over PPO.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Run PPO on cart-pole and plot the clipped objective's ratio and the learning curve"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Change the clipping range in PPO across three values and report the effect on stability and the final return"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Train a continuous-control agent on a pendulum task with SAC or TD3, and compare learning curves over three seeds"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Deep Q-networks and engineering practice",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write a debugging checklist for a deep RL agent that does not learn, with five checks on rewards, scale, seeds and replay.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Train a small DQN on cart-pole with experience replay and a target network and plot return against episodes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Add double DQN and prioritised replay to a baseline DQN and compare their learning curves over five seeds"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Debug a deliberately broken DQN that fails to learn, find the three faults in the reward scale, replay buffer and target update, and fix them"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Exploration, offline learning and human feedback",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Short essay: when is offline reinforcement learning better than online learning, and what are the risks of learning from human feedback?",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Add a count-based exploration bonus to Q-learning on a sparse-reward maze and compare the episodes needed to find the goal"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Train a policy from a fixed logged data set without interacting with the environment and compare it with the behaviour policy that logged the data"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Solve a hard-exploration maze with intrinsic curiosity rewards, and report the exploration coverage against epsilon-greedy"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Safety, transfer and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Capstone report: describe the problem, reward design, algorithm choice, hyperparameters, seeds, learning curves and the failure modes of an agent for a simulated microgrid or junction.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Review five reward functions in a scenario, identify the loophole an agent could exploit in each, and propose a fix"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Decide in a branching case whether a power utility should use reinforcement learning, a rule-based controller or optimisation, with evidence for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Train an agent for traffic lights at an Accra junction or a microgrid battery, compare it with a fixed rule baseline over ten seeds, and report"
+        }
+      ]
+    }
   ]
 }

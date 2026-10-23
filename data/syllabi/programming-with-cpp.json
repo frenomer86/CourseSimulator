@@ -104,5 +104,399 @@
         "Project: a bank, library or inventory system built from classes with persistent file storage"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The toolchain and your first programs",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Describe in a short paragraph what the preprocessor, compiler and linker each do to a source file before it runs.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Compile and run a hello program with warnings turned on, then introduce a missing semicolon and a missing include and read each error message"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write a program that reads a name and two numbers with cin, prints their sum with cout and uses manipulators to align a three-column table"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Split a program into a header and two source files, fix a given set of linker errors and explain the cause of each in comments"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Types, initialisation and conversion",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Predict the output of eight short snippets about integer ranges and conversions, then run them and explain each surprise.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Print the size and range of each fundamental type and show what happens when an int variable exceeds its maximum"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Define a scoped enum for days of the week and constexpr constants for tax rates, and use them in a pay calculation"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Find five narrowing and implicit conversion bugs in a given program, fix them with brace initialisation and static_cast, and check the outputs"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Operators, expressions and strings",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Evaluate by hand six expressions mixing operators and precedence, then verify each with a program.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Write a program that uses bitwise operators to set, clear and test individual flag bits in an unsigned byte"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Show integer division truncation, remainder with negative numbers and floating point rounding with six examples and explain each result"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Parse a line of comma separated student records using std::string and stringstream and print a cleaned table, handling blank and malformed fields"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Selection and repetition",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write pseudocode for a program that finds the largest of a list of numbers ending with a sentinel, then trace it with five values.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Write a switch-based menu that converts between cedis, dollars and pounds, with a default case for invalid choices"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Print a triangle of stars and a table of squares using for, while and range-based for loops, and check the line counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Find all perfect numbers below 10000 with nested loops and prove the loop invariant used, then reduce the run time by tightening the loop bounds"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Input handling and debugging",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a bug report for a given failing program describing the symptom, the cause you found and the fix.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Read integers until end of file, skipping bad tokens, and print count and mean, then test with five malformed inputs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E6",
+          "title": "Step through a buggy loop with a debugger-style visualiser, watch the variables change and find the off-by-one error"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Add assertions and a validated input loop to a grade-processing program, then locate and fix three planted bugs with the debugger"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Functions and multiple files",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw the stack frames for a call to a function that takes one parameter by value and another by reference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Write swap functions that take pointers, values and references, and show which ones change the caller's variables"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Create a multiple-file program with a header, an implementation and a main file for a temperature library, and build it without errors"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Design an overloaded area function set with default arguments and a static counter of calls, and verify the counter and outputs across 12 calls"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Recursion, templates and the call stack",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Trace the recursive calls of Tower of Hanoi for three disks and list all seven moves.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Step through recursive factorial and Fibonacci in the visualiser and note the call stack depth at the deepest point"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Write a function template for maximum and a lambda sort comparator, and use them on integers, doubles and strings"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Trigger a stack overflow with runaway recursion, measure the maximum safe depth, and rewrite the function iteratively to remove the limit"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Arrays, vectors and simple algorithms",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Explain in a paragraph why reading past the end of an array is undefined behaviour and what symptoms it can produce.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Fill an array of 10 marks, find the average and highest, then deliberately read out of bounds and observe what the std::array version does"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Use std::vector and the algorithm library to sort, search and remove duplicates from a list of 20 student numbers"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Trace binary search and insertion sort step by step on 10 values, then implement both and compare comparison counts for sorted and reversed input"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Pointers and dynamic memory",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Draw a memory diagram of a pointer to an int and a pointer to an array, showing addresses and the values that dereferencing gives.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E6",
+          "title": "Follow a pointer through an array with pointer arithmetic in the visualiser and record the address and value at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Allocate and free a dynamic array with new and delete, then write a version with a leak and one with a dangling pointer and explain each"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Rewrite a program using raw pointers to use references where possible, justifying each remaining pointer and checking for null"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Data structures by hand and memory safety",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Compare in a short table a linked list and a dynamic array for insertion, lookup and memory use.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E6",
+          "title": "Insert, delete and reverse nodes of a singly linked list in the visualiser, watching pointers change at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Implement a linked list and a dynamic array with unique_ptr ownership so no manual delete is needed, and test with 100 inserts"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Find and fix four planted memory errors, a leak, a double free, an overflow and a use-after-free, using sanitizer-style reports"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Classes, constructors and operators",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Design on paper a Fraction class with its members and describe which operators it should overload and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Write a Student class with private data, public methods and an interface and implementation split, and exercise it in main"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Write a class that owns a dynamic array with a destructor, copy constructor and copy assignment, and show the rule of three prevents a double free"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Build a Money or Fraction class with overloaded arithmetic, comparison and stream operators, and test all operators with 15 cases"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Static members, inheritance and polymorphism",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Draw a class hierarchy for shapes with a virtual area function and describe what a base class pointer does at run time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Add a static counter of objects and a const member function to a class, and show the count after creating and destroying five objects"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build an abstract Shape base class with Circle and Rectangle subclasses and compute total area through a vector of base pointers"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E6",
+          "title": "Trace virtual dispatch through a vtable in the visualiser, then find and fix a missing virtual destructor that leaks memory"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Templates and the capstone project",
+      "topics": [
+        "8.6",
+        "8.7"
+      ],
+      "exercise": "Write a short design document for a library or inventory system, listing its classes, their responsibilities and the file format.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Write a class template for a simple Stack and use it with ints and strings, then replace it with std::vector and compare"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.7",
+          "engine": "E1",
+          "title": "Create the classes of a library system with add, search and borrow functions, and test them with a script of 20 operations"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.7",
+          "engine": "E1",
+          "title": "Complete a bank, library or inventory system with file persistence, templates, smart pointers and error handling, and show it survives a restart"
+        }
+      ]
+    }
   ]
 }

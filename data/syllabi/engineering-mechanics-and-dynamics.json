@@ -1,0 +1,525 @@
+{
+  "slug": "engineering-mechanics-and-dynamics",
+  "description": "The mechanics every robot, vehicle and machine rests on: forces in equilibrium, motion of particles and rigid bodies, energy and momentum, Lagrangian methods and vibration. Students solve problems with vectors and matrices and simulate mechanisms and oscillators numerically in the lab.",
+  "modelledOn": [
+    "Hibbeler, Engineering Mechanics: Statics and Dynamics",
+    "Meriam and Kraige, Engineering Mechanics: Dynamics",
+    "Rao, Mechanical Vibrations",
+    "Spong, Hutchinson and Vidyasagar, Robot Modeling and Control (dynamics chapters)"
+  ],
+  "outcomes": [
+    "Draw free-body diagrams and solve 2D and 3D static equilibrium problems, including trusses, frames and friction.",
+    "Describe the motion of particles and rigid bodies with velocity and acceleration vectors in several coordinate systems.",
+    "Apply Newton-Euler equations, work-energy and impulse-momentum methods to particles and rigid bodies.",
+    "Derive equations of motion with Lagrange equations for systems with generalised coordinates.",
+    "Analyse free, damped and forced vibration and predict natural frequency, damping ratio and resonance.",
+    "Integrate equations of motion numerically and judge accuracy, stability and energy conservation."
+  ],
+  "units": [
+    {
+      "title": "Vectors, forces and moments",
+      "weeks": "1",
+      "topics": [
+        "Vector algebra for mechanics: dot and cross products, components and unit vectors",
+        "Forces, moment of a force about a point and an axis, couples",
+        "Equivalent force systems: resultant force and couple, wrench",
+        "SI units, dimensional analysis and significant figures in engineering calculations",
+        "Modelling assumptions: particle, rigid body, point load and idealised supports"
+      ]
+    },
+    {
+      "title": "Equilibrium of rigid bodies and structures",
+      "weeks": "2-3",
+      "topics": [
+        "Free-body diagrams and support reactions: pin, roller, fixed and cable",
+        "Equations of equilibrium in two and three dimensions; two-force and three-force members",
+        "Plane trusses: method of joints, method of sections and zero-force members",
+        "Frames and machines: multi-body free-body diagrams and internal pin forces",
+        "Dry friction: impending slip, wedges, screws and belt friction",
+        "Centroids, distributed loads, and shear force and bending moment diagrams for beams"
+      ]
+    },
+    {
+      "title": "Kinematics of particles",
+      "weeks": "4",
+      "topics": [
+        "Rectilinear motion: position, velocity, acceleration and their graphs",
+        "Projectile motion with and without air drag",
+        "Curvilinear motion in Cartesian, normal-tangential and polar coordinates",
+        "Relative and dependent motion of two particles",
+        "Numerical differentiation and integration of measured motion data"
+      ]
+    },
+    {
+      "title": "Kinetics of particles: force, energy and momentum",
+      "weeks": "5",
+      "topics": [
+        "Newton second law for particles in rectilinear and curvilinear motion",
+        "Work, kinetic energy and power; the work-energy principle",
+        "Conservative forces and potential energy; energy conservation",
+        "Linear impulse and momentum; collisions and the coefficient of restitution",
+        "Angular momentum of a particle and motion under a central force"
+      ]
+    },
+    {
+      "title": "Kinematics of rigid bodies",
+      "weeks": "6-7",
+      "topics": [
+        "Planar rigid-body motion: translation and fixed-axis rotation",
+        "General plane motion and the instantaneous centre of zero velocity",
+        "Relative velocity and acceleration between points on a rigid body",
+        "Rotating reference frames and the Coriolis acceleration",
+        "Three-dimensional rotation: rotation matrices, Euler angles and angular velocity vector",
+        "Linkages: four-bar mechanism, slider-crank and the Grashof condition"
+      ]
+    },
+    {
+      "title": "Kinetics of rigid bodies: Newton-Euler dynamics",
+      "weeks": "8-9",
+      "topics": [
+        "Mass moment of inertia, radius of gyration and the parallel-axis theorem",
+        "Newton-Euler equations of planar motion: translation, rotation and general plane motion",
+        "Work and energy for rigid bodies; rolling without slipping",
+        "Impulse and momentum for rigid bodies; eccentric impact",
+        "Rolling, sliding and the transition between them on a rough surface",
+        "Three-dimensional dynamics: inertia tensor, principal axes and Euler equations"
+      ]
+    },
+    {
+      "title": "Analytical mechanics",
+      "weeks": "10",
+      "topics": [
+        "Generalised coordinates, degrees of freedom and holonomic constraints",
+        "Principle of virtual work and generalised forces",
+        "Lagrange's equations from kinetic and potential energy",
+        "Worked systems: pendulum, double pendulum, cart-pole and a two-link arm",
+        "From Lagrange equations to the manipulator equation M(q)q-double-dot + C(q,q-dot)q-dot + g(q) = tau"
+      ]
+    },
+    {
+      "title": "Vibrations and oscillators",
+      "weeks": "11-12",
+      "topics": [
+        "Free vibration of a single degree-of-freedom mass-spring system; natural frequency",
+        "Viscous damping: underdamped, critically damped and overdamped response; logarithmic decrement",
+        "Forced harmonic vibration: amplitude ratio, phase, resonance and the quality factor",
+        "Base excitation, transmissibility and vibration isolation; vehicle suspension on rough roads",
+        "Two degree-of-freedom systems: natural frequencies, mode shapes and the vibration absorber",
+        "Rayleigh's energy method and the mechanical-electrical analogy"
+      ]
+    },
+    {
+      "title": "Simulation of mechanical systems",
+      "weeks": "13",
+      "topics": [
+        "Writing equations of motion as first-order state-space ordinary differential equations",
+        "Euler, midpoint and fourth-order Runge-Kutta integration; step size and truncation error",
+        "Stability, stiffness and energy drift; symplectic integration for conservative systems",
+        "Simulating a pendulum, a slider-crank and a mass-spring-damper and validating against closed forms",
+        "Mini project: simulate a mechanism of your choice and compare model with measured data"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Vectors, forces and moments",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compute the moment of a 400 N force about three points, replace a force system by a resultant and couple, and check units of every answer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Compute dot and cross products of three given force vectors in the maths lab and use them to find an angle and a moment"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Reduce a system of four forces on a plate to one resultant force and couple and verify the moment about a second point"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a function returning the moment of any force about any axis in 3D, then test it on ten cases including parallel and perpendicular forces"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Free-body diagrams and equilibrium",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Draw free-body diagrams for a ladder, a crane boom and a roof truss, solve the reactions, and find member forces in the truss by joints and sections.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Set up and solve the three planar equilibrium equations for a loaded simply supported beam as a matrix system and check the reaction sum"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Assemble the joint equations of a 9-member truss as a matrix, solve for member forces and label each member tension or compression"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Write a truss solver taking joints, members and loads, find the zero-force members automatically and compare with the method of sections"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Frames, friction and beams",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Analyse a three-pin frame, find the minimum friction coefficient for a ladder not to slip, and draw shear and moment diagrams for a beam with a distributed load.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Find the angle at which a block slips on an inclined plane for three friction coefficients and plot the friction force against angle"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Plot shear force and bending moment along a beam with a point load and uniform load, and locate the maximum moment"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Compute the tension ratio for a belt around a pulley with the capstan equation and find the wraps needed to hold a 500 N load"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Motion of a particle",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Plot the trajectory of a ball with and without drag, express a car motion on a curved road in normal-tangential components, and differentiate noisy position data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Plot the trajectory of a projectile for three launch angles and read off the range and maximum height, checking against the formulas"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Simulate projectile motion with quadratic drag using small time steps and compare range against the drag-free case for five speeds"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Estimate velocity and acceleration from noisy position samples using finite differences and a smoothing filter, and quantify the error against the true curve"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Force, energy and momentum for particles",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Solve a block-spring-incline problem three ways (Newton, energy, impulse) and check the three agree, then analyse a collision of two trolleys with restitution 0.6.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Use the work-energy principle to find the speed of a block after sliding down a rough incline, and compare with a numerical simulation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Simulate a one-dimensional collision for restitution values 0 to 1 and plot the kinetic energy lost against the coefficient"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Integrate the orbit of a particle under an inverse-square central force, verify conservation of angular momentum and energy, and find the period"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Rigid-body planar kinematics",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Locate the instantaneous centre of a rolling wheel and a sliding ladder, and find velocities of points on a connecting rod by the relative velocity method.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Find the instantaneous centre of a rolling wheel and use it to compute the velocity of four points on the rim"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Solve the relative velocity and acceleration equations for a slider-crank at one crank angle and check against a numerical derivative"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Compute and plot the piston velocity and acceleration over a full crank revolution and find the crank angle of maximum piston speed"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Rotating frames, 3D rotation and linkages",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compose two rotations in both orders and show they differ, find the Coriolis acceleration of a point moving along a spinning arm, and classify a four-bar linkage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Build rotation matrices about x and z, multiply them in both orders and apply each to a vector to see that order matters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Compute the Coriolis and centripetal terms for a bead sliding on a rotating rod and plot each against radial position"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Solve the position of a four-bar linkage across a full crank turn, classify it with the Grashof condition and plot the coupler curve"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Inertia and planar Newton-Euler equations",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compute the moment of inertia of a composite plate with the parallel-axis theorem, then find the acceleration of a rolling cylinder on an incline.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Compute the moment of inertia of a composite shape from rectangles and circles with the parallel-axis theorem and check the symbolic result"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Simulate a cylinder rolling down an incline from the Newton-Euler equations and compare its acceleration with the closed-form value"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Compare a solid cylinder, a hollow cylinder and a sphere rolling down the same incline, and explain the finishing order from the energy split"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Impulse, impact and 3D dynamics",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Analyse a bat striking a ball with angular impulse, find the centre of percussion, and write the inertia tensor of a rectangular box.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Compute the angular velocity of a rod struck at one end using angular impulse and find its centre of percussion"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Simulate a ball that slides and then rolls on a rough surface and plot the contact velocity until pure rolling begins"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E7",
+          "title": "Compute the inertia tensor of a box, find its principal axes by eigen-decomposition and explain the unstable rotation about the intermediate axis"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Lagrangian mechanics",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Derive equations of motion for a pendulum on a moving cart using Lagrange equations and show the result takes the manipulator form.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Use symbolic algebra to derive the equation of motion of a simple pendulum from its Lagrangian and linearise it for small angles"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Derive the double pendulum equations symbolically and extract the mass matrix and gravity terms for the manipulator form"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Simulate the cart-pole from its Lagrangian, check energy conservation without friction and compare with the 2-link arm drooping under gravity"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Free and damped vibration",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Find natural frequency and damping ratio of a mass on a spring from a measured decay trace, and plot the frequency response for three damping ratios.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Plot the free response of a mass-spring system for three stiffnesses and read off the period, then compare with the natural frequency formula"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Estimate damping ratio from successive peaks of a decay trace with the logarithmic decrement and overlay the fitted response"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E2",
+          "title": "Build the electrical analogue of a damped mass-spring system as a series RLC circuit, sweep frequency and match resonance and bandwidth with the mechanical model"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Isolation, multiple degrees of freedom and energy methods",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Design a suspension spring and damper for a minibus on a rough road to keep transmissibility below 0.5 at 10 Hz, then find the modes of a two-mass system.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Plot transmissibility against frequency ratio for three damping ratios and mark the region where isolation actually helps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E7",
+          "title": "Solve the eigenvalue problem of a two-mass, three-spring chain, report the natural frequencies and sketch each mode shape"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Simulate a quarter-car model driving over a series of speed bumps and choose stiffness and damping to minimise body acceleration within a travel limit"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Numerical simulation and mini project",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Present the mini project: model, state equations, integrator choice, validation against a closed form or measurement, and a note on energy error.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Integrate a mass-spring system with Euler and fourth-order Runge-Kutta at the same step size and plot the error of each against the exact solution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Simulate an undamped pendulum for 100 periods with Euler, RK4 and a symplectic method, and plot energy drift for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E1",
+          "title": "Simulate your chosen mechanism, validate it against a closed-form case, and report convergence as the time step is halved three times"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,505 @@
+{
+  "slug": "security-risk-management-and-governance",
+  "description": "How organisations decide what to protect, how much risk to accept and how to prove their security works: assets and threats, risk assessment, policy, controls, continuity, people and audit. Students work through branching case studies where they gather evidence, make decisions and are scored against a rubric.",
+  "modelledOn": [
+    "ISO/IEC 27001, 27002 and 27005 information security management standards",
+    "NIST SP 800-30 and the NIST Cybersecurity Framework",
+    "Whitman and Mattord, Management of Information Security",
+    "ISACA CISM and CRISC certification bodies of knowledge"
+  ],
+  "outcomes": [
+    "Build an asset inventory and a threat and vulnerability picture for an organisation, with business impact ratings.",
+    "Carry out qualitative and quantitative risk assessments and choose and justify a risk treatment.",
+    "Write a security policy hierarchy that is enforceable, proportionate and mapped to a recognised standard.",
+    "Select and map controls from ISO 27002, NIST and CIS frameworks on cost-benefit grounds.",
+    "Develop a business continuity and disaster recovery plan with defined recovery objectives and test it by exercise.",
+    "Plan and report an audit of security controls and communicate findings to a board."
+  ],
+  "units": [
+    {
+      "title": "Security management and governance foundations",
+      "weeks": "1",
+      "topics": [
+        "Security goals (confidentiality, integrity, availability) and the role of the security function and the CISO",
+        "Governance versus management; board duties and the three lines model",
+        "Aligning security with strategy: budgets, key performance indicators and key risk indicators",
+        "Legal and regulatory setting: Ghana Data Protection Act 2012, Cybersecurity Act 2020, Bank of Ghana directives and GDPR",
+        "Standards landscape: ISO/IEC 27001 and 27002, NIST CSF, NIST SP 800-53 and COBIT"
+      ]
+    },
+    {
+      "title": "Asset and threat identification",
+      "weeks": "2-3",
+      "topics": [
+        "Asset inventory and information classification; identifying crown-jewel assets",
+        "Business impact analysis: criticality, dependencies and valuation",
+        "Threat actors, motives and capabilities; threat intelligence and MITRE ATT&CK as a shared vocabulary",
+        "Vulnerability sources: scanners, penetration test reports, CVE and CVSS scoring",
+        "Scenario building and attack trees; third-party and supply chain exposure"
+      ]
+    },
+    {
+      "title": "Risk assessment methods",
+      "weeks": "4-6",
+      "topics": [
+        "Risk concepts: likelihood, impact, inherent and residual risk, appetite and tolerance",
+        "Qualitative assessment with risk matrices and their known weaknesses",
+        "Structured methods: the ISO 27005 process, NIST SP 800-30 and OCTAVE",
+        "Quantitative assessment: single and annualised loss expectancy, FAIR and Monte Carlo loss distributions",
+        "Risk treatment: avoid, reduce, transfer (including cyber insurance) or accept; the risk register",
+        "Risk communication, aggregation and reporting to the board"
+      ]
+    },
+    {
+      "title": "Security policy and standards",
+      "weeks": "7",
+      "topics": [
+        "The document hierarchy: policy, standard, procedure and guideline; writing enforceable policy",
+        "Core policies: acceptable use, access control, passwords, remote work and bring-your-own-device",
+        "Data classification and handling, retention, privacy policy and data protection impact assessment",
+        "Policy lifecycle: approval, exceptions, communication and review",
+        "The ISMS: ISO 27001 clauses, scope, statement of applicability and the Plan-Do-Check-Act cycle"
+      ]
+    },
+    {
+      "title": "Controls and control frameworks",
+      "weeks": "8-9",
+      "topics": [
+        "Control types: preventive, detective, corrective and deterrent; administrative, technical and physical",
+        "ISO 27002 and NIST SP 800-53 control families, the CIS Controls and mapping between frameworks",
+        "Selecting controls by cost-benefit and risk reduction; defence in depth",
+        "Identity and access governance: least privilege, segregation of duties and joiner-mover-leaver processes",
+        "Vendor and cloud risk: third-party assessment, shared responsibility and service level agreements",
+        "Incident response governance: roles, playbooks, notification duties and lessons learned"
+      ]
+    },
+    {
+      "title": "Business continuity and disaster recovery",
+      "weeks": "10",
+      "topics": [
+        "The business continuity lifecycle (ISO 22301): MTPD, RTO and RPO from the business impact analysis",
+        "Continuity strategies: backups, hot, warm and cold sites, cloud failover and manual workarounds; power and connectivity risks in West Africa",
+        "Disaster recovery plans, runbooks and call trees",
+        "Exercising plans: walkthroughs, tabletop exercises and full failover tests; measuring results",
+        "Crisis management and communication with customers, regulators and the media"
+      ]
+    },
+    {
+      "title": "Security awareness and human factors",
+      "weeks": "11",
+      "topics": [
+        "Social engineering: phishing, pretexting, SIM-swap and mobile money fraud",
+        "Insider threat: malicious and negligent insiders, monitoring and its ethics",
+        "Why people bypass controls: usable security, behavioural models and nudges",
+        "Designing awareness programmes and measuring them: phishing simulations and behaviour metrics",
+        "Security culture, reporting and a just culture"
+      ]
+    },
+    {
+      "title": "Audit and assurance",
+      "weeks": "12-13",
+      "topics": [
+        "Audit types and roles: internal, external and certification audits; independence and the audit charter",
+        "The audit process: planning, evidence collection, sampling, control testing and findings",
+        "Compliance regimes: PCI DSS, SOC 2 and ISO 27001 certification; governance, risk and compliance tooling",
+        "Metrics, continuous monitoring and maturity models",
+        "Capstone: governance review of a regional bank or utility, producing a risk register and a board report"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Governance, law and standards",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Read a summary of the Ghana Data Protection Act and write a one-page memo listing the duties it places on a micro-lender holding customer records.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Match ten security incidents in a short case to the confidentiality, integrity or availability goal each one breaks."
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Decide which Ghanaian and international legal duties apply to a mobile-money agent network after a customer data leak, citing evidence in the case file."
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Choose five key risk indicators and targets for a bank's security programme, justify each, and defend the budget request against a sceptical board member."
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Assets, impact and threats",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Build an asset register for a district hospital (patient records, lab systems, power, staff) and classify each asset and its owner.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Classify 15 assets of a rural bank into public, internal, confidential or restricted and name the owner of each."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Map the dependencies of a payroll service on systems, vendors and people, and mark the single points of failure."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Profile the likely threat actors for a telecom operator from intelligence reports, ranking them by capability and motive, and choose which to plan against."
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Vulnerabilities, scenarios and supply chain",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Take a penetration test report with 30 findings and explain how you would prioritise them using CVSS together with asset value and exposure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Rank twelve scanner findings by CVSS score and by actual business exposure, and explain where the two orders disagree."
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E9",
+          "title": "Draw an attack tree for stealing funds from a mobile money platform, with at least four branches and a cost estimate for each leaf."
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Assess the exposure from a compromised software supplier, gather evidence from logs and contracts, and recommend actions within the case time limit."
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Risk concepts and qualitative assessment",
+      "topics": [
+        "3.1",
+        "3.2"
+      ],
+      "exercise": "Rate ten risks on a five-by-five matrix, then show with two examples why the matrix can rank a smaller risk above a larger one.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Distinguish inherent and residual risk for a record-keeping system before and after two controls, and place both on a matrix."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Score eight risks in a clinic scenario with the risk matrix, then rescore after management changes the impact scale, and report the ranking changes."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Set a risk appetite statement and tolerance thresholds for a savings and loans company, then test it against four proposed projects."
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Structured and quantitative risk assessment",
+      "topics": [
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Compute the annualised loss expectancy for a ransomware scenario at a hospital and decide whether a backup system costing GHS 120000 per year is justified.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compute single loss expectancy, annualised rate of occurrence and annualised loss expectancy for three scenarios and compare them with control costs."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Follow the ISO 27005 process step by step on a case, producing the context, risk identification, analysis and evaluation record."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Run a Monte Carlo simulation of annual loss with frequency and severity distributions, and report the mean and the 95th percentile for the board."
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Risk treatment and communication",
+      "topics": [
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Prepare a five-slide briefing for a board that asks for approval of a risk treatment plan, including what you recommend the board accept.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Choose avoid, reduce, transfer or accept for six risks in a case and write a one-line reason for each."
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Build a risk register with owner, treatment, deadline and residual score for a utility's top ten risks, and defend it against challenge."
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Aggregate related risks across three departments into a board view, avoiding double counting, and answer scripted board questions scored by a rubric."
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Writing and running security policy",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Draft an acceptable use policy and a bring-your-own-device standard for a large technical college, and identify which clauses are enforceable and how.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Sort 15 statements into policy, standard, procedure or guideline and rewrite two that are too vague to enforce."
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Draft a remote-work and password policy for a startup, then handle three scripted exception requests and record the decisions."
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Prepare the scope and statement of applicability for an ISO 27001 ISMS in a given organisation, justifying each excluded control."
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Control types, frameworks and selection",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Map ten controls from the CIS Controls to ISO 27002 and NIST SP 800-53 families, and note where the mapping is not one to one.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Classify twenty controls as preventive, detective, corrective or deterrent, and as administrative, technical or physical."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Map eight given controls across ISO 27002, NIST SP 800-53 and CIS Controls and identify two gaps in an organisation's current set."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Choose controls for a fixed budget that reduce the most annualised loss, comparing at least six options by cost-benefit and justifying the final mix."
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Access governance, vendors and incident governance",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Review a vendor questionnaire from a cloud provider and list the five answers that most concern you and the evidence you would ask for.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Find the segregation of duties conflicts in a table of eight user roles in a finance system and propose a fix for each."
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Assess a third-party mobile money aggregator from its audit report and contract, decide whether to onboard, and list the conditions to impose."
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Lead the response to a data breach: assign roles, decide notification timing to regulators and customers, and be scored on decisions and evidence handling."
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Continuity and disaster recovery",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a one-page continuity plan for a district pharmacy distributor that must keep orders flowing during a multi-day power and network outage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Set the RTO and RPO for five business services from impact figures in a case, and explain how each was chosen."
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Compare hot, warm and cold site options and cloud failover for a bank branch network, choosing one on cost and recovery time."
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Run a tabletop exercise for a data centre fire with timed injects, make recovery decisions, and be scored against the target RTO and communication plan."
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "People, social engineering and culture",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Design a four-week awareness campaign for mobile money agents about SIM-swap fraud, with a measure of success for each week.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Identify the social engineering techniques used in five short fraud call transcripts and mark the point where a staff member could have stopped it."
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Analyse click and report rates from three rounds of a phishing simulation, plot the trend and recommend a change to the training."
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Investigate a suspected insider leaking customer data, weigh monitoring against staff privacy, and decide on evidence and escalation under time pressure."
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Audit planning, testing and compliance",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Prepare an audit plan for the access control domain of a microfinance company, with objectives, scope, sample sizes and the evidence to request.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Decide which of six reporting lines compromise an internal auditor's independence in a case, and explain each decision."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Test a sample of 25 user-access changes against the approval policy, record exceptions, and write graded findings."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Prepare a mock PCI DSS assessment for a payment processor: choose scope, gather evidence, identify gaps and negotiate a remediation plan."
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Metrics, maturity and the governance review",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present the capstone: a risk register, control gaps, a roadmap and a board report for a regional bank or utility, defended against questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Place an organisation on a five-level maturity scale for six security domains using the evidence in the case file."
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Chart eight security metrics over four quarters, flag the ones that signal a deteriorating control, and recommend actions."
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Complete a governance review of a regional bank: finalise the risk register, choose priorities and present to a simulated board scored on rigour and clarity."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,519 @@
+{
+  "slug": "cloud-architecture-and-solution-design",
+  "description": "How to turn business needs into a justified cloud design: sizing, availability, disaster recovery, cost, service levels, migration and governance. Students sketch architectures, size and price them in the cloud console, and defend them in costed design reviews.",
+  "modelledOn": [
+    "Well-Architected Framework guidance from the major cloud providers",
+    "Bass, Clements and Kazman, Software Architecture in Practice",
+    "Cloud architect and solutions architect associate certification syllabi"
+  ],
+  "outcomes": [
+    "Translate business requirements into measurable quality-attribute scenarios and size a workload from its demand profile.",
+    "Select compute, storage, database and network services for a workload and justify each choice against the well-architected pillars.",
+    "Calculate composite availability and design a multi-zone and disaster-recovery solution that meets stated RPO and RTO targets.",
+    "Build and compare cost models using on-demand, committed and spot pricing, including data transfer and operational costs.",
+    "Plan a migration and landing zone for an existing system and present a costed architecture proposal in a design review."
+  ],
+  "units": [
+    {
+      "title": "Architecture foundations and well-architected pillars",
+      "weeks": "1",
+      "topics": [
+        "The architect role: stakeholders, concerns, views and architecture decision records",
+        "Reference architectures: three-tier web application, static site plus API, event-driven pipeline, data lake",
+        "Well-architected pillars: operational excellence, security, reliability, performance efficiency, cost optimisation, sustainability",
+        "Quality attributes and trade-offs: utility trees and scenario-based evaluation",
+        "Shared responsibility model across IaaS, PaaS, SaaS and serverless"
+      ]
+    },
+    {
+      "title": "Requirements and workload sizing",
+      "weeks": "2-3",
+      "topics": [
+        "Functional and non-functional requirements captured as measurable scenarios",
+        "Workload characterisation: request rate, peak-to-average ratio, data growth, read/write mix",
+        "Capacity estimation: Little's law and back-of-envelope sizing of vCPU, memory, IOPS and bandwidth",
+        "Demand forecasting for a mobile-money or e-commerce workload with seasonal peaks",
+        "Constraints: data residency under the Ghana Data Protection Act, user latency, intermittent connectivity",
+        "Choosing service models: virtual machine, container, serverless and managed database"
+      ]
+    },
+    {
+      "title": "Compute, storage, network and data design patterns",
+      "weeks": "4-5",
+      "topics": [
+        "Compute patterns: stateless web tier, autoscaling groups, containers versus functions",
+        "Storage choices: object, block and file; storage classes and lifecycle policies",
+        "Database selection: relational, key-value and document stores; caching tiers, read replicas and sharding",
+        "Network design: virtual networks, subnets, routing, NAT, layer-4 versus layer-7 load balancers, CDN",
+        "Asynchronous decoupling with queues, topics and event buses",
+        "Identity and access design: least privilege, roles, federation and service identities"
+      ]
+    },
+    {
+      "title": "Availability, regions and disaster recovery",
+      "weeks": "6-7",
+      "topics": [
+        "Failure domains: instance, rack, availability zone and region; correlated failures",
+        "Designing for high availability: redundancy, health checks, failover, multi-zone active-active",
+        "Availability arithmetic: serial and parallel components, nines and composite availability",
+        "Disaster recovery strategies: backup and restore, pilot light, warm standby, multi-site",
+        "RPO and RTO derived from business impact; backup testing and runbooks",
+        "Failure injection and game days for validating a design"
+      ]
+    },
+    {
+      "title": "Cost modelling and pricing models",
+      "weeks": "8",
+      "topics": [
+        "Pricing models: on-demand, reserved and committed use, spot, free tiers, per-request billing",
+        "Total cost of ownership versus on-premises; capital versus operating expenditure",
+        "Data egress, inter-region transfer and other hidden costs",
+        "Cost allocation: tagging, budgets, showback and unit economics such as cost per transaction",
+        "Right-sizing and the FinOps cycle of inform, optimise and operate"
+      ]
+    },
+    {
+      "title": "Service levels: SLIs, SLOs and SLAs",
+      "weeks": "9",
+      "topics": [
+        "Service level indicators, objectives and agreements; choosing indicators for latency, availability and correctness",
+        "Error budgets and burn-rate alerting",
+        "Reading provider SLAs: service credits, exclusions and measurement windows",
+        "Observability design: metrics, logs, traces and alert thresholds",
+        "Load and performance testing against an SLO"
+      ]
+    },
+    {
+      "title": "Migration strategies and landing zones",
+      "weeks": "10-11",
+      "topics": [
+        "The migration strategies: rehost, replatform, refactor, repurchase, retire and retain",
+        "Discovery and dependency mapping; planning migration waves",
+        "Landing zone design: account structure, guardrails, hub-and-spoke network and central logging",
+        "Data migration: online transfer versus offline appliances, cut-over and rollback plans",
+        "Hybrid connectivity: site-to-site VPN, dedicated links and DNS design",
+        "Cloud adoption: skills, operating model and a cloud centre of excellence"
+      ]
+    },
+    {
+      "title": "Security, compliance and governance by design",
+      "weeks": "12",
+      "topics": [
+        "Threat modelling a cloud architecture with STRIDE",
+        "Encryption at rest and in transit; key management and rotation",
+        "Policy as code, organisation-level guardrails and compliance baselines",
+        "Multi-tenancy and isolation; sustainability and carbon-aware region choice"
+      ]
+    },
+    {
+      "title": "Architecture proposals and design reviews",
+      "weeks": "13",
+      "topics": [
+        "Structuring a proposal: context, options considered, decision, risks and costs",
+        "Architecture diagrams that communicate: context, container and deployment views",
+        "Running a design review: checklists, risk register and scoring rubric",
+        "Presenting a costed recommendation to non-technical decision makers"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Architects, pillars and reference architectures",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Read a short case about a Ghanaian online retailer, list its stakeholders and concerns, and write two architecture decision records that trade off cost against reliability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw a three-tier web application reference architecture for a school fee portal and label each tier with a cloud service category"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Review a short case in the scenario engine and score the proposed design against each of the six well-architected pillars with written evidence"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Build a utility tree for a mobile-money platform, rank scenarios by importance and risk, and decide which design choice each scenario drives"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Requirements and demand profiles",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Convert a vague brief for a ride-hailing app into ten measurable scenarios, then estimate peak requests per second from daily users and a peak-to-average ratio.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Rewrite five vague requirements from a case brief as measurable scenarios with a stimulus, response and response measure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Use Little's law to size concurrent sessions and vCPUs for a service with a given arrival rate, response time and per-request CPU cost"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Write a script that generates a week of request traffic with daily and weekly seasonality and reports the peak-to-average ratio and the p99 load"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Forecasting, constraints and service models",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Forecast three years of growth for a mobile-money workload, list the legal and latency constraints, and choose between VM, container and serverless with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.6",
+          "engine": "E12",
+          "title": "Deploy the same small web API as a virtual machine and as a serverless function in the console and compare setup effort and idle cost"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Fit a growth curve to twelve months of transaction counts, forecast three years ahead and compute the storage and bandwidth needed at each year end"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Work a branching case on data residency and latency, choosing regions and replication for a health records workload and scoring each decision against a rubric"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Compute, storage and database choices",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Pick compute, storage class and database for four workloads (image upload, ledger, session cache, analytics) and justify each in one paragraph.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E12",
+          "title": "Create an object storage bucket, upload sample files and add a lifecycle rule moving objects to a cheaper class after thirty days"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.1",
+          "engine": "E12",
+          "title": "Configure an autoscaling group behind a load balancer with a CPU target and show scale-out under a generated load spike"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E5",
+          "title": "Compare a relational schema with a key-value layout for an order service, run the same read and write mix, and recommend one with measured evidence"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Networks, decoupling and identity",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Design a virtual network with public and private subnets for a three-tier application and define least-privilege roles for each tier.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E12",
+          "title": "Build a virtual network with one public and one private subnet, place a web server and a database, and verify which can reach the internet"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E12",
+          "title": "Insert a queue between an order API and a worker function, then show that a worker outage does not lose orders"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E12",
+          "title": "Audit a given over-permissive IAM policy set, replace it with least-privilege roles per service, and prove access is denied for forbidden actions"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Failure domains and availability arithmetic",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compute the composite availability of a design with a load balancer, two web servers and a database, then redesign it to reach 99.95 percent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Compute the availability of two serial and two parallel component chains using given component availabilities and convert each result to yearly downtime"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E12",
+          "title": "Place web servers in two zones behind a load balancer, fail one zone in the console and measure the failover time"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Map the failure domains of a given architecture, identify every single point of failure and redraw it to survive the loss of a whole zone"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Disaster recovery and failure injection",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "For a bank branch app with stated RPO and RTO, choose a disaster recovery strategy, estimate its cost and write the recovery runbook.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Derive RPO and RTO for three business services from a stated cost of downtime per hour and select a suitable recovery tier for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Implement a pilot-light recovery: replicate a database to a second region, then promote it and redirect traffic after a simulated region loss"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E12",
+          "title": "Run a game day: inject instance, zone and dependency failures into a deployed design, record the impact on the SLO and fix the weakest link"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Cost models and pricing",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Build a spreadsheet-style cost model of a workload under three pricing models and report where egress and storage surprise the budget.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E12",
+          "title": "Use the pricing calculator to price a fixed workload on demand, with a one-year commitment and on spot capacity, and rank the three totals"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E12",
+          "title": "Model a media-serving workload including egress and inter-region replication and identify which line item dominates the monthly bill"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Compute a five-year total cost of ownership for an on-premises server room versus a cloud design with net present value and a break-even point"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Service levels and observability",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Define three SLIs and SLOs for a payment API, compute the monthly error budget and write alert rules based on burn rate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Choose suitable SLIs and SLO targets for an online booking service from a list of candidate metrics and justify each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Compute the monthly error budget for a 99.9 percent SLO, plot budget consumption across a given incident log and flag the burn-rate alert times"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Compare two provider SLAs for the same service, compute expected service credits for a given outage history and decide whether the SLA matches the business need"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Migration strategy and landing zones",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Classify the ten applications of a ministry data centre into the migration strategies and sketch the landing zone that will receive them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Classify eight applications into rehost, replatform, refactor, repurchase, retire or retain using the facts in a given inventory"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E9",
+          "title": "Draw the dependency map of a given application estate and group the applications into three migration waves with reasons"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E12",
+          "title": "Create a landing zone with separate accounts, central logging, network hub-and-spoke and a guardrail policy, then show a violating deployment being blocked"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Data migration, hybrid links and adoption",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write a cut-over plan with rollback for moving a 20 TB database to the cloud over a limited link, including the connectivity choice.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Calculate transfer time for a 20 TB dataset over a 100 Mbps link and compare it to an offline transfer appliance schedule"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E12",
+          "title": "Set up a site-to-site VPN between an on-premises network and a cloud virtual network and verify private name resolution across it"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Work a branching cut-over case where replication lags, deciding go, delay or rollback at each step, scored on data loss and downtime"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Security, policy and sustainability by design",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Threat-model a cloud payment architecture with STRIDE and propose controls for the three highest risks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Enable encryption at rest on a bucket and a volume with a customer-managed key and show access fails after the key is disabled"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Annotate a data flow diagram of a web application with trust boundaries and list one STRIDE threat for each boundary crossing"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E12",
+          "title": "Write organisation-level guardrail policies that deny public buckets and unapproved regions, then test them against a set of compliant and non-compliant deployments"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Proposals, reviews and capstone",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Prepare and defend a costed architecture proposal for a regional agricultural marketplace in a mock design review with a rubric.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E9",
+          "title": "Draw a context, container and deployment diagram for a given system, with every arrow labelled by protocol and purpose"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Review a classmate-style proposal in the scenario engine using the checklist, record risks in a register and score it against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.1",
+          "engine": "E12",
+          "title": "Deploy a proposed architecture in the console, load-test it, and present the measured availability, latency and monthly cost against the proposal targets"
+        }
+      ]
+    }
+  ]
+}

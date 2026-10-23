@@ -107,5 +107,401 @@
         "Capstone: implementing and benchmarking optimisers on a real model with a written analysis"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Learning as optimisation and loss surfaces",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Write the empirical risk for linear and logistic regression, derive their gradients, and classify the stationary points of a given two-variable function using the Hessian.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Compute the gradient and Hessian of a two-variable quadratic by hand and check the values with symbolic algebra at three points"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Classify the stationary points of a given function as minimum, maximum or saddle using the Hessian eigenvalues, and mark them on a contour plot"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Plot the loss surface and level sets of logistic regression on a small data set, and describe how regularisation reshapes the minimum"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Convex sets and convex functions",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Proof exercise: show that three given sets are convex and that the sum of two convex functions is convex, and test one function by its Hessian.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Test whether five given one-variable functions are convex by plotting them and checking the second derivative's sign"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Check the convexity of squared, logistic, hinge and absolute losses numerically using the Jensen inequality on random point pairs"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Prove with symbolic algebra that a given regularised loss is convex, and show the operation rules used at each step"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Smoothness, strong convexity and subgradients",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Compute the Lipschitz constant and strong convexity parameter of a least-squares objective from its data matrix, and the resulting condition number.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Compute a subgradient of the L1 norm and the hinge loss at three points, including a non-differentiable point"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Compute smoothness, strong convexity and condition number of a least-squares problem from the eigenvalues of its data matrix"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Solve a small quadratic program for a portfolio-style problem with a solver and verify the solution against the optimality conditions"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Gradient descent and step sizes",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Derive the step size 1/L from the quadratic upper bound, and compare constant step and backtracking line search on a given least-squares problem.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Run gradient descent on a quadratic function with three step sizes and plot which converge, oscillate or diverge"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Implement backtracking line search with the Armijo condition and compare it with a fixed step on a logistic regression problem"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Verify empirically the rate of gradient descent on a smooth convex and a strongly convex problem, and compare with the theoretical bounds"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Conditioning, proximal methods and coordinate descent",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Explain with a two-variable example why poor conditioning slows gradient descent, and how feature scaling or preconditioning changes the iterations needed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Plot the zig-zag path of gradient descent on an ill-conditioned quadratic before and after scaling the features"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Implement ISTA for lasso on synthetic data and show how the number of nonzero coefficients changes along the regularisation path"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Compare coordinate descent and gradient descent on a lasso problem for 1000 features, in iterations and time to a fixed accuracy"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Stochastic gradient descent",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Show that a mini-batch gradient is unbiased, derive its variance, and explain the noise ball for a constant step size.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Run SGD with a batch size of 1 on a linear regression problem and plot the loss curve against the full gradient descent curve"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Compare batch sizes 1, 16 and 256 on the same problem, with and without shuffling, in loss against epochs and against time"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Run SGD with constant and decreasing step sizes, show the noise ball and the convergence under 1/t decay, and fit the observed rates"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Variance reduction and training with limited memory",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Discuss when variance reduction pays off and when plain SGD is enough, and plan how to train a model on a data set that does not fit in memory.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Implement SVRG on a small logistic regression problem and compare its loss curve with plain SGD"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Train with small and large batches on the same model and compare their test accuracy to see the effect of large-batch training"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E1",
+          "title": "Train a classifier on a data set larger than the memory limit, using streaming mini-batches, and report accuracy against memory used"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Momentum and adaptive optimisers",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Write the update rules of heavy-ball, Nesterov, AdaGrad, RMSProp and Adam side by side, and explain when each is likely to help.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Add momentum to gradient descent on an ill-conditioned quadratic and compare the iterations needed with the plain method"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement AdaGrad, RMSProp and Adam from scratch and compare their paths on a Rosenbrock-style function"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Compare five optimisers on the same small network task with tuned learning rates, and write a comparison of speed, final loss and sensitivity"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Constrained optimisation and duality",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Solve a constrained problem with Lagrange multipliers and then with KKT conditions, verifying complementary slackness and the zero duality gap.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Solve a two-variable problem with one equality constraint using Lagrange multipliers and plot the constraint with the contours"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Apply the KKT conditions to a problem with two inequality constraints, find which constraints are active, and confirm the solution graphically"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Derive the dual of a small quadratic program, compare the primal and dual values, and check Slater's condition for strong duality"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "SVMs, constrained methods and allocation problems",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Formulate the allocation of a fertiliser budget across five farms with yield curves as a constrained problem, and solve it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Apply projected gradient descent to minimise a quadratic function over a box constraint and plot the path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Train a linear support vector machine by solving its dual on 2-D data, and show the support vectors and margin"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Allocate a fertiliser budget across five farms with diminishing yield curves by penalty and projected methods, and compare the solutions with a solver"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Newton and quasi-Newton methods",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Do two Newton steps by hand on a two-variable function and compare per-iteration cost and memory with gradient descent for models of 100 and 1 million parameters.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Run Newton's method on a one-variable function and watch the error square at each step, then damp it where it diverges"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Fit a logistic regression by iteratively reweighted least squares and compare the iterations with gradient descent"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compare gradient descent, BFGS and L-BFGS on a 1000-parameter problem by iterations, time and memory, and say which wins and why"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Optimisation in deep learning",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Explain in a short note how warm-up, cosine decay and gradient clipping each address a training problem, and set a schedule for a given model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Train a small network with a constant, a step-decay and a cosine learning rate and plot the three loss curves"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Compare weight initialisation schemes on a deep network and measure the gradient norm per layer to show vanishing and exploding gradients"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Use the learning-rate range test and warm-up on a deeper network, find the stable range, and explain the loss spikes and plateaus seen"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Diagnostics, hyperparameters and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Capstone report: benchmark at least four optimisers on a real model, with seeds, learning-curve plots, hyperparameter search results and a written analysis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Check an analytic gradient against a finite-difference gradient and find the bug in a deliberately faulty implementation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Tune the learning rate and weight decay with grid search and random search under the same budget and compare the best results"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Benchmark SGD with momentum, Adam and L-BFGS on a real model over five seeds, plot learning curves, and write a short analysis of the results"
+        }
+      ]
+    }
   ]
 }

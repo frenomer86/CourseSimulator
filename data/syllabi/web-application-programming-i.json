@@ -103,5 +103,397 @@
         "Project: a responsive multi-page site with an interactive feature, published to a static host"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "How the Web works and first HTML",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Short exercise: describe the steps from typing a URL to seeing a page, then write a one-page profile of yourself with headings, paragraphs and emphasis.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Request a page in the browser tools, read the HTTP request and response headers and note the status code, content type and size"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Write a valid HTML page with doctype, head, title, charset and body, and check it displays correctly in the preview"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Fix an HTML page with five nesting and attribute errors, and add headings, paragraphs and comments so the outline is correct"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Semantic sections and a first site",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Plan the pages of a small business site on paper and say which semantic element each region uses.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Rewrite a page made only of div elements using header, nav, main, article, aside and footer, and check the outline"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Validate a page with an HTML validator, fix every reported error and inspect its structure with developer tools"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Build a three-page site for a Kumasi tailoring shop with a shared navigation, consistent structure and no validation errors"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Lists and tables",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Mark up your weekly timetable as an accessible table and a navigation menu as a nested list.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Write an ordered list of recipe steps, an unordered shopping list and a description list of three terms with definitions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Build a market price table with a caption, header and footer rows and a colspan total row, and display it correctly"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Mark up a school timetable with rowspan for double lessons and scope attributes so a screen reader announces each cell correctly"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Links and images",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Choose an image format and size for five images on a news page and write alt text for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Link between three pages with relative URLs, add a fragment link to a section, and a mailto and tel link"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Insert a figure with caption and write alt text for a photograph, a decorative icon and an informative chart"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Serve responsive images with srcset and picture, compress them and reduce a page from 3 MB to under 500 KB while keeping them sharp"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Forms",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Design a registration form for a youth club on paper, listing each field's input type and validation rule.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Build a contact form with text, email, select, checkbox and radio inputs and a submit button, then submit it and read the data"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Add required, pattern, min and max validation to a sign-up form for a Ghanaian phone number, age and email, and test good and bad inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E1",
+          "title": "Compare GET and POST by submitting the same form both ways, inspecting the request, and explain which suits a login form and a search box"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "CSS basics",
+      "topics": [
+        "5.1",
+        "5.2"
+      ],
+      "exercise": "Style a plain page with a stylesheet and explain which selector won in three conflicting rules.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Link an external stylesheet and style headings, links and a class using type, class and id selectors"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Fix a stylesheet where three rules conflict by working out specificity, and use a pseudo-class for hover and a pseudo-element for a quotation mark"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Set a colour palette and a web font with rem units and check text contrast, then change the base font size and watch everything scale"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Box model and positioning",
+      "topics": [
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Draw the box model of a card with margin, border and padding values measured in pixels, then reproduce it in CSS.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Style a card with margin, border and padding and use box-sizing so that its total width is exactly 300 pixels"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Build a header that stays sticky with a fixed floating button, using positioning and z-index so nothing is hidden"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Debug a layout where elements overlap and overflow, using developer tools to find the margin collapse and display issues, and fix each"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Flexbox, grid and animation",
+      "topics": [
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Sketch a page layout and decide which parts use flexbox and which use grid, with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Arrange a navigation bar with flexbox, space the items evenly and centre a hero heading both horizontally and vertically"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Build a three-column product grid with CSS grid that collapses to one column on a narrow screen, with consistent gaps"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Add a hover transition, a keyframe animation and CSS variables for a theme, and organise the stylesheet into labelled sections"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Responsive design",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Test a page at 320, 768 and 1200 pixels and list five problems with the original and the fix applied.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Add the viewport meta tag and make a fixed-width page fluid using percentages and max-width, then test on a narrow screen"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Write media queries for narrow screens, landscape orientation and dark mode, and test each with the browser's emulation"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Reduce a page's size and requests for a throttled 3G connection using compression and lazy loading, and report the load time before and after"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Media and embedded content",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Plan the media for a school website with a data cost budget and write a note about autoplay.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Embed an audio and a video element with controls, two source formats and a captions track, and check they play"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Embed a map and a video in iframes with sandbox and lazy loading, and explain what each attribute protects against"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Draw an inline SVG logo and an animated canvas chart of monthly rainfall, and compare how each scales on a high-resolution screen"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "JavaScript and the DOM",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Problem set: trace ten small JavaScript snippets by hand and then check each result in the console.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Declare variables, an array and an object in JavaScript, loop over them, and print the results to the console"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Write functions with conditionals and loops to compute a grade average and debug a failing one using the console and breakpoints"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Select elements by id and class, create and remove list items and change styles in response to a button, using only DOM methods"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Events, forms and storage",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Describe the event flow for a button click, including bubbling, and design the data stored for a to-do list.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Add click, input and keyboard event listeners to show a live character count and respond to the Enter key"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Validate a sign-up form in JavaScript with inline error messages and save the draft in local storage so it survives a reload"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build a dynamic form where users add and remove rows, validate each row, and persist the data to local storage with tests for bad input"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "APIs and the final project",
+      "topics": [
+        "8.6",
+        "8.7"
+      ],
+      "exercise": "Project plan: sketch the pages, the interactive feature and the deployment steps for a responsive site published to a static host.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Fetch a JSON file of products with fetch and promises and render the items as a list on the page, with a message if the request fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Fetch weather data from a public API, show it in cards, handle loading and error states and cache the last result for offline use"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.7",
+          "engine": "E1",
+          "title": "Build a responsive multi-page site with an interactive feature, check accessibility and speed, and publish it to a static host"
+        }
+      ]
+    }
   ]
 }

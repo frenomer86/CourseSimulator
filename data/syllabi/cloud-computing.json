@@ -100,5 +100,394 @@
         "Capstone: a documented, secured, cost-estimated cloud deployment with monitoring and an SLA"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Roots of cloud computing and its enabling technologies",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Short essay: trace one idea (time-sharing, virtualisation or utility pricing) from its origin to a present-day cloud service, and say why it became practical only when it did.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E12",
+          "title": "Launch one virtual machine in the console, note its vCPU, memory and boot time, and stop it to see the metered usage change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Measure round-trip latency from an Accra office network to cloud regions in South Africa, Europe and the US, and tabulate which region suits an interactive app"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E12",
+          "title": "Cost the same web workload on three owned servers versus pay-as-you-go instances over 12 months, then find the monthly utilisation at which owning becomes cheaper"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Cloud characteristics and service models",
+      "topics": [
+        "2.1",
+        "2.2"
+      ],
+      "exercise": "Table exercise: for IaaS, PaaS, SaaS and serverless, list who manages each layer (hardware to data), and give one Ghanaian business example that suits each model.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E12",
+          "title": "Trigger an autoscaling rule by raising load on a one-VM service and observe rapid elasticity add instances, then check the measured-service usage report"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E12",
+          "title": "Deploy the same small web app as a VM, as a PaaS app and as a serverless function, and compare setup steps, cost and what you must patch"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Advise a fintech start-up in a branching case on IaaS versus PaaS versus serverless, justifying each decision with control, cost and staffing evidence to score on the rubric"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Deployment models and hands-on provisioning",
+      "topics": [
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Design review: for a district hospital, a bank and a school, choose public, private, hybrid or community cloud and defend the choice in a paragraph each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Launch a virtual machine, attach a firewall rule for port 80, and open the web page it serves from the console"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Deploy a sample app to a PaaS, then call a serverless function that returns JSON, and record the latency of each call"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E3",
+          "title": "Connect an on-premises office network to a cloud VPC over a VPN in a hybrid topology, and verify that private addresses reach each other without overlap"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Reference architecture, compute, storage and networking",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draw a labelled five-layer cloud reference architecture and place ten named services (VM, object storage, CDN, load balancer and others) on the correct layer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E12",
+          "title": "Create an object-storage bucket, upload three files, and compare it with attaching a block volume to a VM for the same data"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E12",
+          "title": "Build a VPC with public and private subnets, a load balancer and two web VMs, and test that traffic reaches the private VMs only through the balancer"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E3",
+          "title": "Debug a given cloud network whose private VMs cannot reach the internet or a database, by tracing routes, security groups and DNS records, and fix every fault"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Design methodologies and the three-tier application",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Assess a small existing app against the twelve-factor list and the well-architected pillars, and write a prioritised list of five changes with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E12",
+          "title": "Make a web VM stateless by moving its uploaded files to object storage, then replace the VM and confirm the files remain available"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E12",
+          "title": "Build a three-tier application with a load-balanced web tier, an app tier and a managed database, and verify end-to-end requests from the console"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E12",
+          "title": "Inject the failure of one availability zone into your three-tier deployment and redesign it so the service stays up with no data loss, then rerun the failure"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Shared responsibility, identity and network security",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Case write-up: a leaked access key caused a public bucket. Identify which controls from shared responsibility, IAM and network security would have prevented it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E12",
+          "title": "Create an IAM user with a read-only policy for one bucket and confirm that delete and upload are refused"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E12",
+          "title": "Place a database in a private subnet, expose a bastion host with a restricted source address, and verify access paths with security group rules"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E12",
+          "title": "Audit a given account with an open storage bucket, a root key in use and a wide security group, then fix each issue using least privilege and re-audit"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Data security, compliance and incident response",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Map a Ghana Data Protection Act requirement to three technical controls, and write a one-page checklist for storing customer records in a cloud region.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Enable encryption at rest on a bucket and a volume, turn on versioning, and restore a deleted object from a previous version"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Restrict a customer-data bucket to one region, enable key rotation and a backup rule, then show that cross-region copies are blocked by policy"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Respond to a suspected cloud breach in a branching scenario by collecting log evidence, containing the account and notifying the regulator, scored against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Service selection and the Service Measurement Index",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Build a weighted decision matrix with at least six SMI attributes to choose a provider for a campus learning platform, and justify each weight.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Score two cloud services on seven SMI attributes from 1 to 5 and compute their unweighted totals in a small table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Apply weights to a decision matrix for a fintech API, compute weighted scores for three providers, and test how the ranking changes when security weight doubles"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Advise a company locked into one provider on an exit plan in a case scenario, weighing portability, open standards and migration cost against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Cloud economics: pricing, capacity and cost control",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Estimate the monthly bill of a small web service in dollars and cedis, showing compute, storage, egress and a reserved-instance saving, and state your exchange-rate assumption.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E12",
+          "title": "Open the pricing calculator, price one VM, 100 GB of storage and 50 GB of egress for a month, and record each line item"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E12",
+          "title": "Set an autoscaling policy for a traffic spike on a ticket-sales site, replay the load, and compare cost and response time with a fixed fleet"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E12",
+          "title": "Cut the monthly bill of a given over-provisioned deployment by 30 percent using right-sizing, reserved capacity and budgets, while keeping response times under 300 ms"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Multitenancy and monitoring",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Design note: describe three tenancy models for a school-fees SaaS (shared schema, schema per tenant, database per tenant), and compare isolation, cost and onboarding effort.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E12",
+          "title": "Create a CloudWatch-style dashboard of CPU and request count for one VM and set an alarm that fires above 80 percent CPU"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Run two tenants on one shared service, generate a noisy tenant load, and apply a per-tenant rate limit so the quiet tenant keeps its latency"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E12",
+          "title": "Diagnose a slow application from metrics, logs and traces supplied by the console, identify the failing component, and define alerts that would have caught it earlier"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "AWS, Azure and Google Cloud platforms",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Fill a comparison table of six core services (compute, object storage, relational database, serverless, identity, monitoring) across the three providers, and note one naming trap.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E12",
+          "title": "Complete a guided AWS-style walkthrough that starts an EC2 instance, creates an S3 bucket and reads a CloudWatch metric, and record each resource ID"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E12",
+          "title": "Use Azure-style Blob Storage, a Function and Azure SQL to build a small API that stores uploads, and test it from the console"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E12",
+          "title": "Build a Google-style stack with Compute Engine, Cloud Storage and Cloud SQL secured by IAM roles, and prove each role can do only its own task"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Multi-provider mapping and portability",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a short technical note comparing the same application deployed on two providers: setup time, price, features used, and what would stop you moving it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E12",
+          "title": "Match twelve services from one provider to their equivalents on another using the mapping table, and check each match against its description"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E4",
+          "title": "Run command-line commands to create a VM and a bucket, then write the same resources as a Terraform file and apply it in the terminal"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E12",
+          "title": "Deploy one three-tier application to two provider consoles, record cost, latency and setup effort for each, and recommend one with evidence"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Service management and capstone deployment",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Capstone report: deliver the architecture diagram, security controls, monitoring plan, SLA target and a cost estimate in cedis for a documented cloud deployment.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Compute the yearly downtime allowed by 99.9, 99.95 and 99.99 percent availability targets and the service credit due for a given outage"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E12",
+          "title": "Configure backups and a standby copy in a second region, fail over the primary on purpose, and measure recovery time and data loss"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E12",
+          "title": "Build a capstone deployment with a load balancer, scaling policy, IAM roles, encrypted storage, monitoring alarms and a budget alert, then write its SLA target"
+        }
+      ]
+    }
   ]
 }

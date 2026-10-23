@@ -96,5 +96,397 @@
         "Project: simulate an epidemic (SIR), a pendulum or a circuit and validate against known solutions"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Errors and floating-point arithmetic",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Explain with one example why adding 0.1 ten times does not give exactly 1 in floating point arithmetic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Classify the error in six given computations as modelling, measurement, truncation or round-off, and compute the size of each where data are given"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Compute machine epsilon by halving a number in a loop, print the result for single and double precision and compare with the IEEE 754 value"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Show catastrophic cancellation in the quadratic formula for roots of very different size, then rewrite it stably and compare relative errors"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Conditioning, Taylor series and setup",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Write a reusable function library plan listing the numerical routines you will build this course and their input and output conventions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute the relative error propagated through four arithmetic expressions with given input uncertainties and check against interval bounds"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Plot the Taylor polynomials of sin(x) of order 1, 3, 5 and 7 against the true function and tabulate the error at x equals 1"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E1",
+          "title": "Write a tested numerical routines module with a convergence-checking helper and a function that estimates the observed order of convergence"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Root finding I: bisection, fixed point and Newton",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Show by hand two steps of Newton's method for x squared minus 2 and compare with the true root.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Apply bisection to find the root of cos(x) minus x on an interval, tabulate the error against the bound and confirm the iteration count"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Test three rearrangements of the same equation as fixed-point iterations and use the contraction condition to explain which converge"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Implement Newton's method, show quadratic convergence on a simple root and linear convergence on a double root, and fix the slow case"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Root finding II: secant, polynomials and applications",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Write a half-page comparison of bisection, Newton and secant for use inside a financial spreadsheet, covering robustness and speed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement the secant method and false position, and compare their iteration counts on one equation to a tolerance of 1e-8"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Evaluate a degree-6 polynomial using Horner's scheme, find its roots with deflation and compare the work with naive evaluation"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E1",
+          "title": "Find the interest rate that equates the present value of a loan repayment schedule to its principal, using a hybrid method that never diverges"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Direct methods for linear systems",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Perform Gaussian elimination by hand on a 3 by 3 system with small pivot and show why pivoting changes the answer.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Solve a 3 by 3 system by Gaussian elimination with partial pivoting, listing the row operations and checking the residual"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Compute the LU factorisation of a 4 by 4 matrix and use it to solve three right-hand sides, comparing flops with repeated elimination"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Solve Hilbert systems of size 4 to 12, compute their condition numbers and show how the error grows far beyond the residual"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Banded systems and least squares",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Explain in a paragraph why tridiagonal systems from a heat equation are solved in linear time rather than cubic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Solve a 6 by 6 tridiagonal system with the Thomas algorithm and compare the result and the operation count with full elimination"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Fit a straight line to 10 noisy points by normal equations and by QR, and compare the coefficients and residual norms"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Fit a degree-8 polynomial with normal equations and with QR, show the loss of accuracy through the condition number, and explain which to prefer"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Iterative methods and eigenvalues",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compute by hand two Jacobi iterations for a diagonally dominant 3 by 3 system and compare with the exact solution.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Run Jacobi and Gauss-Seidel on a diagonally dominant 4 by 4 system, plot the error for 20 iterations and compare the rates"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Find the dominant eigenvalue of a 4 by 4 matrix with the power method, then the smallest with the inverse power method, and compare with a library result"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Compute PageRank for a graph of six web pages using the power method with damping, and show how the ranking changes with the damping factor"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Interpolation",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Sketch by hand why interpolating a bell-shaped curve with equally spaced points at high degree oscillates near the ends.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Build the Lagrange and Newton interpolating polynomials through five points and show they give the same curve and the same error at a test point"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Interpolate Runge's function with 11 equally spaced nodes and with Chebyshev nodes, plot both and compare the maximum errors"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Construct natural and clamped cubic splines through 8 measured points, check continuity of the second derivative and compare their end behaviour"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Curve fitting and approximation",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Decide which model suits a rainfall record, linear, polynomial or exponential, and justify your choice with a plot and a residual sketch.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Fit a line and a quadratic to 12 data points, plot both and compute the sum of squared residuals to pick the better fit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Draw a Bezier curve through four control points, split it with de Casteljau's algorithm and verify the curve passes through its end points"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Fit exponential and polynomial models to monthly sales data, hold out the last three months, and judge which model forecasts better"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Numerical differentiation and integration",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Compute by hand the trapezoidal and Simpson's rule approximations for an integral over four intervals and compare the errors.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Estimate the derivative of sin(x) at 1 with forward, backward and central differences for step sizes from 0.1 down to 1e-12, and plot the error"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Compare the composite trapezoidal and Simpson's rules for an integral at 4, 8 and 16 intervals and check the observed error ratios against theory"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Implement Romberg integration and an adaptive Simpson routine, and compare the number of function evaluations needed to reach a given tolerance"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Gaussian quadrature and applications",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Explain in a paragraph when a Gaussian rule with few points beats a composite rule with many points.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Apply 2, 3 and 5-point Gauss-Legendre rules to an integral and compare the errors with Simpson's rule at the same cost"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Integrate a measured river discharge curve of 24 hourly readings to find total volume, and estimate the uncertainty from the reading error"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Compute probabilities from a probability density function that has no closed form integral using adaptive quadrature, and verify that the total probability is one"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Initial value problems for ODEs",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Calculate three steps of Euler's method for y prime equals y with y(0) equal 1 and compare each with the exact value.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Solve y prime equals y with Euler's method at step sizes 0.2, 0.1 and 0.05, then show the global error halves as the step is halved"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Implement RK4 and compare its accuracy and cost with Euler on a test problem, then add an adaptive step size controller"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Implement a fourth-order Adams-Bashforth predictor with an Adams-Moulton corrector, start it with RK4, and compare against RK4 for the same accuracy"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Systems, stiffness and project",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Write the project plan for simulating an epidemic, listing the model, parameters, methods and tests you will use to validate it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Convert a second-order pendulum equation into a first-order system and solve it with RK4, checking that energy is conserved over 10 periods"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Solve a stiff test equation with explicit Euler and implicit Euler at several step sizes, plot stability and explain which steps are stable"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Simulate an SIR epidemic with RK4, validate it against a limit case and the final size relation, and write a short interpretation for a health officer"
+        }
+      ]
+    }
   ]
 }

@@ -111,5 +111,405 @@
         "Capstone: a MATLAB-style end-to-end simulation of a cellular link with fading, coding, modulation and multiple access"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "History, architecture and spectrum",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Write a short timeline from 1G to 5G naming one defining technology change at each generation, and explain why spectrum must be licensed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Build a timeline table of 1G through 5G listing the defining air interface and data rate of each generation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw a cellular network architecture diagram showing a mobile, base station, core network and the handover between two base stations"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Compare licensed and unlicensed spectrum bands used in Ghana for three described services, and justify which band suits each"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Other wireless systems and the simulation environment",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Compare satellite, WLAN, WPAN and microwave links for extending coverage to a remote village, and recommend one with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compare the coverage and data rate of satellite, WLAN and WPAN links for a described rural scenario, and recommend one"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Set up the simulation environment and generate a noisy sine wave signal, then recover its frequency with a Fourier transform"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E3",
+          "title": "Model a rural coverage scenario in the network simulator comparing a microwave backhaul link with a satellite link on latency"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Modulation and link budgets",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Compute the link budget for a given transmit power, antenna gain and path loss, and determine the margin above the receiver sensitivity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Plot the constellation diagrams for ASK, FSK, PSK and QAM and compare their bandwidth efficiency for the same data rate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Compute a link budget from transmit power, antenna gain, path loss and noise figure, and determine whether the link closes for a given receiver sensitivity"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Pass a digital signal through a raised-cosine pulse shaping filter and show the eye diagram closing as intersymbol interference increases with excess bandwidth"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Propagation models",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Compare the free space, two-ray and log-distance path loss models for the same link distance, and explain why they disagree.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Compute received power at three distances using the free space, two-ray and log-distance path loss models and compare the results"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Compute coherence bandwidth and coherence time from given delay spread and Doppler spread, and classify the channel as fast or slow fading"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Generate a Rayleigh-faded signal envelope and measure its level crossing rate and average fade duration at a chosen threshold"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Wideband channels and fading simulation",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Classify three described channels as flat or frequency-selective and as slow or fast fading, with the reasoning for each classification.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Model a wideband channel with a tapped delay line and plot its power delay profile from the tap values"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Simulate Rayleigh fading with the Jakes model for a given mobile speed and carrier frequency, and classify the resulting channel as flat or frequency selective"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Compare a simulated slow fading channel with a fast fading channel at two different mobile speeds and explain the practical effect on a voice call"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "The cellular concept and capacity",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compute the signal-to-interference ratio for a given cluster size, and determine the smallest cluster size that still meets a required ratio.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Compute the reuse distance for a given cell radius and cluster size, and verify it against the formula relating the two"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Compute the signal-to-interference ratio for co-channel cells at a given cluster size and determine if it meets a stated quality target"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Compare the capacity gain of sectoring and cell splitting on the same coverage area and recommend one approach for a given traffic growth"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Handover, power control and cellular design",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Design a cellular layout for a Ghanaian town given a traffic forecast and coverage target, justifying the cell size and cluster size chosen.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E9",
+          "title": "Diagram a handover between two base stations as a mobile moves, marking the point where power control reduces interference to the neighbouring cell"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Design a cellular layout for a described Ghanaian town meeting a given traffic forecast and coverage target, and justify the cell count"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E3",
+          "title": "Simulate a mobile moving between two simulated base stations and verify the handover completes without dropping the active call"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Traffic theory and QoS",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Use the Erlang B formula to compute the number of channels a cell needs for a given offered load and blocking probability target.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Compute offered traffic in erlangs for a cell from a given number of subscribers and average call duration"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Use the Erlang B and Erlang C formulas on the same offered load and compare the required channels for a blocked-calls-cleared versus a queued system"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Dimension a cell's channels for a target blocking probability under a given traffic forecast, and verify the result against the Erlang B table"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Detection and error performance",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Derive the symbol error probability for BPSK in AWGN at a given signal-to-noise ratio, and compare it with a simulated result.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Implement a correlation receiver for a BPSK signal in noise and show it correctly detects the transmitted bits above a given signal-to-noise ratio"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Compute theoretical bit error probability for BPSK, QPSK and 16-QAM at the same signal-to-noise ratio and compare bandwidth versus power efficiency"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compare average bit error rate in a Rayleigh fading channel against an AWGN channel at the same average signal-to-noise ratio and explain the gap"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Synchronisation and Monte Carlo simulation",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Run a Monte Carlo bit error rate simulation for a given modulation and compare the result with the theoretical curve, explaining any gap.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Estimate the timing offset of a received signal against a known reference and show the effect of correcting it on the recovered symbols"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Estimate a simple channel's gain from a known pilot sequence and use it to equalise a distorted received signal"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Run a Monte Carlo simulation of BPSK bit error rate over a range of signal-to-noise ratios and overlay it on the theoretical curve"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Channel capacity and coding",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Explain, with a diagram, how Viterbi decoding finds the most likely transmitted sequence for a convolutionally coded, noisy received sequence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute Shannon capacity for an AWGN channel and for a fading channel with the same average signal-to-noise ratio, and explain the capacity loss"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Encode a bit sequence with a Hamming code, introduce a single-bit error, and show the code detects and corrects it"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Encode a bit sequence with a convolutional code and decode a noisy version with the Viterbi algorithm, and compare it with the original sequence"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Simulate hybrid ARQ retransmission for a packet corrupted by noise, and measure how many retransmissions are needed before successful decoding"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Diversity, MIMO and OFDM",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Explain how maximal-ratio combining improves on selection diversity for two received copies of the same faded signal.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Simulate selection diversity and maximal-ratio combining over two Rayleigh-faded branches and compare the resulting bit error rate"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Simulate a 2 by 2 MIMO spatial multiplexing link and compare its capacity with a single-antenna link at the same signal-to-noise ratio"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Simulate an OFDM link with a cyclic prefix over a frequency-selective channel and show it removes intersymbol interference that a single-carrier link would suffer"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Multiple access and the capstone link simulation",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Compare FDMA, TDMA, CDMA and OFDMA for the same number of users and total bandwidth, and justify which access scheme suits a dense urban cell.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E7",
+          "title": "Simulate three users sharing a channel with FDMA and TDMA and compare the data rate each user gets under both schemes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E7",
+          "title": "Simulate CDMA spreading for two users with different codes and show a RAKE receiver separates them despite sharing the same frequency and time slot"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E7",
+          "title": "Build an end-to-end simulation of a cellular link combining fading, coding, modulation and a chosen multiple access scheme, and report the resulting bit error rate"
+        }
+      ]
+    }
   ]
 }

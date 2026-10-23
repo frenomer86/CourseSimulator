@@ -1,0 +1,505 @@
+{
+  "slug": "operations-research-and-decision-modelling",
+  "description": "The mathematics of better decisions: linear and integer programming, network flows, decision analysis, queueing and simulation. Students formulate real problems, solve them by hand and with solvers, and interpret the answers for managers.",
+  "modelledOn": [
+    "Hillier and Lieberman, Introduction to Operations Research",
+    "Taha, Operations Research: An Introduction",
+    "Winston, Operations Research: Applications and Algorithms"
+  ],
+  "outcomes": [
+    "Formulate a word problem as a linear or integer programme with clear variables, objective and constraints.",
+    "Solve linear programmes graphically and with the simplex method, and interpret dual values and sensitivity ranges.",
+    "Model and solve transportation, assignment, shortest path, maximum flow and project network problems.",
+    "Analyse decisions under risk and uncertainty with decision trees, expected value, information value and utility.",
+    "Predict waiting-line performance and evaluate systems by Monte Carlo and discrete-event simulation, then present a recommendation."
+  ],
+  "units": [
+    {
+      "title": "Modelling and linear programming formulation",
+      "weeks": "1",
+      "topics": [
+        "What operations research is: models, decision variables, objective, constraints and the modelling cycle",
+        "Formulating linear programmes: product mix, diet, blending and transport problems",
+        "Graphical solution in two variables: feasible region and corner points",
+        "Standard and slack forms; basic feasible solutions",
+        "LP assumptions: proportionality, additivity, divisibility and certainty"
+      ]
+    },
+    {
+      "title": "The simplex method and solvers",
+      "weeks": "2-3",
+      "topics": [
+        "Simplex tableau and pivoting: entering and leaving variables, ratio test",
+        "Degeneracy, cycling and Bland's rule; detecting unbounded and infeasible problems",
+        "Artificial variables: the two-phase method and Big-M",
+        "Revised simplex, computational complexity and an overview of interior-point methods",
+        "Solving with software: SciPy and PuLP models, reading solver status and output"
+      ]
+    },
+    {
+      "title": "Duality and sensitivity analysis",
+      "weeks": "4",
+      "topics": [
+        "Primal-dual relationship; weak and strong duality",
+        "Complementary slackness and the dual simplex method",
+        "Shadow prices and reduced costs as economic quantities",
+        "Sensitivity ranging of objective coefficients and right-hand sides",
+        "Changes after optimality: adding a constraint or a new variable"
+      ]
+    },
+    {
+      "title": "Network models",
+      "weeks": "5-6",
+      "topics": [
+        "Transportation problem: northwest corner, least cost and Vogel starting methods; MODI optimality test",
+        "Assignment problem and the Hungarian method",
+        "Shortest paths: Dijkstra's algorithm, Bellman-Ford and the LP view",
+        "Maximum flow and minimum cut: Ford-Fulkerson and the max-flow min-cut theorem",
+        "Minimum-cost flow and minimum spanning trees",
+        "Project networks: CPM and PERT as optimisation models"
+      ]
+    },
+    {
+      "title": "Integer programming",
+      "weeks": "7",
+      "topics": [
+        "Integer, binary and mixed formulations: knapsack, facility location and scheduling",
+        "LP relaxation and why rounding fails",
+        "Branch and bound: bounding, pruning and search strategies",
+        "Cutting planes: Gomory cuts and branch and cut",
+        "Logical conditions with binary variables and big-M constraints"
+      ]
+    },
+    {
+      "title": "Decision analysis",
+      "weeks": "8-9",
+      "topics": [
+        "Decisions under uncertainty: maximin, maximax, Hurwicz and minimax regret",
+        "Expected monetary value and decision trees with rollback",
+        "Expected value of perfect and sample information; Bayes' revision",
+        "Utility theory and risk attitudes; building a utility curve",
+        "Multi-criteria decisions: weighted scoring and the analytic hierarchy process",
+        "Goal programming and Pareto efficiency"
+      ]
+    },
+    {
+      "title": "Queueing, simulation and inventory",
+      "weeks": "10-11",
+      "topics": [
+        "Queueing structure: arrival and service processes and Kendall notation",
+        "M/M/1 and M/M/c steady-state measures; Little's law",
+        "Finite queues and M/G/1 with the Pollaczek-Khinchine formula",
+        "Monte Carlo simulation: pseudo-random numbers and inverse-transform sampling",
+        "Discrete-event simulation: event list, clock advance and output analysis with confidence intervals",
+        "Inventory models: economic order quantity, reorder point and the newsvendor problem"
+      ]
+    },
+    {
+      "title": "Modelling case studies with solvers",
+      "weeks": "12-13",
+      "topics": [
+        "Case: staff rostering and timetabling for a clinic or school",
+        "Case: moving produce from farms to markets as a transport and vehicle-routing problem",
+        "Case: staffing a bank or mobile-money agent point using queueing and simulation",
+        "Validation, verification and communicating model results to managers",
+        "Project: build, solve and defend a model of a local problem"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Formulating linear programmes",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Formulate four word problems as linear programmes (including a cocoa-processing product mix) and solve the two-variable one graphically.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Plot the constraints of a two-variable product mix, shade the feasible region, and find the best corner point by evaluating the objective"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E7",
+          "title": "Formulate a diet problem with five foods and four nutrient constraints and check the model by testing a hand-picked feasible plan"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Examine a case where a stated LP model breaks proportionality or divisibility, and decide how to repair or replace the model with justification"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "The simplex method",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Solve a three-variable maximisation by the simplex method by hand and then a minimisation using Big-M, recording every tableau.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E6",
+          "title": "Step through the simplex tableau for a two-constraint problem, choosing the entering and leaving variables at each pivot"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Solve a minimisation with greater-than constraints using the two-phase method and verify that the final objective matches the graphical result"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Construct a degenerate LP, show a cycling risk with a naive rule and resolve it with Bland's rule in the tableau"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Solvers and implementation",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Code a blending model in Python with a solver library, then extend it with a new constraint and report how the plan changes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Solve a product mix LP with a solver library and print the objective, variable values and the solver status"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Model a 20-variable feed blending problem in code, generate the data from a table and explain which constraints are binding"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement a basic revised simplex on a small LP and compare iteration counts and run time with a library solver on random instances"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Duality and sensitivity",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write the dual of a production LP, read shadow prices from the solver, and advise a manager whether to buy more of a scarce resource.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Write the dual of a given primal LP and confirm that both optimal objective values agree using a solver"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Compute allowable ranges for each objective coefficient and right-hand side of a solved LP and state when the optimal basis changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Add a new product and a new constraint to a solved LP, test by reduced cost and dual feasibility whether re-solving is needed, and verify"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Transportation and assignment",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Plan the shipment of fertiliser from three depots to five markets and assign six drivers to six routes at least cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Find a starting plan for a 3 by 4 transportation problem with the least-cost and Vogel methods and compare the two costs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Solve a 5 by 5 assignment problem with the Hungarian method, showing each reduction and covering step"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Model a transport network as an LP and as Dijkstra, find shortest routes between two towns and explain why the answers agree"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Flows, spanning trees and project networks",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Find the maximum flow and minimum cut of a water distribution network and compute the critical path of a clinic construction project.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Step through Ford-Fulkerson on a small network, recording augmenting paths until no path remains, then name the minimum cut"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Build a minimum spanning tree for a village power network with Kruskal and Prim and compare the total cable length"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E9",
+          "title": "Draw a 15-activity project network, compute the critical path and crash it to meet a deadline at minimum added cost"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Integer programming",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Choose which of eight clinic sites to open under a budget with a binary model, and solve it by branch and bound.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Step through branch and bound on a small knapsack, recording the bound at each node and which branches are pruned and why"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Solve a facility location model with binary variables in code and compare the result with rounding the LP relaxation"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Model a fixed-charge problem and either-or constraints with big-M, then test how the choice of M affects solve time and solution validity"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Decisions under uncertainty and risk",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Evaluate a farmer's decision to plant a drought-resistant crop using a decision tree, then compute what a perfect forecast is worth.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Apply maximin, maximax, Hurwicz and minimax regret to one payoff table and compare the four recommended actions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E9",
+          "title": "Draw a decision tree with chance and decision nodes for an equipment purchase and roll it back to the expected monetary value"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Compute the expected value of sample information from a test with given accuracy using Bayes' revision and decide whether it is worth its price"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Utility and multi-criteria decisions",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Build a utility curve for a risk-averse decision maker and rank four site options with a weighted scoring model and the analytic hierarchy process.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Plot a utility curve from three lottery questions and classify the decision maker as risk averse, neutral or seeking"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Compute analytic hierarchy process weights from a pairwise comparison matrix, check the consistency ratio and rank the alternatives"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Formulate a two-objective problem as goal programming, trace the Pareto frontier by varying weights and plot the trade-off"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Queueing models",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Dimension the number of tellers for a branch with given arrival and service rates so the average wait stays below four minutes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Compute utilisation, average queue length and waiting time for an M/M/1 queue and check Little's law on the results"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E7",
+          "title": "Find the smallest number of servers in an M/M/c queue that keeps the probability of waiting below 20 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Simulate an M/G/1 queue with high service-time variance and compare the measured waiting time with the Pollaczek-Khinchine prediction"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Simulation and inventory",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Simulate a day at a fuel station with random arrivals and compare policies, then set the order quantity for a pharmacy item.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E7",
+          "title": "Estimate pi and an expected profit by Monte Carlo with 1,000 and 100,000 samples and compare the errors"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Write a discrete-event simulation of a single-server queue and report mean wait with a 95 percent confidence interval over 30 runs"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Find the newsvendor order quantity for uncertain demand analytically and by simulation and explain any difference in the two answers"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Case studies: rostering, routing and service points",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Model one of three cases from raw data to a recommendation: clinic roster, farm-to-market distribution or a mobile-money agent point.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Solve a small nurse rostering model with coverage and rest constraints and check the resulting roster by hand"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Model produce transport from three farms to four markets as a transportation problem with capacity limits and read the shadow prices"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Use simulation to compare one fast agent against two slow agents at a busy mobile-money point and recommend a staffing plan"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Validation and project defence",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present a model of a local problem to a mock manager panel, with validation evidence, sensitivity analysis and a clear recommendation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Review a model report in a case and list its validation gaps, such as untested assumptions and missing data checks"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Build and validate the project model against historical data, reporting where model output and observed values disagree"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Run sensitivity and scenario analysis on the project model and recommend a decision, stating which assumptions would change the answer"
+        }
+      ]
+    }
+  ]
+}

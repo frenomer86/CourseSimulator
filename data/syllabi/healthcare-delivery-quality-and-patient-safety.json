@@ -1,0 +1,509 @@
+{
+  "slug": "healthcare-delivery-quality-and-patient-safety",
+  "description": "How health systems are organised, paid for and held to account, and how errors, delays and variation are measured and reduced. Students work through branching case studies, map and redesign clinical workflows as diagrams, and chart quality indicators to decide whether an improvement worked.",
+  "modelledOn": [
+    "Shi and Singh, Delivering Health Care in America",
+    "World Health Organization, Patient Safety Curriculum Guide",
+    "Institute for Healthcare Improvement, Model for Improvement and Quality Improvement Essentials",
+    "Donabedian, An Introduction to Quality Assurance in Health Care"
+  ],
+  "outcomes": [
+    "Describe how a health system is financed, organised and staffed, using the Ghanaian system as a worked example.",
+    "Trace a patient through primary, secondary and tertiary care and identify points where care can break down.",
+    "Analyse a patient-safety incident with root cause methods and propose system-level defences.",
+    "Select quality indicators, plot them over time and judge whether a change is a real improvement.",
+    "Map and redesign a clinical workflow using process diagrams and improvement cycles.",
+    "Assess the performance of a low-resource health system and plan patient engagement measures."
+  ],
+  "units": [
+    {
+      "title": "Health systems, financing and payers",
+      "weeks": "1-2",
+      "topics": [
+        "Models of health systems: tax-funded, social insurance and mixed",
+        "The Ghanaian system: Ministry of Health, Ghana Health Service, regional and teaching hospitals, CHPS compounds",
+        "Funding and payers: general taxation, the National Health Insurance Scheme, out-of-pocket payment, donors",
+        "Provider payment methods: fee for service, capitation, diagnosis-related groups, budgets",
+        "Health workforce and facility tiers: doctors, nurses, midwives and community health officers",
+        "Universal health coverage: access, financial protection and equity"
+      ]
+    },
+    {
+      "title": "Care pathways across levels of care",
+      "weeks": "3-4",
+      "topics": [
+        "Primary care: first contact, continuity and community health services",
+        "Referral between primary, secondary and tertiary care; referral letters and feedback loops",
+        "Emergency, trauma and ambulance services",
+        "Chronic disease pathways: hypertension, diabetes and HIV care",
+        "Maternal and child health: antenatal, delivery and postnatal care",
+        "Care coordination, discharge planning and transitions of care"
+      ]
+    },
+    {
+      "title": "Patient safety and medical error",
+      "weeks": "5-6",
+      "topics": [
+        "Adverse events, near misses and never events; the scale of avoidable harm",
+        "Human factors: slips, lapses, mistakes, fatigue and communication failures",
+        "The Swiss cheese model and root cause analysis",
+        "Medication safety: prescribing errors, look-alike sound-alike drugs, reconciliation",
+        "Infection prevention, hand hygiene and the surgical safety checklist",
+        "Incident reporting, just culture and open disclosure to patients"
+      ]
+    },
+    {
+      "title": "Measuring quality",
+      "weeks": "7",
+      "topics": [
+        "Structure, process and outcome measures",
+        "Dimensions of quality: safe, timely, effective, efficient, equitable, patient-centred",
+        "Indicators: case-fatality, readmission, waiting time, infection rate, stock-out rate",
+        "Risk adjustment, benchmarking and funnel plots for comparing facilities",
+        "Clinical audit, accreditation and inspection"
+      ]
+    },
+    {
+      "title": "Improvement cycles and methods",
+      "weeks": "8-9",
+      "topics": [
+        "The Model for Improvement and plan-do-study-act cycles",
+        "Lean thinking: waste, value-stream mapping and flow",
+        "Six Sigma and the define-measure-analyse-improve-control cycle",
+        "Run charts and statistical process control: shifts, trends and special-cause signals",
+        "Checklists, care bundles and standard work",
+        "Sustaining change: stakeholders, resistance and spread"
+      ]
+    },
+    {
+      "title": "Clinical workflow analysis and redesign",
+      "weeks": "10-11",
+      "topics": [
+        "Process mapping with swimlane and BPMN diagrams",
+        "Bottlenecks, queues, waiting time and capacity in clinics and wards",
+        "Triage and patient-flow design in outpatient departments and emergency units",
+        "Workflow and health IT: usability, alert fatigue and workarounds",
+        "Redesign, pilot and evaluate: what-if analysis before a change"
+      ]
+    },
+    {
+      "title": "Performance in low-resource settings",
+      "weeks": "12",
+      "topics": [
+        "Essential medicines, supply chains and stock-outs",
+        "Workforce shortages, task shifting and community health workers",
+        "Routine facility data and district health information systems for performance review",
+        "Mobile health, telemedicine and referral by phone in rural districts",
+        "Equity of access: distance, cost, gender and disability"
+      ]
+    },
+    {
+      "title": "Patient engagement and consumer health",
+      "weeks": "13",
+      "topics": [
+        "Health literacy and shared decision making",
+        "Patient-reported experience and outcome measures, and feedback channels",
+        "Consumer health tools: patient portals, apps and reminders by SMS",
+        "Complaints, patient voice and a culture of safety",
+        "Presenting a quality improvement project: aim, measures, changes and results"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Health system models and the Ghanaian system",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Draw the organisation of Ghana's health system from the community to the teaching hospital and list three ways money reaches a facility.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E9",
+          "title": "Draw an architecture diagram of the Ghanaian health system from CHPS compound to teaching hospital, labelling who supervises and funds each level"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Chart a given national health expenditure table by source, compute the out-of-pocket share, and judge the risk of catastrophic spending"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Advise a ministry in a case study on reforming financing, weighing tax funding, insurance and user fees against evidence on access, and defend the choice"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Payment, workforce and universal coverage",
+      "topics": [
+        "1.4",
+        "1.5",
+        "1.6"
+      ],
+      "exercise": "Compare what a clinic earns for 1000 patients under fee for service and under capitation, and list the behaviour each payment method encourages.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Compute clinic income for 1000 patients under fee for service, capitation and a case-based payment from a given price table, and compare the three"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E7",
+          "title": "Compute doctors, nurses and midwives per 10000 people for five regions from a given table, plot them, and flag regions under a stated threshold"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.6",
+          "engine": "E10",
+          "title": "Decide which benefits to add to an insurance scheme with a fixed budget in a case study, scoring coverage, financial protection and equity trade-offs"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Primary care, referral and emergency care",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write the referral note and the feedback note for a child with severe malaria moving from a CHPS compound to a district hospital.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Draw the referral pathway of a pregnant woman with high blood pressure from a CHPS compound to a district hospital in a swimlane diagram"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Work through a road-crash case choosing triage, transport and destination at each decision, and score the time to definitive care"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Analyse a given table of clinic visits to find the share of patients bypassing primary care and its effect on hospital crowding"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Chronic disease, maternal care and transitions",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Map the steps and handover points of a hypertension patient from screening to long-term follow-up, and mark where patients are lost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.5",
+          "engine": "E9",
+          "title": "Map antenatal visits, delivery and postnatal checks as a flow diagram and mark the standard checks at each visit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Compute the care cascade for diabetes from a given table: diagnosed, on treatment and controlled, and plot where most patients drop out"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E10",
+          "title": "Plan the discharge of an elderly stroke patient in a case study, deciding follow-up, medicines and caregiver support, and score the readmission risk"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Harm, human factors and root causes",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Classify five short incident descriptions as adverse event, near miss or never event and name the error type behind each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Classify 8 incident reports as adverse event, near miss or never event, and rank them by severity using the given scale"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Draw a Swiss cheese diagram of a wrong-site surgery case, marking each failed defence layer and the latent condition behind it"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E10",
+          "title": "Lead a root cause analysis of a delayed caesarean case, selecting evidence, building the causal chain, and choosing system fixes over blame"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Medication, infection and reporting culture",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Spot three medication risks on a sample prescription chart and write a message to a family disclosing a harmful error honestly.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Review a prescription chart in a case, spot a dose, allergy and look-alike drug error, and decide the safe action for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Plot weekly hand-hygiene compliance and infection counts for a ward over 20 weeks and judge whether the two move together"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E10",
+          "title": "Handle a nurse who reports a medication error in a case study, choosing between blame and just-culture responses and scoring the effect on future reporting"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Quality indicators and benchmarking",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Pick one structure, one process and one outcome indicator for maternal care, define each precisely, and say how its data would be collected.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Sort 12 listed quality measures into structure, process and outcome, and compute the case-fatality rate and readmission rate from given counts"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Plot a funnel plot of caesarean-section mortality for 15 hospitals with control limits and name the facilities that fall outside them"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E10",
+          "title": "Run a clinical audit of antenatal records in a case, choose the sample and criteria, report compliance, and recommend actions"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "PDSA, Lean and Six Sigma",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write an aim statement, a measure and a first small change for reducing outpatient waiting time, and plan the first PDSA cycle.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Plan a PDSA cycle for improving hand-washing on a ward in a case, writing the aim, the measure, the prediction and the test"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E9",
+          "title": "Draw a value-stream map of a clinic visit from arrival to pharmacy, marking value-adding time, waiting time and the waste in each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Apply define-measure-analyse-improve-control to long laboratory turnaround in a case, choosing data to collect and the change with the best expected effect"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Run charts, checklists and sustaining change",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Read a run chart of weekly infection counts, apply the shift and trend rules, and decide whether the new bundle made a difference.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Draw a run chart of 24 weeks of waiting times with the median line and mark any shift of six or more points"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Build a control chart for weekly pressure-ulcer counts, mark the intervention week, and decide if the change is special cause variation"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Roll out a labour-ward checklist to six hospitals in a case, handling resistance and staff turnover, and score adoption after six months"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Process mapping, queues and triage",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Map the as-is flow of an outpatient clinic from registration to prescription and time each step with the given observation sheet.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E9",
+          "title": "Draw a swimlane diagram of registration, consultation, laboratory and pharmacy for an outpatient visit with the staff role in each lane"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Simulate patient arrivals and a single consulting room, compare average waits for 1, 2 and 3 rooms, and find the bottleneck"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Redesign emergency-unit triage in a case with fixed staff, choosing categories and fast-track rules, and compare the score for door-to-doctor time"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Health IT in workflow and redesign",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "List five workarounds staff use with a records system, explain what need each meets, and propose a design change that removes it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Review a records-system alert in a case and decide which of 10 alerts to keep, tune or remove to cut alert fatigue"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E9",
+          "title": "Draw the to-be BPMN diagram of the clinic visit after moving registration online, and mark each step that was removed, merged or automated"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Model a what-if for adding a second triage nurse by simulating queue length for 8 hours, and report the change in the longest wait"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Quality in low-resource health systems",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Use a district's stock-out and staffing figures to propose three priorities for improving performance, and justify each with data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute the stock-out rate of 10 essential medicines over 12 months for a district and plot the months with the most gaps"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Compare antenatal coverage across 10 districts from routine data, rank them, and flag districts where the reporting rate is too low to trust"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Plan task shifting for malaria and hypertension care to community health workers in a case, weighing training, supervision, safety and referral"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Patient engagement and the improvement project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write a one-page summary of a quality improvement project with an aim, three measures, the changes tested, and a run chart of the results.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Explain a new diabetes medicine to a patient with low health literacy in a case, choosing plain wording and checking understanding with teach-back"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Summarise 60 patient satisfaction scores from a clinic, plot the distribution by question, and identify the weakest area for improvement"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Present a quality improvement project to a hospital board in a case, answering challenges on measures and sustainability, and score the quality of the evidence"
+        }
+      ]
+    }
+  ]
+}

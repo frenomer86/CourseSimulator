@@ -120,5 +120,408 @@
         "Final presentation and viva preparation; turning a project into a paper"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What research is",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Classify five published computing papers by their research type and say what each one contributes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Judge six statements as science, engineering or design work and test which are falsifiable, from a scored scenario"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Evaluate four claims of knowledge, such as a vendor benchmark or an expert opinion, against evidence quality in a scored case"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Match five research projects to theory, experiment, system building, empirical software engineering or human studies, and justify each match"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Contributions and reading papers",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Read one paper and write half a page covering its problem, claim, evidence, limits and your verdict.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Identify the contribution type and novelty of three abstracts and rank them by how convincingly novelty is argued"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Read a short paper case and extract its claims, the evidence for each and the stated limitations, scored against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Reproduce the main figure of a short paper from its published data in code and judge whether the claim holds"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Venues, writing and referencing",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Write a 150-word abstract for your own project, then a revised version for a non-expert audience.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Choose a venue for four finished studies by comparing peer review, impact and audience, and justify each choice"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Rewrite five unclear sentences from a draft and detect three cases of copied text, scored against a clarity and plagiarism rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Convert a list of 12 references from one style to ACM, IEEE and APA using a script and a BibTeX file, and check for errors"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Research integrity and ethics",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Prepare the ethics application for a survey of students on phone use, including the consent form and data plan.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Spot the fabrication, falsification and authorship problems in a described project and recommend the report route"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Design consent, anonymity and data storage for interviews with vulnerable farmers, and be scored on data protection compliance"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Decide how generative AI may be used in a literature review and thesis, in a scored scenario with disclosure and verification choices"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Research types and topics",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Write a short paragraph choosing the research approach for a mobile money usability question, with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Classify six research questions as exploratory, descriptive, explanatory or evaluative, and choose a suitable approach for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Choose among experiment, survey, case study, action research or design science for four problems and justify each"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Compare three candidate topics for feasibility, interest, supervisor fit and local relevance in a scored scenario and pick one"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Searching and appraising literature",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Write a search strategy with keywords, databases, inclusion criteria and a log for your topic.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E10",
+          "title": "Build search strings for four research questions and choose inclusion criteria, scored against the number and relevance of papers returned"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Record a search log of 60 papers in a table, screen by title and abstract, and compute the counts at each stage for a flow diagram"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Appraise three studies for validity, sample, method and bias in a scored scenario and rank them by trustworthiness"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Synthesising the literature",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Draft the synthesis paragraph of a literature review that compares ten papers by theme, not one at a time.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Code ten papers into themes in a comparison table and count how many address each theme to show where the gaps are"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Identify the gap, the competing findings and the weak evidence in a set of papers, and write a synthesis scored against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Review ten papers on a given topic, record appraisal ratings, and argue for one research gap supported by the evidence"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Planning a research project",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Write the aims, objectives and work plan of your project, with a Gantt chart and the top three risks.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Turn a broad topic into a research question, aims, objectives and a hypothesis, scored on being specific and testable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Order tasks, milestones and supervision meetings into a feasible plan for a 12-week project and fix the one critical-path delay"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E10",
+          "title": "Assess the risks, data access and resource problems in a project and choose contingency plans that satisfy the rubric"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Methods and measurement",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Design the evaluation of a new mobile app, stating variables, metrics, sample and threats to validity.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Operationalise four abstract concepts into measurable variables and identify the validity and reliability threat of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Design and simulate a randomised experiment comparing two sorting algorithms on 30 inputs each, with controls, and report the difference"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Compute a SUS score for 15 respondents, compare it with the benchmark mean of 68, and report accuracy metrics for a classifier"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Analysing data",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write the analysis plan for a survey of 100 students, stating which tests you will use and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Describe a survey dataset with summary statistics and choose the right chart for each of four variables"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Choose and run the correct test for three questions (two groups, three groups, two categories), with effect sizes and confidence intervals"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Code twelve interview excerpts into themes, merge overlapping codes, and be scored on whether the themes are supported by the data"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Reproducible analysis and threats to validity",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Write the threats-to-validity section for a small experiment and propose how you would limit each threat.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Write a script that loads a dataset, runs two tests and saves tables and figures, and verify a colleague can rerun it with identical output"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Rate the threats to validity in a described study and write an honest limitations paragraph, scored on candour and specificity"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Compare a study analysed with and without controlling for a confounder in code, then write the validity threats it still faces and how to report them"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Writing and defending proposals",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Peer-review a classmate's proposal with a rubric and prepare a five-minute defence with answers to three expected questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Write the title, abstract and research questions of a proposal for a given problem and be scored on clarity, scope and feasibility"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Complete the methodology, timeline and budget of a given proposal skeleton and be scored on fit between method and research question"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Review a flawed proposal with a rubric, write balanced feedback, and respond to a mock reviewer's three comments"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E10",
+          "title": "Defend a proposal against a panel's questions on novelty, method and feasibility, choosing the best response in each exchange"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Writing up and presenting",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4"
+      ],
+      "exercise": "Outline the final report for your project, chapter by chapter, with one sentence on what each chapter must prove.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E10",
+          "title": "Assign eight paragraphs to the right chapters of a dissertation and fix the structure so each chapter does its job"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.2",
+          "engine": "E1",
+          "title": "Package a small analysis as a reproducibility bundle with data, code, a README and a run script, and verify it runs from a clean folder"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.4",
+          "engine": "E10",
+          "title": "Prepare and deliver a final presentation and viva, choose the slides to keep within 10 minutes, and answer five questions scored by rubric"
+        }
+      ]
+    }
   ]
 }

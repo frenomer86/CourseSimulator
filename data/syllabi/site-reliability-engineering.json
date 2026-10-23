@@ -101,5 +101,395 @@
         "Capstone: define SLOs, build monitoring, run an incident drill and write the postmortem for a simulated service"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "SRE, availability and SLOs",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Short problem set: convert availability targets to allowed downtime per month and choose three SLIs for a mobile money transfer service.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E12",
+          "title": "Compute and compare monthly downtime allowed by 99, 99.9 and 99.99 percent availability for a simulated service and note the cost of each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E12",
+          "title": "Define SLIs for success rate and latency of a transfer service from its user journey and measure them over a simulated day"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Decide which of six operational tasks belong to an SRE role rather than traditional operations or development, and justify each on a rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Error budgets and release policy",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write an error budget policy for an exam results portal, stating what happens when the budget is spent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E12",
+          "title": "Calculate the remaining error budget of a service after a simulated outage and decide whether a release can proceed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Resolve a conflict between a product manager who wants a launch and an SRE with a burned error budget, scored on policy and evidence"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E12",
+          "title": "Set SLOs and an error budget for a national exam results portal and show how they would hold under a ten-times traffic spike on release day"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Monitoring and alerting",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Choose golden signals for three services and write one symptom-based alert and one burn-rate alert for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E12",
+          "title": "Identify the four golden signals for a web service from its dashboard and mark which one is failing in a given incident"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E12",
+          "title": "Instrument a service with request counters and latency histograms and build a dashboard of rate, errors and duration"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E12",
+          "title": "Replace ten noisy cause-based alerts with two burn-rate alerts on an SLO and show fewer false pages in a replay of last month"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Probes, dashboards and runbooks",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write a runbook for the alert 'transfer error rate high', including diagnosis steps and rollback options.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Configure a synthetic probe against a service endpoint and read the probe results to decide whether the service is up"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E12",
+          "title": "Build a dashboard that answers whether users are affected, which component is failing and what changed, and link a runbook to each alert"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E12",
+          "title": "Compare probes from three vantage points with real user data from different countries to find an outage visible only in one region"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "On-call and incident command",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Draft an on-call rotation and escalation policy for a team of five, with limits on night pages.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Design an on-call rotation for five engineers and a handover note, scoring fairness, coverage and sustainability against a rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Lead a simulated incident as incident commander, assigning operations, communications and scribe roles and choosing between actions as new evidence arrives"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E12",
+          "title": "Mitigate a failing deploy by rolling back, turning off a feature flag and draining traffic, and choose the fastest safe action under time pressure"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Communication and incident drills",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write three status page updates for a payment provider outage at different stages of the incident.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E10",
+          "title": "Write a status update and a customer message for an outage at 20, 60 and 120 minutes, choosing what to say with the evidence you have"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E12",
+          "title": "Respond to a database primary failure by promoting a replica, checking for data loss and restoring traffic within a 15-minute target"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E12",
+          "title": "Handle a bad deploy and an upstream payment provider outage at the same time by degrading features gracefully and report the user impact"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Blameless postmortems",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Rewrite a blame-heavy incident report as a blameless postmortem with timeline, impact, contributing factors and action items.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Identify blaming language in an incident report and rewrite it so the system and process causes are the focus, scored on a rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E10",
+          "title": "Write a postmortem with timeline, impact, detection time, response and action items from the raw evidence of a simulated outage"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Analyse a complex outage with five whys and a causal diagram, show where five whys alone misses an interacting cause and propose fixes"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Capacity planning",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Forecast traffic for a month-end salary peak and decide how many servers the service needs with a safety margin.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E12",
+          "title": "Forecast next month's requests from a growth trend and a month-end peak and set a target number of instances"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E12",
+          "title": "Load test a service step by step to find the saturation point and apply Little's law to the observed queue and latency figures"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E12",
+          "title": "Provision an N+2 design with headroom for a festive season peak, given a two-week lead time on hardware, and justify its cost"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Autoscaling and unreliable infrastructure",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a plan for keeping a Kumasi office service up through power cuts and one internet provider failure.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E12",
+          "title": "Configure an autoscaling policy on CPU and observe how it responds to a traffic ramp, noting the scale-up delay"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E12",
+          "title": "Find the failure modes of an autoscaling policy that oscillates or scales too late, fix it and compare cost and latency"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Plan power and connectivity redundancy for a branch office with generators, UPS and two internet providers, scoring cost against availability targets"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Load balancing and resilience patterns",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Explain, with a diagram, how retries without jitter turn a small failure into a cascading outage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E12",
+          "title": "Configure a load balancer with round robin and least connections and compare how each spreads uneven requests over three servers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E12",
+          "title": "Add health checks, connection draining and a rate limit to a load balancer and show a failing server is removed without dropping requests"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E12",
+          "title": "Break a service with a retry storm, then add timeouts, jittered retries and a circuit breaker and show it recovers"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Global load balancing and disaster recovery",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Write a disaster recovery plan with RTO and RPO targets for a service with a primary database.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Configure DNS-based failover between two regions and fail the primary region to watch traffic switch"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E12",
+          "title": "Fail over a replicated database, measure the data lost and recovery time, and compare with the stated RPO and RTO"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E12",
+          "title": "Run a disaster recovery drill for a two-region service, find the gaps in the plan and rewrite it to meet a 30-minute RTO"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Toil, automation and release engineering",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Measure toil in a week of an on-call log and propose three automations ranked by time saved against effort.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E4",
+          "title": "Count repetitive manual tasks in a sample terminal session and compute the share of the week that is toil"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E12",
+          "title": "Release a change with a canary to 5 percent of traffic, watch the metrics and roll back automatically when errors exceed a threshold"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E4",
+          "title": "Write a script that provisions and configures a server from code, rerun it to show it is idempotent and detect a manual configuration drift"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Chaos, readiness and capstone",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Capstone deliverable: SLO document, monitoring plan, incident drill log and postmortem for a simulated service.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E12",
+          "title": "Run a game day that kills one server and adds latency to a dependency, comparing the outcome to a hypothesis you wrote beforehand"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Review a service launch against a production readiness checklist, find the missing items and decide whether to approve the launch"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E12",
+          "title": "Define SLOs, build monitoring, run an incident drill and write a postmortem for a simulated service, meeting an availability target"
+        }
+      ]
+    }
   ]
 }

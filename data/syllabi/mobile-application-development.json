@@ -119,5 +119,401 @@
         "Capstone: a complete app for a local need (market prices, clinic appointments, transport) published to a test track"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The mobile landscape",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Write a comparison of native, cross-platform and progressive web app approaches for a market-price app aimed at low-end Android phones.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E11",
+          "title": "Switch the emulator between airplane mode, low battery and rotation and record what each change does to a sample app"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E11",
+          "title": "Test a sample app on a low-memory 360 pixel wide device profile and list three layout or performance problems found"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw architecture diagrams for a mobile money balance app built natively and as a PWA, and compare size, offline support and update cost"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Android foundations and Kotlin",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Explain the roles of the manifest, resources and Gradle in a project and list which files change when adding a Twi translation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.3",
+          "engine": "E11",
+          "title": "Create a hello app screen, add a string resource and a French variant, and switch the emulator language to confirm both display"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Write Kotlin-style functions using null safety and lambdas that filter a list of 12 market prices and handle missing values"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Use coroutine-style concurrency to fetch three simulated price sources in parallel, merge the results and handle one failing source"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Activities, intents and permissions",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Draw the activity lifecycle and mark which callbacks run when the user presses home, then returns, then rotates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E11",
+          "title": "Log lifecycle callbacks while opening, rotating and leaving an activity, and match each log line to the user action"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E11",
+          "title": "Start a second screen with an intent carrying a product ID and return a result, then handle a denied camera permission gracefully"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E11",
+          "title": "Use logs and the profiler to find why a sample app leaks memory on rotation, then fix it and confirm usage stays flat"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Components and architecture",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Sketch the MVVM layers for a clinic appointment list and write where each piece of state should live.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E11",
+          "title": "Show a counter that resets on rotation, then keep its value with saved instance state or a ViewModel and verify it survives"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E11",
+          "title": "Build a two-screen navigation graph with a list and a detail screen and confirm the back stack behaves correctly on back presses"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Draw a component diagram for a market price app with repository, ViewModel and data sources and trace one refresh request through it"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "User interface design",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Review a screenshot of a form against touch-target, contrast and content description rules, listing five fixes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E11",
+          "title": "Lay out a scrollable list of 20 products with name, price and an image placeholder and check it on phone and tablet sizes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E11",
+          "title": "Apply a theme with light and dark colours and test that text contrast remains legible on both when the emulator theme changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E11",
+          "title": "Make a payment form accessible with content descriptions, 48 dp touch targets and focus order, then step through it with the screen reader view"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Localisation and low-end design",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Write a list of text and layout problems likely when translating an English app into Twi and Ewe, with fixes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E11",
+          "title": "Add Twi strings for a login screen, switch the device language and check that all labels change without truncation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E11",
+          "title": "Add empty, loading and error states to a list screen and test each by toggling the network and clearing the data"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E11",
+          "title": "Reduce an image-heavy list screen's data use on a slow network profile by resizing images and lazy loading, then compare bytes transferred"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Local storage and offline-first",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Decide where to store a user token, a settings flag and 5000 price records, and justify each choice for security and speed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E11",
+          "title": "Save a user's language choice in preferences, restart the app and confirm the setting is restored on the settings screen"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E5",
+          "title": "Design a Room-style schema with products and orders tables, write the DAO queries as SQL and test them on sample rows"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E11",
+          "title": "Build an offline-first price list that shows cached data instantly, refreshes when online and marks stale entries after 24 hours"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Backend services, sync and payments",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Compare a backend-as-a-service with a custom REST API for a clinic app, including cost, control and data protection.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E11",
+          "title": "Sign in with a test account, store one record in the cloud backend and read it back on a second emulator profile"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E11",
+          "title": "Queue three edits made offline and sync them when the network returns, checking the server holds each edit once"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E11",
+          "title": "Implement a mobile money payment flow against a sandbox API with pending, success and failure outcomes and an idempotent retry"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Networking, background work and sensors",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "List the background tasks a delivery app needs and say which should use a foreground service and which a scheduled worker.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Parse a JSON response of 10 products, handle a missing field and a malformed payload, and print a clear message for each failure"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E11",
+          "title": "Schedule a background sync every 15 minutes, show a notification on completion and verify it still runs after the app is closed"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E11",
+          "title": "Use simulated location and the camera permission to build a delivery check-in, then reduce its battery use under Doze restrictions"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Quality attributes",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Rank performance, availability and security risks of a mobile wallet app and propose one mitigation for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E11",
+          "title": "Measure cold start time of a sample app, remove two blocking calls from startup and confirm the time drops"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E11",
+          "title": "Add retry with exponential backoff to a failing request and test that the app degrades gracefully on a flaky network profile"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E11",
+          "title": "Audit a seeded wallet app for insecure storage, missing certificate pinning and exported components, and fix the top three issues"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Testing mobile apps",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Design a test pyramid for a booking app and state how many tests of each kind you would run on every commit.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Write five unit tests for a price calculation function with a mocked repository, covering a normal, a zero and an error input"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E11",
+          "title": "Script a UI test that logs in, adds an item and checks the total, then run it on phone and tablet profiles"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E11",
+          "title": "Run a test suite across a matrix of 6 device profiles and Android versions, group failures by cause and fix the most common"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Release and operations",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3"
+      ],
+      "exercise": "Complete a store listing draft with description, content rating answers and a privacy policy outline for a clinic appointment app.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E11",
+          "title": "Fill in a store listing and data safety form for a sample app so that every declared permission matches what the app actually uses"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.2",
+          "engine": "E11",
+          "title": "Plan a staged rollout at 5, 25 and 100 percent and use a feature flag to turn off a faulty feature without a new release"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.3",
+          "engine": "E11",
+          "title": "Read a dashboard of crash and ANR data for a released app, find the top crash by affected users and write a fix plan"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Maintenance and capstone",
+      "topics": [
+        "10.4",
+        "10.5"
+      ],
+      "exercise": "Demo your capstone app, show its test results and release notes, and explain how you would maintain it for two years.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.4",
+          "engine": "E1",
+          "title": "Update a deprecated API call in a short code sample to its replacement and run the sample's tests to confirm behaviour is unchanged"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.4",
+          "engine": "E11",
+          "title": "Migrate a sample app to a newer OS version profile, fix the permission and background-limit breakages and retest the main flows"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.5",
+          "engine": "E11",
+          "title": "Build a complete clinic appointment or market price app with offline mode, tests and a release checklist, and submit it to a test track"
+        }
+      ]
+    }
   ]
 }

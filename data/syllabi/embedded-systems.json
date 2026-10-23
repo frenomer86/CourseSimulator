@@ -101,5 +101,396 @@
         "Project: a complete device such as a weather station, irrigation controller or prepaid meter prototype"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What makes a system embedded",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Short comparison: choose a microcontroller for a prepaid electricity meter from three datasheets and justify the choice on cost, power, memory and peripherals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E8",
+          "title": "Identify the core, flash, SRAM and peripheral blocks of an AVR microcontroller on the hardware bench and note each block's size"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E8",
+          "title": "Read and write memory-mapped port registers for an AVR and an ARM Cortex-M board and compare their memory maps and register widths"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Choose a platform for a solar-powered field sensor from three options, weighing cost, power and reliability evidence, and justify it on a rubric"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Toolchain, datasheets and first blink",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a short note tracing a C program from source to flashed binary, and annotate which datasheet table you used to find the LED port register.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E8",
+          "title": "Wire an LED and resistor to a microcontroller pin on the bench, write a bare-metal blink in C and watch it toggle at one hertz"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compile a blink program with a cross compiler, inspect the linker map to find where code and variables sit, and explain the startup code"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E8",
+          "title": "Find the register and bit needed for a new pin in a datasheet, then fix a faulty blink program that has a wrong data direction setting"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "GPIO and timers",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Design a debounce routine for a keypad and explain how a timer prescaler gives a 1 ms tick.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E8",
+          "title": "Wire a push button with a pull-up resistor, read it in C and count presses, then observe the bounces on the logic analyser"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E8",
+          "title": "Drive a four-digit seven-segment display by multiplexing and show a counter from 0000 to 9999 without visible flicker"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E8",
+          "title": "Configure a hardware timer with a prescaler and compare register to generate an exact 100 Hz tick and verify it on a scope"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Time and PWM",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Calculate PWM duty cycles for a servo and a DC motor and write a short note on why delay loops are unsuitable in real products.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Blink two LEDs at different rates using a timer tick instead of a blocking delay and show both keep their timing"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E8",
+          "title": "Control a hobby servo from 0 to 180 degrees with PWM using a pulse width of 1 to 2 ms and check the pulse on the scope"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E8",
+          "title": "Drive a DC motor with an H-bridge, ramp its speed with PWM, add a direction button and protect against shoot-through"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Interrupts and robust firmware",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Write a short note on why a variable shared with an ISR must be volatile and how you protect a multi-byte counter.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.3",
+          "engine": "E8",
+          "title": "Toggle an LED from an external interrupt on a button press and compare the response with a polling loop"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E8",
+          "title": "Count pulses in an ISR and print them from the main loop using volatile variables and a safe copy that avoids torn reads"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E8",
+          "title": "Debug a firmware with a race condition and a missed watchdog kick, then redesign it to defer work from the ISR and add a watchdog"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "ADC and analog sensors",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Compute ADC resolution and quantisation error for a 10-bit converter at 5 V and design a divider for a thermistor.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E8",
+          "title": "Read a potentiometer with the ADC, print raw counts and volts, and check the quantisation step against the datasheet resolution"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E8",
+          "title": "Read a soil moisture sensor and a temperature sensor, calibrate each against two reference points and display the converted values"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E8",
+          "title": "Reduce noise on a light sensor reading using 16x oversampling and a moving average, and measure the improvement in standard deviation"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "DAC, speaker and pulse sensors",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Short exercise: calculate the time-of-flight distance for an ultrasonic echo and explain the DHT sensor's timing protocol.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E8",
+          "title": "Play a 440 Hz tone on a speaker using PWM and a low-pass filter, and verify the frequency on the scope"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E8",
+          "title": "Measure distance with an ultrasonic sensor by timing the echo pulse, and display it with a median filter to reject outliers"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E8",
+          "title": "Read temperature and humidity from a DHT sensor using bit-banged timing and handle checksum failures without blocking the main loop"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "UART, I2C and SPI",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw the timing diagram for one UART byte, one I2C write and one SPI transfer, and compare their wires and speeds.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E8",
+          "title": "Send printf output over UART at 9600 baud and decode one byte from the signal by measuring bit times on the logic analyser"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E8",
+          "title": "Read acceleration from an I2C sensor and a time from an RTC, using the datasheet addresses, and print both to serial"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E8",
+          "title": "Write a driver for an SPI display or SD card that handles mode and chip select, then troubleshoot a wrong clock polarity"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Bus debugging and other links",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Short reflection: choose between LoRa, GSM and Bluetooth for a remote tank level monitor, citing range, power and cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Capture an I2C transaction on the logic analyser and decode the address, read-write bit and acknowledge bits"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E8",
+          "title": "Find three planted wiring faults (swapped lines, missing pull-up, wrong address) on an I2C and SPI board using the logic analyser"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Select a wireless link for a remote water-level sensor, scoring range, power, cost and coverage evidence for LoRa, GSM and Bluetooth"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Real-time basics and schedulers",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write a state machine design for a traffic light controller with a pedestrian button, and explain the timing needed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E6",
+          "title": "Classify five systems as hard or soft real time, and measure jitter in a simulated periodic task on the visualiser"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E8",
+          "title": "Implement a cooperative scheduler running three tasks at 10, 50 and 100 ms and check the timing with a toggled pin"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Write a pre-emptive two-task round-robin kernel with separate stacks and a context switch, and explain the stack layout it uses"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Real-time scheduling analysis",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Problem set: test schedulability of three task sets with rate-monotonic and earliest-deadline-first analysis and explain a priority inversion.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Schedule three periodic tasks with rate-monotonic priorities on the visualiser and check each deadline is met for utilisation of 0.7"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Connect a producer and consumer task with a queue and guard a shared resource with a mutex, and show no data is lost"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Reproduce a priority inversion with three tasks and a mutex, then fix it with priority inheritance and show the high task meets its deadline"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Low-power design",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Compute battery life for a solar-and-battery field sensor from its duty cycle and per-state current draws, and propose two improvements.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E8",
+          "title": "Measure the current drawn by an AVR in active mode and sleep mode on the bench and compute the ratio"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E8",
+          "title": "Put a sensor node to sleep and wake it from a timer and a button interrupt, then gate unused peripherals and record the saving"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E8",
+          "title": "Design the duty cycle and battery and panel size for a sensor reporting every 10 minutes in Ghana, and verify the energy budget in simulation"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Software engineering and project",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Project plan: define requirements, driver layers, test plan and update strategy for a weather station or irrigation controller.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Split a monolithic sensor program into a hardware abstraction layer, driver and application files, and show the application compiles for two boards"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Write host-side unit tests for a sensor-conversion and a ring-buffer module using mocks and run them on the PC before flashing"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E8",
+          "title": "Build an irrigation controller prototype that reads soil moisture, drives a valve, logs events and recovers from brown-out, then test five faults"
+        }
+      ]
+    }
   ]
 }

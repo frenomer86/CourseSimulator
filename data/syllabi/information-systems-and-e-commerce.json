@@ -111,5 +111,399 @@
         "Presenting the business case and a demonstration"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Systems thinking and types of information systems",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Draw a systems diagram of a school fees office showing inputs, processes, outputs and feedback, and say which type of information system each part is.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E9",
+          "title": "Draw an input-process-output-feedback diagram for a pharmacy stock system, labelling data, information and the feedback loop"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Match eight business scenarios to TPS, MIS, DSS, EIS or expert system and justify each choice from the decision type involved"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw a cross-functional diagram of how a sale flows through marketing, finance, operations and HR in a small trading company and mark integration points"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Information systems in Ghana",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a short comparison of two national information systems in Ghana, covering users, data held, risks and benefits.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E9",
+          "title": "Draw an architecture diagram of a hospital information system showing hardware, software, data, network, people and procedures"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Assess a case study of an e-government portal rollout, identify three failure risks and choose a mitigation for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E5",
+          "title": "Design a small relational table structure for a national ID lookup service, run lookups on 20 sample records, and write a query that flags duplicate identities"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Business processes and ERP",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Model the current and improved order-to-cash process for a small distributor and list the steps you would automate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E9",
+          "title": "Draw a BPMN swimlane diagram of an as-is order process with customer, sales and warehouse lanes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E9",
+          "title": "Model a procure-to-pay process in BPMN with an approval gateway for purchases above 5000 cedis and mark the control points"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Decide which ERP modules and implementation approach suit a case-study manufacturer and score the plan on cost, risk and integration benefits"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Supply chains and process change",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Write a half-page change plan for introducing a new inventory process in a small shop, covering training and resistance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E5",
+          "title": "Simulate weekly orders along a four-stage supply chain with SQL tables and show the order variability increasing upstream"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Evaluate an ERP change-management case, identify why staff resist, and choose the training and communication steps that score highest"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E9",
+          "title": "Draw to-be process diagrams that remove two bottlenecks in an as-is process, and compare cycle time and handoffs before and after"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "E-commerce models",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Compare a marketplace seller, a WhatsApp shop and an own website for a clothes seller, with revenue, cost and risk of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E10",
+          "title": "Classify 10 online businesses as B2C, B2B, C2C or B2G, and as marketplace or own store, with a reason for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E10",
+          "title": "Pick the revenue model for three start-ups from sales, subscription, advertising, fees or freemium, and defend it with unit economics"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E9",
+          "title": "Model the e-commerce value chain from catalogue to returns for a local online grocer and identify the step with the highest drop-off"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Online payments",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Draw the path of a card payment from checkout to settlement, naming each party and what it contributes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E9",
+          "title": "Draw the authorisation and settlement flow of a card payment with issuer, acquirer and network, and mark where a chargeback enters"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E5",
+          "title": "Store card tokens instead of numbers in a payments table, run queries that only touch tokens, and show what an attacker with the table would see"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Review fraud signals in a scored scenario of 12 transactions, set rules for 3-D Secure challenge, and balance fraud loss against lost sales"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Mobile money",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Explain how a mobile money cash-in, transfer and cash-out work in terms of agents, float and the ledger, with an example amount.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E5",
+          "title": "Record cash-in, transfer and cash-out in a wallet ledger table with SQL and verify that the sum of all wallets equals the agent float"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E10",
+          "title": "Compare the economics of two mobile money providers in a case study, choose a fee structure and justify its effect on adoption"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E10",
+          "title": "Evaluate a proposed micro-lending product built on mobile money, set eligibility and interest rules, and score its risks to borrowers"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Regulation, APIs and consumer protection",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write a one-page checklist for launching a mobile money integration, covering KYC, limits, consent and dispute handling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E10",
+          "title": "Decide KYC tier, daily limit and agent rules for a new wallet in a scenario and justify each against the regulatory rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E9",
+          "title": "Diagram the sequence of calls for a sandbox payment: request, customer prompt, callback and confirmation, marking where retries must be idempotent"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Respond to a mobile money fraud case with evidence, choose freeze, reversal and customer communication steps, and be scored on protection and speed"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Customer relationships and digital marketing",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Design a loyalty programme for a pharmacy chain and say how you would measure whether it works.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E5",
+          "title": "Write SQL to segment 200 customers by recency, frequency and spend and list the top and at-risk segments"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E5",
+          "title": "Compute customer lifetime value and churn rate by segment from a purchases table and recommend which segment to retain"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Handle a case where a shop wants to use customer phone numbers for marketing, apply data protection principles, and be scored on consent and minimisation"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "IS strategy, sourcing and governance",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Write a recommendation memo on whether a polytechnic should build, buy or subscribe to a student records system.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Apply Porter's five forces to a case-study retailer, identify where IT gives advantage, and choose the system investment that scores highest"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Decide build, buy or subscribe for three systems in a case study, scoring cost, control, risk and local support"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E9",
+          "title": "Draw an IT governance structure showing the steering committee, CIO and the review path for a new project proposal"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Digital transformation and planning",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Draft a three-year IS plan for a regional bank branch network, listing projects in priority order with reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Assess a platform strategy for a delivery start-up, identify the data assets, and choose which to share and which to protect"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E9",
+          "title": "Plot six candidate projects on a value versus risk portfolio chart and diagram the delivery roadmap in a Gantt chart"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E10",
+          "title": "Choose which of eight proposed IS projects to fund under a budget limit, and defend the choice in a scored planning scenario"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Costs, benefits and business cases",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Complete a business case for a point-of-sale system for a chain of shops, with costs, benefits, ROI and payback period.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E5",
+          "title": "Tabulate capital, operating and hidden costs of a system over five years in SQL and compute total cost of ownership"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Identify tangible and intangible benefits in a case study, assign values where defensible, and explain why productivity gains may not appear"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E5",
+          "title": "Compute NPV, payback period and break-even for an IT investment from yearly cash flows and show how the decision changes at a 20 percent discount rate"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Building and presenting an online shop",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Prepare a five-minute demonstration and business case presentation for your online shop, with a rehearsed answer to two hard questions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E5",
+          "title": "Design tables for products, customers, orders and payments in SQL, place three orders and check stock decreases correctly after each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Review an online shop case for missing terms, privacy notice and receipts, and be scored on which legal and trust items are fixed"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.3",
+          "engine": "E10",
+          "title": "Plan delivery for an online order in Ghana with address capture, rider cost and cash on delivery risk, and choose the option with best margin"
+        }
+      ]
+    }
   ]
 }

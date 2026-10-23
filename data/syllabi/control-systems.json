@@ -107,13 +107,419 @@
     },
     {
       "title": "Digital control",
-      "weeks": "14",
+      "weeks": "13",
       "topics": [
         "Sampled-data systems and the zero-order hold; z-domain transfer functions",
         "Discretising controllers: forward, backward and Tustin approximations",
         "Stability in the z-plane and the Jury test",
         "Implementing a digital PID on a microcontroller: sampling-rate choice, quantisation and computational delay",
         "Grid frequency control and load shedding as a large-scale control problem"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Feedback and control basics",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Sketch block diagrams for a water-tank level loop and a room thermostat, labelling reference, error, controller, plant, sensor and disturbance.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E7",
+          "title": "Plot the step response of a heater with and without feedback for a 5 degree set-point change and compare final value and settling"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E7",
+          "title": "Use the maths lab to find the Laplace transforms of five common signals and check each by inverting back to time"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E7",
+          "title": "Model a hydro generator speed governor as a first-order lag with a load disturbance, and tune a gain to hold 50 Hz within 0.2 Hz"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Modelling physical systems",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Derive the differential equation for an RC circuit and a mass-spring-damper by hand, then state the analogy that links them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E7",
+          "title": "Derive and plot the step response of an RC low-pass circuit with R of 10 kilohms and C of 10 microfarads, marking the time constant"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E7",
+          "title": "Write the armature-controlled DC motor equations, combine them into one transfer function, and simulate its speed after a 12 V step"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Reflect load inertia and friction through a gear train to the motor shaft, then predict and verify the new time constant by simulation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Linearisation and system identification",
+      "topics": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "exercise": "Explain in writing why a linear model is valid only near an operating point, and give one example from a tank with a square-root outflow.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Build the thermal model of a small oven, simulate its heating curve, and state the thermal resistance and capacitance you used"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.5",
+          "engine": "E7",
+          "title": "Linearise a tank with a square-root outflow at three operating levels and compare each linear model with the full non-linear simulation"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.6",
+          "engine": "E7",
+          "title": "Estimate gain and time constant of an unknown plant from a noisy measured step response, then validate the fitted model on a second data set"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Transfer functions and block diagrams",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Reduce a given five-block diagram by hand to a single transfer function and check the result against the simulator.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E7",
+          "title": "Convert a second-order differential equation to a transfer function, then list its poles and zeros and mark them on the s-plane"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E7",
+          "title": "Reduce a block diagram with a nested feedback loop to one closed-loop transfer function and verify it by simulating both forms"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E7",
+          "title": "Compare the sensitivity of open-loop and closed-loop systems to a 20 percent plant gain error and to measurement noise, and report the trade-off"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Time response of systems",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Predict overshoot and settling time from the pole locations of three second-order systems before running any simulation, then compare.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E7",
+          "title": "Measure the time constant of a first-order system from its simulated step response and check it against the transfer function"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Design a second-order system with 10 percent overshoot and a 2 second settling time, then verify rise, peak and settling times by simulation"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E7",
+          "title": "Show when a third pole or a zero can be ignored by comparing the full response with its dominant-pole approximation across several pole positions"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Stability and steady-state error",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Calculate by hand the steady-state error of a type 1 system to step and ramp inputs, then confirm it on the simulator.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Apply the Routh-Hurwitz table to a fourth-order polynomial and state how many poles lie in the right half-plane"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Determine the system type and static error constants of a plant, then find the gain that gives under 2 percent ramp error"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.6",
+          "engine": "E7",
+          "title": "Specify and tune a controller for a solar-powered irrigation pump to meet overshoot, settling time and steady-state error limits at once"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Root locus analysis",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Sketch a root locus for a given open-loop transfer function by hand using the rules, then compare with the plotted locus.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E7",
+          "title": "Plot the root locus of a simple second-order plant and read off the gain at which the poles become complex"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E7",
+          "title": "Sketch the locus of a third-order plant by hand with asymptotes and breakaway points, then check each feature against the plotted locus"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E7",
+          "title": "Choose a gain from the root locus to meet 15 percent overshoot and 3 second settling, then show by simulation whether both are met"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Compensator design on the root locus",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a design note justifying when you would pick lead, lag or lead-lag compensation, with one example for each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Add a lead compensator zero to a plant and show on the root locus how the locus bends toward a faster response"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E7",
+          "title": "Design a lag compensator to cut steady-state error tenfold without disturbing the dominant poles, and verify with a step and a ramp test"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Plot root contours for a varying plant parameter and decide the range of parameter values for which the loop meets its specifications"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Frequency response and Nyquist",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Hand-sketch the asymptotic Bode plot of a three-pole plant and check the corner frequencies and slopes against the plotted response.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Plot the Bode magnitude and phase of a first-order lag and read off the corner frequency and the -3 dB bandwidth"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Draw the Nyquist plot of a plant with a gain, count encirclements, and use the criterion to decide closed-loop stability"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Measure gain and phase margins of a loop, then adjust the gain to give 45 degrees of phase margin and confirm the step overshoot"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Frequency-domain design and delay",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Explain why a time delay reduces phase margin but does not change magnitude, using the delay of a networked loop as the example.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Plot the closed-loop frequency response of a second-order loop and read its resonant peak and bandwidth"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Design a lead compensator on the Bode plot to give 50 degrees of phase margin and verify the result with a closed-loop step test"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E7",
+          "title": "Increase the time delay in a stable loop until it goes unstable, find the critical delay from the margins, and confirm it by simulation"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "PID control and tuning",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Write a one-page tuning guide for an operator, explaining what raising each of Kp, Ki and Kd does to rise time, overshoot and noise.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Simulate P, PI and PID control on a first-order-plus-delay plant and compare rise time, overshoot and steady-state error in a table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E7",
+          "title": "Tune a PID loop by the Ziegler-Nichols method from the ultimate gain and period, then refine it to cut the overshoot below 15 percent"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E7",
+          "title": "Tune a DC motor speed loop with anti-windup and a derivative filter so that actuator saturation does not cause large overshoot"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "State-space methods",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Convert a third-order transfer function into two different state-space forms and show the two have the same eigenvalues.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E7",
+          "title": "Convert a second-order transfer function to state-space form and use the state-transition matrix to compute the state at t equal to 1 second"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.3",
+          "engine": "E7",
+          "title": "Test controllability and observability of three given systems using the rank of the test matrices, and explain each result physically"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E7",
+          "title": "Compute the response of a system from given initial conditions using the matrix exponential and check it against a numerical simulation"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "State feedback, observers and digital control",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6",
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "exercise": "Capstone problem set: choose a sampling period for a digital PID loop and justify it from the closed-loop bandwidth and the quantisation noise.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E7",
+          "title": "Place the closed-loop poles of a second-order plant with state feedback to give 5 percent overshoot and a 1 second settling time"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E7",
+          "title": "Discretise a continuous PID controller by forward, backward and Tustin methods and compare their step responses at a 20 ms sample time"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E1",
+          "title": "Implement a digital PID with anti-windup in code, simulate it on a motor model, and find the longest stable sampling period"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E7",
+          "title": "Model grid frequency as a swing equation with a governor, trip a generator, and choose load-shedding steps that keep frequency above 49 Hz"
+        }
       ]
     }
   ]

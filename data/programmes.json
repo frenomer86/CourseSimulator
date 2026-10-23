@@ -1,5 +1,5 @@
 {
-  "$comment": "Programmes of study and the courses they add to the catalogue. Read by scripts/build-courses.mjs, which merges newCourses into data/courses.json and writes the programmes list there. A programme lists course slugs in suggested order; a course can belong to several programmes. year and semester only order courses and are never shown as groupings.",
+  "$comment": "Programmes of study and the courses they add to the catalogue. Read by scripts/build-courses.mjs, which merges newCourses into data/courses.json and writes the programmes list there. Each programme has bachelor, master and phd levels, each with core courses in suggested order, an elective pool and milestones; a course can belong to several programmes and levels. A course's level says which tier it is written for. year and semester only order courses and are never shown as groupings.",
   "areas": {
     "signals-control": "Signals, Control and Robotics",
     "information-systems": "Information Systems, Business and Finance",
@@ -146,7 +146,236 @@
     { "title": "Financial Mathematics", "area": "information-systems", "year": 2, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
       "topics": ["Interest and time value of money", "Annuities and loans", "Bonds and yields", "Risk and return", "Portfolio theory", "Options and derivatives basics", "Microfinance and credit scoring"] },
     { "title": "Regulatory Technology and Compliance", "area": "information-systems", "year": 4, "semester": 1, "engines": ["E10"], "phase": 3,
-      "topics": ["Financial regulation and why it exists", "Know your customer and anti-money laundering", "Data protection law", "Reporting to regulators", "Automated compliance monitoring", "Regulatory sandboxes", "Risk management frameworks"] }
+      "topics": ["Financial regulation and why it exists", "Know your customer and anti-money laundering", "Data protection law", "Reporting to regulators", "Automated compliance monitoring", "Regulatory sandboxes", "Risk management frameworks"] },
+
+    { "title": "Analogue Electronics and Devices", "level": "bachelor", "area": "hardware", "year": 2, "semester": 1, "engines": ["E2", "E7", "E8"], "phase": 3,
+      "topics": ["Semiconductor diodes and pn junctions", "Bipolar and MOS transistor operation", "Biasing and small-signal models", "Single-stage and multi-stage amplifiers", "Operational amplifier circuits", "Frequency response and feedback", "Filters, oscillators and power stages"] },
+    { "title": "Biochemistry and Cell Biology for Computing", "level": "bachelor", "area": "health-bio", "year": 1, "semester": 1, "engines": ["E7", "E10", "E6"], "phase": 3,
+      "topics": ["Amino acids, proteins and levels of structure", "Enzyme kinetics and curve fitting", "Metabolic pathways and energy flow", "Membranes, transport and cell signalling", "Cell cycle, division and cancer basics", "Gene expression and its regulation at the cell level", "Laboratory techniques and the data they produce"] },
+    { "title": "Causal Inference and Experimental Design", "level": "bachelor", "area": "data", "year": 3, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Potential outcomes and causal questions", "Randomised experiments and A/B tests", "Power, sample size and multiple testing", "Observational studies and confounding", "Matching, weighting and regression adjustment", "Difference-in-differences and instrumental variables", "Causal graphs and sensitivity analysis"] },
+    { "title": "Clinical Decision Support and Evidence-Based Practice", "level": "bachelor", "area": "health-bio", "year": 3, "semester": 1, "engines": ["E10", "E5", "E6"], "phase": 3,
+      "topics": ["Types of clinical decision support and alerts", "Alert fatigue and workflow integration", "Rule-based and guideline-based logic", "Evidence-based medicine and critical appraisal", "Searching the biomedical literature", "Probabilistic diagnosis and Bayes theorem", "Evaluating decision support tools"] },
+    { "title": "Cloud Architecture and Solution Design", "level": "bachelor", "area": "networks-systems", "year": 3, "semester": 1, "engines": ["E12", "E10", "E9"], "phase": 3,
+      "topics": ["reference architectures and well-architected pillars", "requirements and workload sizing", "availability zones, regions and disaster recovery", "cost modelling and pricing models", "service level objectives and agreements", "migration strategies and landing zones", "architecture proposals and design reviews"] },
+    { "title": "Cloud Data Platforms and Storage", "level": "bachelor", "area": "data", "year": 3, "semester": 1, "engines": ["E12", "E5", "E1"], "phase": 3,
+      "topics": ["block, file and object storage", "managed relational and NoSQL databases", "replication, consistency and backup", "data lakes and warehouses in the cloud", "streaming and messaging services", "storage tiering and lifecycle cost", "data security and encryption at rest"] },
+    { "title": "Cognitive Science for Artificial Intelligence", "level": "bachelor", "area": "ai", "year": 3, "semester": 1, "engines": ["E10", "E6"], "phase": 3,
+      "topics": ["Mind, computation and representation", "Perception and attention", "Memory and learning in humans", "Language and reasoning", "Decision making and heuristics", "Neural models of cognition", "Human-AI interaction and trust"] },
+    { "title": "Computing Capstone Project", "level": "bachelor", "area": "software-practice", "year": 4, "semester": 2, "engines": ["E10", "E1", "E12"], "phase": 3,
+      "topics": ["Problem framing and scoping", "Literature and prior-art review", "Project planning and milestones", "Data and experiment design", "Implementation and iteration", "Evaluation and reporting", "Final presentation and defence"] },
+    { "title": "Concurrent and Parallel Programming", "level": "bachelor", "area": "programming", "year": 3, "semester": 1, "engines": ["E1", "E6"], "phase": 3,
+      "topics": ["Threads and shared memory", "Races, locks and deadlock", "Message passing and actors", "Memory models and atomics", "Lock-free and wait-free structures", "Data parallelism and task parallelism", "Speed-up, Amdahl's law and scalability"] },
+    { "title": "Data Privacy and Protection", "level": "bachelor", "area": "security-ethics", "year": 2, "semester": 1, "engines": ["E10", "E5"], "phase": 3,
+      "topics": ["Personal data and privacy principles", "Data protection legislation in practice", "Privacy impact assessments", "Anonymisation and pseudonymisation", "Consent and data subject rights", "Breach notification and response", "Privacy by design in databases"] },
+    { "title": "Design and Analysis of Algorithms", "level": "bachelor", "area": "maths-theory", "year": 2, "semester": 2, "engines": ["E6", "E7"], "phase": 3,
+      "topics": ["Asymptotic analysis and recurrences", "Divide and conquer", "Dynamic programming", "Greedy algorithms and matroids", "Graph algorithms and network flow", "NP-completeness and reductions", "Randomised and approximation algorithms"] },
+    { "title": "Digital Banking, Lending and Insurance Technology", "level": "bachelor", "area": "information-systems", "year": 3, "semester": 1, "engines": ["E10", "E5", "E12"], "phase": 3,
+      "topics": ["Core banking systems and open banking APIs", "Digital onboarding and identity verification", "Credit scoring and algorithmic lending", "Crowdfunding and peer-to-peer lending", "Insurance technology and underwriting", "Fraud detection and anti-money-laundering", "Financial inclusion and mobile banking"] },
+    { "title": "Digital Transformation and Innovation Management", "level": "bachelor", "area": "information-systems", "year": 2, "semester": 1, "engines": ["E10", "E9"], "phase": 3,
+      "topics": ["Digital strategy and business models", "Change management and adoption", "Innovation processes and design thinking", "Platform and ecosystem strategies", "Digital product management", "Technology entrepreneurship and startups", "Measuring value of digital initiatives"] },
+    { "title": "Economics for Technology and Business", "level": "bachelor", "area": "information-systems", "year": 1, "semester": 1, "engines": ["E7", "E10", "E1"], "phase": 3,
+      "topics": ["Demand, supply and elasticity", "Costs and market structures", "Network effects and platform economics", "Pricing of digital goods and services", "Information asymmetry and incentives", "Macroeconomic indicators and policy", "Economics of IT investment and cloud pricing"] },
+    { "title": "Electric Machines and Drives", "level": "bachelor", "area": "hardware", "year": 2, "semester": 1, "engines": ["E2", "E8", "E7"], "phase": 3,
+      "topics": ["DC motor models", "Brushless and stepper motors", "H-bridges and power electronics", "Motor drive control", "Servo systems", "Batteries and power budgets", "Gearing and transmission"] },
+    { "title": "Electromagnetics, Antennas and RF Engineering", "level": "bachelor", "area": "signals-control", "year": 2, "semester": 1, "engines": ["E7", "E1", "E2"], "phase": 3,
+      "topics": ["Maxwell equations and wave propagation", "transmission lines and Smith chart", "waveguides and resonators", "antenna types and radiation patterns", "link budgets and propagation models", "RF amplifiers, mixers and filters", "electromagnetic compatibility"] },
+    { "title": "Engineering Capstone Project", "level": "bachelor", "area": "hardware", "year": 4, "semester": 2, "engines": ["E8", "E9", "E10"], "phase": 3,
+      "topics": ["Project proposal and requirements", "System architecture and interface specification", "Hardware and firmware integration", "Prototyping and test planning", "Project management and Gantt planning", "Design review and ethics", "Final demonstration and report"] },
+    { "title": "Engineering Mechanics and Dynamics", "level": "bachelor", "area": "signals-control", "year": 2, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Statics and free-body diagrams", "Particle kinematics", "Rigid-body kinematics", "Newton-Euler dynamics", "Work, energy and momentum", "Vibrations and oscillators", "Simulation of mechanical systems"] },
+    { "title": "Enterprise Architecture and Integration", "level": "bachelor", "area": "information-systems", "year": 3, "semester": 1, "engines": ["E9", "E12", "E10"], "phase": 3,
+      "topics": ["Enterprise architecture frameworks and layers", "Application and data architecture", "Integration patterns and APIs", "Messaging and event-driven integration", "Service-oriented and microservice architectures", "Legacy modernisation and migration", "Architecture governance and roadmaps"] },
+    { "title": "Functional Programming", "level": "bachelor", "area": "programming", "year": 2, "semester": 1, "engines": ["E1", "E6"], "phase": 3,
+      "topics": ["Pure functions and immutability", "Higher-order functions and folds", "Algebraic data types and pattern matching", "Recursion and tail calls", "Lazy evaluation and infinite structures", "Type inference and polymorphism", "Monads and handling effects"] },
+    { "title": "Game AI", "level": "bachelor", "area": "games", "year": 3, "semester": 1, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Steering and movement", "Pathfinding with A* and navigation meshes", "Finite state machines and behaviour trees", "Utility and goal-oriented action planning", "Tactical analysis and influence maps", "Adversarial search and Monte Carlo tree search", "Learning agents and AI testing"] },
+    { "title": "Genetics and Population Genomics", "level": "bachelor", "area": "health-bio", "year": 2, "semester": 1, "engines": ["E7", "E1", "E6"], "phase": 3,
+      "topics": ["Mendelian and quantitative inheritance", "Pedigrees and linkage analysis", "Hardy-Weinberg equilibrium and allele frequencies", "Drift, selection and the coalescent", "Population structure and ancestry inference", "Genome-wide association and QTL mapping", "Heritability and polygenic scores"] },
+    { "title": "Hardware and Embedded Security", "level": "bachelor", "area": "hardware", "year": 3, "semester": 1, "engines": ["E8", "E6"], "phase": 3,
+      "topics": ["Hardware root of trust", "Secure boot and firmware integrity", "Side-channel attacks", "Fault injection", "Trusted execution environments", "Physical and tamper attacks", "Securing IoT devices and sensors"] },
+    { "title": "Hardware Description Languages and FPGA Design", "level": "bachelor", "area": "hardware", "year": 3, "semester": 1, "engines": ["E2", "E6", "E8"], "phase": 3,
+      "topics": ["Hardware description language syntax", "Combinational and sequential modelling", "Finite state machine design", "Simulation and test benches", "Synthesis and timing closure", "FPGA architecture and toolflow", "Building a small processor on an FPGA"] },
+    { "title": "Healthcare Delivery, Quality and Patient Safety", "level": "bachelor", "area": "health-bio", "year": 2, "semester": 1, "engines": ["E10", "E9", "E7"], "phase": 3,
+      "topics": ["Structure of health systems and payers", "Primary, secondary and tertiary care pathways", "Patient safety and medical error", "Quality measures and improvement cycles", "Clinical workflow analysis and redesign", "Health system performance in low-resource settings", "Patient engagement and consumer health"] },
+    { "title": "Human Anatomy, Physiology and Clinical Terminology", "level": "bachelor", "area": "health-bio", "year": 1, "semester": 1, "engines": ["E10", "E6", "E5"], "phase": 3,
+      "topics": ["Body systems and their functions", "Common diseases and how they present", "Clinical vocabulary and medical word roots", "Diagnoses, procedures and laboratory tests", "Medications and pharmacology basics", "Vital signs and clinical measurements", "Reading a clinical note and chart"] },
+    { "title": "Information Theory and Coding", "level": "bachelor", "area": "maths-theory", "year": 3, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["entropy and mutual information", "source coding and compression", "channel capacity", "block codes and parity checks", "convolutional codes and Viterbi decoding", "error detection and CRC", "modern codes overview"] },
+    { "title": "Introduction to Robotics", "level": "bachelor", "area": "signals-control", "year": 1, "semester": 1, "engines": ["E8", "E1", "E6"], "phase": 3,
+      "topics": ["What a robot is and its components", "Actuators and motors", "Sensors and signal conditioning", "Microcontroller programming", "Basic feedback control", "Building a mobile robot", "Team robot challenge"] },
+    { "title": "Investments and Portfolio Management", "level": "bachelor", "area": "information-systems", "year": 2, "semester": 1, "engines": ["E7", "E1", "E10"], "phase": 3,
+      "topics": ["Securities and market structure", "Risk, return and diversification", "Portfolio construction", "Bond and fixed income basics", "Equity valuation", "Options and futures basics", "Robo-advisor design and performance measurement"] },
+    { "title": "Logic and Formal Methods", "level": "bachelor", "area": "maths-theory", "year": 2, "semester": 1, "engines": ["E7", "E6"], "phase": 3,
+      "topics": ["Propositional and predicate logic", "Natural deduction and proof", "SAT solving and decision procedures", "Hoare logic and program correctness", "Loop invariants and termination", "Model checking of finite-state systems", "Specification languages and refinement"] },
+    { "title": "Multiplayer and Network Game Programming", "level": "bachelor", "area": "games", "year": 3, "semester": 1, "engines": ["E3", "E1"], "phase": 3,
+      "topics": ["Client-server and peer-to-peer architectures", "UDP, TCP and reliability layers", "State synchronisation and snapshots", "Latency, jitter and lag compensation", "Client-side prediction and reconciliation", "Cheating, trust and server authority", "Matchmaking and scaling game servers"] },
+    { "title": "Multivariable Calculus", "level": "bachelor", "area": "maths-theory", "year": 1, "semester": 2, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Partial derivatives and gradients", "Multiple integrals", "Vector fields and line integrals", "Jacobians and change of variables", "Taylor expansion in several variables", "Constrained optimisation and Lagrange multipliers", "Matrix calculus for machine learning"] },
+    { "title": "Operations Research and Decision Modelling", "level": "bachelor", "area": "maths-theory", "year": 3, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Linear programming and the simplex method", "Duality and sensitivity analysis", "Network flows and assignment", "Integer programming and branch and bound", "Decision trees and utility", "Queueing and simulation models", "Modelling case studies with solvers"] },
+    { "title": "Optical Communications and Fibre Networks", "level": "bachelor", "area": "networks-systems", "year": 3, "semester": 1, "engines": ["E7", "E3"], "phase": 3,
+      "topics": ["optical fibre propagation and loss", "lasers, LEDs and photodetectors", "dispersion and amplification", "wavelength-division multiplexing", "passive optical networks", "optical transport and switching", "fibre link design and testing"] },
+    { "title": "Regression and Generalised Linear Models", "level": "bachelor", "area": "maths-theory", "year": 2, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Simple and multiple linear regression", "Diagnostics and residual analysis", "Model selection and regularisation", "Logistic and Poisson regression", "Generalised linear models", "Mixed-effects and hierarchical models", "Bootstrap and cross-validation"] },
+    { "title": "Scripting and IT Automation", "level": "bachelor", "area": "networks-systems", "year": 2, "semester": 1, "engines": ["E4", "E1"], "phase": 3,
+      "topics": ["Shell scripting fundamentals", "PowerShell for administration", "Scheduling and task automation", "Bulk user and account management", "Log parsing and reporting", "Configuration and package automation", "Safe testing of scripts"] },
+    { "title": "Security Risk Management and Governance", "level": "bachelor", "area": "security-ethics", "year": 2, "semester": 1, "engines": ["E10"], "phase": 3,
+      "topics": ["Asset and threat identification", "Risk assessment methods", "Security policy and standards", "Controls and control frameworks", "Business continuity and disaster recovery", "Security awareness and human factors", "Audit and assurance"] },
+    { "title": "Software Maintenance and Evolution", "level": "bachelor", "area": "software-practice", "year": 3, "semester": 1, "engines": ["E1", "E9", "E4"], "phase": 3,
+      "topics": ["Change requests and impact analysis", "Legacy code and program comprehension", "Refactoring and code smells", "Technical debt and software metrics", "Mining version history", "Migration and modernisation", "Release and patch management"] },
+    { "title": "Systems Biology and Biological Networks", "level": "bachelor", "area": "health-bio", "year": 3, "semester": 1, "engines": ["E7", "E6", "E1"], "phase": 3,
+      "topics": ["Gene regulatory and protein interaction networks", "Differential-equation models of gene circuits", "Stochastic simulation of cellular processes", "Network topology and centrality measures", "Flux balance analysis and metabolic models", "Boolean and logic models of signalling", "Model fitting and parameter estimation"] },
+    { "title": "Advanced Algorithms", "level": "master", "area": "maths-theory", "year": 5, "semester": 1, "engines": ["E6", "E7"], "phase": 3,
+      "topics": ["Amortised analysis and advanced data structures", "Randomised algorithms and probabilistic analysis", "Approximation algorithms", "Linear programming and duality", "Online and streaming algorithms", "Parameterised and exact exponential algorithms", "Lower bounds and the limits of computation"] },
+    { "title": "Advanced Artificial Intelligence", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Heuristic and adversarial search at scale", "Constraint satisfaction and SAT/SMT solving", "Automated planning", "Probabilistic reasoning and decision theory", "Knowledge graphs and ontologies", "Neuro-symbolic methods", "Foundation-model agents"] },
+    { "title": "Advanced Business Analytics", "level": "master", "area": "data", "year": 5, "semester": 1, "engines": ["E5", "E7", "E1"], "phase": 3,
+      "topics": ["Decision analysis under uncertainty", "Predictive modelling for business", "Optimisation and simulation", "Experimentation and causal inference", "Analytics project lifecycle", "Communicating analytical results", "Analytics in operations and marketing"] },
+    { "title": "Advanced Cloud Architecture and Virtualisation", "level": "master", "area": "networks-systems", "year": 5, "semester": 1, "engines": ["E12", "E4", "E3"], "phase": 3,
+      "topics": ["hypervisors and resource virtualisation", "cluster scheduling and orchestration", "multi-tenancy and isolation", "autoscaling and elasticity control", "cloud storage architecture", "cost and performance engineering", "edge and multi-cloud design"] },
+    { "title": "Advanced Computational Genomics", "level": "master", "area": "health-bio", "year": 5, "semester": 1, "engines": ["E1", "E7", "E5"], "phase": 3,
+      "topics": ["Read mapping, assembly and variant calling at scale", "Single-cell and spatial transcriptomics", "Epigenomics and regulatory element prediction", "Genome-wide association, eQTL and fine mapping", "Cancer genomics and somatic variant analysis", "Metagenomics and microbiome profiling", "Multi-omics integration"] },
+    { "title": "Advanced Computer Architecture", "level": "master", "area": "hardware", "year": 5, "semester": 1, "engines": ["E6", "E8", "E2"], "phase": 3,
+      "topics": ["Out-of-order execution and speculation", "Advanced branch prediction", "Cache and memory system design", "On-chip networks and coherence", "Memory consistency models", "Low-power and reliable design", "Hardware security"] },
+    { "title": "Advanced Computer Graphics", "level": "master", "area": "games", "year": 5, "semester": 1, "engines": ["E1", "E7"], "phase": 3,
+      "topics": ["Programmable shader pipelines", "Physically based shading and lighting", "Real-time shadows and global illumination approximations", "GPU ray tracing", "Deferred and clustered rendering", "Post-processing and temporal techniques", "GPU profiling and optimisation"] },
+    { "title": "Advanced Computer Networks", "level": "master", "area": "networks-systems", "year": 5, "semester": 1, "engines": ["E3", "E12"], "phase": 3,
+      "topics": ["Network design and capacity planning", "Advanced routing and traffic engineering", "Data centre and overlay networks", "Quality of service", "Network virtualisation", "Monitoring and telemetry", "Network automation"] },
+    { "title": "Advanced Database Systems", "level": "master", "area": "data", "year": 5, "semester": 1, "engines": ["E5", "E6"], "phase": 3,
+      "topics": ["Query optimisation and cost models", "Storage engines and indexing structures", "Transaction processing and concurrency control", "Recovery and logging", "Distributed and replicated databases", "Column stores and in-memory processing", "NoSQL and NewSQL trade-offs"] },
+    { "title": "Advanced Deep Learning", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E1", "E6"], "phase": 3,
+      "topics": ["Optimisation of deep networks", "Attention and transformer architectures", "Generative models: VAE, GAN, diffusion", "Self-supervised and contrastive learning", "Scaling, efficiency and distributed training", "Interpretability and robustness", "Deep reinforcement learning"] },
+    { "title": "Advanced Digital Communications", "level": "master", "area": "signals-control", "year": 5, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["signal space and detection theory", "modulation and demodulation performance", "equalisation and synchronisation", "channel coding and capacity limits", "OFDM and multicarrier systems", "MIMO and diversity", "link-level simulation"] },
+    { "title": "Advanced Distributed Systems", "level": "master", "area": "networks-systems", "year": 5, "semester": 1, "engines": ["E6", "E3", "E12"], "phase": 3,
+      "topics": ["time, clocks and ordering", "consensus and Paxos or Raft", "replication and consistency models", "distributed transactions and commit", "key-value stores and CRDTs", "failure detection and membership", "fault tolerance case studies"] },
+    { "title": "Advanced Game Engine Architecture", "level": "master", "area": "games", "year": 5, "semester": 1, "engines": ["E1", "E6"], "phase": 3,
+      "topics": ["Entity-component-system design", "Data-oriented design and cache behaviour", "Job systems and multithreading", "Memory allocators and streaming", "Asset pipelines and hot reloading", "Scripting and tools integration", "Cross-platform builds and profiling"] },
+    { "title": "Advanced Machine Learning", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E1", "E6", "E7"], "phase": 3,
+      "topics": ["Statistical learning framework and generalisation", "Kernel methods and support vector machines", "Ensembles and boosting", "Bayesian methods and Gaussian processes", "Dimensionality reduction and representation learning", "Online learning and bandits", "Semi-supervised, active and transfer learning"] },
+    { "title": "Advanced Network Security", "level": "master", "area": "networks-systems", "year": 5, "semester": 1, "engines": ["E3", "E4"], "phase": 3,
+      "topics": ["Protocol attacks and defences", "Firewalls and intrusion detection", "TLS and secure channels", "DNS and routing security", "Wireless and mobile network security", "Denial of service and botnets", "Network monitoring and traffic analysis"] },
+    { "title": "Advanced Operating Systems", "level": "master", "area": "networks-systems", "year": 5, "semester": 1, "engines": ["E6", "E4"], "phase": 3,
+      "topics": ["kernel structure and system calls", "virtual memory and paging policies", "scheduling in multicore systems", "file systems and storage stacks", "virtualisation and hypervisors", "containers and isolation", "kernel bypass and performance tuning"] },
+    { "title": "Advanced Optimisation", "level": "master", "area": "maths-theory", "year": 5, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Convex sets, functions and duality", "First-order methods and acceleration", "Stochastic and large-scale optimisation", "Proximal and splitting methods", "Interior-point methods", "Non-convex optimisation and saddle points", "Optimisation for distributed training"] },
+    { "title": "Advanced Software Architecture", "level": "master", "area": "software-practice", "year": 5, "semester": 1, "engines": ["E9", "E12", "E1"], "phase": 3,
+      "topics": ["Quality attributes and architectural tactics", "Architecture evaluation and trade-off analysis", "Microservices and event-driven styles", "Architecture of data-intensive and ML systems", "Modularity and evolvability", "Architecture documentation and decision records", "Architectural technical debt"] },
+    { "title": "Advanced Software Process and Project Management", "level": "master", "area": "software-practice", "year": 5, "semester": 1, "engines": ["E9", "E10"], "phase": 3,
+      "topics": ["Process models and tailoring", "Estimation and planning under uncertainty", "Risk and decision management", "Metrics-driven management", "Continuous delivery and release engineering", "Distributed and cross-functional teams", "Process assessment and improvement"] },
+    { "title": "Advanced Statistical Modelling", "level": "master", "area": "maths-theory", "year": 5, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Generalised linear and additive models", "Mixed-effects and hierarchical models", "Bayesian modelling and MCMC", "Survival and event-history analysis", "Multivariate methods", "State-space and forecasting models", "Resampling and model validation at scale"] },
+    { "title": "Advanced Systems Analysis and Modelling", "level": "master", "area": "software-practice", "year": 5, "semester": 1, "engines": ["E9", "E10", "E5"], "phase": 3,
+      "topics": ["Systems theory and soft systems methods", "Feasibility and project selection", "Process and logic modelling", "Entity-relationship and data modelling", "Object-oriented analysis with UML", "From analysis to design", "Development methodologies compared"] },
+    { "title": "Advanced Wireless and Mobile Systems", "level": "master", "area": "networks-systems", "year": 5, "semester": 1, "engines": ["E3", "E7"], "phase": 3,
+      "topics": ["wireless channel models and fading", "MAC protocols and spectrum access", "cellular architecture, 5G and beyond", "massive MIMO and beamforming", "mobility management and handover", "wireless sensor and IoT networks", "satellite and non-terrestrial links"] },
+    { "title": "Algorithmic and Systematic Trading", "level": "master", "area": "information-systems", "year": 5, "semester": 1, "engines": ["E1", "E7", "E6"], "phase": 3,
+      "topics": ["Market microstructure and order books", "Signal research and backtesting", "Execution algorithms and transaction costs", "Portfolio construction for strategies", "Machine learning for trading signals", "Latency and system design for trading", "Risk limits and controls"] },
+    { "title": "Applied Analytics Practicum", "level": "master", "area": "software-practice", "year": 5, "semester": 1, "engines": ["E10", "E5", "E1"], "phase": 3,
+      "topics": ["Scoping an analytics problem with a client", "Data access, governance and ethics approval", "Exploratory analysis and baseline models", "Iterative modelling and validation", "Communicating findings to decision makers", "Deployment hand-over and monitoring plan", "Final report and stakeholder presentation"] },
+    { "title": "Applied Cryptography", "level": "master", "area": "maths-theory", "year": 5, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Block and stream ciphers", "Hash functions and MACs", "Public-key encryption and signatures", "Key exchange and PKI", "Authenticated encryption", "Cryptographic protocol design", "Common implementation failures"] },
+    { "title": "Asset Pricing and Derivatives", "level": "master", "area": "maths-theory", "year": 5, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["State prices and arbitrage", "Risk-neutral pricing and replication", "Equilibrium asset pricing models", "Forwards, futures and swaps", "Option pricing in discrete and continuous time", "Interest-rate and credit derivatives", "Numerical pricing methods"] },
+    { "title": "Character Animation and Crowd Simulation", "level": "master", "area": "games", "year": 5, "semester": 1, "engines": ["E6", "E7"], "phase": 3,
+      "topics": ["Skeletal animation and skinning", "Inverse kinematics", "Motion capture data and retargeting", "Animation blending and state machines", "Physics-based character control", "Crowd steering and flocking models", "Evaluating believability"] },
+    { "title": "Clinical Research Informatics and Real-World Data", "level": "master", "area": "data", "year": 5, "semester": 1, "engines": ["E5", "E1", "E10"], "phase": 3,
+      "topics": ["Clinical trial data management", "Observational databases and common data models", "Cohort discovery and phenotyping", "Electronic health record data re-use", "Data warehouses and data lakes for health", "Registries, biobanks and linkage", "Privacy-preserving analysis and data governance"] },
+    { "title": "Computational Intelligence", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Evolutionary algorithms", "Genetic programming", "Swarm intelligence", "Fuzzy systems", "Artificial immune systems", "Neuro-evolution", "Multi-objective optimisation"] },
+    { "title": "Cyber Risk Modelling and Security Economics", "level": "master", "area": "security-ethics", "year": 5, "semester": 1, "engines": ["E7", "E10"], "phase": 3,
+      "topics": ["Quantitative risk models", "Attack trees and threat modelling", "Loss estimation and insurance", "Incentives and security investment", "Game-theoretic defence models", "Vulnerability markets and disclosure", "Security metrics and decision making"] },
+    { "title": "Cyber-Physical Systems", "level": "master", "area": "hardware", "year": 5, "semester": 1, "engines": ["E8", "E6", "E12"], "phase": 3,
+      "topics": ["Modelling hybrid systems", "Real-time scheduling and timing analysis", "Sensing, networking and actuation", "Safety and fault tolerance", "Formal verification of controllers", "Security of connected devices", "Edge-to-cloud deployment"] },
+    { "title": "Data Governance and Information Management", "level": "master", "area": "data", "year": 5, "semester": 1, "engines": ["E5", "E10"], "phase": 3,
+      "topics": ["Data governance frameworks and roles", "Master and reference data management", "Data quality and lineage", "Privacy and data protection law", "Records and lifecycle management", "Metadata and data catalogues", "Analytics governance and model risk"] },
+    { "title": "Datacentre Networks and Network Virtualisation", "level": "master", "area": "networks-systems", "year": 5, "semester": 1, "engines": ["E3", "E12"], "phase": 3,
+      "topics": ["datacentre topologies and fat-tree design", "traffic engineering and load balancing", "overlay networks and virtual switches", "network function virtualisation", "programmable data planes", "congestion control in datacentres", "network failure injection and verification"] },
+    { "title": "Decentralised Finance and Digital Assets", "level": "master", "area": "security-ethics", "year": 5, "semester": 1, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Token standards and smart contracts", "Automated market makers and liquidity pools", "Decentralised lending and stablecoins", "Central bank digital currencies", "Oracles, front-running and exploit analysis", "Custody, exchanges and market structure", "Regulation, tax and risk of digital assets"] },
+    { "title": "Empirical Software Engineering", "level": "master", "area": "software-practice", "year": 5, "semester": 1, "engines": ["E1", "E7", "E10"], "phase": 3,
+      "topics": ["Scientific method in software engineering", "Controlled experiments", "Surveys and case studies", "Systematic literature reviews", "Mining software repositories", "Statistical analysis and effect sizes", "Threats to validity and replication"] },
+    { "title": "Evaluation and Implementation of Health Information Systems", "level": "master", "area": "health-bio", "year": 5, "semester": 1, "engines": ["E10", "E9", "E5"], "phase": 3,
+      "topics": ["Study designs for evaluating health IT", "Usability testing and clinical workflow studies", "Implementation science and change management", "Procurement, vendor selection and contracting", "Organisational behaviour and project leadership", "Health economics and return on investment", "Mixed-methods and qualitative evaluation"] },
+    { "title": "Financial Econometrics and Quantitative Methods", "level": "master", "area": "maths-theory", "year": 5, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Regression and time-series models", "Volatility and risk models", "Estimation and hypothesis testing in finance", "Cointegration and long-run relationships", "Panel data and event studies", "Monte Carlo and bootstrap methods", "Backtesting and model validation"] },
+    { "title": "Financial Risk Management", "level": "master", "area": "information-systems", "year": 5, "semester": 1, "engines": ["E7", "E1", "E10"], "phase": 3,
+      "topics": ["Market risk and value at risk", "Credit risk and scoring models", "Liquidity and operational risk", "Stress testing and scenario analysis", "Counterparty risk and collateral", "Model risk and validation", "Regulatory capital and risk reporting"] },
+    { "title": "Foundations of Biomedical and Health Informatics", "level": "master", "area": "health-bio", "year": 5, "semester": 1, "engines": ["E10", "E5"], "phase": 3,
+      "topics": ["Definitions, history and scope of the field", "Clinical data, information and knowledge", "Health records and information systems", "Standards, terminologies and interoperability", "Decision support and artificial intelligence", "Public health, consumer and research informatics", "Privacy, security and ethics"] },
+    { "title": "Generative AI and Large Language Models", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E1", "E6", "E12"], "phase": 3,
+      "topics": ["Language model pre-training", "Instruction tuning and alignment", "Prompting, retrieval and tool use", "Diffusion and multimodal generation", "Evaluation and benchmarking", "Serving, cost and efficiency", "Safety, misuse and governance"] },
+    { "title": "Graduate Game Project", "level": "master", "area": "games", "year": 5, "semester": 1, "engines": ["E10", "E9"], "phase": 3,
+      "topics": ["Concept pitch and scope control", "Studio team roles and pipelines", "Iterative prototyping", "Playtesting and telemetry review", "Vertical slice and milestone reviews", "Release preparation and postmortem", "Technical report and portfolio"] },
+    { "title": "Graduate Research Methods", "level": "master", "area": "software-practice", "year": 5, "semester": 1, "engines": ["E10", "E1"], "phase": 3,
+      "topics": ["Formulating research questions", "Literature search and critical reading", "Experimental design and reproducibility", "Statistical evidence and reporting", "Research ethics and integrity", "Academic writing and peer review", "Presenting and defending research"] },
+    { "title": "Hardware Accelerators and Custom Computing", "level": "master", "area": "hardware", "year": 5, "semester": 1, "engines": ["E2", "E6", "E8"], "phase": 3,
+      "topics": ["GPU architecture and programming", "FPGA acceleration flows", "Dataflow and systolic designs", "Machine learning accelerators", "High-level synthesis", "Memory bandwidth and roofline models", "Energy-efficient design"] },
+    { "title": "Human-Robot Interaction", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E10", "E9"], "phase": 3,
+      "topics": ["Human factors and trust", "Interaction design for robots", "Teleoperation and shared autonomy", "Social robots", "Study design with human participants", "Safety and ethics", "Evaluation metrics"] },
+    { "title": "Information Systems Theory and Digital Innovation", "level": "master", "area": "information-systems", "year": 5, "semester": 1, "engines": ["E10", "E9"], "phase": 3,
+      "topics": ["Foundations of the IS discipline", "Socio-technical systems", "Technology adoption and acceptance theories", "Digital innovation and generativity", "Platforms and ecosystems", "IT and organisational change", "Socioeconomics of digital technology"] },
+    { "title": "Large-Scale Data Systems", "level": "master", "area": "data", "year": 5, "semester": 1, "engines": ["E12", "E5", "E1"], "phase": 3,
+      "topics": ["MapReduce and dataflow engines", "distributed file systems and column stores", "stream processing and message queues", "cluster resource managers", "feature stores and ML training platforms", "serving, caching and cost control", "benchmarking big data workloads"] },
+    { "title": "Machine Learning for Healthcare", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E1", "E6", "E7"], "phase": 3,
+      "topics": ["Clinical data and its quirks", "Risk stratification and prediction", "Physiological time series", "Clinical text and language models", "Causal inference with observational data", "Fairness, robustness and dataset shift", "Regulation and deployment of clinical AI"] },
+    { "title": "Mathematical Statistics", "level": "master", "area": "maths-theory", "year": 5, "semester": 1, "engines": ["E7", "E1"], "phase": 3,
+      "topics": ["Probability and measure refresher", "Estimation theory and sufficiency", "Maximum likelihood and Bayes estimators", "Hypothesis testing and confidence regions", "Asymptotic theory", "High-dimensional statistics", "Non-parametric methods"] },
+    { "title": "Motion Planning and Manipulation", "level": "master", "area": "signals-control", "year": 5, "semester": 1, "engines": ["E6", "E1", "E7"], "phase": 3,
+      "topics": ["Configuration space", "Sampling-based planning", "Trajectory optimisation", "Grasp planning", "Differential inverse kinematics", "Contact-rich manipulation", "Mobile manipulation"] },
+    { "title": "Multi-Agent Systems and Game Theory", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Rational agents and utility", "Normal-form and extensive-form games", "Equilibria and mechanism design", "Auctions and voting", "Coordination, negotiation and argumentation", "Multi-agent reinforcement learning", "Swarm and collective behaviour"] },
+    { "title": "Nonlinear and Optimal Control", "level": "master", "area": "signals-control", "year": 5, "semester": 1, "engines": ["E7", "E6", "E1"], "phase": 3,
+      "topics": ["Lyapunov stability", "Feedback linearisation", "Linear quadratic regulation", "Model predictive control", "Trajectory optimisation", "Dynamic programming", "Control through contact"] },
+    { "title": "Performance Modelling and Queueing Systems", "level": "master", "area": "maths-theory", "year": 5, "semester": 1, "engines": ["E7", "E6"], "phase": 3,
+      "topics": ["Markov chains and birth-death processes", "M/M/1 and M/M/c queues", "queueing networks and bottleneck analysis", "workload characterisation", "simulation of systems", "capacity planning", "measurement and confidence intervals"] },
+    { "title": "Privacy Engineering and Privacy-Enhancing Technologies", "level": "master", "area": "security-ethics", "year": 5, "semester": 1, "engines": ["E1", "E7"], "phase": 3,
+      "topics": ["Privacy threat modelling", "Differential privacy", "Anonymous communication", "Secure multi-party computation basics", "Federated learning and privacy", "Privacy-preserving data release", "Evaluating privacy guarantees"] },
+    { "title": "Probabilistic Graphical Models", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E7", "E1", "E6"], "phase": 3,
+      "topics": ["Directed and undirected models", "Exact inference and belief propagation", "Parameter estimation and EM", "Variational inference", "Sampling and MCMC", "Structure learning and causality", "Deep generative models"] },
+    { "title": "Procedural Content Generation and Player Modelling", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E1", "E6"], "phase": 3,
+      "topics": ["Constructive and grammar-based generation", "Search-based and evolutionary content generation", "Machine-learned generators", "Evaluating generators and expressive range", "Player modelling and telemetry", "Dynamic difficulty and experience-driven generation", "Mixed-initiative design tools"] },
+    { "title": "Programming Language Theory and Verification", "level": "master", "area": "programming", "year": 5, "semester": 1, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Operational and denotational semantics", "Lambda calculus and type systems", "Polymorphism and type inference", "Program logics and separation logic", "Abstract interpretation", "Proof assistants and verified software", "Effect systems and concurrency models"] },
+    { "title": "Robot Learning", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E6", "E1"], "phase": 3,
+      "topics": ["Imitation learning", "Policy gradient methods", "Model-based reinforcement learning", "Deep perception for manipulation", "Sim-to-real transfer", "Safe learning", "Evaluation on real robots"] },
+    { "title": "Robotic Systems Laboratory", "level": "master", "area": "signals-control", "year": 5, "semester": 1, "engines": ["E8", "E1", "E10"], "phase": 3,
+      "topics": ["Systems engineering for robots", "Hardware and software integration", "Mobile robot navigation challenge", "Debugging and logging", "Team project planning", "Safety review", "Demonstration and report"] },
+    { "title": "Scientific Workflows and Reproducible Data Pipelines", "level": "master", "area": "data", "year": 5, "semester": 1, "engines": ["E4", "E12", "E1"], "phase": 3,
+      "topics": ["Shell scripting and command-line tools at scale", "Workflow engines and dependency graphs", "Containers for reproducible environments", "Cluster scheduling and cloud execution", "Provenance, metadata and FAIR data", "Large file formats and indexing", "Testing and continuous integration for pipelines"] },
+    { "title": "Security Analytics and Adversarial Machine Learning", "level": "master", "area": "ai", "year": 5, "semester": 1, "engines": ["E1", "E6"], "phase": 3,
+      "topics": ["Anomaly and intrusion detection models", "Malware classification", "Log and event analytics", "Evasion and poisoning attacks", "Model robustness and defences", "Threat intelligence mining", "Evaluating detectors under attack"] },
+    { "title": "Software Analysis and Verification", "level": "master", "area": "software-practice", "year": 5, "semester": 1, "engines": ["E1", "E6"], "phase": 3,
+      "topics": ["Static analysis and dataflow", "Abstract interpretation", "Symbolic execution", "Model checking software", "Fuzzing and property-based testing", "Reviews and inspections", "Proof of program correctness"] },
+    { "title": "Software Engineering Studio", "level": "master", "area": "software-practice", "year": 5, "semester": 1, "engines": ["E10", "E9", "E12"], "phase": 3,
+      "topics": ["Client brief and scoping", "Architecture spike and design review", "Sprint planning and delivery", "Build, deploy and operate", "Code review and quality gates", "User testing and acceptance", "Handover and retrospective"] },
+    { "title": "Software Safety and Dependability", "level": "master", "area": "software-practice", "year": 5, "semester": 1, "engines": ["E10", "E6", "E8"], "phase": 3,
+      "topics": ["Hazard analysis and risk assessment", "Fault trees and FMEA", "Safety cases and assurance arguments", "Fault tolerance and redundancy", "Coding standards for safety-critical systems", "Reliability modelling", "Interplay of safety and security"] },
+    { "title": "State Estimation and Sensor Fusion", "level": "master", "area": "signals-control", "year": 5, "semester": 1, "engines": ["E7", "E1", "E6"], "phase": 3,
+      "topics": ["Bayes filters", "Kalman and extended Kalman filters", "Unscented and particle filters", "Sensor models and calibration", "Localisation and mapping", "Smoothing and factor graphs", "Multi-sensor fusion"] },
+    { "title": "Strategic Management of Information Technology", "level": "master", "area": "information-systems", "year": 5, "semester": 1, "engines": ["E10", "E12"], "phase": 3,
+      "topics": ["Aligning IT with business strategy", "IT investment and portfolio decisions", "Sourcing and outsourcing", "Managing disruptive technologies", "Organisational design for IT", "Cloud and vendor strategy", "Business cases and benefit realisation"] },
+    { "title": "Systems and Software Security", "level": "master", "area": "security-ethics", "year": 5, "semester": 1, "engines": ["E4", "E6"], "phase": 3,
+      "topics": ["Memory safety and exploit mitigations", "Isolation and sandboxing", "Privilege separation", "Symbolic execution and fuzzing", "Trusted computing and enclaves", "Secure operating system design", "Supply chain security"] },
+    { "title": "Telecommunications Network Planning and Regulation", "level": "master", "area": "networks-systems", "year": 5, "semester": 1, "engines": ["E3", "E10"], "phase": 3,
+      "topics": ["traffic forecasting and dimensioning", "access and backbone network design", "spectrum management and licensing", "tariffs and interconnection", "universal service and community networks", "quality of service regulation", "network economics and business cases"] },
+    { "title": "Advanced Research Design and Empirical Methods", "level": "phd", "area": "software-practice", "year": 6, "semester": 1, "engines": ["E10", "E1"], "phase": 3,
+      "topics": ["Playtesting and user studies", "Survey and questionnaire design", "Controlled experiments and statistics", "Telemetry and game analytics", "Qualitative coding and ethnography", "Ethics approval and consent", "Reporting and replication"] },
+    { "title": "Advanced Topics in Theoretical Computer Science", "level": "phd", "area": "maths-theory", "year": 6, "semester": 1, "engines": ["E7", "E6"], "phase": 3,
+      "topics": ["Semidefinite programming hierarchies", "Spectral methods and expansion", "Hardness of approximation", "Average-case complexity", "Communication and query complexity", "Algebraic and geometric methods", "Quantum computation and information"] },
+    { "title": "Doctoral Research Seminar", "level": "phd", "area": "software-practice", "year": 6, "semester": 1, "engines": ["E10", "E1"], "phase": 3,
+      "topics": ["Surveying a research area and building a reading list", "Presenting and critiquing research papers", "Identifying open problems and research gaps", "Benchmarks, artefacts and reproducibility", "Peer review practice", "Qualifying examination preparation", "Proposal and dissertation planning"] },
+    { "title": "Mechanism Design and Market Microstructure", "level": "phd", "area": "maths-theory", "year": 6, "semester": 1, "engines": ["E7", "E6", "E1"], "phase": 3,
+      "topics": ["Auctions and mechanism design", "Equilibrium in decentralised exchanges", "Automated market maker design and optimisation", "Order book models and price formation", "Front-running and fairness in consensus", "Credit networks and liquidity", "Open research problems and project"] },
+    { "title": "Planning and Decision Making Under Uncertainty", "level": "phd", "area": "ai", "year": 6, "semester": 1, "engines": ["E6", "E7"], "phase": 3,
+      "topics": ["Markov decision processes", "Partially observable models", "Online and Monte Carlo planning", "Hierarchical and temporal planning", "Planning with learned models", "Safe and risk-sensitive decisions", "Planning for robots and agents"] },
+    { "title": "Provable Security and Cryptographic Protocols", "level": "phd", "area": "maths-theory", "year": 6, "semester": 1, "engines": ["E7", "E6"], "phase": 3,
+      "topics": ["Security definitions and reductions", "One-way functions and pseudorandomness", "Commitments and zero-knowledge proofs", "Secure multi-party computation", "Lattice-based cryptography", "Cryptanalysis case studies", "Post-quantum transitions"] },
+    { "title": "Research Proposal and Grant Writing", "level": "phd", "area": "software-practice", "year": 6, "semester": 1, "engines": ["E10", "E9"], "phase": 3,
+      "topics": ["Framing a fundable research question", "Literature synthesis and gap analysis", "Specific aims and hypotheses", "Methods, preliminary data and feasibility", "Timelines, milestones and budgets", "Mock review panel and peer critique", "Data management plans and responsible research"] },
+    { "title": "Statistical Learning Theory", "level": "phd", "area": "maths-theory", "year": 6, "semester": 1, "engines": ["E7", "E6"], "phase": 3,
+      "topics": ["PAC learning and VC dimension", "Rademacher complexity and generalisation bounds", "Online learning and regret", "Boosting and margin theory", "Active and semi-supervised learning theory", "Differential privacy", "Theory of over-parameterised models"] }
   ],
   "programmes": [
     {
@@ -160,7 +389,46 @@
         "Apply mathematics, data and artificial intelligence to real problems responsibly."
       ],
       "recommended": false,
-      "courses": "__ALL_ORIGINAL__"
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Computer Science",
+          "years": 4,
+          "core": ["fundamentals-of-computer-science", "principles-of-programming", "introduction-to-python", "discrete-mathematics", "calculus", "linear-algebra-for-data-science", "mathematics-for-computer-science", "probability-and-statistics", "programming-with-c", "digital-logic-design", "data-structures-and-algorithms", "functional-programming", "software-development-with-java", "computer-organization-and-architecture", "database-systems-and-design", "operating-systems", "computer-networking-i", "software-engineering", "design-and-analysis-of-algorithms", "theory-of-computation", "concurrent-and-parallel-programming", "artificial-intelligence", "information-security", "compiler-construction", "distributed-systems", "human-computer-interaction", "research-methods-in-computer-science", "legal-and-ethical-issues-in-computing", "computing-capstone-project"],
+          "electives": ["basic-electronics", "computer-hardware", "programming-with-cpp", "web-application-programming-i", "web-application-programming-ii", "assembly-language-and-microprocessors", "data-communications", "computer-networking-ii", "systems-administration-i", "systems-administration-ii", "version-control-and-devops", "information-systems-and-e-commerce", "numerical-methods-and-computation", "computer-graphics", "embedded-systems", "it-project-management", "object-oriented-system-analysis-and-design", "advanced-software-development-with-java", "mobile-application-development", "machine-learning", "data-science", "data-mining-and-warehousing", "big-data-and-parallel-computing", "cloud-computing", "internet-of-things", "wireless-communication", "cryptography-and-network-security", "computer-forensics", "blockchain-and-distributed-ledgers", "logic-and-formal-methods"],
+          "electivesRequired": 8,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Computer Science",
+          "years": "1-2",
+          "core": ["graduate-research-methods", "advanced-algorithms", "advanced-operating-systems", "advanced-machine-learning", "programming-language-theory-and-verification"],
+          "electives": ["advanced-database-systems", "advanced-computer-architecture", "distributed-systems", "cryptography-and-network-security", "deep-learning", "natural-language-processing", "computer-vision", "reinforcement-learning", "knowledge-representation-and-reasoning", "compiler-construction", "computer-graphics"],
+          "electivesRequired": 5,
+          "milestones": [
+            "Research proposal and presentation in the first year",
+            "Breadth requirement across theory, systems and learning",
+            "Master's thesis or capstone project with written dissertation",
+            "Oral defence of the dissertation"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Computer Science",
+          "years": "4-5",
+          "core": ["doctoral-research-seminar", "graduate-research-methods"],
+          "electives": ["advanced-algorithms", "advanced-operating-systems", "advanced-machine-learning", "programming-language-theory-and-verification", "advanced-topics-in-theoretical-computer-science", "advanced-database-systems", "advanced-computer-architecture"],
+          "electivesRequired": 3,
+          "milestones": [
+            "First-year research rotations and advisor selection",
+            "Breadth requirement: three graduate courses from different areas",
+            "Qualifying examination (research paper review and presentation)",
+            "Teaching requirement",
+            "Thesis proposal and reading committee",
+            "Publication of research papers",
+            "Dissertation",
+            "Public defence and closed oral examination"
+          ]
+        }
+      }
     },
     {
       "slug": "computer-engineering",
@@ -173,7 +441,45 @@
         "Design embedded and connected systems that work within power and cost limits."
       ],
       "recommended": false,
-      "courses": ["calculus", "mathematics-for-computer-science", "basic-electronics", "circuit-analysis", "programming-with-c", "digital-logic-design", "signals-and-systems", "data-communications", "computer-organization-and-architecture", "assembly-language-and-microprocessors", "embedded-systems", "digital-signal-processing", "control-systems", "real-time-systems", "operating-systems", "computer-networking-i", "internet-of-things", "vlsi-design"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Computer Engineering",
+          "years": 4,
+          "core": ["calculus", "linear-algebra-for-data-science", "discrete-mathematics", "probability-and-statistics", "principles-of-programming", "programming-with-c", "basic-electronics", "circuit-analysis", "analogue-electronics-and-devices", "digital-logic-design", "data-structures-and-algorithms", "signals-and-systems", "electromagnetics-antennas-and-rf-engineering", "hardware-description-languages-and-fpga-design", "computer-organization-and-architecture", "assembly-language-and-microprocessors", "embedded-systems", "operating-systems", "data-communications", "computer-networking-i", "control-systems", "real-time-systems", "digital-signal-processing", "software-engineering", "information-security", "vlsi-design", "internet-of-things", "engineering-capstone-project"],
+          "electives": ["computer-networking-ii", "programming-with-cpp", "mathematics-for-computer-science", "database-systems-and-design", "artificial-intelligence", "machine-learning", "sensors-and-actuators", "numerical-methods-and-computation", "wireless-communication", "computer-graphics", "compiler-construction"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Computer Engineering",
+          "years": "1-2",
+          "core": ["graduate-research-methods", "advanced-computer-architecture", "advanced-operating-systems", "hardware-accelerators-and-custom-computing", "cyber-physical-systems"],
+          "electives": ["distributed-systems", "big-data-and-parallel-computing", "deep-learning", "computer-vision", "cryptography-and-network-security", "software-defined-networking", "malware-analysis-and-reverse-engineering", "cloud-computing", "mobile-robotics-and-navigation", "theory-of-computation"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Depth area chosen by end of first semester",
+            "Semester design project with written report and oral presentation",
+            "Optional industry internship or research placement",
+            "Master's thesis or capstone project with oral defence"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Computer Engineering",
+          "years": "4-5",
+          "core": ["doctoral-research-seminar", "advanced-computer-architecture", "graduate-research-methods"],
+          "electives": ["advanced-operating-systems", "hardware-accelerators-and-custom-computing", "cyber-physical-systems", "distributed-systems", "deep-learning"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Qualifying examination (by end of semester 3 or 4)",
+            "Research committee formed",
+            "Dissertation proposal defence at least one year before final defence",
+            "Teaching or tutoring experience",
+            "Annual progress report",
+            "Pre-defence committee meeting",
+            "Dissertation and public defence"
+          ]
+        }
+      }
     },
     {
       "slug": "software-engineering",
@@ -186,7 +492,46 @@
         "Plan and run software projects in teams, securely and ethically."
       ],
       "recommended": false,
-      "courses": ["principles-of-programming", "introduction-to-python", "discrete-mathematics", "programming-with-cpp", "software-development-with-java", "data-structures-and-algorithms", "database-systems-and-design", "web-application-programming-i", "requirements-engineering", "object-oriented-system-analysis-and-design", "software-engineering", "version-control-and-devops", "web-application-programming-ii", "software-architecture-and-design-patterns", "software-testing-and-quality-assurance", "human-computer-interaction", "advanced-software-development-with-java", "mobile-application-development", "secure-software-development", "it-project-management", "legal-and-ethical-issues-in-computing"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Software Engineering",
+          "years": 4,
+          "core": ["principles-of-programming", "introduction-to-python", "discrete-mathematics", "calculus", "linear-algebra-for-data-science", "probability-and-statistics", "programming-with-cpp", "data-structures-and-algorithms", "software-development-with-java", "logic-and-formal-methods", "computer-organization-and-architecture", "database-systems-and-design", "operating-systems", "computer-networking-i", "software-engineering", "requirements-engineering", "object-oriented-system-analysis-and-design", "web-application-programming-i", "version-control-and-devops", "human-computer-interaction", "software-architecture-and-design-patterns", "software-testing-and-quality-assurance", "web-application-programming-ii", "advanced-software-development-with-java", "concurrent-and-parallel-programming", "secure-software-development", "it-project-management", "software-maintenance-and-evolution", "legal-and-ethical-issues-in-computing", "computing-capstone-project"],
+          "electives": ["mobile-application-development", "programming-with-c", "artificial-intelligence", "machine-learning", "cloud-computing", "containers-and-kubernetes", "site-reliability-engineering", "information-security", "embedded-systems", "research-methods-in-computer-science"],
+          "electivesRequired": 4,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Software Engineering",
+          "years": "1-2",
+          "core": ["graduate-research-methods", "advanced-software-architecture", "software-analysis-and-verification", "advanced-software-process-and-project-management", "software-engineering-studio"],
+          "electives": ["empirical-software-engineering", "software-safety-and-dependability", "requirements-engineering", "secure-software-development", "distributed-systems", "site-reliability-engineering", "mlops-and-model-deployment", "human-computer-interaction"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Software engineering studio with an external client",
+            "Research or practice project proposal",
+            "Master's dissertation or practicum report",
+            "Oral defence or final studio presentation"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Software Engineering",
+          "years": "4-5",
+          "core": ["doctoral-research-seminar", "graduate-research-methods", "empirical-software-engineering"],
+          "electives": ["advanced-software-architecture", "software-analysis-and-verification", "software-safety-and-dependability", "advanced-software-process-and-project-management", "distributed-systems", "secure-software-development", "machine-learning"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Canonical software engineering papers reading in the first semester",
+            "Qualifying examination or research proposal review",
+            "Industry or research practicum",
+            "Teaching requirement (two courses)",
+            "Speaking and writing requirements",
+            "Thesis proposal",
+            "Dissertation",
+            "Public defence"
+          ]
+        }
+      }
     },
     {
       "slug": "data-analytics",
@@ -199,7 +544,45 @@
         "Communicate findings with clear charts, dashboards and reports."
       ],
       "recommended": false,
-      "courses": ["spreadsheet-analytics", "introduction-to-python", "probability-and-statistics", "database-systems-and-design", "data-wrangling-and-preparation", "statistical-inference", "data-visualisation", "business-intelligence-and-dashboards", "data-mining-and-warehousing", "time-series-analysis-and-forecasting", "data-science", "legal-and-ethical-issues-in-computing"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Data Analytics",
+          "years": 4,
+          "core": ["spreadsheet-analytics", "introduction-to-python", "calculus", "linear-algebra-for-data-science", "probability-and-statistics", "database-systems-and-design", "data-structures-and-algorithms", "data-wrangling-and-preparation", "statistical-inference", "regression-and-generalised-linear-models", "data-visualisation", "business-process-modelling", "accounting-and-finance-for-information-systems", "business-intelligence-and-dashboards", "data-mining-and-warehousing", "time-series-analysis-and-forecasting", "operations-research-and-decision-modelling", "causal-inference-and-experimental-design", "machine-learning", "data-science", "research-methods-in-computer-science", "legal-and-ethical-issues-in-computing", "computing-capstone-project"],
+          "electives": ["information-systems-and-e-commerce", "enterprise-resource-planning", "financial-mathematics", "big-data-and-parallel-computing", "web-application-programming-i", "natural-language-processing", "responsible-ai", "epidemiology-and-public-health-data", "biostatistics", "it-project-management", "cloud-computing", "discrete-mathematics"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Data Analytics",
+          "years": "1-2",
+          "core": ["advanced-statistical-modelling", "advanced-machine-learning", "advanced-optimisation", "big-data-and-parallel-computing", "graduate-research-methods", "applied-analytics-practicum"],
+          "electives": ["natural-language-processing", "deep-learning", "mlops-and-model-deployment", "responsible-ai", "cloud-computing", "reinforcement-learning", "financial-mathematics", "business-intelligence-and-dashboards"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Applied analytics practicum with an industry or public-sector partner",
+            "Master's dissertation or research report on an analytics problem",
+            "Oral defence of the dissertation",
+            "Progression rule: pass the taught component before starting the dissertation"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Data Analytics",
+          "years": "4-5",
+          "core": ["graduate-research-methods", "advanced-statistical-modelling", "advanced-machine-learning", "doctoral-research-seminar"],
+          "electives": ["advanced-optimisation", "statistical-learning-theory", "reinforcement-learning", "responsible-ai", "mlops-and-model-deployment"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Qualifying examination at the end of the first year (written, covering statistics and optimisation or machine learning)",
+            "Applied data-analysis project with an external investigator, written report and department presentation",
+            "Thesis committee formed and proposal approved by the end of year 3",
+            "Teaching requirement: two semesters of tutoring or section leading",
+            "Speaking requirement: a talk of at least 30 minutes in year 2 or 3",
+            "At least one peer-reviewed paper",
+            "Dissertation and public defence"
+          ]
+        }
+      }
     },
     {
       "slug": "data-science",
@@ -212,7 +595,46 @@
         "Process data at scale and handle it lawfully and ethically."
       ],
       "recommended": false,
-      "courses": ["introduction-to-python", "calculus", "linear-algebra-for-data-science", "probability-and-statistics", "data-structures-and-algorithms", "database-systems-and-design", "data-wrangling-and-preparation", "statistical-inference", "data-visualisation", "numerical-methods-and-computation", "data-science", "machine-learning", "data-mining-and-warehousing", "time-series-analysis-and-forecasting", "big-data-and-parallel-computing", "deep-learning", "legal-and-ethical-issues-in-computing"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Data Science",
+          "years": 4,
+          "core": ["principles-of-programming", "introduction-to-python", "calculus", "multivariable-calculus", "linear-algebra-for-data-science", "discrete-mathematics", "probability-and-statistics", "data-structures-and-algorithms", "database-systems-and-design", "data-wrangling-and-preparation", "statistical-inference", "regression-and-generalised-linear-models", "data-visualisation", "numerical-methods-and-computation", "optimisation-for-machine-learning", "data-science", "machine-learning", "data-mining-and-warehousing", "time-series-analysis-and-forecasting", "artificial-intelligence", "deep-learning", "big-data-and-parallel-computing", "causal-inference-and-experimental-design", "legal-and-ethical-issues-in-computing", "research-methods-in-computer-science", "computing-capstone-project"],
+          "electives": ["natural-language-processing", "computer-vision", "reinforcement-learning", "mlops-and-model-deployment", "responsible-ai", "cloud-computing", "knowledge-representation-and-reasoning", "software-engineering", "biostatistics", "financial-mathematics"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Data Science",
+          "years": "1-2",
+          "core": ["mathematical-statistics", "advanced-machine-learning", "probabilistic-graphical-models", "big-data-and-parallel-computing", "responsible-ai", "graduate-research-methods"],
+          "electives": ["advanced-optimisation", "deep-learning", "natural-language-processing", "computer-vision", "reinforcement-learning", "mlops-and-model-deployment", "cloud-computing", "distributed-systems"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Taught component passed with an overall average of at least 50 percent before the dissertation",
+            "Dissertation or project proposal",
+            "Master's dissertation or research report (about one third to one half of the credits)",
+            "Oral defence or presentation of the dissertation"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Data Science",
+          "years": "4-5",
+          "core": ["mathematical-statistics", "advanced-machine-learning", "statistical-learning-theory", "doctoral-research-seminar"],
+          "electives": ["probabilistic-graphical-models", "advanced-optimisation", "reinforcement-learning", "deep-learning", "responsible-ai"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Core coursework completed by the end of the third semester",
+            "Comprehensive examination: first-year research report with committee presentation at the end of the second semester",
+            "Research rotations with at least two faculty groups in year 1",
+            "Depth qualifying examination: presentation of independent research by the end of the fourth semester",
+            "Teaching requirement: two semesters as section leader or teaching assistant",
+            "Thesis committee formed by the end of year 2 and proposal approved by the end of year 3",
+            "At least one first-author peer-reviewed paper",
+            "Dissertation and public defence with an external member"
+          ]
+        }
+      }
     },
     {
       "slug": "information-systems",
@@ -225,7 +647,43 @@
         "Protect information and respect privacy and the law."
       ],
       "recommended": false,
-      "courses": ["fundamentals-of-computer-science", "introduction-to-python", "spreadsheet-analytics", "database-systems-and-design", "business-process-modelling", "accounting-and-finance-for-information-systems", "information-systems-and-e-commerce", "object-oriented-system-analysis-and-design", "web-application-programming-i", "computer-networking-i", "human-computer-interaction", "enterprise-resource-planning", "business-intelligence-and-dashboards", "it-project-management", "it-service-management-and-governance", "information-security", "research-methods-in-computer-science", "legal-and-ethical-issues-in-computing"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Information Systems",
+          "years": 4,
+          "core": ["fundamentals-of-computer-science", "introduction-to-python", "spreadsheet-analytics", "discrete-mathematics", "probability-and-statistics", "data-structures-and-algorithms", "economics-for-technology-and-business", "accounting-and-finance-for-information-systems", "database-systems-and-design", "business-process-modelling", "information-systems-and-e-commerce", "object-oriented-system-analysis-and-design", "requirements-engineering", "web-application-programming-i", "computer-networking-i", "human-computer-interaction", "enterprise-resource-planning", "enterprise-architecture-and-integration", "software-engineering", "business-intelligence-and-dashboards", "it-project-management", "it-service-management-and-governance", "information-security", "digital-transformation-and-innovation-management", "research-methods-in-computer-science", "legal-and-ethical-issues-in-computing", "computing-capstone-project"],
+          "electives": ["data-wrangling-and-preparation", "data-visualisation", "data-science", "data-mining-and-warehousing", "statistical-inference", "web-application-programming-ii", "mobile-application-development", "cloud-computing", "software-architecture-and-design-patterns", "blockchain-and-distributed-ledgers", "digital-payments-and-mobile-money", "regulatory-technology-and-compliance"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Information Systems",
+          "years": "1-2",
+          "core": ["graduate-research-methods", "information-systems-theory-and-digital-innovation", "strategic-management-of-information-technology", "advanced-systems-analysis-and-modelling", "advanced-business-analytics", "data-governance-and-information-management"],
+          "electives": ["it-service-management-and-governance", "software-architecture-and-design-patterns", "data-mining-and-warehousing", "big-data-and-parallel-computing", "machine-learning", "cloud-computing", "information-security", "regulatory-technology-and-compliance", "responsible-ai"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Research proposal",
+            "Industry consulting project or placement",
+            "Master's dissertation",
+            "Final examination or viva"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Information Systems",
+          "years": "4-5",
+          "core": ["doctoral-research-seminar", "advanced-research-design-and-empirical-methods", "graduate-research-methods", "information-systems-theory-and-digital-innovation"],
+          "electives": ["statistical-inference", "advanced-business-analytics", "machine-learning", "responsible-ai", "data-governance-and-information-management"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Qualifying examination (graduate research paper) within 18 months",
+            "Thesis proposal defence by end of year 3",
+            "Teaching duties",
+            "Pre-submission seminar",
+            "Dissertation and defence"
+          ]
+        }
+      }
     },
     {
       "slug": "machine-learning",
@@ -238,7 +696,43 @@
         "Deploy, monitor and govern models responsibly."
       ],
       "recommended": false,
-      "courses": ["introduction-to-python", "calculus", "linear-algebra-for-data-science", "probability-and-statistics", "data-structures-and-algorithms", "optimisation-for-machine-learning", "statistical-inference", "data-wrangling-and-preparation", "machine-learning", "artificial-intelligence", "deep-learning", "natural-language-processing", "computer-vision", "reinforcement-learning", "big-data-and-parallel-computing", "mlops-and-model-deployment", "responsible-ai"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Machine Learning",
+          "years": 4,
+          "core": ["introduction-to-python", "calculus", "discrete-mathematics", "linear-algebra-for-data-science", "multivariable-calculus", "probability-and-statistics", "data-structures-and-algorithms", "design-and-analysis-of-algorithms", "database-systems-and-design", "data-wrangling-and-preparation", "statistical-inference", "regression-and-generalised-linear-models", "numerical-methods-and-computation", "optimisation-for-machine-learning", "data-science", "artificial-intelligence", "machine-learning", "deep-learning", "natural-language-processing", "computer-vision", "reinforcement-learning", "big-data-and-parallel-computing", "mlops-and-model-deployment", "responsible-ai", "computing-capstone-project"],
+          "electives": ["time-series-analysis-and-forecasting", "data-visualisation", "data-mining-and-warehousing", "knowledge-representation-and-reasoning", "theory-of-computation", "operating-systems", "software-engineering", "computer-organization-and-architecture", "cloud-computing", "research-methods-in-computer-science", "legal-and-ethical-issues-in-computing", "mobile-robotics-and-navigation", "digital-signal-processing"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Machine Learning",
+          "years": "1-2",
+          "core": ["mathematical-statistics", "advanced-machine-learning", "probabilistic-graphical-models", "advanced-deep-learning", "advanced-optimisation", "mlops-and-model-deployment", "graduate-research-methods"],
+          "electives": ["generative-ai-and-large-language-models", "reinforcement-learning", "natural-language-processing", "computer-vision", "big-data-and-parallel-computing", "responsible-ai", "knowledge-representation-and-reasoning", "distributed-systems", "time-series-analysis-and-forecasting"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Research proposal",
+            "Practicum (industry placement or research project)",
+            "Master's research project report or thesis"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Machine Learning",
+          "years": "4-5",
+          "core": ["advanced-machine-learning", "mathematical-statistics", "statistical-learning-theory", "doctoral-research-seminar"],
+          "electives": ["probabilistic-graphical-models", "advanced-optimisation", "advanced-deep-learning", "generative-ai-and-large-language-models", "reinforcement-learning", "graduate-research-methods"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Speaking requirement (20-minute research talk)",
+            "Teaching requirement (two semesters as teaching assistant)",
+            "Qualifying examination",
+            "First-author paper (writing requirement)",
+            "Thesis proposal and committee formation",
+            "Dissertation and public defence with an external examiner"
+          ]
+        }
+      }
     },
     {
       "slug": "cloud-computing",
@@ -251,7 +745,43 @@
         "Secure, monitor and keep cloud services reliable and affordable."
       ],
       "recommended": false,
-      "courses": ["introduction-to-python", "computer-networking-i", "operating-systems", "systems-administration-i", "computer-networking-ii", "systems-administration-ii", "database-systems-and-design", "version-control-and-devops", "cloud-computing", "containers-and-kubernetes", "infrastructure-as-code", "distributed-systems", "serverless-and-cloud-native-applications", "information-security", "cloud-security", "site-reliability-engineering"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Cloud Computing",
+          "years": 4,
+          "core": ["fundamentals-of-computer-science", "principles-of-programming", "introduction-to-python", "discrete-mathematics", "mathematics-for-computer-science", "probability-and-statistics", "data-structures-and-algorithms", "computer-organization-and-architecture", "computer-networking-i", "operating-systems", "database-systems-and-design", "systems-administration-i", "version-control-and-devops", "software-engineering", "computer-networking-ii", "systems-administration-ii", "information-security", "cloud-computing", "distributed-systems", "containers-and-kubernetes", "infrastructure-as-code", "serverless-and-cloud-native-applications", "cloud-security", "site-reliability-engineering", "cloud-architecture-and-solution-design", "cloud-data-platforms-and-storage", "computing-capstone-project"],
+          "electives": ["web-application-programming-i", "software-development-with-java", "software-defined-networking", "big-data-and-parallel-computing", "machine-learning", "mlops-and-model-deployment", "internet-of-things", "software-architecture-and-design-patterns", "it-service-management-and-governance", "it-project-management", "ethical-hacking-and-penetration-testing", "security-operations-and-incident-response"],
+          "electivesRequired": 5,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Cloud Computing",
+          "years": "1-2",
+          "core": ["graduate-research-methods", "advanced-operating-systems", "advanced-cloud-architecture-and-virtualisation", "advanced-distributed-systems", "large-scale-data-systems"],
+          "electives": ["datacentre-networks-and-network-virtualisation", "performance-modelling-and-queueing-systems", "software-defined-networking", "big-data-and-parallel-computing", "machine-learning", "mlops-and-model-deployment", "cryptography-and-network-security", "internet-of-things", "blockchain-and-distributed-ledgers", "regulatory-technology-and-compliance"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Research proposal and presentation in the first year",
+            "Individual cloud systems project or minor dissertation",
+            "Oral defence of the dissertation"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Cloud Computing",
+          "years": "4-5",
+          "core": ["doctoral-research-seminar", "advanced-distributed-systems", "advanced-cloud-architecture-and-virtualisation"],
+          "electives": ["advanced-operating-systems", "large-scale-data-systems", "datacentre-networks-and-network-virtualisation", "performance-modelling-and-queueing-systems", "cloud-security", "optimisation-for-machine-learning"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Advisor agreement and first-year research proposal",
+            "Qualifying examination (reading list plus two assigned papers presented)",
+            "Dissertation proposal and preliminary examination (admission to candidacy)",
+            "One term of teaching assistance",
+            "At least one refereed publication",
+            "Dissertation and public defence"
+          ]
+        }
+      }
     },
     {
       "slug": "bioinformatics",
@@ -264,7 +794,47 @@
         "Use statistics and machine learning on biological data, including for disease surveillance."
       ],
       "recommended": false,
-      "courses": ["molecular-biology-for-computing", "introduction-to-python", "probability-and-statistics", "biostatistics", "data-structures-and-algorithms", "database-systems-and-design", "sequence-analysis-and-alignment", "genomics-and-next-generation-sequencing", "phylogenetics-and-molecular-evolution", "structural-bioinformatics", "data-science", "machine-learning", "legal-and-ethical-issues-in-computing"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Bioinformatics",
+          "years": 4,
+          "core": ["fundamentals-of-computer-science", "principles-of-programming", "introduction-to-python", "calculus", "discrete-mathematics", "linear-algebra-for-data-science", "probability-and-statistics", "biochemistry-and-cell-biology-for-computing", "molecular-biology-for-computing", "data-structures-and-algorithms", "database-systems-and-design", "genetics-and-population-genomics", "biostatistics", "sequence-analysis-and-alignment", "statistical-inference", "data-wrangling-and-preparation", "genomics-and-next-generation-sequencing", "phylogenetics-and-molecular-evolution", "structural-bioinformatics", "machine-learning", "data-science", "systems-biology-and-biological-networks", "research-methods-in-computer-science", "legal-and-ethical-issues-in-computing", "computing-capstone-project"],
+          "electives": ["data-visualisation", "deep-learning", "artificial-intelligence", "big-data-and-parallel-computing", "epidemiology-and-public-health-data", "numerical-methods-and-computation", "programming-with-c", "programming-with-cpp", "version-control-and-devops", "theory-of-computation", "optimisation-for-machine-learning", "operating-systems"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Bioinformatics",
+          "years": "1-2",
+          "core": ["advanced-algorithms", "advanced-statistical-modelling", "advanced-computational-genomics", "advanced-machine-learning", "scientific-workflows-and-reproducible-data-pipelines", "graduate-research-methods"],
+          "electives": ["probabilistic-graphical-models", "deep-learning", "structural-bioinformatics", "phylogenetics-and-molecular-evolution", "big-data-and-parallel-computing", "cloud-computing", "natural-language-processing", "epidemiology-and-public-health-data", "responsible-ai"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Research project proposal approved by the supervisory committee",
+            "Mid-programme seminar on the research plan",
+            "Master's research project or thesis (project route: written report; thesis route: two-semester thesis)",
+            "Oral defence or presentation to a master's committee",
+            "Responsible conduct of research training"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Bioinformatics",
+          "years": "4-5",
+          "core": ["doctoral-research-seminar", "research-proposal-and-grant-writing", "advanced-algorithms", "advanced-statistical-modelling", "advanced-computational-genomics"],
+          "electives": ["probabilistic-graphical-models", "advanced-machine-learning", "deep-learning", "structural-bioinformatics", "scientific-workflows-and-reproducible-data-pipelines"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Laboratory rotations and choice of supervisor (year 1)",
+            "Qualifying examination: written literature review and research proposal plus oral examination (by end of year 2)",
+            "Teaching practicum (two terms of assistantship)",
+            "Research ethics and responsible conduct training",
+            "Advancement to candidacy: dissertation proposal defence (by end of year 3)",
+            "At least one first-author peer-reviewed paper or accepted manuscript",
+            "Annual progress reports to the dissertation committee",
+            "Dissertation and public defence (year 4 to 5)"
+          ]
+        }
+      }
     },
     {
       "slug": "health-informatics",
@@ -277,7 +847,48 @@
         "Analyse health data while protecting patient privacy."
       ],
       "recommended": false,
-      "courses": ["fundamentals-of-computer-science", "introduction-to-python", "database-systems-and-design", "biostatistics", "health-information-systems", "health-data-standards-and-interoperability", "epidemiology-and-public-health-data", "electronic-health-records", "human-computer-interaction", "data-science", "information-security", "digital-health-and-telemedicine", "it-project-management", "legal-and-ethical-issues-in-computing"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Health Informatics",
+          "years": 4,
+          "core": ["fundamentals-of-computer-science", "principles-of-programming", "introduction-to-python", "human-anatomy-physiology-and-clinical-terminology", "healthcare-delivery-quality-and-patient-safety", "probability-and-statistics", "spreadsheet-analytics", "database-systems-and-design", "health-information-systems", "biostatistics", "epidemiology-and-public-health-data", "electronic-health-records", "health-data-standards-and-interoperability", "data-wrangling-and-preparation", "data-visualisation", "human-computer-interaction", "business-process-modelling", "object-oriented-system-analysis-and-design", "information-security", "digital-health-and-telemedicine", "clinical-decision-support-and-evidence-based-practice", "data-science", "it-project-management", "legal-and-ethical-issues-in-computing", "research-methods-in-computer-science", "computing-capstone-project"],
+          "electives": ["business-intelligence-and-dashboards", "data-mining-and-warehousing", "machine-learning", "mobile-application-development", "web-application-programming-i", "requirements-engineering", "software-engineering", "it-service-management-and-governance", "cloud-computing", "molecular-biology-for-computing", "time-series-analysis-and-forecasting", "regulatory-technology-and-compliance"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Health Informatics",
+          "years": "1-2",
+          "core": ["foundations-of-biomedical-and-health-informatics", "advanced-statistical-modelling", "machine-learning-for-healthcare", "evaluation-and-implementation-of-health-information-systems", "clinical-research-informatics-and-real-world-data", "graduate-research-methods"],
+          "electives": ["advanced-machine-learning", "natural-language-processing", "responsible-ai", "deep-learning", "cloud-computing", "secure-software-development", "software-architecture-and-design-patterns", "regulatory-technology-and-compliance", "business-intelligence-and-dashboards"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Research or capstone project proposal approved by an adviser",
+            "Supervised informatics internship or applied capstone (non-thesis route) or two-semester thesis (thesis route)",
+            "Written project report or first-author scientific article",
+            "Oral presentation of the project to a master's committee",
+            "Responsible conduct of research training"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Health Informatics",
+          "years": "4-5",
+          "core": ["doctoral-research-seminar", "research-proposal-and-grant-writing", "advanced-statistical-modelling", "evaluation-and-implementation-of-health-information-systems", "machine-learning-for-healthcare"],
+          "electives": ["advanced-machine-learning", "natural-language-processing", "responsible-ai", "deep-learning", "clinical-research-informatics-and-real-world-data"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Laboratory rotations and choice of research adviser (year 1)",
+            "Preliminary examination: first-year coursework review, short research presentation and adviser letter (end of year 1)",
+            "Comprehensive or qualifying examination (by end of year 2)",
+            "Cognate-area study in a clinical, public health or computing field",
+            "Mentored teaching practicum",
+            "Research ethics and responsible conduct training",
+            "Dissertation proposal defence and admission to candidacy (year 2 to 3)",
+            "Doctoral symposium presentations",
+            "Dissertation and public defence (year 4 to 5)"
+          ]
+        }
+      }
     },
     {
       "slug": "robotics",
@@ -290,7 +901,45 @@
         "Give robots perception, localisation and planning."
       ],
       "recommended": false,
-      "courses": ["calculus", "linear-algebra-for-data-science", "basic-electronics", "programming-with-c", "introduction-to-python", "digital-logic-design", "embedded-systems", "sensors-and-actuators", "signals-and-systems", "control-systems", "robot-kinematics-and-dynamics", "real-time-systems", "robot-programming-with-ros", "computer-vision", "artificial-intelligence", "mobile-robotics-and-navigation", "internet-of-things"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Robotics Engineering",
+          "years": 4,
+          "core": ["introduction-to-robotics", "calculus", "linear-algebra-for-data-science", "introduction-to-python", "programming-with-c", "programming-with-cpp", "basic-electronics", "circuit-analysis", "digital-logic-design", "probability-and-statistics", "data-structures-and-algorithms", "engineering-mechanics-and-dynamics", "signals-and-systems", "numerical-methods-and-computation", "sensors-and-actuators", "embedded-systems", "control-systems", "robot-kinematics-and-dynamics", "real-time-systems", "robot-programming-with-ros", "artificial-intelligence", "machine-learning", "computer-vision", "mobile-robotics-and-navigation", "software-engineering", "engineering-capstone-project"],
+          "electives": ["electric-machines-and-drives", "internet-of-things", "computer-organization-and-architecture", "operating-systems", "digital-signal-processing", "game-physics-and-simulation", "human-computer-interaction", "discrete-mathematics", "computer-graphics", "computer-networking-i", "version-control-and-devops", "database-systems-and-design"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Robotics",
+          "years": "1-2",
+          "core": ["graduate-research-methods", "nonlinear-and-optimal-control", "state-estimation-and-sensor-fusion", "motion-planning-and-manipulation", "robot-learning", "robotic-systems-laboratory"],
+          "electives": ["deep-learning", "reinforcement-learning", "optimisation-for-machine-learning", "human-robot-interaction", "distributed-systems", "responsible-ai", "knowledge-representation-and-reasoning"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Breadth across sensing, reasoning and acting",
+            "Robotic systems laboratory project with written report and demonstration",
+            "Industry internship or research placement",
+            "Master's thesis or capstone project with oral defence"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Robotics",
+          "years": "4-5",
+          "core": ["doctoral-research-seminar", "graduate-research-methods", "nonlinear-and-optimal-control", "state-estimation-and-sensor-fusion"],
+          "electives": ["motion-planning-and-manipulation", "robot-learning", "probabilistic-graphical-models", "reinforcement-learning", "deep-learning"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Course and breadth qualifier (sensing, reasoning, acting)",
+            "Research qualifier (by semester 3 or 4)",
+            "Thesis proposal defence at least one year before final defence",
+            "Teaching assistantship",
+            "Writing and speaking requirement",
+            "Annual progress review",
+            "Dissertation and public defence"
+          ]
+        }
+      }
     },
     {
       "slug": "cybersecurity",
@@ -303,7 +952,47 @@
         "Apply cryptography and work within the law and ethics."
       ],
       "recommended": true,
-      "courses": ["introduction-to-python", "programming-with-c", "computer-networking-i", "operating-systems", "systems-administration-i", "computer-networking-ii", "systems-administration-ii", "web-application-programming-i", "information-security", "cryptography-and-network-security", "web-application-security", "ethical-hacking-and-penetration-testing", "secure-software-development", "security-operations-and-incident-response", "computer-forensics", "malware-analysis-and-reverse-engineering", "cloud-security", "legal-and-ethical-issues-in-computing"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Cybersecurity",
+          "years": 4,
+          "core": ["principles-of-programming", "introduction-to-python", "discrete-mathematics", "mathematics-for-computer-science", "probability-and-statistics", "fundamentals-of-computer-science", "programming-with-c", "data-structures-and-algorithms", "computer-organization-and-architecture", "assembly-language-and-microprocessors", "operating-systems", "computer-networking-i", "database-systems-and-design", "web-application-programming-i", "systems-administration-i", "computer-networking-ii", "systems-administration-ii", "information-security", "security-risk-management-and-governance", "cryptography-and-network-security", "web-application-security", "secure-software-development", "ethical-hacking-and-penetration-testing", "security-operations-and-incident-response", "computer-forensics", "malware-analysis-and-reverse-engineering", "cloud-security", "legal-and-ethical-issues-in-computing", "data-privacy-and-protection"],
+          "electives": ["theory-of-computation", "cloud-computing", "version-control-and-devops", "containers-and-kubernetes", "distributed-systems", "blockchain-and-distributed-ledgers", "internet-of-things", "machine-learning", "research-methods-in-computer-science", "hardware-and-embedded-security"],
+          "electivesRequired": 4,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Cybersecurity",
+          "years": "1-2",
+          "core": ["graduate-research-methods", "applied-cryptography", "systems-and-software-security", "advanced-network-security", "cyber-risk-modelling-and-security-economics"],
+          "electives": ["privacy-engineering-and-privacy-enhancing-technologies", "security-analytics-and-adversarial-machine-learning", "malware-analysis-and-reverse-engineering", "computer-forensics", "distributed-systems", "software-defined-networking", "blockchain-and-distributed-ledgers", "responsible-ai"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Industry-style security practicum or capstone project",
+            "Research proposal",
+            "Dissertation or research report",
+            "Dissertation defence"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Cybersecurity",
+          "years": "4-5",
+          "core": ["graduate-research-methods", "doctoral-research-seminar", "provable-security-and-cryptographic-protocols"],
+          "electives": ["applied-cryptography", "systems-and-software-security", "advanced-network-security", "privacy-engineering-and-privacy-enhancing-technologies", "security-analytics-and-adversarial-machine-learning", "cyber-risk-modelling-and-security-economics"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Written qualifying examination on core security topics",
+            "Oral qualifying examination with literature survey",
+            "Advisory committee formed",
+            "Dissertation proposal and comprehensive examination",
+            "Teaching or laboratory assistantship",
+            "Operational security placement of about three months",
+            "At least one peer-reviewed publication",
+            "Dissertation",
+            "Public dissertation defence"
+          ]
+        }
+      }
     },
     {
       "slug": "artificial-intelligence",
@@ -316,7 +1005,41 @@
         "Design AI that suits local languages, data and constraints."
       ],
       "recommended": true,
-      "courses": ["introduction-to-python", "discrete-mathematics", "linear-algebra-for-data-science", "probability-and-statistics", "data-structures-and-algorithms", "theory-of-computation", "artificial-intelligence", "knowledge-representation-and-reasoning", "machine-learning", "deep-learning", "natural-language-processing", "computer-vision", "reinforcement-learning", "responsible-ai"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Artificial Intelligence",
+          "years": 4,
+          "core": ["principles-of-programming", "introduction-to-python", "calculus", "discrete-mathematics", "multivariable-calculus", "linear-algebra-for-data-science", "probability-and-statistics", "data-structures-and-algorithms", "design-and-analysis-of-algorithms", "computer-organization-and-architecture", "database-systems-and-design", "software-engineering", "theory-of-computation", "optimisation-for-machine-learning", "cognitive-science-for-artificial-intelligence", "artificial-intelligence", "knowledge-representation-and-reasoning", "machine-learning", "deep-learning", "natural-language-processing", "computer-vision", "reinforcement-learning", "responsible-ai", "statistical-inference", "computing-capstone-project"],
+          "electives": ["mobile-robotics-and-navigation", "robot-programming-with-ros", "control-systems", "data-science", "data-mining-and-warehousing", "mlops-and-model-deployment", "human-computer-interaction", "operating-systems", "computer-graphics", "numerical-methods-and-computation", "legal-and-ethical-issues-in-computing", "big-data-and-parallel-computing"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Artificial Intelligence",
+          "years": "1-2",
+          "core": ["advanced-artificial-intelligence", "advanced-machine-learning", "probabilistic-graphical-models", "advanced-deep-learning", "reinforcement-learning", "graduate-research-methods"],
+          "electives": ["computer-vision", "natural-language-processing", "multi-agent-systems-and-game-theory", "computational-intelligence", "knowledge-representation-and-reasoning", "responsible-ai", "mobile-robotics-and-navigation", "robot-programming-with-ros", "big-data-and-parallel-computing", "mlops-and-model-deployment"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Research proposal",
+            "Master's dissertation (about one third of the credit load)"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Artificial Intelligence",
+          "years": "4-5",
+          "core": ["advanced-artificial-intelligence", "planning-and-decision-making-under-uncertainty", "doctoral-research-seminar"],
+          "electives": ["advanced-machine-learning", "probabilistic-graphical-models", "multi-agent-systems-and-game-theory", "computational-intelligence", "reinforcement-learning", "knowledge-representation-and-reasoning", "responsible-ai"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Qualifying (depth) examination",
+            "Thesis proposal and reading committee",
+            "Teaching requirement",
+            "Peer-reviewed publication requirement",
+            "Dissertation and public defence with an external examiner"
+          ]
+        }
+      }
     },
     {
       "slug": "information-technology",
@@ -329,7 +1052,45 @@
         "Keep systems secure, backed up and compliant."
       ],
       "recommended": true,
-      "courses": ["fundamentals-of-computer-science", "computer-hardware", "it-support-and-troubleshooting", "introduction-to-python", "computer-networking-i", "operating-systems", "systems-administration-i", "database-systems-and-design", "web-application-programming-i", "computer-networking-ii", "systems-administration-ii", "version-control-and-devops", "cloud-computing", "information-security", "it-service-management-and-governance", "it-project-management", "legal-and-ethical-issues-in-computing"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Information Technology",
+          "years": 4,
+          "core": ["fundamentals-of-computer-science", "principles-of-programming", "introduction-to-python", "computer-hardware", "discrete-mathematics", "probability-and-statistics", "computer-networking-i", "operating-systems", "it-support-and-troubleshooting", "database-systems-and-design", "web-application-programming-i", "systems-administration-i", "computer-networking-ii", "scripting-and-it-automation", "human-computer-interaction", "systems-administration-ii", "web-application-programming-ii", "object-oriented-system-analysis-and-design", "version-control-and-devops", "cloud-computing", "information-security", "enterprise-architecture-and-integration", "it-service-management-and-governance", "it-project-management", "legal-and-ethical-issues-in-computing"],
+          "electives": ["containers-and-kubernetes", "infrastructure-as-code", "serverless-and-cloud-native-applications", "cryptography-and-network-security", "security-operations-and-incident-response", "internet-of-things", "mobile-application-development", "business-intelligence-and-dashboards", "enterprise-resource-planning", "software-defined-networking"],
+          "electivesRequired": 5,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Information Technology",
+          "years": "1-2",
+          "core": ["graduate-research-methods", "advanced-computer-networks", "advanced-operating-systems", "strategic-management-of-information-technology", "advanced-cloud-architecture-and-virtualisation", "distributed-systems"],
+          "electives": ["site-reliability-engineering", "software-defined-networking", "infrastructure-as-code", "containers-and-kubernetes", "cloud-security", "security-operations-and-incident-response", "big-data-and-parallel-computing", "regulatory-technology-and-compliance"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Research proposal",
+            "Capstone project or dissertation",
+            "Dissertation defence"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Information Technology",
+          "years": "4-5",
+          "core": ["graduate-research-methods", "doctoral-research-seminar", "advanced-operating-systems"],
+          "electives": ["advanced-computer-networks", "strategic-management-of-information-technology", "advanced-cloud-architecture-and-virtualisation", "distributed-systems", "big-data-and-parallel-computing", "machine-learning"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Breadth qualifying examinations",
+            "Plan of study in a chosen concentration",
+            "Oral comprehensive examination",
+            "Dissertation proposal",
+            "Teaching or research assistantship",
+            "At least one refereed publication",
+            "Dissertation",
+            "Public dissertation defence"
+          ]
+        }
+      }
     },
     {
       "slug": "networking-and-telecommunications",
@@ -342,7 +1103,43 @@
         "Use programmable and virtualised networks."
       ],
       "recommended": true,
-      "courses": ["calculus", "basic-electronics", "data-communications", "signals-and-systems", "computer-networking-i", "computer-networking-ii", "systems-administration-ii", "wireless-communication", "telecommunication-systems", "mobile-and-cellular-networks", "cryptography-and-network-security", "software-defined-networking", "internet-of-things", "distributed-systems", "cloud-computing"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Networking and Telecommunications",
+          "years": 4,
+          "core": ["calculus", "mathematics-for-computer-science", "probability-and-statistics", "principles-of-programming", "programming-with-c", "introduction-to-python", "basic-electronics", "circuit-analysis", "digital-logic-design", "signals-and-systems", "computer-organization-and-architecture", "operating-systems", "computer-networking-i", "data-communications", "electromagnetics-antennas-and-rf-engineering", "computer-networking-ii", "digital-signal-processing", "information-theory-and-coding", "telecommunication-systems", "wireless-communication", "mobile-and-cellular-networks", "optical-communications-and-fibre-networks", "cryptography-and-network-security", "systems-administration-i", "systems-administration-ii", "software-defined-networking", "engineering-capstone-project"],
+          "electives": ["internet-of-things", "distributed-systems", "cloud-computing", "embedded-systems", "real-time-systems", "control-systems", "sensors-and-actuators", "version-control-and-devops", "information-security", "ethical-hacking-and-penetration-testing", "linear-algebra-for-data-science", "machine-learning"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Networking and Telecommunications",
+          "years": "1-2",
+          "core": ["graduate-research-methods", "advanced-computer-networks", "advanced-digital-communications", "advanced-wireless-and-mobile-systems", "performance-modelling-and-queueing-systems"],
+          "electives": ["datacentre-networks-and-network-virtualisation", "telecommunications-network-planning-and-regulation", "software-defined-networking", "cryptography-and-network-security", "internet-of-things", "cloud-computing", "cloud-security", "digital-signal-processing", "distributed-systems", "security-operations-and-incident-response"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Research proposal and presentation in the first year",
+            "Master's project or minor dissertation",
+            "Oral defence of the dissertation"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Networking and Telecommunications",
+          "years": "4-5",
+          "core": ["doctoral-research-seminar", "advanced-computer-networks", "performance-modelling-and-queueing-systems"],
+          "electives": ["advanced-digital-communications", "advanced-wireless-and-mobile-systems", "datacentre-networks-and-network-virtualisation", "software-defined-networking", "cryptography-and-network-security", "machine-learning", "optimisation-for-machine-learning"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Advisor agreement and first-year research proposal",
+            "Qualifying examination (area reading list plus two assigned papers presented)",
+            "Dissertation proposal and preliminary examination (admission to candidacy)",
+            "One term of teaching assistance",
+            "At least one refereed publication",
+            "Dissertation and public defence"
+          ]
+        }
+      }
     },
     {
       "slug": "game-development",
@@ -355,7 +1152,44 @@
         "Test games with players and ship them to phones and the web."
       ],
       "recommended": true,
-      "courses": ["principles-of-programming", "game-design-principles", "mathematics-for-computer-science", "linear-algebra-for-data-science", "programming-with-cpp", "data-structures-and-algorithms", "computer-graphics", "game-engine-programming", "game-physics-and-simulation", "human-computer-interaction", "artificial-intelligence", "software-engineering", "mobile-application-development"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Game Development",
+          "years": 4,
+          "core": ["principles-of-programming", "discrete-mathematics", "calculus", "game-design-principles", "programming-with-cpp", "mathematics-for-computer-science", "linear-algebra-for-data-science", "data-structures-and-algorithms", "probability-and-statistics", "computer-organization-and-architecture", "human-computer-interaction", "computer-graphics", "design-and-analysis-of-algorithms", "software-engineering", "operating-systems", "game-engine-programming", "game-physics-and-simulation", "artificial-intelligence", "game-ai", "multiplayer-and-network-game-programming", "computing-capstone-project"],
+          "electives": ["introduction-to-python", "database-systems-and-design", "computer-networking-i", "theory-of-computation", "machine-learning", "mobile-application-development", "software-architecture-and-design-patterns", "software-testing-and-quality-assurance", "version-control-and-devops", "assembly-language-and-microprocessors", "numerical-methods-and-computation", "data-visualisation", "web-application-programming-i", "embedded-systems", "research-methods-in-computer-science"],
+          "electivesRequired": 6,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Game Development",
+          "years": "1-2",
+          "core": ["advanced-artificial-intelligence", "graduate-research-methods", "advanced-computer-graphics", "advanced-game-engine-architecture", "procedural-content-generation-and-player-modelling", "graduate-game-project"],
+          "electives": ["character-animation-and-crowd-simulation", "machine-learning", "deep-learning", "reinforcement-learning", "computer-vision", "distributed-systems", "knowledge-representation-and-reasoning", "optimisation-for-machine-learning", "responsible-ai"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Research proposal approved before the thesis semester",
+            "Playable prototype with a technical report and portfolio review (Graduate Game Project)",
+            "Master's thesis or directed research project with oral defence"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Game Technology and Interactive Media",
+          "years": "4-5",
+          "core": ["doctoral-research-seminar", "advanced-research-design-and-empirical-methods", "graduate-research-methods"],
+          "electives": ["procedural-content-generation-and-player-modelling", "advanced-computer-graphics", "character-animation-and-crowd-simulation", "reinforcement-learning", "deep-learning", "computer-vision"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Supervisor and research topic agreed before admission",
+            "First-year review through a literature synthesis paper",
+            "Qualifying examination (literature review and portfolio or prototype, written and oral)",
+            "Dissertation proposal defence before an examining committee with an external member",
+            "Teaching practicum (tutoring or assisting a game development course)",
+            "At least one peer-reviewed publication before submission",
+            "Dissertation with a built artefact or empirical study, and oral defence"
+          ]
+        }
+      }
     },
     {
       "slug": "financial-technology",
@@ -368,7 +1202,43 @@
         "Work within financial regulation and protect customers."
       ],
       "recommended": true,
-      "courses": ["introduction-to-python", "financial-mathematics", "accounting-and-finance-for-information-systems", "database-systems-and-design", "web-application-programming-i", "information-systems-and-e-commerce", "digital-payments-and-mobile-money", "data-science", "mobile-application-development", "cryptography-and-network-security", "information-security", "blockchain-and-distributed-ledgers", "machine-learning", "regulatory-technology-and-compliance", "legal-and-ethical-issues-in-computing"]
+      "levels": {
+        "bachelor": {
+          "award": "Bachelor of Science in Financial Technology",
+          "years": 4,
+          "core": ["introduction-to-python", "calculus", "discrete-mathematics", "probability-and-statistics", "linear-algebra-for-data-science", "data-structures-and-algorithms", "database-systems-and-design", "economics-for-technology-and-business", "accounting-and-finance-for-information-systems", "financial-mathematics", "statistical-inference", "web-application-programming-i", "information-systems-and-e-commerce", "digital-payments-and-mobile-money", "investments-and-portfolio-management", "digital-banking-lending-and-insurance-technology", "information-security", "cryptography-and-network-security", "blockchain-and-distributed-ledgers", "data-wrangling-and-preparation", "data-science", "machine-learning", "time-series-analysis-and-forecasting", "regulatory-technology-and-compliance", "legal-and-ethical-issues-in-computing", "computing-capstone-project"],
+          "electives": ["mobile-application-development", "web-application-programming-ii", "cloud-computing", "big-data-and-parallel-computing", "deep-learning", "natural-language-processing", "data-visualisation", "business-intelligence-and-dashboards", "enterprise-resource-planning", "software-engineering", "secure-software-development", "optimisation-for-machine-learning"],
+          "electivesRequired": 5,
+          "milestones": []
+        },
+        "master": {
+          "award": "Master of Science in Financial Technology",
+          "years": "1-2",
+          "core": ["graduate-research-methods", "financial-econometrics-and-quantitative-methods", "asset-pricing-and-derivatives", "advanced-machine-learning", "decentralised-finance-and-digital-assets", "financial-risk-management"],
+          "electives": ["algorithmic-and-systematic-trading", "big-data-and-parallel-computing", "deep-learning", "natural-language-processing", "reinforcement-learning", "optimisation-for-machine-learning", "cloud-security", "secure-software-development", "responsible-ai"],
+          "electivesRequired": 4,
+          "milestones": [
+            "Project or research proposal",
+            "Industry placement or fintech start-up project (optional)",
+            "Master's dissertation or research report",
+            "Oral defence"
+          ]
+        },
+        "phd": {
+          "award": "Doctor of Philosophy in Financial Technology",
+          "years": "3-5",
+          "core": ["doctoral-research-seminar", "graduate-research-methods", "financial-econometrics-and-quantitative-methods", "advanced-machine-learning"],
+          "electives": ["mechanism-design-and-market-microstructure", "decentralised-finance-and-digital-assets", "asset-pricing-and-derivatives", "reinforcement-learning", "optimisation-for-machine-learning", "cryptography-and-network-security"],
+          "electivesRequired": 3,
+          "milestones": [
+            "Qualifying examination in two parts (technology and finance) within 22 months",
+            "Critical survey paper with 45-minute presentation",
+            "Thesis proposal defence",
+            "Teaching in two terms",
+            "Dissertation and defence"
+          ]
+        }
+      }
     }
   ]
 }

@@ -110,5 +110,398 @@
         "Presentation and code review"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What makes data big",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Estimate the daily data volume of a mobile money operator from transaction counts and record sizes, then write a one-page note on which of the five Vs it stresses most.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Write the same 1000-row transaction table as CSV and JSON in Python, compare the two file sizes and explain the difference"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Time a sum over a list of 10 million integers while growing the input and find where memory or time limits begin to bite"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E1",
+          "title": "Compare row-wise and column-wise storage of a 1 million row synthetic table by timing a single-column average and justify when columnar layout wins"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Parallel thinking and speed-up laws",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
+      ],
+      "exercise": "Take a serial routine of your choice, mark which fractions are parallelisable, and predict its speed-up on 2, 4 and 16 workers using Amdahl's law before measuring.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E7",
+          "title": "Plot Amdahl speed-up curves for serial fractions of 5, 10 and 25 percent over 1 to 64 processors and read off the ceiling for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E1",
+          "title": "Split a sum of squares over 1 million numbers into chunks processed by worker processes and report speed-up for 1, 2, 4 and 8 workers"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Design a benchmark harness with warm-up runs, repeated trials and median reporting, then show how a careless single timing misleads the speed-up claim"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Threads, races and deadlock",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Trace by hand two interleavings of a shared counter increment, show one losing an update, then state the minimum locking that repairs it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Run a two-thread shared counter incremented 100000 times each, observe the wrong total and repair it with a mutex"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Step through two threads acquiring two locks in opposite order, reproduce the deadlock and fix it with a global lock ordering"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Given a thread-pool program with a hidden false-sharing and load-imbalance problem, profile it, locate both causes and restructure it for better speed-up"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Parallel patterns and lock-free ideas",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Describe how map, reduce and scan would compute a running total of daily mobile money deposits, and say which step needs synchronisation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E1",
+          "title": "Implement a parallel word count over four text chunks with a map step and a reduce step, and check it against the serial count"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Step through a parallel prefix-sum scan on 16 values, record the work and depth at each level and compare with the serial scan"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Parallelise a 512 by 512 matrix multiply with row blocks, measure speed-up across thread counts and explain why it falls short of linear"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Vector units and GPUs",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Explain in a short paragraph why a warp of threads taking different branches loses throughput, and sketch the memory access pattern of a coalesced versus strided vector add.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E1",
+          "title": "Time a Python loop against a NumPy vectorised version of an element-wise multiply on 5 million floats and report the ratio"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Step through a GPU vector add of 64 elements over blocks of 16 threads, mapping each thread index to its data element and checking the result"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E6",
+          "title": "Compare coalesced and strided access in a simulated reduction kernel, count memory transactions for each and propose a layout that minimises divergence"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "HDFS and the MapReduce model",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Work out by hand how a 1 GB file is split into 128 MB blocks with three replicas, then list what survives when one data node fails.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Place the blocks of a 600 MB file on five data nodes with replication three, then fail one node and confirm every block remains readable"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Write map, shuffle and reduce functions for word count over three text files and print the intermediate key groups to trace the flow"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Express an inverted index and then a reduce-side join of customers and transactions in MapReduce form and verify the outputs on small sample data"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Beyond MapReduce",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write a short comparison of a three-stage MapReduce chain and the same pipeline as one in-memory dataflow, naming the disk writes avoided.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Walk through an iterative job run as chained MapReduce passes, count the disk writes between iterations and compare with an in-memory version"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Run a word count job on a local multi-process pool configured as a small cluster and record time for 1, 2 and 4 workers"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Implement one PageRank iteration on a 10 node graph as a map and reduce pair, iterate to convergence and report passes needed"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Spark RDDs and DataFrames",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Given a Spark pipeline of four transformations and one action, draw the lineage graph and mark where a shuffle creates a new stage.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Chain filter, map and reduceByKey transformations on a small RDD of sales records and show that nothing runs until the action is called"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Answer five aggregation and window-function questions on a mobile money DataFrame with Spark SQL and check totals against a plain Python loop"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E6",
+          "title": "Reduce a skewed join's runtime by choosing a broadcast join and repartitioning, and justify each choice from the stage and shuffle sizes shown"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Machine learning and graphs at scale",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Argue in a short note when you would choose Dask over Spark for a 50 GB dataset on a single lab workstation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E1",
+          "title": "Load a CSV in chunks with a Dask-style lazy frame, compute a grouped mean and compare the result with an eager pandas calculation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Train a logistic regression on partitioned data by averaging per-partition gradients and compare accuracy with a single-machine fit"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E6",
+          "title": "Run a Pregel-style connected components algorithm on a 20 node graph, count supersteps and message volume, and relate them to graph diameter"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Streaming foundations",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Explain with an example why a mobile money event created at 23:59 but received at 00:03 must be assigned by event time, and how a watermark handles late arrivals.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E6",
+          "title": "Assign 12 keyed messages to three Kafka partitions by key hash and show which consumer in a group of three reads each one"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Compute tumbling and sliding window counts of a timestamped event stream and verify the totals by hand for one window"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Process a stream containing out-of-order events with a watermark, tune the lateness bound and report how many results change and how many events drop"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Streaming algorithms and fraud detection",
+      "topics": [
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compute by hand the false positive rate of a Bloom filter with given size and hash count after inserting a stated number of items.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Build a Bloom filter for 1000 phone numbers, query 1000 absent numbers and measure the false positive rate against the formula"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Estimate item frequencies in a 100000 event stream with a count-min sketch and report the error for the five most frequent items"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Build a streaming fraud flagger on synthetic mobile money events using velocity and amount rules, then report precision and recall against known fraud labels"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Platforms, scale and cost",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Price a monthly pipeline that stores 5 TB and processes 20 TB, in dollars and cedis, and note which line item dominates.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.3",
+          "engine": "E12",
+          "title": "Use the pricing calculator to cost a month of storage, compute and egress for a 2 TB analytics workload and list the three largest charges"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Configure autoscaling for a batch cluster with spot instances, replay a daily load pattern and compare the cost with a fixed-size cluster"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Benchmark a 5 GB aggregation on a single-node columnar engine against a distributed run, compute cost per query and decide which is cheaper"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Capstone pipeline and production practice",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Present your pipeline in ten minutes with a speed-up chart, a cost table and one failure you injected, then review a peer's code against a checklist.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.3",
+          "engine": "E1",
+          "title": "Add five data quality checks for nulls, ranges and duplicates to a small batch pipeline and print a pass or fail report"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.2",
+          "engine": "E1",
+          "title": "Run the same aggregation at four dataset sizes and four worker counts, then plot strong and weak scaling curves with a short interpretation"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.1",
+          "engine": "E1",
+          "title": "Build an end-to-end pipeline that ingests a public dataset, runs batch and streaming aggregates, stores results and answers three queries with measured cost"
+        }
+      ]
+    }
   ]
 }

@@ -104,5 +104,398 @@
         "Capstone: deploy, scale, secure and repair a multi-service application on a broken cluster under timed conditions"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why containers and how images work",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Explain in half a page how a container differs from a virtual machine, and trace what happens in the kernel when a container starts.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E4",
+          "title": "Run an Alpine container, list its processes and compare with the host process list to show process isolation"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E4",
+          "title": "Limit a container to 64 MB of memory and 0.5 CPU, then run a memory stress command and confirm the container is killed at the limit"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E4",
+          "title": "Inspect an image manifest, list its layers and digests, then pull the same image by digest and by tag and show they match"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Container runtimes and lifecycle",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a one-page runbook for starting, inspecting, restarting and removing a service container, including the restart policy you chose and why.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Run, exec into, read logs of, stop and remove an nginx container using the lifecycle commands in order and record each exit status"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Configure restart policies on three containers, kill the processes in each and record which ones come back and after how long"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E4",
+          "title": "Run a container as a rootless user, show its UID mapping on the host and explain which privileged operations fail"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Writing efficient and safe Dockerfiles",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Review a given 1 GB Dockerfile and write a list of changes that would shrink it and make it safer, ordered by impact.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E4",
+          "title": "Write a Dockerfile for a small Node.js API using FROM, COPY, ENV, WORKDIR and CMD, build it and curl the running container"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E4",
+          "title": "Reorder instructions and add a dockerignore file to a Python Dockerfile so that a code change rebuilds only two layers, and show the cache hits"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E4",
+          "title": "Convert a given Dockerfile to a multi-stage build on a slim base with a non-root user, pinned versions and a scan with no critical findings"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Container networking and storage",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Draw the network and volume layout for a web app with a database, and explain what survives when each container is deleted.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E4",
+          "title": "Create a user-defined bridge network, attach two containers and make one reach the other by name while a port is published to the host"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E4",
+          "title": "Run a database with a named volume, insert 10 rows, delete the container, start a new one on the same volume and verify the rows"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.2",
+          "engine": "E4",
+          "title": "Inspect the veth pairs and network namespace of two containers, capture traffic between them and diagnose why a third isolated container cannot connect"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Kubernetes architecture",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Label a diagram of the control plane and a worker node, and narrate what each component does when a user applies a deployment.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E12",
+          "title": "Deploy an app with three replicas, delete one pod, and observe the reconciliation loop recreate it, recording the event sequence"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E12",
+          "title": "Map each step of kubectl apply to the API server, etcd, scheduler and controller manager and verify against the cluster event log"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E12",
+          "title": "Cordon and drain a worker node, trace what the kubelet does to the pods and show them rescheduled onto other nodes"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Clusters and kubectl",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Compare a kubeadm cluster, a managed cluster and k3s for a small clinic network with limited hardware, and recommend one.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.5",
+          "engine": "E12",
+          "title": "Create two namespaces, switch contexts with kubectl and deploy the same pod into each, listing resources per namespace"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.4",
+          "engine": "E12",
+          "title": "Bring up a three-node cluster in the console, join a new worker node and verify all nodes report Ready"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E12",
+          "title": "Write a manifest for a pod from scratch, apply it, fix three seeded YAML errors in a broken one and describe each failure message"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Pods, deployments and jobs",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Design the Kubernetes objects for a web app, a nightly report job and a database, and justify each object kind.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E12",
+          "title": "Add liveness and readiness probes to a pod and show traffic withheld while the readiness probe fails"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E12",
+          "title": "Perform a rolling update of a deployment from v1 to v2 with maxUnavailable 1, then roll back to v1 using rollout history"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E12",
+          "title": "Create a CronJob running every minute, a StatefulSet of three replicas and a DaemonSet, and verify pod names and node placement for each"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Services and ingress",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write the routing table for an ingress exposing a mobile money payment API and a web admin site, with TLS on both.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E12",
+          "title": "Expose a deployment through ClusterIP, NodePort and LoadBalancer services and curl each from inside and outside the cluster"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E12",
+          "title": "Find why a service has zero endpoints because of a label mismatch and fix it so traffic reaches all three pods"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E12",
+          "title": "Create an ingress with host and path rules routing two services and terminate TLS with a given certificate, then verify with three requests"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Configuration, resources and scheduling",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Plan resource requests and limits for four services on a three-node cluster and explain the QoS class each one receives.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E12",
+          "title": "Inject configuration into a pod using a ConfigMap as environment variables and a Secret as a mounted file, and print both from inside the pod"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E12",
+          "title": "Set requests and limits on three pods, run an overuse test and identify which pod is OOMKilled and which QoS class it has"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E12",
+          "title": "Spread six replicas across three nodes using anti-affinity and taints and tolerations, so database pods run only on tainted nodes"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Autoscaling, storage and packaging",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Describe how you would package an app for three environments using Kustomize overlays, and what differs between them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E12",
+          "title": "Configure a Horizontal Pod Autoscaler at 50 percent CPU, generate load and record replica counts over time as it scales up and down"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E12",
+          "title": "Create a PersistentVolumeClaim with a storage class, mount it in a pod, delete the pod and verify the data survives in the replacement"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E12",
+          "title": "Create Kustomize overlays for dev and prod with different replica counts and image tags and verify the rendered manifests differ as intended"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Cluster security and networking",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Write a least-privilege access policy for a developer, a CI bot and a read-only auditor on one cluster.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E12",
+          "title": "Create a service account and a role allowing only get and list on pods, bind it and test that deleting a pod is denied"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E12",
+          "title": "Write a NetworkPolicy so the database accepts traffic only from the API pods and test allowed and blocked connections"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.2",
+          "engine": "E12",
+          "title": "Fix a deployment rejected by Pod Security Standards by adding a security context with non-root user and dropped capabilities, then verify it starts"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Troubleshooting workloads and networking",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write a one-page troubleshooting checklist from observed symptom to likely cause for five common failure states.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E12",
+          "title": "Use describe and events to find why a pod is Pending and fix it by correcting the resource request"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E12",
+          "title": "Diagnose and fix three broken pods (ImagePullBackOff, CrashLoopBackOff and OOMKilled) and record the evidence that identified each cause"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E12",
+          "title": "Repair a cluster where DNS fails, a service has no endpoints and a NetworkPolicy blocks traffic, restoring a working request path end to end"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Nodes, observability and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Write the post-incident report for the capstone repair, including timeline, root causes and prevention steps.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E12",
+          "title": "Deploy Prometheus and a dashboard, create an alert on pod restarts above 3 and trigger it by crashing a pod"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E12",
+          "title": "Recover a cluster with a NotReady node and an expired certificate by reading kubelet logs, renewing the certificate and restoring etcd from a backup"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E12",
+          "title": "Deploy, scale to five replicas, secure with RBAC and a NetworkPolicy, and repair a three-service app on a broken cluster within a 45-minute limit"
+        }
+      ]
+    }
   ]
 }

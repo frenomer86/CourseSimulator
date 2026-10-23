@@ -114,5 +114,403 @@
         "Capstone: specify, schedule and verify a small safety-critical controller under a fixed timing budget"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "What makes a system real-time",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Classify ten systems (airbag, ATM, video call, drone, mobile-money switch) as hard, firm or soft real-time, and draw the value-versus-time curve for three of them.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Enter three periodic tasks with period, deadline and execution time into the scheduler visualiser and read the first 20 time units of the timeline"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Classify the deadline type of eight embedded systems and decide the cost of a miss for each, scored against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E6",
+          "title": "Model a task set that includes one sporadic and one aperiodic task and show what happens to a periodic deadline when the sporadic task arrives in a burst"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Timing metrics and examples",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "For a pressure sensor sampled every 10 ms, compute response time, latency and jitter from a trace of 20 samples and state whether a 50 ms deadline is met.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E6",
+          "title": "Read a given task timeline and calculate each task's response time and CPU utilisation, recording both in a table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E8",
+          "title": "Toggle an Arduino pin from a timer interrupt every 10 ms and measure the jitter of 50 pulses on the simulated logic analyser"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E1",
+          "title": "Simulate a mobile-money switch with random arrivals at increasing load and plot the 99th percentile response time against utilisation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Real-time kernels and interrupts",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compare a general-purpose and a real-time kernel on sources of latency, and trace by hand the dispatcher actions when a higher-priority task becomes ready during a lower one's execution.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E6",
+          "title": "Step through the kernel visualiser for three tasks and record each task's state (ready, running, blocked) at every tick for 15 ticks"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Run preemptive priority scheduling with and without context-switch cost and compare the number of missed deadlines in each run"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E8",
+          "title": "Measure interrupt latency on a simulated microcontroller with a competing interrupt, and design a handler that defers the long work to a task"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Fixed-priority scheduling",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Assign rate-monotonic priorities to four periodic tasks, compute utilisation, compare with the Liu-Layland bound, and explain why failing the bound does not prove unschedulability.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Assign rate-monotonic priorities to three tasks with periods 5, 10 and 20 and verify in the visualiser that every deadline is met"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.3",
+          "engine": "E7",
+          "title": "Compute total utilisation and the Liu-Layland bound for five task sets and state for each whether the test passes, fails or is inconclusive"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Find a task set that fails the utilisation bound yet meets every deadline in simulation, and explain why using the timeline"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Deadline-monotonic and overload behaviour",
+      "topics": [
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "For a task set where deadlines are shorter than periods, assign deadline-monotonic priorities, compare with rate-monotonic, and show which one meets all deadlines.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Assign deadline-monotonic priorities to four tasks with deadlines shorter than periods and run the schedule to confirm deadlines are met"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E6",
+          "title": "Raise task execution times until utilisation passes 90 percent, and record the first deadline miss and which task suffers it"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E6",
+          "title": "Build a task set where rate-monotonic misses a deadline but deadline-monotonic meets every one, and present both timelines side by side"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Dynamic priority scheduling",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Schedule a task set with utilisation 0.95 under EDF and rate-monotonic by hand over one hyperperiod, and explain the transient overload behaviour of each.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E6",
+          "title": "Run EDF on three tasks with utilisation 0.9 in the visualiser and confirm all deadlines are met over one hyperperiod"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E6",
+          "title": "Run a task set with utilisation 0.95 under EDF and rate-monotonic, and compare which meets every deadline and the number of preemptions"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Apply a transient overload to EDF and rate-monotonic schedules and show how the domino effect appears in one and not the other"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Shared resources and priority inversion",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw the timeline of three tasks sharing a mutex that produces unbounded priority inversion, and show how priority inheritance bounds the blocking.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E6",
+          "title": "Run two tasks sharing a mutex in the visualiser and mark the critical section and the time the higher-priority task waits"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E6",
+          "title": "Create three tasks that cause unbounded priority inversion on a shared mutex and record the high-priority task's blocking time"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.3",
+          "engine": "E6",
+          "title": "Enable priority inheritance on the inversion case and compare the blocking time, then construct a case where inheritance still allows chained blocking"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Ceiling protocols and blocking analysis",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Compute the maximum blocking time of each task under the priority-ceiling protocol from a table of critical section lengths, and re-run the response-time test including blocking.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Assign ceilings to three shared resources from the tasks that use them and run the ceiling protocol to confirm no deadlock occurs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E7",
+          "title": "Compute the worst-case blocking for each of four tasks under the immediate-ceiling protocol and add it to the schedulability test"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E6",
+          "title": "Reproduce a Mars-Pathfinder-style priority-inversion failure in the simulator, diagnose it from the trace, and fix it with the right protocol"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Execution time and response-time analysis",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Explain why average execution time is not safe for a hard deadline, and compute the worst-case response time of the lowest-priority task in a four-task set using the recurrence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E8",
+          "title": "Measure execution time of a given routine over 100 runs with varied inputs on the simulated board and report the mean and the maximum observed"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E7",
+          "title": "Apply response-time analysis iteration to a four-task set, record each iteration of the recurrence, and decide whether each task meets its deadline"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E6",
+          "title": "Show how a cache miss pattern changes execution time in the cache visualiser, and choose a safe WCET bound with a stated margin"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Overheads, jitter and sensitivity",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Add release jitter, blocking and context-switch overhead to a response-time analysis and find how much each task's execution time can grow before a deadline is missed.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Add a 0.2 ms context-switch cost to each task in a response-time table and recompute the response times to see which change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Scale all execution times by a factor until the first deadline miss and report the breakdown factor for a given four-task set"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Fix an unschedulable five-task set by changing periods, execution budgets or priorities within stated limits, and show the fixed timeline"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Real-time communication and distribution",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4",
+        "7.5"
+      ],
+      "exercise": "Compute the worst-case latency of the lowest-priority message on a CAN bus with three message streams, and the end-to-end delay of a sensor to actuator path across two nodes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.2",
+          "engine": "E8",
+          "title": "Send three CAN messages of different identifiers at once on the simulated bus and record which wins arbitration in what order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E7",
+          "title": "Compute the worst-case response time of each of four periodic CAN messages including blocking by a lower-priority frame"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Simulate a sensor-to-actuator path over a lossy link with 5 and 20 percent loss and report how often the end-to-end deadline is missed"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Dependability and safety",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Perform a simple hazard analysis of an infusion pump controller, assign a safety integrity level to each hazard, and describe the watchdog and redundancy measures you would add.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.3",
+          "engine": "E8",
+          "title": "Add a watchdog timer to a simulated microcontroller loop, then hang the loop deliberately and observe the reset"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Carry out a hazard analysis on a vehicle brake controller case, rank the hazards and choose mitigations, and score against the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.4",
+          "engine": "E8",
+          "title": "Design a brown-out detector that saves state and shuts a simulated controller down safely, and test it with three supply-drop profiles"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Capstone: design and verify a controller",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Document a design for a small safety-critical controller (for example a grain-dryer temperature controller): task table, priorities, resource protocol, timing budget and verification evidence.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.1",
+          "engine": "E6",
+          "title": "Decompose a described controller into five periodic tasks, assign rate-monotonic priorities, and verify the resulting schedule in the visualiser"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.3",
+          "engine": "E6",
+          "title": "Diagnose from a recorded trace whether the missed deadline comes from overload, jitter or priority inversion, and justify your finding"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.4",
+          "engine": "E6",
+          "title": "Specify, schedule and verify a grain-dryer controller within a 2 ms timing budget using response-time analysis and simulation, and confirm both agree"
+        }
+      ]
+    }
   ]
 }

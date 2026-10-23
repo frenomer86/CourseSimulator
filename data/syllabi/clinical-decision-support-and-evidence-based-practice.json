@@ -1,0 +1,504 @@
+{
+  "slug": "clinical-decision-support-and-evidence-based-practice",
+  "description": "How software and evidence together support clinical decisions: rule engines, scoring tools, alerts, literature appraisal and probabilistic diagnosis. Students build and test decision rules, appraise trials, search records and run diagnostic-reasoning cases in the lab.",
+  "modelledOn": [
+    "Greenes (ed.), Clinical Decision Support: The Road to Broad Adoption",
+    "Straus et al., Evidence-Based Medicine: How to Practice and Teach EBM",
+    "Shortliffe and Cimino (eds.), Biomedical Informatics: Computer Applications in Health Care and Biomedicine",
+    "HL7 CDS Hooks and FHIR Clinical Reasoning specifications"
+  ],
+  "outcomes": [
+    "Implement a clinical rule or scoring tool as executable logic and test it against case data.",
+    "Design alerts that fit the clinical workflow and measure their override rate and positive predictive value.",
+    "Formulate a PICO question, search the biomedical literature and critically appraise a trial or review.",
+    "Apply sensitivity, specificity, likelihood ratios and Bayes theorem to update a diagnostic probability.",
+    "Evaluate a decision support tool for accuracy, calibration, safety and effect on care."
+  ],
+  "units": [
+    {
+      "title": "Clinical decision making and decision support",
+      "weeks": "1",
+      "topics": [
+        "Clinical reasoning: hypothetico-deductive method, pattern recognition and common cognitive biases",
+        "Types of decision support: alerts, order sets, dashboards, diagnostic aids and reference tools",
+        "The five rights of clinical decision support: information, person, format, channel and time",
+        "Decision support in Ghana: standard treatment guidelines, DHIMS2 reports and mobile tools for community health workers",
+        "History of the field: MYCIN, INTERNIST and the lessons of early expert systems"
+      ]
+    },
+    {
+      "title": "Rule-based and guideline-based logic",
+      "weeks": "2-3",
+      "topics": [
+        "Production rules: if-then logic, forward and backward chaining, conflict resolution",
+        "Computer-interpretable guidelines: decision tables, Arden Syntax and CDS Hooks",
+        "Clinical algorithms and flowcharts: triage, integrated management of childhood illness and malaria test-and-treat",
+        "Scoring tools: Wells score, CURB-65, APGAR and early warning scores",
+        "Knowledge engineering: eliciting, validating and maintaining a rule base"
+      ]
+    },
+    {
+      "title": "Alerts, workflow and human factors",
+      "weeks": "4",
+      "topics": [
+        "Drug-drug interaction, allergy, dose-range and duplicate-therapy alerts",
+        "Alert fatigue: override rates, positive predictive value of alerts and tiered severity",
+        "Workflow integration: interruptive versus passive alerts, timing and placement",
+        "Usability heuristics and human-factors testing of decision support screens",
+        "Safety of the tool itself: automation bias, alert errors and unintended consequences"
+      ]
+    },
+    {
+      "title": "Evidence-based medicine and critical appraisal",
+      "weeks": "5-6",
+      "topics": [
+        "The five steps of evidence-based practice; framing a PICO question",
+        "Study designs and the hierarchy of evidence: randomised trial, cohort, case-control, cross-sectional",
+        "Critical appraisal: selection bias, confounding, randomisation, blinding and appraisal checklists",
+        "Measures of effect: relative risk, odds ratio, absolute risk reduction, number needed to treat and confidence intervals",
+        "Systematic reviews and meta-analysis: forest plots, heterogeneity and GRADE certainty of evidence"
+      ]
+    },
+    {
+      "title": "Searching the biomedical literature",
+      "weeks": "7",
+      "topics": [
+        "Sources: PubMed/MEDLINE, Cochrane Library, African Journals Online and HINARI access",
+        "MeSH headings, Boolean operators, truncation and search filters",
+        "Search quality: precision, recall and iterative refinement of a search strategy",
+        "Grey literature, preprints, retractions and spotting predatory journals",
+        "From question to answer: writing a rapid evidence summary for a clinician"
+      ]
+    },
+    {
+      "title": "Probabilistic diagnosis",
+      "weeks": "8-9",
+      "topics": [
+        "Diagnostic accuracy: sensitivity, specificity, positive and negative predictive value",
+        "Bayes theorem for diagnosis: prior prevalence, posterior probability and natural frequencies",
+        "Likelihood ratios and the Fagan nomogram; chaining several test results",
+        "Test and treatment thresholds; when to test, treat or wait",
+        "ROC curves, area under the curve and choosing an operating cut-off",
+        "Decision trees, expected utility and quality-adjusted life years"
+      ]
+    },
+    {
+      "title": "Data-driven tools and evaluating decision support",
+      "weeks": "10-11",
+      "topics": [
+        "Risk scores from logistic regression: discrimination, calibration and Brier score",
+        "Machine-learning diagnostic aids (malaria slides, chest imaging); dataset shift to African populations",
+        "Validation: internal, external and temporal; reporting with the TRIPOD checklist",
+        "Evaluating decision support in practice: before-after, controlled and stepped-wedge designs; process versus outcome measures",
+        "Monitoring a deployed tool with queries on audit logs: firing rate, override rate and drift",
+        "Governance and maintenance: version control of knowledge, clinical ownership and retirement of rules"
+      ]
+    },
+    {
+      "title": "Standards, regulation, ethics and implementation",
+      "weeks": "12-13",
+      "topics": [
+        "Interoperability standards: HL7 FHIR resources, CDS Hooks, SNOMED CT and ICD-11",
+        "Regulation of clinical software as a medical device; Ghana Food and Drugs Authority guidance",
+        "Ethics: transparency, accountability, informed consent and the Data Protection Act, 2012",
+        "Low-resource deployment: offline operation, SMS delivery and decision support for community health workers",
+        "Capstone: specify, build and appraise a decision support tool for hypertension or malaria in primary care"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "How clinicians decide, and what software adds",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Read two short case vignettes, name the cognitive bias in each and propose one decision support type and delivery channel that would have helped. Summarise the MYCIN lessons in half a page.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Work through a branching chest-pain case, recording at each step the hypothesis held and the bias risk, then compare with the model reasoning path"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Choose information, person, format, channel and time for three decision support designs in a district hospital and justify each against the five rights rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E9",
+          "title": "Draw an architecture diagram showing how a community health worker tablet tool, DHIMS2 and a district pharmacy exchange data, marking where advice is generated"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Production rules and guideline logic",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write ten if-then rules for malaria test-and-treat and trace forward and backward chaining on two patients. Convert one guideline paragraph into a decision table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Code five if-then rules for fever triage in Python and run them on eight sample patients, checking each fired rule against a hand trace"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Encode an hypertension treatment decision table as code, then test every row and detect missing or overlapping rule conditions automatically"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E6",
+          "title": "Step a forward-chaining engine through an integrated childhood illness rule set, logging working memory, and find the case where two rules conflict"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Clinical scores and knowledge engineering",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Compute CURB-65 and an early warning score for six patients by hand, then review a rule base for stale thresholds and write a maintenance note.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E1",
+          "title": "Implement CURB-65 as a function and score ten sample patients, checking totals and the recommended care setting against the table"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E7",
+          "title": "Plot early warning score against hours for a deteriorating patient, mark the trigger threshold and report how many hours earlier the alert fires than the doctor review"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E10",
+          "title": "Review a rule base with injected errors (outdated dose, missing exception, circular rule) against evidence, scoring your fixes with the knowledge-engineering rubric"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Alerts, fatigue and safe design",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "exercise": "Design a tiered drug interaction alert scheme for a clinic pharmacy and predict its override rate. Sketch one passive alternative and compare.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E5",
+          "title": "Query a prescription table joined to an interaction table to list every prescribed pair with a severe interaction, and count the alerts per prescriber"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E5",
+          "title": "Compute override rate and positive predictive value per alert type from an audit log with SQL, then recommend which alert types to suppress or demote"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E10",
+          "title": "Run an incident case where a clinician follows a wrong alert, identify the automation-bias and design failures, and choose safeguards under the rubric"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Evidence-based practice and study designs",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Turn three clinical situations into PICO questions, name the best study design for each, and appraise one randomised trial summary with a checklist.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E10",
+          "title": "Frame a PICO question from a case about artemisinin treatment and pick the study design that best answers it from five options"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E7",
+          "title": "Simulate a cohort with a hidden confounder, estimate the crude and adjusted risk ratio, and explain why randomisation would have removed the bias"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.3",
+          "engine": "E10",
+          "title": "Appraise a trial report using the checklist, rate risk of bias on each domain, and decide whether the findings justify changing local practice"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Measures of effect and synthesis",
+      "topics": [
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Calculate RR, OR, ARR and NNT from two 2x2 tables, then read a forest plot and state what heterogeneity means for the pooled result.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E7",
+          "title": "Enter a 2x2 trial table and compute relative risk, odds ratio, absolute risk reduction, NNT and a 95 percent confidence interval"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E7",
+          "title": "Pool five trial results with inverse-variance weights, draw the forest plot and compute I-squared to judge heterogeneity"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Code a random-effects meta-analysis in Python, run a leave-one-out check, and report how one outlying trial changes the pooled estimate"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Finding and summarising evidence",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Write and refine a Boolean search for a clinical question, record precision and recall against a known set of relevant papers, and draft a one-page evidence summary.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E5",
+          "title": "Search a bibliographic table with SQL LIKE and Boolean conditions for a malaria question and record how many records each added term removes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E5",
+          "title": "Refine a search in three iterations against a gold set of 20 relevant papers, tabulating precision and recall after each version"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E10",
+          "title": "Triage a mixed pile of trials, preprints and a retracted paper for a ward question, then submit a rapid summary scored by the appraisal rubric"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Diagnostic accuracy and Bayes theorem",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Fill a 2x2 table for a rapid malaria test, compute predictive values at 5 and 40 percent prevalence, and update a probability with two likelihood ratios.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E7",
+          "title": "Build a 2x2 table for a rapid test from 1,000 patients and compute sensitivity, specificity, PPV and NPV"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.2",
+          "engine": "E7",
+          "title": "Plot positive predictive value against prevalence for a fixed test and show why the same test misleads in a low-prevalence screening setting"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Code a sequential Bayesian updater using likelihood ratios for three tests, and test its order independence on 20 simulated patients"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Thresholds, ROC and decision analysis",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Choose a cut-off from an ROC table for a blood glucose screen, set test and treatment thresholds, and solve a small decision tree for expected utility.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.5",
+          "engine": "E7",
+          "title": "Plot an ROC curve from a table of 10 cut-offs, compute the area with the trapezoid rule and mark the point nearest the top-left"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.6",
+          "engine": "E9",
+          "title": "Draw a decision tree for treating or not treating suspected typhoid with probabilities and utilities, and roll it back to the best choice"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E7",
+          "title": "Vary the cost of a missed case against a false alarm, locate the test and treatment thresholds, and chart how the best cut-off moves"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Risk scores and machine-learning aids",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Fit a logistic risk score on a small clinic dataset, check calibration, and write two paragraphs on what might break when the model moves to a different region.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Fit logistic regression for pre-eclampsia risk on a toy dataset and print predicted risk for five patients next to their outcomes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Plot a calibration curve in 5 risk bins, compute the Brier score and recalibrate the model, comparing before and after"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Validate a risk model on a second clinic dataset with a different case mix, quantify the drop in discrimination and write a TRIPOD-style note"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Evaluating and monitoring tools in practice",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Design an evaluation of a hypertension alert in twelve clinics, choosing the outcome measures and trial design, and write monitoring queries for after go-live.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.5",
+          "engine": "E5",
+          "title": "Write SQL on an alert audit table to give weekly firing counts and the percentage of alerts accepted, ordered by alert type"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Choose a design and process and outcome measures for evaluating a sepsis alert, then defend the choice against reviewer objections in the case rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E5",
+          "title": "Detect drift in an alert from monthly firing rates with SQL window functions and propose retraining or rule retirement with the evidence"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Standards, regulation and ethics",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Map a hypertension recommendation to FHIR resources and a CDS Hooks card, then list the regulatory and ethical questions to settle before deployment.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E9",
+          "title": "Draw which FHIR resources (Patient, Observation, MedicationRequest) a blood pressure alert reads and writes, and label each with a coding system"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Decide whether a given symptom-checker app is a regulated medical device and which evidence the regulator would expect, scored by rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Handle a case where a vendor wants patient data to retrain its model; weigh consent, data protection law and benefit, and defend your decision"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Low-resource deployment and capstone",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Present the capstone: the rule logic, the evidence behind it, the expected alert burden and an evaluation plan for a rural clinic setting.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Plan SMS-based advice for a community health worker with intermittent connectivity, selecting messages and fallbacks in the scenario scoring rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Implement the capstone rule set, test it on 30 synthetic patients and report agreement with the guideline answer for each case"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Defend the capstone design before a simulated clinical governance panel, answering questions on evidence, harms, workload and evaluation"
+        }
+      ]
+    }
+  ]
+}

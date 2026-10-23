@@ -105,7 +105,7 @@
     },
     {
       "title": "Testing and design for testability",
-      "weeks": "13-14",
+      "weeks": "13",
       "topics": [
         "Manufacturing test versus functional verification; defects and yield",
         "Fault models: stuck-at, transition and bridging faults; fault coverage",
@@ -113,6 +113,405 @@
         "Controllability and observability; scan chains and scan design",
         "Built-in self-test with LFSRs and MISRs",
         "Boundary scan and the JTAG test access port"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Scaling and the MOS transistor",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Plot transistor counts against years from five chips on a log scale, fit a doubling time, and write what limits further scaling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E2",
+          "title": "Sweep gate voltage on an NMOS transistor, plot drain current, and read off the threshold voltage from the curve"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E2",
+          "title": "Plot the output characteristics of an NMOS at four gate voltages and mark the linear and saturation regions with the long-channel model"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E2",
+          "title": "Compare long-channel and velocity-saturated current for a short device, and estimate the subthreshold leakage at three threshold voltages"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "The CMOS inverter",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Derive the switching threshold of an inverter from equal currents in both transistors, and show how the beta ratio moves it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.4",
+          "engine": "E2",
+          "title": "Plot the voltage transfer characteristic of a CMOS inverter and read off the switching threshold"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.4",
+          "engine": "E2",
+          "title": "Find noise margins from the transfer curve for beta ratios 1, 2 and 3 and choose the ratio that balances them"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E2",
+          "title": "Measure propagation delay of an inverter driving loads of 10, 50 and 100 fF and relate the delay to the load capacitance"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Logic styles and layout planning",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Design the pull-up and pull-down networks for a given function by hand and check that the networks are exact complements.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E2",
+          "title": "Build a static CMOS NAND and a NOR gate from transistors and verify every row of their truth tables"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E2",
+          "title": "Build the compound gate for an AOI22 function as one static CMOS stage and verify all 16 input combinations"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.4",
+          "engine": "E2",
+          "title": "Build a domino AND gate, show charge sharing corrupting its output, and fix it with a keeper transistor"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Fabrication and design rules",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Explain in order the steps from bare wafer to a working transistor, and say which step defines the gate length.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E6",
+          "title": "Step through the CMOS fabrication sequence and record which layers each step adds or removes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E6",
+          "title": "Step through an n-well process cross-section and label substrate, well, gate, source, drain and contact at each stage"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E6",
+          "title": "Check a hand layout against lambda-based design rules, find the violations, and explain the latch-up risk and where guard rings go"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Layout and variation",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Sketch the layout of a NAND gate on a standard cell grid, stating its height, power rails and pin positions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.4",
+          "engine": "E2",
+          "title": "Draw the stick diagram of an inverter and a NAND gate and check that the layout matches the schematic"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.5",
+          "engine": "E2",
+          "title": "Run a layout-versus-schematic comparison on a cell with a planted missing contact and fix the error"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.6",
+          "engine": "E2",
+          "title": "Simulate a gate at slow, typical and fast corners with temperature and voltage variation and report the spread of delay"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Delay, logical effort and timing",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Use logical effort to size a chain of gates driving a large load and compare the delay with equal sizing.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.1",
+          "engine": "E2",
+          "title": "Compute the Elmore delay of a four-stage RC ladder by hand and compare it with the simulated 50 percent delay"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E2",
+          "title": "Size a chain of inverters to drive a 100 times larger load with logical effort and verify the minimum delay by simulation"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E6",
+          "title": "Find the critical path of a small pipelined datapath, compute setup and hold slack with clock skew, and fix a hold violation"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Power and low-power design",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "exercise": "Calculate the dynamic and leakage power of a chip block from given activity, frequency, capacitance and voltage, and show where the budget is spent.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E2",
+          "title": "Measure the switching power of an inverter at three clock rates and check it against C times V squared times f"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E2",
+          "title": "Add clock gating to a register bank, measure the power with and without it for low activity, and report the saving"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.4",
+          "engine": "E6",
+          "title": "Choose the supply voltage and frequency of a battery-powered sensor chip to minimise energy per operation under a deadline"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Sequential and datapath circuits",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Compare ripple-carry and carry-lookahead adders for 16 bits in terms of delay and gate count with a short table.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E2",
+          "title": "Build a master-slave flip-flop from latches and verify the clocked behaviour on a test pattern"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E2",
+          "title": "Build a 4-bit carry-lookahead adder and compare its worst-case delay with a ripple-carry adder on the same inputs"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E6",
+          "title": "Pipeline a 32-bit multiplier datapath to meet a clock target and report the added latency, registers and throughput gain"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Verilog fundamentals",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Predict by hand the output of three small Verilog blocks that mix blocking and non-blocking assignments, then check by simulation.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Write a Verilog module for a 4-bit adder with continuous assignment and test it against five input pairs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Write combinational and clocked always blocks for a multiplexer and a counter, using the right assignment style, and test both"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E2",
+          "title": "Design a parameterised finite state machine for a prepaid meter token check in Verilog and verify it on its timing diagram"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Testbenches and synthesis",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "Review a given Verilog file and mark every coding pitfall that would make synthesis produce a latch or a wrong reset.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E2",
+          "title": "Write a testbench for a counter that applies clock and reset, and read the waveform to find the count at 10 cycles"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.4",
+          "engine": "E2",
+          "title": "Write a self-checking testbench for a 4-bit adder that compares every sum with a reference and prints the number of failures"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.5",
+          "engine": "E2",
+          "title": "Find and fix an inferred latch and a missing-reset bug in a faulty Verilog design, and show the corrected waveform"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "FPGA architecture and timing",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Draw how a 4-input look-up table implements any function of four variables and give the truth table content for a parity function.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E2",
+          "title": "Program a look-up table to implement a 3-input majority function and check all eight inputs"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E6",
+          "title": "Step through synthesis, mapping, placement and routing for a small design and record the resources used at each stage"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E6",
+          "title": "Read a timing report for a design that misses its clock, find the critical path, and change the design to reach timing closure"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "ASIC versus FPGA and the project",
+      "topics": [
+        "8.4",
+        "8.5"
+      ],
+      "exercise": "Project report: explain the UART and meter controller design, show the simulation results, and compare cost and speed with an ASIC route.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Compare ASIC and FPGA routes for a product at 1000 and 1 million units using a cost model, and choose one with reasons"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E2",
+          "title": "Build a UART transmitter as a state machine, send one byte, and check the start bit, data bits and stop bit on the waveform"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.5",
+          "engine": "E2",
+          "title": "Implement a prepaid electricity meter controller with a UART interface on a simulated FPGA and test top-up, consumption and low-credit cases"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Testing and design for test",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5",
+        "9.6"
+      ],
+      "exercise": "Write a half-page note on why a chip that passes functional verification can still fail manufacturing test.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.2",
+          "engine": "E2",
+          "title": "Apply stuck-at faults to a small circuit and list which input vectors detect each fault"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.4",
+          "engine": "E2",
+          "title": "Insert a scan chain in a small sequential circuit and show how shifting in a pattern gives control of internal state"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.5",
+          "engine": "E2",
+          "title": "Build a 4-bit LFSR pattern generator and a signature register, inject a fault, and show that the signature differs from the good one"
+        }
       ]
     }
   ]

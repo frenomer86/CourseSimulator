@@ -119,5 +119,401 @@
         "Professional ethics and the ACM/IEEE code; project presentation and retrospective"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Software engineering and development processes",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "exercise": "Short essay: use a real software failure (for example a national ID or e-government system) to argue which process model would have reduced the risk, with three specific reasons.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Match six project descriptions in a scenario to the process model (waterfall, incremental, Scrum or Kanban) that fits best and justify each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.1",
+          "engine": "E10",
+          "title": "Analyse a failed software project case, find the three decisions that caused the failure, and say what each cost, scored on the rubric"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E9",
+          "title": "Draw the process activities of an agile team for one sprint as a BPMN diagram, showing specification, development, validation and evolution tasks with hand-offs"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Process choice and team tooling",
+      "topics": [
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Set up a team repository with branches, an issue tracker and a CI check for a small project, and write down the team's working agreement on reviews.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Create a git repository, make three commits on a feature branch, merge it to main, and show the history log"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.5",
+          "engine": "E4",
+          "title": "Resolve a merge conflict between two feature branches in git and describe what each side changed and how you chose the final code"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.4",
+          "engine": "E10",
+          "title": "Tailor a process for a four-person student team with a fixed deadline in a branching case, choosing practices and defending each against the rubric"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Requirements engineering",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "exercise": "Write ten requirements for a school-fees payment system as five functional and five non-functional, each testable and measurable, plus three user stories with acceptance criteria.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Classify twelve statements in a scenario as functional requirements, non-functional requirements or design decisions"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.3",
+          "engine": "E9",
+          "title": "Write five user stories with acceptance criteria and draw a use case diagram for a clinic appointment system"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Elicit requirements from three stakeholders with conflicting needs in a branching case, choosing methods and resolving conflicts, scored on the rubric"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Requirements validation and formal specification",
+      "topics": [
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Prioritise twenty requirements with MoSCoW for a fixed budget, build a traceability table to test cases, and write pre- and post-conditions for two functions.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.4",
+          "engine": "E10",
+          "title": "Sort fifteen requirements into Must, Should, Could and Won't in a scenario, given a fixed sprint budget"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.4",
+          "engine": "E9",
+          "title": "Build a traceability matrix linking ten requirements to design elements and test cases, and spot the requirement with no test"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Write pre- and post-conditions and invariants for a bank account class, then add runtime assertions that catch five faulty calls"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "System modelling with UML",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "Model a library or clinic system with a use case, class, sequence and state diagram, and check the diagrams stay consistent with each other.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Draw a class diagram of six classes for an online shop with attributes, methods and multiplicities"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E9",
+          "title": "Draw a sequence diagram for the checkout use case and the matching state machine for an order"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.4",
+          "engine": "E9",
+          "title": "Model the team project with context, use case, class, sequence and deployment diagrams, then check each diagram agrees with the others and fix any inconsistency"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Software architecture",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "exercise": "Document the architecture of a mobile money app with two views, one pattern choice, a quality attribute scenario and an architecture decision record.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Draw a layered architecture for a web application and label the responsibilities of each layer"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E9",
+          "title": "Draw monolith, microservices and event-driven architectures for the same order system and compare their latency, scaling and deployment effort"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Choose an architecture for a national health information system in a branching case, trading off availability, cost and offline operation, and record the decisions"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Object-oriented design and patterns",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Refactor a given class that violates SOLID into smaller classes, and apply one design pattern, explaining what coupling it removes.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Identify which SOLID principle is broken in a given class and refactor it with a short test showing the behaviour is the same"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Apply the Strategy pattern to remove a long conditional for payment methods and add a new method without changing existing code"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Implement Observer and Factory for a notification service, and write tests showing a new channel can be added without changing the core code"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Code quality and defensive design",
+      "topics": [
+        "5.4",
+        "5.5"
+      ],
+      "exercise": "Review a 60-line function: list five code smells, refactor it in small steps with tests passing, and note the technical debt left.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Run a linter on a given program, fix every warning, and note which warnings pointed to real defects"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Refactor a long function with duplicated code into small functions under a test suite and show that tests pass after each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Add input checks and error handling to a given API so it rejects ten malformed inputs safely, with a contract stated for each function"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "User interface design in the process",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "exercise": "Evaluate a ticketing app's interface for consistency, feedback and error recovery with three users, and adapt it for low-end phones.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E10",
+          "title": "Spot ten usability violations (consistency, feedback and error recovery) in a described app and name the principle broken by each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E9",
+          "title": "Draw a paper prototype of three screens for a clinic appointment app, then revise it after a described user test"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.4",
+          "engine": "E10",
+          "title": "Plan the internationalisation of a Ghanaian bill-payment app for English, Twi and Ewe on low-end devices in a branching case and decide the trade-offs"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Verification, validation and static checking",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Hold a 30-minute code inspection on a short program using a checklist, and record defects found, effort spent and defects per hour.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E10",
+          "title": "Place six activities (inspection, unit test, acceptance test and others) on the V-model in a scenario according to the phase they check"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Write failing tests first and then the code (TDD) for a discount calculator, and report statement and branch coverage reached"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.4",
+          "engine": "E10",
+          "title": "Decide whether formal methods are justified for three systems (an infusion pump, a shop app and a payment switch) in a case and defend each choice"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Software testing techniques",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+      ],
+      "exercise": "Design a test suite for a function using equivalence classes, boundary values and a decision table, and report the coverage of statements and branches.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Choose equivalence classes and boundary values for a grading function that maps marks to grades, and write the test cases"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Write unit tests with mocks and stubs for a service that calls a payment gateway, and cover a timeout and a refusal"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Raise branch coverage on a given function from 55 to 95 percent, then show that a mutation still survives and explain what test is missing"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Maintenance, legacy systems and releases",
+      "topics": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "exercise": "Write a short plan to migrate a legacy payroll system with the strangler pattern: first slices, the tests that protect behaviour and the release strategy.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "9.3",
+          "engine": "E4",
+          "title": "Tag three releases of a small project with semantic version numbers in git and write a changelog that records each change"
+        },
+        {
+          "level": "intermediate",
+          "topic": "9.1",
+          "engine": "E10",
+          "title": "Classify twelve change requests in a scenario as corrective, adaptive, perfective or preventive maintenance, and estimate the cost of each"
+        },
+        {
+          "level": "advanced",
+          "topic": "9.2",
+          "engine": "E10",
+          "title": "Plan the modernisation of a legacy system in a branching case, choosing between rewrite, reengineering and the strangler pattern with risk evidence"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Project management, ethics and the final project",
+      "topics": [
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4"
+      ],
+      "exercise": "Final project deliverable: plan, estimate and present a team project, with a risk register, a burndown chart, a quality plan and a retrospective on ethics.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "10.1",
+          "engine": "E9",
+          "title": "Draw a burndown chart for a two-week sprint from given daily remaining-work data and say whether the team is on track"
+        },
+        {
+          "level": "intermediate",
+          "topic": "10.1",
+          "engine": "E9",
+          "title": "Estimate a project with story points and COCOMO, build a schedule with dependencies, and identify the critical path and top three risks"
+        },
+        {
+          "level": "advanced",
+          "topic": "10.4",
+          "engine": "E10",
+          "title": "Resolve an ethics dilemma in a branching case (a deadline pressing a release with a known safety defect) using the professional code, scored on the rubric"
+        }
+      ]
+    }
   ]
 }

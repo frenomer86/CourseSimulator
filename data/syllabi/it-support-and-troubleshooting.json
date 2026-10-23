@@ -106,5 +106,401 @@
         "Capstone: work a queue of simulated tickets from logging to documented resolution"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "The support role, service desk and ticketing",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ],
+      "exercise": "Write a one-page description of how a ticket moves from a user call at a school computer lab to closure, naming each support tier and what each one may do.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.3",
+          "engine": "E10",
+          "title": "Log, categorise and prioritise five incoming tickets from a school computer lab in a scenario, and record the priority reason for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E10",
+          "title": "Route ten tickets across tier 1, tier 2 and tier 3 in a scenario, escalating only when needed and meeting the stated response times"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.5",
+          "engine": "E10",
+          "title": "Handle a case where a user asks for access to a colleague's files while a loose power cable is live, balancing confidentiality, safety and service levels"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Structured troubleshooting method",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Pick a fault you have met (for example no internet in a lab) and write it up as seven method steps, with the evidence for each step and what you would escalate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.1",
+          "engine": "E10",
+          "title": "Order the seven troubleshooting steps for a printer fault in a scenario, picking the right action at each step"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.2",
+          "engine": "E10",
+          "title": "Question a user in a branching case to reproduce a slow computer fault, choosing questions that separate hardware, software and user causes"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.3",
+          "engine": "E10",
+          "title": "Isolate a fault in a lab with six symptoms by halving the problem and changing one thing at a time, scoring fewest steps and a clean escalation"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "PC hardware faults and diagnosis",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "exercise": "Make a fault-finding flowchart for a PC that will not start, covering power, POST beeps, memory and storage, and test it on two example faults.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E8",
+          "title": "Assemble a PC from a supplied parts list in the bench simulator and boot it successfully by connecting power, memory, storage and CPU correctly"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E8",
+          "title": "Diagnose three PCs that do not boot from their beep codes and symptoms, and fix each by reseating or replacing the faulty part"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E8",
+          "title": "Recover data from a PC with a failing drive in the bench simulator, deciding on cloning, backups and replacement, and verify the files are intact"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Heat, power and safe repair",
+      "topics": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ],
+      "exercise": "Review a computer lab in a dusty, hot town and write a maintenance plan covering cleaning intervals, UPS sizing for 10 PCs, surge protection and ESD handling.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.6",
+          "engine": "E8",
+          "title": "Replace a RAM module in the bench simulator while following the ESD steps in the correct order"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.4",
+          "engine": "E8",
+          "title": "Diagnose an overheating PC in the simulator from temperature readings, find the blocked fan and dusty heatsink, and verify the temperatures drop"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.5",
+          "engine": "E7",
+          "title": "Size a UPS for ten PCs and a router to carry a 30-minute outage from power draws, efficiency and battery capacity, and state the cost in cedis"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Boot repair, updates and slow systems",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "exercise": "Write a short checklist for repairing a PC stuck in a boot loop after an update, with the safest order of actions and what data to protect first.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.3",
+          "engine": "E4",
+          "title": "Find the process and the startup program that are using most CPU and memory on a slow virtual machine, and stop them"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.2",
+          "engine": "E4",
+          "title": "Roll back a bad driver or update that broke a virtual machine, verify the system works, and document each step"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.1",
+          "engine": "E4",
+          "title": "Repair a virtual machine that fails to boot after a damaged boot configuration, restoring service without losing user data"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Malware, backups and licensing",
+      "topics": [
+        "4.4",
+        "4.5",
+        "4.6"
+      ],
+      "exercise": "Prepare a security and licensing guide for a shared internet cafe: malware signs, cleaning steps, backup routine and how to stay legally licensed on a tight budget.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Identify the signs of malware in six symptom reports in a scenario and choose the right first response for each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.5",
+          "engine": "E4",
+          "title": "Restore a virtual machine from a restore point after a failed clean-up, then verify that user documents are intact"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.4",
+          "engine": "E10",
+          "title": "Clean an infected shared cafe computer in a branching case, deciding between cleaning and reinstalling, protecting customers' data and documenting the outcome"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Network path and addressing",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Draw the path from a laptop to a website, listing each device, address and protocol, and write down what you would check at each hop.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.2",
+          "engine": "E3",
+          "title": "Read a laptop's IP address, mask, gateway and DNS server from its network configuration and state whether each is valid"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E3",
+          "title": "Use ping and traceroute to find which hop is failing between a lab computer and an external server, and report the likely cause"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E3",
+          "title": "Fix a lab where half the computers have the wrong address or gateway from a faulty DHCP scope, then verify all hosts reach the internet"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Wi-Fi and upstream faults",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Write a short troubleshooting guide that tells a lab assistant how to tell a dead link, a slow link and an upstream outage apart, using three quick tests.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E3",
+          "title": "Change the Wi-Fi channel of an access point to reduce interference from two neighbouring networks, and compare the signal quality before and after"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E3",
+          "title": "Diagnose slow service on a shared metered link by finding the host using most bandwidth, and apply a limit to restore fair use"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E10",
+          "title": "Handle an outage in a branching case where the ISP reports a submarine cable cut, choosing communication, workaround and escalation steps for a business"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Accounts, passwords and permissions",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Write a verification script for password-reset requests (who asks, what you check, what you refuse), and give one example where you would say no.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.1",
+          "engine": "E4",
+          "title": "Create two users and a group on a Linux virtual machine, add them to the group, and show their group membership"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E4",
+          "title": "Set file permissions so a team can read and write a shared folder while others cannot, then test access as three different users"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.2",
+          "engine": "E10",
+          "title": "Respond to a password-reset call from a caller who may be an impostor in a branching case, applying identity checks and handling the lockout correctly"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Directory services, onboarding and offboarding",
+      "topics": [
+        "6.4",
+        "6.5"
+      ],
+      "exercise": "Draft an onboarding and offboarding checklist for a new clinic accountant, covering accounts, groups, devices, access removal and hand-over of data.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E4",
+          "title": "Create a user in Active Directory on a Windows Server virtual machine and put it in the correct organisational unit"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E4",
+          "title": "Onboard a new employee in Active Directory with the right groups and a first-login password change, then verify what the account can reach"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.5",
+          "engine": "E4",
+          "title": "Offboard a leaving employee on a Windows Server by disabling the account, removing group access, and transferring the files, then audit the result"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "Printers and the print path",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3",
+        "7.4"
+      ],
+      "exercise": "Create a printer troubleshooting poster that covers the print path (driver, spooler, queue, device) with the first three checks for each symptom.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E4",
+          "title": "Clear a stuck print queue and restart the print spooler service on a Windows virtual machine, and check the next job prints"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E10",
+          "title": "Diagnose six print faults (no output, jam, streaks, offline, wrong driver and slow job) in a scenario and choose the correct fix for each"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E4",
+          "title": "Set up a shared network printer on a server for two departments and fix the one client that cannot print, using permissions and the queue"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Documentation and communicating with users",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Write a knowledge-base article for one real fault you solved, with symptoms, cause, steps, verification and a user-friendly note, then have a partner follow it cold.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.1",
+          "engine": "E10",
+          "title": "Write the notes and resolution for one solved ticket in a scenario, with symptom, cause, fix and verification, and score it on the rubric"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E10",
+          "title": "Build an asset record and an SOP for replacing a failed lab PC in a scenario, and update the inventory for the changes"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.3",
+          "engine": "E10",
+          "title": "Handle an angry user whose work was lost in a branching case, listening, setting expectations and following up, and scored on communication"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Prevention, difficult cases and capstone queue",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Capstone reflection: describe how you prioritised a queue of simulated tickets, what you escalated, which fixes you documented, and what prevention step you would add.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.5",
+          "engine": "E10",
+          "title": "Choose three preventive maintenance tasks and one user training topic that would reduce repeated tickets in a scenario with a ticket history"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.4",
+          "engine": "E10",
+          "title": "Handle a data loss incident in a branching case, delivering bad news professionally, recovering what is possible and recording the lessons learned"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E10",
+          "title": "Work a queue of twelve mixed tickets from logging to documented resolution under time pressure, scoring on priority, escalation and clear notes"
+        }
+      ]
+    }
   ]
 }

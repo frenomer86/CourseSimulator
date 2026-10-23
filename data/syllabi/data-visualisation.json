@@ -109,5 +109,403 @@
         "Capstone: a data story on a Ghanaian or African dataset, with code, peer critique and a redesign"
       ]
     }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "title": "Why we visualise",
+      "topics": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "exercise": "Compare the summary statistics of the Anscombe datasets, then explain in a paragraph what only the plots reveal. Read one historical chart and say what question it answered.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "1.1",
+          "engine": "E1",
+          "title": "Plot the four Anscombe datasets as scatter plots with fitted lines and print their identical means, variances and correlations alongside"
+        },
+        {
+          "level": "intermediate",
+          "topic": "1.2",
+          "engine": "E1",
+          "title": "Reshape a wide table of monthly cocoa prices by region into tidy long format and verify row counts and column types"
+        },
+        {
+          "level": "advanced",
+          "topic": "1.3",
+          "engine": "E1",
+          "title": "Take three published charts and write each one's what, why and how analysis, then rebuild one as code using a different idiom"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "title": "Perception and visual encoding",
+      "topics": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+      ],
+      "exercise": "Rank the encodings position, length, angle, area and colour for a quantitative variable and justify using the perception studies. Mark the data-ink in a cluttered chart.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "2.2",
+          "engine": "E1",
+          "title": "Encode the same five regional values as bars, circles of area and angles in a pie, and note which is hardest to compare"
+        },
+        {
+          "level": "intermediate",
+          "topic": "2.1",
+          "engine": "E1",
+          "title": "Build a pop-out test with one red dot among 50 blue dots and one with a mixed shape condition, then compare the search times"
+        },
+        {
+          "level": "advanced",
+          "topic": "2.5",
+          "engine": "E1",
+          "title": "Redesign a cluttered 3D chart by removing chart junk, applying Gestalt grouping and raising the data-ink ratio, then explain each change"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "title": "Core chart types",
+      "topics": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "exercise": "For six given questions, choose the best chart type and say what you would avoid. Explain the effect of bin width on a histogram of farm yields.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.1",
+          "engine": "E1",
+          "title": "Plot a sorted horizontal bar chart of export tonnes by crop with a zero baseline and direct value labels"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.2",
+          "engine": "E1",
+          "title": "Show a distribution of 500 household incomes with histograms at three bin widths and a box and violin plot, then compare readings"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.3",
+          "engine": "E1",
+          "title": "Plot 100000 mobile money transactions as a scatter, fix the overplotting with transparency, binning or hexbins, and compare the readability of each"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "title": "Composition, small multiples and question matching",
+      "topics": [
+        "3.5",
+        "3.6",
+        "3.7"
+      ],
+      "exercise": "Write down five questions about mobile money volumes by region and match each to a chart type with a one-line reason.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "3.5",
+          "engine": "E1",
+          "title": "Show the share of mobile money volume by region with a stacked bar and a treemap and say which one reads better"
+        },
+        {
+          "level": "intermediate",
+          "topic": "3.6",
+          "engine": "E1",
+          "title": "Facet monthly transaction volume into small multiples for 16 districts with shared axes and sort panels by total volume"
+        },
+        {
+          "level": "advanced",
+          "topic": "3.7",
+          "engine": "E5",
+          "title": "Query transaction volumes by region and month with SQL, then choose and build three charts that answer distinct stakeholder questions"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "title": "Colour, labels and annotation",
+      "topics": [
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5"
+      ],
+      "exercise": "Evaluate a rainbow-coloured map for colour-vision accessibility and write a replacement palette recommendation with contrast ratios.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "4.2",
+          "engine": "E1",
+          "title": "Draw one heatmap with a rainbow scale and one with a perceptually uniform sequential scale, and list what the rainbow hides"
+        },
+        {
+          "level": "intermediate",
+          "topic": "4.3",
+          "engine": "E1",
+          "title": "Simulate deuteranopia on a six-colour chart, compute contrast ratios against the background and replace failing colours with accessible ones"
+        },
+        {
+          "level": "advanced",
+          "topic": "4.5",
+          "engine": "E1",
+          "title": "Turn a default line chart into an annotated chart with finding title, direct labels, a reference line and a shaded uncertainty band"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "title": "Grammar of graphics and wrangling",
+      "topics": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "exercise": "Describe a given chart as data, aesthetics, geometry, scale, coordinate and facet layers, then say which layer to change to answer a new question.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.1",
+          "engine": "E1",
+          "title": "Build the same scatter plot of rainfall and yield with a declarative library by mapping x, y, colour and size aesthetics"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.3",
+          "engine": "E1",
+          "title": "Use pandas to join, group and pivot two district tables and produce a tidy frame ready for a faceted chart, checking row counts"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.2",
+          "engine": "E1",
+          "title": "Reproduce one published chart three ways in Matplotlib, a declarative library and a statistical wrapper, comparing code length and flexibility"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "title": "Uncertainty and reproducible figures",
+      "topics": [
+        "5.4",
+        "5.5",
+        "5.6"
+      ],
+      "exercise": "Describe how a reader may misread a bar chart with standard error bars and propose a clearer way to show the same estimate.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "5.4",
+          "engine": "E1",
+          "title": "Add 95 percent confidence intervals to a bar chart of mean cocoa price by year and state what overlapping intervals imply"
+        },
+        {
+          "level": "intermediate",
+          "topic": "5.5",
+          "engine": "E1",
+          "title": "Write a script that regenerates a figure from raw data and exports SVG and PNG at 300 dpi with a consistent theme"
+        },
+        {
+          "level": "advanced",
+          "topic": "5.6",
+          "engine": "E1",
+          "title": "Clean a raw cocoa export and price table and produce a publication-quality figure with uncertainty, annotations and a caption stating the main finding"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "title": "Web graphics and interaction",
+      "topics": [
+        "6.1",
+        "6.2",
+        "6.3"
+      ],
+      "exercise": "Decide whether SVG or Canvas suits a chart of 200 points and a chart of 200000 points, and justify with expected rendering cost.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.2",
+          "engine": "E1",
+          "title": "Use D3-style selections and a data join to draw ten bars from an array with scales and axes, and update them with new data"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.3",
+          "engine": "E1",
+          "title": "Add tooltips and a region filter to a scatter plot so hovering shows details and the filter dims unselected points"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.1",
+          "engine": "E1",
+          "title": "Render the same 100000 point scatter in SVG and Canvas, measure frame time while zooming and recommend a rendering approach"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "title": "Dashboards for low-bandwidth users",
+      "topics": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "exercise": "Write a payload budget for a district health dashboard on a 2G connection and list what you will cut to meet it.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "6.4",
+          "engine": "E1",
+          "title": "Make a bar chart responsive so it reflows at 360 pixels wide and add a text description and keyboard focus order for screen readers"
+        },
+        {
+          "level": "intermediate",
+          "topic": "6.5",
+          "engine": "E5",
+          "title": "Aggregate 1 million health visit rows to monthly district totals in SQL and report how much the chart payload shrinks"
+        },
+        {
+          "level": "advanced",
+          "topic": "6.6",
+          "engine": "E1",
+          "title": "Build a linked dashboard of district health indicators where selecting a district updates three charts, within a 150 KB total payload"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "title": "Geographic data and choropleths",
+      "topics": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "exercise": "Explain why Mercator inflates Greenland and which projection you would pick for a map of Ghana, with a reason.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.1",
+          "engine": "E1",
+          "title": "Plot the outline of Ghana in three map projections and compare the area distortion visible in each"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.2",
+          "engine": "E1",
+          "title": "Join district health counts to a GeoJSON boundary file by district code, report unmatched names and fix them"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.3",
+          "engine": "E1",
+          "title": "Map malaria cases per district as raw counts and as rates per 1000 with equal-interval and quantile classes, and explain how the story changes"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "title": "More map types and web maps",
+      "topics": [
+        "7.4",
+        "7.5",
+        "7.6"
+      ],
+      "exercise": "For a flow of cocoa from districts to ports, argue whether a flow map, symbol map or cartogram best shows the pattern.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "7.4",
+          "engine": "E1",
+          "title": "Draw a proportional symbol map of cocoa output for 10 districts and add a legend that shows three reference sizes"
+        },
+        {
+          "level": "intermediate",
+          "topic": "7.5",
+          "engine": "E1",
+          "title": "Simplify district boundaries at three tolerances, compare file size and visual fidelity, and pick the best tolerance for a mobile map"
+        },
+        {
+          "level": "advanced",
+          "topic": "7.6",
+          "engine": "E1",
+          "title": "Map rainfall across northern Ghana with a layered web map and add health facility catchments showing districts more than 10 km from a clinic"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "title": "Storytelling and misleading charts",
+      "topics": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "exercise": "Pick a misleading chart from the news, list the techniques it uses and write the honest version's title and axis choices.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.3",
+          "engine": "E1",
+          "title": "Plot the same data with a truncated and a zero-based axis and measure how much the apparent difference grows"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.2",
+          "engine": "E1",
+          "title": "Take an exploratory chart of food prices, pick one message and rework it with a clear title, muted context and a single highlight"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.1",
+          "engine": "E1",
+          "title": "Build a scrollytelling sequence of four views for a school enrolment dataset that follows a martini-glass structure and ends in open exploration"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "title": "Ethics, critique and capstone",
+      "topics": [
+        "8.4",
+        "8.5",
+        "8.6"
+      ],
+      "exercise": "Swap capstone drafts with a peer and write a structured critique covering message, encoding, honesty and accessibility.",
+      "tasks": [
+        {
+          "level": "beginner",
+          "topic": "8.4",
+          "engine": "E1",
+          "title": "Show a dataset with missing values in a chart by marking gaps visibly, then compare to silently dropping the rows and explain the risk"
+        },
+        {
+          "level": "intermediate",
+          "topic": "8.5",
+          "engine": "E1",
+          "title": "Critique a government report chart against a checklist and redraw it with corrected axes, labels and colour, noting each change"
+        },
+        {
+          "level": "advanced",
+          "topic": "8.6",
+          "engine": "E1",
+          "title": "Produce a data story on an African dataset with at least four coordinated figures, runnable code, a peer critique log and a redesign"
+        }
+      ]
+    }
   ]
 }

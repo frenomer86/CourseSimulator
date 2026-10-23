@@ -9,6 +9,10 @@ const src = JSON.parse(fs.readFileSync(path.join(root, 'data/htu-curriculum-2022
 const slugify = (s) =>
   s.toLowerCase().replace(/c\+\+/g, 'cpp').replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
+const LEVELS = ['beginner', 'intermediate', 'advanced'];
+const ENGINES = new Set(Array.from({ length: 12 }, (_, i) => `E${i + 1}`));
+const TIERS = ['bachelor', 'master', 'phd'];
+
 const programmeFile = JSON.parse(fs.readFileSync(path.join(root, 'data/programmes.json'), 'utf8'));
 
 const AREAS = {
@@ -100,13 +104,45 @@ const syllabi = fs.existsSync(syllabusDir)
     )
   : {};
 for (const c of [...htu, ...extended, ...programmeCourses]) {
+  c.level = c.level ?? 'bachelor';
   const s = syllabi[c.slug];
   if (s) {
     c.description = s.description;
     c.modelledOn = s.modelledOn;
     c.outcomes = s.outcomes;
     c.syllabus = s.units;
+    // The weekly schedule stays in the syllabus file (the web app loads it per course); the catalogue only
+    // records how many weeks there are, which keeps data/courses.json small.
+    if (s.schedule) {
+      checkSchedule(c.slug, s.units, s.schedule);
+      c.weeks = s.schedule.length;
+    }
   }
+}
+
+// A schedule lays the course out as 12 or 13 weeks. Topics are "unit.topic" refs (1-based), so labs and task
+// templates that attach by unit and topicIndex keep working; every topic must be taught in some week.
+function checkSchedule(slug, units, schedule) {
+  const fail = (msg) => { throw new Error(`${slug} schedule: ${msg}`); };
+  if (schedule.length < 12 || schedule.length > 13) fail(`${schedule.length} weeks`);
+  const refs = new Set(units.flatMap((u, i) => u.topics.map((_, t) => `${i + 1}.${t + 1}`)));
+  const taught = new Set();
+  schedule.forEach((w, i) => {
+    if (w.week !== i + 1) fail(`week ${i + 1} is numbered ${w.week}`);
+    if (!w.title || !w.exercise) fail(`week ${w.week} needs a title and an exercise`);
+    if (!w.topics?.length) fail(`week ${w.week} has no topics`);
+    for (const r of w.topics) {
+      if (!refs.has(r)) fail(`week ${w.week} names unknown topic ${r}`);
+      taught.add(r);
+    }
+    for (const level of LEVELS) if (!w.tasks?.some((t) => t.level === level)) fail(`week ${w.week} has no ${level} task`);
+    for (const t of w.tasks) {
+      if (!LEVELS.includes(t.level) || !ENGINES.has(t.engine) || !t.title) fail(`week ${w.week} has a bad task ${JSON.stringify(t)}`);
+      if (!w.topics.includes(t.topic)) fail(`week ${w.week} task names topic ${t.topic} outside the week`);
+    }
+  });
+  const missed = [...refs].filter((r) => !taught.has(r));
+  if (missed.length) fail(`topics never scheduled: ${missed.join(', ')}`);
 }
 
 const courses = [...htu, ...extended, ...programmeCourses].sort((a, b) => a.year - b.year || a.semester - b.semester || a.title.localeCompare(b.title));
@@ -115,25 +151,45 @@ for (const c of courses) {
   if (slugs.has(c.slug)) throw new Error('duplicate slug ' + c.slug);
   slugs.add(c.slug);
   if (!AREAS[c.area]) throw new Error('bad area ' + c.area + ' for ' + c.title);
+  if (!TIERS.includes(c.level)) throw new Error('bad level ' + c.level + ' for ' + c.title);
 }
+const missingSchedule = courses.filter((c) => c.syllabus && !c.weeks).map((c) => c.slug);
+if (missingSchedule.length) console.warn('courses without a weekly schedule yet:', missingSchedule.join(', '));
 const missingSyllabus = courses.filter((c) => !c.syllabus).map((c) => c.slug);
 if (missingSyllabus.length) console.warn('courses without a syllabus yet:', missingSyllabus.join(', '));
 
 // Programmes: ordered course lists. "__ALL_ORIGINAL__" is the Computer Science programme's 53 courses.
 const original = courses.filter((c) => c.source !== 'programmes').map((c) => c.slug);
+// A programme may define levels (bachelor, master, phd), each with core and elective courses; its `courses` list is
+// then the bachelor's core followed by its electives.
+const checkList = (where, list) => {
+  for (const slug of list) if (!slugs.has(slug)) throw new Error(`${where} lists unknown course ${slug}`);
+  if (new Set(list).size !== list.length) throw new Error(`${where} lists a course twice`);
+};
 const programmes = programmeFile.programmes.map((p) => {
-  const list = p.courses === '__ALL_ORIGINAL__' ? original : p.courses;
-  for (const slug of list) if (!slugs.has(slug)) throw new Error(`programme ${p.slug} lists unknown course ${slug}`);
-  if (new Set(list).size !== list.length) throw new Error(`programme ${p.slug} lists a course twice`);
-  return { slug: p.slug, title: p.title, description: p.description, outcomes: p.outcomes, recommended: !!p.recommended, courses: list };
+  let levels;
+  if (p.levels) {
+    levels = {};
+    for (const tier of TIERS) {
+      const l = p.levels[tier];
+      if (!l) throw new Error(`programme ${p.slug} has no ${tier} level`);
+      checkList(`programme ${p.slug} ${tier}`, [...l.core, ...l.electives]);
+      levels[tier] = { award: l.award, years: l.years, core: l.core, electives: l.electives, electivesRequired: l.electivesRequired, milestones: l.milestones ?? [] };
+    }
+  }
+  const list = levels ? [...levels.bachelor.core, ...levels.bachelor.electives] : p.courses === '__ALL_ORIGINAL__' ? original : p.courses;
+  checkList(`programme ${p.slug}`, list);
+  return { slug: p.slug, title: p.title, description: p.description, outcomes: p.outcomes, recommended: !!p.recommended, courses: list, ...(levels && { levels }) };
 });
-const unused = courses.filter((c) => !programmes.some((p) => p.courses.includes(c.slug))).map((c) => c.slug);
+const inProgramme = (p, slug) => p.courses.includes(slug) || TIERS.some((t) => p.levels?.[t].core.includes(slug) || p.levels?.[t].electives.includes(slug));
+const unused = courses.filter((c) => !programmes.some((p) => inProgramme(p, c.slug))).map((c) => c.slug);
 if (unused.length) throw new Error('courses in no programme: ' + unused.join(', '));
 
 const out = {
   $comment: 'Course catalogue for the CS Virtual Lab. Courses are identified by slug and shown by name; institutional codes are kept only as reference metadata. Generated by build-courses.mjs from htu-curriculum-2022.json, the extended list and programmes.json. Do not edit by hand.',
   areas: AREAS,
-  years: { 1: 'Year 1', 2: 'Year 2', 3: 'Year 3', 4: 'Year 4' },
+  years: { 1: 'Year 1', 2: 'Year 2', 3: 'Year 3', 4: 'Year 4', 5: "Master's", 6: 'Doctoral' },
+  levels: { bachelor: "Bachelor's", master: "Master's", phd: 'Doctoral' },
   programmes,
   courses,
 };
