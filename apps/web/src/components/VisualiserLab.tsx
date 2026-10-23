@@ -13,6 +13,7 @@ import { secondsSince, track } from '../lib/telemetry';
 import { Markdown } from './Markdown';
 import { ContestBanner, useContestEntry } from './Contest';
 import { QuestionsAbout } from '../pages/Forum';
+import { AlignmentVisual, AutomatonVisual, GridVisual, RulesVisual, TreeVisual, WeightedVisual } from './VisualiserVisuals';
 
 const vizChecks = createVisualiserChecks();
 
@@ -266,6 +267,27 @@ export function VisualiserLab({ lab }: { lab: LabSpec<VizState> }) {
                   </select>
                 </label>
               )}
+              {algo.inputKind === 'automaton' && (
+                <label className="text-sm flex-1 min-w-[180px]">
+                  <span className="block text-xs text-ink-soft">Word (alphabet {'{'}{(input.automaton?.alphabet ?? []).join(', ')}{'}'})</span>
+                  <input type="text" value={input.word ?? ''} onChange={(e) => setInput((cur) => ({ ...cur, word: e.target.value.trim() }))} disabled={!editable} className="input mt-1 font-mono" spellCheck={false} aria-label="Word" />
+                </label>
+              )}
+              {algo.inputKind === 'weighted' && (
+                <span className="text-sm text-ink-soft">
+                  From <span className="font-medium text-ink">{input.start ?? input.weighted?.nodes[0]}</span> to <span className="font-medium text-ink">{input.goal ?? 'every node'}</span>
+                </span>
+              )}
+              {algo.inputKind === 'alignment' && (
+                <span className="text-sm text-ink-soft font-mono">
+                  match {input.scoring?.match ?? 1}, mismatch {input.scoring?.mismatch ?? -1}, gap {input.scoring?.gap ?? -2}
+                </span>
+              )}
+              {algo.inputKind === 'rules' && input.goal && (
+                <span className="text-sm text-ink-soft">
+                  Goal: <span className="font-mono text-ink">{input.goal}</span>
+                </span>
+              )}
             </div>
             {algo.inputKind === 'ops' && (
               <label className="block mt-3 text-sm">
@@ -278,7 +300,7 @@ export function VisualiserLab({ lab }: { lab: LabSpec<VizState> }) {
           </div>
 
           <div className="rounded-lg border border-line bg-bench p-4">
-            <Visual step={step} kind={algo.inputKind} graph={input.graph} />
+            <Visual step={step} kind={algo.inputKind} input={input} />
             <p className="mt-3 text-[15px] min-h-[1.5em]" aria-live="polite">
               {step ? step.note : 'Nothing to show yet.'}
             </p>
@@ -435,9 +457,15 @@ function placeholderFor(q: CheckSpec): string {
 
 /* ----------------------------------------------------------------------------- visuals */
 
-function Visual({ step, kind, graph }: { step: Step | undefined; kind: string; graph?: Graph }) {
+function Visual({ step, kind, input }: { step: Step | undefined; kind: string; input: AlgorithmInput }) {
   if (!step) return <div className="h-24" />;
-  if (kind === 'graph' && graph) return <GraphVisual step={step} graph={graph} />;
+  if (kind === 'graph' && input.graph) return <GraphVisual step={step} graph={input.graph} />;
+  if (kind === 'automaton' && input.automaton) return <AutomatonVisual step={step} m={input.automaton} />;
+  if (kind === 'weighted' && input.weighted) return <WeightedVisual step={step} g={input.weighted} />;
+  if (kind === 'grid' && input.grid) return <GridVisual step={step} rows={input.grid} />;
+  if (kind === 'tree' && input.tree) return <TreeVisual step={step} tree={input.tree} />;
+  if (kind === 'alignment') return <AlignmentVisual step={step} a={(input.seqA ?? '').toUpperCase()} b={(input.seqB ?? '').toUpperCase()} />;
+  if (kind === 'rules') return <RulesVisual step={step} input={input} />;
   if (kind === 'ops') return <OpsVisual step={step} />;
   return <ArrayVisual step={step} />;
 }

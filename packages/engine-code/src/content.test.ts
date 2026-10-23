@@ -28,7 +28,9 @@ class PythonProcess implements CodeRunner {
   readonly language: CodeLanguage = 'python';
   run(source: string, stdin = '', timeoutMs = 15000): Promise<RunResult> {
     const start = Date.now();
-    const r = spawnSync(PY!, ['-I', '-c', source], { input: stdin, encoding: 'utf8', timeout: timeoutMs });
+    // A local interpreter starting numpy under a parallel test run can take far longer than Pyodide in a
+    // browser tab, so the harness allows at least a minute; the lab's own limit still applies in the app.
+    const r = spawnSync(PY!, ['-I', '-c', source], { input: stdin, encoding: 'utf8', timeout: Math.max(timeoutMs, 60000) });
     const timedOut = r.error && (r.error as NodeJS.ErrnoException).code === 'ETIMEDOUT';
     const errLine = (r.stderr ?? '').trim().split('\n').pop() ?? '';
     return Promise.resolve({ stdout: r.stdout ?? '', stderr: r.stderr ?? '', error: r.status === 0 ? null : timedOut ? 'timed out' : errLine || 'exited with an error', timeMs: Date.now() - start, timedOut: !!timedOut });

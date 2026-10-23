@@ -1,0 +1,160 @@
+{
+  "id": "artificial-intelligence-i1-a-star-from-accra-to-tamale",
+  "course": "artificial-intelligence",
+  "topic": "Informed search: A* and admissible heuristics",
+  "unit": 2,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "engine": "E6",
+  "title": "A* from Accra to Tamale",
+  "estimatedMinutes": 25,
+  "instructions": "## The shortest road north\n\nFind the shortest road route from **Accra** to **Tamale** on this simplified map. Distances on the edges are in km. For A*, the estimate h is the straight-line distance to Tamale, which never overestimates the road distance, so A* is guaranteed to find the best route.\n\n| Town | h (km to Tamale) |\n|---|---|\n| Accra | 520 |\n| Koforidua | 470 |\n| Kumasi | 380 |\n| Techiman | 260 |\n| Yeji | 170 |\n| Tamale | 0 |\n\n## Do this\n\n1. Run **A* search** step by step. Each green number shows g + h.\n2. Switch to **Uniform-cost search (Dijkstra)**, which uses no estimate, and compare how many towns it expands.",
+  "config": {
+    "algorithms": [
+      "astar",
+      "dijkstra"
+    ],
+    "editableInput": false
+  },
+  "initialState": {
+    "input": {
+      "weighted": {
+        "nodes": [
+          "Accra",
+          "Koforidua",
+          "Kumasi",
+          "Techiman",
+          "Yeji",
+          "Tamale"
+        ],
+        "edges": [
+          [
+            "Accra",
+            "Kumasi",
+            250
+          ],
+          [
+            "Accra",
+            "Koforidua",
+            85
+          ],
+          [
+            "Koforidua",
+            "Kumasi",
+            190
+          ],
+          [
+            "Kumasi",
+            "Techiman",
+            120
+          ],
+          [
+            "Kumasi",
+            "Yeji",
+            230
+          ],
+          [
+            "Koforidua",
+            "Yeji",
+            330
+          ],
+          [
+            "Techiman",
+            "Tamale",
+            270
+          ],
+          [
+            "Yeji",
+            "Tamale",
+            180
+          ]
+        ],
+        "heuristic": {
+          "Accra": 520,
+          "Koforidua": 470,
+          "Kumasi": 380,
+          "Techiman": 260,
+          "Yeji": 170,
+          "Tamale": 0
+        },
+        "layout": {
+          "Accra": [
+            0.62,
+            1
+          ],
+          "Koforidua": [
+            0.75,
+            0.82
+          ],
+          "Kumasi": [
+            0.3,
+            0.68
+          ],
+          "Techiman": [
+            0.12,
+            0.38
+          ],
+          "Yeji": [
+            0.66,
+            0.36
+          ],
+          "Tamale": [
+            0.45,
+            0
+          ]
+        }
+      },
+      "start": "Accra",
+      "goal": "Tamale"
+    },
+    "answers": {}
+  },
+  "hints": [
+    "A* first expands Accra and then the open town with the smallest f = g + h: Koforidua has 85 + 470 = 555.",
+    "From Koforidua, Yeji gets g = 85 + 330 = 415 and f = 585, which beats Kumasi at 630.",
+    "Dijkstra ignores h, so it expands Kumasi (250) and Techiman (370) before Yeji (415)."
+  ],
+  "checks": [
+    {
+      "type": "viz.final",
+      "label": "In which order does A* expand the towns",
+      "id": "q1",
+      "algorithm": "astar",
+      "what": "order",
+      "question": "In which order does A* expand the towns?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Length of the route A* finds (km)",
+      "id": "q2",
+      "algorithm": "astar",
+      "metric": "distance",
+      "question": "Length of the route A* finds (km):"
+    },
+    {
+      "type": "viz.metric",
+      "label": "The f value A* gives Kumasi",
+      "id": "q3",
+      "algorithm": "astar",
+      "metric": "f:Kumasi",
+      "question": "The f value A* gives Kumasi:"
+    },
+    {
+      "type": "viz.metric",
+      "label": "How many towns does Dijkstra expand, Tamale included",
+      "id": "q4",
+      "algorithm": "dijkstra",
+      "metric": "expanded",
+      "question": "How many towns does Dijkstra expand, Tamale included?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Dijkstra's distance from Accra to Techiman (km)",
+      "id": "q5",
+      "algorithm": "dijkstra",
+      "metric": "g:Techiman",
+      "question": "Dijkstra's distance from Accra to Techiman (km):"
+    }
+  ],
+  "realityNote": "Route planners use A* and its descendants with heuristics like these. On a full road network the gap between A* and Dijkstra is millions of nodes, not two."
+}

@@ -1,0 +1,127 @@
+{
+  "id": "knowledge-representation-and-reasoning-i1-forward-and-backward-chaining",
+  "course": "knowledge-representation-and-reasoning",
+  "topic": "Forward and backward chaining with Horn clauses",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "engine": "E6",
+  "title": "Forward and backward chaining in a crop-advisory rule base",
+  "estimatedMinutes": 20,
+  "instructions": "## A maize farmer's question\n\nAn extension officer's rule base helps diagnose maize problems. The farmer reports yellow leaves that started on the lower leaves, sandy soil and heavy rain last week. The question is whether to recommend a split dose of urea.\n\nAll the rules are Horn clauses: a conjunction of facts implies one new fact.\n\n## Do this\n\n1. Run **Forward chaining**, which starts from the facts and fires any rule it can until the goal appears.\n2. Run **Backward chaining**, which starts from the goal and only asks about what the goal needs.\n3. Compare which rules each one uses.",
+  "config": {
+    "algorithms": [
+      "forwardChaining",
+      "backwardChaining"
+    ],
+    "editableInput": false
+  },
+  "initialState": {
+    "input": {
+      "facts": [
+        "yellow_leaves",
+        "lower_leaves_first",
+        "sandy_soil",
+        "heavy_rain_last_week"
+      ],
+      "rules": [
+        {
+          "if": [
+            "yellow_leaves",
+            "lower_leaves_first"
+          ],
+          "then": "nitrogen_deficiency_suspected"
+        },
+        {
+          "if": [
+            "heavy_rain_last_week"
+          ],
+          "then": "waterlogging_risk"
+        },
+        {
+          "if": [
+            "sandy_soil",
+            "heavy_rain_last_week"
+          ],
+          "then": "nitrate_leaching"
+        },
+        {
+          "if": [
+            "nitrogen_deficiency_suspected",
+            "nitrate_leaching"
+          ],
+          "then": "nitrogen_deficiency"
+        },
+        {
+          "if": [
+            "nitrogen_deficiency"
+          ],
+          "then": "apply_urea_split_dose"
+        },
+        {
+          "if": [
+            "waterlogging_risk",
+            "clay_soil"
+          ],
+          "then": "dig_drainage_channels"
+        },
+        {
+          "if": [
+            "purple_leaves"
+          ],
+          "then": "phosphorus_deficiency"
+        }
+      ],
+      "goal": "apply_urea_split_dose"
+    },
+    "answers": {}
+  },
+  "hints": [
+    "Forward chaining rescans from the top after every firing, so R2 fires even though it has nothing to do with urea.",
+    "Backward chaining starts with R5 because it is the only rule that concludes apply_urea_split_dose.",
+    "Count every goal backward chaining asks about, including the starting facts it checks."
+  ],
+  "checks": [
+    {
+      "type": "viz.metric",
+      "label": "Which rules does forward chaining fire, in order",
+      "id": "q1",
+      "algorithm": "forwardChaining",
+      "metric": "rulesFired",
+      "question": "Which rules does forward chaining fire, in order?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "How many new facts does forward chaining add",
+      "id": "q2",
+      "algorithm": "forwardChaining",
+      "metric": "newFacts",
+      "question": "How many new facts does forward chaining add?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Which rules does backward chaining use to prove the goal, in the order they succeed",
+      "id": "q3",
+      "algorithm": "backwardChaining",
+      "metric": "rulesUsed",
+      "question": "Which rules does backward chaining use to prove the goal, in the order they succeed?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "How many goals does backward chaining ask about",
+      "id": "q4",
+      "algorithm": "backwardChaining",
+      "metric": "askedCount",
+      "question": "How many goals does backward chaining ask about?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "How many new facts does backward chaining add",
+      "id": "q5",
+      "algorithm": "backwardChaining",
+      "metric": "newFacts",
+      "question": "How many new facts does backward chaining add?"
+    }
+  ],
+  "realityNote": "Diagnostic expert systems usually chain backward so they only ask the user questions that matter. Monitoring systems chain forward, reacting to every new reading."
+}

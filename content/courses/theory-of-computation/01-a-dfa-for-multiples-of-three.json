@@ -1,0 +1,328 @@
+{
+  "id": "theory-of-computation-i1-a-dfa-for-multiples-of-three",
+  "course": "theory-of-computation",
+  "topic": "Deterministic finite automata",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "engine": "E6",
+  "title": "A DFA that recognises multiples of three",
+  "estimatedMinutes": 20,
+  "instructions": "## Remainders as states\n\nThis machine reads a binary number from the most significant bit and accepts it when the number is divisible by 3. State **r0**, **r1** or **r2** is the remainder of the bits read so far. Reading bit b turns remainder r into (2r + b) mod 3.\n\n## Do this\n\n1. Step through the word **1101** (13 in decimal) and answer the questions.\n2. The questions about 110 and 1001 run those words for you; predict them by hand first.\n3. Then type your own word of **at least five symbols** that the machine accepts. Check it is a multiple of three in decimal.",
+  "config": {
+    "algorithms": [
+      "dfa"
+    ],
+    "editableInput": true
+  },
+  "initialState": {
+    "input": {
+      "automaton": {
+        "states": [
+          "r0",
+          "r1",
+          "r2"
+        ],
+        "alphabet": [
+          "0",
+          "1"
+        ],
+        "start": "r0",
+        "accept": [
+          "r0"
+        ],
+        "transitions": [
+          [
+            "r0",
+            "0",
+            "r0"
+          ],
+          [
+            "r0",
+            "1",
+            "r1"
+          ],
+          [
+            "r1",
+            "0",
+            "r2"
+          ],
+          [
+            "r1",
+            "1",
+            "r0"
+          ],
+          [
+            "r2",
+            "0",
+            "r1"
+          ],
+          [
+            "r2",
+            "1",
+            "r2"
+          ]
+        ]
+      },
+      "word": "1101"
+    },
+    "answers": {}
+  },
+  "hints": [
+    "From r1 reading 1: (2 × 1 + 1) mod 3 = 0, so the machine goes to r0.",
+    "The machine accepts only if it ends in r0.",
+    "18 is 10010 in binary."
+  ],
+  "checks": [
+    {
+      "type": "viz.metric",
+      "label": "Reading 1101, in which state does the machine finish",
+      "id": "q1",
+      "algorithm": "dfa",
+      "metric": "final",
+      "input": {
+        "automaton": {
+          "states": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "alphabet": [
+            "0",
+            "1"
+          ],
+          "start": "r0",
+          "accept": [
+            "r0"
+          ],
+          "transitions": [
+            [
+              "r0",
+              "0",
+              "r0"
+            ],
+            [
+              "r0",
+              "1",
+              "r1"
+            ],
+            [
+              "r1",
+              "0",
+              "r2"
+            ],
+            [
+              "r1",
+              "1",
+              "r0"
+            ],
+            [
+              "r2",
+              "0",
+              "r1"
+            ],
+            [
+              "r2",
+              "1",
+              "r2"
+            ]
+          ]
+        },
+        "word": "1101"
+      },
+      "question": "Reading 1101, in which state does the machine finish?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Is 1101 accepted (yes or no)",
+      "id": "q2",
+      "algorithm": "dfa",
+      "metric": "accepted",
+      "input": {
+        "automaton": {
+          "states": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "alphabet": [
+            "0",
+            "1"
+          ],
+          "start": "r0",
+          "accept": [
+            "r0"
+          ],
+          "transitions": [
+            [
+              "r0",
+              "0",
+              "r0"
+            ],
+            [
+              "r0",
+              "1",
+              "r1"
+            ],
+            [
+              "r1",
+              "0",
+              "r2"
+            ],
+            [
+              "r1",
+              "1",
+              "r0"
+            ],
+            [
+              "r2",
+              "0",
+              "r1"
+            ],
+            [
+              "r2",
+              "1",
+              "r2"
+            ]
+          ]
+        },
+        "word": "1101"
+      },
+      "question": "Is 1101 accepted (yes or no)?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "List the states visited reading 110, starting with r0",
+      "id": "q3",
+      "algorithm": "dfa",
+      "metric": "path",
+      "input": {
+        "automaton": {
+          "states": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "alphabet": [
+            "0",
+            "1"
+          ],
+          "start": "r0",
+          "accept": [
+            "r0"
+          ],
+          "transitions": [
+            [
+              "r0",
+              "0",
+              "r0"
+            ],
+            [
+              "r0",
+              "1",
+              "r1"
+            ],
+            [
+              "r1",
+              "0",
+              "r2"
+            ],
+            [
+              "r1",
+              "1",
+              "r0"
+            ],
+            [
+              "r2",
+              "0",
+              "r1"
+            ],
+            [
+              "r2",
+              "1",
+              "r2"
+            ]
+          ]
+        },
+        "word": "110"
+      },
+      "question": "List the states visited reading 110, starting with r0:"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Is 1001 accepted (yes or no)",
+      "id": "q4",
+      "algorithm": "dfa",
+      "metric": "accepted",
+      "input": {
+        "automaton": {
+          "states": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "alphabet": [
+            "0",
+            "1"
+          ],
+          "start": "r0",
+          "accept": [
+            "r0"
+          ],
+          "transitions": [
+            [
+              "r0",
+              "0",
+              "r0"
+            ],
+            [
+              "r0",
+              "1",
+              "r1"
+            ],
+            [
+              "r1",
+              "0",
+              "r2"
+            ],
+            [
+              "r1",
+              "1",
+              "r0"
+            ],
+            [
+              "r2",
+              "0",
+              "r1"
+            ],
+            [
+              "r2",
+              "1",
+              "r2"
+            ]
+          ]
+        },
+        "word": "1001"
+      },
+      "question": "Is 1001 accepted (yes or no)?"
+    },
+    {
+      "type": "viz.input",
+      "label": "Your word is accepted",
+      "algorithm": "dfa",
+      "metric": "accepted",
+      "equals": true,
+      "question": "Type a word the machine accepts.",
+      "message": "The machine rejects your word. Try a binary number that is a multiple of three."
+    },
+    {
+      "type": "viz.input",
+      "label": "Your word has at least five symbols",
+      "algorithm": "dfa",
+      "metric": "length",
+      "min": 5,
+      "question": "Make it at least five symbols long."
+    }
+  ],
+  "realityNote": "Lexical analysers in compilers are DFAs generated from regular expressions, and so is the input validation in many protocol parsers."
+}

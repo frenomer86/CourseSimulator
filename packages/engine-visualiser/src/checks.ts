@@ -12,6 +12,7 @@
 
 import { CheckRegistry, type CheckResult, type CheckSpec } from '@cslab/lab-runtime';
 import { runAlgorithm, type AlgorithmInput, type Metric, type Step, type Trace } from './trace.js';
+import './more.js';
 
 export interface VizState {
   input: AlgorithmInput;
@@ -82,6 +83,7 @@ function expectedFor(spec: CheckSpec, trace: Trace): Metric | undefined {
       const what = String(spec.what);
       if (what === 'values') return trace.metrics.values as number[] | undefined;
       if (what === 'order') return trace.metrics.order as string[] | undefined;
+      if (what === 'path') return trace.metrics.path as string[] | undefined;
       if (what === 'stack' || what === 'queue') return trace.metrics.final as number[] | undefined;
       return undefined;
     }
@@ -122,6 +124,11 @@ export function createVisualiserChecks(): CheckRegistry<VizState> {
       if (spec.sorted === true && vals.some((v, i) => i > 0 && v < vals[i - 1])) return fail(spec, 'Binary search needs the list in ascending order.');
       const metric = String(spec.metric);
       const value = trace.metrics[metric];
+      if (value === undefined) return fail(spec, `The trace has no value called ${metric}. This is a content error, not yours.`);
+      if (spec.equals !== undefined && typeof spec.equals !== 'number') {
+        if (value === spec.equals) return pass(spec, String(spec.success ?? `Your input gives ${metric} = ${showMetric(value)}.`));
+        return fail(spec, String(spec.message ?? `With your input, ${metric} is ${showMetric(value)}; it needs to be ${showMetric(spec.equals as Metric)}.`));
+      }
       if (typeof value !== 'number') return fail(spec, `The trace has no number called ${metric}. This is a content error, not yours.`);
       if (typeof spec.equals === 'number' && value !== spec.equals) return fail(spec, String(spec.message ?? `With your input, ${metric} is ${value}; it needs to be exactly ${spec.equals}.`));
       if (typeof spec.min === 'number' && value < spec.min) return fail(spec, String(spec.message ?? `With your input, ${metric} is ${value}; it needs to be at least ${spec.min}.`));

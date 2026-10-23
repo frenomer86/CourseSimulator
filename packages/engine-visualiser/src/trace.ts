@@ -30,6 +30,24 @@ export interface Step {
   visited?: string[];
   frontier?: string[];
   current?: string;
+  /** Automata: the input word and the read position. */
+  tape?: { symbols: string[]; pos: number };
+  /** Automata: the state(s) the machine is in. */
+  active?: string[];
+  /** Text shown next to a node (distances, f = g + h, minimax values). */
+  labels?: Record<string, string>;
+  /** Dynamic-programming matrix, row by row. */
+  cells?: Array<Array<string | number | null>>;
+  /** The matrix cell being filled, [row, column]. */
+  cell?: [number, number];
+  /** Nodes or cells ("r,c") on the path found so far. */
+  path?: string[];
+  /** Rules: facts known so far. */
+  known?: string[];
+  /** Rules: index of the rule being considered. */
+  rule?: number;
+  /** Game trees: leaves skipped by pruning. */
+  pruned?: string[];
 }
 
 export type Metric = number | boolean | string | number[] | string[];
@@ -46,6 +64,35 @@ export interface Graph {
   edges: Array<[string, string]>;
 }
 
+export interface Automaton {
+  states: string[];
+  alphabet: string[];
+  start: string;
+  accept: string[];
+  transitions: Array<[string, string, string]>;
+}
+
+export interface WeightedGraph {
+  nodes: string[];
+  edges: Array<[string, string, number]>;
+  /** Estimated cost from each node to the goal, for A*. */
+  heuristic?: Record<string, number>;
+  /** Optional positions in [0, 1] x [0, 1] for drawing. */
+  layout?: Record<string, [number, number]>;
+}
+
+export interface GameTree {
+  name: string;
+  value?: number;
+  children?: GameTree[];
+}
+
+export interface Rule {
+  name?: string;
+  if: string[];
+  then: string;
+}
+
 export interface AlgorithmInput {
   values?: number[];
   target?: number;
@@ -53,9 +100,21 @@ export interface AlgorithmInput {
   ops?: string[];
   graph?: Graph;
   start?: string;
+  automaton?: Automaton;
+  word?: string;
+  weighted?: WeightedGraph;
+  goal?: string;
+  /** Grid rows: "." free, "#" wall, "S" start, "G" goal. */
+  grid?: string[];
+  tree?: GameTree;
+  seqA?: string;
+  seqB?: string;
+  scoring?: { match: number; mismatch: number; gap: number };
+  facts?: string[];
+  rules?: Rule[];
 }
 
-export type InputKind = 'values' | 'values+target' | 'ops' | 'graph';
+export type InputKind = 'values' | 'values+target' | 'ops' | 'graph' | 'automaton' | 'weighted' | 'grid' | 'tree' | 'alignment' | 'rules';
 
 export interface Algorithm {
   id: string;
@@ -67,7 +126,7 @@ export interface Algorithm {
 
 const MAX_STEPS = 2000;
 
-class Recorder {
+export class Recorder {
   steps: Step[] = [];
   constructor(
     private readonly algorithm: string,
@@ -81,6 +140,13 @@ class Recorder {
     if (extra.queue) copy.queue = [...extra.queue];
     if (extra.visited) copy.visited = [...extra.visited];
     if (extra.frontier) copy.frontier = [...extra.frontier];
+    if (extra.active) copy.active = [...extra.active];
+    if (extra.path) copy.path = [...extra.path];
+    if (extra.known) copy.known = [...extra.known];
+    if (extra.pruned) copy.pruned = [...extra.pruned];
+    if (extra.labels) copy.labels = { ...extra.labels };
+    if (extra.cells) copy.cells = extra.cells.map((row) => [...row]);
+    if (extra.tape) copy.tape = { symbols: [...extra.tape.symbols], pos: extra.tape.pos };
     this.steps.push(copy);
   }
   done(metrics: Record<string, Metric>): Trace {
@@ -499,6 +565,11 @@ const dfs: Algorithm = {
 export const ALGORITHMS: Record<string, Algorithm> = Object.fromEntries(
   [linearSearch, binarySearch, bubbleSort, selectionSort, insertionSort, stackOps, queueOps, bfs, dfs].map((a) => [a.id, a]),
 );
+
+/** Adds algorithms defined in other modules (more.ts) to the registry. */
+export function registerAlgorithms(list: Algorithm[]): void {
+  for (const a of list) ALGORITHMS[a.id] = a;
+}
 
 export function runAlgorithm(id: string, input: AlgorithmInput): Trace {
   const a = ALGORITHMS[id];

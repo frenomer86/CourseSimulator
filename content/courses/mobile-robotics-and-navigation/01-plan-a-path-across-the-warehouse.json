@@ -1,0 +1,72 @@
+{
+  "id": "mobile-robotics-and-navigation-i1-plan-a-path-across-the-warehouse",
+  "course": "mobile-robotics-and-navigation",
+  "topic": "Graph search planners: grids, Dijkstra, A* and heuristics",
+  "unit": 6,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "engine": "E6",
+  "title": "Plan a path across the warehouse floor",
+  "estimatedMinutes": 20,
+  "instructions": "## A delivery robot on an occupancy grid\n\nA warehouse robot has mapped the floor as an occupancy grid: dark cells are shelving, S is the robot and G is the loading bay. It moves one cell up, down, left or right per step.\n\n## Do this\n\n1. Run **Breadth-first search**. It expands cells in rings around S and finds a shortest path, but it does not know where G is.\n2. Run **A* on a grid**, which adds the Manhattan distance to G as its estimate. Compare the number of cells each expands.",
+  "config": {
+    "algorithms": [
+      "gridBfs",
+      "gridAstar"
+    ],
+    "editableInput": false
+  },
+  "initialState": {
+    "input": {
+      "grid": [
+        "S.......",
+        "........",
+        "..####..",
+        ".....#..",
+        ".....#..",
+        ".......G"
+      ]
+    },
+    "answers": {}
+  },
+  "hints": [
+    "The path length is the number of moves, one less than the number of cells on the path.",
+    "BFS reports the expanded count when it removes G from the queue.",
+    "On an open floor, Manhattan distance is exact until the robot meets the shelves, so A* heads almost straight there."
+  ],
+  "checks": [
+    {
+      "type": "viz.metric",
+      "label": "Length of the path BFS finds (moves)",
+      "id": "q1",
+      "algorithm": "gridBfs",
+      "metric": "pathLength",
+      "question": "Length of the path BFS finds (moves):"
+    },
+    {
+      "type": "viz.metric",
+      "label": "How many cells does BFS expand",
+      "id": "q2",
+      "algorithm": "gridBfs",
+      "metric": "expanded",
+      "question": "How many cells does BFS expand?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "How many cells does A* expand",
+      "id": "q3",
+      "algorithm": "gridAstar",
+      "metric": "expanded",
+      "question": "How many cells does A* expand?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Length of the path A* finds (moves)",
+      "id": "q4",
+      "algorithm": "gridAstar",
+      "metric": "pathLength",
+      "question": "Length of the path A* finds (moves):"
+    }
+  ],
+  "realityNote": "The ROS 2 navigation stack plans on a costmap like this grid with A* or Dijkstra, then hands the path to a local controller that avoids people and pallets."
+}

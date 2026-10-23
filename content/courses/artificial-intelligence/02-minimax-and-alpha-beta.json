@@ -1,0 +1,128 @@
+{
+  "id": "artificial-intelligence-i2-minimax-and-alpha-beta",
+  "course": "artificial-intelligence",
+  "topic": "Alpha-beta pruning and move ordering",
+  "unit": 4,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "engine": "E6",
+  "title": "Minimax and alpha-beta on an oware position",
+  "estimatedMinutes": 20,
+  "instructions": "## Three moves, three replies\n\nAn oware program is choosing a move. It can sow from house **B**, **C** or **D**. For each, the opponent has three replies, and the program scores each final position: seeds ahead after two moves. You (MAX) want the score high and the opponent (MIN) wants it low.\n\n## Do this\n\n1. Run **Minimax**: every leaf is evaluated, each MIN node takes its smallest child and the root takes the largest.\n2. Run **Alpha-beta pruning** on the same tree. Watch α and β in the Variables panel, and note which leaves are never looked at.",
+  "config": {
+    "algorithms": [
+      "minimax",
+      "alphabeta"
+    ],
+    "editableInput": false
+  },
+  "initialState": {
+    "input": {
+      "tree": {
+        "name": "A",
+        "children": [
+          {
+            "name": "B",
+            "children": [
+              {
+                "name": "B1",
+                "value": 4
+              },
+              {
+                "name": "B2",
+                "value": 7
+              },
+              {
+                "name": "B3",
+                "value": 9
+              }
+            ]
+          },
+          {
+            "name": "C",
+            "children": [
+              {
+                "name": "C1",
+                "value": 3
+              },
+              {
+                "name": "C2",
+                "value": 8
+              },
+              {
+                "name": "C3",
+                "value": 5
+              }
+            ]
+          },
+          {
+            "name": "D",
+            "children": [
+              {
+                "name": "D1",
+                "value": 6
+              },
+              {
+                "name": "D2",
+                "value": 2
+              },
+              {
+                "name": "D3",
+                "value": 9
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "answers": {}
+  },
+  "hints": [
+    "B is worth min(4, 7, 9) = 4.",
+    "After B, α = 4 at the root. In C the first leaf is 3, below α, so MAX will never choose C: the rest of C is pruned.",
+    "In D, 6 is above α but 2 is not: D3 is pruned."
+  ],
+  "checks": [
+    {
+      "type": "viz.metric",
+      "label": "Minimax value of the root",
+      "id": "q1",
+      "algorithm": "minimax",
+      "metric": "value",
+      "question": "Minimax value of the root:"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Which move should MAX play (B, C or D)",
+      "id": "q2",
+      "algorithm": "minimax",
+      "metric": "best",
+      "question": "Which move should MAX play (B, C or D)?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Minimax value of C",
+      "id": "q3",
+      "algorithm": "minimax",
+      "metric": "value:C",
+      "question": "Minimax value of C:"
+    },
+    {
+      "type": "viz.metric",
+      "label": "How many leaves does alpha-beta evaluate",
+      "id": "q4",
+      "algorithm": "alphabeta",
+      "metric": "evaluated",
+      "question": "How many leaves does alpha-beta evaluate?"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Which leaves does alpha-beta prune",
+      "id": "q5",
+      "algorithm": "alphabeta",
+      "metric": "pruned",
+      "question": "Which leaves does alpha-beta prune?"
+    }
+  ],
+  "realityNote": "With good move ordering, alpha-beta searches about twice as deep as minimax in the same time, which is how chess and draughts programs reached master strength."
+}

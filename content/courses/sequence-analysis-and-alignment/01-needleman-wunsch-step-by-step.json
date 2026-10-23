@@ -1,0 +1,86 @@
+{
+  "id": "sequence-analysis-and-alignment-i1-needleman-wunsch-step-by-step",
+  "course": "sequence-analysis-and-alignment",
+  "topic": "Needleman-Wunsch global alignment",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "engine": "E6",
+  "title": "Needleman-Wunsch, cell by cell",
+  "estimatedMinutes": 25,
+  "instructions": "## Align two short DNA sequences\n\nGlobal alignment finds the best way to line up two whole sequences, inserting gaps where needed. Here a match scores **+1**, a mismatch **−1** and a gap **−1**.\n\nThe first sequence (rows) is **GATTACA** and the second (columns) is **GCATGCA**.\n\n## Do this\n\n1. Step through the matrix fill. Each cell takes the best of three moves: diagonal (align two letters), down (gap in the second sequence) or right (gap in the first).\n2. Watch the traceback from the bottom-right corner, which prefers diagonal, then up, then left.",
+  "config": {
+    "algorithms": [
+      "needlemanWunsch"
+    ],
+    "editableInput": false
+  },
+  "initialState": {
+    "input": {
+      "seqA": "GATTACA",
+      "seqB": "GCATGCA",
+      "scoring": {
+        "match": 1,
+        "mismatch": -1,
+        "gap": -1
+      }
+    },
+    "answers": {}
+  },
+  "hints": [
+    "F[1][1] compares G with G: max(0 + 1, −1 − 1, −1 − 1).",
+    "The bottom-right cell is the alignment score.",
+    "In the alignment, a dash marks a gap."
+  ],
+  "checks": [
+    {
+      "type": "viz.metric",
+      "label": "Value of cell (1, 1)",
+      "id": "q1",
+      "algorithm": "needlemanWunsch",
+      "metric": "cell:1,1",
+      "question": "Value of cell (1, 1):"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Value of cell (3, 3)",
+      "id": "q2",
+      "algorithm": "needlemanWunsch",
+      "metric": "cell:3,3",
+      "question": "Value of cell (3, 3):"
+    },
+    {
+      "type": "viz.metric",
+      "label": "Alignment score",
+      "id": "q3",
+      "algorithm": "needlemanWunsch",
+      "metric": "score",
+      "question": "Alignment score:"
+    },
+    {
+      "type": "viz.metric",
+      "label": "The first sequence as aligned (with dashes)",
+      "id": "q4",
+      "algorithm": "needlemanWunsch",
+      "metric": "alignA",
+      "question": "The first sequence as aligned (with dashes):"
+    },
+    {
+      "type": "viz.metric",
+      "label": "The second sequence as aligned (with dashes)",
+      "id": "q5",
+      "algorithm": "needlemanWunsch",
+      "metric": "alignB",
+      "question": "The second sequence as aligned (with dashes):"
+    },
+    {
+      "type": "viz.metric",
+      "label": "How many positions match",
+      "id": "q6",
+      "algorithm": "needlemanWunsch",
+      "metric": "matches",
+      "question": "How many positions match?"
+    }
+  ],
+  "realityNote": "This is the algorithm behind global alignment tools such as EMBOSS needle. Real tools use substitution matrices such as BLOSUM62 for proteins and affine gap penalties."
+}
