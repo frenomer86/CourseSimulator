@@ -11,6 +11,7 @@ import { createShellChecks, runLines, systemFromInitial, type ShellState } from 
 const ROOT = join(__dirname, '..', '..', '..', 'content', 'courses');
 
 const SOLUTIONS: Record<string, string[]> = {
+  "systems-administration-i-i1-onboard-finance-with-powershell": ["New-ADOrganizationalUnit -Name \"Finance\" -Path \"DC=campus,DC=local\"","$pw = ConvertTo-SecureString \"Welcome@2026\" -AsPlainText -Force","Import-Csv C:\\Onboarding\\finance.csv | ForEach-Object { New-ADUser -Name \"$($_.GivenName) $($_.Surname)\" -GivenName $_.GivenName -Surname $_.Surname -SamAccountName $_.SamAccountName -Department $_.Department -Path \"OU=Finance,DC=campus,DC=local\" -AccountPassword $pw -Enabled $true }","New-ADGroup -Name \"GG_Finance_Staff\" -GroupScope Global -GroupCategory Security -Path \"OU=Finance,DC=campus,DC=local\"","Import-Csv C:\\Onboarding\\finance.csv | ForEach-Object { Add-ADGroupMember -Identity \"GG_Finance_Staff\" -Members $_.SamAccountName }","New-ADGroup -Name \"DL_FinanceShare_Modify\" -GroupScope DomainLocal -GroupCategory Security -Path \"OU=Finance,DC=campus,DC=local\"","Add-ADGroupMember -Identity \"DL_FinanceShare_Modify\" -Members \"GG_Finance_Staff\"","New-Item -Path C:\\Shares\\Finance -ItemType Directory","New-SmbShare -Name \"Finance\" -Path \"C:\\Shares\\Finance\" -ChangeAccess \"CAMPUS\\DL_FinanceShare_Modify\"","Disable-ADAccount -Identity kmensah","Get-ADUser -Filter * -SearchBase \"OU=Finance,DC=campus,DC=local\" | Select-Object Name,Enabled"],
   "version-control-and-devops-i1-branch-merge-and-conflict": ["git config --global user.name \"Ama Mensah\"","git config --global user.email ama@example.com","cd portal","git init","git add .","git commit -m \"Initial fees page\"","git switch -c update-fees","sed -i 's/Tuition: GHS 2500/Tuition: GHS 2600/' fees.txt","git commit -am \"Board-approved tuition of 2600\"","git switch main","sed -i 's/Tuition: GHS 2500/Tuition: GHS 2550/' fees.txt","git commit -am \"Bursar correction to 2550\"","git merge update-fees","git status","printf 'Department of Computer Science: fees per year\\nTuition: GHS 2600\\nHostel: GHS 900\\nLibrary: GHS 50\\n' > fees.txt","git add fees.txt","git commit -m \"Merge update-fees: keep the board-approved fee\"","git branch -d update-fees","git log --oneline --all"],
   "containers-and-kubernetes-i1-containerise-a-static-site": ["cd market-site","ls","cat > Dockerfile <<'EOF'\nFROM nginx:1.27-alpine\nCOPY . /usr/share/nginx/html/\nEXPOSE 80\nEOF","docker build -t market:1.0 .","docker images","docker run -d --name market -p 8080:80 --restart unless-stopped market:1.0","docker ps","curl -s http://localhost:8080/prices.html"],
   "security-operations-and-incident-response-b1-triage-the-auth-log": ["mkdir report","grep -c 'Failed password' /var/log/auth.log > report/failed-count.txt","grep 'Failed password' /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -rn > report/failed-by-ip.txt","grep 'Accepted' /var/log/auth.log | grep 41.66.12.7 > report/suspicious.txt","sudo usermod -L kwame"],
@@ -94,10 +95,10 @@ describe('E4 lab content', () => {
   });
   for (const lab of labs) {
     describe(lab.id, () => {
-      it('builds its machine, has a solution, and uses only sh.* checks', () => {
+      it('builds its machine, has a solution, and uses only sh.* or win.* checks', () => {
         expect(() => systemFromInitial(lab.initialState)).not.toThrow();
         expect(SOLUTIONS[lab.id], `no reference solution for ${lab.id}`).toBeDefined();
-        for (const c of lab.checks) expect(c.type.startsWith('sh.'), c.type).toBe(true);
+        for (const c of lab.checks) expect(c.type.startsWith('sh.') || c.type.startsWith('win.'), c.type).toBe(true);
       });
       it('does not pass as given', async () => {
         const sys = systemFromInitial(lab.initialState);

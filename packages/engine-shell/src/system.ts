@@ -77,6 +77,8 @@ export interface ShellSystem {
   umask: number;
   /** Lab-defined network view for ip/ping/ssh. */
   network?: { address: string; gateway?: string; hosts?: Record<string, string> };
+  /** 'windows' routes typed lines to the PowerShell subset (powershell.ts). */
+  os?: 'linux' | 'windows';
 }
 
 export type FileSpec = string | null | { content?: string; mode?: number | string; owner?: string; group?: string; link?: string };
@@ -95,6 +97,7 @@ export interface SystemSpec {
   crontabs?: Record<string, string>;
   now?: string;
   network?: ShellSystem['network'];
+  os?: ShellSystem['os'];
 }
 
 export const BASE_TIME = Date.UTC(2026, 9, 22, 9, 30, 0);
@@ -141,6 +144,7 @@ export function buildSystem(spec: SystemSpec): ShellSystem {
   const now = spec.now ? Date.parse(spec.now) : BASE_TIME;
   const root = mkdirNode('root', 'root', 0o755, now);
   const sys: ShellSystem = {
+    ...(spec.os ? { os: spec.os } : {}),
     hostname: spec.hostname ?? 'lab',
     fs: root,
     users: {},

@@ -1,0 +1,112 @@
+{
+  "id": "systems-administration-i-i1-onboard-finance-with-powershell",
+  "course": "systems-administration-i",
+  "topic": "Bulk creation from a CSV with PowerShell; disabling and offboarding",
+  "unit": 4,
+  "topicIndex": 4,
+  "level": "intermediate",
+  "engine": "E4",
+  "title": "Onboard the finance team with PowerShell and AGDLP",
+  "estimatedMinutes": 35,
+  "instructions": "## A domain controller for campus.local\n\nYou are signed in to **DC01** as the domain Administrator. Three finance officers start on Monday, and their details are in **C:\\Onboarding\\finance.csv**. Kofi Mensah has left the finance office. Do it all from PowerShell, the way you would on Server Core or over a remote session.\n\nPermissions follow **AGDLP**: put **A**ccounts in a **G**lobal group by role, put that Global group in a **D**omain **L**ocal group that names the resource, and grant **P**ermissions to the Domain Local group only.\n\n## Do this\n\n1. Create an OU **Finance** at the top of the domain (`-Path \"DC=campus,DC=local\"`).\n2. Read the CSV with `Import-Csv` and create each user in that OU with `ForEach-Object`: name \"GivenName Surname\", their SamAccountName and Department, a password, enabled. Make the password once: `$pw = ConvertTo-SecureString \"Welcome@2026\" -AsPlainText -Force`.\n3. Create the Global group **GG_Finance_Staff** in the Finance OU and add the three new users.\n4. Create the Domain Local group **DL_FinanceShare_Modify** and add **GG_Finance_Staff** to it.\n5. Create the folder **C:\\Shares\\Finance** and share it as **Finance**, giving `CAMPUS\\DL_FinanceShare_Modify` Change access. Do not give Everyone more than Read.\n6. Offboard the leaver: disable **kmensah** rather than deleting the account.\n\nUseful checks: `Get-ADUser -Filter * -SearchBase \"OU=Finance,DC=campus,DC=local\"`, `Get-ADGroupMember DL_FinanceShare_Modify -Recursive`, `Get-SmbShareAccess Finance`.",
+  "config": {
+    "reference": [
+      "Get-Help New-ADUser",
+      "New-ADOrganizationalUnit -Name NAME -Path \"DC=campus,DC=local\"",
+      "Import-Csv PATH | ForEach-Object { ... $_.Column ... }",
+      "New-ADGroup -Name NAME -GroupScope Global -Path DN",
+      "Add-ADGroupMember -Identity GROUP -Members NAME",
+      "New-Item -Path PATH -ItemType Directory",
+      "New-SmbShare -Name NAME -Path PATH -ChangeAccess \"CAMPUS\\GROUP\"",
+      "Disable-ADAccount -Identity NAME"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "os": "windows",
+      "hostname": "DC01",
+      "user": "Administrator",
+      "cwd": "/c/Users/Administrator",
+      "users": {
+        "Administrator": {
+          "home": "/c/Users/Administrator"
+        }
+      },
+      "files": {
+        "/c/Windows/NTDS/ntds.json": "{\n \"domain\": \"campus.local\",\n \"netbios\": \"CAMPUS\",\n \"ous\": [\n  {\n   \"name\": \"Domain Controllers\",\n   \"dn\": \"OU=Domain Controllers,DC=campus,DC=local\",\n   \"protected\": true\n  },\n  {\n   \"name\": \"Staff\",\n   \"dn\": \"OU=Staff,DC=campus,DC=local\",\n   \"protected\": true\n  }\n ],\n \"users\": [\n  {\n   \"sam\": \"Administrator\",\n   \"name\": \"Administrator\",\n   \"dn\": \"CN=Administrator,CN=Users,DC=campus,DC=local\",\n   \"enabled\": true,\n   \"hasPassword\": true\n  },\n  {\n   \"sam\": \"kmensah\",\n   \"name\": \"Kofi Mensah\",\n   \"given\": \"Kofi\",\n   \"surname\": \"Mensah\",\n   \"upn\": \"kmensah@campus.local\",\n   \"dn\": \"CN=Kofi Mensah,OU=Staff,DC=campus,DC=local\",\n   \"department\": \"Finance\",\n   \"enabled\": true,\n   \"hasPassword\": true\n  }\n ],\n \"groups\": [\n  {\n   \"name\": \"Domain Admins\",\n   \"dn\": \"CN=Domain Admins,CN=Users,DC=campus,DC=local\",\n   \"scope\": \"Global\",\n   \"category\": \"Security\",\n   \"members\": [\n    \"CN=Administrator,CN=Users,DC=campus,DC=local\"\n   ]\n  },\n  {\n   \"name\": \"Domain Users\",\n   \"dn\": \"CN=Domain Users,CN=Users,DC=campus,DC=local\",\n   \"scope\": \"Global\",\n   \"category\": \"Security\",\n   \"members\": [\n    \"CN=Kofi Mensah,OU=Staff,DC=campus,DC=local\"\n   ]\n  }\n ],\n \"shares\": []\n}",
+        "/c/Onboarding/finance.csv": "GivenName,Surname,SamAccountName,Department\nAbena,Owusu,aowusu,Finance\nKwesi,Boateng,kboateng,Finance\nEfua,Asante,easante,Finance\n"
+      }
+    }
+  },
+  "hints": [
+    "Inside ForEach-Object, $_ is the current CSV row, so $_.SamAccountName is its SamAccountName. In a double-quoted string, write \"$($_.GivenName) $($_.Surname)\"; \"$_.GivenName\" would not do what you expect.",
+    "Import-Csv C:\\Onboarding\\finance.csv | ForEach-Object { New-ADUser -Name \"$($_.GivenName) $($_.Surname)\" -GivenName $_.GivenName -Surname $_.Surname -SamAccountName $_.SamAccountName -Department $_.Department -Path \"OU=Finance,DC=campus,DC=local\" -AccountPassword $pw -Enabled $true }",
+    "A Global group can hold users; a Domain Local group can hold Global groups. Adding them the other way round is refused, which is AGDLP enforcing itself."
+  ],
+  "checks": [
+    {
+      "type": "win.ou",
+      "label": "The Finance OU exists",
+      "dn": "OU=Finance,DC=campus,DC=local"
+    },
+    {
+      "type": "win.user",
+      "label": "The three finance officers exist, enabled, in the Finance OU",
+      "sams": [
+        "aowusu",
+        "kboateng",
+        "easante"
+      ],
+      "enabled": true,
+      "hasPassword": true,
+      "ou": "OU=Finance,DC=campus,DC=local",
+      "department": "Finance"
+    },
+    {
+      "type": "win.group",
+      "label": "GG_Finance_Staff is a Global group holding the three users",
+      "name": "GG_Finance_Staff",
+      "scope": "Global",
+      "members": [
+        "aowusu",
+        "kboateng",
+        "easante"
+      ]
+    },
+    {
+      "type": "win.group",
+      "label": "DL_FinanceShare_Modify is Domain Local and contains GG_Finance_Staff",
+      "name": "DL_FinanceShare_Modify",
+      "scope": "DomainLocal",
+      "members": [
+        "GG_Finance_Staff"
+      ]
+    },
+    {
+      "type": "win.share",
+      "label": "The Finance share gives the Domain Local group Change access",
+      "name": "Finance",
+      "path": "C:\\Shares\\Finance",
+      "access": [
+        {
+          "account": "CAMPUS\\DL_FinanceShare_Modify",
+          "right": "Change"
+        }
+      ],
+      "noEveryoneFull": true
+    },
+    {
+      "type": "win.user",
+      "label": "The leaver is disabled, not deleted",
+      "sam": "kmensah",
+      "enabled": false
+    },
+    {
+      "type": "sh.ran",
+      "label": "You created the accounts from the CSV",
+      "pattern": "Import-Csv",
+      "message": "Use Import-Csv with ForEach-Object rather than typing each New-ADUser by hand."
+    }
+  ],
+  "realityNote": "The same cmdlets come from the ActiveDirectory and SmbShare PowerShell modules on Windows Server 2022. Disabling rather than deleting a leaver keeps their SID, so file ownership and audit history stay readable until the account is archived."
+}

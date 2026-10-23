@@ -7,4 +7,6 @@ export { installCrontab } from './commands-admin.js';
 export { MAN_PAGES } from './man.js';
 export { GIT_COMMANDS, loadGit, findRepo, headCommit } from './commands-git.js';
 export { DOCKER_COMMANDS, loadDocker, dockerHttp } from './commands-docker.js';
+export { runPowerShell, psAwaitsMore, promptPowerShell, CMDLETS, loadAd, toWin, toVfs, domainDn, newDirectory } from './powershell.js';
+export type { AdState, AdUser, AdGroup, AdOu, SmbShare } from './powershell.js';
 export * from './checks.js';

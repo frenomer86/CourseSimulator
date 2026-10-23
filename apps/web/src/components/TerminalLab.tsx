@@ -15,7 +15,11 @@ import {
   installCrontab,
   listDir,
   newSession,
-  awaitsHeredoc, parse,
+  CMDLETS,
+  awaitsHeredoc,
+  parse,
+  promptPowerShell,
+  psAwaitsMore,
   readFile,
   resolvePath,
   runLine,
@@ -57,6 +61,7 @@ function labObject(lab: LabSpec<unknown>): EventObject {
 }
 
 function promptFor(sys: ShellSystem): string {
+  if (sys.os === 'windows') return promptPowerShell(sys);
   const home = sys.users[sys.user]?.home ?? '/';
   const cwd = sys.cwd === home ? '~' : sys.cwd.startsWith(home + '/') ? '~' + sys.cwd.slice(home.length) : sys.cwd;
   return `${sys.user}@${sys.hostname}:${cwd}${sys.user === 'root' ? '#' : '$'} `;
@@ -116,13 +121,13 @@ export function TerminalLab({ lab }: { lab: LabSpec<ShellState> }) {
   const execute = (line: string) => {
     const full = [...pending, line].join('\n');
     // Keep reading lines while the input is an unfinished quote or here document.
-    if (awaitsHeredoc(full)) {
+    if (sysRef.current.os === 'windows' ? psAwaitsMore(full) : awaitsHeredoc(full)) {
       setPending((p) => [...p, line]);
       setTranscript((t) => [...t, { kind: 'cmd', text: (pending.length ? '> ' : promptFor(sysRef.current)) + line }]);
       setInput('');
       return;
     }
-    try {
+    if (sysRef.current.os !== 'windows') try {
       parse(full);
     } catch (e) {
       if (e instanceof ShellSyntaxError && /unexpected EOF|expected 'fi'|expected 'done'|expected 'esac'|expected '}'/.test(e.message)) {
@@ -158,7 +163,8 @@ export function TerminalLab({ lab }: { lab: LabSpec<ShellState> }) {
     const last = parts[parts.length - 1] ?? '';
     const isCommand = parts.length === 1;
     let candidates: string[] = [];
-    if (isCommand && !last.includes('/')) candidates = COMMAND_NAMES.filter((c) => c.startsWith(last));
+    if (isCommand && sys.os === 'windows') candidates = CMDLETS.filter((c) => c.toLowerCase().startsWith(last.toLowerCase()));
+    else if (isCommand && !last.includes('/')) candidates = COMMAND_NAMES.filter((c) => c.startsWith(last));
     else {
       const home = sys.users[sys.user]?.home ?? '/';
       const dirPart = last.includes('/') ? last.slice(0, last.lastIndexOf('/') + 1) : '';

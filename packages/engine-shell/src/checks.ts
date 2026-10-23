@@ -16,8 +16,13 @@
  *   sh.git      { repo, branch?, branches?: [...], minCommits?, headMessage?: regex, clean?, merged?: branch, mergeCommit?, fileAtHead?: { path, contains?, notContains?, pattern? } }
  *   sh.docker   { container, exists?, running?, image?, ports?: ["8080:80"], env?: ["K=V"], mountTarget?, restart? }
  *   sh.dockerImage { image, exists?, base?: regex, notRoot?, expose?: [n], maxSizeMb?, hasFile?: path }
+ *   win.ou      { dn, exists? }
+ *   win.user    { sam | sams: [...], exists?, enabled?, ou?: DN, department?, groups?: [...], hasPassword? }
+ *   win.group   { name, exists?, scope?, members?: [...], memberOf?: [...] }
+ *   win.share   { name, path?, access?: [{ account, right }], noEveryoneFull? }
  */
 
+import { loadAd } from './powershell.js';
 import { ancestors, findRepo, headCommit, loadGit } from './commands-git.js';
 import { loadDocker } from './commands-docker.js';
 import { CheckRegistry, type CheckResult, type CheckSpec } from '@cslab/lab-runtime';
@@ -71,6 +76,60 @@ function textChecks(spec: CheckSpec, text: string, what: string): string | null 
 
 export function createShellChecks(): CheckRegistry<ShellState> {
   return new CheckRegistry<ShellState>()
+    .register('win.ou', async (state, spec) => {
+      const st = loadAd(state.system);
+      const ou = st.ous.find((o) => o.dn.toLowerCase() === String(spec.dn).toLowerCase());
+      if (spec.exists === false) return ou ? fail(spec, `${String(spec.dn)} should not exist.`) : pass(spec, `${String(spec.dn)} is gone.`);
+      return ou ? pass(spec, String(spec.success ?? `${ou.dn} exists.`)) : fail(spec, String(spec.message ?? `There is no OU ${String(spec.dn)}. Create it with New-ADOrganizationalUnit.`));
+    })
+    .register('win.user', async (state, spec) => {
+      const st = loadAd(state.system);
+      const sams = (spec.sams as string[] | undefined) ?? [String(spec.sam)];
+      for (const sam of sams) {
+        const u = st.users.find((x) => x.sam.toLowerCase() === sam.toLowerCase());
+        if (spec.exists === false) {
+          if (u) return fail(spec, `The account ${sam} should be removed.`);
+          continue;
+        }
+        if (!u) return fail(spec, String(spec.message ?? `There is no user with SamAccountName ${sam}.`));
+        if (spec.enabled !== undefined && u.enabled !== spec.enabled) return fail(spec, `${sam} is ${u.enabled ? 'enabled' : 'disabled'}; it should be ${spec.enabled ? 'enabled' : 'disabled'}.`);
+        if (spec.hasPassword && !u.hasPassword) return fail(spec, `${sam} has no password set.`);
+        if (spec.ou && !u.dn.toLowerCase().endsWith(',' + String(spec.ou).toLowerCase())) return fail(spec, `${sam} is in ${u.dn.slice(u.dn.indexOf(',') + 1)}; it should be in ${String(spec.ou)}.`);
+        if (spec.department !== undefined && (u.department ?? '') !== spec.department) return fail(spec, `${sam}'s department is "${u.department ?? ''}"; it should be "${String(spec.department)}".`);
+        for (const gname of (spec.groups as string[] | undefined) ?? []) {
+          const g = st.groups.find((x) => x.name.toLowerCase() === gname.toLowerCase());
+          if (!g || !g.members.includes(u.dn)) return fail(spec, `${sam} is not a member of ${gname}.`);
+        }
+      }
+      return pass(spec, String(spec.success ?? (sams.length > 1 ? `All ${sams.length} accounts are set up as required.` : `${sams[0]} is set up as required.`)));
+    })
+    .register('win.group', async (state, spec) => {
+      const st = loadAd(state.system);
+      const g = st.groups.find((x) => x.name.toLowerCase() === String(spec.name).toLowerCase());
+      if (spec.exists === false) return g ? fail(spec, `The group ${String(spec.name)} should be removed.`) : pass(spec, `${String(spec.name)} is gone.`);
+      if (!g) return fail(spec, String(spec.message ?? `There is no group called ${String(spec.name)}. Create it with New-ADGroup.`));
+      if (spec.scope && g.scope !== spec.scope) return fail(spec, `${g.name} has scope ${g.scope}; it should be ${String(spec.scope)}.`);
+      for (const m of (spec.members as string[] | undefined) ?? []) {
+        const obj = st.users.find((u) => u.sam.toLowerCase() === m.toLowerCase()) ?? st.groups.find((x) => x.name.toLowerCase() === m.toLowerCase());
+        if (!obj || !g.members.includes(obj.dn)) return fail(spec, `${m} is not a direct member of ${g.name}.`);
+      }
+      for (const parent of (spec.memberOf as string[] | undefined) ?? []) {
+        const p = st.groups.find((x) => x.name.toLowerCase() === parent.toLowerCase());
+        if (!p || !p.members.includes(g.dn)) return fail(spec, `${g.name} is not a member of ${parent}.`);
+      }
+      return pass(spec, String(spec.success ?? `The group ${g.name} is set up as required.`));
+    })
+    .register('win.share', async (state, spec) => {
+      const st = loadAd(state.system);
+      const s = st.shares.find((x) => x.name.toLowerCase() === String(spec.name).toLowerCase());
+      if (!s) return fail(spec, String(spec.message ?? `There is no share called ${String(spec.name)}. Create it with New-SmbShare.`));
+      if (spec.path && s.path.toLowerCase() !== String(spec.path).toLowerCase()) return fail(spec, `${s.name} shares ${s.path}; it should share ${String(spec.path)}.`);
+      for (const a of (spec.access as Array<{ account: string; right: string }> | undefined) ?? []) {
+        if (!s.access.some((x) => x.account.toLowerCase() === a.account.toLowerCase() && x.right === a.right)) return fail(spec, `${s.name} does not give ${a.account} ${a.right} access.`);
+      }
+      if (spec.noEveryoneFull && s.access.some((x) => /everyone/i.test(x.account) && x.right !== 'Read')) return fail(spec, `${s.name} gives Everyone more than Read access.`);
+      return pass(spec, String(spec.success ?? `The share ${s.name} is set up as required.`));
+    })
     .register('sh.git', async (state, spec) => {
       const ctx = makeCtx(state.system);
       const repo = findRepo(ctx, String(spec.repo));

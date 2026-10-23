@@ -4,6 +4,7 @@
  * globbing, if/for/while/until, functions, set -e, and scripts.
  */
 
+import { runPowerShell } from './powershell.js';
 import { FsError, glob as fsGlob, lookup, readFile, resolvePath, setUmask, writeFile, can } from './fs.js';
 import { actorFor, commandAvailable, homeOf, syncEtc, type ShellSystem } from './system.js';
 import { COMMANDS, type IO } from './commands.js';
@@ -1901,6 +1902,10 @@ export type Session = ReturnType<typeof newSession>;
 
 /** Runs one interactive command line. Mutates sys and the session; output interleaves stdout and stderr. */
 export function runLine(sys: ShellSystem, line: string, session: Session): RunResult {
+  if (sys.os === 'windows') {
+    const r = runPowerShell(sys, line, session);
+    return { output: r.output, status: r.status, requests: r.clear ? [{ kind: 'clear' } as Request] : [] };
+  }
   const ctx = makeCtx(sys, session);
   const buf: string[] = [];
   const io: IO = { stdin: '', out: (s) => buf.push(s), err: (s) => buf.push(s), interactive: true };
@@ -1934,6 +1939,12 @@ export function runLines(sys: ShellSystem, lines: string[], session: Session = n
 
 /** Captures the output of a command run as root without touching history (for checks). */
 export function probe(sys: ShellSystem, line: string): { output: string; status: number } {
+  if (sys.os === 'windows') {
+    const savedCwd = sys.cwd;
+    const r = runPowerShell(sys, line, {}, false);
+    sys.cwd = savedCwd;
+    return { output: r.output, status: r.status };
+  }
   const session = newSession(sys);
   const ctx = makeCtx(sys, session);
   ctx.euser = 'root';
