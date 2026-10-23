@@ -6,6 +6,8 @@ import { abs, type IO } from './util.js';
 import { FILE_COMMANDS } from './commands-files.js';
 import { TEXT_COMMANDS } from './commands-text.js';
 import { ADMIN_COMMANDS } from './commands-admin.js';
+import { GIT_COMMANDS } from './commands-git.js';
+import { DOCKER_COMMANDS } from './commands-docker.js';
 
 export type { IO } from './util.js';
 
@@ -144,4 +146,4 @@ const TEST_COMMANDS: Record<string, Cmd> = {
   },
 };
 
-export const COMMANDS: Record<string, Cmd> = { ...FILE_COMMANDS, ...TEXT_COMMANDS, ...ADMIN_COMMANDS, ...TEST_COMMANDS };
+export const COMMANDS: Record<string, Cmd> = { ...FILE_COMMANDS, ...TEXT_COMMANDS, ...ADMIN_COMMANDS, ...GIT_COMMANDS, ...DOCKER_COMMANDS, ...TEST_COMMANDS };

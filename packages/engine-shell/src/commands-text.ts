@@ -427,7 +427,7 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
           else if (r.cmd === 'a') after.push(r.text ?? '');
           else if (r.cmd === 'c') {
             cur = null;
-            after.push(r.text ?? '');
+            if (!r.addr?.to || !(state.get(r) ?? false) || i + 1 === ls.length) after.push(r.text ?? '');
           } else if (r.cmd === '=') out.push(String(i + 1));
         }
         out.push(...before);

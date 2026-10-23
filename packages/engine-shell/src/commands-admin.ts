@@ -1,5 +1,6 @@
 /** Administration commands: users and groups, identity, processes, services, packages, cron, editors, network stubs, man. */
 
+import { dockerHttp } from './commands-docker.js';
 import { lookup, readFile, remove, writeFile, mkdir, copy } from './fs.js';
 import { allocGid, groupName, homeOf, isSudoer, nextUid, serviceFaults, type ShellSystem } from './system.js';
 import { actor, currentUser, runCommand, type Ctx } from './shell.js';
@@ -930,6 +931,16 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     const host = m?.[1] ?? '';
     const port = Number(m?.[2] ?? (url.startsWith('https') ? 443 : 80));
     if (host === 'localhost' || host === '127.0.0.1' || host === ctx.sys.hostname) {
+      const fromDocker = dockerHttp(ctx, port, m?.[3] ?? '/');
+      if (fromDocker) {
+        if (fromDocker.server === 'none') {
+          io.err(`curl: (52) Empty reply from server\n(The container on port ${port} is not a web server, or nothing listens on the container port it maps to.)\n`);
+          return 52;
+        }
+        if (args.includes('-I') || args.includes('--head')) io.out(`HTTP/1.1 200 OK\nServer: ${fromDocker.server.split(':')[0]}\nContent-Type: text/html\nContent-Length: ${fromDocker.body.length}\n\n`);
+        else io.out(fromDocker.body);
+        return 0;
+      }
       const svc = Object.entries(ctx.sys.services).find(([, s]) => s.port === port && s.active);
       if (!svc) {
         io.err(`curl: (7) Failed to connect to ${host} port ${port} after 0 ms: Connection refused\n`);

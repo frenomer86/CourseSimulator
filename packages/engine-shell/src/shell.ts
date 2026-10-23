@@ -27,6 +27,29 @@ const OPS1 = ['|', '&', ';', '(', ')', '<', '>'];
 
 export class ShellSyntaxError extends Error {}
 
+/**
+ * True when the input opens a here document whose closing delimiter has not been typed yet.
+ * The tokenizer accepts an unterminated here document (as bash does at the end of a script), so
+ * an interactive terminal uses this to keep reading lines instead.
+ */
+export function awaitsHeredoc(src: string): boolean {
+  const open: Array<{ delim: string; strip: boolean }> = [];
+  const re = /<<(-?)\s*(['"]?)([A-Za-z_][\w]*)\2/g;
+  for (const line of src.split('\n')) {
+    if (open.length) {
+      const cmp = open[0].strip ? line.replace(/^\t+/, '') : line;
+      if (cmp === open[0].delim) open.shift();
+      continue;
+    }
+    re.lastIndex = 0;
+    for (let m = re.exec(line); m; m = re.exec(line)) {
+      if (line[m.index - 1] === '<') continue; // a <<< here-string
+      open.push({ delim: m[3], strip: m[1] === '-' });
+    }
+  }
+  return open.length > 0;
+}
+
 export function tokenize(src: string): Tok[] {
   const toks: Tok[] = [];
   let i = 0;

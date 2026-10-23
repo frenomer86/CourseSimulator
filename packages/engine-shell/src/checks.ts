@@ -13,8 +13,13 @@
  *   sh.cron     { user, pattern }
  *   sh.process  { name, running: boolean }
  *   sh.script   { path, args?: [...], stdin?, contains?/pattern?/equals?, status?, creates?: path }
+ *   sh.git      { repo, branch?, branches?: [...], minCommits?, headMessage?: regex, clean?, merged?: branch, mergeCommit?, fileAtHead?: { path, contains?, notContains?, pattern? } }
+ *   sh.docker   { container, exists?, running?, image?, ports?: ["8080:80"], env?: ["K=V"], mountTarget?, restart? }
+ *   sh.dockerImage { image, exists?, base?: regex, notRoot?, expose?: [n], maxSizeMb?, hasFile?: path }
  */
 
+import { ancestors, findRepo, headCommit, loadGit } from './commands-git.js';
+import { loadDocker } from './commands-docker.js';
 import { CheckRegistry, type CheckResult, type CheckSpec } from '@cslab/lab-runtime';
 import { lookup, modeString, type FsNode } from './fs.js';
 import { buildSystem, groupName, isSudoer, type ShellSystem, type SystemSpec } from './system.js';
@@ -66,6 +71,79 @@ function textChecks(spec: CheckSpec, text: string, what: string): string | null 
 
 export function createShellChecks(): CheckRegistry<ShellState> {
   return new CheckRegistry<ShellState>()
+    .register('sh.git', async (state, spec) => {
+      const ctx = makeCtx(state.system);
+      const repo = findRepo(ctx, String(spec.repo));
+      if (!repo || repo !== String(spec.repo)) return fail(spec, String(spec.message ?? `${String(spec.repo)} is not a git repository yet. Run git init there.`));
+      const st = loadGit(ctx, repo);
+      const head = headCommit(st);
+      if (spec.branch && st.head.branch !== spec.branch) return fail(spec, `The current branch is ${st.head.branch ?? 'a detached HEAD'}; it should be ${String(spec.branch)}.`);
+      for (const b of (spec.branches as string[] | undefined) ?? []) if (st.branches[b] === undefined) return fail(spec, `There is no branch called ${b}.`);
+      const count = ancestors(st, head).size;
+      if (spec.minCommits !== undefined && count < Number(spec.minCommits)) return fail(spec, `The current branch has ${count} commit${count === 1 ? '' : 's'}; at least ${String(spec.minCommits)} were expected.`);
+      if (spec.headMessage && !(head && new RegExp(String(spec.headMessage), 'i').test(st.commits[head].message))) return fail(spec, String(spec.message ?? 'The latest commit message is not what was asked for.'));
+      if (spec.merged) {
+        const b = st.branches[String(spec.merged)];
+        if (!b || !ancestors(st, head).has(b)) return fail(spec, `${String(spec.merged)} has not been merged into ${st.head.branch}.`);
+      }
+      if (spec.mergeCommit && !(head && st.commits[head].parents.length === 2)) return fail(spec, String(spec.message ?? 'The latest commit is not a merge commit with two parents.'));
+      if (st.merging) return fail(spec, 'A merge is still in progress. Resolve the conflict, git add the file and git commit.');
+      if (spec.clean) {
+        const tree = head ? st.commits[head].tree : {};
+        const wt: Record<string, string> = {};
+        const base = repo === '/' ? '' : repo;
+        const visit = (p: string, rel: string) => {
+          const n = node(state.system, p);
+          if (!n) return;
+          if (n.type === 'dir') for (const name of Object.keys(n.children)) { if (!rel && name === '.git') continue; visit(`${p}/${name}`, rel ? `${rel}/${name}` : name); }
+          else if (n.type === 'file') wt[rel] = n.content;
+        };
+        visit(base, '');
+        const dirty = [...new Set([...Object.keys(tree), ...Object.keys(wt), ...Object.keys(st.index)])].filter((p) => tree[p] !== wt[p] || tree[p] !== st.index[p]);
+        if (dirty.length) return fail(spec, `The working tree is not clean: ${dirty.slice(0, 4).join(', ')} differ from the last commit. Commit or restore them.`);
+      }
+      const fh = spec.fileAtHead as { path: string; contains?: string; notContains?: string; pattern?: string } | undefined;
+      if (fh) {
+        const content = head ? st.commits[head].tree[fh.path] : undefined;
+        if (content === undefined) return fail(spec, `${fh.path} is not in the latest commit.`);
+        if (fh.contains && !content.includes(fh.contains)) return fail(spec, String(spec.message ?? `${fh.path} in the latest commit should contain "${fh.contains}".`));
+        if (fh.notContains && content.includes(fh.notContains)) return fail(spec, String(spec.message ?? `${fh.path} in the latest commit still contains "${fh.notContains}".`));
+        if (fh.pattern && !new RegExp(fh.pattern).test(content)) return fail(spec, String(spec.message ?? `${fh.path} in the latest commit is not what was asked for.`));
+      }
+      return pass(spec, String(spec.success ?? 'The repository is as required.'));
+    })
+    .register('sh.docker', async (state, spec) => {
+      const st = loadDocker(makeCtx(state.system));
+      const c = st.containers.find((k) => k.name === spec.container);
+      if (spec.exists === false) return c ? fail(spec, `The container ${String(spec.container)} should be removed.`) : pass(spec, `${String(spec.container)} is gone.`);
+      if (!c) return fail(spec, String(spec.message ?? `There is no container called ${String(spec.container)}. Use docker run --name ${String(spec.container)}.`));
+      if (spec.running !== undefined && (c.status === 'running') !== spec.running) return fail(spec, `${c.name} is ${c.status === 'running' ? 'running' : 'stopped'}; it should be ${spec.running ? 'running' : 'stopped'}.`);
+      if (spec.image && c.image !== String(spec.image)) return fail(spec, `${c.name} runs ${c.image}; it should run ${String(spec.image)}.`);
+      for (const p of (spec.ports as string[] | undefined) ?? []) {
+        const [h, k] = p.split(':').map(Number);
+        if (!c.ports.some((q) => q.host === h && q.container === k)) return fail(spec, `${c.name} does not publish host port ${h} to container port ${k}. Use -p ${p}.`);
+      }
+      for (const e of (spec.env as string[] | undefined) ?? []) {
+        const [k, ...v] = e.split('=');
+        if (c.env[k] !== v.join('=')) return fail(spec, `${c.name} does not have ${k}=${v.join('=')} in its environment. Use -e.`);
+      }
+      if (spec.mountTarget && !c.mounts.some((m) => m.target === spec.mountTarget)) return fail(spec, `${c.name} has nothing mounted at ${String(spec.mountTarget)}. Use -v SOURCE:${String(spec.mountTarget)}.`);
+      if (spec.restart && c.restart !== spec.restart) return fail(spec, `${c.name} has restart policy "${c.restart}"; it should be "${String(spec.restart)}". Use --restart ${String(spec.restart)}.`);
+      return pass(spec, String(spec.success ?? `The container ${c.name} is set up as required.`));
+    })
+    .register('sh.dockerImage', async (state, spec) => {
+      const st = loadDocker(makeCtx(state.system));
+      const ref = String(spec.image).includes(':') ? String(spec.image) : `${String(spec.image)}:latest`;
+      const img = st.images.find((i) => `${i.repo}:${i.tag}` === ref);
+      if (spec.exists === false) return img ? fail(spec, `The image ${ref} should be removed.`) : pass(spec, `${ref} is gone.`);
+      if (!img) return fail(spec, String(spec.message ?? `There is no image called ${ref}. Build it with docker build -t ${ref} .`));
+      if (spec.base && !new RegExp(String(spec.base)).test(img.base)) return fail(spec, String(spec.message ?? `${ref} is built FROM ${img.base}, which is not the base asked for.`));
+      if (spec.notRoot && (img.user === 'root' || img.user === '0' || img.user === '')) return fail(spec, `${ref} runs as root. Add a USER instruction with an unprivileged user.`);
+      for (const p of (spec.expose as number[] | undefined) ?? []) if (!img.expose.includes(p)) return fail(spec, `${ref} does not EXPOSE ${p}.`);
+      if (spec.maxSizeMb !== undefined && img.sizeMb > Number(spec.maxSizeMb)) return fail(spec, `${ref} is ${img.sizeMb} MB; the target is at most ${String(spec.maxSizeMb)} MB. Try a slimmer base image.`);
+      if (spec.hasFile && img.files[String(spec.hasFile)] === undefined) return fail(spec, `${ref} has no file at ${String(spec.hasFile)}. Check the COPY destination.`);
+      return pass(spec, String(spec.success ?? `The image ${ref} is as required.`));
+    })
     .register('sh.file', async (state, spec) => {
       const path = String(spec.path);
       const n = node(state.system, path);

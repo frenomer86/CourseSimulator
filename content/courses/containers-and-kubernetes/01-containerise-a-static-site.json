@@ -1,0 +1,93 @@
+{
+  "id": "containers-and-kubernetes-i1-containerise-a-static-site",
+  "course": "containers-and-kubernetes",
+  "topic": "Dockerfile instructions: FROM, COPY, EXPOSE and friends",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "engine": "E4",
+  "title": "Containerise a static site with nginx",
+  "estimatedMinutes": 25,
+  "instructions": "## The Ho Technical market price board\n\nYou are **kofi**, and the market's price board is a small static site in **~/market-site**. Package it as a container image so it runs the same on your laptop, the school server and a cloud VM.\n\n## Do this\n\n1. Look at the files: `ls ~/market-site`.\n2. In ~/market-site, write a **Dockerfile** that starts `FROM nginx:1.27-alpine` (a pinned, small base image, never `latest`), copies the site into `/usr/share/nginx/html/` and declares `EXPOSE 80`. A heredoc works: `cat > Dockerfile <<'EOF'` … `EOF`.\n3. Build it: `docker build -t market:1.0 .` and check its size with `docker images`.\n4. Run it in the background as **market**, publishing host port **8080** to container port 80, and with `--restart unless-stopped` so it comes back after a reboot.\n5. Test it: `curl http://localhost:8080/` and `curl http://localhost:8080/prices.html`.",
+  "config": {
+    "reference": [
+      "cat > Dockerfile <<'EOF' ... EOF",
+      "docker build -t NAME:TAG .",
+      "docker images",
+      "docker run -d --name NAME -p HOST:CONTAINER --restart unless-stopped IMAGE",
+      "docker ps",
+      "docker logs NAME",
+      "curl http://localhost:PORT/"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-node1",
+      "user": "kofi",
+      "groups": {
+        "docker": [
+          "kofi"
+        ]
+      },
+      "packages": {
+        "docker": {
+          "installed": true
+        }
+      },
+      "services": {
+        "docker": {
+          "active": true,
+          "enabled": true
+        }
+      },
+      "files": {
+        "/home/kofi/market-site/index.html": "<h1>Ho Technical Market</h1>\n<p>Today's prices: <a href=\"prices.html\">see the board</a></p>\n",
+        "/home/kofi/market-site/prices.html": "<table>\n<tr><td>Kenkey (ball)</td><td>GHS 5</td></tr>\n<tr><td>Tomatoes (crate)</td><td>GHS 900</td></tr>\n</table>\n"
+      }
+    }
+  },
+  "hints": [
+    "cat > Dockerfile <<'EOF'\nFROM nginx:1.27-alpine\nCOPY . /usr/share/nginx/html/\nEXPOSE 80\nEOF",
+    "docker build -t market:1.0 . (the dot is the build context: the current directory).",
+    "docker run -d --name market -p 8080:80 --restart unless-stopped market:1.0"
+  ],
+  "checks": [
+    {
+      "type": "sh.file",
+      "label": "The Dockerfile pins nginx:1.27-alpine",
+      "path": "/home/kofi/market-site/Dockerfile",
+      "pattern": "^FROM\\s+nginx:1\\.27-alpine\\s*$",
+      "notContains": ":latest",
+      "message": "Start the Dockerfile with FROM nginx:1.27-alpine."
+    },
+    {
+      "type": "sh.dockerImage",
+      "label": "market:1.0 is built from it, with the site inside",
+      "image": "market:1.0",
+      "base": "^nginx:1\\.27-alpine$",
+      "expose": [
+        80
+      ],
+      "hasFile": "/usr/share/nginx/html/prices.html",
+      "maxSizeMb": 60
+    },
+    {
+      "type": "sh.docker",
+      "label": "The market container runs with port 8080 and a restart policy",
+      "container": "market",
+      "running": true,
+      "image": "market:1.0",
+      "ports": [
+        "8080:80"
+      ],
+      "restart": "unless-stopped"
+    },
+    {
+      "type": "sh.output",
+      "label": "The price board answers on port 8080",
+      "command": "curl -s http://localhost:8080/prices.html",
+      "contains": "Kenkey"
+    }
+  ],
+  "realityNote": "The same three-line Dockerfile is how many teams ship static sites. In production the image is pushed to a registry, scanned for vulnerabilities and run by an orchestrator such as Kubernetes, which replaces the restart policy with a Deployment."
+}

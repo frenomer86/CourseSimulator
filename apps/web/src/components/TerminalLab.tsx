@@ -15,7 +15,7 @@ import {
   installCrontab,
   listDir,
   newSession,
-  parse,
+  awaitsHeredoc, parse,
   readFile,
   resolvePath,
   runLine,
@@ -116,6 +116,12 @@ export function TerminalLab({ lab }: { lab: LabSpec<ShellState> }) {
   const execute = (line: string) => {
     const full = [...pending, line].join('\n');
     // Keep reading lines while the input is an unfinished quote or here document.
+    if (awaitsHeredoc(full)) {
+      setPending((p) => [...p, line]);
+      setTranscript((t) => [...t, { kind: 'cmd', text: (pending.length ? '> ' : promptFor(sysRef.current)) + line }]);
+      setInput('');
+      return;
+    }
     try {
       parse(full);
     } catch (e) {

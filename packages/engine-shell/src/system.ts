@@ -108,6 +108,7 @@ const CATALOGUE: Record<string, PackageRec> = {
   htop: { version: '3.3', description: 'Interactive process viewer', installed: false, provides: ['htop'] },
   rsync: { version: '3.3', description: 'Fast, versatile file copying tool', installed: false, provides: ['rsync'] },
   git: { version: '2.45', description: 'Distributed version control', installed: false, provides: ['git'] },
+  docker: { version: '27.3', description: 'Container engine and command-line client', installed: false, service: 'docker', provides: ['docker'] },
   curl: { version: '8.8', description: 'Command line tool for transferring data', installed: true, provides: ['curl'] },
   apache2: { version: '2.4.59', description: 'Apache HTTP Server', installed: false, provides: ['apachectl'], service: 'apache2' },
   nginx: { version: '1.26', description: 'High performance web server', installed: false, service: 'nginx' },

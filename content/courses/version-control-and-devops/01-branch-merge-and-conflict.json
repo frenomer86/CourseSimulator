@@ -1,0 +1,100 @@
+{
+  "id": "version-control-and-devops-i1-branch-merge-and-conflict",
+  "course": "version-control-and-devops",
+  "topic": "Branches as pointers; fast-forward and three-way merge",
+  "unit": 2,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "engine": "E4",
+  "title": "Branch, merge and resolve a conflict",
+  "estimatedMinutes": 30,
+  "instructions": "## Two people, one fees page\n\nYou are **ama**, maintaining the department's fees page in **~/portal**. It is not under version control yet. The board has approved a new tuition fee of **GHS 2600**, while the bursar has, at the same time, corrected the same line to GHS 2550. You will record both changes on separate branches and see Git refuse to guess which one wins.\n\n## Do this\n\n1. Tell Git who you are: `git config --global user.name \"Ama Mensah\"` and `git config --global user.email ama@example.com`.\n2. In ~/portal: `git init`, then add and commit everything with the message **Initial fees page**.\n3. Create and switch to a branch **update-fees** (`git switch -c update-fees`). Change the tuition line to `Tuition: GHS 2600` and commit it.\n4. Switch back to **main**. Change the same line to `Tuition: GHS 2550` and commit it, as the bursar did.\n5. `git merge update-fees`. Read the conflict, open fees.txt and keep the board-approved **2600**, deleting the conflict markers.\n6. `git add fees.txt` and `git commit` to finish the merge. Then delete the merged branch with `git branch -d update-fees`.\n\nUse `git status` and `git log --oneline --all` often. `sed -i` or `nano` can edit the file.",
+  "config": {
+    "reference": [
+      "git config --global user.name \"NAME\"",
+      "git init",
+      "git add .",
+      "git commit -m \"MESSAGE\"",
+      "git switch -c BRANCH",
+      "git switch main",
+      "git merge BRANCH",
+      "git log --oneline --all",
+      "git branch -d BRANCH"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-dev",
+      "user": "ama",
+      "packages": {
+        "git": {
+          "installed": true
+        }
+      },
+      "files": {
+        "/home/ama/portal/fees.txt": "Department of Computer Science: fees per year\nTuition: GHS 2500\nHostel: GHS 900\nLibrary: GHS 50\n",
+        "/home/ama/portal/index.html": "<h1>Fees</h1>\n<p>See fees.txt for the current fees.</p>\n"
+      }
+    }
+  },
+  "hints": [
+    "git switch -c update-fees creates the branch and moves onto it in one step.",
+    "sed -i 's/Tuition: GHS 2500/Tuition: GHS 2600/' fees.txt changes the line; git commit -am \"...\" stages and commits tracked files.",
+    "After the conflict, the file has <<<<<<< HEAD, ======= and >>>>>>> update-fees lines. Replace the whole block with the one line you want, for example: sed -i '/^<<<<<<< /,/^>>>>>>> /c Tuition: GHS 2600' fees.txt"
+  ],
+  "checks": [
+    {
+      "type": "sh.file",
+      "label": "Your identity is configured",
+      "path": "/home/ama/.gitconfig",
+      "contains": [
+        "name = ",
+        "email = "
+      ]
+    },
+    {
+      "type": "sh.git",
+      "label": "portal is a repository on main with at least four commits",
+      "repo": "/home/ama/portal",
+      "branch": "main",
+      "minCommits": 4
+    },
+    {
+      "type": "sh.git",
+      "label": "The latest commit is a merge with two parents",
+      "repo": "/home/ama/portal",
+      "mergeCommit": true,
+      "message": "The last commit on main should be the merge of update-fees, with two parents."
+    },
+    {
+      "type": "sh.git",
+      "label": "The merged fees page keeps 2600 and no conflict markers",
+      "repo": "/home/ama/portal",
+      "fileAtHead": {
+        "path": "fees.txt",
+        "notContains": "<<<<<<<",
+        "pattern": "^Department of Computer Science: fees per year\\nTuition: GHS 2600\\nHostel: GHS 900\\nLibrary: GHS 50\\n?$"
+      },
+      "message": "fees.txt in the merge commit should have exactly one tuition line, Tuition: GHS 2600, with the other lines unchanged and no conflict markers."
+    },
+    {
+      "type": "sh.git",
+      "label": "The working tree is clean",
+      "repo": "/home/ama/portal",
+      "clean": true
+    },
+    {
+      "type": "sh.output",
+      "label": "The merged branch is deleted",
+      "command": "cd /home/ama/portal && git branch",
+      "notContains": "update-fees",
+      "message": "Delete update-fees with git branch -d update-fees once it is merged."
+    },
+    {
+      "type": "sh.ran",
+      "label": "You merged with git merge",
+      "pattern": "^git merge\\b"
+    }
+  ],
+  "realityNote": "Git never guesses which edit to the same line is right; a person decides. On GitHub or GitLab the same conflict appears in a pull request, and teams keep conflicts rare by merging small changes often."
+}
