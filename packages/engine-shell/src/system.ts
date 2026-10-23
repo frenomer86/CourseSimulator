@@ -133,6 +133,14 @@ const CATALOGUE: Record<string, PackageRec> = {
   restic: { version: '0.17', description: 'Fast, secure backup program', installed: false, provides: ['restic'] },
   shellcheck: { version: '0.10', description: 'Shell script analysis tool', installed: false, provides: ['shellcheck'] },
   zip: { version: '3.0', description: 'Archiver for .zip files', installed: false, provides: ['zip', 'unzip'] },
+  jq: { version: '1.7.1', description: 'Command-line JSON processor', installed: false, provides: ['jq'] },
+  bats: { version: '1.11', description: 'Bash Automated Testing System', installed: false, provides: ['bats'] },
+  mailx: { version: '12.5', description: 'Mail user agent (mail, mailx)', installed: false, provides: ['mail', 'mailx'] },
+  quota: { version: '4.09', description: 'Disk quota tools', installed: false, provides: ['setquota', 'quota', 'repquota', 'edquota'] },
+  pwgen: { version: '2.08', description: 'Password generator', installed: false, provides: ['pwgen'] },
+  dos2unix: { version: '7.5', description: 'Line ending converters', installed: false, provides: ['dos2unix', 'unix2dos'] },
+  logrotate: { version: '3.21', description: 'Rotates, compresses and mails system logs', installed: true, provides: ['logrotate'] },
+  openssl: { version: '3.1', description: 'Secure Sockets Layer toolkit', installed: true, provides: ['openssl'] },
   python3: { version: '3.12', description: 'Python interpreter', installed: true, provides: ['python3'] },
   php8: { version: '8.3', description: 'PHP scripting language', installed: false },
   mariadb: { version: '11.4', description: 'MariaDB database server', installed: false, service: 'mariadb', provides: ['mysql'] },
@@ -252,6 +260,7 @@ export function buildSystem(spec: SystemSpec): ShellSystem {
   writeSpecFiles(sys, spec.files ?? {}, rootActor);
   if (!lookup(root, '/etc/os-release', rootActor)) putFile(sys, '/etc/os-release', 'NAME="openSUSE Leap"\nVERSION="15.6"\nID=opensuse-leap\nPRETTY_NAME="openSUSE Leap 15.6"\n', rootActor);
   if (!lookup(root, '/etc/hostname', rootActor)) putFile(sys, '/etc/hostname', sys.hostname + '\n', rootActor);
+  if (!lookup(root, '/etc/logrotate.conf', rootActor)) putFile(sys, '/etc/logrotate.conf', '# see "man logrotate" for details\n# rotate log files weekly\nweekly\n\n# keep 4 weeks worth of backlogs\nrotate 4\n\n# create new (empty) log files after rotating old ones\ncreate\n\n# use date as a suffix of the rotated file\ndateext\n\n# packages drop log rotation information into this directory\ninclude /etc/logrotate.d\n', rootActor, 0o644);
   if (!lookup(root, '/etc/ssh/sshd_config', rootActor)) putFile(sys, '/etc/ssh/sshd_config', '# OpenSSH server configuration. Commented options show the defaults.\n#Port 22\n#PermitRootLogin prohibit-password\n#PasswordAuthentication yes\n#PubkeyAuthentication yes\n#MaxAuthTries 6\nUsePAM yes\nX11Forwarding no\nSubsystem sftp /usr/lib/ssh/sftp-server\n', rootActor, 0o600);
   if (!lookup(root, '/etc/sudoers', rootActor)) putFile(sys, '/etc/sudoers', '## sudoers file.\nroot ALL=(ALL:ALL) ALL\n%wheel ALL=(ALL:ALL) ALL\n%sudo ALL=(ALL:ALL) ALL\n', rootActor, 0o440);
   for (const name of ['messages', 'auth.log', 'syslog']) if (!lookup(root, `/var/log/${name}`, rootActor)) putFile(sys, `/var/log/${name}`, '', rootActor, 0o640, 'root', 'adm');
