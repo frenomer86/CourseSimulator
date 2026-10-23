@@ -1,6 +1,6 @@
 /** Text-processing commands: grep, head, tail, wc, sort, uniq, cut, tr, sed, awk, tee, xargs and friends. */
 
-import { readFile, walk, writeFile } from './fs.js';
+import { lookup, readFile, walk, writeFile } from './fs.js';
 import { actor, runCommand, type Ctx } from './shell.js';
 import { abs, errText, grepRegex, lines, parseOpts, readInputs, type IO } from './util.js';
 
@@ -204,6 +204,41 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
       io.err('diff: missing operand\n');
       return 2;
     }
+    // diff -r / -q on two directories: compare the trees.
+    const da = lookup(ctx.sys.fs, abs(ctx, o.rest[0]), actor(ctx));
+    const db = lookup(ctx.sys.fs, abs(ctx, o.rest[1]), actor(ctx));
+    if (da?.node.type === 'dir' && db?.node.type === 'dir') {
+      if (!o.flags.has('r')) {
+        io.out(`Common subdirectories: ${o.rest[0]} and ${o.rest[1]}\n`);
+        return 0;
+      }
+      const tree = (pa: string, pb: string): number => {
+        const A = lookup(ctx.sys.fs, abs(ctx, pa), actor(ctx))!.node as { children: Record<string, { type: string; content?: string }> };
+        const B = lookup(ctx.sys.fs, abs(ctx, pb), actor(ctx))!.node as { children: Record<string, { type: string; content?: string }> };
+        let rc = 0;
+        for (const name of [...new Set([...Object.keys(A.children), ...Object.keys(B.children)])].sort()) {
+          const x = A.children[name];
+          const y = B.children[name];
+          if (!y) {
+            io.out(`Only in ${pa}: ${name}\n`);
+            rc = 1;
+          } else if (!x) {
+            io.out(`Only in ${pb}: ${name}\n`);
+            rc = 1;
+          } else if (x.type === 'dir' && y.type === 'dir') rc = tree(`${pa}/${name}`, `${pb}/${name}`) || rc;
+          else if (x.type === 'file' && y.type === 'file' && x.content !== y.content) {
+            if (o.flags.has('q')) io.out(`Files ${pa}/${name} and ${pb}/${name} differ\n`);
+            else {
+              io.out(`diff -r ${pa}/${name} ${pb}/${name}\n`);
+              TEXT_COMMANDS.diff([`${pa}/${name}`, `${pb}/${name}`], io, ctx);
+            }
+            rc = 1;
+          }
+        }
+        return rc;
+      };
+      return tree(o.rest[0].replace(/\/$/, ''), o.rest[1].replace(/\/$/, ''));
+    }
     const [a, b] = readInputs(ctx, io, o.rest.slice(0, 2), 'diff');
     if (!a || !b) return 2;
     const la = lines(a.content);
@@ -376,7 +411,16 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
             io.err(`sed: ${(e as Error).message}\n`);
             return 1;
           }
-          rule.rep = m[2].replace(/\\(\d)/g, '$$$1').replace(/&/g, '$$&').replace(/\\n/g, '\n').replace(/\\&/g, '&').replace(/\\\//g, '/');
+          // Translates sed's replacement syntax (\1, &, \&, \n, \t) to JavaScript's ($1, $&, $$).
+          let rep = '';
+          for (let i = 0; i < m[2].length; i++) {
+            const c = m[2][i];
+            if (c === '\\' && i + 1 < m[2].length) {
+              const n = m[2][++i];
+              rep += /\d/.test(n) ? '$' + n : n === 'n' ? '\n' : n === 't' ? '\t' : n === '$' ? '$$' : n;
+            } else rep += c === '&' ? '$&' : c === '$' ? '$$' : c;
+          }
+          rule.rep = rep;
           rule.global = m[3].includes('g');
         } else if (s === 'd' || s === 'p') rule.cmd = s;
         else if (/^[aic]\\?\s*/.test(s)) {
@@ -440,6 +484,7 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
       for (const f of rest) {
         try {
           const content = readFile(ctx.sys.fs, abs(ctx, f), actor(ctx));
+          if (o.values.i && inPlaceSuffixLooksLikeFile(o.values.i)) writeFile(ctx.sys.fs, abs(ctx, f) + o.values.i, content, actor(ctx), ctx.sys.now);
           writeFile(ctx.sys.fs, abs(ctx, f), process(content), actor(ctx), ctx.sys.now);
         } catch (e) {
           io.err(`sed: can't read ${f}: ${errText(e, f).replace(/^.*?: /, '')}\n`);

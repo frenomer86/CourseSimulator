@@ -241,9 +241,11 @@ export function createShellChecks(): CheckRegistry<ShellState> {
       if (spec.owner && n.owner !== spec.owner) return fail(spec, `${path} is owned by ${n.owner}; it should be owned by ${String(spec.owner)}.`);
       if (spec.group && n.group !== spec.group) return fail(spec, `${path} belongs to group ${n.group}; it should be ${String(spec.group)}.`);
       if (spec.acl) {
-        const [kind, name, perms] = String(spec.acl).split(':');
-        const entry = n.acl?.find((a) => a.kind === (kind.startsWith('u') ? 'user' : 'group') && a.name === name);
-        if (!entry) return fail(spec, `${path} has no ACL entry for ${kind}:${name}. Use setfacl -m.`);
+        // "u:name:perms", or "d:g:name:perms" for a default (inherited) entry.
+        const def = /^(d|default):/.test(String(spec.acl));
+        const [kind, name, perms] = String(spec.acl).replace(/^(d|default):/, '').split(':');
+        const entry = n.acl?.find((a) => !!a.def === def && a.kind === (kind.startsWith('u') ? 'user' : 'group') && a.name === name);
+        if (!entry) return fail(spec, `${path} has no ${def ? 'default ' : ''}ACL entry for ${kind}:${name}. Use setfacl ${def ? '-d ' : ''}-m.`);
         if (perms && entry.perms !== perms) return fail(spec, `The ACL entry for ${name} on ${path} is ${entry.perms}; it should be ${perms}.`);
       }
       if (n.type === 'file') {

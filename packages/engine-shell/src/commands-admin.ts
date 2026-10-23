@@ -492,11 +492,22 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     if (currentUser(ctx) !== 'root') io.out('Password: ********\n');
     if (o.values.c) {
       const saved = ctx.euser;
+      const savedVars = { HOME: ctx.vars.HOME, USER: ctx.vars.USER, LOGNAME: ctx.vars.LOGNAME, PATH: ctx.vars.PATH };
+      const savedCwd = sys.cwd;
       ctx.euser = target;
+      ctx.vars.HOME = homeOf(sys, target);
+      ctx.vars.USER = target;
+      ctx.vars.LOGNAME = target;
+      if (login) {
+        ctx.vars.PATH = '/usr/local/bin:/usr/bin:/bin';
+        sys.cwd = homeOf(sys, target);
+      }
       try {
         return runCommand(ctx, ['bash', '-c', o.values.c], io);
       } finally {
         ctx.euser = saved;
+        Object.assign(ctx.vars, savedVars);
+        sys.cwd = savedCwd;
       }
     }
     sys.userStack.push({ user: sys.user, cwd: sys.cwd });
@@ -1098,7 +1109,8 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     return code;
   },
 
-  man: (args, io) => {
+  man: (args, io, ctx) => {
+    if (args[0] === '-k') return ADMIN_COMMANDS.apropos(args.slice(1), io, ctx);
     const name = args.find((a) => !a.startsWith('-'));
     if (!name) {
       io.err('What manual page do you want?\nFor example, try \'man ls\'.\n');
@@ -1115,7 +1127,7 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
   info: (args, io) => ADMIN_COMMANDS.man(args, io, undefined as unknown as Ctx),
   apropos: (args, io) => {
     const q = args[0]?.toLowerCase() ?? '';
-    const hits = Object.entries(MAN_PAGES).filter(([n, p]) => n.includes(q) || p.name.toLowerCase().includes(q));
+    const hits = Object.entries(MAN_PAGES).filter(([n, p]) => n.includes(q) || p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
     if (!hits.length) {
       io.err(`${q}: nothing appropriate.\n`);
       return 16;

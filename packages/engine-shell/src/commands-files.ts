@@ -1,6 +1,6 @@
 /** File and directory commands. */
 
-import { FsError, basename, can, copy, dirname, listDir, lookup, mkdir, modeString, move, parseMode, readFile, remove, walk, writeFile, type DirNode, type FsNode } from './fs.js';
+import { FsError, basename, can, copy, dirname, listDir, lookup, mkdir, modeString, move, normalise, parseMode, readFile, remove, walk, writeFile, type DirNode, type FsNode } from './fs.js';
 import { groupName } from './system.js';
 import { actor, currentUser, globMatch, type Ctx } from './shell.js';
 import { abs, errText, humanSize, lsDate, parseOpts, readInputs, sizeOf, statNode, totalSize, type IO } from './util.js';
@@ -15,6 +15,28 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
 
   ls: (args, io, ctx) => {
     const o = parseOpts(args);
+    if (o.flags.has('R')) {
+      // List each directory, then every directory below it, with a "path:" header.
+      const flags = args.filter((a) => a.startsWith('-')).map((a) => a.replace(/R/g, '')).filter((a) => a !== '-');
+      let code = 0;
+      for (const t of o.rest.length ? o.rest : ['.']) {
+        const start = lookup(ctx.sys.fs, abs(ctx, t), actor(ctx));
+        if (!start || start.node.type !== 'dir') {
+          code = FILE_COMMANDS.ls([...flags, t], io, ctx) || code;
+          continue;
+        }
+        const dirs: string[] = [];
+        walk(ctx.sys.fs, start.path, actor(ctx), (p, n) => {
+          if (n.type === 'dir' && !(p.split('/').pop() ?? '').startsWith('.')) dirs.push(p);
+        });
+        dirs.forEach((d, i) => {
+          const shown = t.replace(/\/$/, '') + d.slice(start.path.length);
+          io.out(`${i ? '\n' : ''}${shown || t}:\n`);
+          FILE_COMMANDS.ls([...flags, '-1', d], io, ctx);
+        });
+      }
+      return code;
+    }
     const long = o.flags.has('l');
     const all = o.flags.has('a') || o.flags.has('A');
     const human = o.flags.has('h');
@@ -114,7 +136,9 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
     return 0;
   },
 
-  printf: (args, io) => {
+  printf: (argv, io) => {
+    // "--" ends options, so a format may start with "-": printf -- '- item\n'.
+    const args = argv[0] === '--' ? argv.slice(1) : argv;
     if (!args.length) {
       io.err('printf: usage: printf FORMAT [ARGUMENT]...\n');
       return 2;
@@ -347,7 +371,10 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
     }
     const [target, linkName = basename(o.rest[0])] = o.rest;
     let dest = abs(ctx, linkName);
-    const existing = statNode(ctx, linkName);
+    // -n / -T: treat an existing symlink to a directory as a file to replace, not a directory to enter.
+    const noDeref = o.flags.has('n') || o.flags.has('T') || o.flags.has('no-dereference');
+    const raw = lookup(ctx.sys.fs, dest, actor(ctx), false);
+    const existing = noDeref && raw?.node.type === 'link' ? null : statNode(ctx, linkName);
     if (existing?.type === 'dir') dest = `${dest}/${basename(target)}`;
     if (lookup(ctx.sys.fs, dest, actor(ctx), false)) {
       if (!o.flags.has('f')) {
@@ -453,7 +480,7 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
           const depth = (p === '/' ? 0 : p.split('/').length - 1) - baseDepth;
           if (depth > maxDepth) return;
           if (!preds.every((f) => f(p, n, depth))) return;
-          const shown = start === '.' ? (p === base ? '.' : './' + p.slice(base.length + 1)) : start.replace(/\/$/, '') + (p === base ? '' : p.slice(base.length));
+          const shown = start === '.' ? (p === base ? '.' : './' + p.slice(base.length + 1)) : base === '/' ? p : start.replace(/\/$/, '') + (p === base ? '' : p.slice(base.length));
           if (doDelete) toDelete.push(p);
           else if (printType === 'ls') io.out(`${modeString(n)} ${n.owner} ${n.group} ${String(sizeOf(n)).padStart(6)} ${lsDate(n.mtime)} ${shown}\n`);
           else io.out(shown + '\n');
@@ -516,7 +543,7 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
   du: (args, io, ctx) => {
     const o = parseOpts(args);
     const targets = o.rest.length ? o.rest : ['.'];
-    const fmt = (n: number) => (o.flags.has('h') ? humanSize(n) : String(Math.ceil(n / 1024)));
+    const fmt = (n: number) => (o.flags.has('h') ? humanSize(n) : o.flags.has('b') ? String(n) : String(Math.ceil(n / 1024)));
     for (const t of targets) {
       const l = lookup(ctx.sys.fs, abs(ctx, t), actor(ctx));
       if (!l) {
@@ -528,7 +555,7 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
         continue;
       }
       walk(ctx.sys.fs, l.path, actor(ctx), (p, n) => {
-        if (n.type === 'dir' && (o.flags.has('a') || true)) io.out(`${fmt(totalSize(n))}\t${p === l.path ? t : t.replace(/\/$/, '') + p.slice(l.path.length)}\n`);
+        if (n.type === 'dir' || o.flags.has('a')) io.out(`${fmt(totalSize(n))}\t${p === l.path ? t : t.replace(/\/$/, '') + p.slice(l.path.length)}\n`);
       });
     }
     return 0;
@@ -638,12 +665,22 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
       const rwx = (bits: number) => `${bits & 4 ? 'r' : '-'}${bits & 2 ? 'w' : '-'}${bits & 1 ? 'x' : '-'}`;
       io.out(`# file: ${f.replace(/^\//, '')}\n# owner: ${n.owner}\n# group: ${n.group}\n`);
       if (n.mode & 0o4000) io.out('# flags: s--\n');
+      const own = (n.acl ?? []).filter((a) => !a.def);
+      const defs = (n.acl ?? []).filter((a) => a.def);
       io.out(`user::${rwx(n.mode >> 6)}\n`);
-      for (const a of n.acl ?? []) if (a.kind === 'user') io.out(`user:${a.name}:${a.perms}\n`);
+      for (const a of own) if (a.kind === 'user') io.out(`user:${a.name}:${a.perms}\n`);
       io.out(`group::${rwx(n.mode >> 3)}\n`);
-      for (const a of n.acl ?? []) if (a.kind === 'group') io.out(`group:${a.name}:${a.perms}\n`);
-      if (n.acl?.length) io.out('mask::rwx\n');
-      io.out(`other::${rwx(n.mode)}\n\n`);
+      for (const a of own) if (a.kind === 'group') io.out(`group:${a.name}:${a.perms}\n`);
+      if (own.length) io.out('mask::rwx\n');
+      io.out(`other::${rwx(n.mode)}\n`);
+      if (defs.length) {
+        io.out(`default:user::${rwx(n.mode >> 6)}\n`);
+        for (const a of defs) if (a.kind === 'user') io.out(`default:user:${a.name}:${a.perms}\n`);
+        io.out(`default:group::${rwx(n.mode >> 3)}\n`);
+        for (const a of defs) if (a.kind === 'group') io.out(`default:group:${a.name}:${a.perms}\n`);
+        io.out(`default:mask::rwx\ndefault:other::${rwx(n.mode)}\n`);
+      }
+      io.out('\n');
     }
     return code;
   },
@@ -661,9 +698,28 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
         if (n.type === 'link') return;
         if (currentUser(ctx) !== 'root' && n.owner !== currentUser(ctx)) throw new FsError('EACCES', `${p}: Operation not permitted`);
         if (o.flags.has('b')) n.acl = [];
+        if (o.flags.has('k')) n.acl = (n.acl ?? []).filter((a) => !a.def);
         if (o.values.m) {
-          for (const entry of o.values.m.split(',')) {
-            const m = /^(u|user|g|group|o|other|m|mask):([^:]*):([rwx-]*)$/.exec(entry.trim());
+          for (const raw of o.values.m.split(',')) {
+            // -d, or a d:/default: prefix, makes a default entry on a directory.
+            const isDef = o.flags.has('d') || /^(d|default):/.test(raw.trim());
+            const entry = raw.trim().replace(/^(d|default):/, '');
+            if (isDef) {
+              if (n.type !== 'dir') throw new Error(`${p}: Only directories can have default ACLs`);
+              const d = /^(u|user|g|group):([^:]+):([rwx-]*)$/.exec(entry);
+              if (!d) {
+                if (/^(u|user|g|group|o|other|m|mask):?:[rwx-]*$/.test(entry)) continue;
+                throw new Error(`Invalid argument: ${raw}`);
+              }
+              const dk = d[1].startsWith('u') ? 'user' : 'group';
+              if (dk === 'user' && !ctx.sys.users[d[2]]) throw new Error(`Option -m: Invalid argument near character 3 (no such user: ${d[2]})`);
+              if (dk === 'group' && !ctx.sys.groups[d[2]]) throw new Error(`Option -m: Invalid argument near character 3 (no such group: ${d[2]})`);
+              const dp = `${d[3].includes('r') ? 'r' : '-'}${d[3].includes('w') ? 'w' : '-'}${d[3].includes('x') ? 'x' : '-'}`;
+              n.acl = (n.acl ?? []).filter((a) => !(a.def && a.kind === dk && a.name === d[2]));
+              n.acl.push({ kind: dk, name: d[2], perms: dp, def: true });
+              continue;
+            }
+            const m = /^(u|user|g|group|o|other|m|mask):([^:]*):([rwx-]*)$/.exec(entry);
             if (!m) throw new Error(`Invalid argument: ${entry}`);
             const kind = m[1].startsWith('u') ? 'user' : m[1].startsWith('g') ? 'group' : null;
             const perms = `${m[3].includes('r') ? 'r' : '-'}${m[3].includes('w') ? 'w' : '-'}${m[3].includes('x') ? 'x' : '-'}`;
@@ -677,16 +733,18 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
             }
             if (kind === 'user' && !ctx.sys.users[m[2]]) throw new Error(`Option -m: Invalid argument near character 3 (no such user: ${m[2]})`);
             if (kind === 'group' && !ctx.sys.groups[m[2]]) throw new Error(`Option -m: Invalid argument near character 3 (no such group: ${m[2]})`);
-            n.acl = (n.acl ?? []).filter((a) => !(a.kind === kind && a.name === m[2]));
+            n.acl = (n.acl ?? []).filter((a) => !(!a.def && a.kind === kind && a.name === m[2]));
             n.acl.push({ kind, name: m[2], perms });
           }
         }
         if (o.values.x) {
-          for (const entry of o.values.x.split(',')) {
-            const m = /^(u|user|g|group):([^:]*)$/.exec(entry.trim());
-            if (!m) throw new Error(`Invalid argument: ${entry}`);
+          for (const raw of o.values.x.split(',')) {
+            const isDef = o.flags.has('d') || /^(d|default):/.test(raw.trim());
+            const entry = raw.trim().replace(/^(d|default):/, '');
+            const m = /^(u|user|g|group):([^:]*)$/.exec(entry);
+            if (!m) throw new Error(`Invalid argument: ${raw}`);
             const kind = m[1].startsWith('u') ? 'user' : 'group';
-            n.acl = (n.acl ?? []).filter((a) => !(a.kind === kind && a.name === m[2]));
+            n.acl = (n.acl ?? []).filter((a) => !(!!a.def === isDef && a.kind === kind && a.name === m[2]));
           }
         }
       };
@@ -730,7 +788,7 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
     // Accept "tar -czvf file.tar.gz a b", "tar czf ...", "tar -xzf file -C dir", "tar -tf file".
     let flags = args[0] ?? '';
     if (!flags.startsWith('-')) flags = '-' + flags;
-    const o = parseOpts(args, ['f', 'C']);
+    const o = parseOpts([flags, ...args.slice(1)], ['f', 'C']);
     const mode = o.flags.has('c') ? 'c' : o.flags.has('x') ? 'x' : o.flags.has('t') ? 't' : null;
     if (!mode) {
       io.err("tar: You must specify one of the '-c', '-x' or '-t' options\n");
@@ -751,10 +809,10 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
       const entries: Entry[] = [];
       const base = o.values.C ? abs(ctx, o.values.C) : ctx.sys.cwd;
       for (const r of o.rest) {
-        const start = r.startsWith('/') ? r : `${base}/${r}`;
+        const start = normalise(r.startsWith('/') ? r : `${base}/${r}`);
         try {
           walk(ctx.sys.fs, start, actor(ctx), (p, n) => {
-            const rel = r.startsWith('/') ? p.slice(1) : r.replace(/\/$/, '') + p.slice(start.replace(/\/$/, '').length);
+            const rel = r.startsWith('/') ? p.slice(1) : (r === '.' || r === './' ? '.' : r.replace(/\/$/, '')) + p.slice(start === '/' ? 0 : start.length);
             const name = n.type === 'dir' ? rel + '/' : rel;
             if (n.type === 'file' && !can(n, actor(ctx), 'r')) {
               io.err(`tar: ${name}: Cannot open: Permission denied\n`);
@@ -878,7 +936,16 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
   },
 
   rsync: (args, io, ctx) => {
-    const o = parseOpts(args, ['e']);
+    // --exclude may repeat, so collect it by hand; parseOpts keeps only the last value.
+    const excludes: string[] = [];
+    const plain: string[] = [];
+    for (let i = 0; i < args.length; i++) {
+      const a = args[i];
+      if (a === '--exclude') excludes.push(args[++i] ?? '');
+      else if (a.startsWith('--exclude=')) excludes.push(a.slice(10));
+      else plain.push(a);
+    }
+    const o = parseOpts(plain, ['e'], { 'dry-run': 'n', verbose: 'v', archive: 'a', recursive: 'r' });
     if (o.rest.length < 2) {
       io.err('rsync: usage: rsync [OPTION]... SRC DEST\n');
       return 1;
@@ -888,39 +955,77 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
       io.err('rsync: remote hosts are not simulated in this lab; use a local destination\n');
       return 1;
     }
+    const dry = o.flags.has('n');
+    const verbose = o.flags.has('v') || dry;
+    const del = o.flags.has('delete');
+    const keepExisting = o.flags.has('ignore-existing');
+    const me = actor(ctx);
+    const excluded = (rel: string, isDir: boolean) =>
+      excludes.some((pat) => {
+        const dirOnly = pat.endsWith('/');
+        const p = pat.replace(/\/$/, '');
+        if (dirOnly && !isDir) return false;
+        const name = rel.split('/').pop() ?? rel;
+        return p.startsWith('/') ? globMatch(p.slice(1), rel) : p.includes('/') ? globMatch(p, rel) : globMatch(p, name);
+      });
     let count = 0;
+    const sync = (srcPath: string, dstPath: string, rel: string) => {
+      const src = lookup(ctx.sys.fs, srcPath, me)!.node as DirNode;
+      if (!dry) mkdir(ctx.sys.fs, dstPath, me, ctx.sys.now, true);
+      const dst = lookup(ctx.sys.fs, dstPath, me)?.node as DirNode | undefined;
+      for (const [name, child] of Object.entries(src.children)) {
+        const r = rel ? `${rel}/${name}` : name;
+        if (excluded(r, child.type === 'dir')) continue;
+        if (child.type === 'dir') {
+          if (verbose) io.out(`${r}/\n`);
+          sync(`${srcPath}/${name}`, `${dstPath}/${name}`, r);
+          continue;
+        }
+        const prior = dst?.children[name];
+        if (prior && keepExisting) continue;
+        if (prior?.type === 'file' && child.type === 'file' && prior.content === child.content) continue;
+        if (verbose) io.out(`${r}\n`);
+        count++;
+        if (dry) continue;
+        if (prior) remove(ctx.sys.fs, `${dstPath}/${name}`, me, true);
+        copy(ctx.sys.fs, `${srcPath}/${name}`, `${dstPath}/${name}`, me, ctx.sys.now, true);
+      }
+      if (del && dst) {
+        for (const name of Object.keys(dst.children)) {
+          const r = rel ? `${rel}/${name}` : name;
+          if (src.children[name] || excluded(r, dst.children[name].type === 'dir')) continue;
+          if (verbose) io.out(`deleting ${r}${dst.children[name].type === 'dir' ? '/' : ''}\n`);
+          if (!dry) remove(ctx.sys.fs, `${dstPath}/${name}`, me, true);
+        }
+      }
+    };
     for (const s of o.rest.slice(0, -1)) {
-      const src = lookup(ctx.sys.fs, abs(ctx, s), actor(ctx));
+      const src = lookup(ctx.sys.fs, abs(ctx, s), me);
       if (!src) {
         io.err(`rsync: link_stat "${abs(ctx, s)}" failed: No such file or directory (2)\n`);
         return 23;
       }
-      const trailing = s.endsWith('/');
       let target = abs(ctx, dest);
-      mkdir(ctx.sys.fs, target, actor(ctx), ctx.sys.now, true);
-      if (src.node.type === 'dir' && !trailing) {
-        target = `${target}/${basename(s)}`;
-        mkdir(ctx.sys.fs, target, actor(ctx), ctx.sys.now, true);
-      }
-      const srcDir = src.node.type === 'dir' ? src.node : null;
-      if (srcDir) {
-        for (const [name, child] of Object.entries(srcDir.children)) {
-          const prior = lookup(ctx.sys.fs, `${target}/${name}`, actor(ctx));
-          if (prior) remove(ctx.sys.fs, `${target}/${name}`, actor(ctx), true);
-          copy(ctx.sys.fs, `${src.path}/${name}`, `${target}/${name}`, actor(ctx), ctx.sys.now, true);
-          if (o.flags.has('v')) io.out(`${name}${child.type === 'dir' ? '/' : ''}\n`);
-          count++;
+      if (src.node.type === 'dir') {
+        if (!o.flags.has('a') && !o.flags.has('r')) {
+          io.err(`skipping directory ${s}\n`);
+          continue;
         }
+        if (!s.endsWith('/')) target = `${target}/${basename(s)}`;
+        sync(src.path, target, '');
       } else {
-        const t = (lookup(ctx.sys.fs, target, actor(ctx))?.node.type === 'dir') ? `${target}/${basename(s)}` : target;
-        const prior = lookup(ctx.sys.fs, t, actor(ctx));
-        if (prior) remove(ctx.sys.fs, t, actor(ctx), false);
-        copy(ctx.sys.fs, src.path, t, actor(ctx), ctx.sys.now, false);
-        if (o.flags.has('v')) io.out(`${basename(s)}\n`);
+        if (!dry) mkdir(ctx.sys.fs, dirname(target) || '/', me, ctx.sys.now, true);
+        const t = lookup(ctx.sys.fs, target, me)?.node.type === 'dir' || dest.endsWith('/') ? `${target}/${basename(s)}` : target;
+        if (keepExisting && lookup(ctx.sys.fs, t, me)) continue;
+        if (verbose) io.out(`${basename(s)}\n`);
         count++;
+        if (dry) continue;
+        if (dest.endsWith('/')) mkdir(ctx.sys.fs, target, me, ctx.sys.now, true);
+        if (lookup(ctx.sys.fs, t, me)) remove(ctx.sys.fs, t, me, false);
+        copy(ctx.sys.fs, src.path, t, me, ctx.sys.now, false);
       }
     }
-    if (o.flags.has('v')) io.out(`\nsent ${count * 120} bytes  received ${count * 35} bytes  total size ${count * 100}\n`);
+    if (verbose) io.out(`\nsent ${count * 120} bytes  received ${count * 35} bytes  total size ${count * 100}${dry ? ' (DRY RUN)' : ''}\n`);
     return 0;
   },
 

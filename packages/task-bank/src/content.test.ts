@@ -45,17 +45,19 @@ describe('task bank', () => {
     expect(JSON.parse(readFileSync(file, 'utf8'))).toEqual(meta);
   });
 
-  it('Systems Administration I has beginner, intermediate and advanced tasks for every topic', () => {
-    const course = COURSE_LIST.find((c) => c.slug === 'systems-administration-i')!;
-    const missing: string[] = [];
-    (course.syllabus ?? []).forEach((u, ui) =>
-      (u.topics ?? []).forEach((_t, ti) => {
-        for (const level of ['beginner', 'intermediate', 'advanced'])
-          if (!all.some((t) => t.course === course.slug && t.unit === ui + 1 && t.topicIndex === ti + 1 && t.level === level)) missing.push(`u${ui + 1}t${ti + 1} ${level}`);
-      }),
-    );
-    expect(missing).toEqual([]);
-  });
+  for (const slug of TASK_COURSES) {
+    it(`${slug} has beginner, intermediate and advanced tasks for every topic`, () => {
+      const course = COURSE_LIST.find((c) => c.slug === slug)!;
+      const missing: string[] = [];
+      (course.syllabus ?? []).forEach((u, ui) =>
+        (u.topics ?? []).forEach((_t, ti) => {
+          for (const level of ['beginner', 'intermediate', 'advanced'])
+            if (!all.some((t) => t.course === course.slug && t.unit === ui + 1 && t.topicIndex === ti + 1 && t.level === level)) missing.push(`u${ui + 1}t${ti + 1} ${level}`);
+        }),
+      );
+      expect(missing).toEqual([]);
+    });
+  }
 
   const shell = createShellChecks();
   const scenario = createScenarioChecks();
@@ -69,8 +71,7 @@ describe('task bank', () => {
       });
       const variants = t.variants ?? 30;
       for (const n of [...new Set([1, 2, 3, variants])]) {
-        it(`variant ${n}: valid, fails as given, passes with the reference solution`, async () => {
-          const lab = buildTask(t, n);
+        it(`variant ${n}: valid, fails as given, passes with the reference solution`, async () => {          const lab = buildTask(t, n);
           expect(validateLabSpec(lab), 'valid lab spec').toBe(true);
           if (t.engine === 'E4') {
             const start = systemFromInitial(lab.initialState);

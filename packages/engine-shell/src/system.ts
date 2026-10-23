@@ -3,7 +3,7 @@
  * crontabs and the shell session (who is logged in, where, and what they have typed).
  */
 
-import { getUmask, mkdirNode, mkfileNode, lookup, type Actor, type DirNode, type FsNode } from './fs.js';
+import { getUmask, mkdirNode, mkfileNode, lookup, type AclEntry, type Actor, type DirNode, type FsNode } from './fs.js';
 
 export interface UserRec {
   uid: number;
@@ -81,7 +81,17 @@ export interface ShellSystem {
   os?: 'linux' | 'windows';
 }
 
-export type FileSpec = string | null | { content?: string; mode?: number | string; owner?: string; group?: string; link?: string };
+/** acl entries look like "u:name:r-x", "g:name:rwx" or "d:g:name:rwx" (a default entry on a directory). */
+export type FileSpec = string | null | { content?: string; mode?: number | string; owner?: string; group?: string; link?: string; acl?: string[] };
+
+function parseAclSpec(entries: string[] | undefined): AclEntry[] | undefined {
+  if (!entries?.length) return undefined;
+  return entries.map((e) => {
+    const def = /^(d|default):/.test(e);
+    const [k, name, perms] = e.replace(/^(d|default):/, '').split(':');
+    return { kind: k.startsWith('u') ? 'user' : 'group', name, perms, ...(def ? { def: true } : {}) } as AclEntry;
+  });
+}
 
 /** What a lab's initialState.system may contain. Everything is optional except user. */
 export interface SystemSpec {
@@ -165,7 +175,7 @@ export function buildSystem(spec: SystemSpec): ShellSystem {
     network: spec.network,
   };
   const rootActor: Actor = { user: 'root', groups: ['root'] };
-  const base = ['/bin', '/boot', '/dev', '/etc', '/etc/cron.d', '/etc/skel', '/etc/sudoers.d', '/home', '/lib', '/mnt', '/opt', '/proc', '/root', '/run', '/sbin', '/srv', '/sys', '/tmp', '/usr', '/usr/bin', '/usr/local', '/usr/local/bin', '/usr/share', '/usr/share/man', '/var', '/var/log', '/var/spool', '/var/spool/cron', '/var/tmp', '/var/www', '/var/backups'];
+  const base = ['/bin', '/boot', '/dev', '/etc', '/etc/cron.d', '/etc/cron.daily', '/etc/default', '/etc/logrotate.d', '/etc/profile.d', '/etc/security', '/etc/sysctl.d', '/etc/skel', '/etc/sudoers.d', '/home', '/lib', '/mnt', '/opt', '/proc', '/root', '/run', '/sbin', '/srv', '/sys', '/tmp', '/usr', '/usr/bin', '/usr/local', '/usr/local/bin', '/usr/local/sbin', '/usr/sbin', '/usr/lib', '/usr/lib/systemd/system', '/etc/systemd/system', '/var/lib', '/usr/share', '/usr/share/man', '/var', '/var/log', '/var/spool', '/var/spool/cron', '/var/tmp', '/var/www', '/var/backups'];
   for (const d of base) ensureDir(sys, d, rootActor);
   dirAt(sys, '/root').mode = 0o700;
   dirAt(sys, '/tmp').mode = 0o1777;
@@ -242,6 +252,7 @@ export function buildSystem(spec: SystemSpec): ShellSystem {
   writeSpecFiles(sys, spec.files ?? {}, rootActor);
   if (!lookup(root, '/etc/os-release', rootActor)) putFile(sys, '/etc/os-release', 'NAME="openSUSE Leap"\nVERSION="15.6"\nID=opensuse-leap\nPRETTY_NAME="openSUSE Leap 15.6"\n', rootActor);
   if (!lookup(root, '/etc/hostname', rootActor)) putFile(sys, '/etc/hostname', sys.hostname + '\n', rootActor);
+  if (!lookup(root, '/etc/ssh/sshd_config', rootActor)) putFile(sys, '/etc/ssh/sshd_config', '# OpenSSH server configuration. Commented options show the defaults.\n#Port 22\n#PermitRootLogin prohibit-password\n#PasswordAuthentication yes\n#PubkeyAuthentication yes\n#MaxAuthTries 6\nUsePAM yes\nX11Forwarding no\nSubsystem sftp /usr/lib/ssh/sftp-server\n', rootActor, 0o600);
   if (!lookup(root, '/etc/sudoers', rootActor)) putFile(sys, '/etc/sudoers', '## sudoers file.\nroot ALL=(ALL:ALL) ALL\n%wheel ALL=(ALL:ALL) ALL\n%sudo ALL=(ALL:ALL) ALL\n', rootActor, 0o440);
   for (const name of ['messages', 'auth.log', 'syslog']) if (!lookup(root, `/var/log/${name}`, rootActor)) putFile(sys, `/var/log/${name}`, '', rootActor, 0o640, 'root', 'adm');
   syncEtc(sys);
@@ -309,6 +320,8 @@ function writeSpecFiles(sys: ShellSystem, files: Record<string, FileSpec>, actor
       d.owner = owner;
       d.group = group;
       d.mode = toMode(typeof spec === 'object' && spec ? spec.mode : undefined, 0o755);
+      const dAcl = parseAclSpec(typeof spec === 'object' && spec ? spec.acl : undefined);
+      if (dAcl) d.acl = dAcl;
       continue;
     }
     if (typeof spec === 'object' && spec?.link) {
@@ -319,6 +332,8 @@ function writeSpecFiles(sys: ShellSystem, files: Record<string, FileSpec>, actor
     }
     const content = typeof spec === 'string' ? spec : spec?.content ?? '';
     putFile(sys, path, content, actor, toMode(typeof spec === 'object' && spec ? spec.mode : undefined, 0o644), owner, group);
+    const fAcl = parseAclSpec(typeof spec === 'object' && spec ? spec.acl : undefined);
+    if (fAcl) lookup(sys.fs, path, actor)!.node.acl = fAcl;
     // Parent dirs created on the way get sensible owners when inside a home.
     if (homeOwner) {
       let p = path;

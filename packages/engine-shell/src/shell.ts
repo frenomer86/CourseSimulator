@@ -534,7 +534,13 @@ class Parser {
       this.expectWord('fi');
       break;
     }
-    return { t: 'if', branches, else: elseBody };
+    return this.withRedirs({ t: 'if', branches, else: elseBody });
+  }
+
+  /** Compound commands may be followed by redirections: while ...; done < file. */
+  withRedirs(node: Node): Node {
+    const redirs = this.parseRedirs();
+    return redirs.length ? { t: 'group', body: node, sub: false, redirs } : node;
   }
 
   parseFor(): Node {
@@ -547,7 +553,7 @@ class Parser {
       this.expectWord('do');
       const body = this.parseList(new Set(['done']));
       this.expectWord('done');
-      return { t: 'cfor', init, cond, step, body };
+      return this.withRedirs({ t: 'cfor', init, cond, step, body });
     }
     const name = this.wordText(this.next());
     if (!name) throw new ShellSyntaxError('syntax error: for needs a variable name');
@@ -561,7 +567,7 @@ class Parser {
     this.expectWord('do');
     const body = this.parseList(new Set(['done']));
     this.expectWord('done');
-    return { t: 'for', name, words, body };
+    return this.withRedirs({ t: 'for', name, words, body });
   }
 
   parseWhile(until: boolean): Node {
@@ -570,7 +576,7 @@ class Parser {
     this.expectWord('do');
     const body = this.parseList(new Set(['done']));
     this.expectWord('done');
-    return { t: 'while', cond, body, until };
+    return this.withRedirs({ t: 'while', cond, body, until });
   }
 
   parseCase(): Node {
@@ -604,7 +610,7 @@ class Parser {
       if (this.isOp(';;')) this.next();
       items.push({ patterns, body });
     }
-    return { t: 'case', word: w.w, items };
+    return this.withRedirs({ t: 'case', word: w.w, items });
   }
 }
 
@@ -999,7 +1005,9 @@ function expandSingle(ctx: Ctx, word: Word): string {
 
 /* ------------------------------------------------------------------ arithmetic */
 
-export function evalArith(ctx: Ctx, src: string): number {
+export function evalArith(ctx: Ctx, raw: string): number {
+  // Parameter, command and nested arithmetic expansion happen before evaluation: $(( b + $(wc -c < f) )), $(( $2 + 1 )).
+  const src = raw.includes('$') ? expandText(ctx, raw, true) : raw;
   const toks: string[] = [];
   const re = /\s*(\d+|[A-Za-z_][A-Za-z0-9_]*|\*\*|<<=|>>=|<<|>>|<=|>=|==|!=|&&|\|\||\+\+|--|\+=|-=|\*=|\/=|%=|[-+*/%()<>!~&|^?:=])/y;
   let i = 0;
@@ -1472,7 +1480,15 @@ function execSimple(ctx: Ctx, node: Extract<Node, { t: 'simple' }>, io: IO): num
 }
 
 /** Runs one command (function, builtin, simulated program or script) with already-expanded words. */
+const ALIAS_PREFIX = '__alias_';
+
 export function runCommand(ctx: Ctx, words: string[], io: IO): number {
+  const alias = ctx.vars[ALIAS_PREFIX + words[0]];
+  if (alias !== undefined && !ctx.funcs[words[0]]) {
+    const expanded = alias.split(/\s+/).filter(Boolean);
+    if (expanded[0] !== words[0]) return runCommand(ctx, [...expanded, ...words.slice(1)], io);
+    words = [...expanded, ...words.slice(1)];
+  }
   const [name, ...args] = words;
   if (ctx.funcs[name]) {
     const savedParams = ctx.params;
@@ -1670,7 +1686,7 @@ function builtin(ctx: Ctx, name: string, args: string[], io: IO): number {
         ctx.params = args.slice(k);
         break;
       }
-      if (!args.length) for (const k of Object.keys(ctx.vars).sort()) io.out(`${k}=${ctx.vars[k]}\n`);
+      if (!args.length) for (const k of Object.keys(ctx.vars).filter((x) => !x.startsWith(ALIAS_PREFIX)).sort()) io.out(`${k}=${ctx.vars[k]}\n`);
       return 0;
     }
     case 'shift': {
@@ -1788,8 +1804,20 @@ function builtin(ctx: Ctx, name: string, args: string[], io: IO): number {
       io.stdin = nl === -1 ? '' : io.stdin.slice(nl + 1);
       if (!names.length) setVar(ctx, 'REPLY', line);
       else {
-        const fields = line.trim().split(/\s+/);
-        names.forEach((n, k) => setVar(ctx, n, k === names.length - 1 ? fields.slice(k).join(' ') : fields[k] ?? ''));
+        // Split on IFS (default: whitespace); the last name takes the rest of the line unsplit.
+        const ifs = ctx.vars.IFS ?? ' \t\n';
+        const isWs = /^[ \t\n]*$/.test(ifs);
+        let rest = isWs ? line.trim() : line;
+        const sep = new RegExp(isWs ? '[ \\t]+' : `[${ifs.replace(/[\]\\^-]/g, '\\$&')}]`);
+        names.forEach((n, k) => {
+          if (k === names.length - 1) {
+            setVar(ctx, n, rest);
+            return;
+          }
+          const m = sep.exec(rest);
+          setVar(ctx, n, m ? rest.slice(0, m.index) : rest);
+          rest = m ? rest.slice(m.index + m[0].length) : '';
+        });
       }
       return 0;
     }
@@ -1802,8 +1830,28 @@ function builtin(ctx: Ctx, name: string, args: string[], io: IO): number {
       return exec(ctx, parse(args.join(' ')), io);
     case 'exec':
       return args.length ? runCommand(ctx, args, io) : 0;
-    case 'alias':
+    case 'alias': {
+      // Aliases live in the session's variables under a private prefix.
+      const all = Object.keys(ctx.vars).filter((k) => k.startsWith(ALIAS_PREFIX)).sort();
+      if (!args.length) {
+        for (const k of all) io.out(`alias ${k.slice(ALIAS_PREFIX.length)}='${ctx.vars[k]}'\n`);
+        return 0;
+      }
+      let code = 0;
+      for (const a of args) {
+        const eq = a.indexOf('=');
+        if (eq > 0) ctx.vars[ALIAS_PREFIX + a.slice(0, eq)] = a.slice(eq + 1);
+        else if (ctx.vars[ALIAS_PREFIX + a] !== undefined) io.out(`alias ${a}='${ctx.vars[ALIAS_PREFIX + a]}'\n`);
+        else {
+          io.err(`bash: alias: ${a}: not found\n`);
+          code = 1;
+        }
+      }
+      return code;
+    }
     case 'unalias':
+      for (const a of args) delete ctx.vars[ALIAS_PREFIX + a];
+      return 0;
     case 'hash':
     case 'trap':
     case 'wait':

@@ -192,6 +192,11 @@ export function grepRegex(pattern: string, mode: 'basic' | 'extended' | 'fixed',
     }
     src = out;
   }
+  if (mode !== 'fixed') {
+    // POSIX bracket classes ([[:alnum:]]) and GNU word boundaries (\< \>), which JavaScript lacks.
+    const CLASSES: Record<string, string> = { alnum: 'A-Za-z0-9', alpha: 'A-Za-z', digit: '0-9', upper: 'A-Z', lower: 'a-z', space: '\\s', blank: ' \\t', xdigit: '0-9A-Fa-f', punct: '!-\\/:-@\\[-`{-~' };
+    src = src.replace(/\[:(alnum|alpha|digit|upper|lower|space|blank|xdigit|punct):\]/g, (_m, n: string) => CLASSES[n]).replace(/\\[<>]/g, '\\b');
+  }
   try {
     return new RegExp(src, flags);
   } catch {

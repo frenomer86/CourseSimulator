@@ -82,17 +82,7 @@ export const extra = (label: string, setting: string, computer: string, equals: 
 
 /* ----------------------------------------------------------------------------- text */
 
-/** Markdown treats "\\" as an escaped backslash, which would turn \\SERVER\share into \SERVER\share. Double them outside code spans. */
-export function mdSafe(text: string): string {
-  return text
-    .split(/(`[^`]*`)/)
-    .map((part, i) => (i % 2 ? part : part.replace(/\\\\/g, '\\\\\\\\')))
-    .join('');
-}
-
-export function lab(parts: { situation: string; steps: string[]; tips?: string[] }): string {
-  return mdSafe([`## The situation`, '', parts.situation, '', '## Do this', '', ...parts.steps.map((s, i) => `${i + 1}. ${s}`), ...(parts.tips?.length ? ['', '## Useful commands', '', ...parts.tips.map((t) => `- \`${t}\``)] : [])].join('\n'));
-}
+export { lab, mdSafe } from '../common';
 
 export function task(t: BuiltTask): BuiltTask {
   return t;

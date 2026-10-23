@@ -7,6 +7,15 @@ export interface AclEntry {
   kind: 'user' | 'group';
   name: string;
   perms: string; // e.g. "rw-"
+  /** A default ACL entry on a directory: inherited by new files and directories inside it. */
+  def?: boolean;
+}
+
+/** ACL entries a new node inherits from its parent's default ACL (directories also keep the defaults). */
+function inheritedAcl(parent: BaseNode, isDir: boolean): AclEntry[] | undefined {
+  const defs = parent.acl?.filter((a) => a.def) ?? [];
+  if (!defs.length) return undefined;
+  return [...defs.map((a) => ({ kind: a.kind, name: a.name, perms: a.perms })), ...(isDir ? defs.map((a) => ({ ...a })) : [])];
 }
 
 interface BaseNode {
@@ -81,10 +90,10 @@ export function can(node: BaseNode, actor: Actor, perm: 'r' | 'w' | 'x'): boolea
   const bit = perm === 'r' ? 4 : perm === 'w' ? 2 : 1;
   if (node.owner === actor.user) return ((node.mode >> 6) & bit) !== 0;
   // ACL entries for the user win over group bits.
-  const userAcl = node.acl?.find((a) => a.kind === 'user' && a.name === actor.user);
+  const userAcl = node.acl?.find((a) => !a.def && a.kind === 'user' && a.name === actor.user);
   if (userAcl) return userAcl.perms.includes(perm);
   const groupMatch = actor.groups.includes(node.group) ? ((node.mode >> 3) & bit) !== 0 : null;
-  const groupAcls = node.acl?.filter((a) => a.kind === 'group' && actor.groups.includes(a.name)) ?? [];
+  const groupAcls = node.acl?.filter((a) => !a.def && a.kind === 'group' && actor.groups.includes(a.name)) ?? [];
   if (groupMatch !== null || groupAcls.length) return groupMatch === true || groupAcls.some((a) => a.perms.includes(perm));
   return (node.mode & bit) !== 0;
 }
@@ -150,7 +159,10 @@ export function writeFile(root: DirNode, path: string, content: string, actor: A
   if (!can(parent.node, actor, 'w')) throw new FsError('EACCES', `${path}: Permission denied`);
   // A setgid directory hands its group to new files.
   const group = parent.node.mode & 0o2000 ? parent.node.group : actor.groups[0] ?? actor.user;
-  parent.node.children[basename(abs)] = mkfileNode(content, actor.user, group, 0o644 & ~currentUmask, now);
+  const created = mkfileNode(content, actor.user, group, 0o644 & ~currentUmask, now);
+  const acl = inheritedAcl(parent.node, false);
+  if (acl) created.acl = acl;
+  parent.node.children[basename(abs)] = created;
   parent.node.mtime = now;
 }
 
@@ -180,7 +192,10 @@ export function mkdir(root: DirNode, path: string, actor: Actor, now: number, pa
   if (parent.node.type !== 'dir') throw new FsError('ENOTDIR', `${dirname(abs)}: Not a directory`);
   if (!can(parent.node, actor, 'w')) throw new FsError('EACCES', `${path}: Permission denied`);
   const setgid = (parent.node.mode & 0o2000) !== 0;
-  parent.node.children[basename(abs)] = mkdirNode(actor.user, setgid ? parent.node.group : actor.groups[0] ?? actor.user, (0o777 & ~currentUmask) | (setgid ? 0o2000 : 0), now);
+  const created = mkdirNode(actor.user, setgid ? parent.node.group : actor.groups[0] ?? actor.user, (0o777 & ~currentUmask) | (setgid ? 0o2000 : 0), now);
+  const acl = inheritedAcl(parent.node, true);
+  if (acl) created.acl = acl;
+  parent.node.children[basename(abs)] = created;
   parent.node.mtime = now;
 }
 
