@@ -29,6 +29,7 @@
     "@cslab/engine-sql": "*",
     "@cslab/engine-visualiser": "*",
     "@cslab/lab-runtime": "*",
+    "@cslab/task-bank": "*",
     "codemirror": "^6.0.2",
     "marked": "^15.0.4",
     "react": "^18.3.1",

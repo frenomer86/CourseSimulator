@@ -5,7 +5,7 @@
  */
 
 import { asList, bool, condition, isObj, isSecure, machine, machineByName, num, prop, register, registerNative, str, type Cx, type Env, type Obj, type Secure, type Value } from './core.js';
-import { domainDn, sameSubnet, srvRecords, type AdComputer, type AdGroup, type AdOu, type AdState, type AdUser, type Fgpp, type PasswordPolicy, type WinEvent } from './model.js';
+import { dcRules as dcRulesFor, domainDn, sameSubnet, srvRecords, type AdComputer, type AdGroup, type AdOu, type AdState, type AdUser, type Fgpp, type PasswordPolicy, type WinEvent } from './model.js';
 
 /* ----------------------------------------------------------------------------- lookups */
 
@@ -241,7 +241,22 @@ register(
     },
     'get-adforest': (cx) => {
       const st = cx.env.st;
-      return [{ __type: 'ADForest', Name: st.domain, RootDomain: st.domain, Domains: [st.domain], ForestMode: st.forestLevel, SchemaMaster: `${st.fsmo.SchemaMaster}.${st.domain}`, DomainNamingMaster: `${st.fsmo.DomainNamingMaster}.${st.domain}`, GlobalCatalogs: cx.env.est.machines.filter((m) => m.dc?.gc).map((m) => `${m.name}.${st.domain}`), Sites: st.sites.map((s) => s.name) }];
+      return [{ __type: 'ADForest', Name: st.domain, RootDomain: st.domain, Domains: [st.domain], ForestMode: st.forestLevel, SchemaMaster: `${st.fsmo.SchemaMaster}.${st.domain}`, DomainNamingMaster: `${st.fsmo.DomainNamingMaster}.${st.domain}`, GlobalCatalogs: cx.env.est.machines.filter((m) => m.dc?.gc).map((m) => `${m.name}.${st.domain}`), Sites: st.sites.map((s) => s.name), UPNSuffixes: st.upnSuffixes ?? [] }];
+    },
+    'set-adforest': (cx) => {
+      const st = cx.env.st;
+      const v = cx.P.upnsuffixes;
+      if (!isObj(v)) cx.fail('Use Set-ADForest -Identity <forest> -UPNSuffixes @{Add="example.edu.gh"} (or Remove=).');
+      const o = v as Obj;
+      const list = new Set(st.upnSuffixes ?? []);
+      for (const s of asList(o.Add ?? o.add).map(str)) {
+        if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(s)) cx.fail(`${s} is not a valid DNS suffix.`);
+        list.add(s.toLowerCase());
+      }
+      for (const s of asList(o.Remove ?? o.remove).map(str)) list.delete(s.toLowerCase());
+      st.upnSuffixes = [...list];
+      cx.env.dirtyAd = true;
+      return [];
     },
     'get-addomaincontroller': (cx) => {
       const st = cx.env.st;
@@ -410,6 +425,11 @@ register(
         set('homedirectory', 'homeDirectory');
         set('homedrive', 'homeDrive');
         set('profilepath', 'profilePath');
+        if (cx.P.userprincipalname !== undefined) {
+          const suffix = str(cx.P.userprincipalname).split('@')[1]?.toLowerCase();
+          if (!suffix) cx.fail('A UPN looks like name@suffix.');
+          if (suffix !== st.domain.toLowerCase() && !(st.upnSuffixes ?? []).includes(suffix!)) cx.fail(`The UPN suffix ${suffix} is not one of this forest's UPN suffixes. Add it first: Set-ADForest -Identity ${st.domain} -UPNSuffixes @{Add="${suffix}"}`);
+        }
         set('userprincipalname', 'upn');
         if (cx.P.manager !== undefined) u.manager = findUser(st, cx.P.manager)?.dn ?? cx.fail(`Cannot find an object with identity: '${str(cx.P.manager)}'.`);
         if (cx.P.passwordneverexpires !== undefined) u.passwordNeverExpires = bool(cx.P.passwordneverexpires);
@@ -921,6 +941,7 @@ function promote(cx: Cx, forest: boolean): Value[] {
   m.dc = { gc: forest || cx.P.noglobalcatalog === undefined, site: str(cx.P.sitename ?? 'Default-First-Site-Name') };
   if (!m.features.includes('DNS') && (cx.P.installdns !== undefined || forest)) m.features.push('DNS');
   m.services.NTDS = { status: 'Running', start: 'Automatic' };
+  for (const r of dcRulesFor()) if (!m.firewall.rules.some((x) => x.name === r.name)) m.firewall.rules.push(r);
   m.services.Netlogon = { status: 'Running', start: 'Automatic' };
   m.services.DNS = { status: 'Running', start: 'Automatic' };
   m.dns = m.dns ?? { forwarders: [], rootHints: true };

@@ -1,6 +1,8 @@
 import type { LabSpec, TopicCheckSpec } from '@cslab/lab-runtime';
 import { LEVEL_ORDER, validateLabSpec, validateTopicCheckSpec } from '@cslab/lab-runtime';
 import coursesData from '@data/courses.json';
+import taskMeta from '@cslab/task-bank/meta.json';
+import { buildTask, loadCourse, parseTaskId, variantFor, type TemplateMeta } from '@cslab/task-bank';
 
 export interface SyllabusUnit {
   title: string;
@@ -139,9 +141,65 @@ const labModules = import.meta.glob('@content/courses/*/*.json', { eager: true, 
   unknown
 >;
 
-export const LABS: LabSpec[] = Object.values(labModules)
-  .filter(validateLabSpec)
-  .sort((a, b) => LEVEL_ORDER.indexOf(a.level) - LEVEL_ORDER.indexOf(b.level) || a.id.localeCompare(b.id));
+/*
+ * Task templates (packages/task-bank) add many generated tasks per topic. meta.json lists them for the
+ * catalogue as light stubs; the full task (instructions, starting state, checks) is built on demand,
+ * per variant, when a learner opens it. Ids are "<template>" (the learner's own variant) or
+ * "<template>~<n>" (variant n).
+ */
+export interface TaskStub extends LabSpec {
+  template: true;
+  variants: number;
+  summary: string;
+}
+
+const TASK_STUBS: TaskStub[] = (taskMeta as TemplateMeta[]).map((m) => ({
+  id: m.id,
+  course: m.course,
+  unit: m.unit,
+  topicIndex: m.topicIndex,
+  topic: courseBySlug(m.course)?.syllabus?.[m.unit - 1]?.topics[m.topicIndex - 1] ?? m.title,
+  level: m.level,
+  engine: m.engine as LabSpec['engine'],
+  title: m.title,
+  instructions: m.summary,
+  hints: [],
+  checks: [],
+  estimatedMinutes: m.estimatedMinutes,
+  template: true,
+  variants: m.variants,
+  summary: m.summary,
+}));
+
+export const LABS: LabSpec[] = [...Object.values(labModules).filter(validateLabSpec), ...TASK_STUBS].sort(
+  (a, b) => LEVEL_ORDER.indexOf(a.level) - LEVEL_ORDER.indexOf(b.level) || a.id.localeCompare(b.id),
+);
+
+export function isTemplated(lab: LabSpec): lab is TaskStub {
+  return (lab as Partial<TaskStub>).template === true;
+}
+
+/** The template id behind a task id ("x~7" → "x"); other lab ids are returned unchanged. */
+export function baseLabId(id: string): string {
+  return parseTaskId(id).template;
+}
+
+/**
+ * Builds the full task for a templated lab id. Without "~n" the learner gets their own stable variant;
+ * the built lab keeps the id it was opened with, so progress and group assignments use that id.
+ */
+export async function loadTemplatedLab(id: string, learnerKey: string | undefined): Promise<(LabSpec & { variant: number; variants: number }) | undefined> {
+  const { template, variant } = parseTaskId(id);
+  const stub = TASK_STUBS.find((s) => s.id === template);
+  if (!stub) return undefined;
+  const templates = await loadCourse(stub.course);
+  const t = templates.find((x) => x.id === template);
+  if (!t) return undefined;
+  const n = variant ?? variantFor(template, learnerKey, stub.variants);
+  const built = buildTask(t, n, id);
+  delete (built as { solution?: string[] }).solution;
+  return { ...built, topic: stub.topic };
+}
 
 export function labsForCourse(slug: string): LabSpec[] {
   return LABS.filter((l) => l.course === slug);
@@ -157,12 +215,17 @@ export function labsForUnit(slug: string, unit: number): LabSpec[] {
 }
 
 export function labById(id: string): LabSpec | undefined {
-  return LABS.find((l) => l.id === id);
+  const exact = LABS.find((l) => l.id === id);
+  if (exact) return exact;
+  const base = baseLabId(id);
+  const stub = base !== id ? TASK_STUBS.find((s) => s.id === base) : undefined;
+  return stub ? { ...stub, id } : undefined;
 }
 
 export function nextLab(current: LabSpec): LabSpec | undefined {
   const list = labsForCourse(current.course);
-  const i = list.findIndex((l) => l.id === current.id);
+  const id = baseLabId(current.id);
+  const i = list.findIndex((l) => l.id === id);
   return i >= 0 ? list[i + 1] : undefined;
 }
 

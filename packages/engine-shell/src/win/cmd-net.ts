@@ -506,7 +506,7 @@ register({
   },
   'get-dnsserverzone': (cx) => {
     dnsServer(cx);
-    return cx.env.st.zones.filter((z) => !(cx.P.name ?? cx.pos[0]) || z.name.toLowerCase() === str(cx.P.name ?? cx.pos[0]).toLowerCase()).map((z) => ({ __type: 'zone', ZoneName: z.name, ZoneType: z.kind, IsAutoCreated: false, IsDsIntegrated: z.adIntegrated, IsReverseLookupZone: z.reverse, IsSigned: false, DynamicUpdate: z.dynamicUpdate }));
+    return cx.env.st.zones.filter((z) => !(cx.P.name ?? cx.pos[0]) || z.name.toLowerCase() === str(cx.P.name ?? cx.pos[0]).toLowerCase()).map((z) => ({ __type: 'zone', ZoneName: z.name, ZoneType: z.kind, IsAutoCreated: false, IsDsIntegrated: z.adIntegrated, IsReverseLookupZone: z.reverse, IsSigned: false, DynamicUpdate: z.dynamicUpdate, Aging: !!z.scavenging }));
   },
   'remove-dnsserverzone': (cx) => {
     const z = zoneOf(cx);

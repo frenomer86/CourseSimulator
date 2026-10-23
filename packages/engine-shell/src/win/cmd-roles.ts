@@ -208,7 +208,8 @@ registerNative({
     if (a === '-ping') return ca ? [`Connecting to ${ca.name}\\${ca.ca!.name} ...`, `Server "${ca.ca!.name}" ICertRequest2 interface is alive`, 'CertUtil: -ping command completed successfully.'] : ['CertUtil: -ping command FAILED: 0x800706ba (WIN32: 1722 RPC_S_SERVER_UNAVAILABLE)', '(No certification authority is installed.)'];
     if (a === '-catemplates') return ca ? [...cx.env.st.caTemplates.map((t) => `${t}: ${t} -- Auto-Enroll: Access is denied.`), 'CertUtil: -CATemplates command completed successfully.'] : ['CertUtil: No CA found.'];
     if (a === '-pulse') return ['CertUtil: -pulse command completed successfully.'];
-    return ['Usage: certutil -ping | -CATemplates | -pulse'];
+    if (a === '-cainfo') return ca ? [`CA name: ${ca.ca!.name}`, `CA type: ${ca.ca!.type}`, `Key length: ${ca.ca!.keyLength}`, `Hash algorithm: ${ca.ca!.hash}`, `Validity: ${ca.ca!.years} years`, `CA server: ${ca.name}`, 'CertUtil: -CAInfo command completed successfully.'] : ['CertUtil: No CA found.'];
+    return ['Usage: certutil -ping | -CAInfo | -CATemplates | -pulse'];
   },
   wbadmin: (args, cx) => {
     const env = cx.env;

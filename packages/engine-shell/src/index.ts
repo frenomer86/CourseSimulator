@@ -7,6 +7,6 @@ export { installCrontab } from './commands-admin.js';
 export { MAN_PAGES } from './man.js';
 export { GIT_COMMANDS, loadGit, findRepo, headCommit } from './commands-git.js';
 export { DOCKER_COMMANDS, loadDocker, dockerHttp } from './commands-docker.js';
-export { runPowerShell, psAwaitsMore, promptPowerShell, CMDLETS, loadAd, loadEstate, toWin, toVfs, domainDn, newDirectory, newMachine, winSystemSpec, effectiveAccess, rsop, effectivePolicy, effectiveExtra, reach, resolve, findUser, findGroup, findComputer, groupsOf, resultantPolicy, makeEnv, evalSource, machineByName } from './powershell.js';
+export { runPowerShell, psAwaitsMore, psQuery, promptPowerShell, CMDLETS, loadAd, loadEstate, toWin, toVfs, domainDn, newDirectory, newMachine, winSystemSpec, effectiveAccess, rsop, effectivePolicy, effectiveExtra, reach, resolve, findUser, findGroup, findComputer, groupsOf, resultantPolicy, makeEnv, evalSource, machineByName } from './powershell.js';
 export type { AdState, AdUser, AdGroup, AdOu, AdComputer, Estate, Machine, WinLabSpec, Gpo, SmbShare } from './powershell.js';
 export * from './checks.js';

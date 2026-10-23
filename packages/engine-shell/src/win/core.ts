@@ -916,3 +916,25 @@ export function isDir(fs: DirNode, path: string): boolean {
   const l = lookup(fs, path, { user: 'root', groups: ['root'] });
   return !!l && l.node.type === 'dir';
 }
+
+/**
+ * Runs a read-only query for a check: on `machineName` (default: the first machine), without
+ * saving anything, recording history or moving the learner's session. Returns the rendered output,
+ * or "ERROR: ..." when the query fails.
+ */
+export function psQuery(sys: ShellSystem, script: string, machineName?: string): string {
+  const env = makeEnv(sys, {});
+  const target = machineName ? machineByName(env, machineName)?.name : env.est.machines[0]?.name;
+  if (!target) return `ERROR: there is no machine called ${machineName}.`;
+  env.est.current = target;
+  const savedCwd = sys.cwd;
+  sys.cwd = driveRoot(env.est, target) + '/Users/Administrator';
+  try {
+    return render(evalSource(env, script)).trim();
+  } catch (e) {
+    if (e instanceof PsError) return `ERROR: ${e.message}`;
+    throw e;
+  } finally {
+    sys.cwd = savedCwd;
+  }
+}

@@ -60,7 +60,7 @@ register({
   },
 });
 
-export { runPowerShell, promptPowerShell, psAwaitsMore, makeEnv, commit, evalSource, toVfs, toWin, normWin, machine, machineByName } from './core.js';
+export { runPowerShell, promptPowerShell, psAwaitsMore, psQuery, makeEnv, commit, evalSource, toVfs, toWin, normWin, machine, machineByName } from './core.js';
 export type { Env, Value, Obj } from './core.js';
 export * from './model.js';
 export { effectiveAccess, ntfsAccess, shareAccess, aclOf } from './cmd-files.js';

@@ -1,0 +1,14 @@
+{
+  "name": "@cslab/task-bank",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Task templates with generated variants, three levels per syllabus topic. Course modules load lazily; meta.json lists every template for the catalogue.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@cslab/lab-runtime": "*",
+    "@cslab/engine-shell": "*",
+    "@cslab/engine-scenario": "*"
+  }
+}

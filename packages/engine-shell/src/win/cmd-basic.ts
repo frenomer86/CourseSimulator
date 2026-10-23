@@ -100,6 +100,10 @@ register(
       return [];
     },
     'get-childitem': (cx) => {
+      if (/^cert:/i.test(path(cx))) {
+        const store = (machine(cx.env) as Machine & { certs?: Array<{ subject: string; template: string; thumb: string }> }).certs ?? [];
+        return store.map((c) => ({ __type: 'select', Thumbprint: c.thumb, Subject: c.subject, Template: c.template }));
+      }
       const target = toVfs(cx.env, path(cx));
       const recurse = !!cx.P.recurse;
       const out: Obj[] = [];
@@ -158,6 +162,20 @@ register(
     },
     'remove-item': (cx) => {
       const target = toVfs(cx.env, path(cx));
+      const leaf = target.slice(target.lastIndexOf('/') + 1);
+      if (leaf.includes('*')) {
+        const dir = target.slice(0, target.lastIndexOf('/')) || '/';
+        const re = new RegExp('^' + leaf.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*') + '$', 'i');
+        let entries: ReturnType<typeof listDir> = [];
+        try {
+          entries = listDir(cx.env.sys.fs, dir, ROOT);
+        } catch {
+          cx.fail(`Cannot find path '${toWin(dir)}' because it does not exist.`);
+        }
+        for (const e of entries) if (re.test(e.name)) remove(cx.env.sys.fs, `${dir}/${e.name}`, ROOT, !!cx.P.recurse || e.node.type === 'dir');
+        cx.env.dirtyEst = true;
+        return [];
+      }
       try {
         remove(cx.env.sys.fs, target, ROOT, !!cx.P.recurse);
       } catch {
@@ -174,7 +192,7 @@ register(
         return cx.fail(`Could not find file '${path(cx)}'.`);
       }
       const rows = text.split(/\r?\n/).filter((l) => l.trim());
-      const split = (l: string) => l.split(',').map((c) => c.trim().replace(/^"|"$/g, ''));
+      const split = (l: string) => { const out: string[] = []; let cur = ''; let q = false; for (let i = 0; i < l.length; i++) { const ch = l[i]; if (q) { if (ch === '"' && l[i + 1] === '"') { cur += '"'; i++; } else if (ch === '"') q = false; else cur += ch; } else if (ch === '"') q = true; else if (ch === ',') { out.push(cur.trim()); cur = ''; } else cur += ch; } out.push(cur.trim()); return out; };
       const header = split(rows[0] ?? '');
       return rows.slice(1).map((r) => {
         const cells = split(r);
@@ -403,7 +421,7 @@ register(
       const want = cx.P.name ?? cx.pos[0];
       return features()
         .filter((f) => !want || asList(want).some((w) => new RegExp('^' + str(w).replace(/\*/g, '.*') + '$', 'i').test(f.name)))
-        .map((f) => ({ __type: 'feature', 'Display Name': `[${hasFeature(m!, f.name) ? 'X' : ' '}] ${f.display}`, Name: f.name, 'Install State': hasFeature(m!, f.name) ? 'Installed' : 'Available' }));
+        .map((f) => ({ __type: 'feature', 'Display Name': `[${hasFeature(m!, f.name) ? 'X' : ' '}] ${f.display}`, Name: f.name, InstallState: hasFeature(m!, f.name) ? 'Installed' : 'Available', Installed: hasFeature(m!, f.name) }));
     },
     'install-windowsfeature': (cx) => {
       const m = cx.P.computername ? machineByName(cx.env, str(cx.P.computername)) : machine(cx.env);
@@ -577,6 +595,7 @@ register(
       cx.env.dirtyEst = true;
       return [{ __type: 'select', FriendlyName: name, OperationalStatus: 'OK', HealthStatus: 'Healthy', Size: `${disks.reduce((a, n) => a + (m.disks.find((x) => x.number === n)?.sizeGb ?? 0), 0)} GB` }];
     },
+    'get-virtualdisk': (cx) => machine(cx.env).pools.flatMap((p) => p.virtualDisks.map((v) => ({ __type: 'disk', FriendlyName: v.name, ResiliencySettingName: v.resiliency, Size: `${v.sizeGb} GB`, SizeGB: v.sizeGb, HealthStatus: 'Healthy', StoragePool: p.name }))),
     'get-storagepool': (cx) => machine(cx.env).pools.map((p) => ({ __type: 'select', FriendlyName: p.name, Disks: p.disks.length, VirtualDisks: p.virtualDisks.map((v) => v.name).join(', ') })),
     'new-virtualdisk': (cx) => {
       const m = machine(cx.env);
@@ -607,7 +626,7 @@ register(
       cx.env.dirtyEst = true;
       return [{ __type: 'select', Name: name, SwitchType: type, NetAdapterInterfaceDescription: type === 'External' ? str(cx.P.netadaptername) : '' }];
     },
-    'get-vmswitch': (cx) => hyperv(cx).hyperv!.switches.map((s) => ({ __type: 'select', Name: s.name, SwitchType: s.type })),
+    'get-vmswitch': (cx) => hyperv(cx).hyperv!.switches.filter((s) => !(cx.P.name ?? cx.pos[0]) || s.name.toLowerCase() === str(cx.P.name ?? cx.pos[0]).toLowerCase()).map((s) => ({ __type: 'select', Name: s.name, SwitchType: s.type })),
     'new-vm': (cx) => {
       const m = hyperv(cx);
       const name = str(cx.P.name ?? cx.pos[0]);
@@ -618,7 +637,7 @@ register(
       cx.env.dirtyEst = true;
       return [{ __type: 'vm', Name: name, State: 'Off', 'CPUUsage(%)': 0, 'MemoryAssigned(M)': 0, Uptime: '00:00:00', Status: 'Operating normally' }];
     },
-    'get-vm': (cx) => hyperv(cx).hyperv!.vms.filter((v) => !(cx.P.name ?? cx.pos[0]) || v.name.toLowerCase() === str(cx.P.name ?? cx.pos[0]).toLowerCase()).map((v) => ({ __type: 'vm', Name: v.name, State: v.state, Generation: v.generation, 'MemoryStartup(M)': v.memoryMb, ProcessorCount: v.cpus, Switch: v.switch ?? '' })),
+    'get-vm': (cx) => hyperv(cx).hyperv!.vms.filter((v) => !(cx.P.name ?? cx.pos[0]) || v.name.toLowerCase() === str(cx.P.name ?? cx.pos[0]).toLowerCase()).map((v) => ({ __type: 'vm', Name: v.name, State: v.state, Generation: v.generation, MemoryStartup: v.memoryMb * 1024 * 1024, ProcessorCount: v.cpus, SwitchName: v.switch ?? '', Checkpoints: v.checkpoints.length })),
     'start-vm': (cx) => vmState(cx, 'Running'),
     'stop-vm': (cx) => vmState(cx, 'Off'),
     'set-vmprocessor': (cx) => {

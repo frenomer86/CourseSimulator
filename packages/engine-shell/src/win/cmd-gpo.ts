@@ -332,6 +332,7 @@ register(
       const list = cx.P.all ? env.st.gpos : [gpoOf(cx)];
       for (const g of list) {
         const id = `{${(Math.abs(hash(g.name + g.version)) % 1e8).toString(16).padStart(8, '0').toUpperCase()}-BACK-UP00-0000-000000000000}`;
+        mkdir(env.sys.fs, `${vfs}/${id}`, ROOT, env.sys.now, true);
         writeFile(env.sys.fs, `${vfs}/${id}/gpo.json`, JSON.stringify(g), ROOT, env.sys.now);
       }
       return list.map((g) => ({ __type: 'select', DisplayName: g.name, GpoId: g.id.slice(1, -1), Version: g.version, BackupDirectory: dir }));

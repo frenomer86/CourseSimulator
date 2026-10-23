@@ -20,6 +20,7 @@ import {
   parse,
   promptPowerShell,
   psAwaitsMore,
+  toWin,
   readFile,
   resolvePath,
   runLine,
@@ -60,6 +61,11 @@ function labObject(lab: LabSpec<unknown>): EventObject {
   return { type: 'lab', id: lab.id, course: lab.course, unit: lab.unit, topic: lab.topicIndex, labId: lab.id, labLevel: lab.level };
 }
 
+function welcomeText(sys: ShellSystem): string {
+  if (sys.os === 'windows') return `Windows Server 2022: signed in to ${sys.hostname} as ${sys.user}. Type a cmdlet, or Get-Help <cmdlet> for help.\n`;
+  return `Welcome to ${sys.hostname} (openSUSE Leap 15.6). Type a command, or man <command> for help.\n`;
+}
+
 function promptFor(sys: ShellSystem): string {
   if (sys.os === 'windows') return promptPowerShell(sys);
   const home = sys.users[sys.user]?.home ?? '/';
@@ -79,7 +85,7 @@ export function TerminalLab({ lab }: { lab: LabSpec<ShellState> }) {
   const sysRef = useRef<ShellSystem>(saved?.system && typeof saved.system === 'object' && 'fs' in saved.system ? saved.system : systemFromInitial(lab.initialState));
   const sessionRef = useRef<Session>(newSession(sysRef.current));
   const [tick, setTick] = useState(0);
-  const [transcript, setTranscript] = useState<Line[]>(() => saved?.transcript ?? [{ kind: 'out', text: `Welcome to ${sysRef.current.hostname} (openSUSE Leap 15.6). Type a command, or man <command> for help.\n` }]);
+  const [transcript, setTranscript] = useState<Line[]>(() => saved?.transcript ?? [{ kind: 'out', text: welcomeText(sysRef.current) }]);
   const [input, setInput] = useState('');
   const [pending, setPending] = useState<string[]>([]);
   const [histIndex, setHistIndex] = useState<number | null>(null);
@@ -383,9 +389,9 @@ export function TerminalLab({ lab }: { lab: LabSpec<ShellState> }) {
           <div className="rounded-lg border border-line bg-[#1b1f23] text-[#e6edf3] font-mono text-[13px] leading-5 shadow-inner" onClick={() => inputRef.current?.focus()} role="group" aria-label="Terminal">
             <div className="flex items-center justify-between px-3 py-1.5 border-b border-white/10 text-xs text-white/60">
               <span>
-                {sys.user}@{sys.hostname}: {sys.cwd}
+                {sys.user}@{sys.hostname}: {sys.os === 'windows' ? toWin(sys.cwd) : sys.cwd}
               </span>
-              <span>bash (simulated)</span>
+              <span>{sys.os === 'windows' ? 'PowerShell (simulated)' : 'bash (simulated)'}</span>
             </div>
             <div className="h-[420px] overflow-y-auto px-3 py-2" aria-live="polite" aria-label="Terminal output">
               {transcript.map((l, i) => (
@@ -449,7 +455,7 @@ export function TerminalLab({ lab }: { lab: LabSpec<ShellState> }) {
           )}
 
           <div className="rounded-lg border border-line bg-surface p-3 text-xs text-ink-soft">
-            <span className="font-medium text-ink">In {sys.cwd}:</span>{' '}
+            <span className="font-medium text-ink">In {sys.os === 'windows' ? toWin(sys.cwd) : sys.cwd}:</span>{' '}
             {cwdFiles.length ? cwdFiles.map((e) => (
               <span key={e.name} className={`font-mono mr-3 ${e.node.type === 'dir' ? 'text-high' : ''}`}>
                 {e.name}

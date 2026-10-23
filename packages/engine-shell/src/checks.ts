@@ -20,9 +20,12 @@
  *   win.user    { sam | sams: [...], exists?, enabled?, ou?: DN, department?, groups?: [...], hasPassword? }
  *   win.group   { name, exists?, scope?, members?: [...], memberOf?: [...] }
  *   win.share   { name, path?, access?: [{ account, right }], noEveryoneFull? }
+ *   win.ps      { script, machine?, equals? | contains? | notContains? | pattern? | equalsIgnoreCase? }   a read-only PowerShell query
+ *   win.access  { path: "\\\\FS01\\Share" or "D:\\x", user, equals: "Modify" | "ReadAndExecute" | ... | "None", machine? }
+ *   win.policy  { key?: "HKCU\\...|ValueName", setting?: "User:Drive map", user?, computer, equals }
  */
 
-import { loadAd } from './powershell.js';
+import { effectiveAccess, effectiveExtra, effectivePolicy, loadAd, loadEstate, makeEnv, psQuery } from './powershell.js';
 import { ancestors, findRepo, headCommit, loadGit } from './commands-git.js';
 import { loadDocker } from './commands-docker.js';
 import { CheckRegistry, type CheckResult, type CheckSpec } from '@cslab/lab-runtime';
@@ -76,6 +79,27 @@ function textChecks(spec: CheckSpec, text: string, what: string): string | null 
 
 export function createShellChecks(): CheckRegistry<ShellState> {
   return new CheckRegistry<ShellState>()
+    .register('win.ps', async (state, spec) => {
+      const out = psQuery(state.system, String(spec.script), spec.machine ? String(spec.machine) : undefined);
+      if (out.startsWith('ERROR:') && !spec.allowError) return fail(spec, String(spec.message ?? `The check could not run: ${out.slice(7)}`));
+      if (spec.equalsIgnoreCase !== undefined && out.toLowerCase() !== String(spec.equalsIgnoreCase).toLowerCase()) return fail(spec, String(spec.message ?? `Expected "${String(spec.equalsIgnoreCase)}" but found "${out.slice(0, 120)}".`));
+      const problem = textChecks(spec, out, `The result of "${String(spec.script).slice(0, 80)}"`);
+      return problem ? fail(spec, String(spec.message ?? problem)) : pass(spec, String(spec.success ?? 'As required.'));
+    })
+    .register('win.access', async (state, spec) => {
+      const env = makeEnv(state.system, {});
+      if (spec.machine) env.est.current = String(spec.machine);
+      const got = effectiveAccess(env, String(spec.path), String(spec.user));
+      return got === spec.equals ? pass(spec, String(spec.success ?? `${String(spec.user)} has ${got} access to ${String(spec.path)}.`)) : fail(spec, String(spec.message ?? `${String(spec.user)} has ${got} access to ${String(spec.path)}; it should be ${String(spec.equals)}.`));
+    })
+    .register('win.policy', async (state, spec) => {
+      const env = makeEnv(state.system, {});
+      const got = spec.setting ? effectiveExtra(env, String(spec.setting), spec.user ? String(spec.user) : undefined, String(spec.computer)) : effectivePolicy(env, String(spec.key), spec.user ? String(spec.user) : undefined, String(spec.computer));
+      const want = spec.equals === null ? undefined : spec.equals;
+      const same = want === undefined ? got === undefined : got !== undefined && String(got).toLowerCase() === String(want).toLowerCase();
+      const who = spec.user ? `${String(spec.user)} on ${String(spec.computer)}` : String(spec.computer);
+      return same ? pass(spec, String(spec.success ?? 'The policy applies as required.')) : fail(spec, String(spec.message ?? `For ${who} the winning value is ${got === undefined ? 'not set' : String(got)}; it should be ${want === undefined ? 'not set' : String(want)}.`));
+    })
     .register('win.ou', async (state, spec) => {
       const st = loadAd(state.system);
       const ou = st.ous.find((o) => o.dn.toLowerCase() === String(spec.dn).toLowerCase());
@@ -121,7 +145,8 @@ export function createShellChecks(): CheckRegistry<ShellState> {
     })
     .register('win.share', async (state, spec) => {
       const st = loadAd(state.system);
-      const s = st.shares.find((x) => x.name.toLowerCase() === String(spec.name).toLowerCase());
+      const est = loadEstate(state.system);
+      const s = st.shares.find((x) => x.name.toLowerCase() === String(spec.name).toLowerCase()) ?? est.machines.flatMap((m) => m.shares).find((x) => x.name.toLowerCase() === String(spec.name).toLowerCase());
       if (!s) return fail(spec, String(spec.message ?? `There is no share called ${String(spec.name)}. Create it with New-SmbShare.`));
       if (spec.path && s.path.toLowerCase() !== String(spec.path).toLowerCase()) return fail(spec, `${s.name} shares ${s.path}; it should share ${String(spec.path)}.`);
       for (const a of (spec.access as Array<{ account: string; right: string }> | undefined) ?? []) {

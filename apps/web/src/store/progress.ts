@@ -207,8 +207,14 @@ export const useProgress = create<ProgressState>()(
   ),
 );
 
+/** Progress for a lab, including any explicit variant of a templated task ("<id>~<n>"). */
+function labRecords(labs: Record<string, LabProgress>, id: string): LabProgress[] {
+  const own = labs[id] ? [labs[id]] : [];
+  return [...own, ...Object.entries(labs).filter(([k]) => k.startsWith(`${id}~`)).map(([, v]) => v)];
+}
+
 function labsPassedOnTopic(labs: Record<string, LabProgress>, course: string, unit: number, topic: number): LabLevel[] {
-  return LABS.filter((l) => l.course === course && l.unit === unit && l.topicIndex === topic && labs[l.id]?.passed).map((l) => l.level);
+  return LABS.filter((l) => l.course === course && l.unit === unit && l.topicIndex === topic && labRecords(labs, l.id).some((p) => p.passed)).map((l) => l.level);
 }
 
 /** Mastery for a topic as the UI should show it: stored state, or derived from labs for older data. */
@@ -217,7 +223,7 @@ export function topicMastery(state: ProgressRecords, course: string, unit: numbe
   const check = state.checks[key];
   const derived = deriveMastery({
     passedLevels: labsPassedOnTopic(state.labs, course, unit, topic),
-    attempted: LABS.some((l) => l.course === course && l.unit === unit && l.topicIndex === topic && state.labs[l.id]),
+    attempted: LABS.some((l) => l.course === course && l.unit === unit && l.topicIndex === topic && labRecords(state.labs, l.id).length > 0),
     checkPassed: check?.passed,
     bestCheckScore: check?.bestScore,
   });

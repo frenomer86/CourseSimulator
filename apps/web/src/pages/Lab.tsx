@@ -12,8 +12,9 @@ import type { HardwareState } from '@cslab/engine-hardware';
 import type { CloudState } from '@cslab/engine-cloud';
 import type { DiagramState } from '@cslab/engine-diagram';
 import type { MobileState } from '@cslab/engine-mobile';
-import { checkForTopic, courseBySlug, labById, nextLab, unitOf } from '../lib/catalogue';
+import { baseLabId, checkForTopic, courseBySlug, isTemplated, labById, loadTemplatedLab, nextLab, unitOf, type TaskStub } from '../lib/catalogue';
 import { useProgress } from '../store/progress';
+import { useAuth } from '../store/auth';
 import { secondsSince, track } from '../lib/telemetry';
 import { LogicCanvas } from '../components/LogicCanvas';
 import { TruthTablePanel } from '../components/TruthTablePanel';
@@ -56,6 +57,51 @@ export function LabPage() {
   const { id = '' } = useParams();
   const lab = labById(id);
   if (!lab) return <NotFoundPage />;
+  if (isTemplated(lab)) return <TemplatedLab key={id} id={id} stub={lab} />;
+  return <LabView lab={lab} />;
+}
+
+/** A generated task: built for this learner's variant (or the one in the URL), then shown like any lab. */
+function TemplatedLab({ id, stub }: { id: string; stub: TaskStub }) {
+  const learner = useAuth((s) => s.user?.id);
+  const [built, setBuilt] = useState<(LabSpec & { variant: number; variants: number }) | null | undefined>(undefined);
+  useEffect(() => {
+    let live = true;
+    loadTemplatedLab(id, learner).then((b) => live && setBuilt(b ?? null), () => live && setBuilt(null));
+    return () => {
+      live = false;
+    };
+  }, [id, learner]);
+  if (built === undefined) return <Loading title={stub.title} />;
+  if (built === null) return <NotFoundPage />;
+  const base = baseLabId(id);
+  const other = (built.variant % built.variants) + 1;
+  return (
+    <>
+      <div className="mx-auto max-w-[1400px] px-4 pt-4">
+        <p className="rounded-md border border-line bg-bench px-3 py-2 text-sm text-ink-soft flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>
+            <span className="font-medium text-ink">Variant {built.variant} of {built.variants}.</span>{' '}
+            {base === id ? 'This is your own version of the task: classmates get different names, addresses and numbers.' : 'You opened a specific version of this task.'}
+          </span>
+          <span className="ml-auto flex gap-3">
+            {base !== id && (
+              <Link to={`/labs/${base}`} className="underline underline-offset-2 hover:text-ink">
+                Back to my version
+              </Link>
+            )}
+            <Link to={`/labs/${base}~${other}`} className="underline underline-offset-2 hover:text-ink">
+              Practise another variant
+            </Link>
+          </span>
+        </p>
+      </div>
+      <LabView key={built.id} lab={built} />
+    </>
+  );
+}
+
+function LabView({ lab }: { lab: LabSpec }) {
   const fallback = <Loading title={lab.title} />;
   if (lab.engine === 'E1') return <Suspense fallback={fallback}><CodeLab key={lab.id} lab={lab as LabSpec<CodeState>} /></Suspense>;
   if (lab.engine === 'E10') return <Suspense fallback={fallback}><ScenarioLab key={lab.id} lab={lab as LabSpec<ScenarioState>} /></Suspense>;

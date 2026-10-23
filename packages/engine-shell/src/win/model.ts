@@ -177,6 +177,8 @@ export interface AdState {
   centralStore: boolean;
   caTemplates: string[];
   nextRid: number;
+  /** Extra UPN suffixes added to the forest (Set-ADForest -UPNSuffixes). */
+  upnSuffixes?: string[];
 }
 
 /* ----------------------------------------------------------------------------- machines */
@@ -471,6 +473,12 @@ export function defaultRules(): FwRule[] {
   ];
 }
 
+/** The inbound rules a domain controller has enabled once AD DS is installed. */
+export function dcRules(): FwRule[] {
+  const r = (name: string, ports: string, protocol: FwRule['protocol'] = 'TCP'): FwRule => ({ name, direction: 'Inbound', action: 'Allow', protocol, ports, profiles: ['Domain', 'Private'], remote: 'Any', enabled: true });
+  return [r('Active Directory Domain Controller - LDAP (TCP-In)', '389'), r('Active Directory Domain Controller - Secure LDAP (TCP-In)', '636'), r('Active Directory Domain Controller - LDAP for Global Catalog (TCP-In)', '3268'), r('Kerberos Key Distribution Center (TCP-In)', '88'), r('DNS (TCP, Incoming)', '53'), r('DNS (UDP, Incoming)', '53', 'UDP'), r('Active Directory Domain Controller (RPC)', '135'), r('Active Directory Domain Controller - SAM/LSA (NP-TCP-In)', '445'), r('Active Directory Domain Controller - Echo Request (ICMPv4-In)', 'Any', 'ICMPv4')];
+}
+
 export function defaultServices(): Machine['services'] {
   const run = { status: 'Running' as const, start: 'Automatic' as const };
   return { Spooler: { ...run }, W32Time: { ...run }, WinRM: { ...run }, LanmanServer: { ...run }, Dnscache: { ...run }, EventLog: { ...run }, BITS: { status: 'Stopped', start: 'Manual' } };
@@ -548,7 +556,7 @@ export function winSystemSpec(spec: WinLabSpec): Record<string, unknown> {
   const st = newDirectory(domain, netbios, first);
   const machines = (spec.machines?.length ? spec.machines : [{ name: first }]).map((m, i) =>
     newMachine(m.name, {
-      ...(i === 0 ? { dc: { gc: true, site: 'Default-First-Site-Name' }, features: ['AD-Domain-Services', 'DNS', 'GPMC', 'RSAT-AD-PowerShell'], domain, dns: { forwarders: [], rootHints: true } } : { domain }),
+      ...(i === 0 ? { dc: { gc: true, site: 'Default-First-Site-Name' }, features: ['AD-Domain-Services', 'DNS', 'GPMC', 'RSAT-AD-PowerShell'], domain, dns: { forwarders: [], rootHints: true }, firewall: { enabled: { Domain: true, Private: true, Public: true }, rules: [...defaultRules(), ...dcRules()] }, services: { ...defaultServices(), DNS: { status: 'Running', start: 'Automatic' }, NTDS: { status: 'Running', start: 'Automatic' }, Netlogon: { status: 'Running', start: 'Automatic' }, Kdc: { status: 'Running', start: 'Automatic' } } } : { domain }),
       ...m,
     }),
   );
