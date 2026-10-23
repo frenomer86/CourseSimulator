@@ -1,0 +1,77 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "mobile-and-cellular-networks-i1-lte-peak-rate-from-resource-blocks",
+  "course": "mobile-and-cellular-networks",
+  "topic": "LTE radio: OFDMA and resource blocks",
+  "unit": 5,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "LTE peak rate from resource blocks",
+  "estimatedMinutes": 20,
+  "instructions": "## Where \"150 Mbps\" comes from\n\nAn operator advertises LTE \"up to 150 Mbps\" on a 20 MHz carrier. Work it out from the radio grid.\n\nThe LTE downlink uses OFDMA with **15 kHz** subcarriers. A **resource block** is 12 subcarriers wide and one 0.5 ms slot long. With the normal cyclic prefix a slot has 7 OFDM symbols, so one 1 ms subframe has 14. A resource element is one subcarrier for one symbol.\n\n## Do this\n\n1. The bandwidth of one resource block, in kHz.\n2. A 20 MHz carrier uses 90% of its width for subcarriers. How many resource blocks fit?\n3. Resource elements in one resource block over one 1 ms subframe.\n4. Peak raw rate in Mbps for the whole carrier with 64-QAM (6 bits per element) and one layer.\n5. The same with 2×2 MIMO (two layers).\n6. About a quarter of elements carry control channels and reference signals. The rate left for data, in Mbps.\n\nThe plot shows the single-layer raw rate as a function of the number of resource blocks.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "x*168*6/1000"
+    ]
+  },
+  "hints": [
+    "12 × 15 kHz.",
+    "0.9 × 20 000 kHz ÷ 180 kHz.",
+    "168 elements × 100 blocks × 6 bits per millisecond, then convert bits per ms to Mbps."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Resource block bandwidth",
+      "id": "q1",
+      "expected": 180,
+      "question": "Bandwidth of one resource block (kHz):"
+    },
+    {
+      "type": "math.number",
+      "label": "Resource blocks in 20 MHz",
+      "id": "q2",
+      "expected": 100,
+      "question": "Resource blocks in a 20 MHz carrier:"
+    },
+    {
+      "type": "math.number",
+      "label": "Resource elements per block per subframe",
+      "id": "q3",
+      "expected": 168,
+      "question": "Resource elements per resource block per 1 ms subframe:"
+    },
+    {
+      "type": "math.number",
+      "label": "Single-layer raw peak rate",
+      "id": "q4",
+      "expected": 100.8,
+      "question": "Raw peak rate, one layer, 64-QAM (Mbps):",
+      "tolerance": 0.05
+    },
+    {
+      "type": "math.number",
+      "label": "Two-layer raw peak rate",
+      "id": "q5",
+      "expected": 201.6,
+      "question": "Raw peak rate with 2×2 MIMO (Mbps):",
+      "tolerance": 0.05
+    },
+    {
+      "type": "math.number",
+      "label": "Rate after overhead",
+      "id": "q6",
+      "expected": 151.2,
+      "question": "Rate left for data after 25% overhead (Mbps):",
+      "tolerance": 0.05
+    }
+  ],
+  "realityNote": "The \"150 Mbps\" category-4 LTE figure is this calculation. Real users share the resource blocks with everyone else in the cell and rarely get 64-QAM at the cell edge, so typical speeds are a fraction of it."
+}

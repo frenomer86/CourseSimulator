@@ -1,0 +1,240 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "it-support-and-troubleshooting-b1-pc-7-has-no-internet",
+  "course": "it-support-and-troubleshooting",
+  "topic": "A structured troubleshooting approach",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "PC 7 has no internet",
+  "estimatedMinutes": 15,
+  "instructions": "## A ticket from the school computer lab\n\nYou support a senior high school in Ho. The ICT teacher logs a ticket: one lab PC cannot reach the internet before a class at 10:00. Work the six-step method: identify the problem, form a theory, test it, plan and carry out the fix, verify, and document. Read the evidence before each choice.",
+  "config": {
+    "scenario": {
+      "start": "p1",
+      "nodes": [
+        {
+          "id": "p1",
+          "title": "Identify the problem",
+          "text": "The ticket says only \"internet not working on PC 7\". What do you do first?",
+          "evidence": [
+            {
+              "id": "ticket",
+              "kind": "document",
+              "title": "The ticket",
+              "text": "From: Mr Agbeko, ICT teacher. \"Internet not working on PC 7. Class at 10.\" Logged 08:40."
+            },
+            {
+              "id": "interview",
+              "kind": "document",
+              "title": "Two minutes with Mr Agbeko",
+              "text": "The other 23 PCs work. PC 7 worked on Friday. Over the weekend the cleaners moved the desks to mop the floor. No one has installed anything."
+            }
+          ],
+          "choices": [
+            {
+              "id": "p1-1",
+              "text": "Ask what changed, check whether other PCs work, and try to reproduce the fault",
+              "next": "p2",
+              "score": 2,
+              "flags": [
+                "p1-right"
+              ],
+              "feedback": "Correct. One PC failing, the rest fine, and desks moved at the weekend already points somewhere."
+            },
+            {
+              "id": "p1-2",
+              "text": "Reinstall Windows to start from a clean state",
+              "next": "p2",
+              "score": 0,
+              "flags": [],
+              "feedback": "That is a fix without a diagnosis, and it destroys evidence and an hour."
+            },
+            {
+              "id": "p1-3",
+              "text": "Call the internet provider",
+              "next": "p2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Twenty-three other PCs are online, so the provider is not the problem."
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "title": "Form a theory",
+          "text": "You run ipconfig and ping on PC 7.",
+          "evidence": [
+            {
+              "id": "ipconfig",
+              "kind": "data",
+              "title": "ipconfig and ping output",
+              "text": "Ethernet adapter: Media state . . . : Media connected\nIPv4 Address . . : 169.254.37.12\nSubnet Mask . . . : 255.255.0.0\nDefault Gateway . : (none)\n\nping 192.168.10.1 → Destination host unreachable."
+            }
+          ],
+          "choices": [
+            {
+              "id": "p2-1",
+              "text": "DNS is misconfigured",
+              "next": "p3",
+              "score": 0,
+              "flags": [],
+              "feedback": "DNS only matters once the PC has an address and a gateway. This one has neither."
+            },
+            {
+              "id": "p2-2",
+              "text": "The PC never got a DHCP lease (169.254 is a self-assigned address), so suspect the cable or the switch port it moved to",
+              "next": "p3",
+              "score": 2,
+              "flags": [
+                "p2-right"
+              ],
+              "feedback": "Correct. A 169.254 address means the DHCP server was not reached. After desks were moved, the physical path is the first suspect."
+            },
+            {
+              "id": "p2-3",
+              "text": "The network card is broken",
+              "next": "p3",
+              "score": 0,
+              "flags": [],
+              "feedback": "The adapter reports \"Media connected\", so it sees a link. Test the cheaper causes first."
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "title": "Test the theory",
+          "text": "How do you test it?",
+          "choices": [
+            {
+              "id": "p3-1",
+              "text": "Move PC 7's cable to the port PC 8 uses, which is known to work, and change nothing else",
+              "next": "p4",
+              "score": 2,
+              "flags": [
+                "p3-right"
+              ],
+              "feedback": "Correct. Change one thing at a time against a known-good reference, so the result means something."
+            },
+            {
+              "id": "p3-2",
+              "text": "Replace the cable, change the port, update the driver and reset the router at once",
+              "next": "p4",
+              "score": 0,
+              "flags": [],
+              "feedback": "If it starts working you will not know which change fixed it."
+            },
+            {
+              "id": "p3-3",
+              "text": "Disable the firewall",
+              "next": "p4",
+              "score": 0,
+              "flags": [],
+              "feedback": "A firewall does not stop a DHCP lease from being issued."
+            }
+          ]
+        },
+        {
+          "id": "p4",
+          "title": "Plan and fix",
+          "text": "On PC 8's port, PC 7 gets 192.168.10.57 and browses. With PC 7's own cable on PC 8's port it fails again. What is the fix?",
+          "choices": [
+            {
+              "id": "p4-1",
+              "text": "Replace PC 7's patch cable, which was crushed under the moved desk, and route the new one away from the desk legs",
+              "next": "p5",
+              "score": 2,
+              "flags": [
+                "p4-right"
+              ],
+              "feedback": "Correct. The cable is the one thing that failed in both tests."
+            },
+            {
+              "id": "p4-2",
+              "text": "Leave PC 7 on PC 8's port permanently",
+              "next": "p5",
+              "score": 0,
+              "flags": [],
+              "feedback": "That moves the problem to PC 8."
+            },
+            {
+              "id": "p4-3",
+              "text": "Order a new switch",
+              "next": "p5",
+              "score": 0,
+              "flags": [],
+              "feedback": "The switch port worked with a good cable."
+            }
+          ]
+        },
+        {
+          "id": "p5",
+          "title": "Verify and document",
+          "text": "PC 7 is online again with a new cable. What closes the ticket properly?",
+          "choices": [
+            {
+              "id": "p5-1",
+              "text": "Have Mr Agbeko confirm it works, note the cause and fix in the ticket, and add a knowledge-base line about cables under desks after cleaning",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "p5-right"
+              ],
+              "feedback": "Correct. Confirmed by the user, documented for the next technician, and turned into prevention."
+            },
+            {
+              "id": "p5-2",
+              "text": "Close it as \"fixed\"",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "The next technician learns nothing, and the same fault will return after the next mopping."
+            },
+            {
+              "id": "p5-3",
+              "text": "Leave the ticket open in case it breaks again",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Open tickets that are already resolved distort the queue and the service-level figures."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Ticket closed by 09:20",
+          "text": "Root cause: a crushed patch cable after desks were moved. Fixed, verified with the user, documented, with a note to check cables after cleaning days.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Ask what changed since it last worked.",
+    "An address starting 169.254 means the PC gave itself an address because no DHCP server answered.",
+    "Swap one thing for a known-good one and test again."
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.examined",
+      "label": "You read the interview and the ipconfig output",
+      "evidence": [
+        "interview",
+        "ipconfig"
+      ]
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "CompTIA A+ teaches this same six-step method. Most network faults in school labs turn out to be the physical layer: cables, ports and power."
+}

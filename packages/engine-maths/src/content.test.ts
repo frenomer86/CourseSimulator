@@ -12,6 +12,7 @@ const ROOT = join(__dirname, '..', '..', '..', 'content', 'courses');
 const LEGACY = new Set(['discrete-mathematics', 'mathematics-for-computer-science', 'calculus', 'probability-and-statistics', 'numerical-methods-and-computation', 'fundamentals-of-computer-science']);
 
 const SOLUTIONS: Record<string, Record<string, string>> = {
+  "mobile-and-cellular-networks-i1-lte-peak-rate-from-resource-blocks": {"q1":"180","q2":"100","q3":"168","q4":"100.8","q5":"201.6","q6":"151.2"},
   'linear-algebra-for-data-science-i1-vectors-and-matrices': { q1: '12', q2: '5', q3: '0.7071', q4: '2 1; 4 3', q5: '1', q6: '3 -1; -5 2' },
   'biostatistics-b1-describe-the-readings': { q1: '126', q2: '124', q3: '59.67', q4: '7.72', q5: '2.92' },
   'data-communications-b1-nyquist-and-shannon': { q1: '12000', q2: '16', q3: '30', q4: '29902', q5: '800' },

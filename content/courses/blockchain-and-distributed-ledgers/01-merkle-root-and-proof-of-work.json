@@ -1,0 +1,110 @@
+{
+  "engine": "E1",
+  "id": "blockchain-and-distributed-ledgers-i1-merkle-root-and-proof-of-work",
+  "course": "blockchain-and-distributed-ledgers",
+  "topic": "Merkle trees and proof-of-work puzzles",
+  "unit": 1,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Compute a Merkle root and mine a block",
+  "estimatedMinutes": 25,
+  "instructions": "## Two building blocks of a blockchain\n\nA **Merkle root** commits to every transaction in a block with one hash. Hash each transaction, then repeatedly hash adjacent pairs, concatenating the two hex strings, until one hash is left. When a level has an odd number of hashes, duplicate the last one, as Bitcoin does. An empty list has the root sha256(\"\").\n\n**Proof of work** makes a block expensive to produce: find the smallest whole number `nonce`, starting from 0, so that sha256(data + str(nonce)) in hex starts with `difficulty` zeros.\n\n## Do this\n\nWrite `merkle_root(txs)` and `mine(data, difficulty)`. A helper `sha256_hex(text)` is provided. Then notice how much longer difficulty 3 takes than difficulty 2: each extra zero multiplies the expected work by 16.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "import hashlib\n\ndef sha256_hex(text):\n    return hashlib.sha256(text.encode()).hexdigest()\n\ndef merkle_root(txs):\n    # hash each transaction, then hash pairs level by level\n    return None\n\ndef mine(data, difficulty):\n    # smallest nonce whose hash starts with difficulty zeros\n    return None\n\nprint(merkle_root([\"Ama pays Kofi 5\", \"Kofi pays Esi 2\"]))\n"
+  },
+  "hints": [
+    "Start with level = [sha256_hex(t) for t in txs].",
+    "While len(level) > 1: if it is odd, append level[-1]; then build the next level from pairs.",
+    "For mine, loop nonce from 0 and test sha256_hex(f\"{data}{nonce}\").startswith(\"0\" * difficulty)."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "merkle_root is right for 0, 1, 2, 3 and 4 transactions",
+      "name": "merkle_root",
+      "cases": [
+        {
+          "args": [
+            []
+          ],
+          "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "args": [
+            [
+              "Ama pays Kofi 5"
+            ]
+          ],
+          "expected": "1f07bbcdbf5a373dbeb53ed9838a7728ca5be4268221a06e3366dc101422ce95"
+        },
+        {
+          "args": [
+            [
+              "Ama pays Kofi 5",
+              "Kofi pays Esi 2"
+            ]
+          ],
+          "expected": "b5813eaceeb81f390a006d0f4eb94248b5666083362e69b676535c9ead8037c6"
+        },
+        {
+          "args": [
+            [
+              "Ama pays Kofi 5",
+              "Kofi pays Esi 2",
+              "Esi pays Yaw 1"
+            ]
+          ],
+          "expected": "e26393927646a8fc5f7a9d987f5542a2ef83e1f8dbcc912ad8899e85048af1f0"
+        },
+        {
+          "args": [
+            [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          ],
+          "expected": "58c89d709329eb37285837b042ab6ff72c7c8f74de0446b091b6a0131c102cfd"
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "mine finds the smallest nonce",
+      "name": "mine",
+      "cases": [
+        {
+          "args": [
+            "genesis",
+            1
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "block1|prev=0000|Ama pays Kofi 5",
+            2
+          ],
+          "expected": 147
+        },
+        {
+          "args": [
+            "block2|prev=00ab|Kofi pays Esi 2",
+            3
+          ],
+          "expected": 4170
+        }
+      ]
+    }
+  ],
+  "realityNote": "Bitcoin hashes the 80-byte block header twice with SHA-256 and compares it against a target rather than counting zeros, and its difficulty means about 10^23 hashes per block. A light wallet checks a payment with a Merkle proof of about a dozen hashes instead of downloading the block."
+}

@@ -1,0 +1,451 @@
+{
+  "engine": "E1",
+  "id": "software-defined-networking-i1-a-flow-table",
+  "course": "software-defined-networking",
+  "topic": "The OpenFlow switch model: flow tables and match fields",
+  "unit": 3,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Match packets against an OpenFlow flow table",
+  "estimatedMinutes": 25,
+  "instructions": "## Be the switch\n\nAn OpenFlow switch holds a **flow table** installed by the controller. Each entry has a priority, match fields and actions. For each packet the switch picks the **highest-priority** entry whose fields all match. A field missing from an entry is a wildcard. If nothing matches, the **table-miss** behaviour sends the packet to the controller as a packet-in.\n\nThe campus table in this lab:\n\n| Priority | Match | Actions |\n|---|---|---|\n| 200 | ipv4_dst 10.0.2.0/24, tcp_dst 22 | DROP |\n| 150 | ipv4_dst 10.0.2.0/24 | OUTPUT:2 |\n| 100 | eth_type arp | FLOOD |\n| 50 | ipv4_dst 10.0.0.0/16 | OUTPUT:3 |\n| 10 | in_port 1 | OUTPUT:4 |\n\n## Do this\n\n- `ipInPrefix(ip, prefix)`: true when the dotted address is inside the CIDR prefix.\n- `matchFlow(table, packet)`: the actions of the winning entry, or `[\"CONTROLLER\"]` on a table miss. An entry with ipv4_dst never matches a packet that has no ipv4_dst, such as an ARP packet.\n\nEntries look like `{ priority, match: { ipv4_dst, tcp_dst, eth_type, in_port }, actions: [...] }`. Packets carry the same field names.",
+  "config": {
+    "language": "javascript"
+  },
+  "initialState": {
+    "language": "javascript",
+    "source": "function ipInPrefix(ip, prefix) {\n  // compare the first prefix-length bits of ip and of the network address\n}\n\nfunction matchFlow(table, packet) {\n  // highest priority entry whose every match field agrees with the packet\n  return ['CONTROLLER'];\n}\n\nconsole.log(ipInPrefix('10.0.2.15', '10.0.2.0/24'));\n"
+  },
+  "hints": [
+    "Turn a dotted address into a number: a * 256 + octet, for each octet.",
+    "Two addresses share a /n prefix when Math.floor(x / 2^(32 - n)) is the same for both.",
+    "Loop over every entry, keep the matching one with the largest priority."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "ipInPrefix handles /24, /16, /23 and /0",
+      "name": "ipInPrefix",
+      "cases": [
+        {
+          "args": [
+            "10.0.2.15",
+            "10.0.2.0/24"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "10.0.3.1",
+            "10.0.2.0/24"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "10.0.255.1",
+            "10.0.0.0/16"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "172.16.5.4",
+            "172.16.4.0/23"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "172.16.6.4",
+            "172.16.4.0/23"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "192.168.1.1",
+            "0.0.0.0/0"
+          ],
+          "expected": true
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "matchFlow picks the highest-priority match or sends to the controller",
+      "name": "matchFlow",
+      "cases": [
+        {
+          "args": [
+            [
+              {
+                "priority": 100,
+                "match": {
+                  "eth_type": "arp"
+                },
+                "actions": [
+                  "FLOOD"
+                ]
+              },
+              {
+                "priority": 200,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24",
+                  "tcp_dst": 22
+                },
+                "actions": [
+                  "DROP"
+                ]
+              },
+              {
+                "priority": 150,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24"
+                },
+                "actions": [
+                  "OUTPUT:2"
+                ]
+              },
+              {
+                "priority": 50,
+                "match": {
+                  "ipv4_dst": "10.0.0.0/16"
+                },
+                "actions": [
+                  "OUTPUT:3"
+                ]
+              },
+              {
+                "priority": 10,
+                "match": {
+                  "in_port": 1
+                },
+                "actions": [
+                  "OUTPUT:4"
+                ]
+              }
+            ],
+            {
+              "in_port": 1,
+              "eth_type": "ipv4",
+              "ipv4_dst": "10.0.2.15",
+              "tcp_dst": 22
+            }
+          ],
+          "expected": [
+            "DROP"
+          ]
+        },
+        {
+          "args": [
+            [
+              {
+                "priority": 100,
+                "match": {
+                  "eth_type": "arp"
+                },
+                "actions": [
+                  "FLOOD"
+                ]
+              },
+              {
+                "priority": 200,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24",
+                  "tcp_dst": 22
+                },
+                "actions": [
+                  "DROP"
+                ]
+              },
+              {
+                "priority": 150,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24"
+                },
+                "actions": [
+                  "OUTPUT:2"
+                ]
+              },
+              {
+                "priority": 50,
+                "match": {
+                  "ipv4_dst": "10.0.0.0/16"
+                },
+                "actions": [
+                  "OUTPUT:3"
+                ]
+              },
+              {
+                "priority": 10,
+                "match": {
+                  "in_port": 1
+                },
+                "actions": [
+                  "OUTPUT:4"
+                ]
+              }
+            ],
+            {
+              "in_port": 1,
+              "eth_type": "ipv4",
+              "ipv4_dst": "10.0.2.15",
+              "tcp_dst": 80
+            }
+          ],
+          "expected": [
+            "OUTPUT:2"
+          ]
+        },
+        {
+          "args": [
+            [
+              {
+                "priority": 100,
+                "match": {
+                  "eth_type": "arp"
+                },
+                "actions": [
+                  "FLOOD"
+                ]
+              },
+              {
+                "priority": 200,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24",
+                  "tcp_dst": 22
+                },
+                "actions": [
+                  "DROP"
+                ]
+              },
+              {
+                "priority": 150,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24"
+                },
+                "actions": [
+                  "OUTPUT:2"
+                ]
+              },
+              {
+                "priority": 50,
+                "match": {
+                  "ipv4_dst": "10.0.0.0/16"
+                },
+                "actions": [
+                  "OUTPUT:3"
+                ]
+              },
+              {
+                "priority": 10,
+                "match": {
+                  "in_port": 1
+                },
+                "actions": [
+                  "OUTPUT:4"
+                ]
+              }
+            ],
+            {
+              "in_port": 2,
+              "eth_type": "ipv4",
+              "ipv4_dst": "10.0.7.9",
+              "tcp_dst": 80
+            }
+          ],
+          "expected": [
+            "OUTPUT:3"
+          ]
+        },
+        {
+          "args": [
+            [
+              {
+                "priority": 100,
+                "match": {
+                  "eth_type": "arp"
+                },
+                "actions": [
+                  "FLOOD"
+                ]
+              },
+              {
+                "priority": 200,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24",
+                  "tcp_dst": 22
+                },
+                "actions": [
+                  "DROP"
+                ]
+              },
+              {
+                "priority": 150,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24"
+                },
+                "actions": [
+                  "OUTPUT:2"
+                ]
+              },
+              {
+                "priority": 50,
+                "match": {
+                  "ipv4_dst": "10.0.0.0/16"
+                },
+                "actions": [
+                  "OUTPUT:3"
+                ]
+              },
+              {
+                "priority": 10,
+                "match": {
+                  "in_port": 1
+                },
+                "actions": [
+                  "OUTPUT:4"
+                ]
+              }
+            ],
+            {
+              "in_port": 1,
+              "eth_type": "ipv4",
+              "ipv4_dst": "8.8.8.8",
+              "tcp_dst": 53
+            }
+          ],
+          "expected": [
+            "OUTPUT:4"
+          ]
+        },
+        {
+          "args": [
+            [
+              {
+                "priority": 100,
+                "match": {
+                  "eth_type": "arp"
+                },
+                "actions": [
+                  "FLOOD"
+                ]
+              },
+              {
+                "priority": 200,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24",
+                  "tcp_dst": 22
+                },
+                "actions": [
+                  "DROP"
+                ]
+              },
+              {
+                "priority": 150,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24"
+                },
+                "actions": [
+                  "OUTPUT:2"
+                ]
+              },
+              {
+                "priority": 50,
+                "match": {
+                  "ipv4_dst": "10.0.0.0/16"
+                },
+                "actions": [
+                  "OUTPUT:3"
+                ]
+              },
+              {
+                "priority": 10,
+                "match": {
+                  "in_port": 1
+                },
+                "actions": [
+                  "OUTPUT:4"
+                ]
+              }
+            ],
+            {
+              "in_port": 5,
+              "eth_type": "ipv4",
+              "ipv4_dst": "8.8.8.8",
+              "tcp_dst": 53
+            }
+          ],
+          "expected": [
+            "CONTROLLER"
+          ]
+        },
+        {
+          "args": [
+            [
+              {
+                "priority": 100,
+                "match": {
+                  "eth_type": "arp"
+                },
+                "actions": [
+                  "FLOOD"
+                ]
+              },
+              {
+                "priority": 200,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24",
+                  "tcp_dst": 22
+                },
+                "actions": [
+                  "DROP"
+                ]
+              },
+              {
+                "priority": 150,
+                "match": {
+                  "ipv4_dst": "10.0.2.0/24"
+                },
+                "actions": [
+                  "OUTPUT:2"
+                ]
+              },
+              {
+                "priority": 50,
+                "match": {
+                  "ipv4_dst": "10.0.0.0/16"
+                },
+                "actions": [
+                  "OUTPUT:3"
+                ]
+              },
+              {
+                "priority": 10,
+                "match": {
+                  "in_port": 1
+                },
+                "actions": [
+                  "OUTPUT:4"
+                ]
+              }
+            ],
+            {
+              "in_port": 3,
+              "eth_type": "arp"
+            }
+          ],
+          "expected": [
+            "FLOOD"
+          ]
+        }
+      ]
+    }
+  ],
+  "realityNote": "Open vSwitch and hardware OpenFlow switches do this lookup in TCAM or in cached megaflows at line rate. Ryu or ONOS controllers install the entries, and the table-miss packet-in is how a learning switch discovers new hosts."
+}

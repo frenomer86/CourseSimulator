@@ -1,0 +1,242 @@
+{
+  "engine": "E1",
+  "id": "distributed-systems-i1-vector-clocks",
+  "course": "distributed-systems",
+  "topic": "Logical clocks and the happens-before relation",
+  "unit": 3,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Vector clocks: which update came first?",
+  "estimatedMinutes": 25,
+  "instructions": "## Three replicas of a wallet service\n\nThree replicas (0, 1 and 2) of a mobile wallet service exchange updates. Wall clocks drift, so each replica keeps a **vector clock**: one counter per replica.\n\n- Before a local event or a send, a replica increments its own entry.\n- On receiving a message, it takes the element-wise maximum of its clock and the message's clock, then increments its own entry.\n- Clock a **happened before** b when every entry of a is ≤ the entry in b and at least one is smaller. If neither happened before the other, the events are **concurrent**, and the service must reconcile them.\n\n## Do this\n\nWrite four functions. None may change the arrays it is given.\n\n- `tick(v, me)`: a copy of v with entry me incremented.\n- `merge(a, b)`: the element-wise maximum.\n- `receive(local, msg, me)`: merge, then tick.\n- `compare(a, b)`: `\"before\"`, `\"after\"`, `\"equal\"` or `\"concurrent\"`.",
+  "config": {
+    "language": "javascript"
+  },
+  "initialState": {
+    "language": "javascript",
+    "source": "function tick(v, me) {\n  // return a new array with v[me] + 1\n}\n\nfunction merge(a, b) {\n  // element-wise maximum\n}\n\nfunction receive(local, msg, me) {\n  // merge, then tick\n}\n\nfunction compare(a, b) {\n  // 'before', 'after', 'equal' or 'concurrent'\n}\n\nconsole.log(compare([1, 2, 0], [2, 1, 0]));\n"
+  },
+  "hints": [
+    "`v.slice()` copies an array.",
+    "`a.map((x, i) => Math.max(x, b[i]))` is the merge.",
+    "In compare, track whether every a[i] <= b[i] and whether every a[i] >= b[i]. Both true means equal. Neither means concurrent."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "tick increments one entry and leaves the input alone",
+      "name": "tick",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              0
+            ],
+            1
+          ],
+          "expected": [
+            1,
+            3,
+            0
+          ]
+        },
+        {
+          "args": [
+            [
+              0,
+              0,
+              0
+            ],
+            2
+          ],
+          "expected": [
+            0,
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "merge takes the element-wise maximum",
+      "name": "merge",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              4,
+              0
+            ],
+            [
+              3,
+              2,
+              0
+            ]
+          ],
+          "expected": [
+            3,
+            4,
+            0
+          ]
+        },
+        {
+          "args": [
+            [
+              0,
+              0,
+              5
+            ],
+            [
+              0,
+              0,
+              5
+            ]
+          ],
+          "expected": [
+            0,
+            0,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "receive merges then ticks",
+      "name": "receive",
+      "cases": [
+        {
+          "args": [
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              1
+            ],
+            0
+          ],
+          "expected": [
+            3,
+            3,
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            2
+          ],
+          "expected": [
+            1,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "compare orders events or calls them concurrent",
+      "name": "compare",
+      "cases": [
+        {
+          "args": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ]
+          ],
+          "expected": "before"
+        },
+        {
+          "args": [
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ]
+          ],
+          "expected": "after"
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ]
+          ],
+          "expected": "concurrent"
+        },
+        {
+          "args": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "expected": "equal"
+        },
+        {
+          "args": [
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              1,
+              1,
+              2
+            ]
+          ],
+          "expected": "concurrent"
+        }
+      ]
+    }
+  ],
+  "realityNote": "Amazon's Dynamo and Riak used version vectors, a close relative, to detect conflicting writes to the same key and hand both versions to the application to reconcile."
+}

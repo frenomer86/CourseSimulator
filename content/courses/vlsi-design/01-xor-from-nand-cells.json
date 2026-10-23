@@ -1,0 +1,61 @@
+{
+  "engine": "E2",
+  "id": "vlsi-design-i1-xor-from-nand-cells",
+  "course": "vlsi-design",
+  "topic": "Static CMOS and the NAND cell",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Build XOR from four NAND cells",
+  "estimatedMinutes": 20,
+  "instructions": "## Why chips are built from NAND\n\nA static CMOS NAND gate needs only four transistors: two PMOS in parallel in the pull-up network and two NMOS in series in the pull-down network. An XOR built directly in CMOS needs more transistors and slower pass structures. That is why standard-cell libraries lean on NAND, and why NAND is called a **universal** gate.\n\n## Do this\n\nBuild **Y = A XOR B** using **only NAND gates**, at most four of them. Place switches A and B and an output lamp Y, then wire the gates.\n\nThe classic construction: N1 = NAND(A, B), N2 = NAND(A, N1), N3 = NAND(B, N1), Y = NAND(N2, N3).\n\nWhen it works, count the transistors: four NAND cells at four transistors each.",
+  "config": {
+    "palette": [
+      "INPUT",
+      "OUTPUT",
+      "NAND"
+    ],
+    "inputLabels": [
+      "A",
+      "B"
+    ],
+    "outputLabels": [
+      "Y"
+    ]
+  },
+  "hints": [
+    "Start with one NAND fed by A and B. Its output feeds two more NANDs.",
+    "The second NAND takes A and N1. The third takes B and N1.",
+    "The last NAND combines the second and third."
+  ],
+  "checks": [
+    {
+      "type": "logic.allConnected",
+      "label": "Every pin is wired"
+    },
+    {
+      "type": "logic.allowedGates",
+      "label": "Only NAND gates are used",
+      "gates": [
+        "NAND"
+      ]
+    },
+    {
+      "type": "logic.truthTable",
+      "label": "Y is A XOR B",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": {
+        "Y": "A ^ B"
+      }
+    },
+    {
+      "type": "logic.maxGates",
+      "label": "Uses at most four NAND gates",
+      "max": 4
+    }
+  ],
+  "realityNote": "Four NAND cells come to 16 transistors. A good transmission-gate XOR does it with 8, which is why libraries also ship a dedicated XOR cell and synthesis tools choose between them by area and delay."
+}

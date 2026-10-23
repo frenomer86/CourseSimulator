@@ -1,0 +1,234 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "game-design-principles-b1-mda-on-an-oware-game",
+  "course": "game-design-principles",
+  "topic": "The MDA framework",
+  "unit": 2,
+  "topicIndex": 1,
+  "level": "beginner",
+  "title": "Mechanics, dynamics and aesthetics in a mobile oware game",
+  "estimatedMinutes": 15,
+  "instructions": "## A studio in Accra is building mobile oware\n\nYou join the design team for a phone version of oware (abapa rules). Use the MDA framework to read the game: **mechanics** are the rules and actions, **dynamics** are the behaviour that emerges when people play them, and **aesthetics** are the feelings players have. Then use playtest data to fix a balance problem.",
+  "config": {
+    "scenario": {
+      "start": "g1",
+      "nodes": [
+        {
+          "id": "g1",
+          "title": "A rule",
+          "text": "Read the rules sheet. Which MDA layer is \"sow seeds one per house anticlockwise; capture when the last seed makes a house of 2 or 3\"?",
+          "evidence": [
+            {
+              "id": "rules",
+              "kind": "document",
+              "title": "Rules sheet (abapa)",
+              "text": "Two rows of six houses, four seeds each. On your turn pick up all seeds from one of your houses and sow them one per house anticlockwise. If the last seed lands in an opponent's house making 2 or 3, capture them, and keep capturing backwards while the previous house also has 2 or 3. You may not leave your opponent with no seeds if you can avoid it. First to 25 seeds wins."
+            }
+          ],
+          "choices": [
+            {
+              "id": "g1-1",
+              "text": "A mechanic",
+              "next": "g2",
+              "score": 2,
+              "flags": [
+                "g1-right"
+              ],
+              "feedback": "Correct. It is a rule that defines an action and its result."
+            },
+            {
+              "id": "g1-2",
+              "text": "A dynamic",
+              "next": "g2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Dynamics are what happens when players use the rules, not the rules themselves."
+            },
+            {
+              "id": "g1-3",
+              "text": "An aesthetic",
+              "next": "g2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Aesthetics are player feelings, not rules."
+            }
+          ]
+        },
+        {
+          "id": "g2",
+          "title": "A behaviour",
+          "text": "Experienced players let seeds pile up in one house (a \"kroo\") to sow round the whole board later for a large capture. Nothing in the rules tells them to. Which layer?",
+          "choices": [
+            {
+              "id": "g2-1",
+              "text": "A dynamic: strategy that emerges from the mechanics in play",
+              "next": "g3",
+              "score": 2,
+              "flags": [
+                "g2-right"
+              ],
+              "feedback": "Correct. Designers cannot write dynamics directly. They emerge from the mechanics."
+            },
+            {
+              "id": "g2-2",
+              "text": "A mechanic",
+              "next": "g3",
+              "score": 0,
+              "flags": [],
+              "feedback": "No rule mentions hoarding."
+            },
+            {
+              "id": "g2-3",
+              "text": "An aesthetic",
+              "next": "g3",
+              "score": 0,
+              "flags": [],
+              "feedback": "It is a behaviour. The feeling it produces is the aesthetic."
+            }
+          ]
+        },
+        {
+          "id": "g3",
+          "title": "A feeling",
+          "text": "Testers say the best moment is \"when you are far behind and one big sow turns it around\". Which of the eight kinds of fun is this mainly?",
+          "choices": [
+            {
+              "id": "g3-1",
+              "text": "Challenge: the tension of overcoming an obstacle through skill",
+              "next": "g4",
+              "score": 2,
+              "flags": [
+                "g3-right"
+              ],
+              "feedback": "Correct. A comeback earned by planning is challenge, with some drama on top."
+            },
+            {
+              "id": "g3-2",
+              "text": "Submission: relaxing pastime",
+              "next": "g4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Testers describe tension, not relaxation."
+            },
+            {
+              "id": "g3-3",
+              "text": "Fantasy: make-believe",
+              "next": "g4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Nothing here involves role-play."
+            }
+          ]
+        },
+        {
+          "id": "g4",
+          "title": "A balance problem",
+          "text": "Look at the playtest data. What is happening and what should you change?",
+          "evidence": [
+            {
+              "id": "playtest",
+              "kind": "data",
+              "title": "Playtest data, 200 games against the AI",
+              "text": "Player who captures first wins: 86% of games.\nAverage seeds behind when a comeback happened: 3.\nComebacks from 8 or more seeds behind: 2 of 200 games.\nMedian game length: 9 minutes; 41% of losing players quit before the end."
+            }
+          ],
+          "choices": [
+            {
+              "id": "g4-1",
+              "text": "A positive feedback loop: the leader gets more seeds and more options. Add a negative feedback rule, such as a hint or bonus move for the trailing player in single-player mode",
+              "next": "g5",
+              "score": 2,
+              "flags": [
+                "g4-right"
+              ],
+              "feedback": "Correct. Positive feedback snowballs a lead. Negative feedback keeps the outcome uncertain, which is what makes players stay."
+            },
+            {
+              "id": "g4-2",
+              "text": "Make the AI harder",
+              "next": "g5",
+              "score": 0,
+              "flags": [],
+              "feedback": "That makes the snowball faster, not slower."
+            },
+            {
+              "id": "g4-3",
+              "text": "Shorten games to three minutes",
+              "next": "g5",
+              "score": 0,
+              "flags": [],
+              "feedback": "Length is not the cause. The early lead is."
+            }
+          ]
+        },
+        {
+          "id": "g5",
+          "title": "Two perspectives",
+          "text": "Why does MDA matter when you change a rule?",
+          "choices": [
+            {
+              "id": "g5-1",
+              "text": "Designers change mechanics, but players meet the aesthetics first, so every rule change must be judged by how it changes dynamics and feelings in play",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "g5-right"
+              ],
+              "feedback": "Correct. That is why the next step is another playtest, not a release."
+            },
+            {
+              "id": "g5-2",
+              "text": "Players care most about the rules",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Players experience feelings. Most never read the rules."
+            },
+            {
+              "id": "g5-3",
+              "text": "Aesthetics can be added after the rules are final",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Aesthetics come from the mechanics and dynamics. They cannot be bolted on."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Design note written",
+          "text": "You document the snowball problem and propose a catch-up mechanic for single-player mode, to be measured in the next playtest by comeback rate and quit rate.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Mechanics are written down. Dynamics emerge in play. Aesthetics are felt.",
+    "When the leader keeps getting stronger, that is positive feedback.",
+    "Judge a rule change by what players do and feel afterwards."
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.examined",
+      "label": "You read the rules and the playtest data",
+      "evidence": [
+        "rules",
+        "playtest"
+      ]
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "Hunicke, LeBlanc and Zubek introduced MDA in 2004. Studios still use comeback rate and early-quit rate to find snowballing in competitive games."
+}
