@@ -1,0 +1,100 @@
+{
+  "engine": "E4",
+  "id": "security-operations-and-incident-response-b1-triage-the-auth-log",
+  "course": "security-operations-and-incident-response",
+  "topic": "Searching and pivoting through logs to reconstruct a sequence of events",
+  "unit": 2,
+  "topicIndex": 3,
+  "level": "beginner",
+  "title": "Triage the overnight auth log",
+  "estimatedMinutes": 20,
+  "instructions": "## Your first shift in the SOC\n\nYou are **abena**, a tier-1 analyst. An alert fired overnight on the student portal server: many failed SSH logins. Work out what happened from **/var/log/auth.log**, write your findings into a **report** directory in your home, and contain the one account that matters.\n\n## Do this\n\n1. Look at the log with `less` or `head`. Notice the shape of a \"Failed password\" line and an \"Accepted\" line.\n2. Count the failed password lines into `report/failed-count.txt` (`grep -c`).\n3. List failed attempts per source address, most first, into `report/failed-by-ip.txt`. Every failure line ends `from ADDRESS port N ssh2`, so the address is field `$(NF-3)` in awk. Then `sort | uniq -c | sort -rn`.\n4. **Pivot**: did any address that failed also log in successfully? Put the matching \"Accepted\" line(s) into `report/suspicious.txt`.\n5. Contain it: lock the account that was logged into from that address with `sudo usermod -L`, pending a password reset with its owner.",
+  "config": {
+    "reference": [
+      "grep -c PATTERN FILE",
+      "awk '{print $(NF-3)}'",
+      "sort | uniq -c | sort -rn",
+      "grep PATTERN FILE | grep OTHER",
+      "sudo usermod -L USER"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-portal",
+      "user": "abena",
+      "users": {
+        "abena": {
+          "sudo": true
+        },
+        "kwame": {},
+        "esi": {}
+      },
+      "groups": {
+        "adm": [
+          "abena"
+        ]
+      },
+      "files": {
+        "/var/log/auth.log": {
+          "content": "Oct 22 00:05:10 ktp-portal sshd[2101]: Accepted publickey for abena from 10.0.0.15 port 50001 ssh2\nOct 22 01:10:03 ktp-portal sshd[2110]: Failed password for invalid user admin from 197.255.4.20 port 50002 ssh2\nOct 22 01:11:03 ktp-portal sshd[2111]: Failed password for invalid user admin from 197.255.4.20 port 50003 ssh2\nOct 22 01:12:03 ktp-portal sshd[2112]: Failed password for invalid user admin from 197.255.4.20 port 50004 ssh2\nOct 22 01:13:03 ktp-portal sshd[2113]: Failed password for invalid user admin from 197.255.4.20 port 50005 ssh2\nOct 22 01:14:03 ktp-portal sshd[2114]: Failed password for invalid user admin from 197.255.4.20 port 50006 ssh2\nOct 22 01:15:03 ktp-portal sshd[2115]: Failed password for invalid user admin from 197.255.4.20 port 50007 ssh2\nOct 22 01:40:21 ktp-portal sshd[2120]: Failed password for root from 102.176.9.3 port 50008 ssh2\nOct 22 01:41:21 ktp-portal sshd[2121]: Failed password for root from 102.176.9.3 port 50009 ssh2\nOct 22 01:42:21 ktp-portal sshd[2122]: Failed password for root from 102.176.9.3 port 50010 ssh2\nOct 22 02:03:44 ktp-portal sshd[2130]: Failed password for kwame from 41.66.12.7 port 50011 ssh2\nOct 22 02:04:44 ktp-portal sshd[2131]: Failed password for kwame from 41.66.12.7 port 50012 ssh2\nOct 22 02:05:44 ktp-portal sshd[2132]: Failed password for kwame from 41.66.12.7 port 50013 ssh2\nOct 22 02:06:44 ktp-portal sshd[2133]: Failed password for kwame from 41.66.12.7 port 50014 ssh2\nOct 22 02:07:44 ktp-portal sshd[2134]: Failed password for kwame from 41.66.12.7 port 50015 ssh2\nOct 22 02:08:44 ktp-portal sshd[2135]: Failed password for kwame from 41.66.12.7 port 50016 ssh2\nOct 22 02:09:44 ktp-portal sshd[2136]: Failed password for kwame from 41.66.12.7 port 50017 ssh2\nOct 22 02:10:44 ktp-portal sshd[2137]: Failed password for kwame from 41.66.12.7 port 50018 ssh2\nOct 22 02:11:44 ktp-portal sshd[2138]: Failed password for kwame from 41.66.12.7 port 50019 ssh2\nOct 22 02:12:44 ktp-portal sshd[2139]: Failed password for kwame from 41.66.12.7 port 50020 ssh2\nOct 22 02:14:02 ktp-portal sshd[2141]: Accepted password for kwame from 41.66.12.7 port 50021 ssh2\nOct 22 02:14:02 ktp-portal sshd[2141]: pam_unix(sshd:session): session opened for user kwame by (uid=0)\nOct 22 07:58:30 ktp-portal sshd[2190]: Accepted password for esi from 10.0.0.22 port 50022 ssh2\n",
+          "mode": "640",
+          "owner": "root",
+          "group": "adm"
+        }
+      }
+    }
+  },
+  "hints": [
+    "`grep -c 'Failed password' /var/log/auth.log` prints only the count.",
+    "`grep 'Failed password' /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -rn > report/failed-by-ip.txt`",
+    "Ten failures and then an Accepted line from the same address is the pattern of a guessed password."
+  ],
+  "checks": [
+    {
+      "type": "sh.file",
+      "label": "The failure count is right",
+      "path": "/home/abena/report/failed-count.txt",
+      "pattern": "^\\s*19\\s*$",
+      "message": "failed-count.txt should hold the number of \"Failed password\" lines."
+    },
+    {
+      "type": "sh.file",
+      "label": "Failures per address are counted",
+      "path": "/home/abena/report/failed-by-ip.txt",
+      "contains": [
+        "10 41.66.12.7",
+        "6 197.255.4.20",
+        "3 102.176.9.3"
+      ],
+      "message": "failed-by-ip.txt should hold uniq -c counts for each source address."
+    },
+    {
+      "type": "sh.output",
+      "label": "The noisiest address is listed first",
+      "command": "head -n 1 /home/abena/report/failed-by-ip.txt",
+      "contains": "41.66.12.7",
+      "message": "Sort the counts in descending order with sort -rn."
+    },
+    {
+      "type": "sh.file",
+      "label": "The suspicious login is found",
+      "path": "/home/abena/report/suspicious.txt",
+      "contains": "Accepted password for kwame from 41.66.12.7",
+      "notContains": "abena",
+      "message": "suspicious.txt should hold the Accepted line from the address that also failed, and nothing else."
+    },
+    {
+      "type": "sh.user",
+      "label": "The affected account is locked",
+      "name": "kwame",
+      "locked": true
+    },
+    {
+      "type": "sh.ran",
+      "label": "You counted with uniq -c",
+      "pattern": "uniq -c",
+      "message": "Use sort | uniq -c to count attempts per address."
+    }
+  ],
+  "realityNote": "A SIEM such as Wazuh or Splunk runs these same searches across thousands of hosts, and fail2ban would have blocked 41.66.12.7 after five attempts. The pivot from \"many failures\" to \"then a success\" is the step that turns noise into an incident."
+}

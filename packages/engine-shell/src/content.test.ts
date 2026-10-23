@@ -11,6 +11,8 @@ import { createShellChecks, runLines, systemFromInitial, type ShellState } from 
 const ROOT = join(__dirname, '..', '..', '..', 'content', 'courses');
 
 const SOLUTIONS: Record<string, string[]> = {
+  "security-operations-and-incident-response-b1-triage-the-auth-log": ["mkdir report","grep -c 'Failed password' /var/log/auth.log > report/failed-count.txt","grep 'Failed password' /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -rn > report/failed-by-ip.txt","grep 'Accepted' /var/log/auth.log | grep 41.66.12.7 > report/suspicious.txt","sudo usermod -L kwame"],
+  "information-security-i1-harden-the-web-root": ["mkdir audit","find /srv/portal -type f -perm -002 > audit/world-writable.txt","cat audit/world-writable.txt","sudo chown root:www-data /srv/portal/config.php","sudo chmod 640 /srv/portal/config.php","sudo chmod 700 /srv/portal/tools/debug.sh","sudo chown www-data:www-data /srv/portal/status.json","sudo chmod 644 /srv/portal/status.json","sudo mkdir -p /var/backups","sudo mv /srv/portal/backup.sql /var/backups/portal-backup.sql","sudo chmod 600 /var/backups/portal-backup.sql","find /srv/portal -perm -002"],
   'systems-administration-ii-b1-find-your-way-around': ['ls -la', 'mkdir -p projects/thesis', 'mv *.md projects/thesis', 'cp /etc/hostname notes/hostname.txt', 'rm -r old', 'find /var/log -name "*.log"'],
   'systems-administration-ii-b2-pipes-and-text': [
     'wc -l /var/log/portal/access.log',

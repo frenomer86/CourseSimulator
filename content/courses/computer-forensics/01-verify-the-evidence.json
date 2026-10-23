@@ -1,0 +1,141 @@
+{
+  "engine": "E1",
+  "id": "computer-forensics-i1-verify-the-evidence",
+  "course": "computer-forensics",
+  "topic": "Hashing and why it proves integrity",
+  "unit": 3,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "title": "Verify the evidence before you examine it",
+  "estimatedMinutes": 25,
+  "instructions": "## Is this the evidence that was seized?\n\nWhen files were acquired from a seized laptop, the first examiner recorded the **SHA-256** hash of each file in a manifest on the chain-of-custody form. Before you examine the working copy, you must prove it is unchanged. A single changed character gives a completely different hash.\n\n## Do this\n\n1. `verify(manifest, files)`: `manifest` maps file names to recorded hashes and `files` maps file names to contents. Return a dictionary with four sorted lists: `ok` (hash matches), `altered` (present but hash differs), `missing` (in the manifest, not in the copy) and `extra` (in the copy, not in the manifest).\n2. `timeline(events)`: events are `[timestamp, source, description]` lists from different sources. Return lines `\"timestamp | source | description\"` sorted by timestamp, and by source name when timestamps are equal.\n\n`sha256_hex(text)` is provided.",
+  "config": {
+    "language": "python"
+  },
+  "initialState": {
+    "language": "python",
+    "source": "import hashlib\n\ndef sha256_hex(text):\n    return hashlib.sha256(text.encode()).hexdigest()\n\ndef verify(manifest, files):\n    # compare each recorded hash with the hash of the working copy\n    return {\"ok\": [], \"altered\": [], \"missing\": [], \"extra\": []}\n\ndef timeline(events):\n    # sort by (timestamp, source) and format each line\n    return []\n\nprint(sha256_hex(\"evidence\"))\n"
+  },
+  "hints": [
+    "Loop over manifest.items(): a name not in files is missing, a matching hash is ok, otherwise altered.",
+    "extra is every name in files that is not a key of manifest.",
+    "sorted(events, key=lambda e: (e[0], e[1])) orders by timestamp then source."
+  ],
+  "checks": [
+    {
+      "type": "code.runs",
+      "label": "The program runs"
+    },
+    {
+      "type": "code.function",
+      "label": "verify sorts files into ok, altered, missing and extra",
+      "name": "verify",
+      "cases": [
+        {
+          "args": [
+            {
+              "invoice-2026-118.pdf": "a8387c89e2ea52f0bf85b1b54d0d3f38372d7ba3f924fa002cb601e5d37187e8",
+              "chat-export.txt": "29fff81d7b088b55396caeb2704989506232c8a6bf18ed7c1d72b01d35aef514",
+              "photo-0412.jpg": "23d5155a43a9ef456033d58d72cf2a944a9a22a4ef250f9c6deaf37d47d451fb",
+              "ledger-q1.csv": "e27ca7fdfda86d06d5218f1815ccbaf8f0cc744ea685b393e1e692a40b2bcf5b"
+            },
+            {
+              "invoice-2026-118.pdf": "%PDF-1.4 Invoice 2026-118 Total GHS 4,500.00",
+              "chat-export.txt": "[09:14] Kojo: meeting moved to 3 pm\n[09:15] Ama: noted, see you at the office",
+              "photo-0412.jpg": "JFIF site photo, Spintex Road warehouse, 12 Apr 2026",
+              "ledger-q1.csv": "date,item,amount\n2026-01-05,rent,3000\n2026-02-05,rent,3000"
+            }
+          ],
+          "expected": {
+            "ok": [
+              "chat-export.txt",
+              "invoice-2026-118.pdf",
+              "ledger-q1.csv",
+              "photo-0412.jpg"
+            ],
+            "altered": [],
+            "missing": [],
+            "extra": []
+          }
+        },
+        {
+          "args": [
+            {
+              "invoice-2026-118.pdf": "a8387c89e2ea52f0bf85b1b54d0d3f38372d7ba3f924fa002cb601e5d37187e8",
+              "chat-export.txt": "29fff81d7b088b55396caeb2704989506232c8a6bf18ed7c1d72b01d35aef514",
+              "photo-0412.jpg": "23d5155a43a9ef456033d58d72cf2a944a9a22a4ef250f9c6deaf37d47d451fb",
+              "ledger-q1.csv": "e27ca7fdfda86d06d5218f1815ccbaf8f0cc744ea685b393e1e692a40b2bcf5b"
+            },
+            {
+              "invoice-2026-118.pdf": "%PDF-1.4 Invoice 2026-118 Total GHS 4,500.00",
+              "chat-export.txt": "[09:14] Kojo: meeting moved to 4 pm\n[09:15] Ama: noted, see you at the office",
+              "photo-0412.jpg": "JFIF site photo, Spintex Road warehouse, 12 Apr 2026",
+              "notes.txt": "examiner scratch notes"
+            }
+          ],
+          "expected": {
+            "ok": [
+              "invoice-2026-118.pdf",
+              "photo-0412.jpg"
+            ],
+            "altered": [
+              "chat-export.txt"
+            ],
+            "missing": [
+              "ledger-q1.csv"
+            ],
+            "extra": [
+              "notes.txt"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "code.function",
+      "label": "timeline merges sources in time order",
+      "name": "timeline",
+      "cases": [
+        {
+          "args": [
+            [
+              [
+                "2026-04-12T09:15:00",
+                "chat",
+                "Ama replies"
+              ],
+              [
+                "2026-04-12T08:02:11",
+                "door",
+                "Badge 0412 opens warehouse door"
+              ],
+              [
+                "2026-04-12T09:14:00",
+                "chat",
+                "Kojo sends message"
+              ],
+              [
+                "2026-04-12T08:02:11",
+                "cctv",
+                "Camera 3 records entry"
+              ]
+            ]
+          ],
+          "expected": [
+            "2026-04-12T08:02:11 | cctv | Camera 3 records entry",
+            "2026-04-12T08:02:11 | door | Badge 0412 opens warehouse door",
+            "2026-04-12T09:14:00 | chat | Kojo sends message",
+            "2026-04-12T09:15:00 | chat | Ama replies"
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        }
+      ]
+    }
+  ],
+  "realityNote": "Tools such as FTK Imager and Autopsy record hashes at acquisition and verify them again before analysis. A mismatch must be explained in the report, because a court can exclude evidence whose integrity cannot be shown."
+}

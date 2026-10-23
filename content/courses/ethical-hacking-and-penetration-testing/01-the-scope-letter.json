@@ -1,0 +1,225 @@
+{
+  "engine": "E10",
+  "initialState": {},
+  "id": "ethical-hacking-and-penetration-testing-b1-the-scope-letter",
+  "course": "ethical-hacking-and-penetration-testing",
+  "topic": "Rules of engagement, authorisation letters and data handling",
+  "unit": 1,
+  "topicIndex": 4,
+  "level": "beginner",
+  "title": "Stay inside the scope letter",
+  "estimatedMinutes": 15,
+  "instructions": "## Authorisation is what separates a test from a crime\n\nYour firm has been engaged to test the external web portal of a fictional savings company, Adom Savings. Under Ghana's Cybersecurity Act 2020, accessing a system without authorisation is an offence whatever your intentions. Every decision in this engagement comes back to the signed scope letter. Read it, then make the calls.",
+  "config": {
+    "scenario": {
+      "start": "e1",
+      "nodes": [
+        {
+          "id": "e1",
+          "title": "Before anything starts",
+          "text": "The client's IT officer phones on Friday: \"Go ahead and start tonight, the paperwork is coming.\" What do you do?",
+          "evidence": [
+            {
+              "id": "scope",
+              "kind": "document",
+              "title": "Scope letter (draft, unsigned)",
+              "text": "In scope: the customer web portal on 196.10.20.0/28 (addresses .0 to .15) and its login page.\nOut of scope: the mobile money partner's API, staff devices, physical offices and any social engineering.\nWindow: Saturday 22:00 to Sunday 06:00.\nEmergency contact: Head of IT, 024 000 0000, at any hour.\nTo be signed by: the Managing Director.\nData: any customer data seen must not be copied, and must be reported at once."
+            }
+          ],
+          "choices": [
+            {
+              "id": "e1-1",
+              "text": "Wait for the scope letter to be signed by the Managing Director, who has the authority to grant access, before any testing",
+              "next": "e2",
+              "score": 2,
+              "flags": [
+                "e1-right"
+              ],
+              "feedback": "Correct. A phone call from an IT officer is not written authorisation from someone entitled to give it."
+            },
+            {
+              "id": "e1-2",
+              "text": "Start tonight, since the client clearly wants the test",
+              "next": "e2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Without signed authorisation your firm has no legal protection, and the window in the letter is Saturday, not Friday."
+            },
+            {
+              "id": "e1-3",
+              "text": "Start with passive reconnaissance only, which needs no authorisation",
+              "next": "e2",
+              "score": 0,
+              "flags": [],
+              "feedback": "Even if some passive research is lawful, starting the engagement before it is authorised breaks the agreed process."
+            }
+          ]
+        },
+        {
+          "id": "e2",
+          "title": "An address outside the range",
+          "text": "During the agreed window your inventory of the in-scope range shows the portal links to a second server at 196.10.20.20, which looks poorly maintained.",
+          "choices": [
+            {
+              "id": "e2-1",
+              "text": "Do not test it. Record it as an observation and ask the client in writing whether they own it and want it added",
+              "next": "e3",
+              "score": 2,
+              "flags": [
+                "e2-right"
+              ],
+              "feedback": "Correct. A /28 ends at .15. The address may not even belong to the client."
+            },
+            {
+              "id": "e2-2",
+              "text": "Test it lightly, since it is so close to the range",
+              "next": "e3",
+              "score": 0,
+              "flags": [],
+              "feedback": "Close is not in scope. It could belong to someone else entirely."
+            },
+            {
+              "id": "e2-3",
+              "text": "Test it, because the client would want to know",
+              "next": "e3",
+              "score": 0,
+              "flags": [],
+              "feedback": "They may well want to know, which is why you ask. You do not decide scope yourself."
+            }
+          ]
+        },
+        {
+          "id": "e3",
+          "title": "Customer data on screen",
+          "text": "A portal page you are permitted to test shows other customers' names and account numbers to any logged-in user.",
+          "choices": [
+            {
+              "id": "e3-1",
+              "text": "Stop that line of testing, record the minimum evidence needed (one redacted screenshot), copy nothing, and call the emergency contact now",
+              "next": "e4",
+              "score": 2,
+              "flags": [
+                "e3-right"
+              ],
+              "feedback": "Correct. Live exposure of customer data is reported at once, as the letter requires, and you collect no more than you need."
+            },
+            {
+              "id": "e3-2",
+              "text": "Download the records to prove the severity in the report",
+              "next": "e4",
+              "score": 0,
+              "flags": [],
+              "feedback": "The letter forbids copying customer data, and holding it puts your firm in breach of the Data Protection Act."
+            },
+            {
+              "id": "e3-3",
+              "text": "Carry on and mention it in the final report next week",
+              "next": "e4",
+              "score": 0,
+              "flags": [],
+              "feedback": "Real customers are exposed now. That is exactly what the emergency contact is for."
+            }
+          ]
+        },
+        {
+          "id": "e4",
+          "title": "The window closes",
+          "text": "It is 05:50 on Sunday and one check is unfinished.",
+          "choices": [
+            {
+              "id": "e4-1",
+              "text": "Stop at 06:00 and request a written extension or a new window for the remaining check",
+              "next": "e5",
+              "score": 2,
+              "flags": [
+                "e4-right"
+              ],
+              "feedback": "Correct. Authorisation is limited in time as well as in targets."
+            },
+            {
+              "id": "e4-2",
+              "text": "Finish it, since it only needs twenty more minutes",
+              "next": "e5",
+              "score": 0,
+              "flags": [],
+              "feedback": "After 06:00 you are outside your authorisation, and the client may be running Sunday processes."
+            },
+            {
+              "id": "e4-3",
+              "text": "Leave a scan running unattended overnight",
+              "next": "e5",
+              "score": 0,
+              "flags": [],
+              "feedback": "Unattended activity outside the window is both unauthorised and unsafe."
+            }
+          ]
+        },
+        {
+          "id": "e5",
+          "title": "Reporting",
+          "text": "You also found a flaw in a commercial plugin the portal uses, which affects other companies too. How do you handle the results?",
+          "choices": [
+            {
+              "id": "e5-1",
+              "text": "Report findings, evidence, risk and fixes to the client only, store the report encrypted, and coordinate disclosure of the plugin flaw with the vendor through the client before anything is made public",
+              "next": "done",
+              "score": 2,
+              "flags": [
+                "e5-right"
+              ],
+              "feedback": "Correct. Confidential reporting to the client and coordinated disclosure to the vendor protect everyone affected."
+            },
+            {
+              "id": "e5-2",
+              "text": "Post the plugin flaw online so other companies are warned",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "Publishing before a fix exists exposes every user of the plugin. Coordinated disclosure gives the vendor time to fix it."
+            },
+            {
+              "id": "e5-3",
+              "text": "Keep the plugin flaw to yourself because it is outside scope",
+              "next": "done",
+              "score": 0,
+              "flags": [],
+              "feedback": "It affects your client's portal, so they need to know, and the vendor needs to fix it."
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Engagement closed cleanly",
+          "text": "You tested only what was authorised, inside the window, raised the data exposure at once, and handled the plugin flaw through coordinated disclosure.",
+          "end": true,
+          "outcome": "good"
+        }
+      ]
+    }
+  },
+  "hints": [
+    "Who signs matters as much as what is signed.",
+    "Work out the last address in a /28.",
+    "The letter says what to do with customer data. Follow it to the word."
+  ],
+  "checks": [
+    {
+      "type": "scenario.finished",
+      "label": "You worked through the case"
+    },
+    {
+      "type": "scenario.examined",
+      "label": "You read the scope letter",
+      "evidence": [
+        "scope"
+      ]
+    },
+    {
+      "type": "scenario.score",
+      "label": "At least four of the five decisions are right",
+      "min": 8,
+      "message": "Fewer than four of the five were right. Read the feedback and run the case again."
+    }
+  ],
+  "realityNote": "PTES and the CREST code of conduct put the signed scope, the time window and the emergency contact before any technical step. Testers have faced prosecution for testing one address outside their scope."
+}

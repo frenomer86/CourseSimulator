@@ -1,0 +1,131 @@
+{
+  "engine": "E4",
+  "id": "information-security-i1-harden-the-web-root",
+  "course": "information-security",
+  "topic": "Access control models: discretionary access control in practice",
+  "unit": 3,
+  "topicIndex": 6,
+  "level": "intermediate",
+  "title": "Harden the permissions on a web root",
+  "estimatedMinutes": 25,
+  "instructions": "## A portal that anyone on the server can change\n\nYou are **yaw**, the department's system administrator. A review found that files under **/srv/portal** are writable by every user on the server, a database dump sits inside the web root, and the database password is readable by all. Apply **least privilege** using Unix discretionary access control: owner, group and mode bits.\n\nThe web server runs as user **www-data**.\n\n## Do this\n\n1. Audit first: list every **file** under /srv/portal that others can write (`find -type f -perm -002`) into `audit/world-writable.txt` in your home.\n2. `config.php` holds the database password. Owner root, group www-data, mode **640**: root can edit it, the web server can read it, nobody else can.\n3. `tools/debug.sh` should be usable by root only: mode **700**.\n4. `status.json` is written by the web server: owner and group **www-data**, mode **644**.\n5. Move `backup.sql` out of the web root to **/var/backups/portal-backup.sql**, mode **600**.\n6. Run the audit again. Nothing under /srv/portal should be world-writable.",
+  "config": {
+    "reference": [
+      "find DIR -type f -perm -002",
+      "sudo chown USER:GROUP FILE",
+      "sudo chmod MODE FILE",
+      "sudo mv SOURCE DEST",
+      "ls -l DIR",
+      "stat FILE"
+    ]
+  },
+  "initialState": {
+    "system": {
+      "hostname": "ktp-web",
+      "user": "yaw",
+      "users": {
+        "yaw": {
+          "sudo": true
+        },
+        "www-data": {
+          "home": "/var/www"
+        }
+      },
+      "files": {
+        "/srv/portal/index.php": {
+          "content": "<?php require \"config.php\"; echo \"Student portal\"; ?>\n",
+          "mode": "644",
+          "owner": "root",
+          "group": "root"
+        },
+        "/srv/portal/config.php": {
+          "content": "<?php\n$db_user = 'portal';\n$db_pass = 'stored-in-vault-rotate-me';\n",
+          "mode": "666",
+          "owner": "root",
+          "group": "root"
+        },
+        "/srv/portal/status.json": {
+          "content": "{\"lastRun\": \"2026-10-22T09:00:00Z\"}\n",
+          "mode": "666",
+          "owner": "root",
+          "group": "root"
+        },
+        "/srv/portal/tools/debug.sh": {
+          "content": "#!/bin/bash\necho \"debug info\"\n",
+          "mode": "777",
+          "owner": "root",
+          "group": "root"
+        },
+        "/srv/portal/backup.sql": {
+          "content": "-- dump of the students table, 2026-10-01\n",
+          "mode": "644",
+          "owner": "root",
+          "group": "root"
+        }
+      }
+    }
+  },
+  "hints": [
+    "`find /srv/portal -type f -perm -002` lists files with the \"others write\" bit set.",
+    "640 is rw- for the owner, r-- for the group and nothing for others.",
+    "`sudo mv /srv/portal/backup.sql /var/backups/portal-backup.sql` (create /var/backups first if it is missing)."
+  ],
+  "checks": [
+    {
+      "type": "sh.file",
+      "label": "The audit lists the three world-writable files",
+      "path": "/home/yaw/audit/world-writable.txt",
+      "contains": [
+        "/srv/portal/config.php",
+        "/srv/portal/status.json",
+        "/srv/portal/tools/debug.sh"
+      ],
+      "notContains": "index.php"
+    },
+    {
+      "type": "sh.file",
+      "label": "config.php is root:www-data, mode 640",
+      "path": "/srv/portal/config.php",
+      "mode": "640",
+      "owner": "root",
+      "group": "www-data"
+    },
+    {
+      "type": "sh.file",
+      "label": "debug.sh is root only, mode 700",
+      "path": "/srv/portal/tools/debug.sh",
+      "mode": "700",
+      "owner": "root"
+    },
+    {
+      "type": "sh.file",
+      "label": "status.json belongs to www-data, mode 644",
+      "path": "/srv/portal/status.json",
+      "mode": "644",
+      "owner": "www-data",
+      "group": "www-data"
+    },
+    {
+      "type": "sh.file",
+      "label": "The dump is no longer in the web root",
+      "path": "/srv/portal/backup.sql",
+      "exists": false,
+      "message": "backup.sql is still under /srv/portal, where the web server could serve it."
+    },
+    {
+      "type": "sh.file",
+      "label": "The dump is in /var/backups, mode 600",
+      "path": "/var/backups/portal-backup.sql",
+      "mode": "600",
+      "contains": "dump of the students table"
+    },
+    {
+      "type": "sh.output",
+      "label": "Nothing under /srv/portal is world-writable",
+      "command": "find /srv/portal -perm -002 | wc -l",
+      "pattern": "^\\s*0\\s*$",
+      "message": "Something under /srv/portal is still writable by others. Run the find audit again."
+    }
+  ],
+  "realityNote": "CIS benchmarks and Lynis audits check exactly these bits. A world-writable config file lets any local account, including a compromised one, change where the site sends its data."
+}
