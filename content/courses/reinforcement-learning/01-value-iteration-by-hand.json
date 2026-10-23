@@ -1,0 +1,78 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "reinforcement-learning-i1-value-iteration-by-hand",
+  "course": "reinforcement-learning",
+  "topic": "Value iteration",
+  "unit": 4,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "title": "Value iteration by hand on a three-state corridor",
+  "estimatedMinutes": 20,
+  "instructions": "## A delivery robot in a corridor\n\nA robot moves along a corridor of states **A → B → Goal**. Moves are deterministic.\n\n- From A, action *right* goes to B with reward 0.\n- From B, action *right* reaches Goal with reward 10; action *left* goes back to A with reward 0.\n- Goal is terminal, with value 0.\n\nThe discount factor is γ = 0.9 unless a question says otherwise. The plot shows 10·γ^t: how much a reward of 10 is worth when it arrives t steps later.\n\n## Do this\n\n1. The discounted return of the reward sequence 0, 0, 10.\n2. Run value iteration from V₀ = 0 everywhere, updating all states **synchronously** from the previous sweep: V_{k+1}(s) = max over actions of [r + γ·V_k(s′)]. Give V₁(B), V₁(A) and V₂(A).\n3. At convergence, Q*(A, right).\n4. Repeat the converged V*(A) with γ = 0.5.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "10*0.9^x"
+    ]
+  },
+  "hints": [
+    "G = r₁ + γ·r₂ + γ²·r₃.",
+    "In sweep 1 every V₀ is 0, so V₁(A) = 0 + 0.9 × V₀(B) = 0.",
+    "V*(A) = 0 + γ·V*(B), and V*(B) = 10."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Discounted return",
+      "id": "q1",
+      "expected": 8.1,
+      "question": "Discounted return of rewards 0, 0, 10 with γ = 0.9:",
+      "tolerance": 0.001
+    },
+    {
+      "type": "math.number",
+      "label": "V₁(B)",
+      "id": "q2",
+      "expected": 10,
+      "question": "V₁(B) after the first sweep:"
+    },
+    {
+      "type": "math.number",
+      "label": "V₁(A)",
+      "id": "q3",
+      "expected": 0,
+      "question": "V₁(A) after the first sweep:"
+    },
+    {
+      "type": "math.number",
+      "label": "V₂(A)",
+      "id": "q4",
+      "expected": 9,
+      "question": "V₂(A) after the second sweep:",
+      "tolerance": 0.001
+    },
+    {
+      "type": "math.number",
+      "label": "Q*(A, right)",
+      "id": "q5",
+      "expected": 9,
+      "question": "Q*(A, right) at convergence:",
+      "tolerance": 0.001
+    },
+    {
+      "type": "math.number",
+      "label": "V*(A) with γ = 0.5",
+      "id": "q6",
+      "expected": 5,
+      "question": "V*(A) at convergence when γ = 0.5:",
+      "tolerance": 0.001
+    }
+  ],
+  "realityNote": "Value iteration needs the full model of the environment. Q-learning and its deep variants estimate the same Bellman backup from sampled experience instead, which is why they scale to games and robots where the model is unknown."
+}

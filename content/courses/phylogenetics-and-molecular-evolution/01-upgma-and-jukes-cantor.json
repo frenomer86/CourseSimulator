@@ -1,0 +1,74 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "phylogenetics-and-molecular-evolution-i1-upgma-and-jukes-cantor",
+  "course": "phylogenetics-and-molecular-evolution",
+  "topic": "UPGMA and the ultrametric assumption",
+  "unit": 3,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Build a UPGMA tree and correct a distance",
+  "estimatedMinutes": 25,
+  "instructions": "## Four sequences, one tree\n\nPairwise distances between four sequences A, B, C and D (rows and columns in that order) are in matrix A of the Matrix tool:\n\n| | A | B | C | D |\n|---|---|---|---|---|\n| A | 0 | 2 | 6 | 10 |\n| B | 2 | 0 | 6 | 10 |\n| C | 6 | 6 | 0 | 10 |\n| D | 10 | 10 | 10 | 0 |\n\n**UPGMA** repeatedly joins the closest pair, places their common ancestor at height d/2, and replaces the pair by a cluster whose distance to every other cluster is the average over all members.\n\n## Do this\n\n1. Which pair is joined first? Type the two letters.\n2. The height of their ancestor node.\n3. The distance from the new cluster to C.\n4. The height of the node that joins C.\n5. The height of the root.\n6. Raw p-distances underestimate change because sites can mutate twice. The **Jukes-Cantor** correction is d = −¾ ln(1 − 4p/3). Correct p = 0.3.",
+  "config": {
+    "tools": [
+      "matrix"
+    ],
+    "matrixA": "0 2 6 10; 2 0 6 10; 6 6 0 10; 10 10 10 0"
+  },
+  "hints": [
+    "The smallest off-diagonal distance is 2.",
+    "d(AB, C) = (d(A,C) + d(B,C)) / 2.",
+    "ln(0.6) ≈ −0.5108."
+  ],
+  "checks": [
+    {
+      "type": "math.text",
+      "label": "The first pair joined",
+      "id": "q1",
+      "pattern": "^\\s*(A\\s*[,-]?\\s*(and\\s*)?B|B\\s*[,-]?\\s*(and\\s*)?A)\\s*$",
+      "flags": "i",
+      "question": "First pair joined (two letters):"
+    },
+    {
+      "type": "math.number",
+      "label": "Height of the first node",
+      "id": "q2",
+      "expected": 1,
+      "question": "Height of the ancestor of the first pair:"
+    },
+    {
+      "type": "math.number",
+      "label": "Distance from the new cluster to C",
+      "id": "q3",
+      "expected": 6,
+      "question": "Distance from cluster (A,B) to C:"
+    },
+    {
+      "type": "math.number",
+      "label": "Height of the second node",
+      "id": "q4",
+      "expected": 3,
+      "question": "Height of the node that joins C:"
+    },
+    {
+      "type": "math.number",
+      "label": "Height of the root",
+      "id": "q5",
+      "expected": 5,
+      "question": "Height of the root:"
+    },
+    {
+      "type": "math.number",
+      "label": "Jukes-Cantor distance",
+      "id": "q6",
+      "expected": 0.3831,
+      "question": "Jukes-Cantor corrected distance for p = 0.3 (four decimals):",
+      "tolerance": 0.001
+    }
+  ],
+  "realityNote": "UPGMA assumes a molecular clock, so every leaf ends at the same height. When rates differ between lineages it builds the wrong tree, which is why neighbour joining and likelihood methods replaced it for real data."
+}

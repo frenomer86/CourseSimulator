@@ -1,0 +1,69 @@
+{
+  "engine": "E7",
+  "initialState": {
+    "answers": {},
+    "tables": {}
+  },
+  "id": "real-time-systems-i1-rate-monotonic-by-hand",
+  "course": "real-time-systems",
+  "topic": "The utilisation bound test and response-time analysis",
+  "unit": 3,
+  "topicIndex": 3,
+  "level": "intermediate",
+  "title": "Is this task set schedulable? Rate monotonic by hand",
+  "estimatedMinutes": 20,
+  "instructions": "## A pump controller with three periodic tasks\n\nA water-pumping station controller runs three periodic tasks, each with its deadline equal to its period:\n\n| Task | Worst-case execution C (ms) | Period P (ms) |\n|---|---|---|\n| T1 sensor read | 1 | 4 |\n| T2 control law | 2 | 6 |\n| T3 log to flash | 1 | 8 |\n\nUnder **rate-monotonic** priority, the shortest period gets the highest priority: T1 > T2 > T3.\n\n## Do this\n\n1. Total utilisation U = Σ C/P.\n2. The Liu and Layland bound for n tasks is n(2^(1/n) − 1). Compute it for n = 3. The plot shows the bound as n grows.\n3. Response-time analysis: R = C + Σ over higher-priority tasks of ⌈R/P⌉·C, iterated until it stops changing. Compute R for T2 and for T3.\n4. The hyperperiod is the least common multiple of the periods: after it, the schedule repeats.",
+  "config": {
+    "tools": [
+      "plot"
+    ],
+    "plot": [
+      "x*(2^(1/x) - 1)"
+    ]
+  },
+  "hints": [
+    "U = 1/4 + 2/6 + 1/8.",
+    "3 × (2^(1/3) − 1) ≈ 3 × 0.26.",
+    "For T3 start from R = 1 + 1 + 2 = 4, then recompute 1 + ⌈4/4⌉·1 + ⌈4/6⌉·2."
+  ],
+  "checks": [
+    {
+      "type": "math.number",
+      "label": "Total utilisation",
+      "id": "q1",
+      "expected": 0.7083,
+      "question": "Total utilisation U (four decimals):",
+      "tolerance": 0.001
+    },
+    {
+      "type": "math.number",
+      "label": "Utilisation bound for three tasks",
+      "id": "q2",
+      "expected": 0.7798,
+      "question": "Rate-monotonic bound for n = 3 (four decimals):",
+      "tolerance": 0.001
+    },
+    {
+      "type": "math.number",
+      "label": "Response time of T2",
+      "id": "q3",
+      "expected": 3,
+      "question": "Worst-case response time of T2 (ms):"
+    },
+    {
+      "type": "math.number",
+      "label": "Response time of T3",
+      "id": "q4",
+      "expected": 4,
+      "question": "Worst-case response time of T3 (ms):"
+    },
+    {
+      "type": "math.number",
+      "label": "Hyperperiod",
+      "id": "q5",
+      "expected": 24,
+      "question": "Hyperperiod of the task set (ms):"
+    }
+  ],
+  "realityNote": "U is below the bound, so the test alone proves the set schedulable; response-time analysis is exact and also shows how much slack each task has. Flight controllers, ABS brakes and pacemakers are certified with this same analysis."
+}

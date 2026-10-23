@@ -28,6 +28,9 @@ const SOLUTIONS: Record<string, Record<string, string>> = {
   'time-series-analysis-and-forecasting-b1-smoothing-and-naive-forecasts': { q1: '26', q2: '24', q3: '22', q4: '22', q5: '24', q6: '3.333' },
   'cryptography-and-network-security-i1-rsa-by-hand': { q1: '143', q2: '120', q3: '103', q4: '47', q5: '8' },
   'wireless-communication-i1-cellular-reuse-and-path-loss': { q1: '60', q2: '4.58', q3: '6000', q4: '105', q5: '91.53' },
+  "real-time-systems-i1-rate-monotonic-by-hand": {"q1":"0.7083","q2":"0.7798","q3":"3","q4":"4","q5":"24"},
+  "reinforcement-learning-i1-value-iteration-by-hand": {"q1":"8.1","q2":"10","q3":"0","q4":"9","q5":"9","q6":"5"},
+  "phylogenetics-and-molecular-evolution-i1-upgma-and-jukes-cantor": {"q1":"A, B","q2":"1","q3":"6","q4":"3","q5":"5","q6":"0.3831"},
 };
 
 function allLabs(): LabSpec<MathsState>[] {
