@@ -1,0 +1,106 @@
+{
+  "id": "assembly-language-and-microprocessors-i1-sum-and-maximum",
+  "course": "assembly-language-and-microprocessors",
+  "topic": "Loops: counted, while and do-while patterns; the LOOP instruction",
+  "unit": 4,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "engine": "E8",
+  "title": "Sum an array and find its maximum in assembly",
+  "estimatedMinutes": 30,
+  "instructions": "## Your first real loop\n\nThe data section holds five readings in **nums** and their number in **count**. Write a loop that stores their sum in **total** and the largest value in **biggest**, then halts.\n\n## How the bench CPU works\n\n- Registers AX, BX, CX, DX, SI, DI, BP and SP hold 16-bit values.\n- `MOV DX, [nums+SI]` loads the word at address nums + SI. Words are one address apart, so `INC SI` moves to the next value.\n- `LOOP next` decrements CX and jumps to `next` until CX reaches 0.\n- `CMP DX, BX` then `JLE skip` jumps when DX ≤ BX (signed).\n- `MOV [total], AX` stores AX in memory.\n\n## Do this\n\n1. Press **Step ▶** a few times on the starter to see the registers change.\n2. Write the loop, then **Run to HLT** and check `total` and `biggest` in the Data panel.\n3. Your program must work for any data, so the checks also run it on other arrays.",
+  "config": {
+    "mode": "cpu",
+    "starter": "; Sum the array and find its largest value.\nnums:    DW 7, 3, 12, 5, 9\ncount:   DW 5\ntotal:   DW 0\nbiggest: DW 0\n\n        MOV SI, 0          ; index into nums\n        MOV CX, [count]    ; how many values\n        ; your loop goes here: add each value to a running total,\n        ; and keep the largest value seen so far\n        HLT\n"
+  },
+  "initialState": {},
+  "hints": [
+    "Keep the running total in AX and the biggest value in BX, and set both to 0 before the loop.",
+    "Inside the loop: MOV DX, [nums+SI], ADD AX, DX, then CMP DX, BX and JLE skip, with MOV BX, DX just before the skip label.",
+    "After LOOP, store AX in [total] and BX in [biggest], then HLT."
+  ],
+  "checks": [
+    {
+      "type": "hw.cpuHalts",
+      "label": "The program assembles and reaches HLT"
+    },
+    {
+      "type": "hw.cpuMem",
+      "label": "total holds the sum",
+      "name": "total",
+      "equals": 36
+    },
+    {
+      "type": "hw.cpuMem",
+      "label": "biggest holds the largest value",
+      "name": "biggest",
+      "equals": 12
+    },
+    {
+      "type": "hw.cpuCases",
+      "label": "It works for other arrays too",
+      "cases": [
+        {
+          "set": {
+            "nums": [
+              1,
+              2,
+              3
+            ],
+            "count": [
+              3
+            ]
+          },
+          "expect": {
+            "mem": {
+              "total": 6,
+              "biggest": 3
+            }
+          }
+        },
+        {
+          "set": {
+            "nums": [
+              20,
+              4,
+              20,
+              1
+            ],
+            "count": [
+              4
+            ]
+          },
+          "expect": {
+            "mem": {
+              "total": 45,
+              "biggest": 20
+            }
+          }
+        },
+        {
+          "set": {
+            "nums": [
+              5
+            ],
+            "count": [
+              1
+            ]
+          },
+          "expect": {
+            "mem": {
+              "total": 5,
+              "biggest": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "hw.source",
+      "label": "It compares with CMP and a conditional jump",
+      "pattern": "\\bCMP\\b[\\s\\S]*\\bJ(G|GE|L|LE|A|AE|B|BE)\\b",
+      "message": "Use CMP followed by a conditional jump such as JLE to keep the largest value."
+    }
+  ],
+  "realityNote": "Compilers turn a C for-loop over an array into almost exactly this: an index register, a load with base-plus-index addressing, a compare and a conditional branch."
+}

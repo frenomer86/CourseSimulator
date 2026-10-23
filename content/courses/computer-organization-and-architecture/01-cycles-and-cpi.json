@@ -1,0 +1,112 @@
+{
+  "id": "computer-organization-and-architecture-i1-cycles-and-cpi",
+  "course": "computer-organization-and-architecture",
+  "topic": "Performance metrics: execution time, clock rate and CPI",
+  "unit": 1,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "engine": "E8",
+  "title": "Measure cycles and CPI, then make the loop faster",
+  "estimatedMinutes": 30,
+  "instructions": "## Execution time = instructions × CPI × clock period\n\nThe starter program computes **total = 8 × (sum of nums)**. It works, but it is slow: it multiplies inside the loop and adds to memory on every pass.\n\nThe bench charges cycles per instruction (open \"Instruction set and cycle costs\"): 1 for MOV, ALU and shift instructions, 10 for MUL, 2 for a taken jump or LOOP and 1 for one that falls through, plus 2 for any operand in memory.\n\n## Do this\n\n1. **Run to HLT** on the starter, before changing anything. Read the instruction and cycle counts and answer the four questions. Assume a 4 MHz clock.\n2. Rewrite the program so it still stores the right **total** for any eight values, in **at most 70 cycles**. Keep the running sum in a register, and remember that multiplying by 8 is a shift left by 3.",
+  "config": {
+    "mode": "cpu",
+    "starter": "; total = 8 x (sum of nums), the slow way.\nnums:  DW 3, 1, 4, 1, 5, 9, 2, 6\ntotal: DW 0\n\n        MOV SI, 0\n        MOV CX, 8\nnext:   MOV AX, [nums+SI]   ; load a value\n        MOV BX, 8\n        MUL BX              ; multiply it by 8\n        ADD [total], AX     ; add it to total in memory\n        INC SI\n        LOOP next\n        HLT\n"
+  },
+  "initialState": {},
+  "hints": [
+    "CPI is cycles ÷ instructions. Time is cycles ÷ clock rate: 162 cycles at 4 MHz is 162 × 0.25 µs.",
+    "Add every value into AX inside the loop, and multiply once after the loop.",
+    "SHL AX, 3 costs 1 cycle; MUL costs 10. Store into [total] once, after the loop."
+  ],
+  "checks": [
+    {
+      "type": "hw.answer",
+      "label": "Instructions executed by the starter",
+      "id": "q1",
+      "expected": 51,
+      "tolerance": 0.001,
+      "question": "How many instructions does the starter program execute?"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Cycles used by the starter",
+      "id": "q2",
+      "expected": 162,
+      "tolerance": 0.001,
+      "question": "How many cycles does it take?"
+    },
+    {
+      "type": "hw.answer",
+      "label": "CPI of the starter",
+      "id": "q3",
+      "expected": 3.176,
+      "tolerance": 0.005,
+      "question": "Its CPI (two decimals):"
+    },
+    {
+      "type": "hw.answer",
+      "label": "Execution time at 4 MHz",
+      "id": "q4",
+      "expected": 40.5,
+      "tolerance": 0.005,
+      "question": "Execution time at 4 MHz, in microseconds:"
+    },
+    {
+      "type": "hw.cpuMem",
+      "label": "total is still right",
+      "name": "total",
+      "equals": 248
+    },
+    {
+      "type": "hw.cpuCases",
+      "label": "It works for any eight values",
+      "cases": [
+        {
+          "set": {
+            "nums": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "expect": {
+            "mem": {
+              "total": 64
+            }
+          }
+        },
+        {
+          "set": {
+            "nums": [
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70,
+              80
+            ]
+          },
+          "expect": {
+            "mem": {
+              "total": 2880
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "hw.cpuCycles",
+      "label": "It runs in at most 70 cycles",
+      "max": 70
+    }
+  ],
+  "realityNote": "Compilers make the same moves: strength reduction turns multiplication by a power of two into a shift, and register allocation keeps a running sum out of memory. Real CPUs hide some costs with pipelining and caches, but the instruction count × CPI × clock period equation still governs."
+}

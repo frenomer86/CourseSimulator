@@ -13,6 +13,8 @@ const ROOT = join(__dirname, '..', '..', '..', 'content', 'courses');
 type Solution = HardwareState | { sketch: string };
 
 const SOLUTIONS: Record<string, Solution> = {
+  "assembly-language-and-microprocessors-i1-sum-and-maximum": {"source":"nums:    DW 7, 3, 12, 5, 9\ncount:   DW 5\ntotal:   DW 0\nbiggest: DW 0\n\n        MOV SI, 0\n        MOV CX, [count]\n        MOV AX, 0\n        MOV BX, 0\nnext:   MOV DX, [nums+SI]\n        ADD AX, DX\n        CMP DX, BX\n        JLE skip\n        MOV BX, DX\nskip:   INC SI\n        LOOP next\n        MOV [total], AX\n        MOV [biggest], BX\n        HLT\n"},
+  "computer-organization-and-architecture-i1-cycles-and-cpi": {"source":"nums:  DW 3, 1, 4, 1, 5, 9, 2, 6\ntotal: DW 0\n\n        MOV SI, 0\n        MOV CX, 8\n        MOV AX, 0\nnext:   ADD AX, [nums+SI]\n        INC SI\n        LOOP next\n        SHL AX, 3\n        MOV [total], AX\n        HLT\n","answers":{"q1":"51","q2":"162","q3":"3.18","q4":"40.5"}},
   'basic-electronics-b1-series-and-parallel': { answers: { req: '3k', itot: '4m', vr1: '4', ir3: '1.333m' }, measurements: [{ kind: 'V', a: 'n2', b: '0', reading: 8 }, { kind: 'I', component: 'R1', reading: 0.004 }] },
   'basic-electronics-b2-design-a-divider': { values: { R2: 500 }, answers: { i: '6m' }, measurements: [{ kind: 'V', a: 'n2', b: '0', reading: 3 }] },
   'basic-electronics-i1-light-an-led': { values: { R1: 220 }, answers: { p: '41m' }, measurements: [{ kind: 'I', component: 'D1', reading: 0.0136 }] },
@@ -60,7 +62,7 @@ describe('E8 lab content', () => {
     const config = lab.config as unknown as HardwareConfig;
     describe(lab.id, () => {
       it('has a bench mode, a solution and only hw.* checks', () => {
-        expect(['circuit', 'assembly', 'match', 'bios', 'board']).toContain(config.mode);
+        expect(['circuit', 'assembly', 'match', 'bios', 'board', 'cpu']).toContain(config.mode);
         expect(SOLUTIONS[lab.id], `no reference solution for ${lab.id}`).toBeDefined();
         for (const c of lab.checks) expect(c.type.startsWith('hw.'), c.type).toBe(true);
       });

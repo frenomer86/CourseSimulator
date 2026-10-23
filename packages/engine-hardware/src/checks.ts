@@ -13,14 +13,18 @@
  * board:    hw.ran {}, hw.blink { pin, periodMs, tolerance?, minToggles? }, hw.follows { pin, input, inverted? },
  *           hw.serial { contains?|pattern?|minLines? }, hw.pwm { pin, minDistinct?, reachesMax? }, hw.servo { pin, angles },
  *           hw.pinState { pin, at, value }, hw.tone { pin }, hw.source { pattern?|contains?, message }
+ * cpu:      hw.cpuHalts {}, hw.cpuReg { reg, equals }, hw.cpuMem { name (data label), equals: n | [..] },
+ *           hw.cpuOutput { equals: [..] }, hw.cpuCases { cases: [{ set?, regs?, expect: { regs?, mem?, output? } }] },
+ *           hw.cpuCycles { max?, min? }, hw.cpuSteps { max? }, hw.source { pattern?, notPattern?, message }
  */
 
 import { CheckRegistry, type CheckResult, type CheckSpec, type LabSpec } from '@cslab/lab-runtime';
 import { evalCircuitExpr, formatQuantity, isLit, solve, type Circuit } from './circuit.js';
 import { buildCost, validateBuild, type Build, type PartKind } from './assembly.js';
+import { dataOf, runCpu, signed16, type CpuOptions, type CpuRun, type CycleTable, type Reg } from './cpu.js';
 import { blinkStats, followsInput, levelAt, pinTimeline, pwmStats, servoAngles, type BoardConfig, type BoardRun } from './board.js';
 
-export type BenchMode = 'circuit' | 'assembly' | 'match' | 'bios' | 'board';
+export type BenchMode = 'circuit' | 'assembly' | 'match' | 'bios' | 'board' | 'cpu';
 
 export interface Measurement {
   kind: 'V' | 'I' | 'R';
@@ -54,6 +58,7 @@ export interface HardwareConfig {
   match?: { items: MatchItem[]; options: string[] };
   bios?: { settings: BiosSetting[] };
   board?: BoardConfig;
+  cpu?: { cycles?: Partial<CycleTable>; maxSteps?: number };
   starter?: string;
 }
 
@@ -95,6 +100,31 @@ function within(actual: number, spec: CheckSpec): string | null {
 
 function fmt(x: number, spec: CheckSpec): string {
   return spec.unit ? formatQuantity(x, String(spec.unit)) : String(Number(x.toPrecision(4)));
+}
+
+function cpuRun(state: HardwareState, lab: LabSpec<unknown>, extra: CpuOptions = {}): CpuRun {
+  const c = cfg(lab).cpu ?? {};
+  return runCpu(state.source ?? '', { cycles: c.cycles, maxSteps: c.maxSteps, ...extra });
+}
+
+const words = (v: unknown): number[] => (Array.isArray(v) ? v.map((x) => Number(x) & 0xffff) : [Number(v) & 0xffff]);
+const showWords = (v: number[] | undefined) => (v === undefined ? '(missing)' : v.map((x) => String(signed16(x))).join(', '));
+
+/** Compares a finished run with expected registers, memory and output; returns a problem or null. */
+function compareRun(run: CpuRun, expect: { regs?: Record<string, number>; mem?: Record<string, unknown>; output?: number[] }): string | null {
+  if (!run.ok) return run.error ?? 'the program did not halt';
+  for (const [r, v] of Object.entries(expect.regs ?? {})) if (run.regs[r as Reg] !== (v & 0xffff)) return `${r} is ${signed16(run.regs[r as Reg])}, expected ${v}`;
+  for (const [label, v] of Object.entries(expect.mem ?? {})) {
+    const got = dataOf(run, label);
+    const want = words(v);
+    if (!got) return `there is no data label ${label}`;
+    if (want.some((x, i) => got[i] !== x)) return `${label} is ${showWords(got.slice(0, want.length))}, expected ${showWords(want)}`;
+  }
+  if (expect.output) {
+    const want = words(expect.output);
+    if (run.output.length !== want.length || want.some((x, i) => run.output[i] !== x)) return `the output is ${showWords(run.output) || '(nothing)'}, expected ${showWords(want)}`;
+  }
+  return null;
 }
 
 export function createHardwareChecks(): CheckRegistry<HardwareState> {
@@ -264,6 +294,51 @@ export function createHardwareChecks(): CheckRegistry<HardwareState> {
       if (!tones.length) return fail(spec, String(spec.message ?? `No tone was played on pin ${String(spec.pin)}. Use tone(pin, frequency).`));
       if (spec.minFrequency !== undefined && !tones.some((t) => t.v >= Number(spec.minFrequency))) return fail(spec, `The highest tone was ${Math.max(...tones.map((t) => t.v))} Hz; at least ${String(spec.minFrequency)} Hz expected.`);
       return pass(spec, `A tone of ${tones[0].v} Hz played on pin ${String(spec.pin)}.`);
+    })
+    /* ---------------------------------------------------------------- cpu */
+    .register('hw.cpuHalts', async (state, spec, lab) => {
+      const run = cpuRun(state, lab);
+      return run.ok ? pass(spec, `The program halts after ${run.instructions} instructions and ${run.cycles} cycles.`) : fail(spec, run.error ?? 'The program did not reach HLT.');
+    })
+    .register('hw.cpuReg', async (state, spec, lab) => {
+      const run = cpuRun(state, lab);
+      if (!run.ok) return fail(spec, run.error ?? 'The program did not reach HLT.');
+      const reg = String(spec.reg).toUpperCase() as Reg;
+      const got = run.regs[reg];
+      return got === (Number(spec.equals) & 0xffff) ? pass(spec, `${reg} = ${signed16(got)}.`) : fail(spec, String(spec.message ?? `${reg} is ${signed16(got)} at HLT, but should be ${String(spec.equals)}.`));
+    })
+    .register('hw.cpuMem', async (state, spec, lab) => {
+      const run = cpuRun(state, lab);
+      const problem = compareRun(run, { mem: { [String(spec.name)]: spec.equals } });
+      return problem ? fail(spec, String(spec.message ?? `After the run, ${problem}.`)) : pass(spec, `${String(spec.name)} = ${showWords(words(spec.equals))}.`);
+    })
+    .register('hw.cpuOutput', async (state, spec, lab) => {
+      const run = cpuRun(state, lab);
+      const problem = compareRun(run, { output: spec.equals as number[] });
+      return problem ? fail(spec, String(spec.message ?? `After the run, ${problem}.`)) : pass(spec, 'The program prints what was asked for.');
+    })
+    .register('hw.cpuCases', async (state, spec, lab) => {
+      const cases = (spec.cases as Array<{ set?: Record<string, number[]>; regs?: Record<string, number>; expect: Parameters<typeof compareRun>[1] }>) ?? [];
+      for (const c of cases) {
+        const run = cpuRun(state, lab, { set: c.set, regs: c.regs as CpuOptions['regs'] });
+        const problem = compareRun(run, c.expect);
+        const given = Object.entries(c.set ?? {}).map(([k, v]) => `${k} = ${v.join(', ')}`).join('; ');
+        if (problem) return fail(spec, `With ${given || 'the lab data'}: ${problem}.`);
+      }
+      return pass(spec, `All ${cases.length} test runs give the right result.`);
+    })
+    .register('hw.cpuCycles', async (state, spec, lab) => {
+      const run = cpuRun(state, lab);
+      if (!run.ok) return fail(spec, run.error ?? 'The program did not reach HLT.');
+      if (spec.max !== undefined && run.cycles > Number(spec.max)) return fail(spec, String(spec.message ?? `The program takes ${run.cycles} cycles; the target is at most ${String(spec.max)}.`));
+      if (spec.min !== undefined && run.cycles < Number(spec.min)) return fail(spec, `The program takes ${run.cycles} cycles; at least ${String(spec.min)} were expected.`);
+      return pass(spec, `${run.cycles} cycles for ${run.instructions} instructions (CPI ${(run.cycles / Math.max(1, run.instructions)).toFixed(2)}).`);
+    })
+    .register('hw.cpuSteps', async (state, spec, lab) => {
+      const run = cpuRun(state, lab);
+      if (!run.ok) return fail(spec, run.error ?? 'The program did not reach HLT.');
+      if (spec.max !== undefined && run.instructions > Number(spec.max)) return fail(spec, String(spec.message ?? `The program executes ${run.instructions} instructions; the target is at most ${String(spec.max)}.`));
+      return pass(spec, `${run.instructions} instructions executed.`);
     })
     .register('hw.source', async (state, spec) => {
       const src = state.source ?? '';

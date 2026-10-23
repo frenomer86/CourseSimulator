@@ -28,6 +28,7 @@ import { useProgress } from '../store/progress';
 import { secondsSince, track } from '../lib/telemetry';
 import { runners, useRunnerStatus, warmRunner } from '../lib/runners';
 import { Markdown } from './Markdown';
+import { CpuBench } from './CpuBench';
 import { CodeEditor } from './CodeEditor';
 import { ContestBanner, useContestEntry } from './Contest';
 import { QuestionsAbout } from '../pages/Forum';
@@ -182,6 +183,7 @@ export function HardwareLab({ lab }: { lab: LabSpec<HardwareState> }) {
           {config.mode === 'match' && config.match && <MatchBench config={config} state={state} update={update} />}
           {config.mode === 'bios' && config.bios && <BiosBench config={config} state={state} update={update} />}
           {config.mode === 'board' && config.board && <BoardBench config={config} state={state} update={update} interact={interact} />}
+          {config.mode === 'cpu' && <CpuBench config={config} state={state} update={update} interact={interact} />}
         </section>
 
         <aside className="order-2 lg:order-none space-y-4">
