@@ -1,0 +1,40 @@
+{
+  "engine": "E5",
+  "id": "enterprise-resource-planning-i1-three-way-match",
+  "course": "enterprise-resource-planning",
+  "topic": "Procure-to-pay and the three-way match",
+  "unit": 4,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "The three-way match",
+  "estimatedMinutes": 20,
+  "instructions": "## Procure-to-pay in the tables\n\nBefore an ERP pays a supplier invoice it matches three documents: the **purchase order line** (what was ordered, at what price), the **goods receipt** (what arrived) and the **invoice** (what the supplier is charging). An invoice line passes when the invoiced quantity is no more than the received quantity and the invoice price equals the order price.\n\nTables: **po_lines** (po_id, line, material, qty_ordered, unit_price), **goods_receipts** (po_id, line, qty_received; a line with no receipt has no row) and **invoices** (inv_id, po_id, line, qty_invoiced, unit_price).\n\n## Do this\n\nList the invoice lines that **fail** the match: `inv_id`, `po_id`, `line`, `material`, `received` (0 when nothing was received), `qty_invoiced`, `po_price`, `invoice_price`, ordered by inv_id then line. Use a LEFT JOIN to the receipts so missing receipts count as 0.",
+  "config": {
+    "language": "sql",
+    "schema": "CREATE TABLE po_lines (po_id TEXT NOT NULL, line INTEGER NOT NULL, material TEXT NOT NULL, qty_ordered INTEGER NOT NULL, unit_price REAL NOT NULL, PRIMARY KEY (po_id, line));\nCREATE TABLE goods_receipts (po_id TEXT NOT NULL, line INTEGER NOT NULL, qty_received INTEGER NOT NULL, PRIMARY KEY (po_id, line));\nCREATE TABLE invoices (inv_id TEXT NOT NULL, po_id TEXT NOT NULL, line INTEGER NOT NULL, qty_invoiced INTEGER NOT NULL, unit_price REAL NOT NULL, PRIMARY KEY (inv_id, po_id, line));\nINSERT INTO po_lines VALUES\n  ('PO-1001',1,'Shea nuts, 50 kg bag',100,180.0),('PO-1001',2,'Jute sacks',200,4.5),\n  ('PO-1002',1,'Diesel, litre',500,13.2),('PO-1002',2,'Engine oil, 5 l',10,95.0),\n  ('PO-1003',1,'Packaging film, roll',40,62.0),('PO-1003',2,'Labels, 1000',20,30.0),('PO-1003',3,'Cartons',300,2.1);\nINSERT INTO goods_receipts VALUES ('PO-1001',1,100),('PO-1001',2,180),('PO-1002',1,500),('PO-1003',1,40),('PO-1003',3,300);\nINSERT INTO invoices VALUES\n  ('INV-77','PO-1001',1,100,180.0),('INV-77','PO-1001',2,200,4.5),\n  ('INV-78','PO-1002',1,500,13.9),('INV-78','PO-1002',2,10,95.0),\n  ('INV-79','PO-1003',1,40,62.0),('INV-79','PO-1003',3,300,2.1),('INV-80','PO-1003',2,20,30.0);"
+  },
+  "initialState": {
+    "sql": "SELECT i.inv_id, i.po_id, i.line, p.material\nFROM invoices i\nJOIN po_lines p ON p.po_id = i.po_id AND p.line = i.line\n"
+  },
+  "hints": [
+    "`LEFT JOIN goods_receipts g ON g.po_id = i.po_id AND g.line = i.line` keeps invoice lines with no receipt.",
+    "`COALESCE(g.qty_received, 0) AS received` turns the missing receipt into 0.",
+    "The failure condition is `i.qty_invoiced > COALESCE(g.qty_received, 0) OR i.unit_price <> p.unit_price`."
+  ],
+  "checks": [
+    {
+      "type": "sql.query",
+      "label": "The four invoice lines that fail the match are listed",
+      "expectedQuery": "SELECT i.inv_id, i.po_id, i.line, p.material, COALESCE(g.qty_received, 0) AS received, i.qty_invoiced, p.unit_price AS po_price, i.unit_price AS invoice_price FROM invoices i JOIN po_lines p ON p.po_id = i.po_id AND p.line = i.line LEFT JOIN goods_receipts g ON g.po_id = i.po_id AND g.line = i.line WHERE i.qty_invoiced > COALESCE(g.qty_received, 0) OR i.unit_price <> p.unit_price ORDER BY i.inv_id, i.line",
+      "ordered": true
+    },
+    {
+      "type": "sql.source",
+      "label": "It uses a LEFT JOIN to the receipts",
+      "pattern": "\\bLEFT\\s+(OUTER\\s+)?JOIN\\b",
+      "flags": "i",
+      "message": "An inner join would hide invoice lines that have no goods receipt at all."
+    }
+  ],
+  "realityNote": "SAP, Oracle and Odoo all block payment on exactly these exceptions; the invoice-verification work queue an accounts-payable clerk sees each morning is this query."
+}

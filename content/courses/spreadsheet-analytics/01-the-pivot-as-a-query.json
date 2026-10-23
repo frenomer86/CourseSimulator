@@ -1,0 +1,40 @@
+{
+  "engine": "E5",
+  "id": "spreadsheet-analytics-b1-the-pivot-as-a-query",
+  "course": "spreadsheet-analytics",
+  "topic": "Summarising by sum, count, average and percentage of total",
+  "unit": 4,
+  "topicIndex": 2,
+  "level": "beginner",
+  "title": "The pivot table as a query",
+  "estimatedMinutes": 15,
+  "instructions": "## A market trader's sales log\n\nAuntie Efua records every sale at her Kejetia stall in a table: **sales** (day, product, qty, unit_price). A pivot table that puts products in rows and shows total revenue, number of sale lines and each product's share of total revenue is exactly a `GROUP BY` query.\n\n## Do this\n\nWrite one query that returns, per product: `product`, `revenue` (sum of qty × unit_price), `lines` (count of rows) and `share` (the product's percentage of total revenue, rounded to 1 decimal place), sorted by revenue descending and then product.\n\nThe whole-table total you need for the share is a subquery: `(SELECT SUM(qty * unit_price) FROM sales)`.",
+  "config": {
+    "language": "sql",
+    "schema": "CREATE TABLE sales (day TEXT NOT NULL, product TEXT NOT NULL, qty INTEGER NOT NULL, unit_price REAL NOT NULL);\nINSERT INTO sales VALUES\n  ('2026-03-02','Tomatoes',12,8.0),('2026-03-02','Onions',5,6.0),('2026-03-02','Pepper',3,10.0),('2026-03-02','Garden eggs',4,5.0),\n  ('2026-03-03','Tomatoes',15,8.0),('2026-03-03','Onions',8,6.0),('2026-03-03','Okro',6,4.0),\n  ('2026-03-04','Tomatoes',9,8.5),('2026-03-04','Pepper',5,10.0),('2026-03-04','Onions',4,6.0),('2026-03-04','Garden eggs',6,5.0),\n  ('2026-03-05','Tomatoes',20,8.5),('2026-03-05','Okro',10,4.0),('2026-03-05','Pepper',2,10.0),\n  ('2026-03-06','Onions',12,6.5),('2026-03-06','Tomatoes',11,8.5),('2026-03-06','Garden eggs',3,5.0);"
+  },
+  "initialState": {
+    "sql": "SELECT product, SUM(qty * unit_price) AS revenue\nFROM sales\n"
+  },
+  "hints": [
+    "`GROUP BY product` makes one row per product.",
+    "`COUNT(*)` counts the sale lines in each group.",
+    "`ROUND(100.0 * SUM(qty * unit_price) / (SELECT SUM(qty * unit_price) FROM sales), 1)` is the share."
+  ],
+  "checks": [
+    {
+      "type": "sql.query",
+      "label": "The product summary matches the pivot, sorted by revenue",
+      "expectedQuery": "SELECT product, SUM(qty * unit_price) AS revenue, COUNT(*) AS lines, ROUND(100.0 * SUM(qty * unit_price) / (SELECT SUM(qty * unit_price) FROM sales), 1) AS share FROM sales GROUP BY product ORDER BY revenue DESC, product",
+      "ordered": true
+    },
+    {
+      "type": "sql.source",
+      "label": "It groups by product",
+      "pattern": "\\bGROUP\\s+BY\\b",
+      "flags": "i",
+      "message": "Use GROUP BY product to make one row per product."
+    }
+  ],
+  "realityNote": "Every pivot table in Excel or Google Sheets runs a GROUP BY under the hood; when a sheet gets too big, the same summary moves to SQL unchanged."
+}

@@ -1,0 +1,40 @@
+{
+  "engine": "E5",
+  "id": "electronic-health-records-i1-pivoting-an-eav-record",
+  "course": "electronic-health-records",
+  "topic": "Entity-attribute-value models for sparse clinical data",
+  "unit": 3,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Pivoting an entity-attribute-value record",
+  "estimatedMinutes": 20,
+  "instructions": "## One row per observation\n\nOpenMRS-style records store every observation as a row: **obs** (encounter_id, concept, value_num, value_text). A visit with a temperature, a weight and a diagnosis is three rows. Clinicians, though, want one row per visit.\n\nTables: **patients** (id, name), **encounters** (id, patient_id, visit_date), **obs** as above. Concepts used: `TEMP` (°C, numeric), `WEIGHT` (kg, numeric), `DIAGNOSIS` (text). Not every visit has every observation.\n\n## Do this\n\nReturn one row per encounter: `id`, `name`, `visit_date`, `temperature`, `weight`, `diagnosis` (NULL where not recorded), ordered by visit_date then id.\n\nThe pattern is conditional aggregation: `MAX(CASE WHEN o.concept = 'TEMP' THEN o.value_num END) AS temperature`, grouped by encounter.",
+  "config": {
+    "language": "sql",
+    "schema": "CREATE TABLE patients (id INTEGER PRIMARY KEY, name TEXT NOT NULL);\nCREATE TABLE encounters (id INTEGER PRIMARY KEY, patient_id INTEGER NOT NULL REFERENCES patients(id), visit_date TEXT NOT NULL);\nCREATE TABLE obs (encounter_id INTEGER NOT NULL REFERENCES encounters(id), concept TEXT NOT NULL, value_num REAL, value_text TEXT);\nINSERT INTO patients VALUES (1,'Akua Frimpong'),(2,'Kwabena Addo'),(3,'Maame Serwaa'),(4,'Nana Yaw Osei');\nINSERT INTO encounters VALUES (101,1,'2026-06-01'),(102,2,'2026-06-01'),(103,3,'2026-06-02'),(104,1,'2026-06-09'),(105,4,'2026-06-09'),(106,2,'2026-06-10');\nINSERT INTO obs VALUES\n  (101,'TEMP',38.4,NULL),(101,'WEIGHT',62.0,NULL),(101,'DIAGNOSIS',NULL,'Malaria'),\n  (102,'TEMP',37.0,NULL),(102,'DIAGNOSIS',NULL,'Hypertension'),\n  (103,'WEIGHT',14.5,NULL),(103,'TEMP',39.1,NULL),(103,'DIAGNOSIS',NULL,'Pneumonia'),\n  (104,'TEMP',36.8,NULL),(104,'WEIGHT',61.5,NULL),\n  (105,'DIAGNOSIS',NULL,'Typhoid fever'),(105,'TEMP',38.9,NULL),\n  (106,'WEIGHT',80.2,NULL);"
+  },
+  "initialState": {
+    "sql": "SELECT e.id, p.name, e.visit_date\nFROM encounters e\nJOIN patients p ON p.id = e.patient_id\n"
+  },
+  "hints": [
+    "`LEFT JOIN obs o ON o.encounter_id = e.id` brings in the observations (LEFT, in case a visit has none).",
+    "One `MAX(CASE WHEN o.concept = ... THEN ... END)` per column turns rows into columns.",
+    "`GROUP BY e.id, p.name, e.visit_date ORDER BY e.visit_date, e.id`."
+  ],
+  "checks": [
+    {
+      "type": "sql.query",
+      "label": "One row per encounter with temperature, weight and diagnosis",
+      "expectedQuery": "SELECT e.id, p.name, e.visit_date, MAX(CASE WHEN o.concept = 'TEMP' THEN o.value_num END) AS temperature, MAX(CASE WHEN o.concept = 'WEIGHT' THEN o.value_num END) AS weight, MAX(CASE WHEN o.concept = 'DIAGNOSIS' THEN o.value_text END) AS diagnosis FROM encounters e JOIN patients p ON p.id = e.patient_id LEFT JOIN obs o ON o.encounter_id = e.id GROUP BY e.id, p.name, e.visit_date ORDER BY e.visit_date, e.id",
+      "ordered": true
+    },
+    {
+      "type": "sql.source",
+      "label": "It pivots with conditional aggregation",
+      "pattern": "\\bCASE\\s+WHEN\\b",
+      "flags": "i",
+      "message": "Use MAX(CASE WHEN concept = ... THEN value END) to turn observation rows into columns."
+    }
+  ],
+  "realityNote": "OpenMRS, Bahmni and most research databases (i2b2, OMOP) are entity-attribute-value underneath; every flowsheet and report view is a pivot like this one."
+}

@@ -1,0 +1,40 @@
+{
+  "engine": "E5",
+  "id": "business-intelligence-and-dashboards-i1-running-totals-over-a-star-schema",
+  "course": "business-intelligence-and-dashboards",
+  "topic": "Analytical SQL: window functions, running totals and period-over-period comparisons",
+  "unit": 5,
+  "topicIndex": 2,
+  "level": "intermediate",
+  "title": "Running totals over a star schema",
+  "estimatedMinutes": 20,
+  "instructions": "## The pharmacy chain's sales star\n\nThe warehouse holds a small star: **fact_sales** (date_key, branch_key, revenue), **dim_date** (date_key, year, month) and **dim_branch** (branch_key, name, region).\n\nThe board wants the 2025 monthly trend across all branches: `month`, `revenue`, `running_total` (year-to-date) and `change` (revenue minus the previous month's revenue; NULL for the first month), ordered by month.\n\n## Do this\n\nThe starter already aggregates revenue per month in a CTE. Add the window functions over it: `SUM(revenue) OVER (ORDER BY month)` for the running total and `LAG(revenue) OVER (ORDER BY month)` for the previous month.",
+  "config": {
+    "language": "sql",
+    "schema": "CREATE TABLE dim_date (date_key TEXT PRIMARY KEY, year INTEGER NOT NULL, month INTEGER NOT NULL);\nCREATE TABLE dim_branch (branch_key INTEGER PRIMARY KEY, name TEXT NOT NULL, region TEXT NOT NULL);\nCREATE TABLE fact_sales (date_key TEXT NOT NULL REFERENCES dim_date(date_key), branch_key INTEGER NOT NULL REFERENCES dim_branch(branch_key), revenue REAL NOT NULL);\nINSERT INTO dim_date VALUES ('2024-12-15',2024,12),('2025-01-10',2025,1),('2025-01-25',2025,1),('2025-02-10',2025,2),('2025-03-05',2025,3),('2025-03-20',2025,3),('2025-04-12',2025,4),('2025-05-08',2025,5),('2025-06-14',2025,6);\nINSERT INTO dim_branch VALUES (1,'Osu','Greater Accra'),(2,'Adum','Ashanti'),(3,'Tamale Central','Northern');\nINSERT INTO fact_sales VALUES\n  ('2024-12-15',1,9000),('2024-12-15',2,7000),\n  ('2025-01-10',1,5200),('2025-01-10',2,4100),('2025-01-25',3,2300),('2025-01-25',1,3100),\n  ('2025-02-10',1,4800),('2025-02-10',2,3900),('2025-02-10',3,2500),\n  ('2025-03-05',1,5600),('2025-03-20',2,4700),('2025-03-20',3,2900),\n  ('2025-04-12',1,5100),('2025-04-12',2,4200),('2025-04-12',3,3000),\n  ('2025-05-08',1,6100),('2025-05-08',2,4500),('2025-05-08',3,3300),\n  ('2025-06-14',1,5900),('2025-06-14',2,4900),('2025-06-14',3,3600);"
+  },
+  "initialState": {
+    "sql": "WITH m AS (\n  SELECT d.month, SUM(f.revenue) AS revenue\n  FROM fact_sales f JOIN dim_date d ON d.date_key = f.date_key\n  WHERE d.year = 2025\n  GROUP BY d.month\n)\nSELECT month, revenue\nFROM m\nORDER BY month;\n"
+  },
+  "hints": [
+    "Keep the CTE; it already gives one row per month.",
+    "`SUM(revenue) OVER (ORDER BY month) AS running_total` accumulates in month order.",
+    "`revenue - LAG(revenue) OVER (ORDER BY month) AS change` is NULL for January."
+  ],
+  "checks": [
+    {
+      "type": "sql.query",
+      "label": "Monthly revenue, running total and month-on-month change for 2025",
+      "expectedQuery": "WITH m AS (SELECT d.month, SUM(f.revenue) AS revenue FROM fact_sales f JOIN dim_date d ON d.date_key = f.date_key WHERE d.year = 2025 GROUP BY d.month) SELECT month, revenue, SUM(revenue) OVER (ORDER BY month) AS running_total, revenue - LAG(revenue) OVER (ORDER BY month) AS change FROM m ORDER BY month",
+      "ordered": true
+    },
+    {
+      "type": "sql.source",
+      "label": "It uses a window function",
+      "pattern": "\\bOVER\\s*\\(",
+      "flags": "i",
+      "message": "Use SUM(...) OVER (ORDER BY month) and LAG(...) OVER (ORDER BY month) rather than self-joins."
+    }
+  ],
+  "realityNote": "Year-to-date and period-over-period are the two calculations every dashboard tool (Power BI, Metabase, Superset) generates as window functions over a date dimension."
+}

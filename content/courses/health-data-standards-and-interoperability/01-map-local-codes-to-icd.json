@@ -1,0 +1,40 @@
+{
+  "engine": "E5",
+  "id": "health-data-standards-and-interoperability-i1-map-local-codes-to-icd",
+  "course": "health-data-standards-and-interoperability",
+  "topic": "Mapping local codes to standards",
+  "unit": 2,
+  "topicIndex": 5,
+  "level": "intermediate",
+  "title": "Map local codes to ICD-10 for the district report",
+  "estimatedMinutes": 20,
+  "instructions": "## Three facilities, three code lists\n\nEach facility's records system uses its own diagnosis codes. The district report needs ICD-10. A **concept_map** table maps local codes to ICD-10; some local codes are not mapped yet.\n\nTables: **encounters** (id, facility, local_code, visit_date) and **concept_map** (local_code, icd10, icd_title).\n\n## Do this\n\nProduce the district report: `icd10`, `title`, `encounters` (count), one row per ICD-10 code, with every unmapped encounter gathered into a row whose icd10 is `'UNMAPPED'` and title `'Not mapped'`. Order by encounters descending, then icd10.\n\nA `LEFT JOIN` from encounters to the map keeps the unmapped ones; `COALESCE` supplies the placeholder values. Notice that different local codes can map to the same ICD-10 code and must be counted together.",
+  "config": {
+    "language": "sql",
+    "schema": "CREATE TABLE encounters (id INTEGER PRIMARY KEY, facility TEXT NOT NULL, local_code TEXT NOT NULL, visit_date TEXT NOT NULL);\nCREATE TABLE concept_map (local_code TEXT PRIMARY KEY, icd10 TEXT NOT NULL, icd_title TEXT NOT NULL);\nINSERT INTO concept_map VALUES\n  ('MAL','B54','Unspecified malaria'),('MALARIA','B54','Unspecified malaria'),('M-UNC','B54','Unspecified malaria'),\n  ('URTI','J06.9','Acute upper respiratory infection, unspecified'),('ARI','J06.9','Acute upper respiratory infection, unspecified'),\n  ('HTN','I10','Essential (primary) hypertension'),('BP-HIGH','I10','Essential (primary) hypertension'),\n  ('DIARR','A09','Infectious gastroenteritis and colitis, unspecified'),\n  ('TYPH','A01.0','Typhoid fever');\nINSERT INTO encounters VALUES\n  (1,'Nkawie CHPS','MAL','2026-05-02'),(2,'Nkawie CHPS','MAL','2026-05-02'),(3,'Nkawie CHPS','URTI','2026-05-03'),(4,'Nkawie CHPS','DIARR','2026-05-03'),\n  (5,'Toase Health Centre','MALARIA','2026-05-02'),(6,'Toase Health Centre','MALARIA','2026-05-04'),(7,'Toase Health Centre','ARI','2026-05-04'),(8,'Toase Health Centre','BP-HIGH','2026-05-05'),(9,'Toase Health Centre','SKIN','2026-05-05'),\n  (10,'Atwima Hospital','M-UNC','2026-05-02'),(11,'Atwima Hospital','HTN','2026-05-02'),(12,'Atwima Hospital','HTN','2026-05-03'),(13,'Atwima Hospital','TYPH','2026-05-03'),(14,'Atwima Hospital','ANAEM','2026-05-04'),(15,'Atwima Hospital','MAL','2026-05-06'),(16,'Atwima Hospital','DIARR','2026-05-06');"
+  },
+  "initialState": {
+    "sql": "SELECT m.icd10, m.icd_title AS title, COUNT(*) AS encounters\nFROM encounters e\nJOIN concept_map m ON m.local_code = e.local_code\nGROUP BY m.icd10, m.icd_title\nORDER BY encounters DESC, m.icd10;\n"
+  },
+  "hints": [
+    "Change the JOIN to a LEFT JOIN so encounters without a mapping survive.",
+    "`COALESCE(m.icd10, 'UNMAPPED')` and `COALESCE(m.icd_title, 'Not mapped')` fill the gaps.",
+    "Group by the COALESCEd expressions (`GROUP BY 1, 2`), not the raw columns."
+  ],
+  "checks": [
+    {
+      "type": "sql.query",
+      "label": "The ICD-10 district report, with unmapped encounters shown",
+      "expectedQuery": "SELECT COALESCE(m.icd10, 'UNMAPPED') AS icd10, COALESCE(m.icd_title, 'Not mapped') AS title, COUNT(*) AS encounters FROM encounters e LEFT JOIN concept_map m ON m.local_code = e.local_code GROUP BY 1, 2 ORDER BY encounters DESC, icd10",
+      "ordered": true
+    },
+    {
+      "type": "sql.source",
+      "label": "It keeps unmapped encounters with a LEFT JOIN",
+      "pattern": "\\bLEFT\\s+(OUTER\\s+)?JOIN\\b",
+      "flags": "i",
+      "message": "An inner join silently drops every encounter whose local code has no mapping, which is the thing the district most needs to see."
+    }
+  ],
+  "realityNote": "FHIR ConceptMap resources and terminology servers do this mapping at scale; the unmapped row is what a terminology steward works through each month."
+}

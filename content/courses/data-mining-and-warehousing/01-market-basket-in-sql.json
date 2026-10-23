@@ -1,0 +1,40 @@
+{
+  "engine": "E5",
+  "id": "data-mining-and-warehousing-i1-market-basket-in-sql",
+  "course": "data-mining-and-warehousing",
+  "topic": "Market basket analysis: support, confidence and lift",
+  "unit": 5,
+  "topicIndex": 1,
+  "level": "intermediate",
+  "title": "Market basket analysis in SQL",
+  "estimatedMinutes": 25,
+  "instructions": "## Twelve baskets from a Madina supermarket\n\nThe **baskets** table has one row per item per basket (basket_id, item). Mine the item pairs.\n\nFor a rule A → B (A alphabetically before B): **support** is the number of baskets containing both, **confidence** is support ÷ baskets containing A, and **lift** is confidence ÷ (baskets containing B ÷ all baskets).\n\n## Do this\n\nReturn `item_a`, `item_b`, `support`, `confidence` (rounded to 2 dp) and `lift` (rounded to 2 dp) for every pair with support of at least 3 baskets, ordered by lift descending, then item_a, then item_b.\n\nThe starter already has the CTEs for total baskets, per-item counts and pair counts. Join them and compute the two ratios.",
+  "config": {
+    "language": "sql",
+    "schema": "CREATE TABLE baskets (basket_id INTEGER NOT NULL, item TEXT NOT NULL, PRIMARY KEY (basket_id, item));\nINSERT INTO baskets VALUES\n  (1,'rice'),(1,'oil'),(1,'tomato paste'),(1,'onion'),\n  (2,'rice'),(2,'oil'),(2,'sardines'),\n  (3,'bread'),(3,'milk'),(3,'sugar'),\n  (4,'rice'),(4,'tomato paste'),(4,'onion'),(4,'oil'),\n  (5,'bread'),(5,'milk'),(5,'eggs'),\n  (6,'rice'),(6,'oil'),(6,'onion'),\n  (7,'bread'),(7,'sugar'),(7,'milk'),(7,'tea'),\n  (8,'rice'),(8,'sardines'),(8,'tomato paste'),\n  (9,'oil'),(9,'onion'),(9,'tomato paste'),\n  (10,'bread'),(10,'eggs'),(10,'milk'),\n  (11,'rice'),(11,'oil'),(11,'tomato paste'),\n  (12,'sugar'),(12,'tea'),(12,'milk');"
+  },
+  "initialState": {
+    "sql": "WITH n AS (SELECT COUNT(DISTINCT basket_id) AS total FROM baskets),\n     item_count AS (SELECT item, COUNT(DISTINCT basket_id) AS c FROM baskets GROUP BY item),\n     pairs AS (\n       SELECT a.item AS item_a, b.item AS item_b, COUNT(*) AS pair_count\n       FROM baskets a JOIN baskets b ON a.basket_id = b.basket_id AND a.item < b.item\n       GROUP BY a.item, b.item\n     )\nSELECT item_a, item_b, pair_count AS support\nFROM pairs\nWHERE pair_count >= 3\nORDER BY support DESC, item_a, item_b;\n"
+  },
+  "hints": [
+    "Join `pairs` to `item_count` twice: once for item_a (ca) and once for item_b (cb); the single-row `n` CTE can be CROSS JOINed.",
+    "`ROUND(1.0 * pair_count / ca.c, 2) AS confidence`.",
+    "`ROUND((1.0 * pair_count / ca.c) / (1.0 * cb.c / n.total), 2) AS lift`, then `ORDER BY lift DESC, item_a, item_b`."
+  ],
+  "checks": [
+    {
+      "type": "sql.query",
+      "label": "Support, confidence and lift for every frequent pair",
+      "expectedQuery": "WITH n AS (SELECT COUNT(DISTINCT basket_id) AS total FROM baskets), item_count AS (SELECT item, COUNT(DISTINCT basket_id) AS c FROM baskets GROUP BY item), pairs AS (SELECT a.item AS item_a, b.item AS item_b, COUNT(*) AS pair_count FROM baskets a JOIN baskets b ON a.basket_id = b.basket_id AND a.item < b.item GROUP BY a.item, b.item) SELECT p.item_a, p.item_b, p.pair_count AS support, ROUND(1.0 * p.pair_count / ca.c, 2) AS confidence, ROUND((1.0 * p.pair_count / ca.c) / (1.0 * cb.c / n.total), 2) AS lift FROM pairs p JOIN item_count ca ON ca.item = p.item_a JOIN item_count cb ON cb.item = p.item_b CROSS JOIN n WHERE p.pair_count >= 3 ORDER BY lift DESC, p.item_a, p.item_b",
+      "ordered": true
+    },
+    {
+      "type": "sql.source",
+      "label": "It computes lift",
+      "pattern": "\\blift\\b",
+      "flags": "i",
+      "message": "Name the lift column lift: confidence divided by the base rate of item_b."
+    }
+  ],
+  "realityNote": "Apriori and FP-growth exist because this self-join explodes on millions of baskets and thousands of items; on a small table, plain SQL gives the same rules."
+}
