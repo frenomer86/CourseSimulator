@@ -291,15 +291,16 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
 
   xargs: (args, io, ctx) => {
     const o = parseOpts(args, ['n', 'I'], {}, true);
-    const items = io.stdin.split(/\s+/).filter(Boolean);
+    // -0: items end with NUL (find -print0); otherwise they are separated by blanks.
+    const items = o.flags.has('0') ? io.stdin.split('\0').filter(Boolean) : io.stdin.split(/\s+/).filter(Boolean);
     const cmd = o.rest.length ? o.rest : ['echo'];
     let code = 0;
     if (o.values.I) {
-      for (const item of lines(io.stdin)) code = runCommand(ctx, cmd.map((c) => c.split(o.values.I).join(item)), { stdin: '', out: io.out, err: io.err });
+      for (const item of o.flags.has('0') ? io.stdin.split('\0').filter(Boolean) : lines(io.stdin)) code = runCommand(ctx, cmd.map((c) => c.split(o.values.I).join(item)), { stdin: '', out: io.out, err: io.err });
       return code;
     }
     const n = o.values.n ? Number(o.values.n) : items.length || 1;
-    if (!items.length) return runCommand(ctx, cmd, { stdin: '', out: io.out, err: io.err });
+    if (!items.length) return o.flags.has('r') ? 0 : runCommand(ctx, cmd, { stdin: '', out: io.out, err: io.err });
     for (let i = 0; i < items.length; i += n) code = runCommand(ctx, [...cmd, ...items.slice(i, i + n)], { stdin: '', out: io.out, err: io.err });
     return code;
   },

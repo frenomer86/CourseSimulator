@@ -5,6 +5,7 @@
  */
 
 import { asList, bool, condition, isObj, isSecure, machine, machineByName, num, prop, register, registerNative, str, type Cx, type Env, type Obj, type Secure, type Value } from './core.js';
+import { makeDate, parseDateText } from './lang.js';
 import { dcRules as dcRulesFor, domainDn, sameSubnet, srvRecords, type AdComputer, type AdGroup, type AdOu, type AdState, type AdUser, type Fgpp, type PasswordPolicy, type WinEvent } from './model.js';
 
 /* ----------------------------------------------------------------------------- lookups */
@@ -95,8 +96,10 @@ const PROPS_EXTRA: Record<string, (u: AdUser, st: AdState) => Value> = {
   memberof: (u, st) => st.groups.filter((g) => g.members.includes(u.dn)).map((g) => g.dn),
   manager: (u) => u.manager ?? '',
   mail: (u) => `${u.sam}@${(u.upn ?? '').split('@')[1] ?? ''}`,
+  lastlogondate: (u) => (u.lastLogon ? makeDate(parseDateText(u.lastLogon) ?? 0) : null),
+  whencreated: (u) => makeDate(parseDateText(u.whenCreated ?? '2025-09-01T08:00:00') ?? 0),
 };
-const KEY_NAMES: Record<string, string> = { department: 'Department', title: 'Title', office: 'Office', description: 'Description', homedirectory: 'HomeDirectory', homedrive: 'HomeDrive', profilepath: 'ProfilePath', lockedout: 'LockedOut', passwordneverexpires: 'PasswordNeverExpires', memberof: 'MemberOf', manager: 'Manager', mail: 'mail' };
+const KEY_NAMES: Record<string, string> = { department: 'Department', title: 'Title', office: 'Office', description: 'Description', homedirectory: 'HomeDirectory', homedrive: 'HomeDrive', profilepath: 'ProfilePath', lockedout: 'LockedOut', passwordneverexpires: 'PasswordNeverExpires', memberof: 'MemberOf', manager: 'Manager', mail: 'mail', lastlogondate: 'LastLogonDate', whencreated: 'whenCreated' };
 
 export function userView(u: AdUser, st: AdState, props: string[] = []): Obj {
   const o: Obj = { __type: 'ADUser', DistinguishedName: u.dn, Enabled: u.enabled, GivenName: u.given ?? '', Name: u.name, ObjectClass: 'user', SamAccountName: u.sam, SID: u.sid ?? '', Surname: u.surname ?? '', UserPrincipalName: u.upn ?? '' };
@@ -483,9 +486,14 @@ register(
       if (cx.P.lockedout) list = list.filter((u) => u.lockedOut);
       if (cx.P.accountdisabled) list = list.filter((u) => !u.enabled);
       if (cx.P.passwordneverexpires) list = list.filter((u) => u.passwordNeverExpires);
-      if (cx.P.accountinactive) list = list.filter((u) => (u as AdUser & { inactive?: boolean }).inactive);
+      if (cx.P.accountinactive) {
+        // -TimeSpan 90.00:00:00 (default 15 days in the real cmdlet; labs pass it explicitly).
+        const span = cx.P.timespan !== undefined ? spanDays(cx.P.timespan) : 15;
+        const cutoff = cx.env.sys.now - span * 86400000;
+        list = list.filter((u) => (u as AdUser & { inactive?: boolean }).inactive || (u.lastLogon !== undefined && (parseDateText(u.lastLogon) ?? 0) < cutoff) || (u.lastLogon === undefined && u.whenCreated !== undefined && (parseDateText(u.whenCreated) ?? 0) < cutoff));
+      }
       if (cx.P.usersonly === undefined && !cx.P.lockedout && !cx.P.accountdisabled && !cx.P.passwordneverexpires && !cx.P.accountinactive) cx.fail('Search-ADAccount needs -LockedOut, -AccountDisabled, -AccountInactive or -PasswordNeverExpires.');
-      return list.map((u) => ({ __type: 'select', Name: u.name, SamAccountName: u.sam, Enabled: u.enabled, LockedOut: !!u.lockedOut, DistinguishedName: u.dn }));
+      return list.map((u) => ({ __type: 'select', Name: u.name, SamAccountName: u.sam, Enabled: u.enabled, LockedOut: !!u.lockedOut, DistinguishedName: u.dn, __extra: { LastLogonDate: u.lastLogon ? makeDate(parseDateText(u.lastLogon) ?? 0) : null } }));
     },
     'move-adobject': (cx) => {
       const st = cx.env.st;
@@ -1039,3 +1047,10 @@ export function routable(a: { nics: Array<{ ip?: string; prefix?: number; gatewa
 }
 
 export { num };
+
+/** Days in a -TimeSpan value: a timespan object, 90.00:00:00 text, or a number of days. */
+function spanDays(v: Value): number {
+  if (isObj(v) && (v as Obj).__type === 'timespan') return Number((v as Obj).__ms) / 86400000;
+  const m = /^(\d+)(?:\.(\d{1,2}):(\d{2}))?/.exec(str(v));
+  return m ? Number(m[1]) + (m[2] ? Number(m[2]) / 24 : 0) : 15;
+}

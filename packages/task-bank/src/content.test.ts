@@ -9,7 +9,27 @@ import { describe, expect, it } from 'vitest';
 import { validateLabSpec, type LabSpec } from '@cslab/lab-runtime';
 import { createShellChecks, runLines, systemFromInitial, type ShellState } from '@cslab/engine-shell';
 import { choose, createScenarioChecks, currentNode, isFinished, startScenario, viewEvidence, type ScenarioCheckState, type ScenarioSpec } from '@cslab/engine-scenario';
+import { createCodeChecks, executeJavaScript, type CodeLanguage, type CodeRunner, type CodeState, type RunResult } from '@cslab/engine-code';
+import { spawnSync } from 'node:child_process';
 import { buildTask, loadCourse, metaOf, TASK_COURSES, type TaskTemplate } from './index.js';
+
+/** E1 code labs: JavaScript runs in-process, Python through a local interpreter (those labs are skipped without one). */
+const PY = ['py', 'python3', 'python'].find((cmd) => {
+  const r = spawnSync(cmd, ['-c', 'print(1)'], { encoding: 'utf8', timeout: 10000 });
+  return r.status === 0 && r.stdout.trim() === '1';
+});
+const pythonRunner: CodeRunner = {
+  language: 'python',
+  run(source: string, stdin = ''): Promise<RunResult> {
+    const start = Date.now();
+    const r = spawnSync(PY!, ['-I', '-c', source], { input: stdin, encoding: 'utf8', timeout: 60000 });
+    const timedOut = !!r.error && (r.error as NodeJS.ErrnoException).code === 'ETIMEDOUT';
+    const errLine = (r.stderr ?? '').trim().split('\n').pop() ?? '';
+    return Promise.resolve({ stdout: r.stdout ?? '', stderr: r.stderr ?? '', error: r.status === 0 ? null : timedOut ? 'timed out' : errLine || 'exited with an error', timeMs: Date.now() - start, timedOut });
+  },
+};
+const jsRunner: CodeRunner = { language: 'javascript', run: (source: string, stdin = '') => Promise.resolve(executeJavaScript(source, stdin)) };
+const codeRunner = (language: CodeLanguage): CodeRunner | undefined => (language === 'python' ? (PY ? pythonRunner : undefined) : jsRunner);
 
 const ROOT = join(__dirname, '..', '..', '..');
 const courses = JSON.parse(readFileSync(join(ROOT, 'data', 'courses.json'), 'utf8')) as { courses?: unknown[] } | unknown[];
@@ -61,6 +81,7 @@ describe('task bank', () => {
 
   const shell = createShellChecks();
   const scenario = createScenarioChecks();
+  const code = createCodeChecks({ get: codeRunner });
 
   for (const t of all) {
     describe(t.id, () => {
@@ -87,6 +108,14 @@ describe('task bank', () => {
             const before = await scenario.run(lab, { ...startScenario(spec), finished: false } as ScenarioCheckState);
             expect(before.passed).toBe(false);
             const r = await scenario.run(lab, bestPath(lab));
+            const failing = r.checks.filter((c) => !c.passed).map((c) => `${c.label}: ${c.message}`);
+            if (failing.length) throw new Error(`Failing checks:\n${failing.join('\n')}`);
+          } else if (t.engine === 'E1') {
+            const st = lab.initialState as CodeState;
+            if (!codeRunner(st.language)) return;
+            const before = await code.run(lab as LabSpec<CodeState>, st);
+            expect(before.passed, 'starter must not pass').toBe(false);
+            const r = await code.run(lab as LabSpec<CodeState>, { ...st, source: (lab.solution ?? []).join('\n') });
             const failing = r.checks.filter((c) => !c.passed).map((c) => `${c.label}: ${c.message}`);
             if (failing.length) throw new Error(`Failing checks:\n${failing.join('\n')}`);
           } else throw new Error(`no solver for engine ${t.engine}`);

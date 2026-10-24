@@ -7,6 +7,8 @@ import { actor, currentUser, runCommand, type Ctx } from './shell.js';
 import { abs, errText, fullDate, humanSize, lines, parseOpts, strftime, type IO } from './util.js';
 import { MAN_PAGES } from './man.js';
 
+const ROOT_ACTOR = { user: 'root', groups: ['root'] };
+
 type Cmd = (args: string[], io: IO, ctx: Ctx) => number;
 
 function needRoot(ctx: Ctx, io: IO, cmd: string, what = 'Permission denied.'): boolean {
@@ -762,6 +764,7 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
   zypper: (args, io, ctx) => pkgManager(args, io, ctx, 'zypper'),
   apt: (args, io, ctx) => pkgManager(args, io, ctx, 'apt'),
   'apt-get': (args, io, ctx) => pkgManager(args, io, ctx, 'apt'),
+  'apt-mark': (args, io, ctx) => pkgManager(args, io, ctx, 'apt'),
   dnf: (args, io, ctx) => pkgManager(args, io, ctx, 'dnf'),
   yum: (args, io, ctx) => pkgManager(args, io, ctx, 'dnf'),
   rpm: (args, io, ctx) => {
@@ -1207,6 +1210,59 @@ function pkgManager(args: string[], io: IO, ctx: Ctx, flavour: 'zypper' | 'apt' 
   }
   if (verb === 'list' || verb === 'packages') {
     for (const [n, p] of Object.entries(sys.packages)) if (p.installed || !o.flags.has('installed')) io.out(`${p.installed ? 'i' : ' '} | ${n.padEnd(12)} | ${p.version.padEnd(8)} | ${p.description}\n`);
+    return 0;
+  }
+  // Locks (zypper addlock) and holds (apt-mark hold) keep a package at its version during upgrades.
+  const lockFile = flavour === 'apt' ? '/var/lib/apt/holds' : '/etc/zypp/locks';
+  const readLocks = (): string[] => {
+    try {
+      const text = readFile(sys.fs, lockFile, ROOT_ACTOR);
+      return flavour === 'apt' ? text.split('\n').filter(Boolean) : [...text.matchAll(/solvable_name: (\S+)/g)].map((m) => m[1]);
+    } catch {
+      return [];
+    }
+  };
+  const writeLocks = (list: string[]) => {
+    mkdir(sys.fs, lockFile.slice(0, lockFile.lastIndexOf('/')), ROOT_ACTOR, sys.now, true);
+    writeFile(sys.fs, lockFile, flavour === 'apt' ? list.map((l) => l + '\n').join('') : list.map((l) => `type: package\nmatch_type: glob\ncase_sensitive: on\nsolvable_name: ${l}\n\n`).join(''), ROOT_ACTOR, sys.now);
+  };
+  if (['addlock', 'al', 'removelock', 'rl', 'hold', 'unhold'].includes(verb)) {
+    if (currentUser(ctx) !== 'root') {
+      io.err('Root privileges are required for modifying locks.\n');
+      return 1;
+    }
+    const add = verb === 'addlock' || verb === 'al' || verb === 'hold';
+    const cur = readLocks();
+    const next = add ? [...new Set([...cur, ...names])] : cur.filter((l) => !names.includes(l));
+    writeLocks(next);
+    if (flavour === 'apt') for (const n of names) io.out(add ? `${n} set on hold.\n` : `Canceled hold on ${n}.\n`);
+    else io.out(add ? `Specified lock has been successfully added.\n` : `${cur.length - next.length} lock has been successfully removed.\n`);
+    return 0;
+  }
+  if (['locks', 'll', 'showhold'].includes(verb)) {
+    const cur = readLocks();
+    if (flavour === 'apt') io.out(cur.map((l) => l + '\n').join(''));
+    else io.out(cur.length ? `\n# | Name${' '.repeat(10)}| Type    | Repository\n--+${'-'.repeat(15)}+---------+-----------\n${cur.map((l, i) => `${i + 1} | ${l.padEnd(14)}| package | (any)\n`).join('')}` : 'There are no package locks defined.\n');
+    return 0;
+  }
+  if (['list-updates', 'lu'].includes(verb) || (verb === 'list' && o.flags.has('upgradable'))) {
+    const ups = Object.entries(sys.packages).filter(([n, p]) => p.installed && p.available && p.available !== p.version && !readLocks().includes(n));
+    if (flavour === 'apt') io.out('Listing... Done\n' + ups.map(([n, p]) => `${n}/stable ${p.available} amd64 [upgradable from: ${p.version}]\n`).join(''));
+    else io.out(ups.length ? `S | Repository  | Name${' '.repeat(10)}| Current Version | Available Version | Arch\n--+-------------+---------------+-----------------+-------------------+-------\n${ups.map(([n, p]) => `v | Main Update | ${n.padEnd(14)}| ${p.version.padEnd(16)}| ${p.available!.padEnd(18)}| x86_64\n`).join('')}` : 'No updates found.\n');
+    return 0;
+  }
+  if (['upgrade', 'up', 'dist-upgrade', 'dup', 'patch', 'full-upgrade'].includes(verb) && currentUser(ctx) === 'root' && Object.values(sys.packages).some((p) => p.installed && p.available && p.available !== p.version)) {
+    const locks = readLocks();
+    const want = names.length ? names : Object.keys(sys.packages);
+    const ups = want.filter((n) => sys.packages[n]?.installed && sys.packages[n].available && sys.packages[n].available !== sys.packages[n].version);
+    const held = ups.filter((n) => locks.includes(n));
+    const done = ups.filter((n) => !locks.includes(n));
+    for (const n of done) {
+      sys.packages[n].version = sys.packages[n].available!;
+      delete sys.packages[n].available;
+    }
+    if (flavour === 'apt') io.out(`Reading package lists... Done\nBuilding dependency tree... Done\nCalculating upgrade... Done\n${held.length ? `The following packages have been kept back:\n  ${held.join(' ')}\n` : ''}${done.length ? `The following packages will be upgraded:\n  ${done.join(' ')}\n` : ''}${done.length} upgraded, 0 newly installed, 0 to remove and ${held.length} not upgraded.\n`);
+    else io.out(`Loading repository data...\nReading installed packages...\nResolving package dependencies...\n${held.length ? `\nThe following ${held.length} package${held.length > 1 ? 's are' : ' is'} locked and will not be changed:\n  ${held.join(' ')}\n` : ''}${done.length ? `\nThe following ${done.length} package${done.length > 1 ? 's are' : ' is'} going to be upgraded:\n  ${done.join(' ')}\n\n${done.map((n, i) => `(${i + 1}/${done.length}) Installing: ${n}-${sys.packages[n].version}-1.x86_64 .......[done]\n`).join('')}` : 'Nothing to do.\n'}`);
     return 0;
   }
   if (['update', 'refresh', 'ref', 'upgrade', 'up', 'dist-upgrade', 'patch', 'dup', 'check-update'].includes(verb)) {

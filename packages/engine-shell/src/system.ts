@@ -46,6 +46,8 @@ export interface PackageRec {
   provides?: string[];
   /** Service unit it installs. */
   service?: string;
+  /** A newer version the repositories offer (upgrade installs it unless the package is held). */
+  available?: string;
 }
 export interface ProcRec {
   pid: number;

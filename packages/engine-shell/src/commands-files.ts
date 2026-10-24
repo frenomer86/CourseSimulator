@@ -2,7 +2,7 @@
 
 import { FsError, basename, can, copy, dirname, listDir, lookup, mkdir, modeString, move, normalise, parseMode, readFile, remove, walk, writeFile, type DirNode, type FsNode } from './fs.js';
 import { groupName } from './system.js';
-import { actor, currentUser, globMatch, type Ctx } from './shell.js';
+import { actor, currentUser, globMatch, runCommand, type Ctx } from './shell.js';
 import { abs, errText, humanSize, lsDate, parseOpts, readInputs, sizeOf, statNode, totalSize, type IO } from './util.js';
 
 type Cmd = (args: string[], io: IO, ctx: Ctx) => number;
@@ -411,7 +411,8 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
     const preds: Pred[] = [];
     let maxDepth = Infinity;
     let doDelete = false;
-    let printType: 'name' | 'ls' = 'name';
+    let printType: 'name' | 'ls' | 'zero' = 'name';
+    const execs: Array<{ cmd: string[]; batch: boolean }> = [];
     while (i < args.length) {
       const a = args[i++];
       const v = args[i];
@@ -454,10 +455,29 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
         case '-mindepth': i++; { const md = Number(v); preds.push((_p, _n, d) => d >= md); } break;
         case '-delete': doDelete = true; break;
         case '-print': break;
+        case '-print0': printType = 'zero'; break;
+        case '-mmin': {
+          i++;
+          const mins = Number(v.replace(/^[+-]/, ''));
+          preds.push((_, n) => {
+            const age = (ctx.sys.now - n.mtime) / 60000;
+            return v.startsWith('+') ? age > mins : v.startsWith('-') ? age < mins : Math.floor(age) === mins;
+          });
+          break;
+        }
         case '-ls': printType = 'ls'; break;
         case '-not': case '!': { const next = args[i]; i++; const sub = args[i]; i++; const p = makeSimplePred(next, sub); if (p) preds.push((a1, b1, c1) => !p(a1, b1, c1)); break; }
         case '-o': case '-or': case '-a': case '-and': break;
-        case '-exec': { io.err('find: -exec is not supported in this simulator; pipe the names to xargs instead\n'); return 1; }
+        case '-exec': {
+          // -exec cmd {} \; runs once per file; -exec cmd {} + runs once with all of them.
+          const cmd: string[] = [];
+          i--;
+          while (i < args.length && args[i] !== ';' && args[i] !== '+') cmd.push(args[i++]);
+          if (i >= args.length) { io.err("find: missing argument to `-exec'\n"); return 1; }
+          execs.push({ cmd, batch: args[i] === '+' });
+          i++;
+          break;
+        }
         default:
           io.err(`find: unknown predicate '${a}'\n`);
           return 1;
@@ -472,6 +492,7 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
     }
     let code = 0;
     const toDelete: string[] = [];
+    const found: string[] = [];
     for (const start of paths) {
       const base = abs(ctx, start);
       const baseDepth = base === '/' ? 0 : base.split('/').length - 1;
@@ -482,6 +503,8 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
           if (!preds.every((f) => f(p, n, depth))) return;
           const shown = start === '.' ? (p === base ? '.' : './' + p.slice(base.length + 1)) : base === '/' ? p : start.replace(/\/$/, '') + (p === base ? '' : p.slice(base.length));
           if (doDelete) toDelete.push(p);
+          else if (execs.length) found.push(shown);
+          else if (printType === 'zero') io.out(shown + '\0');
           else if (printType === 'ls') io.out(`${modeString(n)} ${n.owner} ${n.group} ${String(sizeOf(n)).padStart(6)} ${lsDate(n.mtime)} ${shown}\n`);
           else io.out(shown + '\n');
         });
@@ -489,6 +512,11 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
         io.err(`find: '${start}': ${errText(e, start).replace(/^.*?: /, '')}\n`);
         code = 1;
       }
+    }
+    for (const e of execs) {
+      if (e.batch) {
+        if (found.length) code = Math.max(code, runCommand(ctx, e.cmd.flatMap((w) => (w === '{}' ? found : [w])), { stdin: '', out: io.out, err: io.err }) ? 1 : 0);
+      } else for (const p of found) code = Math.max(code, runCommand(ctx, e.cmd.map((w) => w.split('{}').join(p)), { stdin: '', out: io.out, err: io.err }) ? 1 : 0);
     }
     for (const p of toDelete.sort((a, b) => b.length - a.length)) {
       try {

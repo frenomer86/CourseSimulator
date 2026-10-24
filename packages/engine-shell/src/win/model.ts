@@ -43,6 +43,9 @@ export interface AdUser {
   changeAtLogon?: boolean;
   /** Last password set, in characters, so policies can be checked against it. */
   passwordLength?: number;
+  /** Last logon and creation times (ISO text, e.g. 2026-06-01T08:00:00). */
+  lastLogon?: string;
+  whenCreated?: string;
 }
 
 export interface AdGroup {

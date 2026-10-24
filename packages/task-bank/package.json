@@ -9,6 +9,7 @@
   "dependencies": {
     "@cslab/lab-runtime": "*",
     "@cslab/engine-shell": "*",
-    "@cslab/engine-scenario": "*"
+    "@cslab/engine-scenario": "*",
+    "@cslab/engine-code": "*"
   }
 }
