@@ -55,7 +55,8 @@ describe('Active Directory', () => {
     expect(finance.map((u) => u.name)).toEqual(['Abena Owusu', 'Kwesi Boateng', 'Efua Asante']);
     expect(finance.every((u) => u.enabled && u.hasPassword && u.department === 'Finance')).toBe(true);
     expect(out).toMatch(/Abena Owusu\s+True/);
-    expect(out).toMatch(/Count\s*\n-+\s*\n4/);
+    // Measure-Object prints as a list, as in Windows PowerShell.
+    expect(out).toMatch(/Count\s*:\s*4/);
   });
 
   it('enforces password complexity and refuses an enabled account with no password', () => {

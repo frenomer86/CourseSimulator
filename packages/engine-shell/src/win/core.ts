@@ -1,18 +1,16 @@
 /**
- * The PowerShell interpreter for Windows labs.
- *
- * Statements separated by ; or newlines; pipelines with |; $variables, $_.Property and
- * (subexpression).Property; assignment; "double quotes" expanding $name and $(expression);
- * 'single quotes'; comma arrays; @(...) arrays and @{ Key = value } hashtables; { script blocks };
- * foreach ($x in ...) { }, if / elseif / else; conditions with -eq -ne -like -notlike -match -gt
- * -ge -lt -le -contains -in -and -or -not; .\script.ps1 files.
+ * The PowerShell host for Windows labs: values, the session environment, Windows paths, the
+ * cmdlet registry, output formatting and the entry points. The language itself (parser and
+ * evaluator) lives in parse.ts and lang.ts.
  *
  * Cmdlets and native tools (ipconfig, gpresult, dcdiag ...) are registered by the cmdlet modules.
  */
 
-import { lookup, readFile, type DirNode } from '../fs.js';
+import { lookup, type DirNode } from '../fs.js';
 import type { ShellSystem } from '../system.js';
 import { driveRoot, loadAd, loadEstate, saveAd, saveEstate, type AdState, type Estate, type Machine } from './model.js';
+import { binaryOp, errorText, evalCollect, evalCondition, ExitEx, expandText, formatDate, getVariable, globalScope, makeCx as langMakeCx, RuntimeErr, runSource, setVariable, str as langStr, type Scope } from './lang.js';
+import { needsMore } from './parse.js';
 
 /* ----------------------------------------------------------------------------- values */
 
@@ -23,6 +21,10 @@ export class PsError extends Error {
   constructor(
     public cmd: string,
     message: string,
+    /** Exception type for catch [Type] (defaults to one guessed from the message). */
+    public type?: string,
+    /** True for errors that end the statement even without -ErrorAction Stop. */
+    public terminating?: boolean,
   ) {
     super(message);
   }
@@ -36,17 +38,23 @@ export interface Secure {
 export const isSecure = (v: unknown): v is Secure => !!v && typeof v === 'object' && SECURE in (v as object);
 export const isObj = (v: unknown): v is Obj => !!v && typeof v === 'object' && !Array.isArray(v) && !isSecure(v);
 
+const fmtNum = (n: number) => (Number.isInteger(n) ? String(n) : String(Number(n.toPrecision(15))));
+
 export function show(v: Value): string {
   if (v === true) return 'True';
   if (v === false) return 'False';
   if (v === null || v === undefined) return '';
+  if (typeof v === 'number') return fmtNum(v);
   if (isSecure(v)) return 'System.Security.SecureString';
   if (Array.isArray(v)) return v.map(show).join(' ');
   if (typeof v === 'object') {
     const o = v as Obj;
-    if (o.__type === 'csv' || o.__type === 'hashtable') return `@{${Object.entries(o).filter(([k]) => k !== '__type').map(([k, x]) => `${k}=${show(x)}`).join('; ')}}`;
+    if (o.__type === 'csv' || o.__type === 'hashtable' || o.__type === 'psobject') return `@{${Object.entries(o).filter(([k]) => !k.startsWith('__')).map(([k, x]) => `${k}=${show(x)}`).join('; ')}}`;
     if (o.__type === 'block') return String(o.src);
-    return String(o.Name ?? o.DistinguishedName ?? o.Path ?? '[object]');
+    if (o.__type === 'datetime') return formatDate(Number(o.__ms), 'dd/MM/yyyy HH:mm:ss');
+    if (o.__type === 'timespan' || o.__type === 'version' || o.__type === 'guid' || o.__type === 'type' || o.__type === 'error' || o.__type === 'exception') return langStr(o);
+    if (o.__type === 'pathinfo') return String(o.Path);
+    return String(o.Name ?? o.DistinguishedName ?? o.Path ?? o.Value ?? '[object]');
   }
   return String(v);
 }
@@ -59,11 +67,19 @@ export function prop(v: Value, name: string): Value {
   if (typeof v === 'string' && name.toLowerCase() === 'length') return v.length;
   if (!v || typeof v !== 'object') return undefined;
   const o = v as Obj;
-  const key = Object.keys(o).find((k) => k.toLowerCase() === name.toLowerCase());
-  return key ? o[key] : undefined;
+  const n = name.toLowerCase();
+  const key = Object.keys(o).find((k) => k.toLowerCase() === n && !k.startsWith('__'));
+  if (key) return o[key];
+  // Extra properties that objects carry but do not display by default.
+  if (o.__extra && typeof o.__extra === 'object') {
+    const extra = o.__extra as Obj;
+    const k2 = Object.keys(extra).find((k) => k.toLowerCase() === n);
+    if (k2) return extra[k2];
+  }
+  return undefined;
 }
 
-export const asList = (v: Value): Value[] => (v === undefined ? [] : Array.isArray(v) ? v : [v]);
+export const asList = (v: Value): Value[] => (v === undefined || v === null ? (v === null ? [] : []) : Array.isArray(v) ? v : [v]);
 export const str = (v: Value) => (v === undefined || v === null ? '' : show(v));
 export const bool = (v: Value) => v === true || /^(\$?true|1|yes)$/i.test(str(v));
 export const num = (v: Value) => {
@@ -85,6 +101,22 @@ export interface Env {
   dirtyAd: boolean;
   dirtyEst: boolean;
   depth: number;
+  /** The current variable scope (its root is `vars`). */
+  scope?: Scope;
+  /** Depth of enclosing try blocks: terminating errors propagate to them. */
+  tryDepth?: number;
+  /** $? for the last command. */
+  ok?: boolean;
+  /** Writes output still waiting to be formatted, before host text. */
+  flush?: () => void;
+  /** The object whose properties barewords name (in -Filter conditions). */
+  filterSubject?: Value;
+  /** Pester mocks by command name. */
+  mocks?: Map<string, Obj>;
+  callDepth?: number;
+  /** The script file running (Windows path), for error positions and $PSScriptRoot. */
+  scriptPath?: string;
+  line?: number;
 }
 
 export function machine(env: Env): Machine {
@@ -101,7 +133,7 @@ export function machineByName(env: Env, name: string): Machine | undefined {
 export const UNC_RESOLVERS: Array<(env: Env, server: string, share: string, rest: string) => string | null> = [];
 
 export function toVfs(env: Env, p: string): string {
-  const s = p.trim().replace(/^["']|["']$/g, '');
+  const s = p.trim().replace(/^["']|["']$/g, '').replace(/^Microsoft\.PowerShell\.Core\\FileSystem::/i, '');
   const unc = /^\\\\([^\\]+)\\([^\\]+)(\\.*)?$/.exec(s);
   if (unc) {
     for (const r of UNC_RESOLVERS) {
@@ -147,240 +179,6 @@ export function normWin(p: string): string {
   return m ? m[1].toUpperCase() + s.slice(1) : s;
 }
 
-/* ----------------------------------------------------------------------------- tokens */
-
-export type Tok =
-  | { k: 'str'; v: string; expand: boolean }
-  | { k: 'num'; v: number }
-  | { k: 'var'; name: string; props: string[]; index?: number }
-  | { k: 'param'; name: string; value?: string }
-  | { k: 'word'; v: string }
-  | { k: 'pipe' }
-  | { k: 'semi' }
-  | { k: 'comma' }
-  | { k: 'assign'; op: '=' | '+=' }
-  | { k: 'sub'; src: string; props: string[]; array?: boolean }
-  | { k: 'hash'; src: string }
-  | { k: 'block'; src: string };
-
-export function readBalanced(src: string, i: number, open: string, close: string): [string, number] {
-  let depth = 0;
-  let quote: string | null = null;
-  for (let j = i; j < src.length; j++) {
-    const c = src[j];
-    if (quote) {
-      if (c === quote) quote = null;
-      continue;
-    }
-    if (c === '"' || c === "'") quote = c;
-    else if (c === open) depth++;
-    else if (c === close) {
-      depth--;
-      if (depth === 0) return [src.slice(i + 1, j), j + 1];
-    }
-  }
-  throw new PsError('', `Missing closing '${close}' in statement block or expression.`);
-}
-
-function readProps(src: string, i: number): [string[], number] {
-  const m = /^((?:\.[A-Za-z_]\w*)*)/.exec(src.slice(i));
-  return m && m[1] ? [m[1].slice(1).split('.'), i + m[1].length] : [[], i];
-}
-
-export function tokenize(src: string): Tok[] {
-  const toks: Tok[] = [];
-  let i = 0;
-  while (i < src.length) {
-    const c = src[i];
-    if (c === ' ' || c === '\t' || c === '\r') {
-      i++;
-      continue;
-    }
-    if (c === '#') {
-      while (i < src.length && src[i] !== '\n') i++;
-      continue;
-    }
-    if (c === '`' && src[i + 1] === '\n') {
-      i += 2;
-      continue;
-    }
-    if (c === '\n' || c === ';') {
-      toks.push({ k: 'semi' });
-      i++;
-      continue;
-    }
-    if (c === '|') {
-      toks.push({ k: 'pipe' });
-      i++;
-      continue;
-    }
-    if (c === ',') {
-      toks.push({ k: 'comma' });
-      i++;
-      continue;
-    }
-    if (c === '+' && src[i + 1] === '=') {
-      toks.push({ k: 'assign', op: '+=' });
-      i += 2;
-      continue;
-    }
-    if (c === '=' && src[i + 1] !== '=') {
-      toks.push({ k: 'assign', op: '=' });
-      i++;
-      continue;
-    }
-    if (c === '@' && src[i + 1] === '{') {
-      const [inner, end] = readBalanced(src, i + 1, '{', '}');
-      toks.push({ k: 'hash', src: inner });
-      i = end;
-      continue;
-    }
-    if (c === '@' && src[i + 1] === '(') {
-      const [inner, end] = readBalanced(src, i + 1, '(', ')');
-      const [props, j] = readProps(src, end);
-      toks.push({ k: 'sub', src: inner, props, array: true });
-      i = j;
-      continue;
-    }
-    if (c === '{') {
-      const [inner, end] = readBalanced(src, i, '{', '}');
-      toks.push({ k: 'block', src: inner });
-      i = end;
-      continue;
-    }
-    if (c === '(') {
-      const [inner, end] = readBalanced(src, i, '(', ')');
-      const [props, j] = readProps(src, end);
-      toks.push({ k: 'sub', src: inner, props });
-      i = j;
-      continue;
-    }
-    if (c === "'") {
-      let j = i + 1;
-      let s = '';
-      for (; j < src.length; j++) {
-        if (src[j] === "'" && src[j + 1] === "'") {
-          s += "'";
-          j++;
-        } else if (src[j] === "'") break;
-        else s += src[j];
-      }
-      if (j >= src.length) throw new PsError('', "The string is missing the terminator: '.");
-      toks.push({ k: 'str', v: s, expand: false });
-      i = j + 1;
-      continue;
-    }
-    if (c === '"') {
-      let j = i + 1;
-      let s = '';
-      for (; j < src.length; j++) {
-        if (src[j] === '`' && j + 1 < src.length) {
-          s += src[j] + src[j + 1];
-          j++;
-        } else if (src[j] === '$' && src[j + 1] === '(') {
-          const [inner, end] = readBalanced(src, j + 1, '(', ')');
-          s += `$(${inner})`;
-          j = end - 1;
-        } else if (src[j] === '"') break;
-        else s += src[j];
-      }
-      if (j >= src.length) throw new PsError('', 'The string is missing the terminator: ".');
-      toks.push({ k: 'str', v: s, expand: true });
-      i = j + 1;
-      continue;
-    }
-    if (c === '$') {
-      const m = /^\$(?:env:)?([A-Za-z_][\w]*|_)((?:\.[A-Za-z_]\w*)*)(?:\[(\d+)\])?/.exec(src.slice(i));
-      if (!m) throw new PsError('', `Unexpected '$' at position ${i + 1}.`);
-      const isEnv = src.slice(i, i + 5).toLowerCase() === '$env:';
-      toks.push({ k: 'var', name: isEnv ? `env:${m[1]}` : m[1], props: m[2] ? m[2].slice(1).split('.') : [], ...(m[3] !== undefined ? { index: Number(m[3]) } : {}) });
-      i += m[0].length;
-      continue;
-    }
-    if (c === '-' && /[A-Za-z]/.test(src[i + 1] ?? '')) {
-      const m = /^-([A-Za-z][\w]*)(?::(\S+))?/.exec(src.slice(i))!;
-      toks.push({ k: 'param', name: m[1], ...(m[2] !== undefined ? { value: m[2] } : {}) });
-      i += m[0].length;
-      continue;
-    }
-    if (/[0-9]/.test(c) && /^\d+(\.\d+)?(KB|MB|GB|TB)?(?=[\s;|,)}\]]|$)/i.test(src.slice(i))) {
-      const m = /^\d+(\.\d+)?(KB|MB|GB|TB)?/i.exec(src.slice(i))!;
-      if (m[2]) toks.push({ k: 'word', v: m[0] });
-      else toks.push({ k: 'num', v: Number(m[0]) });
-      i += m[0].length;
-      continue;
-    }
-    let j = i;
-    while (j < src.length && !/[\s;|,(){}]/.test(src[j]) && !(src[j] === '=' && j > i && src[j + 1] !== '=')) j++;
-    if (j === i) j = i + 1;
-    toks.push({ k: 'word', v: src.slice(i, j) });
-    i = j;
-  }
-  return toks;
-}
-
-/** Splits source into top-level statements (on ; and newlines outside quotes, braces and parentheses). */
-export function splitStatements(src: string): string[] {
-  const out: string[] = [];
-  let cur = '';
-  let depth = 0;
-  let quote: string | null = null;
-  for (let i = 0; i < src.length; i++) {
-    const c = src[i];
-    if (quote) {
-      cur += c;
-      if (c === quote) quote = null;
-      continue;
-    }
-    if (c === '"' || c === "'") quote = c;
-    else if (c === '{' || c === '(') depth++;
-    else if (c === '}' || c === ')') depth--;
-    else if (c === '`' && src[i + 1] === '\n') {
-      i++;
-      continue;
-    }
-    if (depth === 0 && (c === ';' || c === '\n')) {
-      // A newline before "else" or "elseif" continues an if statement.
-      if (c === '\n' && /^\s*(else|elseif)\b/i.test(src.slice(i + 1))) {
-        cur += ' ';
-        continue;
-      }
-      if (cur.trim()) out.push(cur);
-      cur = '';
-      continue;
-    }
-    cur += c;
-  }
-  if (cur.trim()) out.push(cur);
-  return out;
-}
-
-/** Splits a statement at top-level pipes. */
-function splitPipes(src: string): string[] {
-  const out: string[] = [];
-  let cur = '';
-  let depth = 0;
-  let quote: string | null = null;
-  for (const c of src) {
-    if (quote) {
-      cur += c;
-      if (c === quote) quote = null;
-      continue;
-    }
-    if (c === '"' || c === "'") quote = c;
-    else if (c === '{' || c === '(') depth++;
-    else if (c === '}' || c === ')') depth--;
-    if (depth === 0 && c === '|') {
-      out.push(cur);
-      cur = '';
-      continue;
-    }
-    cur += c;
-  }
-  out.push(cur);
-  return out;
-}
-
 /** Splits native-command arguments on whitespace, keeping quoted parts together. */
 export function splitArgs(s: string): string[] {
   const out: string[] = [];
@@ -396,6 +194,8 @@ export interface Call {
   positional: Value[];
   params: Record<string, Value>;
   block?: string;
+  /** The script block value behind `block` (keeps its source line). */
+  blockValue?: Value;
 }
 
 export interface Cx {
@@ -430,298 +230,38 @@ export function registerNative(table: Record<string, Native>): void {
   for (const [k, v] of Object.entries(table)) NATIVE_TABLE[k.toLowerCase()] = v;
 }
 
-export function cmdletNames(): string[] {
-  return Object.keys(CMDLET_TABLE).map((k) => k.replace(/(^|-)([a-z])/g, (_m, d: string, c: string) => d + c.toUpperCase()).replace(/Ad([A-Z])/g, 'AD$1').replace(/Gp([A-Z])/g, 'GP$1').replace(/Smb/g, 'Smb').replace(/Dns/g, 'Dns'));
+/** Real capitalisation of cmdlet names (Get-ChildItem), registered by modules; other names get a guess. */
+export const CANONICAL: Record<string, string> = {};
+export const NAMING = { display: (k: string) => k.replace(/(^|-)([a-z])/g, (_m, d: string, c: string) => d + c.toUpperCase()) };
+
+export function canonical(names: string[]): void {
+  for (const n of names) CANONICAL[n.toLowerCase()] = n;
 }
 
-/* ----------------------------------------------------------------------------- evaluation */
+export function cmdletNames(): string[] {
+  return Object.keys(CMDLET_TABLE).filter((k) => !k.startsWith('__') && !k.includes('-cert-') && !k.endsWith('-lab')).map((k) => CANONICAL[k] ?? NAMING.display(k));
+}
 
-export function getVar(env: Env, name: string, props: string[], index?: number): Value {
-  let v: Value;
-  const n = name.toLowerCase();
-  if (n === 'true') v = true;
-  else if (n === 'false') v = false;
-  else if (n === 'null') v = null;
-  else if (n.startsWith('env:')) v = n === 'env:computername' ? machine(env).name : n === 'env:username' ? env.sys.user : n === 'env:userdomain' ? env.st.netbios : null;
-  else v = env.vars.has(n) ? env.vars.get(n) : null;
+/* ----------------------------------------------------------------------------- evaluation (see lang.ts) */
+
+export function getVar(env: Env, name: string, props: string[] = [], index?: number): Value {
+  let v = getVariable(env, name.replace(/^env:/i, ''), /^env:/i.test(name) ? 'env' : undefined);
   if (index !== undefined) v = asList(v)[index];
   for (const p of props) v = prop(v, p);
   return v;
 }
 
 export function expandString(env: Env, s: string): string {
-  let out = '';
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === '`' && i + 1 < s.length) {
-      const n = s[++i];
-      out += n === 'n' ? '\n' : n === 't' ? '\t' : n;
-    } else if (s[i] === '$' && s[i + 1] === '(') {
-      const [inner, end] = readBalanced(s, i + 1, '(', ')');
-      out += show(single(evalSource(env, inner)));
-      i = end - 1;
-    } else if (s[i] === '$') {
-      const m = /^\$(?:env:)?([A-Za-z_]\w*|_)/.exec(s.slice(i));
-      if (!m) {
-        out += '$';
-        continue;
-      }
-      const isEnv = s.slice(i, i + 5).toLowerCase() === '$env:';
-      out += show(getVar(env, isEnv ? `env:${m[1]}` : m[1], []));
-      i += m[0].length - 1;
-    } else out += s[i];
-  }
-  return out;
-}
-
-const single = (vals: Value[]): Value => (vals.length === 1 ? vals[0] : vals);
-
-function parseHash(env: Env, src: string): Obj {
-  const o: Obj = { __type: 'hashtable' };
-  for (const part of splitStatements(src)) {
-    const m = /^\s*['"]?([A-Za-z_][\w ]*?)['"]?\s*=\s*([\s\S]*)$/.exec(part);
-    if (!m) throw new PsError('', `Missing '=' operator after key in hash literal: ${part.trim()}`);
-    o[m[1].trim()] = single(evalSource(env, m[2]));
-  }
-  return o;
-}
-
-export function valueOf(env: Env, t: Tok): Value {
-  switch (t.k) {
-    case 'str':
-      return t.expand ? expandString(env, t.v) : t.v;
-    case 'num':
-      return t.v;
-    case 'var':
-      return getVar(env, t.name, t.props, t.index);
-    case 'word':
-      return t.v;
-    case 'sub': {
-      const vals = evalSource(env, t.src);
-      let v: Value = t.array ? vals : single(vals);
-      for (const p of t.props) v = prop(v, p);
-      return v;
-    }
-    case 'hash':
-      return parseHash(env, t.src);
-    case 'block':
-      return { __type: 'block', src: t.src };
-    default:
-      return undefined;
-  }
-}
-
-function readValue(env: Env, toks: Tok[], i: number): [Value, number] {
-  const items: Value[] = [valueOf(env, toks[i])];
-  let j = i + 1;
-  while (toks[j]?.k === 'comma' && toks[j + 1] && !['pipe', 'semi', 'param'].includes(toks[j + 1].k)) {
-    items.push(valueOf(env, toks[j + 1]));
-    j += 2;
-  }
-  return [items.length > 1 ? items : items[0], j];
-}
-
-function parseCall(env: Env, toks: Tok[]): Call {
-  const first = toks[0];
-  if (!first || (first.k !== 'word' && first.k !== 'str')) throw new PsError('', 'Expected a command.');
-  const call: Call = { name: first.v, positional: [], params: {} };
-  for (let i = 1; i < toks.length; ) {
-    const t = toks[i];
-    if (t.k === 'param') {
-      const key = t.name.toLowerCase();
-      if (t.value !== undefined) {
-        call.params[key] = t.value.startsWith('$') ? getVar(env, t.value.slice(1), []) : t.value;
-        i++;
-        continue;
-      }
-      const next = toks[i + 1];
-      if (!next || next.k === 'param' || next.k === 'pipe' || next.k === 'semi' || (SWITCHES.has(key) && next.k !== 'var')) {
-        call.params[key] = true;
-        i++;
-        continue;
-      }
-      const [v, j] = readValue(env, toks, i + 1);
-      call.params[key] = v;
-      i = j;
-      continue;
-    }
-    if (t.k === 'block' && call.block === undefined && call.positional.length === 0) {
-      call.block = t.src;
-      i++;
-      continue;
-    }
-    const [v, j] = readValue(env, toks, i);
-    call.positional.push(v);
-    i = j;
-  }
-  return call;
+  return expandText(env, s);
 }
 
 /** Evaluates source and returns the objects it outputs. */
 export function evalSource(env: Env, src: string): Value[] {
-  if (++env.depth > 40) {
-    env.depth = 0;
-    throw new PsError('', 'The script called itself too deeply.');
-  }
-  try {
-    const results: Value[] = [];
-    for (const stmt of splitStatements(src)) results.push(...evalStatement(env, stmt));
-    return results;
-  } finally {
-    env.depth--;
-  }
+  return evalCollect(env, src);
 }
-
-function evalStatement(env: Env, stmt: string): Value[] {
-  const s = stmt.trim();
-  // foreach ($x in <expr>) { body }
-  const fe = /^foreach\s*\(\s*\$(\w+)\s+in\s+/i.exec(s);
-  if (fe) {
-    const open = s.indexOf('(');
-    const [head, end] = readBalanced(s, open, '(', ')');
-    const listSrc = head.replace(/^\s*\$\w+\s+in\s+/i, '');
-    const bodyStart = s.indexOf('{', end);
-    if (bodyStart < 0) throw new PsError('', 'Missing statement body in foreach loop.');
-    const [body] = readBalanced(s, bodyStart, '{', '}');
-    const out: Value[] = [];
-    for (const item of asList(single(evalSource(env, listSrc)))) {
-      env.vars.set(fe[1].toLowerCase(), item);
-      out.push(...evalSource(env, body));
-    }
-    return out;
-  }
-  // if (cond) { } elseif (cond) { } else { }
-  if (/^if\s*\(/i.test(s)) {
-    let rest = s;
-    for (;;) {
-      const open = rest.indexOf('(');
-      const [cond, end] = readBalanced(rest, open, '(', ')');
-      const bodyStart = rest.indexOf('{', end);
-      if (bodyStart < 0) throw new PsError('', 'Missing statement block after if ( condition ).');
-      const [body, bodyEnd] = readBalanced(rest, bodyStart, '{', '}');
-      if (condition(env, cond, undefined, false)) return evalSource(env, body);
-      const tail = rest.slice(bodyEnd).trim();
-      if (/^elseif\s*\(/i.test(tail)) {
-        rest = tail.replace(/^elseif/i, 'if');
-        continue;
-      }
-      if (/^else\s*\{/i.test(tail)) {
-        const [elseBody] = readBalanced(tail, tail.indexOf('{'), '{', '}');
-        return evalSource(env, elseBody);
-      }
-      return [];
-    }
-  }
-  const pipes = splitPipes(s);
-  // Native command at the start of the pipeline, with raw arguments.
-  const nm = /^\s*(?:&\s*)?([A-Za-z][\w.-]*?)(\.exe)?(?:\s+([\s\S]*))?$/.exec(pipes[0]);
-  if (nm && NATIVE_TABLE[nm[1].toLowerCase()] && !CMDLET_TABLE[nm[1].toLowerCase()]) {
-    const cx = makeCx(env, { name: nm[1], positional: [], params: {} }, undefined);
-    let cur = NATIVE_TABLE[nm[1].toLowerCase()](splitArgs(nm[3] ?? ''), cx);
-    for (const stage of pipes.slice(1)) cur = invoke(env, parseCall(env, tokenize(stage)), cur);
-    return cur;
-  }
-  // Script files: .\name.ps1 or & .\name.ps1
-  const script = /^\s*&?\s*(\.{1,2}[\\/][^\s|]+\.ps1|[A-Za-z]:\\[^\s|]+\.ps1)(?:\s+([^|]*))?$/i.exec(pipes[0]);
-  if (script) {
-    const path = toVfs(env, script[1]);
-    let text: string;
-    try {
-      text = readFile(env.sys.fs, path, { user: 'root', groups: ['root'] });
-    } catch {
-      throw new PsError(script[1], `The term '${script[1]}' is not recognized as the name of a cmdlet, function, script file, or operable program.`);
-    }
-    env.vars.set('args', splitArgs(script[2] ?? ''));
-    let cur = evalSource(env, text);
-    for (const stage of pipes.slice(1)) cur = invoke(env, parseCall(env, tokenize(stage)), cur);
-    return cur;
-  }
-  let toks = tokenize(s);
-  let assignTo: { name: string; op: '=' | '+=' } | undefined;
-  if (toks[0]?.k === 'var' && toks[1]?.k === 'assign') {
-    assignTo = { name: toks[0].name.toLowerCase(), op: (toks[1] as { op: '=' | '+=' }).op };
-    toks = toks.slice(2);
-  }
-  let value: Value[];
-  if (toks.length && toks[0].k !== 'word') {
-    const [v, j] = readValue(env, toks, 0);
-    let vals = asList(v);
-    if (toks[j]?.k === 'param') {
-      // An expression such as $a -eq 5 or (Get-X).Count -gt 2
-      vals = [condition(env, s.slice(s.indexOf('=') >= 0 && assignTo ? s.indexOf('=') + (assignTo.op === '+=' ? 2 : 1) : 0), undefined, false)];
-      value = vals;
-    } else if (j < toks.length && toks[j].k === 'pipe') value = runPipeline(env, splitOnPipe(toks.slice(j + 1)), vals);
-    else value = Array.isArray(v) ? v : [v];
-  } else value = toks.length ? runPipeline(env, splitOnPipe(toks), undefined) : [];
-  if (assignTo) {
-    const v = value.length === 1 ? value[0] : value;
-    if (assignTo.op === '+=') {
-      const prev = env.vars.get(assignTo.name);
-      env.vars.set(assignTo.name, typeof prev === 'number' && typeof v === 'number' ? prev + v : typeof prev === 'string' ? prev + str(v) : [...asList(prev), ...asList(v)]);
-    } else env.vars.set(assignTo.name, v);
-    return [];
-  }
-  return value;
-}
-
-function splitOnPipe(toks: Tok[]): Tok[][] {
-  const parts: Tok[][] = [[]];
-  for (const t of toks) {
-    if (t.k === 'pipe') parts.push([]);
-    else parts[parts.length - 1].push(t);
-  }
-  return parts;
-}
-
-function runPipeline(env: Env, stages: Tok[][], input: Value[] | undefined): Value[] {
-  let cur = input;
-  for (const stage of stages) {
-    if (!stage.length) throw new PsError('', 'An empty pipe element is not allowed.');
-    cur = invoke(env, parseCall(env, stage), cur);
-  }
-  return cur ?? [];
-}
-
-/* ----------------------------------------------------------------------------- conditions */
 
 export function compare(op: string, a: Value, b: Value): boolean {
-  if (op === 'contains' || op === 'notcontains') {
-    const has = asList(a).some((x) => str(x).toLowerCase() === str(b).toLowerCase());
-    return op === 'contains' ? has : !has;
-  }
-  if (op === 'in' || op === 'notin') {
-    const has = asList(b).some((x) => str(x).toLowerCase() === str(a).toLowerCase());
-    return op === 'in' ? has : !has;
-  }
-  if (Array.isArray(a) && !['eq', 'ne'].includes(op)) return a.some((x) => compare(op, x, b));
-  const as = show(a).toLowerCase();
-  const bs = show(b).toLowerCase();
-  const an = Number(as);
-  const bn = Number(bs);
-  const numeric = as !== '' && bs !== '' && !Number.isNaN(an) && !Number.isNaN(bn);
-  switch (op) {
-    case 'eq':
-      if (Array.isArray(a)) return a.some((x) => compare('eq', x, b));
-      return as === bs;
-    case 'ne':
-      return !compare('eq', a, b);
-    case 'like':
-      return new RegExp('^' + bs.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.') + '$').test(as);
-    case 'notlike':
-      return !compare('like', a, b);
-    case 'match':
-      return new RegExp(show(b), 'i').test(show(a));
-    case 'notmatch':
-      return !new RegExp(show(b), 'i').test(show(a));
-    case 'gt':
-      return numeric ? an > bn : as > bs;
-    case 'ge':
-      return numeric ? an >= bn : as >= bs;
-    case 'lt':
-      return numeric ? an < bn : as < bs;
-    case 'le':
-      return numeric ? an <= bn : as <= bs;
-  }
-  throw new PsError('', `Unknown operator -${op}.`);
+  return Boolean(binaryOp({} as Env, op, a, b));
 }
 
 /**
@@ -729,126 +269,100 @@ export function compare(op: string, a: Value, b: Value): boolean {
  * literals, $variables and (subexpressions).
  */
 export function condition(env: Env, src: string, subject: Value, bare: boolean): boolean {
-  const toks = tokenize(src.trim());
-  if (!toks.length) return false;
-  if (toks.length === 1 && toks[0].k === 'word' && toks[0].v === '*') return true;
-  let i = 0;
-  const operand = (): Value => {
-    const t = toks[i++];
-    if (!t) throw new PsError('', 'Incomplete condition.');
-    if (t.k === 'var' && t.name === '_') {
-      let v: Value = subject;
-      for (const p of t.props) v = prop(v, p);
-      return v;
-    }
-    if (t.k === 'word' && bare && /^[A-Za-z]\w*$/.test(t.v)) return prop(subject, t.v);
-    return valueOf(env, t);
-  };
-  const truthy = (v: Value) => !(v === false || v === null || v === undefined || v === 0 || v === '' || v === 'False' || (Array.isArray(v) && v.length === 0));
-  const term = (): boolean => {
-    const t = toks[i];
-    if (t?.k === 'param' && t.name.toLowerCase() === 'not') {
-      i++;
-      return !term();
-    }
-    if (t?.k === 'word' && t.v === '!') {
-      i++;
-      return !term();
-    }
-    if (t?.k === 'sub' && !t.props.length && (toks[i + 1] === undefined || (toks[i + 1].k === 'param' && ['and', 'or'].includes((toks[i + 1] as { name: string }).name.toLowerCase())))) {
-      i++;
-      return condition(env, t.src, subject, bare);
-    }
-    const left = operand();
-    const op = toks[i];
-    if (!op || op.k !== 'param' || ['and', 'or'].includes(op.name.toLowerCase())) return truthy(left);
-    i++;
-    return compare(op.name.toLowerCase(), left, operand());
-  };
-  let result = term();
-  while (i < toks.length) {
-    const op = toks[i++];
-    if (op.k !== 'param') throw new PsError('', 'Unexpected token in condition.');
-    const rhs = term();
-    if (op.name.toLowerCase() === 'and') result = result && rhs;
-    else if (op.name.toLowerCase() === 'or') result = result || rhs;
-    else throw new PsError('', `Unexpected operator -${op.name} in condition.`);
-  }
-  return result;
-}
-
-/* ----------------------------------------------------------------------------- invoke */
-
-function makeCx(env: Env, call: Call, input: Value[] | undefined): Cx {
-  const name = ALIASES[call.name.toLowerCase()] ?? call.name.toLowerCase();
-  return {
-    env,
-    call,
-    name,
-    P: call.params,
-    pos: call.positional,
-    input,
-    fail: (msg: string): never => {
-      throw new PsError(call.name, msg);
-    },
-    run: (src, vars) => {
-      const saved = new Map<string, Value>();
-      for (const [k, v] of Object.entries(vars ?? {})) {
-        saved.set(k, env.vars.get(k));
-        env.vars.set(k, v);
-      }
-      try {
-        return evalSource(env, src);
-      } finally {
-        for (const [k, v] of saved) env.vars.set(k, v);
-      }
-    },
-    print: (text) => env.out.push(text),
-  };
+  return evalCondition(env, src, subject, bare);
 }
 
 export function invoke(env: Env, call: Call, input: Value[] | undefined): Value[] {
-  const cx = makeCx(env, call, input);
-  const fn = CMDLET_TABLE[cx.name];
-  if (fn) return fn(cx);
-  const native = NATIVE_TABLE[cx.name];
-  if (native) return native(call.positional.map(str), cx);
-  throw new PsError(call.name, `The term '${call.name}' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or use Get-Command to see what this server has.`);
+  const fn = CMDLET_TABLE[ALIASES[call.name.toLowerCase()] ?? call.name.toLowerCase()];
+  if (!fn) throw new PsError(call.name, `The term '${call.name}' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or use Get-Command to see what this server has.`);
+  return fn(langMakeCx(env, call, input));
 }
 
 /* ----------------------------------------------------------------------------- rendering */
 
+const fmtCell = (v: Value): string => {
+  if (Array.isArray(v)) return `{${v.map((x) => (isObj(x) && (x as Obj).__type === 'datetime' ? show(x) : show(x))).join(', ')}}`;
+  return show(v);
+};
+
+const visibleKeys = (o: Obj) => Object.keys(o).filter((k) => !k.startsWith('__'));
+
 function formatList(objs: Obj[]): string {
   return objs
     .map((o) => {
-      const keys = Object.keys(o).filter((k) => k !== '__type');
+      const keys = visibleKeys(o);
       const w = Math.max(...keys.map((k) => k.length));
-      return keys.map((k) => `${k.padEnd(w)} : ${Array.isArray(o[k]) ? `{${(o[k] as Value[]).map(show).join(', ')}}` : show(o[k])}`).join('\n');
+      return keys.map((k) => `${k.padEnd(w)} : ${fmtCell(o[k])}`).join('\n');
     })
     .join('\n\n');
 }
 
 function formatTable(objs: Obj[]): string {
-  const keys = [...new Set(objs.flatMap((o) => Object.keys(o).filter((k) => k !== '__type')))];
-  const cell = (v: Value) => (Array.isArray(v) ? `{${v.map(show).join(', ')}}` : show(v));
-  const widths = keys.map((k) => Math.max(k.length, ...objs.map((o) => cell(o[k]).length)));
-  const line = (cells: string[]) => cells.map((c, i) => c.padEnd(widths[i])).join(' ').trimEnd();
-  return [line(keys), line(widths.map((w) => '-'.repeat(w))), ...objs.map((o) => line(keys.map((k) => cell(o[k]))))].join('\n');
+  const keys = [...new Set(objs.flatMap((o) => visibleKeys(o)))];
+  const widths = keys.map((k) => Math.max(k.length, ...objs.map((o) => fmtCell(o[k]).length)));
+  const numeric = keys.map((k) => objs.every((o) => typeof o[k] === 'number' || o[k] === undefined || o[k] === null) && objs.some((o) => typeof o[k] === 'number'));
+  const line = (cells: string[], header = false) => cells.map((c, i) => (numeric[i] && !header ? c.padStart(widths[i]) : c.padEnd(widths[i]))).join(' ').trimEnd();
+  return [line(keys.map((k, i) => (numeric[i] ? k.padStart(widths[i]) : k)), true), line(widths.map((w, i) => (numeric[i] ? '-'.repeat(keys[i].length).padStart(w) : '-'.repeat(keys[i].length).padEnd(w))), true), ...objs.map((o) => line(keys.map((k) => fmtCell(o[k]))))].join('\n');
 }
 
-export const TABLE_TYPES = new Set(['file', 'share', 'access', 'member', 'cmd', 'select', 'feature', 'disk', 'volume', 'service', 'process', 'event', 'rule', 'printer', 'job', 'scope', 'lease', 'record', 'zone', 'gpo-link', 'vm', 'task', 'counter', 'ip', 'measure', 'quota', 'screen', 'policy-row', 'reservation', 'option']);
+/** Hashtables print as Name/Value rows, as PowerShell's default view does. */
+function formatHash(objs: Obj[]): string {
+  const rows = objs.flatMap((o) => visibleKeys(o).map((k) => [k, fmtCell(o[k])]));
+  const w = Math.max(30, ...rows.map(([k]) => k.length));
+  return [`${'Name'.padEnd(w)} Value`, `${'----'.padEnd(w)} -----`, ...rows.map(([k, v]) => `${k.padEnd(w)} ${v}`.trimEnd())].join('\n');
+}
+
+export const TABLE_TYPES = new Set(['file', 'share', 'access', 'member', 'cmd', 'select', 'feature', 'disk', 'volume', 'service', 'process', 'event', 'rule', 'printer', 'job', 'scope', 'lease', 'record', 'zone', 'gpo-link', 'vm', 'task', 'counter', 'ip', 'measure', 'quota', 'screen', 'policy-row', 'reservation', 'option', 'groupinfo', 'matchinfo-table', 'getmember', 'analyzer', 'module', 'hash-table']);
+
+/** Values that print as plain lines rather than tables. */
+const SCALAR_TYPES = new Set(['datetime', 'timespan', 'version', 'guid', 'type', 'error', 'exception', 'block', 'pathinfo', 'matchinfo']);
+
+function scalarText(v: Value): string {
+  if (isObj(v)) {
+    const o = v as Obj;
+    if (o.__type === 'datetime') return '\n' + formatDate(Number(o.__ms), 'dddd, dd MMMM yyyy HH:mm:ss') + '\n';
+    if (o.__type === 'timespan') {
+      const ms = Number(o.__ms);
+      return `\nDays              : ${Math.trunc(ms / 86400000)}\nHours             : ${Math.trunc(ms / 3600000) % 24}\nMinutes           : ${Math.trunc(ms / 60000) % 60}\nSeconds           : ${Math.trunc(ms / 1000) % 60}\nMilliseconds      : ${ms % 1000}\nTotalDays         : ${fmtNum(ms / 86400000)}\nTotalHours        : ${fmtNum(ms / 3600000)}\nTotalMinutes      : ${fmtNum(ms / 60000)}\nTotalSeconds      : ${fmtNum(ms / 1000)}\n`;
+    }
+    if (o.__type === 'version') return `\nMajor  Minor  Build  Revision\n-----  -----  -----  --------\n${String(o.Major).padEnd(6)} ${String(o.Minor).padEnd(6)} ${String(o.Build).padEnd(6)} ${o.Revision}\n`;
+    if (o.__type === 'type') return `\nIsPublic IsSerial Name                                     BaseType\n-------- -------- ----                                     --------\nTrue     True     ${String(o.Name).padEnd(40)} System.Object\n`;
+    if (o.__type === 'matchinfo') return String(o.__display ?? o.Line);
+    if (o.__type === 'error') return langStr(o);
+  }
+  return show(v);
+}
 
 export function render(values: Value[], forceTable = false, forceList = false): string {
   if (!values.length) return '';
-  const objs = values.filter(isObj) as Obj[];
-  const scalars = values.filter((v) => !isObj(v));
+  // Group runs of objects of the same kind; scalars print as lines in between.
   const parts: string[] = [];
-  if (scalars.length) parts.push(scalars.map(show).join('\n'));
-  if (objs.length) {
-    const nKeys = Object.keys(objs[0]).filter((k) => k !== '__type').length;
-    parts.push(forceTable || (!forceList && (nKeys <= 4 || TABLE_TYPES.has(String(objs[0].__type)))) ? formatTable(objs) : formatList(objs));
+  let i = 0;
+  let anyObj = false;
+  while (i < values.length) {
+    const v = values[i];
+    if (!isObj(v) || SCALAR_TYPES.has(String((v as Obj).__type))) {
+      const lines: string[] = [];
+      while (i < values.length && (!isObj(values[i]) || SCALAR_TYPES.has(String((values[i] as Obj).__type)))) lines.push(scalarText(values[i++]));
+      parts.push(lines.join('\n').replace(/\n\n+/g, '\n\n'));
+      continue;
+    }
+    const kind = String((v as Obj).__type);
+    const run: Obj[] = [];
+    while (i < values.length && isObj(values[i]) && !SCALAR_TYPES.has(String((values[i] as Obj).__type)) && String((values[i] as Obj).__type) === kind) run.push(values[i++] as Obj);
+    anyObj = true;
+    if (kind === 'hashtable') parts.push(formatHash(run));
+    else if (kind === 'getmember') {
+      const byType = new Map<string, Obj[]>();
+      for (const o of run) byType.set(String(o.__typename), [...(byType.get(String(o.__typename)) ?? []), o]);
+      parts.push([...byType].map(([t, list]) => `   TypeName: ${t}\n\n${formatTable(list)}`).join('\n\n'));
+    }
+    else {
+      const nKeys = visibleKeys(run[0]).length;
+      parts.push(forceTable || (!forceList && (nKeys <= 4 || TABLE_TYPES.has(kind))) ? formatTable(run) : formatList(run));
+    }
   }
-  return (objs.length ? '\n' : '') + parts.join('\n\n') + '\n' + (objs.length ? '\n' : '');
+  return (anyObj ? '\n' : '') + parts.join(anyObj ? '\n\n' : '\n') + '\n' + (anyObj ? '\n' : '');
 }
 
 /* ----------------------------------------------------------------------------- entry points */
@@ -857,18 +371,7 @@ const SESSIONS = new WeakMap<object, Map<string, Value>>();
 
 /** True while braces, parentheses or quotes are still open, so the terminal keeps reading lines. */
 export function psAwaitsMore(src: string): boolean {
-  let depth = 0;
-  let quote: string | null = null;
-  for (const c of src) {
-    if (quote) {
-      if (c === quote) quote = null;
-      continue;
-    }
-    if (c === '"' || c === "'") quote = c;
-    else if (c === '{' || c === '(') depth++;
-    else if (c === '}' || c === ')') depth--;
-  }
-  return depth > 0 || quote !== null || /`\s*$/.test(src);
+  return needsMore(src);
 }
 
 export function makeEnv(sys: ShellSystem, session: object): Env {
@@ -877,7 +380,9 @@ export function makeEnv(sys: ShellSystem, session: object): Env {
     vars = new Map();
     SESSIONS.set(session, vars);
   }
-  return { sys, vars, out: [], st: loadAd(sys), est: loadEstate(sys), dirtyAd: false, dirtyEst: false, depth: 0 };
+  const env: Env = { sys, vars, out: [], st: loadAd(sys), est: loadEstate(sys), dirtyAd: false, dirtyEst: false, depth: 0 };
+  globalScope(env);
+  return env;
 }
 
 export function commit(env: Env): void {
@@ -885,16 +390,31 @@ export function commit(env: Env): void {
   if (env.dirtyEst) saveEstate(env.sys, env.est);
 }
 
-/** Runs one PowerShell line on a Windows machine. `session` keeps variables between lines. */
+/** Runs PowerShell (one line or a pasted script). `session` keeps variables and functions between lines. */
 export function runPowerShell(sys: ShellSystem, line: string, session: object, record = true): { output: string; status: number; clear: boolean } {
   if (record && line.trim()) sys.history.push(line);
   const env = makeEnv(sys, session);
+  let pending: Value[] = [];
+  env.flush = () => {
+    if (!pending.length) return;
+    const text = render(pending);
+    pending = [];
+    env.out.push(text);
+    const t = env.vars.get('__transcript');
+    if (typeof t === 'string' && t) appendTranscript(env, t, text);
+  };
   let status = 0;
   try {
-    const values = evalSource(env, line);
-    env.out.push(render(values));
+    runSource(env, line, (v) => pending.push(v));
+    env.flush();
+    if (env.ok === false) status = 1;
   } catch (e) {
-    if (e instanceof PsError) {
+    env.flush();
+    if (e instanceof RuntimeErr) {
+      env.out.push(errorText(e.record));
+      status = 1;
+    } else if (e instanceof ExitEx) status = e.code;
+    else if (e instanceof PsError) {
       env.out.push(`${e.cmd ? e.cmd + ' : ' : ''}${e.message}\n`);
       status = 1;
     } else throw e;
@@ -902,6 +422,11 @@ export function runPowerShell(sys: ShellSystem, line: string, session: object, r
   commit(env);
   const text = env.out.join('');
   return { output: text.replace(/\u001bc/g, '').replace(/^\n+/, '\n'), status, clear: text.includes('\u001bc') };
+}
+
+function appendTranscript(env: Env, vfs: string, text: string): void {
+  const l = lookup(env.sys.fs, vfs, { user: 'root', groups: ['root'] });
+  if (l && l.node.type === 'file') l.node.content += text;
 }
 
 export function promptPowerShell(sys: ShellSystem): string {
@@ -920,21 +445,29 @@ export function isDir(fs: DirNode, path: string): boolean {
 /**
  * Runs a read-only query for a check: on `machineName` (default: the first machine), without
  * saving anything, recording history or moving the learner's session. Returns the rendered output,
- * or "ERROR: ..." when the query fails.
+ * or "ERROR: ..." when the query fails. Errors are terminating here ($ErrorActionPreference = Stop).
  */
 export function psQuery(sys: ShellSystem, script: string, machineName?: string): string {
   const env = makeEnv(sys, {});
   const target = machineName ? machineByName(env, machineName)?.name : env.est.machines[0]?.name;
   if (!target) return `ERROR: there is no machine called ${machineName}.`;
   env.est.current = target;
+  setVariable(env, 'ErrorActionPreference', 'Stop');
   const savedCwd = sys.cwd;
   sys.cwd = driveRoot(env.est, target) + '/Users/Administrator';
   try {
-    return render(evalSource(env, script)).trim();
+    const out: Value[] = [];
+    env.tryDepth = 1;
+    runSource(env, script, (v) => out.push(v));
+    return render(out).trim();
   } catch (e) {
+    if (e instanceof RuntimeErr) return `ERROR: ${String((e.record.Exception as Obj).Message)}`;
     if (e instanceof PsError) return `ERROR: ${e.message}`;
+    if (e instanceof ExitEx) return '';
     throw e;
   } finally {
     sys.cwd = savedCwd;
   }
 }
+
+export { getVariable };

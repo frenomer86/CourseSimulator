@@ -8,7 +8,9 @@ import './cmd-files.js';
 import './cmd-gpo.js';
 import './cmd-net.js';
 import './cmd-roles.js';
-import { ALIASES, CMDLET_TABLE, HELP, NATIVE_TABLE, register, str } from './core.js';
+import './cmd-lang.js';
+import './cmd-tools.js';
+import { ALIASES, CANONICAL, CMDLET_TABLE, HELP, NAMING, NATIVE_TABLE, register, str } from './core.js';
 
 /** Display names for Get-Command and tab completion, with the usual capitalisation. */
 const SPECIAL: Record<string, string> = { ad: 'AD', gp: 'GP', gpo: 'GPO', smb: 'Smb', dns: 'Dns', dhcp: 'Dhcp', fsrm: 'Fsrm', dfsn: 'Dfsn', dfsr: 'Dfsr', vm: 'VM', ca: 'CA', wsus: 'Wsus', wds: 'Wds', rd: 'RD', ip: 'IP', net: 'Net', kds: 'Kds', adcs: 'Adcs', adds: 'ADDS', ldap: 'LDAP', ntfs: 'NTFS', wsman: 'WSMan', pssession: 'PSSession', psremoting: 'PSRemoting', dhcpserverv4: 'DhcpServerv4', dhcpserver: 'DhcpServer' };
@@ -33,6 +35,8 @@ export function displayName(key: string): string {
     .join('-');
 }
 
+NAMING.display = (k: string) => CANONICAL[k] ?? displayName(k);
+
 export function cmdletList(): string[] {
   return Object.keys(CMDLET_TABLE).map(displayName).sort();
 }
@@ -42,14 +46,8 @@ export function nativeList(): string[] {
 }
 
 register({
-  'get-command': (cx) => {
-    const pat = cx.pos[0] ?? cx.P.name;
-    const re = pat ? new RegExp('^' + str(pat).replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*') + '$', 'i') : null;
-    const cmdlets = cmdletList().filter((c) => !re || re.test(c)).map((c) => ({ __type: 'cmd', CommandType: 'Cmdlet', Name: c }));
-    const natives = nativeList().filter((c) => !re || re.test(c)).map((c) => ({ __type: 'cmd', CommandType: 'Application', Name: `${c}.exe` }));
-    return [...cmdlets, ...natives];
-  },
-  'get-help': (cx) => {
+  // Help for cmdlets; Get-Help (cmd-lang) handles functions and falls back to this.
+  '__get-help': (cx) => {
     const topic = str(cx.P.name ?? cx.pos[0]).toLowerCase();
     const key = ALIASES[topic] ?? topic;
     if (!topic) return ['Get-Help <cmdlet> shows how to use a cmdlet. Get-Command lists every cmdlet and tool on this server; Get-Command *ADUser* filters them.'];
