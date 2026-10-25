@@ -1004,6 +1004,14 @@ export function globMatch(pat: string, text: string): boolean {
 
 /** The values an array expansion such as ${name[@]}, ${!name[@]} or ${name[@]:1:2} produces. */
 function arrayList(ctx: Ctx, inner: string): string[] | null {
+  // ${@:2} and ${*:1:3}: a slice of the positional parameters, where offset 0 is $0.
+  const p = /^[@*]:\s*(-?\d+|[^:]+)(?::(.+))?$/.exec(inner);
+  if (p) {
+    const all = [ctx.scriptName, ...ctx.params];
+    let off = evalArith(ctx, p[1]);
+    if (off < 0) off = Math.max(1, all.length + off);
+    return p[2] !== undefined ? all.slice(off, off + evalArith(ctx, p[2])) : all.slice(off);
+  }
   const m = /^(!?)([A-Za-z_][A-Za-z0-9_]*)\[[@*]\](?::\s*(-?\d+|[^:]+)(?::(.+))?)?$/.exec(inner);
   if (!m) return null;
   const a = getArr(ctx, m[2]);
@@ -1255,7 +1263,7 @@ function quotedFields(ctx: Ctx, s: string): string[] | null {
     if (c === '$' && s[i + 1] === '{') {
       const end = matchBrace(s, i + 1);
       const inner = s.slice(i + 2, end);
-      const list = inner === '@' ? [...ctx.params] : /\[@\]/.test(inner) ? arrayList(ctx, inner) : null;
+      const list = inner === '@' ? [...ctx.params] : /\[@\]|^@:/.test(inner) ? arrayList(ctx, inner) : null;
       if (list) {
         segs.push({ text }, { list });
         text = '';
@@ -1570,6 +1578,8 @@ function applyRedirs(ctx: Ctx, redirs: Redir[], io: IO): { io: IO; finish: () =>
       }
       continue;
     }
+    // An unquoted expansion that splits into several words (or none) cannot name one file.
+    if (r.target!.some((p) => p.q === 'n' && p.s.includes('$')) && expandWord(ctx, r.target!).length !== 1) throw new FsError('ENOENT', `${r.target!.map((p) => p.s).join('')}: ambiguous redirect`);
     const target = resolvePath(ctx.sys.cwd, expandSingle(ctx, r.target!), homeOf(ctx.sys, currentUser(ctx)));
     if (target === '/dev/null' || target === '/dev/stdout' || target === '/dev/stderr' || target === '/dev/tty') {
       if (r.op === '<') stdin = '';
@@ -2119,6 +2129,13 @@ export function runCommand(ctx: Ctx, words: string[], io: IO): number {
     words = [...expanded, ...words.slice(1)];
   }
   const [name, ...args] = words;
+  // /bin/sh, /usr/bin/find, /usr/sbin/useradd ...: the system's own programs are the built-in commands.
+  const sysBin = /^\/(?:usr\/)?s?bin\/([^/]+)$/.exec(name ?? '');
+  if (sysBin && !lookup(ctx.sys.fs, name, actor(ctx))) {
+    const prog = sysBin[1] === 'sh' || sysBin[1] === 'dash' ? 'bash' : sysBin[1];
+    if (COMMANDS[prog] || SHELL_BUILTINS.has(prog)) return runCommand(ctx, [prog, ...args], io);
+  }
+  if ((name === 'sh' || name === 'dash') && !COMMANDS[name]) return runCommand(ctx, ['bash', ...args], io);
   // printf -v VAR FORMAT ARGS stores the result instead of printing it.
   if (name === 'printf' && args[0] === '-v' && args[1] && !ctx.funcs.printf) {
     const buf: string[] = [];

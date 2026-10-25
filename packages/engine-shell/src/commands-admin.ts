@@ -135,9 +135,47 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     return 0;
   },
   env: (args, io, ctx) => {
-    if (args.length) return runCommand(ctx, args, io);
-    for (const k of Object.keys(ctx.vars).filter((k) => ctx.exported.has(k)).sort()) io.out(`${k}=${ctx.vars[k]}\n`);
-    return 0;
+    // env [-i] [-u NAME] [NAME=VALUE]... [COMMAND]: run COMMAND in a changed environment.
+    let i = 0;
+    let clear = false;
+    const unset: string[] = [];
+    const assign: Record<string, string> = {};
+    for (; i < args.length; i++) {
+      const a = args[i];
+      if (a === '-i' || a === '-' || a === '--ignore-environment') clear = true;
+      else if (a === '-u' || a === '--unset') unset.push(args[++i] ?? '');
+      else if (/^[A-Za-z_][A-Za-z0-9_]*=/.test(a)) assign[a.slice(0, a.indexOf('='))] = a.slice(a.indexOf('=') + 1);
+      else break;
+    }
+    const cmd = args.slice(i);
+    const vars: Record<string, string> = clear ? {} : { ...ctx.vars };
+    const exported = clear ? new Set<string>() : new Set(ctx.exported);
+    const sysEnv: Record<string, string> = clear ? {} : { ...ctx.sys.env };
+    for (const u of unset) {
+      delete vars[u];
+      exported.delete(u);
+      delete sysEnv[u];
+    }
+    for (const [k, v] of Object.entries(assign)) {
+      vars[k] = v;
+      exported.add(k);
+      sysEnv[k] = v;
+    }
+    if (!cmd.length) {
+      for (const k of [...exported].filter((k) => vars[k] !== undefined).sort()) io.out(`${k}=${vars[k]}\n`);
+      return 0;
+    }
+    const saved = { vars: ctx.vars, exported: ctx.exported, env: ctx.sys.env };
+    ctx.vars = vars;
+    ctx.exported = exported;
+    ctx.sys.env = sysEnv;
+    try {
+      return runCommand(ctx, cmd, io);
+    } finally {
+      ctx.vars = saved.vars;
+      ctx.exported = saved.exported;
+      ctx.sys.env = saved.env;
+    }
   },
   printenv: (args, io, ctx) => {
     if (args[0]) {
@@ -501,7 +539,7 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
       ctx.vars.USER = target;
       ctx.vars.LOGNAME = target;
       if (login) {
-        ctx.vars.PATH = '/usr/local/bin:/usr/bin:/bin';
+        ctx.vars.PATH = target === 'root' ? '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' : '/usr/local/bin:/usr/bin:/bin';
         sys.cwd = homeOf(sys, target);
       }
       try {
@@ -720,12 +758,12 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
         return 0;
       case 'enable':
         s.enabled = true;
-        io.out(`Created symlink /etc/systemd/system/multi-user.target.wants/${unit}.service → /usr/lib/systemd/system/${unit}.service.\n`);
+        io.out(unit.endsWith('.timer') ? `Created symlink /etc/systemd/system/timers.target.wants/${unit} → /etc/systemd/system/${unit}.\n` : `Created symlink /etc/systemd/system/multi-user.target.wants/${unit}.service → /usr/lib/systemd/system/${unit}.service.\n`);
         if (o.flags.has('now')) return ADMIN_COMMANDS.systemctl(['start', unit], io, ctx);
         return 0;
       case 'disable':
         s.enabled = false;
-        io.out(`Removed "/etc/systemd/system/multi-user.target.wants/${unit}.service".\n`);
+        io.out(unit.endsWith('.timer') ? `Removed "/etc/systemd/system/timers.target.wants/${unit}".\n` : `Removed "/etc/systemd/system/multi-user.target.wants/${unit}.service".\n`);
         if (o.flags.has('now')) return ADMIN_COMMANDS.systemctl(['stop', unit], io, ctx);
         return 0;
       case 'daemon-reload':

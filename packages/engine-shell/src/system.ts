@@ -83,8 +83,8 @@ export interface ShellSystem {
   os?: 'linux' | 'windows';
 }
 
-/** acl entries look like "u:name:r-x", "g:name:rwx" or "d:g:name:rwx" (a default entry on a directory). */
-export type FileSpec = string | null | { content?: string; mode?: number | string; owner?: string; group?: string; link?: string; acl?: string[] };
+/** acl entries look like "u:name:r-x", "g:name:rwx" or "d:g:name:rwx" (a default entry on a directory); ageDays backdates the modification time. */
+export type FileSpec = string | null | { content?: string; mode?: number | string; owner?: string; group?: string; link?: string; acl?: string[]; ageDays?: number };
 
 function parseAclSpec(entries: string[] | undefined): AclEntry[] | undefined {
   if (!entries?.length) return undefined;
@@ -268,7 +268,7 @@ export function buildSystem(spec: SystemSpec): ShellSystem {
   for (const name of ['messages', 'auth.log', 'syslog']) if (!lookup(root, `/var/log/${name}`, rootActor)) putFile(sys, `/var/log/${name}`, '', rootActor, 0o640, 'root', 'adm');
   syncEtc(sys);
   sys.cwd = spec.cwd ?? sys.users[spec.user]?.home ?? '/';
-  sys.env = { HOME: sys.users[spec.user]?.home ?? '/', USER: spec.user, LOGNAME: spec.user, SHELL: '/bin/bash', PATH: '/usr/local/bin:/usr/bin:/bin', PWD: sys.cwd, HOSTNAME: sys.hostname, LANG: 'en_GB.UTF-8', TERM: 'xterm-256color' };
+  sys.env = { HOME: sys.users[spec.user]?.home ?? '/', USER: spec.user, LOGNAME: spec.user, SHELL: '/bin/bash', PATH: spec.user === 'root' ? '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' : '/usr/local/bin:/usr/bin:/bin', PWD: sys.cwd, HOSTNAME: sys.hostname, LANG: 'en_GB.UTF-8', TERM: 'xterm-256color' };
   return sys;
 }
 
@@ -345,6 +345,7 @@ function writeSpecFiles(sys: ShellSystem, files: Record<string, FileSpec>, actor
     putFile(sys, path, content, actor, toMode(typeof spec === 'object' && spec ? spec.mode : undefined, 0o644), owner, group);
     const fAcl = parseAclSpec(typeof spec === 'object' && spec ? spec.acl : undefined);
     if (fAcl) lookup(sys.fs, path, actor)!.node.acl = fAcl;
+    if (typeof spec === 'object' && spec?.ageDays) lookup(sys.fs, path, actor)!.node.mtime = sys.now - spec.ageDays * 86400000;
     // Parent dirs created on the way get sensible owners when inside a home.
     if (homeOwner) {
       let p = path;

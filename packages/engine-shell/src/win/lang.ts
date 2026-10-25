@@ -43,9 +43,11 @@ export function envVar(env: Env, name: string): Value {
   const set = env.vars.get('env:' + n);
   if (set !== undefined) return set;
   const user = env.sys.user;
+  // A scheduled task running as SYSTEM sees the computer account as its user name.
+  const runAs = env.vars.get('__runas') as string | undefined;
   const map: Record<string, string> = {
     computername: machine(env).name,
-    username: user,
+    username: runAs ?? user,
     userdomain: env.st.netbios,
     userdnsdomain: env.st.domain.toUpperCase(),
     userprofile: `C:\\Users\\${user}`,
@@ -177,6 +179,9 @@ const TYPE_FULL: Record<string, string> = {
   SessionStateUnauthorizedAccessException: 'System.Management.Automation.SessionStateUnauthorizedAccessException',
   ParseException: 'System.Management.Automation.ParseException',
   PSSecurityException: 'System.Management.Automation.PSSecurityException',
+  ServiceCommandException: 'Microsoft.PowerShell.Commands.ServiceCommandException',
+  PSRemotingTransportException: 'System.Management.Automation.Remoting.PSRemotingTransportException',
+  InvalidOperationException: 'System.InvalidOperationException',
 };
 
 /** Exception types and the types catch [Base] also matches. */
@@ -200,6 +205,9 @@ const BASES: Record<string, string[]> = {
   PSArgumentException: ['ArgumentException', 'SystemException'],
   PSInvalidCastException: ['InvalidCastException', 'RuntimeException', 'SystemException'],
   PSSecurityException: ['RuntimeException', 'SystemException'],
+  ServiceCommandException: ['SystemException'],
+  PSRemotingTransportException: ['RuntimeException', 'SystemException'],
+  InvalidOperationException: ['SystemException'],
 };
 
 export function errorRecord(message: string, type = 'RuntimeException', opts: { id?: string; category?: string; target?: Value; command?: string; line?: number; script?: string } = {}): Obj {
@@ -242,12 +250,37 @@ function remember(env: Env, rec: Obj, errorVariable?: string): void {
   const g = globalScope(env);
   const list = (g.vars.get('error') as Value[] | undefined) ?? [];
   g.vars.set('error', [rec, ...list].slice(0, 256));
+  for (const sink of env.errorSinks ?? []) {
+    sink.list.push(rec);
+    sink.vars.set(sink.name, [...sink.list]);
+  }
   if (errorVariable) {
     const plus = errorVariable.startsWith('+');
     const name = errorVariable.replace(/^\+/, '');
     const prev = plus ? asList(getVariable(env, name)) : [];
     setVariable(env, name, [...prev, rec]);
   }
+}
+
+/**
+ * Sends a record on stream 2 (error), 3 (warning), 4 (verbose), 5 (debug) or 6 (information) through
+ * the innermost redirection that covers it. Returns false when nothing redirects it (the host shows it).
+ */
+export function routeStream(env: Env, stream: '2' | '3' | '4' | '5' | '6', text: string, record: Value): boolean {
+  const frames = env.streams ?? [];
+  for (let i = frames.length - 1; i >= 0; i--) {
+    const t = frames[i].map[stream] ?? frames[i].map['*'];
+    if (!t) continue;
+    if (t.kind === 'merge') frames[i].sink(record);
+    else if (t.kind === 'file') appendFile(env, t.path!, text);
+    return true;
+  }
+  return false;
+}
+
+/** Writes a stream record to the host unless a redirection takes it. */
+export function streamWrite(env: Env, stream: '2' | '3' | '4' | '5' | '6', text: string, record: Value): void {
+  if (!routeStream(env, stream, text, record)) hostWrite(env, text);
 }
 
 export function hostWrite(env: Env, text: string): void {
@@ -324,6 +357,8 @@ export function str(v: Value): string {
   if (o.__type === 'error') return String((o.Exception as Obj).Message);
   if (o.__type === 'exception') return String(o.Message);
   if (o.__type === 'type') return String(o.FullName);
+  if (o.__type === 'verbose' || o.__type === 'warning' || o.__type === 'debug') return str(o.Message);
+  if (o.__type === 'information') return str(o.MessageData);
   if (o.__type === 'version') return [o.Major, o.Minor, o.Build, o.Revision].filter((x) => x !== undefined && x !== -1).join('.');
   if (o.__type === 'guid') return String(o.Guid);
   if (o.__type === 'block') return String(o.src);
@@ -571,7 +606,7 @@ export function typeNameOf(v: Value): string {
   if (isSecure(v)) return 'System.Security.SecureString';
   const t = String((v as Obj).__type ?? '');
   const map: Record<string, string> = {
-    hashtable: (v as Obj).__ordered ? 'System.Collections.Specialized.OrderedDictionary' : 'System.Collections.Hashtable', datetime: 'System.DateTime', timespan: 'System.TimeSpan', block: 'System.Management.Automation.ScriptBlock', error: 'System.Management.Automation.ErrorRecord', exception: String((v as Obj).__exType ?? 'System.Exception'),
+    hashtable: (v as Obj).__ordered ? 'System.Collections.Specialized.OrderedDictionary' : 'System.Collections.Hashtable', datetime: 'System.DateTime', timespan: 'System.TimeSpan', block: 'System.Management.Automation.ScriptBlock', error: 'System.Management.Automation.ErrorRecord', verbose: 'System.Management.Automation.VerboseRecord', warning: 'System.Management.Automation.WarningRecord', debug: 'System.Management.Automation.DebugRecord', information: 'System.Management.Automation.InformationRecord', exception: String((v as Obj).__exType ?? 'System.Exception'),
     type: 'System.RuntimeType', version: 'System.Version', guid: 'System.Guid', psobject: 'System.Management.Automation.PSCustomObject', csv: 'System.Management.Automation.PSCustomObject', select: 'System.Management.Automation.PSCustomObject', list: 'System.Management.Automation.PSCustomObject',
     file: String((v as Obj).Mode ?? '').startsWith('d') ? 'System.IO.DirectoryInfo' : 'System.IO.FileInfo', service: 'System.ServiceProcess.ServiceController', process: 'System.Diagnostics.Process', event: 'System.Diagnostics.Eventing.Reader.EventLogRecord',
     credential: 'System.Management.Automation.PSCredential', matchinfo: 'Microsoft.PowerShell.Commands.MatchInfo', groupinfo: 'Microsoft.PowerShell.Commands.GroupInfo', measure: 'Microsoft.PowerShell.Commands.GenericMeasureInfo', regex: 'System.Text.RegularExpressions.Regex', match: 'System.Text.RegularExpressions.Match',
@@ -1254,7 +1289,7 @@ function cmdletMethod(env: Env, o: Obj, n: string, args: Value[]): Value {
   }
   if (n === 'shouldcontinue') return true;
   if (n === 'writeverbose') {
-    if (/continue/i.test(str(getVariable(env, 'VerbosePreference')))) hostWrite(env, `VERBOSE: ${str(args[0])}\n`);
+    if (/^(continue|inquire|stop)$/i.test(str(getVariable(env, 'VerbosePreference')))) hostWrite(env, `VERBOSE: ${str(args[0])}\n`);
     return undefined;
   }
   if (n === 'writewarning') {
@@ -1814,7 +1849,7 @@ export function execStmt(env: Env, s: Stmt, emit: (v: Value) => void): void {
     case 'exit':
       throw new ExitEx(s.value ? num(stmtValue(env, s.value)) : 0);
     case 'func':
-      env.vars.set('function:' + s.name.toLowerCase(), { __type: 'function', Name: s.name, CommandType: s.filter ? 'Filter' : 'Function', __block: s.block, __filter: s.filter, __src: s.src, __script: env.scriptPath ?? '' } as Obj);
+      env.vars.set('function:' + s.name.toLowerCase(), { __type: 'function', Name: s.name, CommandType: s.filter ? 'Filter' : 'Function', __block: s.block, __filter: s.filter, __src: s.src, __script: env.scriptPath ?? '', ...(env.module ? { __module: env.module } : {}) } as Obj);
       // Functions defined in a function or script body are visible to the rest of the run.
       return;
     case 'trap':
@@ -1924,13 +1959,48 @@ function execPipe(env: Env, s: Extract<Stmt, { t: 'pipe' }>, emit: (v: Value) =>
     const out: Value[] = [];
     const sink = last && !el.redirs.length ? emit : (v: Value) => out.push(v);
     env.line = s.line;
-    runElement(env, el, input, sink, last);
+    const frame = streamFrame(env, el.redirs, sink);
+    if (frame) env.streams = [...(env.streams ?? []), frame];
+    try {
+      runElement(env, el, input, sink, last);
+    } finally {
+      if (frame) env.streams = env.streams!.slice(0, -1);
+    }
     if (el.redirs.length) {
       redirect(env, el.redirs, out);
       if (last) for (const v of el.redirs.some((r) => r.stream === '1' || r.stream === '*') ? [] : out) emit(v);
     }
     input = out;
   }
+}
+
+/** The non-output redirections of one pipeline element: 2>$null, 2>&1, 3>file, *>&1 ... */
+function streamFrame(env: Env, redirs: Elem['redirs'], sink: (v: Value) => void): NonNullable<Env['streams']>[number] | null {
+  const map: NonNullable<Env['streams']>[number]['map'] = {};
+  for (const r of redirs) {
+    if (r.stream === '1') continue;
+    const keys = r.stream === '*' ? ['2', '3', '4', '5', '6'] : [r.stream];
+    if (r.op === 'merge') {
+      for (const k of keys) map[k] = { kind: 'merge' };
+      continue;
+    }
+    if (!r.target) continue;
+    const isNull = r.target.t === 'var' && (r.target as { name: string }).name.toLowerCase() === 'null';
+    if (isNull) {
+      for (const k of keys) map[k] = { kind: 'null' };
+      continue;
+    }
+    const path = toVfs(env, str(evalExpr(env, r.target)));
+    if (r.op === '>') {
+      try {
+        writeFile(env.sys.fs, path, '', ROOT, env.sys.now);
+      } catch {
+        throw rtError(`Could not find a part of the path '${toWin(path)}'.`, 'DirectoryNotFoundException');
+      }
+    }
+    for (const k of keys) map[k] = { kind: 'file', path };
+  }
+  return Object.keys(map).length ? { map, sink } : null;
 }
 
 function redirect(env: Env, redirs: Elem['redirs'], values: Value[]): void {
@@ -2023,12 +2093,18 @@ function evalArgs(env: Env, args: Arg[]): { positional: Value[]; named: Record<s
 
 const STATE_VERBS = /^(new|set|remove|add|stop|start|restart|disable|enable|move|rename|clear|copy|install|uninstall|register|unregister|grant|revoke|reset|unlock|suspend|resume|update|initialize|format|mount|dismount|publish|unpublish|import|export|out|send)-/i;
 
+/** A module's private functions can only be called from code in that module. */
+export function visibleFunction(env: Env, v: Value | undefined): Obj | undefined {
+  const fn = v as Obj | undefined;
+  return fn && fn.__private && fn.__module !== env.module ? undefined : fn;
+}
+
 function invokeByName(env: Env, name: string, el: Extract<Elem, { t: 'cmd' }>, input: Value[] | undefined, emit: (v: Value) => void, last: boolean): void {
   void last;
   const key = name.toLowerCase();
   // Functions defined in this session (and Pester mocks) win over cmdlets.
   const mock = (env.mocks as Map<string, Obj> | undefined)?.get(key) ?? (env.mocks as Map<string, Obj> | undefined)?.get(ALIASES[key] ?? '');
-  const fn = env.vars.get('function:' + key) as Obj | undefined;
+  const fn = visibleFunction(env, env.vars.get('function:' + key));
   if (mock) {
     callMock(env, mock, el, input, emit);
     return;
@@ -2038,7 +2114,7 @@ function invokeByName(env: Env, name: string, el: Extract<Elem, { t: 'cmd' }>, i
     return;
   }
   const resolved = ALIASES[key] ?? key;
-  const aliasFn = env.vars.get('function:' + resolved) as Obj | undefined;
+  const aliasFn = visibleFunction(env, env.vars.get('function:' + resolved));
   if (aliasFn) {
     callFunction(env, aliasFn, el.args, input, emit, name);
     return;
@@ -2171,7 +2247,7 @@ export function reportError(env: Env, rec: Obj, errorVariable?: string, action?:
   if (ea === 'ignore') return;
   remember(env, rec, errorVariable);
   if (ea === 'silentlycontinue') return;
-  hostWrite(env, errorText(rec));
+  streamWrite(env, '2', errorText(rec), rec);
 }
 
 export function makeCx(env: Env, call: Call, input: Value[] | undefined): Cx {
@@ -2245,21 +2321,30 @@ function buildArgs(values: Value[]): EvalArg[] {
 
 /** begin, then process once per input item (with $_), then end. */
 function runBody(env: Env, ast: Block, input: Value[] | undefined, emit: (v: Value) => void, perItem?: (item: Value) => void): void {
-  if (ast.begin) execStmts(env, ast.begin, emit);
+  // In begin/process/end blocks, return ends only that block (for process: only the current item).
+  const named = ast.named;
+  const run = (stmts: NonNullable<Block['end']>) => {
+    try {
+      execStmts(env, stmts, emit);
+    } catch (e) {
+      if (!(named && e instanceof ReturnEx)) throw e;
+    }
+  };
+  if (ast.begin) run(ast.begin);
   if (ast.process) {
     const items = input ?? [];
     if (!input) {
       setVariable(env, '_', null);
-      execStmts(env, ast.process, emit);
+      run(ast.process);
     } else
       for (const item of items) {
         setVariable(env, '_', item);
         setVariable(env, 'PSItem', item);
         perItem?.(item);
-        execStmts(env, ast.process, emit);
+        run(ast.process);
       }
   }
-  if (ast.end) execStmts(env, ast.end, emit);
+  if (ast.end) run(ast.end);
 }
 
 const COMMON_PARAMS = ['verbose', 'debug', 'erroraction', 'warningaction', 'informationaction', 'errorvariable', 'warningvariable', 'informationvariable', 'outvariable', 'outbuffer', 'pipelinevariable', 'whatif', 'confirm'];
@@ -2394,7 +2479,7 @@ function bindErr(fn: string, msg: string, type: string, id?: string): RuntimeErr
 function validate(env: Env, fn: string, p: ParamDef, v: Value): void {
   const prefix = `Cannot validate argument on parameter '${p.name}'. `;
   const fail = (m: string) => {
-    throw bindErr(fn, prefix + m, 'ParameterBindingValidationException');
+    throw bindErr(fn, prefix + m, 'ParameterBindingValidationException', 'ParameterArgumentValidationError');
   };
   for (const a of p.attrs) {
     const n = a.name.toLowerCase();
@@ -2435,6 +2520,9 @@ function callFunction(env: Env, fn: Obj, args: Arg[], input: Value[] | undefined
   if (depth > 100) throw rtError('The script failed due to call depth overflow.', 'ScriptCallDepthException', 'script');
   env.callDepth = depth;
   const savedScript = env.scriptPath;
+  const savedModule = env.module;
+  if (fn.__module) env.module = String(fn.__module);
+  const callerScope = current(env);
   try {
     withScope(env, 'function', () => {
       const common: Record<string, Value> = {};
@@ -2454,17 +2542,27 @@ function callFunction(env: Env, fn: Obj, args: Arg[], input: Value[] | undefined
       setVariable(env, 'input', input ?? [], 'local');
       const body: Block = fn.__filter ? { ...ast, process: ast.end, end: undefined, named: true } : ast;
       const errorVariable = common.errorvariable !== undefined ? str(common.errorvariable) : undefined;
+      // -ErrorVariable e: every error reported inside the call is collected in the caller's $e.
+      if (errorVariable) {
+        const plus = errorVariable.startsWith('+');
+        const varName = errorVariable.replace(/^\+/, '').toLowerCase();
+        const prev = plus ? asList(callerScope.vars.get(varName)) : [];
+        callerScope.vars.set(varName, [...prev]);
+        env.errorSinks = [...(env.errorSinks ?? []), { name: varName, vars: callerScope.vars, list: [...prev] }];
+      }
       try {
         runBody(env, body, input, emit, pipelineBinding ? (item) => bindPipelineItem(env, params, item, name) : undefined);
       } catch (e) {
         if (e instanceof ReturnEx) return;
-        if (e instanceof RuntimeErr && errorVariable) remember(env, e.record, errorVariable);
         throw e;
+      } finally {
+        if (errorVariable) env.errorSinks = env.errorSinks!.slice(0, -1);
       }
     });
   } finally {
     env.callDepth = depth - 1;
     env.scriptPath = savedScript;
+    env.module = savedModule;
   }
   env.ok = true;
 }
@@ -2492,9 +2590,22 @@ function bindPipelineItem(env: Env, params: ParamDef[], item: Value, fnName: str
   }
 }
 
+/** The execution policy set at each scope; Undefined where none is set. */
+export function policyScopes(env: Env): Record<'Process' | 'CurrentUser' | 'LocalMachine', string> {
+  const m = machine(env) as unknown as Obj;
+  const users = (isObj(m.userPolicies) ? m.userPolicies : {}) as Obj;
+  return { Process: str(env.vars.get('__executionpolicy') ?? 'Undefined'), CurrentUser: str(users[env.sys.user.toLowerCase()] ?? 'Undefined'), LocalMachine: str(m.executionPolicy ?? 'RemoteSigned') };
+}
+
+/** The effective policy: the most specific scope that is not Undefined (Process, then CurrentUser, then LocalMachine). */
+export function effectivePolicy(env: Env): string {
+  const s = policyScopes(env);
+  return [s.Process, s.CurrentUser, s.LocalMachine].find((p) => p !== 'Undefined') ?? 'Restricted';
+}
+
 /** Execution policy for script files: Restricted blocks all; AllSigned needs a valid signature. */
 function checkPolicy(env: Env, path: string, text: string): void {
-  const policy = str(env.vars.get('__executionpolicy') ?? (machine(env) as unknown as Obj).executionPolicy ?? 'RemoteSigned').toLowerCase();
+  const policy = effectivePolicy(env).toLowerCase();
   if (policy === 'restricted') throw rtError(`File ${path} cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.`, 'PSSecurityException', 'script', { id: 'UnauthorizedAccess' });
   if (policy === 'allsigned') {
     const sig = signatureStatus(text);
@@ -2569,40 +2680,70 @@ function runScriptFile(env: Env, name: string, el: Extract<Elem, { t: 'cmd' }>, 
   }
 }
 
-/** Module folders searched for Name\Name.psm1 when a command is not found. */
+/** Module folders searched (manifest first, then Name\Name.psm1) when a command is not found. */
 function autoloadModule(env: Env, cmd: string): boolean {
   const user = env.sys.user;
   const roots = [`C:\\Users\\${user}\\Documents\\WindowsPowerShell\\Modules`, 'C:\\Program Files\\WindowsPowerShell\\Modules'];
-  const tried = (env.vars.get('__autoloaded') as string[] | undefined) ?? [];
+  const loaded = ((env.vars.get('__modules') as Obj[] | undefined) ?? []).map((m) => str(m.Name).toLowerCase());
+  const wanted = new RegExp(`function\\s+${cmd.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
   for (const root of roots) {
     const vfs = toVfs(env, root);
     const l = lookup(env.sys.fs, vfs, ROOT);
     if (!l || l.node.type !== 'dir') continue;
     for (const [mod, node] of Object.entries(l.node.children)) {
-      if (node.type !== 'dir' || tried.includes(mod.toLowerCase())) continue;
-      const psm = Object.entries(node.children).find(([f]) => f.toLowerCase() === `${mod.toLowerCase()}.psm1`);
-      if (!psm || psm[1].type !== 'file') continue;
-      if (!new RegExp(`function\\s+${cmd.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(psm[1].content)) continue;
-      env.vars.set('__autoloaded', [...tried, mod.toLowerCase()]);
-      importModuleText(env, psm[1].content, `${root}\\${mod}\\${psm[0]}`, mod);
-      return true;
+      if (node.type !== 'dir' || loaded.includes(mod.toLowerCase())) continue;
+      const file = (n: string) => Object.entries(node.children).find(([f, x]) => f.toLowerCase() === n.toLowerCase() && x.type === 'file') as [string, { content: string }] | undefined;
+      const psd = file(`${mod}.psd1`);
+      const man = psd ? parseManifest(psd[1].content) : {};
+      const psm = file(man.root ?? `${mod}.psm1`);
+      if (!psm || !wanted.test(psm[1].content)) continue;
+      importModuleText(env, psm[1].content, `${root}\\${mod}\\${psm[0]}`, mod, { version: man.version, exports: man.exports });
+      return !!visibleFunction(env, env.vars.get('function:' + cmd.toLowerCase()));
     }
   }
   return false;
 }
 
-/** Runs a module's text so its functions become available (Export-ModuleMember is honoured loosely). */
-export function importModuleText(env: Env, text: string, path: string, name: string): void {
+/** The fields of a module manifest (.psd1) that loading needs. */
+export function parseManifest(text: string): { root?: string; version?: string; exports?: string[] } {
+  const field = (k: string) => new RegExp(`${k}\\s*=\\s*(@\\(([^)]*)\\)|'([^']*)'|"([^"]*)")`, 'i').exec(text);
+  const root = field('RootModule') ?? field('ModuleToProcess');
+  const version = field('ModuleVersion');
+  const fx = field('FunctionsToExport');
+  const exports = fx ? (fx[2] !== undefined ? [...fx[2].matchAll(/['"]([^'"]+)['"]/g)].map((m) => m[1]) : [fx[3] ?? fx[4] ?? '*']) : undefined;
+  return { root: root?.[3] ?? root?.[4], version: version?.[3] ?? version?.[4], exports: exports && !(exports.length === 1 && exports[0] === '*') ? exports : undefined };
+}
+
+/**
+ * Loads a script module: its functions are tagged with the module, and those it does not export
+ * (Export-ModuleMember, or the manifest's FunctionsToExport) stay private to it.
+ */
+export function importModuleText(env: Env, text: string, path: string, name: string, manifest: { version?: string; exports?: string[] } = {}): void {
   const ast = parseScript(text);
   const saved = env.scriptPath;
+  const savedModule = env.module;
   env.scriptPath = path;
+  env.module = name;
+  env.vars.set('__exporting', []);
   try {
     withScope(env, 'script', () => runBody(env, ast, undefined, () => {}));
   } finally {
     env.scriptPath = saved;
+    env.module = savedModule;
   }
-  const mods = (env.vars.get('__modules') as Obj[] | undefined) ?? [];
-  if (!mods.some((m) => str(m.Name).toLowerCase() === name.toLowerCase())) env.vars.set('__modules', [...mods, { __type: 'select', ModuleType: 'Script', Version: '1.0', Name: name, ExportedCommands: [...env.vars.keys()].filter((k) => k.startsWith('function:')).map((k) => k.slice(9)), Path: path }]);
+  const declared = env.vars.get('__exporting') as string[];
+  env.vars.delete('__exporting');
+  const wild = (pats: string[], n: string) => pats.some((p) => new RegExp('^' + p.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.') + '$', 'i').test(n));
+  const exported: string[] = [];
+  for (const [k, v] of env.vars) {
+    if (!k.startsWith('function:') || !isObj(v) || v.__module !== name) continue;
+    const n = String(v.Name);
+    const ok = (!declared.length || wild(declared, n)) && (!manifest.exports || wild(manifest.exports, n));
+    v.__private = !ok;
+    if (ok) exported.push(n);
+  }
+  const mods = ((env.vars.get('__modules') as Obj[] | undefined) ?? []).filter((m) => str(m.Name).toLowerCase() !== name.toLowerCase());
+  env.vars.set('__modules', [...mods, { __type: 'select', ModuleType: 'Script', Version: convertTo('version', manifest.version ?? '0.0'), Name: name, ExportedCommands: exported, Path: path }]);
 }
 
 /** Runs script text as a script file would run: its own scope, $PSScriptRoot, exit codes. Returns its output. */

@@ -41,25 +41,60 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
   },
 
   sort: (args, io, ctx) => {
-    const o = parseOpts(args, ['k', 't', 'o']);
+    // Several -k keys may be given; each is F[.C][flags][,F[.C][flags]] with flags from n, r, f, h, b.
+    const keySpecs: string[] = [];
+    const rest: string[] = [];
+    for (let i = 0; i < args.length; i++) {
+      const a = args[i];
+      if (a === '-k' || a === '--key') keySpecs.push(args[++i] ?? '');
+      else if (/^-k./.test(a)) keySpecs.push(a.slice(2));
+      else if (a.startsWith('--key=')) keySpecs.push(a.slice(6));
+      else rest.push(a);
+    }
+    const o = parseOpts(rest, ['t', 'o'], { reverse: 'r', numeric: 'n', unique: 'u', 'ignore-case': 'f', 'human-numeric-sort': 'h', 'field-separator': 't', output: 'o' });
     let ls = readInputs(ctx, io, o.rest, 'sort').flatMap((f) => lines(f.content));
     const sep = o.values.t;
-    const key = o.values.k ? Number(o.values.k.split(',')[0].replace(/[nr]$/g, '')) : 0;
-    const numeric = o.flags.has('n') || /n/.test(o.values.k ?? '') || o.flags.has('h');
-    const field = (l: string) => (key ? (sep ? l.split(sep) : l.trim().split(/\s+/))[key - 1] ?? '' : l);
+    type Key = { f1: number; c1: number; f2: number; c2: number; n: boolean; r: boolean; f: boolean };
+    const keys: Key[] = keySpecs.map((spec) => {
+      const [a, b] = spec.split(',');
+      const pa = /^(\d+)(?:\.(\d+))?([a-zA-Z]*)$/.exec(a ?? '') ?? ['', '1', '', ''];
+      const pb = b ? /^(\d+)(?:\.(\d+))?([a-zA-Z]*)$/.exec(b) : null;
+      const fl = (pa[3] ?? '') + (pb?.[3] ?? '');
+      const own = fl.replace(/b/g, '').length > 0;
+      return { f1: Number(pa[1]), c1: Number(pa[2] || 1), f2: pb ? Number(pb[1]) : 0, c2: pb?.[2] ? Number(pb[2]) : 0, n: own ? /[nh]/.test(fl) : o.flags.has('n') || o.flags.has('h'), r: own ? fl.includes('r') : o.flags.has('r'), f: own ? fl.includes('f') : o.flags.has('f') };
+    });
+    const fieldsOf = (l: string) => (sep ? l.split(sep) : (l.match(/\s*\S+/g) ?? []));
+    const extract = (l: string, k: Key) => {
+      const fs_ = fieldsOf(l);
+      const from = fs_.slice(0, k.f1 - 1).join(sep ?? '').length + (k.f1 > 1 && sep ? 1 : 0) + (k.c1 - 1);
+      let to = l.length;
+      if (k.f2) {
+        const upto = fs_.slice(0, k.f2);
+        to = upto.join(sep ?? '').length + (sep ? k.f2 - 1 : 0);
+        if (k.c2) to = to - (upto[k.f2 - 1] ?? '').length + k.c2;
+      }
+      const v = l.slice(from, Math.max(from, to));
+      return sep ? v : v.replace(/^\s+/, '');
+    };
     const num = (s: string) => {
       const m = /^\s*(-?[\d.]+)\s*([KMG]?)/i.exec(s);
       if (!m) return 0;
       return Number(m[1]) * ({ '': 1, k: 1024, m: 1024 ** 2, g: 1024 ** 3 }[m[2].toLowerCase()] ?? 1);
     };
-    ls.sort((a, b) => {
-      const fa = field(a);
-      const fb = field(b);
-      const c = numeric ? num(fa) - num(fb) : o.flags.has('f') ? fa.toLowerCase().localeCompare(fb.toLowerCase()) : fa < fb ? -1 : fa > fb ? 1 : 0;
-      return c !== 0 ? c : a < b ? -1 : a > b ? 1 : 0;
-    });
-    if (o.flags.has('r')) ls.reverse();
-    if (o.flags.has('u')) ls = ls.filter((l, i) => i === 0 || field(l) !== field(ls[i - 1]));
+    const cmp = (fa: string, fb: string, n: boolean, f: boolean) => (n ? num(fa) - num(fb) : f ? fa.toLowerCase().localeCompare(fb.toLowerCase()) : fa < fb ? -1 : fa > fb ? 1 : 0);
+    const whole: Key = { f1: 1, c1: 1, f2: 0, c2: 0, n: o.flags.has('n') || o.flags.has('h'), r: o.flags.has('r'), f: o.flags.has('f') };
+    const order = keys.length ? keys : [whole];
+    const compare = (a: string, b: string) => {
+      for (const k of order) {
+        const c = cmp(k === whole ? a : extract(a, k), k === whole ? b : extract(b, k), k.n, k.f);
+        if (c !== 0) return k.r ? -c : c;
+      }
+      if (o.flags.has('s') || o.flags.has('u')) return 0;
+      const c = a < b ? -1 : a > b ? 1 : 0;
+      return o.flags.has('r') ? -c : c;
+    };
+    ls.sort(compare);
+    if (o.flags.has('u')) ls = ls.filter((l, i) => i === 0 || compare(l, ls[i - 1]) !== 0);
     const text = ls.map((l) => l + '\n').join('');
     if (o.values.o) writeFile(ctx.sys.fs, abs(ctx, o.values.o), text, actor(ctx), ctx.sys.now);
     else io.out(text);
@@ -290,7 +325,8 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
   },
 
   xargs: (args, io, ctx) => {
-    const o = parseOpts(args, ['n', 'I'], {}, true);
+    const o = parseOpts(args, ['n', 'I'], { null: '0' }, true);
+    if (o.values.N === '0') o.flags.add('0');
     // -0: items end with NUL (find -print0); otherwise they are separated by blanks.
     const items = o.flags.has('0') ? io.stdin.split('\0').filter(Boolean) : io.stdin.split(/\s+/).filter(Boolean);
     const cmd = o.rest.length ? o.rest : ['echo'];

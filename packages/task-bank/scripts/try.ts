@@ -1,26 +1,27 @@
 /**
- * Debug helper: build one variant of a template and run PowerShell lines against it.
- *   npx vite-node packages/task-bank/scripts/try.ts <template-id> <variant> [commands.txt]
- * With no lines, it runs the template's reference solution and prints the check results.
+ * Debug helper: build templates whose id matches a pattern, check that the starter fails and the
+ * reference solution passes, and print the failing checks with their output.
+ *   npx vite-node packages/task-bank/scripts/try.ts COURSE PATTERN [VARIANT]
  */
-import { createShellChecks, runLines, systemFromInitial, type ShellState } from '@cslab/engine-shell';
 import type { LabSpec } from '@cslab/lab-runtime';
-import { buildTask, loadCourse, TASK_COURSES } from '../src/index';
+import { createShellChecks, runLines, systemFromInitial, type ShellState } from '@cslab/engine-shell';
+import { buildTask, loadCourse } from '../src/index';
 
-import { readFileSync } from 'node:fs';
-
-const args = process.argv.slice(2).filter((a) => a !== '--');
-const [id, n = '1', file] = args;
-// Lines come from a file (one command per line), because CLI wrappers eat arguments that start with "-".
-const lines = file ? readFileSync(file, 'utf8').split(/\r?\n/).filter((l) => l.trim()) : [];
-const all = (await Promise.all(TASK_COURSES.map((c) => loadCourse(c)))).flat();
-const t = all.find((x) => x.id === id);
-if (!t) throw new Error(`no template ${id}`);
-const lab = buildTask(t, Number(n));
-const sys = systemFromInitial(lab.initialState);
-const script = lines.length ? lines : lab.solution ?? [];
-const transcript = runLines(sys, script);
-console.log(transcript);
+const [course, pattern = '', variant = '1'] = process.argv.slice(2).filter((a) => a !== '--');
 const shell = createShellChecks();
-const r = await shell.run(lab as LabSpec<ShellState>, { system: sys, history: sys.history });
-for (const c of r.checks) console.log(c.passed ? 'PASS' : 'FAIL', c.label, c.passed ? '' : `: ${c.message}`);
+const templates = (await loadCourse(course)).filter((t) => new RegExp(pattern).test(t.id) && t.engine === 'E4');
+for (const t of templates) {
+  const lab = buildTask(t, Number(variant));
+  const before = await shell.run(lab as LabSpec<ShellState>, { system: systemFromInitial(lab.initialState), history: [] });
+  const sys = systemFromInitial(lab.initialState);
+  const out = runLines(sys, lab.solution ?? []);
+  const r = await shell.run(lab as LabSpec<ShellState>, { system: sys, history: sys.history });
+  const failing = r.checks.filter((c) => !c.passed);
+  if (!before.passed && !failing.length) {
+    console.log(`ok   ${t.id}`);
+    continue;
+  }
+  console.log(`FAIL ${t.id}${before.passed ? ' (starter passes)' : ''}`);
+  for (const c of failing) console.log(`  - ${c.label}: ${c.message}${c.detail !== undefined ? `\n    detail: ${JSON.stringify(c.detail).slice(0, 600)}` : ''}`);
+  if (failing.length) console.log(out.slice(-1500).replace(/^/gm, '    | '));
+}

@@ -659,11 +659,21 @@ function certObjects(cx: Cx, path: string): Obj[] {
 
 /* ----------------------------------------------------------------------------- scheduled tasks */
 
-type Task = Machine['tasks'][number] & { argument?: string; execute?: string; workingDirectory?: string; runLevel?: string; logonType?: string; lastRun?: number; lastResult?: number; description?: string; settings?: Obj; passwordStored?: boolean; repetition?: string };
+type Task = Machine['tasks'][number] & { path?: string; triggers?: Obj[]; argument?: string; execute?: string; workingDirectory?: string; runLevel?: string; logonType?: string; lastRun?: number; lastResult?: number; description?: string; settings?: Obj; passwordStored?: boolean; repetition?: string };
+
+/** "\\ICT\\" style task folder, with leading and trailing backslashes. */
+function taskFolder(p: Value): string {
+  const s = str(p ?? '\\').trim() || '\\';
+  return ('\\' + s.replace(/^\\+|\\+$/g, '') + '\\').replace(/^\\\\$/, '\\');
+}
 
 function taskOf(cx: Cx, name: string): Task {
   const m = machine(cx.env);
-  const t = m.tasks.find((x) => x.name.toLowerCase() === name.toLowerCase());
+  // "\\ICT\\Nightly Clean" names the folder and the task.
+  const slash = name.lastIndexOf('\\');
+  const folder = cx.P.taskpath !== undefined ? taskFolder(cx.P.taskpath) : slash > 0 ? taskFolder(name.slice(0, slash)) : undefined;
+  const leaf = slash >= 0 ? name.slice(slash + 1) : name;
+  const t = m.tasks.find((x) => x.name.toLowerCase() === leaf.toLowerCase() && (folder === undefined || ((x as Task).path ?? '\\').toLowerCase() === folder.toLowerCase()));
   if (!t) fail(cx, `No MSFT_ScheduledTask objects found with property 'TaskName' equal to '${name}'.  Verify the value of the property and retry.`, 'CimJobException', false);
   return t as Task;
 }
@@ -673,34 +683,77 @@ function runTask(cx: Cx, t: Task): number {
   const exe = (t.execute ?? t.action.split(/\s+/)[0] ?? '').toLowerCase();
   const arg = t.argument ?? t.action.slice(t.action.indexOf(' ') + 1);
   let code = 0;
-  if (/powershell(\.exe)?$|pwsh(\.exe)?$/.test(exe)) {
-    const file = /-File\s+("([^"]+)"|(\S+))/i.exec(arg);
-    const command = /-Command\s+("([^"]+)"|(.+))$/i.exec(arg);
-    try {
-      if (file) {
-        const p = file[2] ?? file[3];
-        const text = readFile(cx.env.sys.fs, toVfs(cx.env, p), ROOT);
-        const savedTry = cx.env.tryDepth;
-        cx.env.tryDepth = 1;
-        try {
-          const r = runScriptText(cx.env, text, toWin(toVfs(cx.env, p)), (arg.slice((file.index ?? 0) + file[0].length).trim().match(/"[^"]*"|\S+/g) ?? []).map((x) => x.replace(/^"|"$/g, '')));
-          code = r.exit;
-        } finally {
-          cx.env.tryDepth = savedTry;
-        }
-      } else if (command) runBlock(cx.env, { __type: 'block', src: command[2] ?? command[3] }, { newScope: true });
-    } catch (e) {
-      code = e instanceof RuntimeErr || e instanceof PsError ? 1 : 1;
-    }
-  } else if (exe && !/robocopy|cmd(\.exe)?$/.test(exe)) code = 2147942402; // file not found
+  // The task runs as its principal (SYSTEM shows as COMPUTER$), starting in its working directory or System32.
+  const savedRunAs = cx.env.vars.get('__runas');
+  const savedCwd = cx.env.sys.cwd;
+  const u = t.user.replace(/^NT AUTHORITY\\/i, '');
+  cx.env.vars.set('__runas', /^(system|localsystem)$/i.test(u) ? `${machine(cx.env).name}$` : /^(local|network) ?service$/i.test(u) ? u.toUpperCase() : u.replace(/^.*\\/, ''));
+  const cwd = toVfs(cx.env, t.workingDirectory || 'C:\\Windows\\System32');
+  mkdir(cx.env.sys.fs, cwd, ROOT, cx.env.sys.now, true);
+  cx.env.sys.cwd = cwd;
+  try {
+    if (/powershell(\.exe)?$|pwsh(\.exe)?$/.test(exe)) {
+      const file = /-File\s+("([^"]+)"|(\S+))/i.exec(arg);
+      const command = /-Command\s+("([^"]+)"|(.+))$/i.exec(arg);
+      try {
+        if (file) {
+          const p = file[2] ?? file[3];
+          const text = readFile(cx.env.sys.fs, toVfs(cx.env, p), ROOT);
+          const savedTry = cx.env.tryDepth;
+          cx.env.tryDepth = 1;
+          try {
+            const r = runScriptText(cx.env, text, toWin(toVfs(cx.env, p)), (arg.slice((file.index ?? 0) + file[0].length).trim().match(/"[^"]*"|\S+/g) ?? []).map((x) => x.replace(/^"|"$/g, '')));
+            code = r.exit;
+          } finally {
+            cx.env.tryDepth = savedTry;
+          }
+        } else if (command) runBlock(cx.env, { __type: 'block', src: command[2] ?? command[3] }, { newScope: true });
+      } catch {
+        // An unhandled terminating error ends powershell.exe with exit code 1.
+        code = 1;
+      }
+    } else if (exe && !/robocopy|cmd(\.exe)?$/.test(exe)) code = 2147942402; // file not found
+  } finally {
+    if (savedRunAs === undefined) cx.env.vars.delete('__runas');
+    else cx.env.vars.set('__runas', savedRunAs);
+    cx.env.sys.cwd = savedCwd;
+  }
   t.lastRun = cx.env.sys.now;
   t.lastResult = code;
   cx.env.dirtyEst = true;
   return code;
 }
 
+/** "2am", "3:30pm" or "02:00" as that time today on the simulated clock. */
+function timeToday(cx: Cx, s: string): number | null {
+  const m = /^\s*(\d{1,2})(?::(\d{2}))?(?::(\d{2}))?\s*([ap]m)?\s*$/i.exec(s);
+  if (!m || (!m[2] && !m[4])) return null;
+  let h = Number(m[1]) % 24;
+  if (m[4]) h = (h % 12) + (/pm/i.test(m[4]) ? 12 : 0);
+  const d = new Date(cx.env.sys.now);
+  return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), h, Number(m[2] ?? 0), Number(m[3] ?? 0));
+}
+
+/** The next time a daily, weekly or once trigger fires after the simulated clock. */
+function nextRun(cx: Cx, t: Task): Value {
+  const now = cx.env.sys.now;
+  let best: number | null = null;
+  for (const tr of t.triggers ?? []) {
+    const sb = parseDateText(str(tr.StartBoundary));
+    if (sb === null || sb === undefined) continue;
+    const kind = str(tr.Kind);
+    let at = sb;
+    if (kind === 'Daily' || kind === 'Weekly') {
+      const step = (kind === 'Weekly' ? 7 : Number(tr.DaysInterval ?? 1) || 1) * 86400000;
+      while (at <= now) at += step;
+    } else if (at <= now) continue;
+    if (best === null || at < best) best = at;
+  }
+  return best === null ? null : makeDate(best);
+}
+
 function taskView(t: Task): Obj {
-  return { __type: 'task', TaskPath: '\\', TaskName: t.name, State: t.enabled ? 'Ready' : 'Disabled', Trigger: t.trigger, Action: t.action, User: t.user, __extra: { Description: t.description ?? '', Actions: [{ __type: 'psobject', Execute: t.execute ?? t.action.split(' ')[0], Arguments: t.argument ?? '', WorkingDirectory: t.workingDirectory ?? '' }], Triggers: [{ __type: 'psobject', Text: t.trigger, Repetition: t.repetition ?? '' }], Principal: { __type: 'psobject', UserId: t.user, RunLevel: t.runLevel ?? 'Limited', LogonType: t.logonType ?? 'ServiceAccount' }, Settings: t.settings ?? {} } };
+  return { __type: 'task', TaskPath: t.path ?? '\\', TaskName: t.name, State: t.enabled ? 'Ready' : 'Disabled', Trigger: t.trigger, Action: t.action, User: t.user, __extra: { Description: t.description ?? '', URI: `${t.path ?? '\\'}${t.name}`, Actions: [{ __type: 'psobject', Execute: t.execute ?? t.action.split(' ')[0], Arguments: t.argument ?? '', WorkingDirectory: t.workingDirectory ?? '' }], Triggers: t.triggers?.length ? t.triggers : [{ __type: 'psobject', Text: t.trigger, Repetition: t.repetition ?? '' }], Principal: { __type: 'psobject', UserId: t.user, RunLevel: t.runLevel ?? 'Limited', LogonType: t.logonType ?? 'ServiceAccount' }, Settings: t.settings ?? {} } };
 }
 
 /* ----------------------------------------------------------------------------- packages (winget, choco) */
@@ -965,36 +1018,49 @@ register(
       let text = cx.P.daily ? `Daily at ${at}` : cx.P.weekly ? `Weekly on ${asList(cx.P.daysofweek).map(str).join(', ')} at ${at}` : cx.P.atstartup ? 'At startup' : cx.P.atlogon ? 'At log on' : `Once at ${at}`;
       if (cx.P.daysinterval !== undefined && num(cx.P.daysinterval) > 1) text = text.replace('Daily', `Every ${num(cx.P.daysinterval)} days`);
       const rep = cx.P.repetitioninterval !== undefined ? str(cx.P.repetitioninterval) : '';
-      return [{ __type: 'tasktrigger', Text: rep ? `${text}, repeat every ${rep}${cx.P.repetitionduration !== undefined ? ` for ${str(cx.P.repetitionduration)}` : ''}` : text, Repetition: rep }];
+      const atMs = cx.P.at !== undefined ? (isDate(cx.P.at) ? msOf(cx.P.at as Obj) : timeToday(cx, str(cx.P.at)) ?? parseDateText(str(cx.P.at))) : undefined;
+      const kind = cx.P.daily ? 'Daily' : cx.P.weekly ? 'Weekly' : cx.P.atstartup ? 'AtStartup' : cx.P.atlogon ? 'AtLogOn' : 'Once';
+      return [{ __type: 'tasktrigger', Text: rep ? `${text}, repeat every ${rep}${cx.P.repetitionduration !== undefined ? ` for ${str(cx.P.repetitionduration)}` : ''}` : text, Repetition: rep, Kind: kind, StartBoundary: atMs !== undefined && atMs !== null ? formatDate(atMs, "yyyy-MM-dd'T'HH:mm:ss") : '', DaysInterval: cx.P.daysinterval !== undefined ? num(cx.P.daysinterval) : kind === 'Daily' ? 1 : undefined, DaysOfWeek: cx.P.daysofweek !== undefined ? asList(cx.P.daysofweek).map(str).join(', ') : undefined, Enabled: true }];
     },
     'new-scheduledtaskprincipal': (cx) => [{ __type: 'taskprincipal', UserId: str(cx.P.userid ?? cx.P.groupid ?? 'SYSTEM'), LogonType: str(cx.P.logontype ?? 'ServiceAccount'), RunLevel: str(cx.P.runlevel ?? 'Limited') }],
-    'new-scheduledtasksettingsset': (cx) => [{ __type: 'tasksettings', ...Object.fromEntries(Object.entries(cx.P).map(([k, v]) => [k, isObj(v) ? str(v) : v])) }],
+    'new-scheduledtasksettingsset': (cx) => {
+      // Task Scheduler keeps time limits as ISO 8601 durations: PT1H, PT30M, P3D.
+      const iso = (ms: number) => {
+        const d = Math.floor(ms / 86400000), h = Math.floor(ms / 3600000) % 24, m = Math.floor(ms / 60000) % 60, s = Math.floor(ms / 1000) % 60;
+        return `P${d ? `${d}D` : ''}${h || m || s ? 'T' : ''}${h ? `${h}H` : ''}${m ? `${m}M` : ''}${s ? `${s}S` : ''}` || 'PT0S';
+      };
+      const names: Record<string, string> = { executiontimelimit: 'ExecutionTimeLimit', startwhenavailable: 'StartWhenAvailable', restartcount: 'RestartCount', restartinterval: 'RestartInterval', multipleinstances: 'MultipleInstances', allowstartifonbatteries: 'AllowStartIfOnBatteries', dontstopifgoingonbatteries: 'DontStopIfGoingOnBatteries', runonlyifnetworkavailable: 'RunOnlyIfNetworkAvailable', hidden: 'Hidden', waketorun: 'WakeToRun' };
+      return [{ __type: 'tasksettings', MultipleInstances: 'IgnoreNew', ExecutionTimeLimit: 'PT72H', ...Object.fromEntries(Object.entries(cx.P).map(([k, v]) => [names[k] ?? k, isObj(v) && (v as Obj).__type === 'timespan' ? iso(Number((v as Obj).__ms)) : isObj(v) ? str(v) : v])) }];
+    },
     'register-scheduledtask': (cx) => {
       const m = machine(cx.env);
       const name = str(cx.P.taskname ?? cx.pos[0]);
       if (!name) fail(cx, 'Register-ScheduledTask needs -TaskName.', 'ParameterBindingException', false);
-      if (m.tasks.some((t) => t.name.toLowerCase() === name.toLowerCase()) && !cx.P.force) fail(cx, `Cannot create a file when that file already exists: task ${name}. Use -Force to replace it.`, 'IOException', false);
+      const folder = taskFolder(cx.P.taskpath);
+      const same = (t: Machine['tasks'][number]) => t.name.toLowerCase() === name.toLowerCase() && ((t as Task).path ?? '\\').toLowerCase() === folder.toLowerCase();
+      if (m.tasks.some(same) && !cx.P.force) fail(cx, `Cannot create a file when that file already exists: task ${name}. Use -Force to replace it.`, 'IOException', false);
       const actions = asList(cx.P.action);
       const triggers = asList(cx.P.trigger);
       if (!actions.length || !triggers.length) fail(cx, 'Register-ScheduledTask needs -Action (New-ScheduledTaskAction) and -Trigger (New-ScheduledTaskTrigger).', 'ParameterBindingException', false);
       const a = actions[0] as Obj;
       const principal = isObj(cx.P.principal) ? (cx.P.principal as Obj) : undefined;
       const user = str(principal?.UserId ?? cx.P.user ?? 'SYSTEM');
-      const task: Task = { name, action: `${str(a.Execute)} ${str(a.Argument)}`.trim(), trigger: triggers.map((t) => str((t as Obj).Text)).join('; '), user, enabled: true, execute: str(a.Execute), argument: str(a.Argument), workingDirectory: str(a.WorkingDirectory ?? ''), runLevel: str(principal?.RunLevel ?? cx.P.runlevel ?? 'Limited'), logonType: str(principal?.LogonType ?? (cx.P.password !== undefined ? 'Password' : /^(system|nt authority\\system|localservice|networkservice)$/i.test(user) ? 'ServiceAccount' : 'Interactive')), description: str(cx.P.description ?? ''), settings: isObj(cx.P.settings) ? (cx.P.settings as Obj) : undefined, passwordStored: cx.P.password !== undefined, repetition: triggers.map((t) => str((t as Obj).Repetition ?? '')).filter(Boolean).join('; ') };
-      m.tasks = m.tasks.filter((t) => t.name.toLowerCase() !== name.toLowerCase());
+      const task: Task = { name, action: `${str(a.Execute)} ${str(a.Argument)}`.trim(), trigger: triggers.map((t) => str((t as Obj).Text)).join('; '), user, enabled: true, execute: str(a.Execute), argument: str(a.Argument), workingDirectory: str(a.WorkingDirectory ?? ''), runLevel: str(principal?.RunLevel ?? cx.P.runlevel ?? 'Limited'), logonType: str(principal?.LogonType ?? (cx.P.password !== undefined ? 'Password' : /^(system|nt authority\\system|localservice|networkservice)$/i.test(user) ? 'ServiceAccount' : 'Interactive')), description: str(cx.P.description ?? ''), settings: isObj(cx.P.settings) ? (cx.P.settings as Obj) : undefined, passwordStored: cx.P.password !== undefined, repetition: triggers.map((t) => str((t as Obj).Repetition ?? '')).filter(Boolean).join('; '), path: folder, triggers: triggers.filter(isObj).map((t) => ({ ...(t as Obj), __type: 'psobject' })) };
+      m.tasks = m.tasks.filter((t) => !same(t));
       m.tasks.push(task);
       cx.env.dirtyEst = true;
-      return [{ __type: 'task', TaskPath: '\\', TaskName: name, State: 'Ready' }];
+      return [{ __type: 'task', TaskPath: folder, TaskName: name, State: 'Ready' }];
     },
     'get-scheduledtask': (cx) => {
       const want = cx.P.taskname ?? cx.pos[0];
-      const list = machine(cx.env).tasks.filter((t) => want === undefined || new RegExp('^' + str(want).replace(/\*/g, '.*') + '$', 'i').test(t.name)).map((t) => taskView(t as Task));
+      const folder = cx.P.taskpath !== undefined ? str(cx.P.taskpath) : undefined;
+      const list = machine(cx.env).tasks.filter((t) => (want === undefined || new RegExp('^' + str(want).replace(/\*/g, '.*') + '$', 'i').test(t.name)) && (folder === undefined || new RegExp('^' + folder.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\\\*/g, '.*') + '$', 'i').test((t as Task).path ?? '\\'))).map((t) => taskView(t as Task));
       if (want !== undefined && !/\*/.test(str(want)) && !list.length) fail(cx, `No MSFT_ScheduledTask objects found with property 'TaskName' equal to '${str(want)}'.  Verify the value of the property and retry.`, 'CimJobException', false);
       return list;
     },
     'get-scheduledtaskinfo': (cx) => {
       const t = taskOf(cx, str(cx.P.taskname ?? cx.pos[0] ?? prop(cx.input?.[0], 'TaskName')));
-      return [{ __type: 'select', LastRunTime: t.lastRun ? makeDate(t.lastRun) : null, LastTaskResult: t.lastRun ? t.lastResult : 267011, NextRunTime: makeDate(cx.env.sys.now + 16 * 3600000), NumberOfMissedRuns: 0, TaskName: t.name, TaskPath: '\\' }];
+      return [{ __type: 'select', LastRunTime: t.lastRun ? makeDate(t.lastRun) : null, LastTaskResult: t.lastRun ? t.lastResult : 267011, NextRunTime: nextRun(cx, t), NumberOfMissedRuns: 0, TaskName: t.name, TaskPath: t.path ?? '\\' }];
     },
     'start-scheduledtask': (cx) => {
       const t = taskOf(cx, str(cx.P.taskname ?? cx.pos[0] ?? prop(cx.input?.[0], 'TaskName')));
@@ -1636,7 +1702,7 @@ registerNative({
     }
     if (args.some((a) => /^\/run$/i.test(a))) {
       const name = opt('/TN') ?? '';
-      const t = m.tasks.find((x) => x.name.toLowerCase() === name.toLowerCase()) as Task | undefined;
+      const t = m.tasks.find((x) => `${(x as Task).path ?? '\\'}${x.name}`.toLowerCase() === (name.startsWith('\\') ? name : '\\' + name).toLowerCase()) as Task | undefined;
       if (!t) {
         exitCode(cx, 1);
         return ['ERROR: The system cannot find the file specified.'];
@@ -1653,8 +1719,9 @@ registerNative({
       return [`SUCCESS: The parameters of scheduled task "${t.name}" have been changed.`];
     }
     const name = opt('/TN');
-    const list = m.tasks.filter((t) => !name || t.name.toLowerCase() === name.toLowerCase());
-    if (args.some((a) => /^\/v$/i.test(a)) || /list/i.test(opt('/FO') ?? '')) return list.flatMap((t) => [`Folder: \\`, `HostName:                             ${m.name}`, `TaskName:                             \\${t.name}`, `Next Run Time:                        N/A`, `Status:                               ${t.enabled ? 'Ready' : 'Disabled'}`, `Last Run Time:                        ${(t as Task).lastRun ? formatDate((t as Task).lastRun!, 'dd/MM/yyyy HH:mm:ss') : 'N/A'}`, `Last Result:                          ${(t as Task).lastResult ?? 267011}`, `Task To Run:                          ${t.action}`, `Run As User:                          ${t.user}`, `Schedule Type:                        ${t.trigger}`, '']);
+    const full = (t: Machine['tasks'][number]) => `${(t as Task).path ?? '\\'}${t.name}`;
+    const list = m.tasks.filter((t) => !name || full(t).toLowerCase() === (name.startsWith('\\') ? name : '\\' + name).toLowerCase());
+    if (args.some((a) => /^\/v$/i.test(a)) || /list/i.test(opt('/FO') ?? '')) return list.flatMap((t) => [`Folder: ${((t as Task).path ?? '\\').replace(/(.)\\$/, '$1')}`, `HostName:                             ${m.name}`, `TaskName:                             ${full(t)}`, `Next Run Time:                        N/A`, `Status:                               ${t.enabled ? 'Ready' : 'Disabled'}`, `Last Run Time:                        ${(t as Task).lastRun ? formatDate((t as Task).lastRun!, 'dd/MM/yyyy HH:mm:ss') : 'N/A'}`, `Last Result:                          ${(t as Task).lastResult ?? 267011}`, `Task To Run:                          ${t.action}`, `Run As User:                          ${t.user}`, `Schedule Type:                        ${t.trigger}`, '']);
     return ['', 'Folder: \\', 'TaskName                                 Next Run Time          Status', '======================================== ====================== ===============', ...list.map((t) => `${t.name.padEnd(40)} ${'N/A'.padEnd(22)} ${t.enabled ? 'Ready' : 'Disabled'}`)];
   },
 });

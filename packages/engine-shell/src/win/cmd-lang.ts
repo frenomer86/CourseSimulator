@@ -6,6 +6,7 @@
  * Registered after cmd-basic, so these replace its simpler versions.
  */
 
+import { effectivePolicy, parseManifest, policyScopes, routeStream, streamWrite } from './lang.js';
 import { listDir, lookup, mkdir, readFile, remove, writeFile, type FsNode } from '../fs.js';
 import { ALIASES, CMDLET_TABLE, NATIVE_TABLE, asList, canonical, cmdletNames, isObj, isSecure, machine, prop, register, render, SECURE, toVfs, toWin, type Cx, type Obj, type Value } from './core.js';
 import { binaryOp, construct, convertTo, errorRecord, formatDate, getMember, getVariable, importModuleText, invokeMethod, isBlock, isDate, isHash, isSpan, makeDate, makeSpan, msOf, num, parseDateText, reportError, runBlock, setVariable, signatureStatus, simpleHash, str, truthy, typeNameOf } from './lang.js';
@@ -211,10 +212,12 @@ export function itemObject(vfs: string, node: FsNode): Obj {
   const win = toWin(vfs);
   const name = win.replace(/^.*\\/, '') || win;
   const ext = isDir ? '' : /\.[^.]*$/.exec(name)?.[0] ?? '';
+  const ms = node.mtime || 1792661400000;
   return {
     __type: 'file',
     Mode: isDir ? 'd-----' : '-a----',
-    LastWriteTime: makeDate(node.mtime || 1792661400000),
+    // Directory listings show the date as 10/22/2026   9:30 AM.
+    LastWriteTime: { ...makeDate(ms), __display: `${formatDate(ms, 'MM/dd/yyyy')} ${formatDate(ms, 'h:mm tt').padStart(8)}` },
     Length: isDir ? '' : node.type === 'file' ? node.content.length : 0,
     Name: name,
     __extra: { FullName: win, Extension: ext, BaseName: isDir ? name : name.slice(0, name.length - ext.length), DirectoryName: win.replace(/\\[^\\]*$/, ''), Directory: win.replace(/\\[^\\]*$/, ''), Parent: win.replace(/\\[^\\]*$/, ''), PSIsContainer: isDir, CreationTime: makeDate(node.mtime || 1792661400000), LastWriteTimeUtc: makeDate(node.mtime || 1792661400000), Attributes: isDir ? 'Directory' : 'Archive', Exists: true, PSPath: `Microsoft.PowerShell.Core\\FileSystem::${win}` },
@@ -265,7 +268,17 @@ export function moduleInstalled(cx: Cx, name: string): boolean {
 }
 
 function functionsList(cx: Cx): Obj[] {
-  return [...cx.env.vars.entries()].filter(([k]) => k.startsWith('function:')).map(([, v]) => v as Obj);
+  return [...cx.env.vars.entries()].filter(([k, v]) => k.startsWith('function:') && !(v as Obj).__private).map(([, v]) => v as Obj);
+}
+
+const MODULE_ROOTS = (cx: Cx) => [`C:\\Users\\${cx.env.sys.user}\\Documents\\WindowsPowerShell\\Modules`, 'C:\\Program Files\\WindowsPowerShell\\Modules'];
+
+/** Imports a module through its manifest: RootModule, ModuleVersion and FunctionsToExport. */
+function importManifest(cx: Cx, psd: string, name: string): void {
+  const m = parseManifest(readText(cx, psd));
+  const dir = psd.replace(/[\\/][^\\/]*$/, '');
+  const rootFile = m.root ? `${dir}\\${m.root}` : `${dir}\\${name}.psm1`;
+  importModuleText(cx.env, readText(cx, rootFile), rootFile, name, { version: m.version, exports: m.exports });
 }
 
 function helpFor(fn: Obj): Record<string, string> {
@@ -301,7 +314,7 @@ register(
   {
     /* ------------------------------------------------------------ output streams */
     'write-output': (cx) => {
-      const vals = cx.pos.length ? cx.pos : cx.P.inputobject !== undefined ? [cx.P.inputobject] : [];
+      const vals = cx.pos.length ? cx.pos : cx.P.inputobject !== undefined ? [cx.P.inputobject] : cx.input ?? [];
       if (cx.P.noenumerate) return vals;
       return vals.flatMap((v) => (isArr(v) ? v : [v]));
     },
@@ -309,23 +322,29 @@ register(
       const sep = cx.P.separator !== undefined ? str(cx.P.separator) : ' ';
       const items = cx.pos.length ? cx.pos : cx.P.object !== undefined ? [cx.P.object] : cx.input ?? [];
       const text = items.map((v) => (isArr(v) ? v.map(str).join(sep) : isObj(v) && !isDate(v) && !isSpan(v) ? str(v) : str(v))).join(sep);
-      cx.print(text + (cx.P.nonewline ? '' : '\n'));
+      streamWrite(cx.env, '6', text + (cx.P.nonewline ? '' : '\n'), { __type: 'information', MessageData: text });
       return [];
     },
     'write-verbose': (cx) => {
-      if (/continue/i.test(str(getVariable(cx.env, 'VerbosePreference'))) || truthy(cx.P.verbose)) cx.print(`VERBOSE: ${str(cx.P.message ?? cx.pos[0] ?? input(cx)[0])}\n`);
+      const msg = str(cx.P.message ?? cx.pos[0] ?? input(cx)[0]);
+      if (/^(continue|inquire|stop)$/i.test(str(getVariable(cx.env, 'VerbosePreference'))) || truthy(cx.P.verbose)) streamWrite(cx.env, '4', `VERBOSE: ${msg}\n`, { __type: 'verbose', Message: msg });
       return [];
     },
     'write-debug': (cx) => {
-      if (/continue/i.test(str(getVariable(cx.env, 'DebugPreference'))) || truthy(cx.P.debug)) cx.print(`DEBUG: ${str(cx.P.message ?? cx.pos[0])}\n`);
+      const msg = str(cx.P.message ?? cx.pos[0]);
+      if (/^(continue|inquire|stop)$/i.test(str(getVariable(cx.env, 'DebugPreference'))) || truthy(cx.P.debug)) streamWrite(cx.env, '5', `DEBUG: ${msg}\n`, { __type: 'debug', Message: msg });
       return [];
     },
     'write-warning': (cx) => {
-      if (!/silentlycontinue|ignore/i.test(str(cx.P.warningaction ?? getVariable(cx.env, 'WarningPreference')))) cx.print(`WARNING: ${str(cx.P.message ?? cx.pos[0] ?? input(cx)[0])}\n`);
+      const msg = str(cx.P.message ?? cx.pos[0] ?? input(cx)[0]);
+      if (!/silentlycontinue|ignore/i.test(str(cx.P.warningaction ?? getVariable(cx.env, 'WarningPreference')))) streamWrite(cx.env, '3', `WARNING: ${msg}\n`, { __type: 'warning', Message: msg });
       return [];
     },
     'write-information': (cx) => {
-      if (/continue/i.test(str(cx.P.informationaction ?? getVariable(cx.env, 'InformationPreference')))) cx.print(`${str(cx.P.messagedata ?? cx.pos[0])}\n`);
+      const msg = str(cx.P.messagedata ?? cx.pos[0]);
+      const shown = /^(continue|inquire|stop)$/i.test(str(cx.P.informationaction ?? getVariable(cx.env, 'InformationPreference')));
+      // Information records are kept even when not shown, so 6>&1 still captures them.
+      if (!routeStream(cx.env, '6', `${msg}\n`, { __type: 'information', MessageData: msg }) && shown) cx.print(`${msg}\n`);
       return [];
     },
     'write-progress': () => [],
@@ -791,7 +810,12 @@ register(
     /* ------------------------------------------------------------ commands and help */
     'get-command': (cx) => {
       const pat = cx.P.name ?? cx.pos[0];
-      const fns = functionsList(cx).map((f) => ({ __type: 'cmd', CommandType: String(f.CommandType ?? 'Function'), Name: String(f.Name), Version: '', Source: '' }));
+      const mods = (cx.env.vars.get('__modules') as Obj[] | undefined) ?? [];
+      const fns = functionsList(cx).map((f) => ({ __type: 'cmd', CommandType: String(f.CommandType ?? 'Function'), Name: String(f.Name), Version: f.__module ? str(mods.find((m) => str(m.Name) === str(f.__module))?.Version ?? '') : '', Source: str(f.__module ?? '') }));
+      if (cx.P.module !== undefined) {
+        const want = asList(cx.P.module).map(str);
+        return fns.filter((f) => want.some((w) => wildRe(w).test(f.Source))).sort((a, b) => a.Name.localeCompare(b.Name));
+      }
       const cmds = cmdletNames().map((n) => ({ __type: 'cmd', CommandType: 'Cmdlet', Name: n, Version: '3.1.0.0', Source: '' }));
       const aliases = Object.keys(ALIASES).map((a) => ({ __type: 'cmd', CommandType: 'Alias', Name: `${a} -> ${cmdletNames().find((n) => n.toLowerCase() === ALIASES[a]) ?? ALIASES[a]}`, Version: '', Source: '' }));
       const natives = Object.keys(NATIVE_TABLE).map((n) => ({ __type: 'cmd', CommandType: 'Application', Name: n + '.exe', Version: '10.0.20348.1', Source: 'C:\\Windows\\system32\\' + n + '.exe' }));
@@ -848,23 +872,23 @@ register(
           continue;
         }
         if (/\.psd1$/i.test(name)) {
-          const text = readText(cx, name);
-          const root = /RootModule\s*=\s*['"]([^'"]+)['"]/i.exec(text)?.[1];
-          if (root) {
-            const dir = name.replace(/[\\/][^\\/]*$/, '');
-            importModuleText(cx.env, readText(cx, `${dir}\\${root}`), `${dir}\\${root}`, root.replace(/\.\w+$/, ''));
-          }
+          importManifest(cx, resolveWin(cx, name), name.replace(/^.*[\\/]/, '').replace(/\.\w+$/, ''));
           continue;
         }
         if (BUILTIN_MODULES.some((m) => m.toLowerCase() === name.toLowerCase())) continue;
-        for (const root of [`C:\\Users\\${cx.env.sys.user}\\Documents\\WindowsPowerShell\\Modules`, 'C:\\Program Files\\WindowsPowerShell\\Modules']) {
+        let found = false;
+        for (const root of MODULE_ROOTS(cx)) {
+          const psd = toVfs(cx.env, `${root}\\${name}\\${name}.psd1`);
           const psm = toVfs(cx.env, `${root}\\${name}\\${name}.psm1`);
-          const l = lookup(cx.env.sys.fs, psm, ROOT);
-          if (l && l.node.type === 'file') {
-            importModuleText(cx.env, l.node.content, toWin(psm), name);
-            return [];
-          }
+          const ld = lookup(cx.env.sys.fs, psd, ROOT);
+          const lm = lookup(cx.env.sys.fs, psm, ROOT);
+          if (ld && ld.node.type === 'file') importManifest(cx, toWin(psd), name);
+          else if (lm && lm.node.type === 'file') importModuleText(cx.env, lm.node.content, toWin(psm), name);
+          else continue;
+          found = true;
+          break;
         }
+        if (found) continue;
         if (moduleInstalled(cx, name)) continue;
         cx.fail(`The specified module '${name}' was not loaded because no valid module file was found in any module directory.`);
       }
@@ -875,6 +899,17 @@ register(
       if (cx.P.listavailable) {
         const installed = Object.keys(GALLERY).filter((m) => moduleInstalled(cx, m)).map((m) => ({ __type: 'module', ModuleType: 'Script', Version: GALLERY[m], Name: m, ExportedCommands: '{...}' }));
         const builtIn = BUILTIN_MODULES.map((m) => ({ __type: 'module', ModuleType: 'Manifest', Version: m === 'Pester' ? '3.4.0' : '1.0.0.0', Name: m, ExportedCommands: '{...}' }));
+        for (const root of MODULE_ROOTS(cx)) {
+          const l = lookup(cx.env.sys.fs, toVfs(cx.env, root), ROOT);
+          if (!l || l.node.type !== 'dir') continue;
+          for (const dir of Object.keys(l.node.children)) {
+            if ([...installed, ...builtIn].some((m) => str(m.Name).toLowerCase() === dir.toLowerCase())) continue;
+            const psd = lookup(cx.env.sys.fs, toVfs(cx.env, `${root}\\${dir}\\${dir}.psd1`), ROOT);
+            const psm = lookup(cx.env.sys.fs, toVfs(cx.env, `${root}\\${dir}\\${dir}.psm1`), ROOT);
+            if (psd?.node.type === 'file') installed.push({ __type: 'module', ModuleType: 'Script', Version: parseManifest(psd.node.content).version ?? '0.0', Name: dir, ExportedCommands: '{...}' });
+            else if (psm?.node.type === 'file') installed.push({ __type: 'module', ModuleType: 'Script', Version: '0.0', Name: dir, ExportedCommands: '{...}' });
+          }
+        }
         const want = cx.P.name ?? cx.pos[0];
         return [...installed, ...builtIn].filter((m) => want === undefined || wildRe(str(want)).test(String(m.Name)));
       }
@@ -882,10 +917,15 @@ register(
     },
     'remove-module': (cx) => {
       const name = str(cx.P.name ?? cx.pos[0]).toLowerCase();
+      for (const [k, v] of [...cx.env.vars]) if (k.startsWith('function:') && isObj(v) && str(v.__module).toLowerCase() === name) cx.env.vars.delete(k);
       cx.env.vars.set('__modules', ((cx.env.vars.get('__modules') as Obj[] | undefined) ?? []).filter((m) => str(m.Name).toLowerCase() !== name));
       return [];
     },
-    'export-modulemember': () => [],
+    'export-modulemember': (cx) => {
+      const list = cx.env.vars.get('__exporting');
+      if (Array.isArray(list)) list.push(...asList(cx.P.function ?? cx.pos[0]).map(str));
+      return [];
+    },
     'new-modulemanifest': (cx) => {
       const path = str(cx.P.path ?? cx.pos[0]);
       const v = (k: string, d: string) => (cx.P[k] !== undefined ? str(cx.P[k]) : d);
@@ -934,12 +974,13 @@ register(
     },
     'get-psrepository': (cx) => [{ __type: 'select', Name: 'PSGallery', InstallationPolicy: cx.env.vars.get('__psgallerytrusted') === true ? 'Trusted' : 'Untrusted', SourceLocation: 'https://www.powershellgallery.com/api/v2' }],
     'get-executionpolicy': (cx) => {
-      const m = machine(cx.env) as unknown as Obj;
-      const machinePolicy = str(m.executionPolicy ?? 'RemoteSigned');
-      const proc = cx.env.vars.get('__executionpolicy');
-      if (cx.P.list) return [['MachinePolicy', 'Undefined'], ['UserPolicy', 'Undefined'], ['Process', proc ?? 'Undefined'], ['CurrentUser', 'Undefined'], ['LocalMachine', machinePolicy]].map(([Scope, ExecutionPolicy]) => ({ __type: 'select', Scope, ExecutionPolicy }));
-      if (cx.P.scope !== undefined) return [/^process$/i.test(str(cx.P.scope)) ? proc ?? 'Undefined' : /^localmachine$/i.test(str(cx.P.scope)) ? machinePolicy : 'Undefined'];
-      return [proc ?? machinePolicy];
+      const s = policyScopes(cx.env);
+      if (cx.P.list) return [['MachinePolicy', 'Undefined'], ['UserPolicy', 'Undefined'], ['Process', s.Process], ['CurrentUser', s.CurrentUser], ['LocalMachine', s.LocalMachine]].map(([Scope, ExecutionPolicy]) => ({ __type: 'select', Scope, ExecutionPolicy }));
+      if (cx.P.scope !== undefined) {
+        const k = Object.keys(s).find((x) => x.toLowerCase() === str(cx.P.scope).toLowerCase()) as keyof typeof s | undefined;
+        return [k ? s[k] : 'Undefined'];
+      }
+      return [effectivePolicy(cx.env)];
     },
     'set-executionpolicy': (cx) => {
       const policy = str(cx.P.executionpolicy ?? cx.pos[0]);
@@ -951,11 +992,20 @@ register(
         cx.print(`\nExecution Policy Change\nThe execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose you to the security risks described in the about_Execution_Policies help topic at https:/go.microsoft.com/fwlink/?LinkID=135170. Do you want to change the execution policy?\n[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"):\n(This terminal cannot answer prompts, so the policy was not changed. Add -Force.)\n`);
         return [];
       }
-      if (scope === 'process') cx.env.vars.set('__executionpolicy', hit === 'Default' ? 'RemoteSigned' : hit);
-      else {
-        (machine(cx.env) as unknown as Obj).executionPolicy = hit === 'Default' ? 'RemoteSigned' : hit;
+      const value = hit === 'Default' ? 'RemoteSigned' : hit;
+      const m = machine(cx.env) as unknown as Obj;
+      if (scope === 'process') cx.env.vars.set('__executionpolicy', value);
+      else if (scope === 'currentuser') {
+        m.userPolicies = { ...((isObj(m.userPolicies) ? m.userPolicies : {}) as Obj), [cx.env.sys.user.toLowerCase()]: value } as Obj;
         cx.env.dirtyEst = true;
-      }
+      } else if (scope === 'localmachine') {
+        m.executionPolicy = value;
+        cx.env.dirtyEst = true;
+      } else cx.fail(`Cannot set execution policy at scope ${str(cx.P.scope)}: it is set by Group Policy.`);
+      const order = ['process', 'currentuser', 'localmachine'];
+      const s = policyScopes(cx.env);
+      const over = order.slice(0, order.indexOf(scope)).map((k) => (k === 'process' ? s.Process : s.CurrentUser)).find((p) => p !== 'Undefined');
+      if (over && over.toLowerCase() !== value!.toLowerCase()) cx.print(`Set-ExecutionPolicy : Windows PowerShell updated your execution policy successfully, but the setting is overridden by a policy defined at a more specific scope.  Due to the override, your shell will retain its current effective execution policy of ${effectivePolicy(cx.env)}. Type "Get-ExecutionPolicy -List" to view your execution policy settings.\n`);
       return [];
     },
     'unblock-file': () => [],

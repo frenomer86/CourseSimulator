@@ -4,14 +4,30 @@
  */
 
 import { FsError, listDir, lookup, mkdir, readFile, remove, writeFile } from '../fs.js';
-import { asList, bool, condition, isObj, isSecure, machine, machineByName, normWin, num, prop, register, registerNative, render, SECURE, show, str, toVfs, toWin, type Cx, type Obj, type Secure, type Value } from './core.js';
+import { PsError, asList, bool, condition, isObj, isSecure, machine, machineByName, normWin, num, prop, register, registerNative, render, SECURE, show, str, toVfs, toWin, type Cx, type Obj, type Secure, type Value } from './core.js';
 import { driveRoot, type Machine, type Disk } from './model.js';
+import { errorRecord, formatDate, reportError } from './lang.js';
 
 const ROOT = { user: 'root', groups: ['root'] };
 const NOW = '10/22/2026  9:30 AM';
 
-export function fileItem(name: string, isDir: boolean, length: number | ''): Obj {
-  return { __type: 'file', Mode: isDir ? 'd-----' : '-a----', LastWriteTime: NOW, Length: length, Name: name };
+/** A FileInfo/DirectoryInfo-like object. With the VFS path it also carries FullName, Extension, BaseName, DirectoryName and a real LastWriteTime. */
+export function fileItem(name: string, isDir: boolean, length: number | '', at?: { vfs: string; mtime: number }): Obj {
+  const leaf = name.split('\\').pop()!;
+  if (!at) return { __type: 'file', Mode: isDir ? 'd-----' : '-a----', LastWriteTime: NOW, Length: length, Name: leaf };
+  const full = toWin(at.vfs);
+  const dot = leaf.lastIndexOf('.');
+  const ext = !isDir && dot > 0 ? leaf.slice(dot) : '';
+  const parent = full.replace(/\\[^\\]*$/, '') || full;
+  const when = { __type: 'datetime', __ms: at.mtime, __display: `${formatDate(at.mtime, 'MM/dd/yyyy')} ${formatDate(at.mtime, 'h:mm tt').padStart(8)}` };
+  return {
+    __type: 'file',
+    Mode: isDir ? 'd-----' : '-a----',
+    LastWriteTime: when,
+    Length: length,
+    Name: leaf,
+    __extra: { FullName: full, Extension: ext, BaseName: ext ? leaf.slice(0, -ext.length) : leaf, DirectoryName: isDir ? undefined : parent, Directory: isDir ? undefined : parent, Parent: isDir ? parent : undefined, PSIsContainer: isDir, CreationTime: when, LastAccessTime: when, Exists: true, PSPath: `Microsoft.PowerShell.Core\\FileSystem::${full}` },
+  };
 }
 
 /** Reads a file, including from a shadow copy path \\server\D$\@GMT-...\x. */
@@ -80,11 +96,11 @@ function diskView(d: Disk): Obj {
 function sessionTarget(cx: Cx, name: string): Machine {
   const env = cx.env;
   const m = machineByName(env, name);
-  if (!m) return cx.fail(`Connecting to remote server ${name} failed with the following error message : WinRM cannot process the request. The computer name could not be resolved.`);
+  if (!m) throw new PsError(cx.call.name, `Connecting to remote server ${name} failed with the following error message : WinRM cannot process the request. The computer name could not be resolved.`, 'PSRemotingTransportException');
   const winrm = m.firewall.rules.find((r) => r.name.startsWith('Windows Remote Management') && r.direction === 'Inbound');
   const fwOn = Object.values(m.firewall.enabled).some(Boolean);
   if (!m.remoting || m.services.WinRM?.status !== 'Running' || (fwOn && winrm && !winrm.enabled))
-    cx.fail(`Connecting to remote server ${m.name} failed with the following error message : WinRM cannot complete the operation. Verify that the specified computer name is valid, that the computer is accessible over the network, and that a firewall exception for the WinRM service is enabled (Enable-PSRemoting on ${m.name}).`);
+    throw new PsError(cx.call.name, `Connecting to remote server ${m.name} failed with the following error message : WinRM cannot complete the operation. Verify that the specified computer name is valid, that the computer is accessible over the network, and that a firewall exception for the WinRM service is enabled (Enable-PSRemoting on ${m.name}).`, 'PSRemotingTransportException');
   return m;
 }
 
@@ -115,7 +131,7 @@ register(
           return cx.fail(`Cannot find path '${toWin(p)}' because it does not exist.`);
         }
         for (const { name, node } of entries) {
-          out.push(fileItem(prefix + name, node.type === 'dir', node.type === 'file' ? node.content.length : ''));
+          out.push(fileItem(prefix + name, node.type === 'dir', node.type === 'file' ? node.content.length : '', { vfs: `${p}/${name}`, mtime: node.mtime ?? cx.env.sys.now }));
           if (recurse && node.type === 'dir') walk(`${p}/${name}`, `${prefix}${name}\\`);
         }
       };
@@ -144,21 +160,10 @@ register(
       return [];
     },
     'new-item': (cx) => {
-      const target = toVfs(cx.env, str(cx.P.path ?? cx.pos[0]) + (cx.P.name ? '\\' + str(cx.P.name) : ''));
       const kind = str(cx.P.itemtype ?? (['mkdir', 'md'].includes(cx.call.name.toLowerCase()) ? 'Directory' : 'File')).toLowerCase();
-      if (lookup(cx.env.sys.fs, target, ROOT) && !cx.P.force) cx.fail(`An item with the specified name ${toWin(target)} already exists.`);
-      if (!lookup(cx.env.sys.fs, target.replace(/^(\/m\/[^/]+)?\/([a-z]).*$/, '$1/$2'), ROOT) && !/^\/[a-z]$/.test(target)) {
-        const drive = /^(\/m\/[^/]+)?\/([a-z])/.exec(target);
-        const m = machine(cx.env);
-        const letter = drive?.[2]?.toUpperCase();
-        if (letter && letter !== 'C' && !m.disks.some((d) => d.partitions.some((p) => p.letter === letter && p.fs))) cx.fail(`Cannot find drive. A drive with the name '${letter}' does not exist.`);
-      }
-      if (kind === 'directory') mkdir(cx.env.sys.fs, target, ROOT, cx.env.sys.now, true);
-      else {
-        mkdir(cx.env.sys.fs, target.slice(0, target.lastIndexOf('/')) || '/', ROOT, cx.env.sys.now, true);
-        writeFile(cx.env.sys.fs, target, cx.P.value !== undefined ? str(cx.P.value) + '\n' : '', ROOT, cx.env.sys.now);
-      }
-      return [fileItem(target.split('/').pop()!, kind === 'directory', '')];
+      const paths = cx.P.path ?? cx.pos[0];
+      // Several paths make several items: New-Item -ItemType Directory C:\a, C:\b
+      return (paths === undefined ? ['.'] : asList(paths)).map((p) => newItem(cx, toVfs(cx.env, str(p) + (cx.P.name ? '\\' + str(cx.P.name) : '')), kind));
     },
     'remove-item': (cx) => {
       const target = toVfs(cx.env, path(cx));
@@ -339,8 +344,10 @@ register(
     },
     'invoke-command': (cx) => {
       const env = cx.env;
-      const block = cx.call.block ?? (isObj(cx.P.scriptblock) ? String((cx.P.scriptblock as Obj).src) : undefined);
+      // -FilePath runs a local script on the remote computer.
+      const block = cx.P.filepath !== undefined ? readFile(env.sys.fs, toVfs(env, str(cx.P.filepath)), ROOT) : cx.call.block ?? (isObj(cx.P.scriptblock) ? String((cx.P.scriptblock as Obj).src) : undefined);
       if (!block) cx.fail('Invoke-Command needs -ScriptBlock { ... }.');
+      const args = cx.P.argumentlist !== undefined ? asList(cx.P.argumentlist) : [];
       const targets = asList(cx.P.computername ?? cx.pos[0] ?? machine(env).name).map(str);
       const out: Value[] = [];
       for (const t of targets) {
@@ -351,7 +358,10 @@ register(
         env.sys.cwd = driveRoot(env.est, m.name) + '/Users/Administrator/Documents';
         mkdir(env.sys.fs, env.sys.cwd, ROOT, env.sys.now, true);
         try {
-          out.push(...cx.run(block!).map((v) => (isObj(v) ? { ...v, PSComputerName: m.name } : v)));
+          const res = args.length ? cx.run(`& {
+${block}
+} @__icmargs`, { __icmargs: args }) : cx.run(block!);
+          out.push(...res.map((v) => (isObj(v) ? { ...v, PSComputerName: m.name } : v)));
         } finally {
           env.est.current = savedCurrent;
           env.sys.cwd = savedCwd;
@@ -452,10 +462,16 @@ register(
     'get-hotfix': (cx) => [{ __type: 'select', Source: machine(cx.env).name, Description: 'Security Update', HotFixID: 'KB5044281', InstalledOn: '10/8/2026' }],
     'get-service': (cx) => {
       const m = cx.P.computername ? machineByName(cx.env, str(cx.P.computername))! : machine(cx.env);
-      const want = cx.P.name ?? cx.pos[0];
-      return Object.entries(m.services)
-        .filter(([n]) => !want || asList(want).some((w) => new RegExp('^' + str(w).replace(/\*/g, '.*') + '$', 'i').test(n)))
-        .map(([n, s]) => ({ __type: 'service', Status: s.status, Name: n, StartType: s.start }));
+      const all: Obj[] = Object.entries(m.services).map(([n, s]) => ({ __type: 'service', Status: s.status, Name: n, StartType: s.start }));
+      if (cx.P.name === undefined && cx.pos[0] === undefined && !cx.input?.length) return all;
+      const out: Obj[] = [];
+      for (const w of serviceNames(cx)) {
+        const re = new RegExp('^' + w.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.') + '$', 'i');
+        const hits = all.filter((x) => re.test(str(x.Name)));
+        if (!hits.length && !/[*?]/.test(w)) serviceError(cx, 'Get-Service', `Cannot find any service with service name '${w}'.`, w, 'NoServiceFoundForGivenName');
+        out.push(...hits);
+      }
+      return out;
     },
     'start-service': (cx) => serviceChange(cx, 'Running'),
     'stop-service': (cx) => serviceChange(cx, 'Stopped'),
@@ -712,17 +728,58 @@ function safeRead(cx: Cx, vfs: string): string {
   }
 }
 
+/** New-Item for one path. */
+function newItem(cx: Cx, target: string, kind: string): Value {
+  if (lookup(cx.env.sys.fs, target, ROOT) && !cx.P.force) cx.fail(`An item with the specified name ${toWin(target)} already exists.`);
+  if (!lookup(cx.env.sys.fs, target.replace(/^(\/m\/[^/]+)?\/([a-z]).*$/, '$1/$2'), ROOT) && !/^\/[a-z]$/.test(target)) {
+    const drive = /^(\/m\/[^/]+)?\/([a-z])/.exec(target);
+    const m = machine(cx.env);
+    const letter = drive?.[2]?.toUpperCase();
+    if (letter && letter !== 'C' && !m.disks.some((d) => d.partitions.some((p) => p.letter === letter && p.fs))) cx.fail(`Cannot find drive. A drive with the name '${letter}' does not exist.`);
+  }
+  if (kind === 'directory') mkdir(cx.env.sys.fs, target, ROOT, cx.env.sys.now, true);
+  else {
+    mkdir(cx.env.sys.fs, target.slice(0, target.lastIndexOf('/')) || '/', ROOT, cx.env.sys.now, true);
+    writeFile(cx.env.sys.fs, target, cx.P.value !== undefined ? str(cx.P.value) + '\n' : '', ROOT, cx.env.sys.now);
+  }
+  const made = lookup(cx.env.sys.fs, target, ROOT);
+  return fileItem(target.split('/').pop()!, kind === 'directory', made?.node.type === 'file' ? made.node.content.length : '', { vfs: target, mtime: made?.node.mtime ?? cx.env.sys.now });
+}
+
+/** Service names from -Name, -InputObject or positional values, or from the pipeline (strings, or objects with Name or ServiceName). */
+function serviceNames(cx: Cx): string[] {
+  const given = cx.P.name ?? cx.P.inputobject ?? cx.pos[0];
+  const items = given !== undefined ? asList(given) : cx.input ?? [];
+  return items.map((v) => (isObj(v) ? str(prop(v, 'Name') ?? prop(v, 'ServiceName')) : str(v)));
+}
+
+/** A non-terminating service error, as the real cmdlets write them. */
+function serviceError(cx: Cx, cmd: string, msg: string, target: string, id: string): void {
+  const rec = errorRecord(msg, 'ServiceCommandException', { command: cmd, category: id === 'NoServiceFoundForGivenName' ? 'ObjectNotFound' : 'OpenError', id: `${id},Microsoft.PowerShell.Commands.${cmd.replace('-', '')}Command`, target });
+  reportError(cx.env, rec, cx.P.errorvariable !== undefined ? str(cx.P.errorvariable) : undefined, cx.P.erroraction !== undefined ? str(cx.P.erroraction) : undefined);
+}
+
 function serviceChange(cx: Cx, status: 'Running' | 'Stopped', restart = false): Value[] {
   const m = cx.P.computername ? machineByName(cx.env, str(cx.P.computername))! : machine(cx.env);
-  const n = str(cx.P.name ?? cx.pos[0] ?? prop(cx.input?.[0], 'Name'));
-  const key = Object.keys(m.services).find((k) => k.toLowerCase() === n.toLowerCase());
-  if (!key) cx.fail(`Cannot find any service with service name '${n}'.`);
-  if (m.services[key!].start === 'Disabled' && status === 'Running') cx.fail(`Service '${key}' cannot be started because it is disabled. Set-Service ${key} -StartupType Automatic first.`);
-  m.services[key!].status = status;
-  if (key === 'Spooler' && (restart || status === 'Stopped')) for (const p of m.printers) p.jobs = p.jobs.filter((j) => j.status !== 'Error' || !restart || !(m as Machine & { spoolCleared?: boolean }).spoolCleared);
-  if (key === 'Netlogon' && restart) registerDcRecords(cx);
+  const cmd = restart ? 'Restart-Service' : status === 'Running' ? 'Start-Service' : 'Stop-Service';
+  const out: Value[] = [];
+  for (const n of serviceNames(cx)) {
+    const key = Object.keys(m.services).find((k) => k.toLowerCase() === n.toLowerCase());
+    if (!key) {
+      serviceError(cx, cmd, `Cannot find any service with service name '${n}'.`, n, 'NoServiceFoundForGivenName');
+      continue;
+    }
+    if (m.services[key].start === 'Disabled' && status === 'Running') {
+      serviceError(cx, cmd, `Service '${key} (${key})' cannot be started due to the following error: Cannot start service ${key} on computer '.'. The service is disabled: Set-Service ${key} -StartupType Manual or Automatic first.`, key, 'CouldNotStartService');
+      continue;
+    }
+    m.services[key].status = status;
+    if (key === 'Spooler' && (restart || status === 'Stopped')) for (const p of m.printers) p.jobs = p.jobs.filter((j) => j.status !== 'Error' || !restart || !(m as Machine & { spoolCleared?: boolean }).spoolCleared);
+    if (key === 'Netlogon' && restart) registerDcRecords(cx);
+    if (cx.P.passthru) out.push({ __type: 'service', Status: status, Name: key, StartType: m.services[key].start });
+  }
   cx.env.dirtyEst = true;
-  return [];
+  return out;
 }
 
 /** Netlogon registers the DC's SRV records again when it restarts. */

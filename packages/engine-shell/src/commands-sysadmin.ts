@@ -399,6 +399,77 @@ function unitProblems(sys: ShellSystem, key: string): string[] {
   return out;
 }
 
+/**
+ * Runs a Type=oneshot unit the way systemd does: each ExecStart= line in order, as User= (root by
+ * default), in WorkingDirectory=, with only Environment=/EnvironmentFile= variables and systemd's PATH.
+ * Output goes to the journal; a non-zero exit fails the unit.
+ */
+function runOneshot(ctx: Ctx, unit: string, text: string, io: IO): number {
+  const sys = ctx.sys;
+  const s = sys.services[unit];
+  const user = unitDirective(text, 'User') ?? 'root';
+  if (!sys.users[user]) {
+    s.logs.push(`${unit}.service: Failed to determine user credentials: No such process`, `${unit}.service: Failed at step USER spawning: No such process`);
+    io.err(`Job for ${unit}.service failed because the control process exited with error code.\nSee "systemctl status ${unit}.service" and "journalctl -xeu ${unit}.service" for details.\n`);
+    return 1;
+  }
+  const env: Record<string, string> = { PATH: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', LANG: 'C.UTF-8', USER: user, LOGNAME: user, HOME: sys.users[user].home, SHELL: '/bin/sh', INVOCATION_ID: 'a1b2c3' };
+  for (const m of text.matchAll(/^\s*Environment\s*=\s*(.+)$/gm)) for (const kv of m[1].match(/"[^"]*"|\S+/g) ?? []) {
+    const t = kv.replace(/^"|"$/g, '');
+    const eq = t.indexOf('=');
+    if (eq > 0) env[t.slice(0, eq)] = t.slice(eq + 1);
+  }
+  const envFile = unitDirective(text, 'EnvironmentFile');
+  if (envFile) {
+    const content = rd(sys, envFile.replace(/^-/, ''));
+    if (content === null && !envFile.startsWith('-')) {
+      s.logs.push(`${unit}.service: Failed to load environment files: No such file or directory`);
+      io.err(`Job for ${unit}.service failed because the control process exited with error code.\nSee "systemctl status ${unit}.service" and "journalctl -xeu ${unit}.service" for details.\n`);
+      return 1;
+    }
+    for (const l of (content ?? '').split('\n')) {
+      const m = /^\s*([A-Za-z_][A-Za-z0-9_]*)=(.*)$/.exec(l);
+      if (m) env[m[1]] = m[2].replace(/^"(.*)"$/, '$1');
+    }
+  }
+  const saved = { vars: ctx.vars, exported: ctx.exported, env: sys.env, euser: ctx.euser, cwd: sys.cwd };
+  ctx.vars = { ...env };
+  ctx.exported = new Set(Object.keys(env));
+  sys.env = { ...env };
+  ctx.euser = user;
+  sys.cwd = unitDirective(text, 'WorkingDirectory') ?? (user === 'root' ? '/' : sys.users[user].home);
+  let code = 0;
+  const journal: string[] = [];
+  try {
+    for (const m of text.matchAll(/^\s*ExecStart\s*=\s*(.+)$/gm)) {
+      const line = m[1].trim();
+      const ignore = line.startsWith('-');
+      const words = (line.replace(/^[-@+!]+/, '').match(/"[^"]*"|'[^']*'|\S+/g) ?? []).map((w) => w.replace(/^(["'])(.*)\1$/, '$2'));
+      const c = runCommand(ctx, words, { stdin: '', out: (t) => journal.push(t), err: (t) => journal.push(t) });
+      if (c !== 0 && !ignore) {
+        code = c;
+        break;
+      }
+    }
+  } finally {
+    ctx.vars = saved.vars;
+    ctx.exported = saved.exported;
+    sys.env = saved.env;
+    ctx.euser = saved.euser;
+    sys.cwd = saved.cwd;
+  }
+  s.logs.push(...journal.join('').split('\n').filter(Boolean));
+  if (code !== 0) {
+    s.active = false;
+    s.logs.push(`${unit}.service: Main process exited, code=exited, status=${code}/FAILURE`, `${unit}.service: Failed with result 'exit-code'.`, `Failed to start ${s.description}.`);
+    io.err(`Job for ${unit}.service failed because the control process exited with error code.\nSee "systemctl status ${unit}.service" and "journalctl -xeu ${unit}.service" for details.\n`);
+    return 1;
+  }
+  s.logs.push(`${unit}.service: Deactivated successfully.`, `Finished ${s.description}.`);
+  s.active = /^\s*RemainAfterExit\s*=\s*(yes|true|1)\s*$/im.test(text);
+  return 0;
+}
+
 const TARGETS = ['multi-user.target', 'graphical.target', 'rescue.target', 'emergency.target', 'poweroff.target', 'reboot.target'];
 
 /* ----------------------------------------------------------------------------- config validators */
@@ -1096,6 +1167,10 @@ export const SYSADMIN_COMMANDS: Record<string, Cmd> = {
       }
       // sshd listens where its configuration says once it (re)starts.
       if (unit === 'sshd' && s && currentUser(ctx) === 'root') s.port = Number(sshdOption(sys, 'port', '22')) || 22;
+      if (s && (action === 'start' || action === 'restart') && !unit.endsWith('.timer') && currentUser(ctx) === 'root') {
+        const text = rd(sys, (s as typeof s & { unitFile?: string }).unitFile ?? '') ?? '';
+        if (/^\s*Type\s*=\s*oneshot\s*$/im.test(text)) return runOneshot(ctx, unit, text, io);
+      }
     }
     return ADMIN_COMMANDS.systemctl(args, io, ctx);
   },

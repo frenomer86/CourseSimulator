@@ -114,6 +114,12 @@ export interface Env {
   /** Pester mocks by command name. */
   mocks?: Map<string, Obj>;
   callDepth?: number;
+  /** -ErrorVariable of advanced functions being called: errors inside them collect in the caller's variable. */
+  errorSinks?: Array<{ name: string; vars: Map<string, Value>; list: Value[] }>;
+  /** Active stream redirections (2> 3> 4> 5> 6> and their >&1 merges), innermost last. */
+  streams?: Array<{ map: Record<string, { kind: 'null' | 'merge' | 'file'; path?: string }>; sink: (v: Value) => void }>;
+  /** The module whose code is running (its private functions are visible). */
+  module?: string;
   /** The script file running (Windows path), for error positions and $PSScriptRoot. */
   scriptPath?: string;
   line?: number;
@@ -281,6 +287,7 @@ export function invoke(env: Env, call: Call, input: Value[] | undefined): Value[
 /* ----------------------------------------------------------------------------- rendering */
 
 const fmtCell = (v: Value): string => {
+  if (isObj(v) && (v as Obj).__display !== undefined) return String((v as Obj).__display);
   if (Array.isArray(v)) return `{${v.map((x) => (isObj(x) && (x as Obj).__type === 'datetime' ? show(x) : show(x))).join(', ')}}`;
   return show(v);
 };
@@ -315,7 +322,7 @@ function formatHash(objs: Obj[]): string {
 export const TABLE_TYPES = new Set(['file', 'share', 'access', 'member', 'cmd', 'select', 'feature', 'disk', 'volume', 'service', 'process', 'event', 'rule', 'printer', 'job', 'scope', 'lease', 'record', 'zone', 'gpo-link', 'vm', 'task', 'counter', 'ip', 'measure', 'quota', 'screen', 'policy-row', 'reservation', 'option', 'groupinfo', 'matchinfo-table', 'getmember', 'analyzer', 'module', 'hash-table']);
 
 /** Values that print as plain lines rather than tables. */
-const SCALAR_TYPES = new Set(['datetime', 'timespan', 'version', 'guid', 'type', 'error', 'exception', 'block', 'pathinfo', 'matchinfo']);
+const SCALAR_TYPES = new Set(['datetime', 'timespan', 'version', 'guid', 'type', 'error', 'exception', 'block', 'pathinfo', 'matchinfo', 'verbose', 'warning', 'debug', 'information']);
 
 function scalarText(v: Value): string {
   if (isObj(v)) {
@@ -328,6 +335,8 @@ function scalarText(v: Value): string {
     if (o.__type === 'version') return `\nMajor  Minor  Build  Revision\n-----  -----  -----  --------\n${String(o.Major).padEnd(6)} ${String(o.Minor).padEnd(6)} ${String(o.Build).padEnd(6)} ${o.Revision}\n`;
     if (o.__type === 'type') return `\nIsPublic IsSerial Name                                     BaseType\n-------- -------- ----                                     --------\nTrue     True     ${String(o.Name).padEnd(40)} System.Object\n`;
     if (o.__type === 'matchinfo') return String(o.__display ?? o.Line);
+    if (o.__type === 'verbose' || o.__type === 'warning' || o.__type === 'debug') return `${String(o.__type).toUpperCase()}: ${String(o.Message)}`;
+    if (o.__type === 'information') return String(o.MessageData);
     if (o.__type === 'error') return langStr(o);
   }
   return show(v);
