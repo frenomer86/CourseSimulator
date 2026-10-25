@@ -145,6 +145,9 @@ export function saveRepo(r: Repo, who: Actor = actor(r.ctx)): void {
   for (const [t, id] of Object.entries(st.tags)) writeAs(ctx, join(gitDir, `refs/tags/${t}`), id + '\n', who);
   for (const [rb, id] of Object.entries(st.remoteRefs ?? {})) writeAs(ctx, join(gitDir, `refs/remotes/${rb}`), rb.endsWith('/HEAD') ? `ref: refs/remotes/${rb.replace(/HEAD$/, '')}${Object.entries(st.remoteRefs ?? {}).find(([k, v]) => v === id && !k.endsWith('/HEAD') && k.startsWith(rb.replace(/HEAD$/, '')))?.[0].split('/').slice(1).join('/') ?? 'main'}\n` : id + '\n', who);
   if (st.stash?.length) writeAs(ctx, join(gitDir, 'refs/stash'), stashId(st, 0) + '\n', who);
+  // rerere keeps what it learned in rr-cache, one folder per conflict.
+  for (const [key, resolution] of Object.entries(st.rerere ?? {})) writeAs(ctx, join(gitDir, `rr-cache/${key}/postimage`), resolution, who);
+  for (const [path, key] of Object.entries(st.rerereOpen ?? {})) writeAs(ctx, join(gitDir, `rr-cache/${key}/preimage`), path + '\n', who);
   if (!r.bare) {
     writeAs(ctx, join(gitDir, 'logs/HEAD'), reflogText(st.reflogs?.HEAD), who);
     for (const name of ['ORIG_HEAD', 'MERGE_HEAD', 'FETCH_HEAD', 'CHERRY_PICK_HEAD']) {

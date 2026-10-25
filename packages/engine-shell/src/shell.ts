@@ -2591,7 +2591,8 @@ function builtin(ctx: Ctx, name: string, args: string[], io: IO): number {
       let i = 0;
       const opts: string[] = [];
       while (args[i]?.startsWith('-')) opts.push(args[i++]);
-      if (opts.includes('-c')) return runScript(ctx, args[i] ?? '', args.slice(i + 1), 'bash', io);
+      // bash -c 'script' NAME ARG...: NAME becomes $0 and the rest $1, $2, ...
+      if (opts.includes('-c')) return runScript(ctx, args[i] ?? '', args.slice(i + 2), args[i + 1] ?? name, io);
       if (!args[i]) {
         io.out('(A nested interactive shell is not simulated; you are already in bash.)\n');
         return 0;

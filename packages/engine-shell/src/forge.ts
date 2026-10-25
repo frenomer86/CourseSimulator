@@ -18,6 +18,7 @@ import { FORGE_DB, FORGE_DIR, FORGE_HOST, forgeRepoPath, simToken, type ForgeDb,
 import type { GitState } from './git-state.js';
 import { commitId } from './git-state.js';
 import { ROOT, ancestors, configGet, findRepo, loadGit, mergeTrees, openRepo, readConfigFile, relative, saveRepo, short, subject, hunks, type Repo } from './git-core.js';
+import { ADMIN_COMMANDS } from './commands-admin.js';
 import { mark, readWorkflows, runLogText, runWorkflow, triggers, type CiInput, type CiRun } from './ci.js';
 
 type Cmd = (args: string[], io: IO, ctx: Ctx) => number;
@@ -349,6 +350,15 @@ function headSha(ctx: Ctx, pr: ForgePr): string | null {
   return repoState(ctx, pr.headRepo).branches[pr.head] ?? null;
 }
 
+/** A pull request that came with the lab has had its CI run already: run it the first time anyone looks. */
+export function ensurePrRuns(ctx: Ctx, db: ForgeDb, pr: ForgePr): void {
+  if (pr.state !== 'OPEN') return;
+  const sha = headSha(ctx, pr);
+  if (!sha || (db.runs as CiRun[]).some((r) => r.repo === pr.repo && r.pr === pr.number && r.sha === sha)) return;
+  triggerRuns(ctx, db, pr.repo, 'pull_request', `refs/heads/${pr.base}`, sha, pr.author, pr);
+  saveDb(ctx, db);
+}
+
 export function prChecks(db: ForgeDb, pr: ForgePr, sha: string | null): Mergeability['checks'] {
   const runs = (db.runs as CiRun[]).filter((r) => r.repo === pr.repo && r.sha === sha && (r.pr === pr.number || r.event === 'push'));
   const latest = new Map<string, Mergeability['checks'][number]>();
@@ -363,6 +373,7 @@ function latestReviews(pr: ForgePr): Map<string, ForgePr['reviews'][number]> {
 }
 
 function mergeability(ctx: Ctx, db: ForgeDb, pr: ForgePr, user: string | null, admin = false): Mergeability {
+  ensurePrRuns(ctx, db, pr);
   const repo = db.repos[pr.repo];
   const base = repoState(ctx, pr.repo);
   const sha = headSha(ctx, pr);
@@ -667,6 +678,12 @@ function runJson(r: CiRun): Record<string, unknown> {
 }
 
 function findPr(g: Gh, key: string, arg: string | undefined, local: Repo | null): ForgePr {
+  const pr = findPr0(g, key, arg, local);
+  ensurePrRuns(g.ctx, g.db, pr);
+  return pr;
+}
+
+function findPr0(g: Gh, key: string, arg: string | undefined, local: Repo | null): ForgePr {
   let pr: ForgePr | undefined;
   if (arg && /^#?\d+$/.test(arg)) pr = g.db.prs.find((p) => p.repo === key && p.number === Number(arg.replace('#', '')));
   else if (arg && /\/pull\/(\d+)/.test(arg)) pr = g.db.prs.find((p) => p.repo === key && p.number === Number(/\/pull\/(\d+)/.exec(arg)![1]));
@@ -2021,7 +2038,27 @@ const gh: Cmd = (args, io, ctx) => {
   }
 };
 
-export const FORGE_COMMANDS: Record<string, Cmd> = { gh };
+/** ssh to the forge host authenticates the key and refuses a shell, as forges do; other hosts are not simulated. */
+const ssh: Cmd = (args, io, ctx) => {
+  const target = args.filter((a, i) => !a.startsWith('-') && !['-i', '-p', '-o', '-l'].includes(args[i - 1] ?? '')).find(Boolean);
+  const host = target?.split('@').pop();
+  if (host && forgeExists(ctx) && host === loadDb(ctx).host) {
+    const db = loadDb(ctx);
+    const mine = publicKeysOf(ctx).map(keyId);
+    const login = Object.entries(db.users).find(([, x]) => x.keys.some((k) => mine.includes(keyId(k))))?.[0];
+    if (!login) {
+      io.err(`${target}: Permission denied (publickey).
+`);
+      return 255;
+    }
+    io.err(`Hi ${login}! You've successfully authenticated, but ${db.host} does not provide shell access.
+`);
+    return 1;
+  }
+  return ADMIN_COMMANDS.ssh(args, io, ctx);
+};
+
+export const FORGE_COMMANDS: Record<string, Cmd> = { gh, ssh };
 
 void short;
 void (null as unknown as ForgeUser);

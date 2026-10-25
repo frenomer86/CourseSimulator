@@ -874,7 +874,7 @@ function logOptsFrom(o: Parsed): LogOpts {
   };
 }
 
-const LOG_VALS = ['max-count', 'skip', 'since', 'after', 'until', 'before', 'author', 'committer', 'grep', 'format', 'pretty', 'date', 'S', 'G', 'abbrev', 'min-parents', 'max-parents', 'decorate'];
+const LOG_VALS = ['max-count', 'skip', 'since', 'after', 'until', 'before', 'author', 'committer', 'grep', 'format', 'pretty', 'date', 'S', 'G', 'min-parents', 'max-parents'];
 const LOG_SHORTS = { n: 'max-count:', p: 'patch', u: 'patch', i: 'regexp-ignore-case', S: 'S:', G: 'G:', g: 'walk-reflogs', s: 'no-patch', q: 'quiet' };
 
 function commitText1(r: Repo, c: GitCommit, lo: LogOpts): string[] {
@@ -882,6 +882,7 @@ function commitText1(r: Repo, c: GitCommit, lo: LogOpts): string[] {
   const fmt = lo.fmt ?? 'medium';
   if (fmt === 'oneline') return [`${lo.graph || lo.fmt === 'oneline' ? short(c.id) : c.id}${dec} ${subject(c.message)}`];
   if (fmt === 'reference') return [`${short(c.id)} (${subject(c.message)}, ${gitDate(c.time, 'short', r.ctx.sys.now)})`];
+  if (fmt === '') return [];
   if (!['short', 'medium', 'full', 'fuller', 'raw'].includes(fmt)) return formatCommit(r, c, fmt, lo.date).split('\n');
   const lines = [`commit ${c.id}${dec}`];
   if (c.parents.length > 1) lines.push(`Merge: ${c.parents.map(short).join(' ')}`);
@@ -917,9 +918,14 @@ function cmdLog(args: string[], io: IO, ctx: Ctx, defaults: string[] = []): numb
   // Positional arguments are revisions until one is not; the rest are paths.
   const revs: string[] = [];
   const paths = [...(o.paths ?? [])];
+  let inPaths = false;
   for (const p of o.pos) {
-    if (!paths.length && (isRev(r, p) || /\.\./.test(p) || p.startsWith('^'))) revs.push(p);
-    else if (lookup(ctx.sys.fs, abs(ctx, p), ROOT) || Object.keys(st.index).some((q) => q === repoPath(r, p) || q.startsWith((repoPath(r, p) ?? '') + '/'))) paths.push(p);
+    if (!inPaths && (isRev(r, p) || /\.\./.test(p) || p.startsWith('^'))) revs.push(p);
+    else if (o.paths) revs.push(p);
+    else if (lookup(ctx.sys.fs, abs(ctx, p), ROOT) || Object.keys(st.index).some((q) => q === repoPath(r, p) || q.startsWith((repoPath(r, p) ?? '') + '/'))) {
+      inPaths = true;
+      paths.push(p);
+    }
     else die(`fatal: ambiguous argument '${p}': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'`);
   }
   const relPaths = paths.map((p) => repoPath(r, p) ?? p);
@@ -1045,7 +1051,8 @@ function cmdShow(args: string[], io: IO, ctx: Ctx): number {
     const lines = commitText1(r, c, lo);
     let diff = commitDiffText(r, c, lo);
     if (c.parents.length > 1 && lo.patch) diff = '';
-    s += lines.join('\n') + (diff ? (lo.fmt === 'oneline' ? '\n' : '\n\n') + diff.replace(/\n$/, '') : '');
+    const head = lines.join('\n');
+    s += head && diff ? head + (lo.fmt === 'oneline' ? '\n' : '\n\n') + diff.replace(/\n$/, '') : head || diff.replace(/\n$/, '');
     out.push(s);
   }
   io.out(out.join('\n\n') + '\n');
@@ -1123,7 +1130,7 @@ function cmdShortlog(args: string[], io: IO, ctx: Ctx): number {
 /* ----------------------------------------------------------------------------- diff */
 
 function cmdDiff(args: string[], io: IO, ctx: Ctx): number {
-  const o = gitOpts(args, ['unified', 'diff-filter', 'stat', 'color', 'word-diff', 'relative'], { U: 'unified:', w: 'ignore-all-space', b: 'ignore-space-change', q: 'quiet', R: 'reverse' });
+  const o = gitOpts(args, ['unified'], { U: 'unified:', w: 'ignore-all-space', b: 'ignore-space-change', q: 'quiet', R: 'reverse' });
   if (o.flags.has('no-index')) {
     const [a, b] = [...o.pos, ...(o.paths ?? [])];
     const read = (p: string) => {
@@ -1143,9 +1150,14 @@ function cmdDiff(args: string[], io: IO, ctx: Ctx): number {
   const st = r.st;
   const revs: string[] = [];
   const paths = [...(o.paths ?? [])];
+  // Before a '--', arguments are revisions until one is not; after it, they are paths.
+  let inPaths = false;
   for (const p of o.pos) {
-    if (!paths.length && (isRev(r, p) || /\.\./.test(p))) revs.push(p);
-    else paths.push(p);
+    if (o.paths || (!inPaths && (isRev(r, p) || /\.\./.test(p)))) revs.push(p);
+    else {
+      inPaths = true;
+      paths.push(p);
+    }
   }
   const rel = paths.map((p) => repoPath(r, p) ?? p);
   const opts = {

@@ -14,6 +14,12 @@
  *   sh.process  { name, running: boolean }
  *   sh.script   { path, args?: [...], stdin?, contains?/pattern?/equals?, status?, creates?: path }
  *   sh.git      { repo, branch?, branches?: [...], minCommits?, headMessage?: regex, clean?, merged?: branch, mergeCommit?, fileAtHead?: { path, contains?, notContains?, pattern? } }
+ *   sh.forge    { repo: "owner/name", exists?, branch?: { name, exists?, file?: { path, contains?, notContains?, pattern? }, message?: regex, authors?: [...], linear?, minCommits? },
+ *                 pr?: { head?, base?, state?, title?: regex, body?: regex, fromFork?, approvedBy?, reviewState?, merged?: 'merge'|'squash'|'rebase' },
+ *                 issue?: { title: regex, state? }, protection?: { branch, reviews?, checks?: [...], forcePush?, deletions?, enforceAdmins?, linear? },
+ *                 secret?: { name, env? }, variable?: { name, value?, env? }, environment?: { name, reviewers?: [...] },
+ *                 run?: { workflow?, event?, branch?, conclusion?, jobs?: [...], artifact?, log?: regex, latest? }, release?: { tag, asset?, notes?: regex },
+ *                 tag?: { name, target?: branch }, member?: { user, role }, sshKeys?: { user, min? }, visibility? }
  *   sh.docker   { container, exists?, running?, image?, ports?: ["8080:80"], env?: ["K=V"], mountTarget?, restart? }
  *   sh.dockerImage { image, exists?, base?: regex, notRoot?, expose?: [n], maxSizeMb?, hasFile?: path }
  *   win.ou      { dn, exists? }
@@ -28,6 +34,9 @@
 import { effectiveAccess, effectiveExtra, effectivePolicy, loadAd, loadEstate, makeEnv, psQuery } from './powershell.js';
 import { ancestors, findRepo, headCommit, loadGit } from './commands-git.js';
 import { loadDocker } from './commands-docker.js';
+import { forgeExists, loadDb, protectionFor } from './forge.js';
+import { forgeRepoPath } from './forge-seed.js';
+import type { CiRun } from './ci.js';
 import { CheckRegistry, type CheckResult, type CheckSpec } from '@cslab/lab-runtime';
 import { lookup, modeString, type FsNode } from './fs.js';
 import { buildSystem, groupName, isSudoer, type ShellSystem, type SystemSpec } from './system.js';
@@ -196,6 +205,7 @@ export function createShellChecks(): CheckRegistry<ShellState> {
       }
       return pass(spec, String(spec.success ?? 'The repository is as required.'));
     })
+    .register('sh.forge', async (state, spec) => forgeCheck(state.system, spec))
     .register('sh.docker', async (state, spec) => {
       const st = loadDocker(makeCtx(state.system));
       const c = st.containers.find((k) => k.name === spec.container);
@@ -361,4 +371,130 @@ function findGlob(sys: ShellSystem, pattern: string): FsNode | null {
   const re = new RegExp('^' + pattern.slice(pattern.lastIndexOf('/') + 1).replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*') + '$');
   const name = Object.keys(d.children).find((k) => re.test(k));
   return name ? d.children[name] : null;
+}
+
+/* ----------------------------------------------------------------------------- the lab forge */
+
+type Spec = Record<string, unknown>;
+const rx = (v: unknown) => new RegExp(String(v), 'i');
+
+function forgeCheck(system: ShellSystem, spec: CheckSpec): CheckResult {
+  const ctx = makeCtx(system);
+  if (!forgeExists(ctx)) return fail(spec, 'There is no forge on this machine.');
+  const db = loadDb(ctx);
+  const key = String(spec.repo);
+  const repo = db.repos[key];
+  if (spec.exists === false) return repo ? fail(spec, String(spec.message ?? `${key} still exists on the forge.`)) : pass(spec, `${key} is gone.`);
+  if (!repo) return fail(spec, String(spec.message ?? `There is no repository ${key} on ${db.host}.`));
+  const path = forgeRepoPath(key);
+  const st = lookup(system.fs, `${path}/objects/state.json`, { user: 'root', groups: ['root'] }) ? loadGit(ctx, path) : null;
+  const msg = (dflt: string) => String(spec.message ?? dflt);
+  if (spec.visibility && repo.visibility !== spec.visibility) return fail(spec, msg(`${key} is ${repo.visibility}; it should be ${String(spec.visibility)}.`));
+  const b = spec.branch as Spec | undefined;
+  if (b) {
+    const name = String(b.name);
+    const tip = st?.branches[name];
+    if (b.exists === false) {
+      if (tip) return fail(spec, msg(`Branch ${name} still exists on ${key}.`));
+    } else {
+      if (!tip || !st) return fail(spec, msg(`${key} has no branch ${name} on the forge. Did you push it?`));
+      const c = st.commits[tip];
+      const f = b.file as Spec | undefined;
+      if (f) {
+        const content = c.tree[String(f.path)];
+        if (content === undefined) return fail(spec, msg(`${String(f.path)} is not on ${name} in ${key}.`));
+        const problem = textChecks(f as CheckSpec, content, `${String(f.path)} on ${name}`);
+        if (problem) return fail(spec, msg(problem));
+      }
+      if (b.message && !rx(b.message).test(c.message)) return fail(spec, msg(`The latest commit on ${name} is "${c.message.split('\n')[0]}", not what was asked for.`));
+      const hist = ancestors(st, tip);
+      if (b.minCommits !== undefined && hist.size < Number(b.minCommits)) return fail(spec, msg(`${name} has ${hist.size} commits; at least ${String(b.minCommits)} were expected.`));
+      for (const a of (b.authors as string[] | undefined) ?? []) if (![...hist].some((id) => st.commits[id].author === a)) return fail(spec, msg(`No commit on ${name} is by ${a}.`));
+      if (b.linear && [...hist].some((id) => st.commits[id].parents.length > 1)) return fail(spec, msg(`${name} has merge commits; its history should be linear.`));
+    }
+  }
+  const p = spec.pr as Spec | undefined;
+  if (p) {
+    const prs = db.prs.filter((x) => x.repo === key && (!p.head || x.head === p.head) && (!p.base || x.base === p.base) && (!p.title || rx(p.title).test(x.title)) && (p.fromFork === undefined || (x.headRepo !== x.repo) === p.fromFork));
+    if (!prs.length) return fail(spec, msg(`There is no pull request on ${key}${p.head ? ` from ${String(p.head)}` : ''}${p.base ? ` into ${String(p.base)}` : ''}${p.title ? ` titled like "${String(p.title)}"` : ''}.`));
+    const pr = prs[prs.length - 1];
+    if (p.state && pr.state !== p.state) return fail(spec, msg(`Pull request #${pr.number} is ${pr.state.toLowerCase()}; it should be ${String(p.state).toLowerCase()}.`));
+    if (p.body && !rx(p.body).test(pr.body)) return fail(spec, msg(`The description of pull request #${pr.number} is not what was asked for.`));
+    if (p.approvedBy && !pr.reviews.some((r) => r.user === p.approvedBy && r.state === 'APPROVED')) return fail(spec, msg(`${String(p.approvedBy)} has not approved pull request #${pr.number}.`));
+    if (p.reviewState && !pr.reviews.some((r) => r.state === p.reviewState && (!p.reviewer || r.user === p.reviewer) && (!p.reviewBody || rx(p.reviewBody).test(r.body)))) return fail(spec, msg(`Pull request #${pr.number} has no ${String(p.reviewState).toLowerCase().replace('_', ' ')} review${p.reviewBody ? ' that mentions the problem' : ''}.`));
+    if (p.merged && pr.mergeCommit && st) {
+      const mc = st.commits[pr.mergeCommit];
+      const how = mc?.parents.length === 2 ? 'merge' : mc?.message.includes(`(#${pr.number})`) ? 'squash' : 'rebase';
+      if (how !== p.merged) return fail(spec, msg(`Pull request #${pr.number} was merged with a ${how === 'merge' ? 'merge commit' : how}; it should be ${p.merged === 'merge' ? 'a merge commit' : `${String(p.merged)}d`}.`));
+    }
+  }
+  const i = spec.issue as Spec | undefined;
+  if (i) {
+    const issue = db.issues.find((x) => x.repo === key && rx(i.title).test(x.title));
+    if (!issue) return fail(spec, msg(`There is no issue on ${key} titled like "${String(i.title)}".`));
+    if (i.state && issue.state !== i.state) return fail(spec, msg(`Issue #${issue.number} is ${issue.state.toLowerCase()}; it should be ${String(i.state).toLowerCase()}.`));
+  }
+  const pt = spec.protection as Spec | undefined;
+  if (pt) {
+    const rule = protectionFor(repo, String(pt.branch));
+    if (!rule) return fail(spec, msg(`${String(pt.branch)} on ${key} is not protected.`));
+    const reviews = rule.required_pull_request_reviews?.required_approving_review_count ?? 0;
+    if (pt.reviews !== undefined && reviews < Number(pt.reviews)) return fail(spec, msg(`${String(pt.branch)} needs ${reviews} approving reviews; it should need ${String(pt.reviews)}.`));
+    for (const c of (pt.checks as string[] | undefined) ?? []) if (!rule.required_status_checks?.contexts.includes(c)) return fail(spec, msg(`The check "${c}" is not required on ${String(pt.branch)}.`));
+    if (pt.forcePush === false && rule.allow_force_pushes) return fail(spec, msg(`Force pushes are still allowed on ${String(pt.branch)}.`));
+    if (pt.deletions === false && rule.allow_deletions) return fail(spec, msg(`${String(pt.branch)} can still be deleted.`));
+    if (pt.enforceAdmins !== undefined && !!rule.enforce_admins !== pt.enforceAdmins) return fail(spec, msg(`Administrators are ${rule.enforce_admins ? '' : 'not '}held to the rules; they should ${pt.enforceAdmins ? '' : 'not '}be.`));
+    if (pt.linear && !rule.required_linear_history) return fail(spec, msg(`${String(pt.branch)} does not require a linear history.`));
+    if (pt.strict && !rule.required_status_checks?.strict) return fail(spec, msg(`Branches do not have to be up to date before merging into ${String(pt.branch)}.`));
+  }
+  const sec = spec.secret as Spec | undefined;
+  if (sec) {
+    const store = sec.env ? repo.environments[String(sec.env)]?.secrets ?? {} : repo.secrets;
+    if (store[String(sec.name)] === undefined) return fail(spec, msg(`${key} has no ${sec.env ? `${String(sec.env)} environment ` : ''}secret ${String(sec.name)}.`));
+    if (sec.value !== undefined && store[String(sec.name)] !== sec.value) return fail(spec, msg(`The secret ${String(sec.name)} does not hold the value it should.`));
+  }
+  const v = spec.variable as Spec | undefined;
+  if (v) {
+    const store = v.env ? repo.environments[String(v.env)]?.vars ?? {} : repo.variables;
+    if (store[String(v.name)] === undefined) return fail(spec, msg(`${key} has no ${v.env ? `${String(v.env)} environment ` : ''}variable ${String(v.name)}.`));
+    if (v.value !== undefined && store[String(v.name)] !== v.value) return fail(spec, msg(`${String(v.name)} is "${store[String(v.name)]}"; it should be "${String(v.value)}".`));
+  }
+  const env = spec.environment as Spec | undefined;
+  if (env) {
+    const e = repo.environments[String(env.name)];
+    if (!e) return fail(spec, msg(`${key} has no environment ${String(env.name)}.`));
+    for (const r of (env.reviewers as string[] | undefined) ?? []) if (!e.reviewers?.includes(r)) return fail(spec, msg(`${r} is not a required reviewer for ${String(env.name)}.`));
+  }
+  const run = spec.run as Spec | undefined;
+  if (run) {
+    let runs = (db.runs as CiRun[]).filter((r) => r.repo === key && (!run.workflow || r.workflow === run.workflow || r.file.endsWith(`/${String(run.workflow)}`)) && (!run.event || r.event === run.event) && (!run.branch || r.branch === run.branch));
+    if (run.headOfBranch && st) runs = runs.filter((r) => r.sha === st.branches[String(run.headOfBranch)]);
+    if (!runs.length) return fail(spec, msg(`No workflow run on ${key} matches${run.workflow ? ` ${String(run.workflow)}` : ''}${run.event ? ` for ${String(run.event)}` : ''}${run.branch ? ` on ${String(run.branch)}` : ''}${run.headOfBranch ? ` for the latest commit on ${String(run.headOfBranch)}` : ''}.`));
+    const r = runs[runs.length - 1];
+    if (run.conclusion && r.conclusion !== run.conclusion) return fail(spec, msg(`The latest matching run (#${r.id}, ${r.workflow}) ${r.status === 'completed' ? `ended with ${r.conclusion}` : `is ${r.status}`}; it should be ${String(run.conclusion)}.`));
+    for (const j of (run.jobs as string[] | undefined) ?? []) if (!r.jobs.some((x) => x.name === j || x.key === j)) return fail(spec, msg(`Run #${r.id} has no job "${j}" (jobs: ${r.jobs.map((x) => x.name).join(', ') || 'none'}).`));
+    if (run.artifact && !r.artifacts.some((a) => a.name === run.artifact)) return fail(spec, msg(`Run #${r.id} uploaded no artifact called ${String(run.artifact)}.`));
+    if (run.log && !rx(run.log).test(r.jobs.flatMap((j) => j.steps.flatMap((s) => s.log)).join('\n'))) return fail(spec, msg(`The log of run #${r.id} does not show what was asked for.`));
+    if (run.minJobs && r.jobs.length < Number(run.minJobs)) return fail(spec, msg(`Run #${r.id} has ${r.jobs.length} jobs; at least ${String(run.minJobs)} were expected.`));
+  }
+  const rel = spec.release as Spec | undefined;
+  if (rel) {
+    const r = db.releases.find((x) => x.repo === key && x.tag === rel.tag);
+    if (!r) return fail(spec, msg(`${key} has no release ${String(rel.tag)}.`));
+    if (rel.asset && r.assets[String(rel.asset)] === undefined) return fail(spec, msg(`Release ${String(rel.tag)} has no asset ${String(rel.asset)} (assets: ${Object.keys(r.assets).join(', ') || 'none'}).`));
+    if (rel.assetContains && !Object.values(r.assets).some((c) => c.includes(String(rel.assetContains)))) return fail(spec, msg(`The assets of ${String(rel.tag)} are not the built files.`));
+    if (rel.notes && !rx(rel.notes).test(r.notes)) return fail(spec, msg(`The notes of release ${String(rel.tag)} are not what was asked for.`));
+  }
+  const t = spec.tag as Spec | undefined;
+  if (t) {
+    const id = st?.tags[String(t.name)];
+    if (!id) return fail(spec, msg(`${key} has no tag ${String(t.name)}. Did you push it (git push origin ${String(t.name)})?`));
+    if (t.target && st?.branches[String(t.target)] !== id) return fail(spec, msg(`Tag ${String(t.name)} does not point at the tip of ${String(t.target)}.`));
+    if (t.annotated && !st?.annotated?.[String(t.name)]) return fail(spec, msg(`Tag ${String(t.name)} is a lightweight tag; it should be annotated (git tag -a).`));
+  }
+  const m = spec.member as Spec | undefined;
+  if (m && repo.members[String(m.user)] !== m.role) return fail(spec, msg(`${String(m.user)} has ${repo.members[String(m.user)] ?? 'no'} access to ${key}; it should be ${String(m.role)}.`));
+  const k = spec.sshKeys as Spec | undefined;
+  if (k && (db.users[String(k.user)]?.keys.length ?? 0) < Number(k.min ?? 1)) return fail(spec, msg(`${String(k.user)} has no SSH key on ${db.host}. Add the public key with gh ssh-key add.`));
+  return pass(spec, String(spec.success ?? 'The forge is set up as required.'));
 }
