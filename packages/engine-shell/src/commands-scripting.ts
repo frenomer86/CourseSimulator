@@ -166,7 +166,23 @@ export function shellcheckFindings(src: string): Finding[] {
     if (!line.trim()) return;
     for (const m of line.matchAll(/(?:^|[;&|]\s*|\b(?:local|declare|readonly|export|typeset)\s+(?:-\w+\s+)*)([A-Za-z_][A-Za-z0-9_]*)(?:\[[^\]]*\])?\+?=/g)) assigned.add(m[1]);
     for (const m of line.matchAll(/\b(?:for|select)\s+([A-Za-z_]\w*)\s+in\b|\bfor\s*\(\(\s*([A-Za-z_]\w*)/g)) assigned.add(m[1] ?? m[2]);
-    for (const m of line.matchAll(/\bread\s+((?:-[a-zA-Z]+\s+(?:\S+\s+)?)*)([A-Za-z_][\w\s]*)/g)) for (const v of m[2].trim().split(/\s+/)) if (/^[A-Za-z_]\w*$/.test(v)) assigned.add(v);
+    for (const m of line.matchAll(/\bread((?:\s+[^\s;&|)]+)*)/g)) {
+      // Options -a -d -i -n -N -p -t -u take a value (-a names an array); every other word is a variable.
+      const words = m[1].trim().split(/\s+/).filter(Boolean);
+      for (let k = 0; k < words.length; k++) {
+        const w = words[k];
+        if (w.startsWith('-')) {
+          const takes = /[adinNptu]$/.exec(w);
+          if (takes && k + 1 < words.length) {
+            if (takes[0] === 'a' && /^[A-Za-z_]\w*$/.test(words[k + 1])) assigned.add(words[k + 1]);
+            k++;
+          }
+          continue;
+        }
+        if (/^[A-Za-z_]\w*$/.test(w)) assigned.add(w);
+        else break;
+      }
+    }
     for (const m of line.matchAll(/\b(?:mapfile|readarray)\s+(?:-\w+\s+(?:\d+\s+)?)*([A-Za-z_]\w*)/g)) assigned.add(m[1]);
     for (const m of line.matchAll(/\bgetopts\s+\S+\s+([A-Za-z_]\w*)/g)) assigned.add(m[1]);
     for (const m of line.matchAll(/\bprintf\s+-v\s+([A-Za-z_]\w*)/g)) assigned.add(m[1]);

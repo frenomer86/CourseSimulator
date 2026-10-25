@@ -83,7 +83,12 @@ export function sha256(text: string): string {
 }
 
 export function sha1(text: string): string {
-  const m = pad(utf8(text), false);
+  return sha1Bytes(utf8(text));
+}
+
+/** SHA-1 of raw bytes (git hashes objects whose headers contain NUL bytes). */
+export function sha1Bytes(bytes: Uint8Array): string {
+  const m = pad(bytes, false);
   const h = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0];
   const w = new Array<number>(80);
   const rotl = (x: number, n: number) => (x << n) | (x >>> (32 - n));

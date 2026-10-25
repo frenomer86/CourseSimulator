@@ -55,6 +55,8 @@ interface EditorState {
   path?: string;
   user?: string;
   content: string;
+  /** A command to run once the file is saved (git continues a commit or a rebase). */
+  then?: string;
 }
 
 function labObject(lab: LabSpec<unknown>): EventObject {
@@ -119,7 +121,7 @@ export function TerminalLab({ lab }: { lab: LabSpec<ShellState> }) {
   const handleRequests = useCallback((requests: ReturnType<typeof runLine>['requests']) => {
     for (const r of requests) {
       if (r.kind === 'clear') setTranscript([]);
-      else if (r.kind === 'editor') setEditor({ kind: 'editor', title: r.path ?? '', path: r.path, content: r.content ?? '' });
+      else if (r.kind === 'editor') setEditor({ kind: 'editor', title: r.path ?? '', path: r.path, content: r.content ?? '', then: r.then });
       else if (r.kind === 'crontab') setEditor({ kind: 'crontab', title: `crontab for ${r.user ?? sysRef.current.user}`, user: r.user, content: r.content ?? '' });
     }
   }, []);
@@ -249,6 +251,23 @@ export function TerminalLab({ lab }: { lab: LabSpec<ShellState> }) {
         return;
       }
       setTranscript((t) => [...t, { kind: 'out', text: `[ Wrote ${editor.content.split('\n').length - (editor.content.endsWith('\n') ? 1 : 0)} lines to ${editor.path} ]\n` }]);
+      if (editor.then) {
+        // The program that opened the editor (git commit, git rebase -i) carries on now that the file is saved.
+        let r: ReturnType<typeof runLine>;
+        try {
+          r = runLine(s, editor.then, sessionRef.current);
+        } catch (e) {
+          r = { output: `bash: internal error: ${(e as Error).message}\n`, status: 1, requests: [] };
+        }
+        if (r.output) setTranscript((t) => [...t, { kind: 'out', text: r.output }]);
+        setEditor(null);
+        setEditorError(null);
+        handleRequests(r.requests);
+        setTick((n) => n + 1);
+        setResult(null);
+        inputRef.current?.focus();
+        return;
+      }
     }
     track('interacted', labObject(lab), undefined, { action: 'edit', path: editor.path ?? 'crontab' });
     setEditor(null);

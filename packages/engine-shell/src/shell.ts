@@ -775,6 +775,8 @@ export interface Request {
   path?: string;
   content?: string;
   user?: string;
+  /** A command line to run after the editor saves (git continues a commit or rebase). */
+  then?: string;
 }
 
 export class ExitSignal {

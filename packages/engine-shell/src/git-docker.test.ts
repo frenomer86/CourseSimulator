@@ -61,11 +61,11 @@ describe('git', () => {
     expect(runLines(sys, ['git status'])).toMatch(/nothing to commit, working tree clean/);
   });
 
-  it('merges changes to different lines without a conflict', () => {
+  it('merges changes to separate lines without a conflict', () => {
     const sys = gitBox();
-    runLines(sys, [...IDENTITY, 'cd shop', 'git init', 'git add .', 'git commit -m "Add fees"', 'git switch -c lib', "sed -i 's/Library: 50/Library: 60/' fees.txt", 'git commit -am "Library"', 'git switch main', "sed -i 's/Hostel: 900/Hostel: 950/' fees.txt", 'git commit -am "Hostel"', 'git merge lib']);
+    runLines(sys, [...IDENTITY, 'cd shop', 'git init', 'git add .', 'git commit -m "Add fees"', 'git switch -c lib', "sed -i 's/Library: 50/Library: 60/' fees.txt", 'git commit -am "Library"', 'git switch main', "sed -i 's/Tuition: 2500/Tuition: 2600/' fees.txt", 'git commit -am "Tuition"', 'git merge lib']);
     const st = repoState(sys);
-    expect(st.commits[headCommit(st)!].tree['fees.txt']).toBe('Tuition: 2500\nHostel: 950\nLibrary: 60\n');
+    expect(st.commits[headCommit(st)!].tree['fees.txt']).toBe('Tuition: 2600\nHostel: 900\nLibrary: 60\n');
     expect(st.commits[headCommit(st)!].parents).toHaveLength(2);
   });
 

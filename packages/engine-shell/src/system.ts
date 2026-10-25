@@ -153,6 +153,9 @@ const CATALOGUE: Record<string, PackageRec> = {
   php8: { version: '8.3', description: 'PHP scripting language', installed: false },
   mariadb: { version: '11.4', description: 'MariaDB database server', installed: false, service: 'mariadb', provides: ['mysql'] },
   sudo: { version: '1.9', description: 'Execute commands as another user', installed: true, provides: ['sudo'] },
+  make: { version: '4.4.1', description: 'GNU make: build automation', installed: false, provides: ['make'] },
+  gh: { version: '2.62.0', description: 'Command-line client for the lab forge (GitHub CLI)', installed: false, provides: ['gh'] },
+  act: { version: '0.2.69', description: 'Run GitHub Actions workflows locally', installed: false, provides: ['act'] },
 };
 
 export const DEFAULT_PORTS: Record<string, number> = { apache2: 80, nginx: 80, named: 53, mariadb: 3306, sshd: 22, postgresql: 5432, vsftpd: 21, smb: 445, nfs: 2049 };

@@ -340,6 +340,7 @@ export const U7: TaskTemplate[] = [
             { message: 'Add README', author: who.name, email: `${who.sam}@campus.lan`, files: { 'README.md': '# Operations scripts\n' } },
             { message: 'Keep fewer backups', author: other.name, email: `${other.sam}@campus.lan`, files: { 'rotate-backups.sh': '#!/bin/bash\nfind /backup -name "*.tar.gz" -mtime +1 -delete\n' } },
           ], { 'v2.0.0': 1 }),
+          '/root/.gitconfig': `[user]\n\tname = ${who.name}\n\temail = ${who.sam}@campus.lan\n`,
           '/usr/local/sbin/rotate-backups': { content: '#!/bin/bash\nfind /backup -name "*.tar.gz" -mtime +1 -delete\n', mode: '755' },
         } as never,
       }),

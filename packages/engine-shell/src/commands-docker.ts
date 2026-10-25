@@ -10,6 +10,7 @@ import { lookup, mkdir, readFile, writeFile, type DirNode } from './fs.js';
 import { actor, currentUser, makeCtx, newSession, runScript, type Ctx } from './shell.js';
 import { buildSystem } from './system.js';
 import { abs, parseOpts, type IO } from './util.js';
+import { parseYaml, type Yaml } from './yaml.js';
 
 type Cmd = (args: string[], io: IO, ctx: Ctx) => number;
 
@@ -769,55 +770,7 @@ function runImageScript(ctx: Ctx, img: DockerImage, command: string, env: Record
 
 /* ----------------------------------------------------------------------------- docker compose */
 
-type Yaml = string | Yaml[] | { [k: string]: Yaml };
-
-/** The YAML a compose file uses: block maps and lists, inline lists, scalars, quotes and comments. */
-export function parseYaml(text: string): Yaml {
-  const lines = text.split('\n').map((raw, n) => ({ n: n + 1, indent: raw.length - raw.trimStart().length, text: raw.replace(/\s+#.*$/, '').replace(/^\s*#.*$/, '').trimEnd() })).filter((l) => l.text.trim());
-  let i = 0;
-  const scalar = (v: string): Yaml => {
-    const t = v.trim();
-    if (/^\[.*\]$/.test(t)) return t.slice(1, -1).split(',').map((x) => scalar(x)).filter((x) => x !== '');
-    if (/^".*"$/.test(t) || /^'.*'$/.test(t)) return t.slice(1, -1);
-    return t;
-  };
-  const block = (indent: number): Yaml => {
-    if (i >= lines.length) return '';
-    if (lines[i].text.trim().startsWith('- ') || lines[i].text.trim() === '-') {
-      const list: Yaml[] = [];
-      while (i < lines.length && lines[i].indent === indent && lines[i].text.trim().startsWith('-')) {
-        const rest = lines[i].text.trim().slice(1).trim();
-        const kv = /^([\w.-]+):(?:\s+(.*))?$/.exec(rest);
-        if (kv && !/^["']/.test(rest)) {
-          // "- key: value" starts a map inside the list.
-          const itemIndent = lines[i].indent + 2;
-          lines[i] = { ...lines[i], indent: itemIndent, text: ' '.repeat(itemIndent) + rest };
-          list.push(block(itemIndent));
-        } else {
-          i++;
-          list.push(rest ? scalar(rest) : block(lines[i]?.indent ?? indent + 2));
-        }
-      }
-      return list;
-    }
-    const map: { [k: string]: Yaml } = {};
-    while (i < lines.length && lines[i].indent === indent) {
-      const t = lines[i].text.trim();
-      const kv = /^("[^"]+"|'[^']+'|[^:]+):(?:\s+(.*))?$/.exec(t);
-      if (!kv) throw new Error(`line ${lines[i].n}: expected "key: value", got "${t}"`);
-      const key = kv[1].replace(/^["']|["']$/g, '').trim();
-      i++;
-      if (kv[2] !== undefined && kv[2] !== '') map[key] = scalar(kv[2]);
-      else if (i < lines.length && (lines[i].indent > indent || (lines[i].indent === indent && lines[i].text.trim().startsWith('- ')))) map[key] = block(lines[i].indent);
-      else map[key] = '';
-    }
-    if (i < lines.length && lines[i].indent > indent) throw new Error(`line ${lines[i].n}: unexpected indentation`);
-    return map;
-  };
-  const doc = block(lines[0]?.indent ?? 0);
-  if (i < lines.length) throw new Error(`line ${lines[i].n}: unexpected indentation`);
-  return doc;
-}
+export { parseYaml };
 
 function compose(args: string[], io: IO, ctx: Ctx): number {
   let i = 0;
