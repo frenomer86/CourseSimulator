@@ -370,8 +370,16 @@ export function glob(root: DirNode, cwd: string, pattern: string, actor: Actor, 
     if (!candidates.length) return null;
   }
   if (abs) return candidates;
-  // Return paths relative to cwd, in the form the user typed (relative).
-  const prefix = cwd === '/' ? '/' : cwd + '/';
-  const dirPrefix = pattern.includes('/') ? pattern.slice(0, pattern.lastIndexOf('/') + 1) : '';
-  return candidates.map((c) => (c.startsWith(prefix) ? c.slice(prefix.length) : c)).map((c) => (dirPrefix && c.startsWith(dirPrefix) ? c : c));
+  // Relative patterns give paths in the form the user typed: the literal directories before the first
+  // wildcard ("./", "../x/", "src/") stay as written.
+  const segs = pattern.split('/');
+  const k = segs.findIndex((s) => /[*?[]/.test(s));
+  const typed = segs.slice(0, k).join('/');
+  if (!typed) {
+    const prefix = cwd === '/' ? '/' : cwd + '/';
+    return candidates.map((c) => (c.startsWith(prefix) ? c.slice(prefix.length) : c));
+  }
+  const litAbs = resolvePath(cwd, typed, home);
+  const under = litAbs === '/' ? '/' : litAbs + '/';
+  return candidates.map((c) => (c.startsWith(under) ? `${typed}/${c.slice(under.length)}` : c));
 }

@@ -779,6 +779,8 @@ export interface DiffOpts {
   patch?: boolean;
   context?: number;
   quiet?: boolean;
+  /** --diff-filter letters: A added, M modified, D deleted (lower case excludes). */
+  filter?: string;
 }
 
 export const pathMatch = (p: string, specs: string[] | undefined) => {
@@ -795,7 +797,9 @@ export const pathMatch = (p: string, specs: string[] | undefined) => {
 
 /** Prints a diff between two trees in the format the options ask for. Returns the number of files that differ. */
 export function printTreeDiff(io: IO, from: Record<string, string>, fromX: string[], to: Record<string, string>, toX: string[], o: DiffOpts = {}): number {
-  const all = [...new Set([...Object.keys(from), ...Object.keys(to)])].sort().filter((p) => pathMatch(p, o.paths) && (from[p] !== to[p] || fromX.includes(p) !== toX.includes(p)));
+  const status = (p: string) => (from[p] === undefined ? 'A' : to[p] === undefined ? 'D' : 'M');
+  const keep = (p: string) => !o.filter || (/[A-Z]/.test(o.filter) ? o.filter.includes(status(p)) : !o.filter.includes(status(p).toLowerCase()));
+  const all = [...new Set([...Object.keys(from), ...Object.keys(to)])].sort().filter((p) => pathMatch(p, o.paths) && (from[p] !== to[p] || fromX.includes(p) !== toX.includes(p)) && keep(p));
   if (o.quiet) return all.length;
   if (o.nameOnly) {
     for (const p of all) io.out(p + '\n');

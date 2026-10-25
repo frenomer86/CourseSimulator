@@ -210,7 +210,24 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     ctx.requests.push({ kind: 'clear' });
     return 0;
   },
-  sleep: () => 0,
+  // sleep returns at once but moves the simulated clock on, so time stamps and dates change as they would.
+  sleep: (args, io, ctx) => {
+    let ms = 0;
+    for (const a of args) {
+      const m = /^(\d+(?:\.\d+)?)([smhd]?)$/.exec(a);
+      if (!m) {
+        io.err(`sleep: invalid time interval '${a}'\nTry 'sleep --help' for more information.\n`);
+        return 1;
+      }
+      ms += Number(m[1]) * { '': 1000, s: 1000, m: 60000, h: 3600000, d: 86400000 }[m[2] as ''];
+    }
+    if (!args.length) {
+      io.err("sleep: missing operand\nTry 'sleep --help' for more information.\n");
+      return 1;
+    }
+    ctx.sys.now += Math.round(ms);
+    return 0;
+  },
   true: () => 0,
   false: () => 1,
   yes: (args, io) => {

@@ -1170,6 +1170,7 @@ function cmdDiff(args: string[], io: IO, ctx: Ctx): number {
     context: val(o, 'unified') !== undefined ? Number(val(o, 'unified')) : undefined,
     patch: o.flags.has('patch') || o.flags.has('p'),
     quiet: o.flags.has('quiet'),
+    filter: val(o, 'diff-filter'),
   };
   let from: Record<string, string>;
   let fromX: string[];

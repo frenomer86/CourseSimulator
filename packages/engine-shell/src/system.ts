@@ -87,6 +87,8 @@ export interface ShellSystem {
   network?: { address: string; gateway?: string; hosts?: Record<string, string> };
   /** 'windows' routes typed lines to the PowerShell subset (powershell.ts). */
   os?: 'linux' | 'windows';
+  /** State of $RANDOM's generator. */
+  randomSeed?: number;
 }
 
 /** acl entries look like "u:name:r-x", "g:name:rwx" or "d:g:name:rwx" (a default entry on a directory); ageDays backdates the modification time. */
@@ -156,6 +158,7 @@ const CATALOGUE: Record<string, PackageRec> = {
   make: { version: '4.4.1', description: 'GNU make: build automation', installed: false, provides: ['make'] },
   gh: { version: '2.62.0', description: 'Command-line client for the lab forge (GitHub CLI)', installed: false, provides: ['gh'] },
   act: { version: '0.2.69', description: 'Run GitHub Actions workflows locally', installed: false, provides: ['act'] },
+  'pre-commit': { version: '3.8.0', description: 'Framework for managing git pre-commit hooks', installed: false, provides: ['pre-commit'] },
 };
 
 export const DEFAULT_PORTS: Record<string, number> = { apache2: 80, nginx: 80, named: 53, mariadb: 3306, sshd: 22, postgresql: 5432, vsftpd: 21, smb: 445, nfs: 2049 };

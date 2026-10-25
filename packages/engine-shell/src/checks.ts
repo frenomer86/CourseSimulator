@@ -475,6 +475,7 @@ function forgeCheck(system: ShellSystem, spec: CheckSpec): CheckResult {
     for (const j of (run.jobs as string[] | undefined) ?? []) if (!r.jobs.some((x) => x.name === j || x.key === j)) return fail(spec, msg(`Run #${r.id} has no job "${j}" (jobs: ${r.jobs.map((x) => x.name).join(', ') || 'none'}).`));
     if (run.artifact && !r.artifacts.some((a) => a.name === run.artifact)) return fail(spec, msg(`Run #${r.id} uploaded no artifact called ${String(run.artifact)}.`));
     if (run.log && !rx(run.log).test(r.jobs.flatMap((j) => j.steps.flatMap((s) => s.log)).join('\n'))) return fail(spec, msg(`The log of run #${r.id} does not show what was asked for.`));
+    if (run.anyLog && !runs.some((x) => rx(run.anyLog).test(x.jobs.flatMap((j) => j.steps.flatMap((s) => s.log)).join('\n')))) return fail(spec, msg('No matching run shows what was asked for in its log.'));
     if (run.minJobs && r.jobs.length < Number(run.minJobs)) return fail(spec, msg(`Run #${r.id} has ${r.jobs.length} jobs; at least ${String(run.minJobs)} were expected.`));
   }
   const rel = spec.release as Spec | undefined;

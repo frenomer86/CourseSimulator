@@ -4,14 +4,14 @@
  * real error messages, including "missing separator" for a recipe indented with spaces).
  */
 
-import { lookup, readFile, writeFile, mkdir, type DirNode } from './fs.js';
+import { lookup, readFile, remove, writeFile, mkdir, type DirNode } from './fs.js';
 import { actor, runCommand, type Ctx } from './shell.js';
 import { abs, type IO } from './util.js';
 import { homeOf } from './system.js';
 import { currentUser } from './shell.js';
-import { findRepo, headCommit, loadGit, ROOT } from './git-core.js';
+import { configGet, findRepo, headCommit, loadGit, openRepo, ROOT, workTree } from './git-core.js';
 import { readWorkflows, runWorkflow, triggers, type CiInput, type CiRun } from './ci.js';
-import { yList, yMap, yStr } from './yaml.js';
+import { parseYaml, parseYamlAll, yList, yMap, yStr, type Yaml } from './yaml.js';
 
 type Cmd = (args: string[], io: IO, ctx: Ctx) => number;
 
@@ -647,6 +647,379 @@ const make: Cmd = (args, io, ctx) => {
   }
 };
 
-export const DEVOPS_COMMANDS: Record<string, Cmd> = { act, make };
+/* ----------------------------------------------------------------------------- pre-commit */
+
+const PC_HOOKS_REPO = 'https://github.com/pre-commit/pre-commit-hooks';
+const PC_SHELLCHECK_REPO = 'https://github.com/shellcheck-py/shellcheck-py';
+const PC_GITLEAKS_REPO = 'https://github.com/gitleaks/gitleaks';
+
+interface PcHook {
+  id: string;
+  name: string;
+  /** Default file filter (regex on the path). */
+  files?: RegExp;
+  /** Returns the problems found; may change file contents (a fixer). */
+  run: (files: Array<{ path: string; content: string; exec: boolean }>, args: string[], ctx: Ctx, write: (path: string, content: string) => void) => { failed: boolean; output: string; modified: boolean };
+}
+
+const PC_BUILTIN: Record<string, PcHook> = {
+  'trailing-whitespace': {
+    id: 'trailing-whitespace',
+    name: 'trim trailing whitespace',
+    run: (files, _a, _c, write) => {
+      const fixed: string[] = [];
+      for (const f of files) {
+        const next = f.content.replace(/[ \t]+$/gm, '');
+        if (next !== f.content) {
+          write(f.path, next);
+          fixed.push(f.path);
+        }
+      }
+      return { failed: fixed.length > 0, modified: fixed.length > 0, output: fixed.map((p) => `Fixing ${p}`).join('\n') };
+    },
+  },
+  'end-of-file-fixer': {
+    id: 'end-of-file-fixer',
+    name: 'fix end of files',
+    run: (files, _a, _c, write) => {
+      const fixed: string[] = [];
+      for (const f of files) {
+        if (!f.content) continue;
+        const next = f.content.replace(/\n*$/, '\n');
+        if (next !== f.content) {
+          write(f.path, next);
+          fixed.push(f.path);
+        }
+      }
+      return { failed: fixed.length > 0, modified: fixed.length > 0, output: fixed.map((p) => `Fixing ${p}`).join('\n') };
+    },
+  },
+  'mixed-line-ending': {
+    id: 'mixed-line-ending',
+    name: 'mixed line ending',
+    run: (files, _a, _c, write) => {
+      const fixed: string[] = [];
+      for (const f of files) {
+        if (!f.content.includes('\r\n')) continue;
+        write(f.path, f.content.replace(/\r\n/g, '\n'));
+        fixed.push(f.path);
+      }
+      return { failed: fixed.length > 0, modified: fixed.length > 0, output: fixed.map((p) => `${p}: fixed mixed line endings`).join('\n') };
+    },
+  },
+  'check-yaml': {
+    id: 'check-yaml',
+    name: 'check yaml',
+    files: /\.ya?ml$/,
+    run: (files) => {
+      const bad: string[] = [];
+      for (const f of files) {
+        try {
+          parseYamlAll(f.content);
+        } catch (e) {
+          bad.push(`${f.path}: ${(e as Error).message}`);
+        }
+      }
+      return { failed: bad.length > 0, modified: false, output: bad.join('\n') };
+    },
+  },
+  'check-json': {
+    id: 'check-json',
+    name: 'check json',
+    files: /\.json$/,
+    run: (files) => {
+      const bad: string[] = [];
+      for (const f of files) {
+        try {
+          JSON.parse(f.content);
+        } catch (e) {
+          bad.push(`${f.path}: Failed to json decode (${(e as Error).message})`);
+        }
+      }
+      return { failed: bad.length > 0, modified: false, output: bad.join('\n') };
+    },
+  },
+  'check-merge-conflict': {
+    id: 'check-merge-conflict',
+    name: 'check for merge conflicts',
+    run: (files) => {
+      const bad: string[] = [];
+      for (const f of files) {
+        f.content.split('\n').forEach((l, k) => {
+          if (/^(<<<<<<< |=======$|>>>>>>> )/.test(l)) bad.push(`${f.path}:${k + 1}: Merge conflict string ${JSON.stringify(l.split(' ')[0])} found`);
+        });
+      }
+      return { failed: bad.length > 0, modified: false, output: bad.join('\n') };
+    },
+  },
+  'check-added-large-files': {
+    id: 'check-added-large-files',
+    name: 'check for added large files',
+    run: (files, args) => {
+      const max = Number((args.find((a) => a.startsWith('--maxkb=')) ?? '--maxkb=500').slice(8));
+      const bad = files.filter((f) => new TextEncoder().encode(f.content).length / 1024 > max).map((f) => `${f.path} (${Math.ceil(new TextEncoder().encode(f.content).length / 1024)} KB) exceeds ${max} KB.`);
+      return { failed: bad.length > 0, modified: false, output: bad.join('\n') };
+    },
+  },
+  'detect-private-key': {
+    id: 'detect-private-key',
+    name: 'detect private key',
+    run: (files) => {
+      const bad = files.filter((f) => /-----BEGIN (RSA |DSA |EC |OPENSSH |PGP |ENCRYPTED )?PRIVATE KEY( BLOCK)?-----/.test(f.content)).map((f) => `Private key found: ${f.path}`);
+      return { failed: bad.length > 0, modified: false, output: bad.join('\n') };
+    },
+  },
+  'check-executables-have-shebangs': {
+    id: 'check-executables-have-shebangs',
+    name: 'check that executables have shebangs',
+    run: (files) => {
+      const bad = files.filter((f) => f.exec && !f.content.startsWith('#!')).map((f) => `${f.path}: marked executable but has no (or invalid) shebang!\n  If it isn't supposed to be executable, try: \`chmod -x ${f.path}\``);
+      return { failed: bad.length > 0, modified: false, output: bad.join('\n') };
+    },
+  },
+  'no-commit-to-branch': {
+    id: 'no-commit-to-branch',
+    name: "don't commit to branch",
+    run: (_files, args, ctx) => {
+      const branches: string[] = [];
+      args.forEach((a, k) => {
+        if (a === '--branch' || a === '-b') branches.push(args[k + 1]);
+        else if (a.startsWith('--branch=')) branches.push(a.slice(9));
+      });
+      const repo = findRepo(ctx);
+      const st = repo ? loadGit(ctx, repo) : null;
+      const cur = st?.head.branch ?? '';
+      const blocked = (branches.length ? branches : ['main', 'master']).includes(cur);
+      return { failed: blocked, modified: false, output: '' };
+    },
+  },
+  shellcheck: {
+    id: 'shellcheck',
+    name: 'ShellCheck v0.10.0',
+    files: /\.(sh|bash)$/,
+    run: (files, args, ctx) => {
+      const buf: string[] = [];
+      const code = runCommand(ctx, ['shellcheck', ...args, ...files.map((f) => f.path)], { stdin: '', out: (s) => buf.push(s), err: (s) => buf.push(s) });
+      return { failed: code !== 0, modified: false, output: buf.join('').trimEnd() };
+    },
+  },
+  gitleaks: {
+    id: 'gitleaks',
+    name: 'Detect hardcoded secrets',
+    run: (files, _a, ctx) => {
+      const buf: string[] = [];
+      const code = runCommand(ctx, ['gitleaks', 'protect', '--staged', '--verbose', '--redact'], { stdin: '', out: (s) => buf.push(s), err: (s) => buf.push(s) });
+      void files;
+      return { failed: code !== 0, modified: false, output: buf.join('').trimEnd() };
+    },
+  },
+};
+
+const PC_REPO_HOOKS: Record<string, string[]> = {
+  [PC_HOOKS_REPO]: ['trailing-whitespace', 'end-of-file-fixer', 'mixed-line-ending', 'check-yaml', 'check-json', 'check-merge-conflict', 'check-added-large-files', 'detect-private-key', 'check-executables-have-shebangs', 'no-commit-to-branch'],
+  [PC_SHELLCHECK_REPO]: ['shellcheck'],
+  [PC_GITLEAKS_REPO]: ['gitleaks'],
+};
+
+const PC_SAMPLE = `# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+`;
+
+const PC_HOOK_SCRIPT = `#!/usr/bin/env bash
+# File generated by pre-commit: https://pre-commit.com
+# ID: 138fd403232d2ddd5efb44317e38bf03
+# start templated
+INSTALL_PYTHON=/usr/bin/python3
+ARGS=(hook-impl --config=.pre-commit-config.yaml --hook-type=pre-commit)
+# end templated
+exec pre-commit "\${ARGS[@]}"
+`;
+
+const preCommit: Cmd = (args, io, ctx) => {
+  const [sub = 'help', ...rest] = args;
+  if (sub === '--version' || sub === '-V') {
+    io.out('pre-commit 3.8.0\n');
+    return 0;
+  }
+  if (sub === 'sample-config') {
+    io.out(PC_SAMPLE);
+    return 0;
+  }
+  if (sub === 'help' || sub === '--help' || sub === '-h') {
+    io.out('usage: pre-commit [-h] [-V] {autoupdate,clean,gc,install,install-hooks,run,sample-config,uninstall,validate-config} ...\n');
+    return 0;
+  }
+  const repoPath = findRepo(ctx);
+  if (!repoPath) {
+    io.err('An error has occurred: FatalError: git failed. Is it installed, and are you in a Git repository directory?\n');
+    return 1;
+  }
+  const r = openRepo(ctx, io, repoPath);
+  const hookFile = `${r.gitDir}/hooks/pre-commit`;
+  if (sub === 'install') {
+    if (configGet(ctx, r.st, 'core.hookspath')) {
+      io.err('[ERROR] Cowardly refusing to install hooks with `core.hooksPath` set.\nhint: `git config --unset-all core.hooksPath`\n');
+      return 1;
+    }
+    mkdir(ctx.sys.fs, `${r.gitDir}/hooks`, actor(ctx), ctx.sys.now, true);
+    writeFile(ctx.sys.fs, hookFile, PC_HOOK_SCRIPT, actor(ctx), ctx.sys.now);
+    const l = lookup(ctx.sys.fs, hookFile, actor(ctx));
+    if (l) l.node.mode = 0o755;
+    io.out(`pre-commit installed at .git/hooks/pre-commit\n`);
+    return 0;
+  }
+  if (sub === 'uninstall') {
+    try {
+      remove(ctx.sys.fs, hookFile, actor(ctx), false);
+    } catch {
+      /* not installed */
+    }
+    io.out('.git/hooks/pre-commit uninstalled\n');
+    return 0;
+  }
+  if (sub === 'clean' || sub === 'gc' || sub === 'install-hooks') {
+    io.out(sub === 'clean' ? `Cleaned ${homeOf(ctx.sys, currentUser(ctx))}/.cache/pre-commit.\n` : sub === 'gc' ? '0 repo(s) removed.\n' : '');
+    return 0;
+  }
+  const cfgArg = rest.find((a) => a.startsWith('--config='))?.slice(9) ?? (rest.includes('-c') ? rest[rest.indexOf('-c') + 1] : '.pre-commit-config.yaml');
+  const cfgPath = `${repoPath === '/' ? '' : repoPath}/${cfgArg}`;
+  let cfgText: string;
+  try {
+    cfgText = readFile(ctx.sys.fs, cfgPath, actor(ctx));
+  } catch {
+    io.err(`An error has occurred: InvalidConfigError: \n=====> ${cfgArg} is not a file\nCheck the log at ${homeOf(ctx.sys, currentUser(ctx))}/.cache/pre-commit/pre-commit.log\n`);
+    return 1;
+  }
+  let cfg: Record<string, Yaml>;
+  try {
+    cfg = yMap(parseYaml(cfgText));
+  } catch (e) {
+    io.err(`An error has occurred: InvalidConfigError: \n==> File ${cfgArg}\n=====> ${(e as Error).message}\n`);
+    return 1;
+  }
+  const repos = yList(cfg.repos).map((x) => yMap(x));
+  if (sub === 'validate-config') return 0;
+  if (sub === 'autoupdate') {
+    let text = cfgText;
+    for (const rp of repos) {
+      const url = yStr(rp.repo);
+      if (url === 'local' || url === 'meta') continue;
+      const latest = url === PC_HOOKS_REPO ? 'v5.0.0' : url === PC_SHELLCHECK_REPO ? 'v0.10.0.1' : url === PC_GITLEAKS_REPO ? 'v8.21.2' : yStr(rp.rev);
+      if (yStr(rp.rev) === latest) io.out(`[${url}] already up to date!\n`);
+      else {
+        io.out(`[${url}] updating ${yStr(rp.rev)} -> ${latest}\n`);
+        text = text.replace(new RegExp(`(rev:\\s*)${yStr(rp.rev).replace(/\./g, '\\.')}`), `$1${latest}`);
+      }
+    }
+    writeFile(ctx.sys.fs, cfgPath, text, actor(ctx), ctx.sys.now);
+    return 0;
+  }
+  if (sub !== 'run' && sub !== 'hook-impl') {
+    io.err(`usage: pre-commit [-h] [-V] {autoupdate,clean,gc,install,install-hooks,run,sample-config,uninstall,validate-config} ...\npre-commit: error: argument command: invalid choice: '${sub}'\n`);
+    return 1;
+  }
+  // Files to check: staged files (the hook, or run), every tracked file (--all-files), or --files.
+  const all = rest.includes('--all-files') || rest.includes('-a');
+  const only = rest.includes('--files') ? rest.slice(rest.indexOf('--files') + 1).filter((a) => !a.startsWith('-')) : null;
+  const w = workTree(r);
+  const head = headCommit(r.st);
+  const headTree = head ? r.st.commits[head].tree : {};
+  let paths: string[];
+  if (only) paths = only;
+  else if (all) paths = Object.keys(r.st.index);
+  else paths = Object.keys(r.st.index).filter((p) => r.st.index[p] !== headTree[p]);
+  paths = paths.filter((p) => w.files[p] !== undefined).sort();
+  const hookId = sub === 'run' ? rest.find((a, i) => !a.startsWith('-') && rest[i - 1] !== '--files' && !(only && only.includes(a)) && rest[i - 1] !== '-c') : undefined;
+  const marker = `${homeOf(ctx.sys, currentUser(ctx))}/.cache/pre-commit/.initialized`;
+  const init = !lookup(ctx.sys.fs, marker, actor(ctx));
+  let failed = false;
+  let ranAny = false;
+  const write = (p: string, c: string) => writeFile(ctx.sys.fs, `${repoPath === '/' ? '' : repoPath}/${p}`, c, actor(ctx), ctx.sys.now);
+  for (const rp of repos) {
+    const url = yStr(rp.repo);
+    if (url !== 'local' && url !== 'meta' && !PC_REPO_HOOKS[url]) {
+      io.err(`An error has occurred: CalledProcessError: command: ('/usr/bin/git', 'fetch', 'origin', '--tags')\nreturn code: 128\nstderr:\n    fatal: unable to access '${url}/': Could not resolve host: ${url.replace(/^https?:\/\//, '').split('/')[0]}\n(this lab has the pre-commit-hooks, shellcheck-py and gitleaks repositories, and local hooks)\n`);
+      return 3;
+    }
+    if (init && url !== 'local' && url !== 'meta') io.out(`[INFO] Initializing environment for ${url}.\n`);
+    for (const hk of yList(rp.hooks).map((h) => yMap(h))) {
+      const id = yStr(hk.id);
+      if (hookId && id !== hookId) continue;
+      const hookArgs = yList(hk.args).map(yStr);
+      let hook: PcHook | undefined;
+      if (url === 'local') {
+        const entry = yStr(hk.entry);
+        if (!entry) {
+          io.err(`An error has occurred: InvalidConfigError: \n==> File ${cfgArg}\n==> At Hook(id=${JSON.stringify(id)})\n=====> Missing required key: entry\n`);
+          return 1;
+        }
+        const passFiles = yStr(hk.pass_filenames) !== 'false';
+        hook = {
+          id,
+          name: yStr(hk.name) || id,
+          run: (files, a, c) => {
+            const buf: string[] = [];
+            const words = entry.match(/"[^"]*"|'[^']*'|\S+/g)!.map((x) => x.replace(/^["']|["']$/g, ''));
+            const cwd = c.sys.cwd;
+            c.sys.cwd = repoPath;
+            let code: number;
+            try {
+              code = runCommand(c, [...words, ...a, ...(passFiles ? files.map((f) => f.path) : [])], { stdin: '', out: (s) => buf.push(s), err: (s) => buf.push(s) });
+            } finally {
+              c.sys.cwd = cwd;
+            }
+            return { failed: code !== 0, modified: false, output: buf.join('').trimEnd() };
+          },
+        };
+      } else {
+        if (!PC_REPO_HOOKS[url]?.includes(id) && url !== 'meta') {
+          io.err(`[ERROR] \`${id}\` is not present in repository ${url}.  Typo? Perhaps it is introduced in a newer version?  Often \`pre-commit autoupdate\` fixes this.\n`);
+          return 1;
+        }
+        hook = PC_BUILTIN[id];
+        if (!hook) continue;
+      }
+      const filesRe = hk.files ? new RegExp(yStr(hk.files)) : hook.files;
+      const excludeRe = hk.exclude ? new RegExp(yStr(hk.exclude)) : null;
+      const types = yList(hk.types).map(yStr);
+      const chosen = paths.filter((p) => (!filesRe || filesRe.test(p)) && !(excludeRe && excludeRe.test(p)) && (!types.length || types.every((t) => (t === 'shell' ? /\.(sh|bash)$/.test(p) || /^#!.*\b(ba)?sh\b/.test(w.files[p]) : t === 'yaml' ? /\.ya?ml$/.test(p) : t === 'json' ? /\.json$/.test(p) : t === 'python' ? /\.py$/.test(p) : true))));
+      const label = hook.name;
+      const always = id === 'no-commit-to-branch' || yStr(hk.always_run) === 'true' || (url === 'local' && yStr(hk.pass_filenames) === 'false');
+      if (!chosen.length && !always) {
+        const tail = '(no files to check)Skipped';
+        io.out(`${label}${'.'.repeat(Math.max(3, 79 - label.length - tail.length))}${tail}\n`);
+        continue;
+      }
+      ranAny = true;
+      const res = hook.run(chosen.map((p) => ({ path: p, content: w.files[p], exec: w.exec.has(p) })), hookArgs, ctx, write);
+      const verdict = res.failed ? 'Failed' : 'Passed';
+      io.out(`${label}${'.'.repeat(Math.max(3, 79 - label.length - verdict.length))}${verdict}\n`);
+      if (res.failed) {
+        failed = true;
+        io.out(`- hook id: ${id}\n${res.modified ? '- files were modified by this hook\n' : '- exit code: 1\n'}${res.output ? `\n${res.output}\n` : ''}\n`);
+      }
+    }
+  }
+  if (init) {
+    try {
+      mkdir(ctx.sys.fs, marker.slice(0, marker.lastIndexOf('/')), actor(ctx), ctx.sys.now, true);
+      writeFile(ctx.sys.fs, marker, '', actor(ctx), ctx.sys.now);
+    } catch {
+      /* cache is best effort */
+    }
+  }
+  void ranAny;
+  return failed ? 1 : 0;
+};
+
+export const DEVOPS_COMMANDS: Record<string, Cmd> = { act, make, 'pre-commit': preCommit };
 
 void ROOT;

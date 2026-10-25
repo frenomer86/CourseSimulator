@@ -982,7 +982,12 @@ function runAction(input: CiInput, run: CiRun, job: CiJob, box: ReturnType<typeo
       if (name !== 'actions/cache/restore' && hitKey !== key) {
         post.push(() => {
           const saved: Record<string, string> = {};
-          for (const p of paths) for (const [rel, c] of Object.entries(boxFiles(box, resolve(p)))) saved[`${resolve(p)}/${rel}`.replace(/\/[^/]+$/, (m) => (rel.includes('/') || boxFiles(box, resolve(p))[rel] !== undefined ? m : m))] = c;
+          for (const p of paths) {
+            const at = resolve(p);
+            const l = lookup(box.fs, at, { user: 'root', groups: ['root'] });
+            if (l?.node.type === 'file') saved[at] = l.node.content;
+            else for (const [rel, c] of Object.entries(boxFiles(box, at))) saved[`${at}/${rel}`] = c;
+          }
           if (Object.keys(saved).length) {
             input.cache[key] = saved;
             job.steps.push({ number: job.steps.length + 1, name: `Post ${step.name}`, conclusion: 'success', seconds: 1, log: [`Cache saved with key: ${key}`] });

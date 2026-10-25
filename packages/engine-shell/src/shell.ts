@@ -849,7 +849,12 @@ function getVar(ctx: Ctx, name: string): string | undefined {
   if (name === '@' || name === '*') return ctx.params.join(' ');
   if (name === 'PWD') return ctx.sys.cwd;
   if (name === 'HOME' && ctx.vars.HOME === undefined) return homeOf(ctx.sys, currentUser(ctx));
-  if (name === 'RANDOM') return String(Math.floor(Math.random() * 32768));
+  if (name === 'RANDOM') {
+    // A seeded generator kept in the machine state: values vary from call to call, but a lab replays the same sequence.
+    const next = (Math.imul(ctx.sys.randomSeed ?? 20261022, 1103515245) + 12345) >>> 0;
+    ctx.sys.randomSeed = next;
+    return String((next >>> 16) & 0x7fff);
+  }
   if (name === 'UID') return String(ctx.sys.users[currentUser(ctx)]?.uid ?? 0);
   if (name === 'HOSTNAME') return ctx.sys.hostname;
   if (name === 'LINENO') return ctx.vars.LINENO ?? '1';

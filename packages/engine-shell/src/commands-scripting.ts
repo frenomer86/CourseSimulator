@@ -164,11 +164,16 @@ export function shellcheckFindings(src: string): Finding[] {
     if (hd && !/<<</.test(raw)) heredoc = hd[1];
     const line = raw.replace(/^\s*#.*$/, '');
     if (!line.trim()) return;
-    for (const m of line.matchAll(/(?:^|[;&|]\s*|\b(?:local|declare|readonly|export|typeset)\s+(?:-\w+\s+)*)([A-Za-z_][A-Za-z0-9_]*)(?:\[[^\]]*\])?\+?=/g)) assigned.add(m[1]);
+    for (const m of line.matchAll(/(?:^\s*|[;&|]\s*|\b(?:then|do|else)\s+|\b(?:local|declare|readonly|export|typeset)\s+(?:-\w+\s+)*)([A-Za-z_][A-Za-z0-9_]*)(?:\[[^\]]*\])?\+?=/g)) assigned.add(m[1]);
     for (const m of line.matchAll(/\b(?:for|select)\s+([A-Za-z_]\w*)\s+in\b|\bfor\s*\(\(\s*([A-Za-z_]\w*)/g)) assigned.add(m[1] ?? m[2]);
-    for (const m of line.matchAll(/\bread((?:\s+[^\s;&|)]+)*)/g)) {
+    for (const m of line.matchAll(/\bread\b(.*)$/g)) {
       // Options -a -d -i -n -N -p -t -u take a value (-a names an array); every other word is a variable.
-      const words = m[1].trim().split(/\s+/).filter(Boolean);
+      // Words are split like the shell does (quotes keep spaces); ; & | < > end the command.
+      const words: string[] = [];
+      for (const t of m[1].match(/"[^"]*"|'[^']*'|[;&|<>]+|[^\s;&|<>"']+/g) ?? []) {
+        if (/^[;&|<>]/.test(t)) break;
+        words.push(t);
+      }
       for (let k = 0; k < words.length; k++) {
         const w = words[k];
         if (w.startsWith('-')) {
@@ -210,6 +215,8 @@ export function shellcheckFindings(src: string): Finding[] {
       }
       if (q === '"') {
         if (c === '"') q = '';
+        // "$(...)" opens a new quoting context: skip it whole, quotes inside included.
+        else if (c === '$' && line[i + 1] === '(') i = skipParen(line, i + 1);
         continue;
       }
       if (c === "'" || c === '"') {
@@ -247,7 +254,7 @@ export function shellcheckFindings(src: string): Finding[] {
         i = end;
         continue;
       }
-      const m = /^\$(\{[^}]*\}|[A-Za-z_][A-Za-z0-9_]*|[@*])/.exec(line.slice(i));
+      const m = /^\$(\{[^}]*\}|[A-Za-z_][A-Za-z0-9_]*|[0-9]|[@*])/.exec(line.slice(i));
       if (!m) continue;
       const name = m[1].replace(/^\{|\}$/g, '');
       if (/^[@*]$/.test(name) || /\[[@*]\]$/.test(name)) add(n, i, m[0].length, 2068, 'error', 'Double quote array expansions to avoid re-splitting elements.');

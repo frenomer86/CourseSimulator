@@ -640,7 +640,7 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
       if (!n) io.out(`${f}: cannot open (No such file or directory)\n`);
       else if (n.type === 'dir') io.out(`${f}: directory\n`);
       else if (n.type === 'link') io.out(`${f}: symbolic link to ${n.target}\n`);
-      else if (n.content.startsWith('#CSLAB-TAR')) io.out(`${f}: POSIX tar archive${f.endsWith('.gz') || f.endsWith('.tgz') ? ' (gzip compressed data)' : ''}\n`);
+      else if (n.content.replace(/^#CSLAB-GZ[^\n]*\n/, '').startsWith('#CSLAB-TAR')) io.out(`${f}: POSIX tar archive${f.endsWith('.gz') || f.endsWith('.tgz') ? ' (gzip compressed data)' : ''}\n`);
       else if (n.content.startsWith('#CSLAB-GZ')) io.out(`${f}: gzip compressed data\n`);
       else if (n.content.startsWith('#!')) io.out(`${f}: ${n.content.slice(2, n.content.indexOf('\n'))} script, ASCII text executable\n`);
       else if (n.content === '') io.out(`${f}: empty\n`);
@@ -817,7 +817,9 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
     // Accept "tar -czvf file.tar.gz a b", "tar czf ...", "tar -xzf file -C dir", "tar -tf file".
     let flags = args[0] ?? '';
     if (!flags.startsWith('-')) flags = '-' + flags;
-    const o = parseOpts([flags, ...args.slice(1)], ['f', 'C']);
+    const longs = args.filter((a) => a.startsWith('--'));
+    const longVal = (name: string) => longs.find((a) => a.startsWith(`--${name}=`))?.slice(name.length + 3);
+    const o = parseOpts([flags, ...args.slice(1).filter((a) => !a.startsWith('--'))], ['f', 'C']);
     const mode = o.flags.has('c') ? 'c' : o.flags.has('x') ? 'x' : o.flags.has('t') ? 't' : null;
     if (!mode) {
       io.err("tar: You must specify one of the '-c', '-x' or '-t' options\n");
@@ -856,8 +858,32 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
         }
         if (r.startsWith('/')) io.err("tar: Removing leading `/' from member names\n");
       }
+      // GNU tar options that make archives reproducible: fixed order, times and owners.
+      if (longVal('sort') === 'name') entries.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+      const mt = longVal('mtime');
+      if (mt !== undefined) {
+        const t = /^@(\d+)$/.test(mt) ? Number(mt.slice(1)) * 1000 : Date.parse(mt.replace(/^'|'$/g, ''));
+        if (!Number.isNaN(t)) for (const e of entries) e.mtime = t;
+      }
+      const ow = longVal('owner');
+      const gr = longVal('group');
+      for (const e of entries) {
+        if (ow !== undefined) e.owner = ow.replace(/:.*$/, '');
+        if (gr !== undefined) e.group = gr.replace(/:.*$/, '');
+        if (longs.includes('--numeric-owner')) {
+          e.owner = String(ctx.sys.users[e.owner]?.uid ?? e.owner);
+          e.group = String(ctx.sys.groups[e.group]?.gid ?? e.group);
+        }
+      }
+      // gzip (-z) stores the time of compression unless told not to (GZIP=-n).
+      const gz = o.flags.has('z') ? (/(^|\s)-n\b/.test(ctx.vars.GZIP ?? '') ? '#CSLAB-GZ\n' : `#CSLAB-GZ mtime=${Math.floor(ctx.sys.now / 1000)}\n`) : '';
+      const data = gz + '#CSLAB-TAR\n' + JSON.stringify(entries);
+      if (archive === '-') {
+        io.out(data);
+        return 0;
+      }
       try {
-        writeFile(ctx.sys.fs, abs(ctx, archive), '#CSLAB-TAR\n' + JSON.stringify(entries), actor(ctx), ctx.sys.now);
+        writeFile(ctx.sys.fs, abs(ctx, archive), data, actor(ctx), ctx.sys.now);
       } catch (e) {
         io.err(`tar: ${errText(e, archive)}: Cannot open\n`);
         return 2;
@@ -866,11 +892,12 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
     }
     let raw: string;
     try {
-      raw = readFile(ctx.sys.fs, abs(ctx, archive), actor(ctx));
+      raw = archive === '-' ? io.stdin : readFile(ctx.sys.fs, abs(ctx, archive), actor(ctx));
     } catch (e) {
       io.err(`tar: ${errText(e, archive)}: Cannot open\n`);
       return 2;
     }
+    raw = raw.replace(/^#CSLAB-GZ[^\n]*\n/, '');
     if (!raw.startsWith('#CSLAB-TAR\n')) {
       io.err('tar: This does not look like a tar archive\ntar: Exiting with failure status due to previous errors\n');
       return 2;
@@ -915,15 +942,25 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
   gzip: (args, io, ctx) => {
     const o = parseOpts(args);
     if (o.flags.has('d')) return FILE_COMMANDS.gunzip(o.rest, io, ctx);
+    // The header records a time stamp unless -n is given; reproducible builds need -n.
+    const header = (when: number) => (o.flags.has('n') || /(^|\s)-n\b/.test(ctx.vars.GZIP ?? '') ? '#CSLAB-GZ\n' : `#CSLAB-GZ mtime=${Math.floor(when / 1000)}\n`);
+    if (!o.rest.length || o.rest[0] === '-') {
+      io.out(header(ctx.sys.now) + io.stdin.replace(/^#CSLAB-GZ[^\n]*\n/, ''));
+      return 0;
+    }
     let code = 0;
     for (const f of o.rest) {
       try {
         const content = readFile(ctx.sys.fs, abs(ctx, f), actor(ctx));
+        if (o.flags.has('c')) {
+          io.out(header(lookup(ctx.sys.fs, abs(ctx, f), actor(ctx))?.node.mtime ?? ctx.sys.now) + content);
+          continue;
+        }
         if (f.endsWith('.gz')) {
           io.err(`gzip: ${f} already has .gz suffix -- unchanged\n`);
           continue;
         }
-        writeFile(ctx.sys.fs, abs(ctx, f) + '.gz', content.startsWith('#CSLAB-TAR') ? content : '#CSLAB-GZ\n' + content, actor(ctx), ctx.sys.now);
+        writeFile(ctx.sys.fs, abs(ctx, f) + '.gz', header(lookup(ctx.sys.fs, abs(ctx, f), actor(ctx))?.node.mtime ?? ctx.sys.now) + content, actor(ctx), ctx.sys.now);
         if (!o.flags.has('k')) remove(ctx.sys.fs, abs(ctx, f), actor(ctx), false);
       } catch (e) {
         io.err(`gzip: ${errText(e, f)}\n`);
@@ -942,7 +979,7 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
           continue;
         }
         const content = readFile(ctx.sys.fs, abs(ctx, f), actor(ctx));
-        writeFile(ctx.sys.fs, abs(ctx, f.slice(0, -3)), content.startsWith('#CSLAB-GZ\n') ? content.slice('#CSLAB-GZ\n'.length) : content, actor(ctx), ctx.sys.now);
+        writeFile(ctx.sys.fs, abs(ctx, f.slice(0, -3)), content.replace(/^#CSLAB-GZ[^\n]*\n/, ''), actor(ctx), ctx.sys.now);
         remove(ctx.sys.fs, abs(ctx, f), actor(ctx), false);
       } catch (e) {
         io.err(`gzip: ${errText(e, f)}\n`);
@@ -955,7 +992,7 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
     for (const f of args) {
       try {
         const c = readFile(ctx.sys.fs, abs(ctx, f), actor(ctx));
-        io.out(c.startsWith('#CSLAB-GZ\n') ? c.slice('#CSLAB-GZ\n'.length) : c);
+        io.out(c.replace(/^#CSLAB-GZ[^\n]*\n/, ''));
       } catch (e) {
         io.err(`zcat: ${errText(e, f)}\n`);
         return 1;

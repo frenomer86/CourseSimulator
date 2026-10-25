@@ -359,6 +359,17 @@ export function ensurePrRuns(ctx: Ctx, db: ForgeDb, pr: ForgePr): void {
   saveDb(ctx, db);
 }
 
+/** A repository that came with the lab has already run CI on its default branch: run it the first time anyone looks. */
+export function ensureBranchRuns(ctx: Ctx, db: ForgeDb, key: string): void {
+  const repo = db.repos[key];
+  if (!repo) return;
+  const st = repoState(ctx, key);
+  const sha = st.branches[repo.defaultBranch];
+  if (!sha || (db.runs as CiRun[]).some((r) => r.repo === key && r.sha === sha)) return;
+  if (!triggerRuns(ctx, db, key, 'push', `refs/heads/${repo.defaultBranch}`, sha, st.commits[sha].author, undefined, undefined).length) return;
+  saveDb(ctx, db);
+}
+
 export function prChecks(db: ForgeDb, pr: ForgePr, sha: string | null): Mergeability['checks'] {
   const runs = (db.runs as CiRun[]).filter((r) => r.repo === pr.repo && r.sha === sha && (r.pr === pr.number || r.event === 'push'));
   const latest = new Map<string, Mergeability['checks'][number]>();
@@ -1163,6 +1174,7 @@ function ghRun(g: Gh, sub: string, args: string[]): number {
   const { key, local } = targetRepo(g, args);
   const io = g.io;
   const db = g.db;
+  ensureBranchRuns(g.ctx, db, key);
   const runs = (db.runs as CiRun[]).filter((r) => r.repo === key);
   const pos = positional(args, ['-w', '--workflow', '-b', '--branch', '-L', '--limit', '-s', '--status', '-e', '--event', '-c', '--commit', '--json', '--jq', '-q', '-j', '--job', '-n', '--name', '-D', '--dir', '-u', '--user']);
   const byId = (id: string | undefined) => (id ? runs.find((r) => r.id === Number(id)) ?? fail(`HTTP 404: Not Found (https://${db.host}/api/v3/repos/${key}/actions/runs/${id})`) : latestRunFor(g, key, local));

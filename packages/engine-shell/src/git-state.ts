@@ -318,7 +318,14 @@ export function seedRepo(repo: string, commits: SeedCommit[], tags: Record<strin
   }
   st.index = { ...headTree };
   if (opts.executable) st.x = opts.executable.filter((p) => headTree[p] !== undefined);
-  const files: Record<string, string | { content: string; mode: string }> = { [`${base}/${STATE}`]: JSON.stringify(st), [`${base}/.git/HEAD`]: `ref: refs/heads/${st.head.branch}\n` };
+  const files: Record<string, string | { content: string; mode: string }> = {
+    [`${base}/${STATE}`]: JSON.stringify(st),
+    [`${base}/.git/HEAD`]: `ref: refs/heads/${st.head.branch}\n`,
+    // Every repository has a hooks folder with samples, and info/exclude.
+    [`${base}/.git/hooks/pre-commit.sample`]: { content: '#!/bin/sh\n# To enable this hook, rename this file to "pre-commit".\n', mode: '755' },
+    [`${base}/.git/hooks/commit-msg.sample`]: { content: '#!/bin/sh\n# To enable this hook, rename this file to "commit-msg".\n', mode: '755' },
+    [`${base}/.git/info/exclude`]: '# git ls-files --others --exclude-from=.git/info/exclude\n',
+  };
   for (const [p, content] of Object.entries(headTree)) files[`${base}/${p}`] = opts.executable?.includes(p) ? { content, mode: '755' } : content;
   return files;
 }
