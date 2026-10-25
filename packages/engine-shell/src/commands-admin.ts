@@ -2,10 +2,11 @@
 
 import { dockerHttp } from './commands-docker.js';
 import { lookup, readFile, remove, writeFile, mkdir, copy } from './fs.js';
-import { allocGid, groupName, homeOf, isSudoer, nextUid, serviceFaults, type ShellSystem } from './system.js';
+import { allocGid, groupName, homeOf, isSudoer, nextUid, serviceFaults, syncEtc, type ShellSystem } from './system.js';
 import { actor, currentUser, runCommand, type Ctx } from './shell.js';
 import { abs, errText, fullDate, humanSize, lines, parseOpts, strftime, type IO } from './util.js';
 import { MAN_PAGES } from './man.js';
+import { sha256, toBase64 } from './hash.js';
 
 const ROOT_ACTOR = { user: 'root', groups: ['root'] };
 
@@ -256,6 +257,7 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     const uid = o.values.u ? Number(o.values.u) : nextUid(sys);
     const home = o.values.d ?? `/home/${name}`;
     sys.users[name] = { uid, gid, home, shell: o.values.s ?? '/bin/bash', groups: [groupName(sys, gid), ...extra], comment: o.values.c ?? '', password: 'none', lastChanged: sys.now };
+    if (o.values.e) sys.users[name].expireDate = expiryOf(o.values.e);
     for (const g of extra) if (!sys.groups[g].members.includes(name)) sys.groups[g].members.push(name);
     if (o.flags.has('m') || o.flags.has('create-home')) {
       const root = { user: 'root', groups: ['root'] };
@@ -337,6 +339,7 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     }
     if (o.values.s) u.shell = o.values.s;
     if (o.values.c !== undefined) u.comment = o.values.c;
+    if (o.values.e !== undefined) u.expireDate = expiryOf(o.values.e);
     if (o.values.d) u.home = o.values.d;
     if (o.flags.has('L')) u.password = 'locked';
     if (o.flags.has('U')) u.password = 'set';
@@ -420,7 +423,7 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     }
     if (o.flags.has('l') || o.flags.has('u') || o.flags.has('e') || o.flags.has('S')) {
       if (o.flags.has('S')) {
-        io.out(`${name} ${u.password === 'locked' ? 'L' : u.password === 'none' ? 'NP' : 'P'} ${strftime(u.lastChanged ?? ctx.sys.now, '%m/%d/%Y')} 0 ${u.maxDays ?? 99999} 7 -1\n`);
+        io.out(`${name} ${u.password === 'locked' ? 'L' : u.password === 'none' ? 'NP' : 'P'} ${strftime(u.lastChanged ?? ctx.sys.now, '%m/%d/%Y')} ${u.minDays ?? 0} ${u.maxDays ?? 99999} ${u.warnDays ?? 7} ${u.inactiveDays ?? -1}\n`);
         return 0;
       }
       if (needRoot(ctx, io, 'passwd', 'Only root can do that.')) return 1;
@@ -468,7 +471,7 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     return 0;
   },
   chage: (args, io, ctx) => {
-    const o = parseOpts(args, ['M', 'm', 'W', 'E', 'd']);
+    const o = parseOpts(args, ['M', 'm', 'W', 'E', 'd', 'I'], { maxdays: 'M', mindays: 'm', warndays: 'W', expiredate: 'E', lastday: 'd', inactive: 'I', list: 'l' });
     const name = o.rest[0];
     const u = name ? ctx.sys.users[name] : undefined;
     if (!u) {
@@ -481,12 +484,50 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
         return 1;
       }
       const lc = u.lastChanged ?? ctx.sys.now;
-      io.out(`Last password change\t\t\t\t\t: ${lc === 0 ? 'password must be changed' : strftime(lc, '%b %d, %Y')}\nPassword expires\t\t\t\t\t: ${u.maxDays ? strftime(lc + u.maxDays * 86400000, '%b %d, %Y') : 'never'}\nPassword inactive\t\t\t\t\t: never\nAccount expires\t\t\t\t\t\t: never\nMinimum number of days between password change\t\t: 0\nMaximum number of days between password change\t\t: ${u.maxDays ?? 99999}\nNumber of days of warning before password expires\t: 7\n`);
+      const day = (ms: number) => strftime(ms, '%b %d, %Y');
+      const max = u.maxDays !== undefined && u.maxDays < 99999 ? u.maxDays : undefined;
+      const must = lc === 0;
+      const expires = must ? 'password must be changed' : max !== undefined ? day(lc + max * 86400000) : 'never';
+      const inactive = must ? 'password must be changed' : max !== undefined && u.inactiveDays !== undefined && u.inactiveDays >= 0 ? day(lc + (max + u.inactiveDays) * 86400000) : 'never';
+      io.out(`Last password change\t\t\t\t\t: ${must ? 'password must be changed' : day(lc)}\nPassword expires\t\t\t\t\t: ${expires}\nPassword inactive\t\t\t\t\t: ${inactive}\nAccount expires\t\t\t\t\t\t: ${u.expireDate !== undefined ? day(u.expireDate) : 'never'}\nMinimum number of days between password change\t\t: ${u.minDays ?? 0}\nMaximum number of days between password change\t\t: ${u.maxDays ?? 99999}\nNumber of days of warning before password expires\t: ${u.warnDays ?? 7}\n`);
       return 0;
     }
     if (needRoot(ctx, io, 'chage', 'Permission denied.')) return 1;
-    if (o.values.M) u.maxDays = Number(o.values.M);
-    if (o.values.d === '0') u.lastChanged = 0;
+    // Dates are YYYY-MM-DD or a number of days since 1970-01-01; -1 removes the setting.
+    const date = (v: string, opt: string): number | null | undefined => {
+      if (v === '-1') return null;
+      if (/^\d+$/.test(v)) return Number(v) * 86400000;
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
+      if (m) return Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+      io.err(`chage: invalid date '${v}'\n`);
+      void opt;
+      return undefined;
+    };
+    const intOpt = (k: string) => {
+      const v = o.values[k];
+      if (v === undefined) return true;
+      if (!/^-?\d+$/.test(v)) {
+        io.err(`chage: invalid numeric argument '${v}'\n`);
+        return false;
+      }
+      return true;
+    };
+    if (!['M', 'm', 'W', 'I'].every(intOpt)) return 2;
+    if (o.values.M !== undefined) u.maxDays = Number(o.values.M) < 0 ? undefined : Number(o.values.M);
+    if (o.values.m !== undefined) u.minDays = Number(o.values.m);
+    if (o.values.W !== undefined) u.warnDays = Number(o.values.W);
+    if (o.values.I !== undefined) u.inactiveDays = Number(o.values.I) < 0 ? undefined : Number(o.values.I);
+    if (o.values.E !== undefined) {
+      const d = date(o.values.E, 'E');
+      if (d === undefined) return 2;
+      u.expireDate = d === null ? undefined : d;
+    }
+    if (o.values.d !== undefined) {
+      const d = date(o.values.d, 'd');
+      if (d === undefined) return 2;
+      u.lastChanged = d === null ? ctx.sys.now : d;
+    }
+    syncEtc(ctx.sys);
     return 0;
   },
   chsh: (args, io, ctx) => {
@@ -616,6 +657,27 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
 
   /* ---------------------------------------------------------- processes */
   ps: (args, io, ctx) => {
+    // ps -u USER / -p PID / -C NAME with -o FIELDS (FIELD= hides that header).
+    const pick = (flag: string) => {
+      const i = args.findIndex((a) => a === flag || a.startsWith(flag) && a.length > flag.length && !a.startsWith('--'));
+      if (i < 0) return undefined;
+      return args[i] === flag ? args[i + 1] : args[i].slice(flag.length);
+    };
+    const users = pick('-u') ?? pick('-U');
+    const pids = pick('-p');
+    const names = pick('-C');
+    const fmt = args.flatMap((a, i) => (a === '-o' ? [args[i + 1] ?? ''] : []));
+    if (users || pids || names || fmt.length) {
+      const procs = ctx.sys.processes.filter((p) => (!users || users.split(',').includes(p.user)) && (!pids || pids.split(',').map(Number).includes(p.pid)) && (!names || names.split(',').includes(p.cmd.split(' ')[0].split('/').pop() ?? '')));
+      const cols = (fmt.length ? fmt.join(',') : 'pid,tty,time,comm').split(',').filter(Boolean).map((c) => {
+        const [key, head] = c.split('=');
+        return { key: key.toLowerCase(), head: c.includes('=') ? head : key.toUpperCase() };
+      });
+      const cell = (p: (typeof procs)[number], k: string) => (k === 'pid' ? String(p.pid) : k === 'user' || k === 'uname' ? p.user : k === 'comm' ? (p.cmd.split(' ')[0].split('/').pop() ?? '') : k === 'cmd' || k === 'args' || k === 'command' ? p.cmd : k === '%cpu' || k === 'pcpu' ? p.cpu.toFixed(1) : k === '%mem' || k === 'pmem' ? p.mem.toFixed(1) : k === 'tty' ? 'pts/0' : k === 'time' ? '00:00:00' : k === 'ppid' ? String(p.pid === 1 ? 0 : 1) : '-');
+      if (cols.some((c) => c.head)) io.out(cols.map((c) => c.head.padStart(c.key === 'pid' ? 7 : 0)).join(' ').trimEnd() + '\n');
+      for (const p of procs) io.out(cols.map((c) => (c.key === 'pid' ? cell(p, c.key).padStart(7) : cell(p, c.key))).join(' ') + '\n');
+      return procs.length ? 0 : 1;
+    }
     const all = args.some((a) => /a|e/.test(a)) || args.includes('aux') || args.includes('-ef');
     const me = currentUser(ctx);
     const procs = ctx.sys.processes.filter((p) => all || p.user === me);
@@ -731,10 +793,10 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
         return s.active ? 0 : 3;
       }
       case 'is-active':
-        io.out((s.active ? 'active' : 'inactive') + '\n');
+        if (!o.flags.has('quiet') && !o.flags.has('q')) io.out((s.active ? 'active' : 'inactive') + '\n');
         return s.active ? 0 : 3;
       case 'is-enabled':
-        io.out((s.enabled ? 'enabled' : 'disabled') + '\n');
+        if (!o.flags.has('quiet') && !o.flags.has('q')) io.out((s.enabled ? 'enabled' : 'disabled') + '\n');
         return s.enabled ? 0 : 1;
       case 'start':
       case 'restart':
@@ -768,7 +830,14 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
         return 0;
       case 'daemon-reload':
         return 0;
-      case 'cat':
+      case 'cat': {
+        const uf = (s as typeof s & { unitFile?: string }).unitFile;
+        const own = uf ? lookup(sys.fs, uf, { user: 'root', groups: ['root'] }) : null;
+        if (own && own.node.type === 'file') {
+          io.out(`# ${uf}\n${own.node.content}`);
+          return 0;
+        }
+      }
         io.out(`# /usr/lib/systemd/system/${unit}.service\n[Unit]\nDescription=${s.description}\nAfter=network.target\n\n[Service]\nExecStart=/usr/sbin/${unit}\nRestart=on-failure\n\n[Install]\nWantedBy=multi-user.target\n`);
         return 0;
     }
@@ -948,6 +1017,24 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     const type = o.values.t ?? 'ed25519';
     const home = homeOf(ctx.sys, currentUser(ctx));
     const file = o.values.f ? abs(ctx, o.values.f) : `${home}/.ssh/id_${type}`;
+    // -l prints the fingerprint of an existing key instead of making a new one.
+    if (o.flags.has('l')) {
+      let text: string;
+      try {
+        text = readFile(ctx.sys.fs, file.endsWith('.pub') || !lookup(ctx.sys.fs, file + '.pub', actor(ctx)) ? file : file + '.pub', actor(ctx));
+      } catch (e) {
+        io.err(`${file}: ${errText(e, file).replace(/^.*?: /, '')}\n`);
+        return 1;
+      }
+      const m = /^(ssh-\w+|ecdsa-[\w-]+)\s+(\S+)(?:\s+(.*))?$/m.exec(text);
+      if (!m) {
+        io.err(`${file} is not a public key file.\n`);
+        return 1;
+      }
+      const bits = /ed25519/.test(m[1]) ? 256 : /ecdsa/.test(m[1]) ? 256 : 3072;
+      io.out(`${bits} SHA256:${toBase64(sha256(m[2])).slice(0, 43)} ${m[3] ?? 'no comment'} (${m[1].replace(/^ssh-/, '').toUpperCase()})\n`);
+      return 0;
+    }
     try {
       mkdir(ctx.sys.fs, `${home}/.ssh`, actor(ctx), ctx.sys.now, true);
       const d = lookup(ctx.sys.fs, `${home}/.ssh`, actor(ctx))!.node;
@@ -1179,21 +1266,30 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
   whatis: (args, io) => ADMIN_COMMANDS.apropos(args, io, undefined as unknown as Ctx),
 };
 
+/** useradd/usermod -e: an expiry date as YYYY-MM-DD; an empty value or -1 means never. */
+function expiryOf(v: string): number | undefined {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
+  return m ? Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : undefined;
+}
+
 function killByName(args: string[], io: IO, ctx: Ctx, cmd: string): number {
-  const o = parseOpts(args, ['u']);
+  const o = parseOpts(args, ['u', 's']);
   const name = o.rest[0];
-  if (!name) {
+  // pkill -u USER (with or without a name) matches that user's processes.
+  const owner = o.values.u;
+  if (!name && !owner) {
     io.err(`${cmd}: no process name given\n`);
     return 2;
   }
   const before = ctx.sys.processes.length;
   const me = currentUser(ctx);
-  const mine = ctx.sys.processes.filter((p) => (p.cmd.split(' ')[0].split('/').pop() ?? '') === name || (o.flags.has('f') && p.cmd.includes(name)));
+  const mine = ctx.sys.processes.filter((p) => (!owner || p.user === owner) && (!name || (p.cmd.split(' ')[0].split('/').pop() ?? '') === name || (o.flags.has('f') && p.cmd.includes(name))));
   const denied = mine.filter((p) => me !== 'root' && p.user !== me);
   for (const p of denied) io.err(`${cmd}: killing pid ${p.pid} failed: Operation not permitted\n`);
   ctx.sys.processes = ctx.sys.processes.filter((p) => !mine.includes(p) || denied.includes(p) || p.cmd === '-bash' || p.pid === 1);
   if (ctx.sys.processes.length === before && !denied.length) {
-    io.err(`${cmd}: no process found\n`);
+    // pkill is silent when nothing matches; killall says so.
+    if (cmd !== 'pkill') io.err(`${cmd}: no process found\n`);
     return 1;
   }
   return denied.length ? 1 : 0;
@@ -1289,7 +1385,7 @@ function pkgManager(args: string[], io: IO, ctx: Ctx, flavour: 'zypper' | 'apt' 
     else io.out(ups.length ? `S | Repository  | Name${' '.repeat(10)}| Current Version | Available Version | Arch\n--+-------------+---------------+-----------------+-------------------+-------\n${ups.map(([n, p]) => `v | Main Update | ${n.padEnd(14)}| ${p.version.padEnd(16)}| ${p.available!.padEnd(18)}| x86_64\n`).join('')}` : 'No updates found.\n');
     return 0;
   }
-  if (['upgrade', 'up', 'dist-upgrade', 'dup', 'patch', 'full-upgrade'].includes(verb) && currentUser(ctx) === 'root' && Object.values(sys.packages).some((p) => p.installed && p.available && p.available !== p.version)) {
+  if ((['upgrade', 'up', 'dist-upgrade', 'dup', 'patch', 'full-upgrade'].includes(verb) || (flavour !== 'apt' && verb === 'update')) && currentUser(ctx) === 'root' && Object.values(sys.packages).some((p) => p.installed && p.available && p.available !== p.version)) {
     const locks = readLocks();
     const want = names.length ? names : Object.keys(sys.packages);
     const ups = want.filter((n) => sys.packages[n]?.installed && sys.packages[n].available && sys.packages[n].available !== sys.packages[n].version);

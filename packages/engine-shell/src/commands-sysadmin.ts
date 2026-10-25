@@ -511,9 +511,9 @@ function sudoersFiles(sys: ShellSystem): Array<{ path: string; text: string }> {
   return [...(main !== null ? [{ path: '/etc/sudoers', text: main }] : []), ...ls(sys, '/etc/sudoers.d').filter((e) => e.node.type === 'file' && !e.name.includes('.') && !e.name.endsWith('~')).map((e) => ({ path: `/etc/sudoers.d/${e.name}`, text: (e.node as { content: string }).content }))];
 }
 
-export function sudoersProblems(sys: ShellSystem): string[] {
+export function sudoersProblems(sys: ShellSystem, files = sudoersFiles(sys)): string[] {
   const out: string[] = [];
-  for (const f of sudoersFiles(sys)) {
+  for (const f of files) {
     for (const [i, raw] of f.text.split('\n').entries()) {
       const l = raw.replace(/#(?!include).*/, '').trim();
       if (!l || /^#include/.test(l) || /^@include/.test(l)) continue;
@@ -1102,11 +1102,13 @@ export const SYSADMIN_COMMANDS: Record<string, Cmd> = {
     if (svc && !st.services.includes(svc)) st.services.push(svc);
     if (port && !st.ports.includes(port)) st.ports.push(port);
     if (fwd && !st.forwards.includes(fwd)) st.forwards.push(fwd);
-    if (o.values['add-rich-rule'] && !st.rich.includes(o.values['add-rich-rule'])) st.rich.push(o.values['add-rich-rule']);
+    // firewalld stores rich rules in its canonical form: double quotes, single spaces.
+    const canon = (r: string) => r.replace(/'/g, '"').replace(/\s+/g, ' ').trim();
+    if (o.values['add-rich-rule'] && !st.rich.includes(canon(o.values['add-rich-rule']))) st.rich.push(canon(o.values['add-rich-rule']));
     if (o.values['remove-service']) st.services = st.services.filter((s) => s !== o.values['remove-service']);
     if (o.values['remove-port']) st.ports = st.ports.filter((s) => s !== o.values['remove-port']);
     if (o.values['remove-forward-port']) st.forwards = st.forwards.filter((s) => s !== o.values['remove-forward-port']);
-    if (o.values['remove-rich-rule']) st.rich = st.rich.filter((s) => s !== o.values['remove-rich-rule']);
+    if (o.values['remove-rich-rule']) st.rich = st.rich.filter((s) => s !== canon(o.values['remove-rich-rule']!));
     if (o.flags.has('add-masquerade')) st.masquerade = true;
     if (o.flags.has('remove-masquerade')) st.masquerade = false;
     const changed = [svc, port, fwd, o.values['add-rich-rule'], o.values['remove-service'], o.values['remove-port'], o.values['remove-forward-port'], o.values['remove-rich-rule']].some((x) => x !== undefined) || o.flags.has('add-masquerade') || o.flags.has('remove-masquerade');
@@ -1473,6 +1475,24 @@ export const SYSADMIN_COMMANDS: Record<string, Cmd> = {
     return 1;
   },
   visudo: (args, io, ctx) => {
+    // visudo -c checks everything; visudo -cf FILE (or -c -f FILE) checks one file.
+    const fIdx = args.findIndex((a) => a === '-f' || a === '-cf' || a === '-fc');
+    const one = fIdx >= 0 ? args[fIdx + 1] : undefined;
+    if (args.some((a) => /^-[a-z]*c/.test(a)) && one) {
+      const path = abs(ctx, one);
+      const text = rd(ctx.sys, path);
+      if (text === null) {
+        io.err(`visudo: unable to open ${one}: No such file or directory\n`);
+        return 1;
+      }
+      const bad = sudoersProblems({ ...ctx.sys, fs: ctx.sys.fs } as ShellSystem, [{ path: one, text }]);
+      if (bad.length) {
+        io.err(bad.map((x) => `${x}\n`).join('') + 'parse error\n');
+        return 1;
+      }
+      io.out(`${one}: parsed OK\n`);
+      return 0;
+    }
     if (args.includes('-c')) {
       const p = sudoersProblems(ctx.sys);
       if (p.length) {
@@ -1487,6 +1507,32 @@ export const SYSADMIN_COMMANDS: Record<string, Cmd> = {
   sudo: (args, io, ctx) => {
     const sys = ctx.sys;
     const me = currentUser(ctx);
+    // sudo -l -U USER: root lists what another user may run.
+    const uIdx = args.indexOf('-U');
+    if (args.includes('-l') && uIdx >= 0) {
+      const who = args[uIdx + 1] ?? '';
+      if (!isSudoer(sys, me)) {
+        io.err(`Sorry, user ${me} is not allowed to list another user's privileges.\n`);
+        return 1;
+      }
+      const u = sys.users[who];
+      if (!u) {
+        io.err(`sudo: unknown user ${who}\n`);
+        return 1;
+      }
+      const groups = new Set([groupName(sys, u.gid), ...u.groups]);
+      if (isSudoer(sys, who)) {
+        io.out(`User ${who} may run the following commands on ${sys.hostname}:\n    (ALL : ALL) ALL\n`);
+        return 0;
+      }
+      const mine = sudoRules(sys).filter((r) => (r.who.startsWith('%') ? groups.has(r.who.slice(1)) : r.who === who));
+      if (!mine.length) {
+        io.out(`User ${who} is not allowed to run sudo on ${sys.hostname}.\n`);
+        return 0;
+      }
+      io.out(`User ${who} may run the following commands on ${sys.hostname}:\n${mine.map((r) => `    (root) ${r.nopasswd ? 'NOPASSWD: ' : ''}${r.commands.join(', ')}\n`).join('')}`);
+      return 0;
+    }
     if (isSudoer(sys, me) && !sudoersProblems(sys).length) return ADMIN_COMMANDS.sudo(args, io, ctx);
     if (sudoersProblems(sys).length && me !== 'root') {
       io.err(`>>> /etc/sudoers.d: syntax error <<<\nsudo: parse error in ${sudoersProblems(sys)[0].split(':')[0]}\nsudo: no valid sudoers sources found, quitting\n`);

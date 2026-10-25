@@ -8,8 +8,8 @@
 
 import { effectivePolicy, parseManifest, policyScopes, routeStream, streamWrite } from './lang.js';
 import { listDir, lookup, mkdir, readFile, remove, writeFile, type FsNode } from '../fs.js';
-import { ALIASES, CMDLET_TABLE, NATIVE_TABLE, asList, canonical, cmdletNames, isObj, isSecure, machine, prop, register, render, SECURE, toVfs, toWin, type Cx, type Obj, type Value } from './core.js';
-import { binaryOp, construct, convertTo, errorRecord, formatDate, getMember, getVariable, importModuleText, invokeMethod, isBlock, isDate, isHash, isSpan, makeDate, makeSpan, msOf, num, parseDateText, reportError, runBlock, setVariable, signatureStatus, simpleHash, str, truthy, typeNameOf } from './lang.js';
+import { ALIASES, CMDLET_TABLE, NATIVE_TABLE, asList, canonical, cmdletNames, isObj, isSecure, machine, prop, register, render, SECURE, show, toVfs, toWin, type Cx, type Obj, type Value } from './core.js';
+import { binaryOp, construct, jsRegex, convertTo, errorRecord, formatDate, getMember, getVariable, importModuleText, invokeMethod, isBlock, isDate, isHash, isSpan, makeDate, makeSpan, msOf, num, reportError, runBlock, setVariable, signatureStatus, simpleHash, str, truthy, typeNameOf } from './lang.js';
 import { sha1, sha256, md5 } from '../hash.js';
 
 const ROOT = { user: 'root', groups: ['root'] };
@@ -115,11 +115,13 @@ function fromJson(v: unknown, asHash: boolean): Value {
     for (const [k, x] of Object.entries(v as Record<string, unknown>)) o[k] = fromJson(x, asHash);
     return o;
   }
-  if (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(v)) {
-    const t = parseDateText(v.replace(/\.\d+/, '').replace(/Z$/, ''));
-    if (t !== null) return makeDate(t);
-  }
+  // Windows PowerShell 5.1 keeps ISO date strings as text (PowerShell 7 would make them DateTime).
   return v as Value;
+}
+
+/** A script block given positionally (Sort-Object { $_.Size }) as a value, if there is one. */
+function positionalBlock(cx: Cx): Value | undefined {
+  return cx.call.block !== undefined ? ((cx.call.blockValue as Obj | undefined) ?? { __type: 'block', src: cx.call.block }) : undefined;
 }
 
 /* ----------------------------------------------------------------------------- CSV */
@@ -222,6 +224,30 @@ export function itemObject(vfs: string, node: FsNode): Obj {
     Name: name,
     __extra: { FullName: win, Extension: ext, BaseName: isDir ? name : name.slice(0, name.length - ext.length), DirectoryName: win.replace(/\\[^\\]*$/, ''), Directory: win.replace(/\\[^\\]*$/, ''), Parent: win.replace(/\\[^\\]*$/, ''), PSIsContainer: isDir, CreationTime: makeDate(node.mtime || 1792661400000), LastWriteTimeUtc: makeDate(node.mtime || 1792661400000), Attributes: isDir ? 'Directory' : 'Archive', Exists: true, PSPath: `Microsoft.PowerShell.Core\\FileSystem::${win}` },
   };
+}
+
+/** The names of a regular expression's capturing groups by number (unnamed groups have none). */
+function groupNames(source: string): Array<string | undefined> {
+  const names: Array<string | undefined> = [undefined];
+  let inClass = false;
+  for (let i = 0; i < source.length; i++) {
+    const c = source[i];
+    if (c === '\\') {
+      i++;
+      continue;
+    }
+    if (inClass) {
+      if (c === ']') inClass = false;
+      continue;
+    }
+    if (c === '[') inClass = true;
+    else if (c === '(') {
+      const named = /^\?(?:P?<([A-Za-z_]\w*)>|'([A-Za-z_]\w*)')/.exec(source.slice(i + 1));
+      if (named) names.push(named[1] ?? named[2]);
+      else if (source[i + 1] !== '?') names.push(undefined);
+    }
+  }
+  return names;
 }
 
 function wildRe(pattern: string): RegExp {
@@ -496,7 +522,7 @@ register(
     },
     'sort-object': (cx) => {
       const items = [...input(cx)];
-      const raw = cx.P.property ?? (cx.pos.length ? (cx.pos.length > 1 ? cx.pos : cx.pos[0]) : undefined);
+      const raw = cx.P.property ?? (cx.pos.length ? (cx.pos.length > 1 ? cx.pos : cx.pos[0]) : positionalBlock(cx));
       const specs = raw === undefined ? [] : propSpecs(cx, raw);
       const desc = !!cx.P.descending;
       const keyed = items.map((item) => ({ item, keys: specs.length ? specs.map((s) => s.get(item)) : [item] }));
@@ -516,7 +542,7 @@ register(
       return out;
     },
     'group-object': (cx) => {
-      const raw = cx.P.property ?? (cx.pos.length ? (cx.pos.length > 1 ? cx.pos : cx.pos[0]) : undefined);
+      const raw = cx.P.property ?? (cx.pos.length ? (cx.pos.length > 1 ? cx.pos : cx.pos[0]) : positionalBlock(cx));
       const specs = raw === undefined ? [] : propSpecs(cx, raw);
       const groups = new Map<string, { name: string; values: Value[]; items: Value[] }>();
       for (const item of input(cx)) {
@@ -859,7 +885,8 @@ register(
         ex.forEach(([, v], i) => lines.push(`    -------------------------- EXAMPLE ${i + 1} --------------------------`, '', ...v.split('\n').map((l) => '    ' + l), ''));
       }
       if (!h.SYNOPSIS) lines.push('REMARKS', '    This function has no comment-based help. Add a <# .SYNOPSIS ... #> block at the start of its body.', '');
-      return [lines.join('\n')];
+      // A help object: it prints as the help page, and .Synopsis, .Description and .Examples can be read.
+      return [{ __type: 'helpinfo', __display: lines.join('\n'), Name: String(fn.Name), Synopsis: h.SYNOPSIS ?? '', Description: h.DESCRIPTION ? [{ __type: 'select', Text: h.DESCRIPTION }] : null, Examples: Object.entries(h).filter(([k]) => k.startsWith('EXAMPLE')).map(([, v]) => ({ __type: 'select', Code: v })) }];
     },
 
     /* ------------------------------------------------------------ modules, policy, signing, transcripts */
@@ -1030,6 +1057,8 @@ register(
       const path = str(cx.P.path ?? cx.P.literalpath ?? cx.pos[0] ?? `C:\\Users\\${cx.env.sys.user}\\Documents\\PowerShell_transcript.${machine(cx.env).name}.txt`);
       const vfs = toVfs(cx.env, path);
       const header = `**********************\r\nWindows PowerShell transcript start\r\nStart time: ${formatDate(cx.env.sys.now, 'yyyyMMddHHmmss')}\r\nUsername: ${cx.env.st.netbios}\\${cx.env.sys.user}\r\nRunAs User: ${cx.env.st.netbios}\\${cx.env.sys.user}\r\nMachine: ${machine(cx.env).name} (Microsoft Windows NT 10.0.20348.0)\r\nHost Application: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\n**********************\r\n`;
+      // Start-Transcript creates the folder if it does not exist yet.
+      mkdir(cx.env.sys.fs, vfs.slice(0, vfs.lastIndexOf('/')) || '/', ROOT, cx.env.sys.now, true);
       writeText(cx, path, header, !!cx.P.append);
       cx.print(`Transcript started, output file is ${toWin(vfs)}\n`);
       cx.env.vars.set('__transcript', vfs);
@@ -1080,6 +1109,52 @@ register(
         if (cx.P.newerthan !== undefined) return hits.some((l) => l!.node.mtime > msOf(convertTo('datetime', cx.P.newerthan) as Obj));
         return true;
       });
+    },
+    'select-string': (cx) => {
+      const patterns = asList(cx.P.pattern ?? cx.pos[0]).map(str);
+      if (!patterns.length) cx.fail("Cannot bind argument to parameter 'Pattern' because it is null.");
+      const cs = truthy(cx.P.casesensitive);
+      const res = patterns.map((p) => (truthy(cx.P.simplematch) ? new RegExp(p.replace(/[.+^${}()|[\]\\*?]/g, '\\$&'), cs ? 'g' : 'gi') : jsRegex(p, cs, true)));
+      // Files from -Path (wildcards allowed), FileInfo objects from the pipeline, or piped text.
+      const sources: Array<{ path?: string; lines: string[] }> = [];
+      const pathArg = cx.P.path ?? cx.P.literalpath ?? (cx.P.pattern !== undefined ? cx.pos[0] : cx.pos[1]);
+      const readSource = (vfs: string) => {
+        const l = lookup(cx.env.sys.fs, vfs, ROOT);
+        if (l?.node.type === 'file') sources.push({ path: toWin(vfs), lines: l.node.content.replace(/\r/g, '').replace(/\n$/, '').split('\n') });
+      };
+      if (pathArg !== undefined) {
+        for (const p of asList(pathArg)) {
+          const hits = expandPaths(cx, str(p)).filter((v) => lookup(cx.env.sys.fs, v, ROOT));
+          if (!hits.length) cx.fail(`Cannot find path '${resolveWin(cx, str(p))}' because it does not exist.`);
+          hits.forEach(readSource);
+        }
+      } else {
+        const text: string[] = [];
+        for (const item of cx.input ?? []) {
+          if (isObj(item) && (item as Obj).__type === 'file' && prop(item, 'FullName')) readSource(toVfs(cx.env, str(prop(item, 'FullName'))));
+          else text.push(...show(item).split('\n'));
+        }
+        if (text.length) sources.push({ lines: text });
+      }
+      const out: Value[] = [];
+      for (const src of sources) {
+        for (const [i, line] of src.lines.entries()) {
+          let found: RegExpMatchArray[] = [];
+          let k = 0;
+          for (; k < res.length; k++) {
+            res[k].lastIndex = 0;
+            found = [...line.matchAll(res[k])];
+            if (found.length) break;
+          }
+          if (truthy(cx.P.notmatch) ? found.length > 0 : !found.length) continue;
+          if (truthy(cx.P.quiet)) return [true];
+          const names = groupNames(res[Math.min(k, res.length - 1)].source);
+          const ms = (truthy(cx.P.allmatches) ? found : found.slice(0, 1)).map((m) => ({ __type: 'select', __display: m[0], Value: m[0], Index: m.index ?? 0, Length: m[0].length, Groups: [...m].map((g, gi) => ({ __type: 'select', __display: g ?? '', Name: names[gi] ?? String(gi), Value: g ?? '', Success: g !== undefined })) }));
+          out.push({ __type: 'matchinfo', __display: src.path ? `${src.path}:${i + 1}:${line}` : line, IgnoreCase: !cs, LineNumber: i + 1, Line: line, Filename: src.path ? src.path.replace(/^.*\\/, '') : 'InputStream', Path: src.path ?? 'InputStream', Pattern: patterns[Math.min(k, patterns.length - 1)], Matches: ms });
+          if (truthy(cx.P.list)) break;
+        }
+      }
+      return truthy(cx.P.quiet) ? [false] : out;
     },
     'get-item': (cx) => {
       const p = str(cx.P.path ?? cx.P.literalpath ?? cx.pos[0] ?? '.');

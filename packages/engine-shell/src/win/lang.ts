@@ -576,7 +576,7 @@ const TYPE_ALIASES: Record<string, string> = {
   string: 'System.String', char: 'System.Char', bool: 'System.Boolean', boolean: 'System.Boolean',
   datetime: 'System.DateTime', timespan: 'System.TimeSpan', array: 'System.Array', object: 'System.Object', 'object[]': 'System.Object[]',
   hashtable: 'System.Collections.Hashtable', ordered: 'System.Collections.Specialized.OrderedDictionary', pscustomobject: 'System.Management.Automation.PSObject', psobject: 'System.Management.Automation.PSObject',
-  scriptblock: 'System.Management.Automation.ScriptBlock', securestring: 'System.Security.SecureString', pscredential: 'System.Management.Automation.PSCredential', regex: 'System.Text.RegularExpressions.Regex',
+  scriptblock: 'System.Management.Automation.ScriptBlock', securestring: 'System.Security.SecureString', pscredential: 'System.Management.Automation.PSCredential', regex: 'System.Text.RegularExpressions.Regex', xmldocument: 'System.Xml.XmlDocument', xmlelement: 'System.Xml.XmlElement',
   version: 'System.Version', guid: 'System.Guid', void: 'System.Void', math: 'System.Math', convert: 'System.Convert', environment: 'System.Environment', 'io.path': 'System.IO.Path', 'io.file': 'System.IO.File', 'io.directory': 'System.IO.Directory',
   switch: 'System.Management.Automation.SwitchParameter', xml: 'System.Xml.XmlDocument', ipaddress: 'System.Net.IPAddress', mailaddress: 'System.Net.Mail.MailAddress', uri: 'System.Uri',
   'collections.arraylist': 'System.Collections.ArrayList', arraylist: 'System.Collections.ArrayList', 'text.encoding': 'System.Text.Encoding', 'text.stringbuilder': 'System.Text.StringBuilder',
@@ -587,7 +587,7 @@ export function fullTypeName(name: string): string {
   const arr = n.endsWith('[]');
   const base = arr ? n.slice(0, -2) : n;
   const k = base.toLowerCase().replace(/^system\./, '');
-  const full = TYPE_ALIASES[k] ?? TYPE_ALIASES[base.toLowerCase()] ?? (/^system\./i.test(base) ? base : /\./.test(base) ? (/^(collections|io|text|net|management|security)\./i.test(base) ? 'System.' + base : base) : 'System.' + base[0].toUpperCase() + base.slice(1));
+  const full = TYPE_ALIASES[k] ?? TYPE_ALIASES[base.toLowerCase()] ?? (/^system\./i.test(base) ? base : /\./.test(base) ? (/^(collections|io|text|net|management|security|globalization)\./i.test(base) ? 'System.' + base : base) : 'System.' + base[0].toUpperCase() + base.slice(1));
   return arr ? full + '[]' : full;
 }
 
@@ -720,7 +720,13 @@ export function convertTo(type: string, v: Value): Value {
       return l;
     }
     case 'xmldocument':
-      throw rtError('XML documents are not available in this simulator: use ConvertFrom-Json, Import-Csv or plain text.', 'RuntimeException');
+    case 'xml':
+      if (isObj(v) && (v as Obj).__type === 'xmldocument') return v;
+      try {
+        return parseXml(asList(v).map(str).join('\n'));
+      } catch (e) {
+        throw rtError(`Cannot convert value "${str(v).slice(0, 40)}" to type "System.Xml.XmlDocument". Error: "${(e as Error).message}"`, 'PSInvalidCastException');
+      }
   }
   if (/collections\.generic\.list/i.test(full)) {
     const l = [...asList(v)];
@@ -826,9 +832,10 @@ function scalarCmp(a: Value, b: Value, cs: boolean): number {
 }
 
 export function binaryOp(env: Env, op: string, l: Value, r: Value): Value {
-  const cs = op.startsWith('c') && op.length > 1 && !['contains'].includes(op) && OPERATOR_NAMES.has(op) && OPERATOR_NAMES.has(op.slice(1));
-  const base = (op.startsWith('c') || op.startsWith('i')) && OPERATOR_NAMES.has(op.slice(1)) && !OPERATOR_NAMES.has(op) ? op.slice(1) : op.startsWith('i') && OPERATOR_NAMES.has(op.slice(1)) && op !== 'in' && op !== 'is' && op !== 'isnot' ? op.slice(1) : op;
-  const csFlag = cs || (op.startsWith('c') && !OPERATOR_NAMES.has(op.slice(0)) && OPERATOR_NAMES.has(op.slice(1)));
+  // -cmatch, -inotlike, -ceq ...: a case variant of a comparison operator (but -in, -is, -isnot and -contains are names).
+  const variant = (op[0] === 'c' || op[0] === 'i') && OPERATOR_NAMES.has(op.slice(1)) && !['in', 'is', 'isnot', 'contains'].includes(op);
+  const base = variant ? op.slice(1) : op;
+  const csFlag = variant && op[0] === 'c';
   switch (base) {
     case '+':
       return add(l, r);
@@ -1058,6 +1065,11 @@ function indexValue(env: Env, v: Value, idx: Value): Value {
     return v[j] ?? null;
   }
   const list = isArr(v) ? v : [v];
+  // A regex GroupCollection is also indexed by group name: $m.Groups['status'].
+  if (typeof idx === 'string' && !/^\s*-?\d+\s*$/.test(idx)) {
+    const hit = list.find((x) => isObj(x) && str(prop(x, 'Name')).toLowerCase() === idx.toLowerCase());
+    if (hit !== undefined) return hit;
+  }
   const i = num(idx);
   const j = i < 0 ? list.length + i : i;
   return j >= 0 && j < list.length ? list[j] : null;
@@ -1070,6 +1082,12 @@ function method(name: string, args: Value[], n: number): void {
 export function invokeMethod(env: Env, v: Value, name: string, args: Value[]): Value {
   const n = name.toLowerCase();
   if (v === null || v === undefined) throw rtError('You cannot call a method on a null-valued expression.', 'RuntimeException');
+  // Event records render themselves as event XML; XML nodes give back their text.
+  if (isObj(v) && (v as Obj).__type === 'event' && n === 'toxml') return String((v as Obj).__xml ?? '');
+  if (isObj(v) && (v as Obj).__type === 'xmldocument' && n === 'save') {
+    writeFile(env.sys.fs, toVfs(env, str(args[0])), String((v as Obj).__source ?? ''), ROOT, env.sys.now);
+    return null;
+  }
   if (n === 'gettype') return typeObj(typeNameOf(v));
   if (n === 'tostring' && !(typeof v === 'number' && args.length) && !(isDate(v) && args.length)) return isDate(v) ? formatDate(msOf(v), 'dd/MM/yyyy HH:mm:ss') : str(v);
   if (n === 'equals') return scalarEq(v, args[0], true);
@@ -1337,6 +1355,12 @@ function staticMember(env: Env, type: string, name: string, args: Value[] | null
       if (n === 'empty') return '';
       if (n === 'compare') return scalarCmp(a(0), a(1), !(a(2) === true));
       return unknown();
+    case 'system.globalization.cultureinfo':
+      // Parsing in this simulator is culture-neutral, so every culture behaves like the invariant one.
+      if (n === 'invariantculture') return { __type: 'select', Name: '', DisplayName: 'Invariant Language (Invariant Country)' };
+      if (n === 'currentculture' || n === 'currentuiculture') return { __type: 'select', Name: 'en-GB', DisplayName: 'English (United Kingdom)' };
+      if (n === 'getcultureinfo') return { __type: 'select', Name: str(a(0)), DisplayName: str(a(0)) };
+      return unknown();
     case 'system.datetime':
       if (n === 'now' || n === 'utcnow') return makeDate(env.sys.now);
       if (n === 'today') {
@@ -1490,21 +1514,134 @@ function staticMember(env: Env, type: string, name: string, args: Value[] | null
   throw rtError(`Unable to find type [${type}].`, 'RuntimeException');
 }
 
+
+/** [datetime]::ParseExact with the common .NET custom format specifiers. */
 function parseExact(s: string, fmt: string): number | null {
-  const tokens = fmt.match(/yyyy|MM|dd|HH|mm|ss|M|d|H|./g) ?? [];
+  const tokens = fmt.match(/yyyy|yy|MMMM|MMM|MM|M|dddd|ddd|dd|d|HH|H|hh|h|mm|m|ss|s|fff|ff|f|tt|'[^']*'|\\.|./g) ?? [];
   let re = '^';
   const order: string[] = [];
   for (const t of tokens) {
-    if (/^(yyyy|MM|dd|HH|mm|ss|M|d|H)$/.test(t)) {
-      re += t === 'yyyy' ? '(\\d{4})' : t.length === 2 ? '(\\d{2})' : '(\\d{1,2})';
-      order.push(t[0]);
-    } else re += t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const cap = (pattern: string) => {
+      re += `(${pattern})`;
+      order.push(t);
+    };
+    if (t === 'yyyy') cap('\\d{4}');
+    else if (t === 'yy') cap('\\d{2}');
+    else if (t === 'MMMM') cap(MONTHS.join('|'));
+    else if (t === 'MMM') cap(MONTHS.map((x) => x.slice(0, 3)).join('|'));
+    else if (t === 'dddd') cap(DAYS.join('|'));
+    else if (t === 'ddd') cap(DAYS.map((x) => x.slice(0, 3)).join('|'));
+    else if (/^(MM|dd|HH|hh|mm|ss)$/.test(t)) cap('\\d{2}');
+    else if (/^(M|d|H|h|m|s)$/.test(t)) cap('\\d{1,2}');
+    else if (/^f+$/.test(t)) cap(`\\d{${t.length}}`);
+    else if (t === 'tt') cap('AM|PM|am|pm');
+    else if (t.startsWith("'")) re += t.slice(1, -1).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    else if (t.startsWith('\\')) re += t.slice(1).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    else re += t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
-  const m = new RegExp(re + '$').exec(s);
+  const m = new RegExp(re + '$', 'i').exec(s.trim());
   if (!m) return null;
-  const part: Record<string, number> = { y: 1, M: 1, d: 1, H: 0, m: 0, s: 0 };
-  order.forEach((k, i) => (part[k] = Number(m[i + 1])));
-  return Date.UTC(part.y, part.M - 1, part.d, part.H, part.m, part.s);
+  const part = { y: 1, M: 1, d: 1, H: 0, m: 0, s: 0, ms: 0, pm: -1 };
+  order.forEach((k, i) => {
+    const v = m[i + 1];
+    if (k === 'yyyy') part.y = Number(v);
+    else if (k === 'yy') part.y = 2000 + Number(v);
+    else if (k === 'MMMM' || k === 'MMM') part.M = MONTHS.findIndex((x) => x.toLowerCase().startsWith(v.toLowerCase())) + 1;
+    else if (k === 'MM' || k === 'M') part.M = Number(v);
+    else if (k === 'dd' || k === 'd') part.d = Number(v);
+    else if (k === 'HH' || k === 'H' || k === 'hh' || k === 'h') part.H = Number(v);
+    else if (k === 'mm' || k === 'm') part.m = Number(v);
+    else if (k === 'ss' || k === 's') part.s = Number(v);
+    else if (/^f+$/.test(k)) part.ms = Math.round(Number(`0.${v}`) * 1000);
+    else if (k === 'tt') part.pm = /pm/i.test(v) ? 1 : 0;
+  });
+  if (part.pm === 1 && part.H < 12) part.H += 12;
+  if (part.pm === 0 && part.H === 12) part.H = 0;
+  return Date.UTC(part.y, part.M - 1, part.d, part.H, part.m, part.s, part.ms);
+}
+
+/* ----------------------------------------------------------------------------- [xml] */
+
+/**
+ * Parses XML into PowerShell's adapted view: an element with only text becomes that text; other
+ * elements become objects whose properties are their attributes and child elements (an array when a
+ * name repeats), with any text under '#text'.
+ */
+export function parseXml(text: string): Obj {
+  let i = 0;
+  const src = text.replace(/^\uFEFF/, '');
+  const decode = (s: string) => s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&#(\d+);/g, (_, d: string) => String.fromCharCode(Number(d))).replace(/&amp;/g, '&');
+  const skip = () => {
+    for (;;) {
+      while (i < src.length && /\s/.test(src[i])) i++;
+      if (src.startsWith('<?', i)) i = src.indexOf('?>', i) + 2;
+      else if (src.startsWith('<!--', i)) i = src.indexOf('-->', i) + 3;
+      else if (src.startsWith('<!DOCTYPE', i)) i = src.indexOf('>', i) + 1;
+      else return;
+      if (i <= 1) throw new Error('unexpected end of file');
+    }
+  };
+  type Node = { name: string; attrs: Record<string, string>; children: Node[]; text: string };
+  const element = (): Node => {
+    if (src[i] !== '<') throw new Error(`Data at the root level is invalid. Line 1, position ${i + 1}.`);
+    i++;
+    const name = /^[\w:.-]+/.exec(src.slice(i))?.[0];
+    if (!name) throw new Error('Name cannot begin with this character.');
+    i += name.length;
+    const node: Node = { name, attrs: {}, children: [], text: '' };
+    for (;;) {
+      while (/\s/.test(src[i] ?? '')) i++;
+      if (src.startsWith('/>', i)) {
+        i += 2;
+        return node;
+      }
+      if (src[i] === '>') {
+        i++;
+        break;
+      }
+      const a = /^([\w:.-]+)\s*=\s*("([^"]*)"|'([^']*)')/.exec(src.slice(i));
+      if (!a) throw new Error(`'${src[i] ?? ''}' is an unexpected token in element ${name}.`);
+      node.attrs[a[1]] = decode(a[3] ?? a[4]);
+      i += a[0].length;
+    }
+    for (;;) {
+      if (i >= src.length) throw new Error(`Unexpected end of file. The element ${name} is not closed.`);
+      if (src.startsWith('</', i)) {
+        const end = src.indexOf('>', i);
+        const closing = src.slice(i + 2, end).trim();
+        if (closing !== name) throw new Error(`The '${name}' start tag does not match the end tag of '${closing}'.`);
+        i = end + 1;
+        node.text = node.text.trim();
+        return node;
+      }
+      if (src.startsWith('<!--', i)) i = src.indexOf('-->', i) + 3;
+      else if (src.startsWith('<![CDATA[', i)) {
+        const end = src.indexOf(']]>', i);
+        node.text += src.slice(i + 9, end);
+        i = end + 3;
+      } else if (src[i] === '<') node.children.push(element());
+      else {
+        const next = src.indexOf('<', i);
+        node.text += decode(src.slice(i, next < 0 ? src.length : next));
+        i = next < 0 ? src.length : next;
+      }
+    }
+  };
+  const adapt = (n: Node): Value => {
+    if (!Object.keys(n.attrs).length && !n.children.length) return n.text;
+    const o: Obj = { __type: 'xmlelement', __name: n.name, ...n.attrs };
+    for (const c of n.children) {
+      const v = adapt(c);
+      o[c.name] = c.name in o ? [...asList(o[c.name]), v] : v;
+    }
+    if (n.text) o['#text'] = n.text;
+    return o;
+  };
+  skip();
+  const root = element();
+  skip();
+  if (i < src.length) throw new Error('There are multiple root elements.');
+  return { __type: 'xmldocument', [root.name]: adapt(root), __source: src };
 }
 
 /** New-Object and [type]::new(). */
@@ -1771,6 +1908,18 @@ export function execStmt(env: Env, s: Stmt, emit: (v: Value) => void): void {
         value = op === '??' ? (old === null || old === undefined ? value : old) : binaryOp(env, op, old, value);
       }
       if (value === undefined) value = null;
+      if (s.target.t === 'array') {
+        // $a, $b = 1, 2, 3: each target takes one value and the last takes the rest.
+        const targets = s.target.items;
+        const values = asList(value);
+        targets.forEach((t, i) => {
+          const last = i === targets.length - 1;
+          const rest = values.slice(i);
+          assignTo(env, t, last ? (rest.length > 1 ? rest : rest[0] ?? null) : values[i] ?? null);
+        });
+        env.ok = true;
+        return;
+      }
       assignTo(env, s.target, value);
       env.ok = true;
       return;
@@ -2185,7 +2334,7 @@ function invokeByName(env: Env, name: string, el: Extract<Elem, { t: 'cmd' }>, i
   const ea = String(P.erroraction ?? P.ea ?? getVariable(env, 'ErrorActionPreference'));
   const ev = P.errorvariable ?? P.ev;
   // -WhatIf on a cmdlet that changes state: describe and do nothing.
-  if ((truthy(P.whatif) || (truthy(getVariable(env, 'WhatIfPreference')) && P.whatif === undefined)) && STATE_VERBS.test(resolved) && !/^(out-|export-)/.test(resolved)) {
+  if ((truthy(P.whatif) || (truthy(getVariable(env, 'WhatIfPreference')) && P.whatif === undefined)) && STATE_VERBS.test(resolved) && !/^(out-|export-|import-(csv|clixml|module|powershelldatafile|localizeddata)$)/.test(resolved)) {
     const targets = asList(P.identity ?? P.path ?? P.literalpath ?? P.name ?? P.filepath ?? call.positional[0] ?? (input?.length ? input.map((x) => prop(x, 'Name') ?? str(x)) : ''));
     for (const t of targets.length ? targets : ['']) hostWrite(env, `What if: Performing the operation "${displayVerb(resolved)}" on target "${isObj(t) ? str(prop(t, 'Name') ?? prop(t, 'DistinguishedName') ?? show(t)) : str(t)}".\n`);
     env.ok = true;

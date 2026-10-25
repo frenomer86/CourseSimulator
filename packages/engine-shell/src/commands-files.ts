@@ -43,7 +43,8 @@ export const FILE_COMMANDS: Record<string, Cmd> = {
     const targets = o.rest.length ? o.rest : ['.'];
     let code = 0;
     const sys = ctx.sys;
-    const onePerLine = o.values.N === '1';
+    // Like GNU ls: one name per line unless writing to a terminal.
+    const onePerLine = o.values.N === '1' || !io.tty;
     const fmtAll = (rows: Array<{ name: string; node: FsNode }>): string => {
       if (!long) return rows.map((r) => r.name).join(onePerLine ? '\n' : '  ');
       const w = { links: 1, owner: 1, group: 1, size: 1 };

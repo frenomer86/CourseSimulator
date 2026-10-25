@@ -7,7 +7,8 @@
  */
 
 import { lookup, mkdir, readFile, writeFile, type DirNode } from './fs.js';
-import { actor, currentUser, type Ctx } from './shell.js';
+import { actor, currentUser, makeCtx, newSession, runScript, type Ctx } from './shell.js';
+import { buildSystem } from './system.js';
 import { abs, parseOpts, type IO } from './util.js';
 
 type Cmd = (args: string[], io: IO, ctx: Ctx) => number;
@@ -39,7 +40,7 @@ export interface DockerContainer {
   exitCode: number;
   ports: Array<{ host: number; container: number }>;
   env: Record<string, string>;
-  mounts: Array<{ source: string; target: string; kind: 'bind' | 'volume' }>;
+  mounts: Array<{ source: string; target: string; kind: 'bind' | 'volume'; readOnly?: boolean }>;
   restart: string;
   network: string;
   logs: string[];
@@ -480,7 +481,7 @@ const docker: Cmd = (args, io, ctx) => {
             io.err(`docker: Error response from daemon: invalid mount config: bind source path does not exist: ${hostPath}\n`);
             return done(125);
           }
-          mounts.push({ source: hostPath, target, kind: 'bind' });
+          mounts.push({ source: hostPath, target, kind: 'bind', ...(v.split(':')[2] === 'ro' ? { readOnly: true } : {}) });
         } else {
           if (!st.volumes.includes(src)) st.volumes.push(src);
           mounts.push({ source: src, target, kind: 'volume' });
@@ -496,11 +497,14 @@ const docker: Cmd = (args, io, ctx) => {
       else if (img.base.startsWith('redis')) logs.push('Ready to accept connections tcp');
       else if (img.base.startsWith('hello-world')) logs.push('Hello from Docker!', 'This message shows that your installation appears to be working correctly.');
       if (command.startsWith('echo ')) logs.push(command.slice(5).replace(/^["']|["']$/g, ''));
-      const failed = img.base.startsWith('postgres') && !env.POSTGRES_PASSWORD;
-      const c: DockerContainer = { id, name, image: `${img.repo}:${img.tag}`, status: oneShot || failed ? 'exited' : 'running', exitCode: failed ? 1 : 0, ports, env, mounts, restart: o.values.restart ?? 'no', network: o.values.network ?? 'bridge', logs, created: ctx.sys.now };
+      // A built image whose command is a shell script it contains runs that script in isolation.
+      const scriptRun = runImageScript(ctx, img, command, env, mounts);
+      if (scriptRun) logs.push(...scriptRun.output);
+      const failed = (img.base.startsWith('postgres') && !env.POSTGRES_PASSWORD) || (scriptRun !== null && scriptRun.code !== 0);
+      const c: DockerContainer = { id, name, image: `${img.repo}:${img.tag}`, status: oneShot || failed || scriptRun ? 'exited' : 'running', exitCode: scriptRun ? scriptRun.code : failed ? 1 : 0, ports, env, mounts, restart: o.values.restart ?? 'no', network: o.values.network ?? 'bridge', logs, created: ctx.sys.now };
       if (rest.includes('--rm') && c.status === 'exited') {
         for (const l of logs) io.out(l + '\n');
-        return done();
+        return done(c.exitCode);
       }
       st.containers.push(c);
       if (rest.includes('-d') || rest.includes('--detach')) io.out(id + '\n');
@@ -508,8 +512,11 @@ const docker: Cmd = (args, io, ctx) => {
         for (const l of logs) io.out(l + '\n');
         if (c.status === 'running') io.out('(Running in the foreground. The simulator gives you your prompt back, as if you had detached with Ctrl+P Ctrl+Q. Next time use -d.)\n');
       }
-      return done(failed ? 1 : 0);
+      return done(scriptRun ? scriptRun.code : failed ? 1 : 0);
     }
+    case 'compose':
+      saveDocker(ctx, st);
+      return compose(rest, io, ctx);
     case 'ps': {
       const all = rest.includes('-a') || rest.includes('--all');
       const list = st.containers.filter((c) => all || c.status === 'running');
@@ -680,3 +687,290 @@ const docker: Cmd = (args, io, ctx) => {
 };
 
 export const DOCKER_COMMANDS: Record<string, Cmd> = { docker };
+
+/* ----------------------------------------------------------------------------- script containers */
+
+/**
+ * When an image's command (or the one given to docker run) is a shell script the image contains
+ * (COPY report.sh /usr/local/bin/ ... CMD ["/usr/local/bin/report.sh"], or sh script.sh), the
+ * script runs in a fresh, separate system holding only the image's files and environment.
+ */
+function runImageScript(ctx: Ctx, img: DockerImage, command: string, env: Record<string, string>, mounts: DockerContainer['mounts'] = []): { code: number; output: string[] } | null {
+  if (img.webRoot) return null;
+  // Bind mounts bring host files into the container: read-only ones stay unchanged, others are written back.
+  const mounted: Record<string, string> = {};
+  const walkHost = (dir: string, target: string) => {
+    const l = lookup(ctx.sys.fs, dir, ROOT);
+    if (!l) return;
+    if (l.node.type === 'file') {
+      mounted[target] = l.node.content;
+      return;
+    }
+    if (l.node.type !== 'dir') return;
+    for (const [name, child] of Object.entries(l.node.children)) {
+      if (child.type === 'dir') walkHost(`${dir}/${name}`, `${target}/${name}`);
+      else if (child.type === 'file') mounted[`${target}/${name}`] = child.content;
+    }
+  };
+  for (const m of mounts) if (m.kind === 'bind') walkHost(m.source, m.target.replace(/\/$/, ''));
+  img = { ...img, files: { ...img.files, ...mounted } };
+  const words = (command || img.cmd).match(/"[^"]*"|'[^']*'|\S+/g)?.map((w) => w.replace(/^["']|["']$/g, '')) ?? [];
+  const at = (p: string) => (p.startsWith('/') ? p : `${img.workdir.replace(/\/$/, '')}/${p}`);
+  let path: string | undefined;
+  let args: string[] = [];
+  if (words[0] && img.files[at(words[0])] !== undefined) {
+    path = at(words[0]);
+    args = words.slice(1);
+  } else if (/^(\/bin\/)?(ba)?sh$/.test(words[0] ?? '') && words[1] && img.files[at(words[1])] !== undefined) {
+    path = at(words[1]);
+    args = words.slice(2);
+  }
+  if (!path) return null;
+  const files: Record<string, { content: string; mode: string }> = {};
+  for (const [p, content] of Object.entries(img.files)) files[p] = { content, mode: '755' };
+  const box = buildSystem({ user: img.user || 'root', hostname: 'container', files, cwd: img.workdir || '/' } as never);
+  const bctx = makeCtx(box, newSession(box));
+  for (const [k, v] of Object.entries(env)) {
+    bctx.vars[k] = v;
+    bctx.exported.add(k);
+    box.env[k] = v;
+  }
+  // A read-only bind mount is read-only inside the container too.
+  for (const m of mounts.filter((x) => x.kind === 'bind' && x.readOnly)) {
+    const l = lookup(box.fs, m.target, ROOT);
+    const lock = (node: { type: string; mode: number; children?: Record<string, unknown> }) => {
+      node.mode &= ~0o222;
+      if (node.type === 'dir') for (const c of Object.values(node.children ?? {})) lock(c as never);
+    };
+    if (l) lock(l.node as never);
+  }
+  const out: string[] = [];
+  const code = runScript(bctx, img.files[path], args, path, { stdin: '', out: (t) => out.push(t), err: (t) => out.push(t) });
+  // Changes under writable bind mounts reach the host.
+  for (const m of mounts.filter((x) => x.kind === 'bind' && !x.readOnly)) {
+    const inBox = lookup(box.fs, m.target, ROOT);
+    const hostDir = lookup(ctx.sys.fs, m.source, ROOT);
+    if (!inBox || inBox.node.type !== 'dir' || !hostDir || hostDir.node.type !== 'dir') continue;
+    const sync = (boxDir: string, host: string) => {
+      const b = lookup(box.fs, boxDir, ROOT)!.node as { children: Record<string, { type: string; content?: string }> };
+      const h = lookup(ctx.sys.fs, host, ROOT)!.node as { children: Record<string, { type: string }> };
+      for (const name of Object.keys(h.children)) if (!b.children[name]) delete h.children[name];
+      for (const [name, child] of Object.entries(b.children)) {
+        if (child.type === 'dir') {
+          mkdir(ctx.sys.fs, `${host}/${name}`, ROOT, ctx.sys.now, true);
+          sync(`${boxDir}/${name}`, `${host}/${name}`);
+        } else if (child.type === 'file') writeFile(ctx.sys.fs, `${host}/${name}`, child.content ?? '', ROOT, ctx.sys.now);
+      }
+    };
+    sync(m.target, m.source);
+  }
+  return { code, output: out.join('').split('\n').filter((l, i, a) => l || i < a.length - 1) };
+}
+
+/* ----------------------------------------------------------------------------- docker compose */
+
+type Yaml = string | Yaml[] | { [k: string]: Yaml };
+
+/** The YAML a compose file uses: block maps and lists, inline lists, scalars, quotes and comments. */
+export function parseYaml(text: string): Yaml {
+  const lines = text.split('\n').map((raw, n) => ({ n: n + 1, indent: raw.length - raw.trimStart().length, text: raw.replace(/\s+#.*$/, '').replace(/^\s*#.*$/, '').trimEnd() })).filter((l) => l.text.trim());
+  let i = 0;
+  const scalar = (v: string): Yaml => {
+    const t = v.trim();
+    if (/^\[.*\]$/.test(t)) return t.slice(1, -1).split(',').map((x) => scalar(x)).filter((x) => x !== '');
+    if (/^".*"$/.test(t) || /^'.*'$/.test(t)) return t.slice(1, -1);
+    return t;
+  };
+  const block = (indent: number): Yaml => {
+    if (i >= lines.length) return '';
+    if (lines[i].text.trim().startsWith('- ') || lines[i].text.trim() === '-') {
+      const list: Yaml[] = [];
+      while (i < lines.length && lines[i].indent === indent && lines[i].text.trim().startsWith('-')) {
+        const rest = lines[i].text.trim().slice(1).trim();
+        const kv = /^([\w.-]+):(?:\s+(.*))?$/.exec(rest);
+        if (kv && !/^["']/.test(rest)) {
+          // "- key: value" starts a map inside the list.
+          const itemIndent = lines[i].indent + 2;
+          lines[i] = { ...lines[i], indent: itemIndent, text: ' '.repeat(itemIndent) + rest };
+          list.push(block(itemIndent));
+        } else {
+          i++;
+          list.push(rest ? scalar(rest) : block(lines[i]?.indent ?? indent + 2));
+        }
+      }
+      return list;
+    }
+    const map: { [k: string]: Yaml } = {};
+    while (i < lines.length && lines[i].indent === indent) {
+      const t = lines[i].text.trim();
+      const kv = /^("[^"]+"|'[^']+'|[^:]+):(?:\s+(.*))?$/.exec(t);
+      if (!kv) throw new Error(`line ${lines[i].n}: expected "key: value", got "${t}"`);
+      const key = kv[1].replace(/^["']|["']$/g, '').trim();
+      i++;
+      if (kv[2] !== undefined && kv[2] !== '') map[key] = scalar(kv[2]);
+      else if (i < lines.length && (lines[i].indent > indent || (lines[i].indent === indent && lines[i].text.trim().startsWith('- ')))) map[key] = block(lines[i].indent);
+      else map[key] = '';
+    }
+    if (i < lines.length && lines[i].indent > indent) throw new Error(`line ${lines[i].n}: unexpected indentation`);
+    return map;
+  };
+  const doc = block(lines[0]?.indent ?? 0);
+  if (i < lines.length) throw new Error(`line ${lines[i].n}: unexpected indentation`);
+  return doc;
+}
+
+function compose(args: string[], io: IO, ctx: Ctx): number {
+  let i = 0;
+  let file: string | undefined;
+  let project: string | undefined;
+  while (args[i]?.startsWith('-')) {
+    if (args[i] === '-f' || args[i] === '--file') file = args[++i];
+    else if (args[i] === '-p' || args[i] === '--project-name') project = args[++i];
+    i++;
+  }
+  const [verb, ...rest] = args.slice(i);
+  const dir = ctx.sys.cwd;
+  const candidates = file ? [abs(ctx, file)] : ['compose.yaml', 'compose.yml', 'docker-compose.yml', 'docker-compose.yaml'].map((n) => joinPath(dir, n));
+  const path = candidates.find((p) => lookup(ctx.sys.fs, p, actor(ctx)));
+  if (!path) {
+    io.err(`no configuration file provided: not found\n`);
+    return 1;
+  }
+  let doc: Yaml;
+  try {
+    doc = parseYaml(readFile(ctx.sys.fs, path, actor(ctx)));
+  } catch (e) {
+    io.err(`yaml: ${(e as Error).message}\n`);
+    return 15;
+  }
+  const baseDir = path.slice(0, path.lastIndexOf('/')) || '/';
+  const proj = (project ?? baseDir.split('/').pop() ?? 'project').toLowerCase().replace(/[^a-z0-9_-]/g, '');
+  const services = (typeof doc === 'object' && !Array.isArray(doc) ? doc.services : undefined) as { [k: string]: Yaml } | undefined;
+  if (!services || typeof services !== 'object' || Array.isArray(services)) {
+    io.err(`${path}: services must be a mapping\n`);
+    return 15;
+  }
+  const volumesDecl = typeof doc === 'object' && !Array.isArray(doc) && doc.volumes && typeof doc.volumes === 'object' && !Array.isArray(doc.volumes) ? Object.keys(doc.volumes) : [];
+  const list = (v: Yaml | undefined): string[] => (v === undefined || v === '' ? [] : Array.isArray(v) ? v.map((x) => (typeof x === 'string' ? x : '')) : typeof v === 'string' ? [v] : []);
+  const envOf = (v: Yaml | undefined): string[] => (v && typeof v === 'object' && !Array.isArray(v) ? Object.entries(v).map(([k, x]) => `${k}=${typeof x === 'string' ? x : ''}`) : list(v));
+  // Start order follows depends_on.
+  const names = Object.keys(services);
+  const order: string[] = [];
+  const visit = (n: string, seen: string[] = []) => {
+    if (order.includes(n)) return;
+    if (seen.includes(n)) throw new Error(`dependency cycle: ${[...seen, n].join(' -> ')}`);
+    const svc = services[n] as { [k: string]: Yaml };
+    const deps = svc.depends_on && typeof svc.depends_on === 'object' && !Array.isArray(svc.depends_on) ? Object.keys(svc.depends_on) : list(svc?.depends_on);
+    for (const d of deps) {
+      if (!services[d]) throw new Error(`service "${n}" depends on undefined service "${d}"`);
+      visit(d, [...seen, n]);
+    }
+    order.push(n);
+  };
+  try {
+    names.forEach((n) => visit(n));
+  } catch (e) {
+    io.err((e as Error).message + '\n');
+    return 15;
+  }
+  const cname = (n: string) => `${proj}-${n}-1`;
+  const st = () => loadDocker(ctx);
+  const quiet: IO = { stdin: '', out: () => {}, err: io.err };
+  switch (verb) {
+    case 'config':
+      io.out(readFile(ctx.sys.fs, path, actor(ctx)));
+      return 0;
+    case 'up': {
+      for (const n of order) {
+        const svc = services[n] as { [k: string]: Yaml };
+        if (typeof svc !== 'object' || Array.isArray(svc)) {
+          io.err(`service "${n}" must be a mapping\n`);
+          return 15;
+        }
+        let image = typeof svc.image === 'string' ? svc.image : '';
+        if (svc.build !== undefined) {
+          const b = svc.build;
+          const context = typeof b === 'string' ? b : typeof b === 'object' && !Array.isArray(b) && typeof b.context === 'string' ? b.context : '.';
+          image = image || `${proj}-${n}`;
+          if (!st().images.some((x) => `${x.repo}:${x.tag}` === normRef(image)) || rest.includes('--build')) {
+            const ctxDir = context.startsWith('/') ? context : joinPath(baseDir, context);
+            const code = docker(['build', '-t', image, ctxDir], quiet, ctx);
+            if (code) return code;
+          }
+        }
+        if (!image) {
+          io.err(`service "${n}" has neither an image nor a build context\n`);
+          return 15;
+        }
+        const existing = st().containers.find((c) => c.name === cname(n));
+        if (existing?.status === 'running') {
+          io.out(` ✔ Container ${cname(n)}  Running\n`);
+          continue;
+        }
+        if (existing) docker(['rm', '-f', cname(n)], quiet, ctx);
+        const runArgs = ['run', '-d', '--name', cname(n), '--network', `${proj}_default`];
+        for (const p of list(svc.ports)) runArgs.push('-p', p);
+        for (const e of envOf(svc.environment)) runArgs.push('-e', e);
+        for (const v of list(svc.volumes)) {
+          const [src, ...tgt] = v.split(':');
+          const named = !/^[./~]/.test(src);
+          if (named && !volumesDecl.includes(src)) {
+            io.err(`service "${n}" refers to undefined volume ${src}: invalid compose project\n`);
+            return 15;
+          }
+          runArgs.push('-v', `${named ? `${proj}_${src}` : src.startsWith('.') ? joinPath(baseDir, src) : src}:${tgt.join(':')}`);
+        }
+        if (typeof svc.restart === 'string') runArgs.push('--restart', svc.restart);
+        runArgs.push(image);
+        if (typeof svc.command === 'string') runArgs.push(...svc.command.split(/\s+/));
+        else if (Array.isArray(svc.command)) runArgs.push(...list(svc.command));
+        const net = st();
+        if (!net.networks.includes(`${proj}_default`)) {
+          net.networks.push(`${proj}_default`);
+          saveDocker(ctx, net);
+          io.out(` ✔ Network ${proj}_default  Created\n`);
+        }
+        const code = docker(runArgs, quiet, ctx);
+        if (code) {
+          io.err(`Error response from daemon: container ${cname(n)} failed to start\n`);
+          return code;
+        }
+        io.out(` ✔ Container ${cname(n)}  Started\n`);
+      }
+      return 0;
+    }
+    case 'ps': {
+      const cs = st().containers.filter((c) => names.some((n) => c.name === cname(n)) && (rest.includes('-a') || c.status === 'running'));
+      io.out('NAME' + ' '.repeat(Math.max(4, ...cs.map((c) => c.name.length)) - 1) + 'IMAGE'.padEnd(20) + 'SERVICE'.padEnd(10) + 'STATUS'.padEnd(14) + 'PORTS\n');
+      for (const c of cs) io.out(c.name.padEnd(Math.max(4, ...cs.map((x) => x.name.length)) + 3) + c.image.padEnd(20) + (names.find((n) => cname(n) === c.name) ?? '').padEnd(10) + (c.status === 'running' ? 'Up 2 minutes' : `Exited (${c.exitCode})`).padEnd(14) + portsText(c) + '\n');
+      return 0;
+    }
+    case 'logs': {
+      const want = rest.filter((r) => !r.startsWith('-'));
+      for (const n of order.filter((x) => !want.length || want.includes(x))) {
+        const c = st().containers.find((k) => k.name === cname(n));
+        for (const l of c?.logs ?? []) io.out(`${cname(n)}  | ${l}\n`);
+      }
+      return 0;
+    }
+    case 'down':
+    case 'stop': {
+      for (const n of [...order].reverse()) {
+        const c = st().containers.find((k) => k.name === cname(n));
+        if (!c) continue;
+        docker(verb === 'down' ? ['rm', '-f', c.name] : ['stop', c.name], quiet, ctx);
+        io.out(` ✔ Container ${c.name}  ${verb === 'down' ? 'Removed' : 'Stopped'}\n`);
+      }
+      if (verb === 'down') {
+        const after = st();
+        after.networks = after.networks.filter((x) => x !== `${proj}_default`);
+        if (rest.includes('-v') || rest.includes('--volumes')) after.volumes = after.volumes.filter((v) => !v.startsWith(`${proj}_`));
+        saveDocker(ctx, after);
+      }
+      return 0;
+    }
+    default:
+      io.err(`docker compose: '${verb ?? ''}' is not supported in this simulator (try up -d, ps, logs, stop, down, config)\n`);
+      return 1;
+  }
+}

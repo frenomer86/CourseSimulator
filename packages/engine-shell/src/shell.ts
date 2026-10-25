@@ -797,6 +797,8 @@ export interface Ctx {
   funcs: Record<string, Node>;
   params: string[];
   scriptName: string;
+  /** set -a: assignments are exported. */
+  allexport?: boolean;
   status: number;
   errexit: boolean;
   nounset: boolean;
@@ -863,6 +865,8 @@ function setVar(ctx: Ctx, name: string, value: string): void {
     return;
   }
   ctx.vars[name] = value;
+  // set -a (allexport) exports every variable that is assigned.
+  if (ctx.allexport) ctx.exported.add(name);
   if (name === 'PATH' || ctx.exported.has(name)) ctx.sys.env[name] = value;
 }
 
@@ -974,8 +978,8 @@ function doAssign(ctx: Ctx, a: Assign): void {
 function patternToRegex(pat: string, anchor: 'start' | 'end' | 'full', greedy: boolean): RegExp {
   let re = '';
   for (const c of pat) {
-    if (c === '*') re += greedy ? '.*' : '.*?';
-    else if (c === '?') re += '.';
+    if (c === '*') re += greedy ? '[\\s\\S]*' : '[\\s\\S]*?';
+    else if (c === '?') re += '[\\s\\S]';
     else re += c.replace(/[.+^${}()|[\]\\]/g, '\\$&');
   }
   if (anchor === 'start') return new RegExp('^' + re);
@@ -1058,7 +1062,9 @@ function expandParam(ctx: Ctx, inner: string): string {
   }
   let op = /^(:-|:=|:\+|:\?|-|=|\+|\?|##|#|%%|%|\/\/|\/|\^\^|\^|,,|,|:)/.exec(rest)?.[1];
   if (!op) throw new ShellSyntaxError(`bad substitution: \${${inner}}`);
-  const arg = rest.slice(op.length);
+  // $'\n' in the word of ${resp##*$'\n'} is ANSI-C quoted text; \u0001 marks each character literal.
+  const esc: Record<string, string> = { n: '\n', t: '\t', r: '\r', a: '\x07', b: '\b', e: '\x1b', E: '\x1b', f: '\f', v: '\v', '\\': '\\', "'": "'", '"': '"', '?': '?', '0': '\0' };
+  const arg = rest.slice(op.length).replace(/\$'((?:\\.|[^'\\])*)'/g, (_m, body: string) => body.replace(/\\(.)/g, (_e, ch: string) => esc[ch] ?? '\\' + ch).replace(/[\s\S]/g, (ch) => '\u0001' + ch));
   const unsetOrNull = val === undefined || (op.startsWith(':') && val === '');
   switch (op) {
     case ':-':
@@ -1099,7 +1105,8 @@ function expandParam(ctx: Ctx, inner: string): string {
       const rep = slash === -1 ? '' : arg.slice(slash + 1);
       const re = patternToRegex(expandText(ctx, pat, true), 'full', true);
       const src = re.source.slice(1, -1);
-      return v.replace(new RegExp(src, op === '//' ? 'g' : ''), expandText(ctx, rep, true));
+      const repText = expandText(ctx, rep, true).replace(/\\\\/g, '\\');
+      return v.replace(new RegExp(src, op === '//' ? 'g' : ''), () => repText);
     }
     case '^^':
       return (val ?? '').toUpperCase();
@@ -1537,6 +1544,8 @@ export function evalArith(ctx: Ctx, raw: string): number {
 /* ------------------------------------------------------------------ execution */
 
 function applyRedirs(ctx: Ctx, redirs: Redir[], io: IO): { io: IO; finish: () => void } {
+  // Files created by > and >> get the shell's umask.
+  setUmask(ctx.sys.umask);
   let stdin = io.stdin;
   const outBuf: string[] = [];
   const errBuf: string[] = [];
@@ -1565,8 +1574,12 @@ function applyRedirs(ctx: Ctx, redirs: Redir[], io: IO): { io: IO; finish: () =>
       continue;
     }
     if (r.op === '>&') {
-      if (r.fd === 2) errToOut = true;
-      else {
+      // 2>&1 copies wherever standard output points now: "2>&1 >/dev/null" keeps errors on the old stdout.
+      if (r.fd === 2) {
+        if (outTarget) errTarget = outTarget;
+        else if (outToErr) errToOut = false;
+        else errToOut = true;
+      } else {
         const t = r.target ? expandSingle(ctx, r.target) : '1';
         if (t === '2') outToErr = true;
         else if (t !== '1') {
@@ -1605,7 +1618,7 @@ function applyRedirs(ctx: Ctx, redirs: Redir[], io: IO): { io: IO; finish: () =>
     else if (!lookup(ctx.sys.fs, target, actor(ctx))) writeFile(ctx.sys.fs, target, '', actor(ctx), ctx.sys.now);
   }
   const out = outTarget ? (s: string) => outBuf.push(s) : outToErr ? io.err : io.out;
-  const err = errTarget ? (s: string) => errBuf.push(s) : errToOut ? out : io.err;
+  const err = errTarget ? (errTarget === outTarget ? (s: string) => outBuf.push(s) : (s: string) => errBuf.push(s)) : errToOut ? io.out : io.err;
   // Without a stdin redirection the command consumes the caller's stdin (so `read` in a loop advances it).
   const ownStdin = stdin !== io.stdin;
   let localStdin = stdin;
@@ -1620,10 +1633,11 @@ function applyRedirs(ctx: Ctx, redirs: Redir[], io: IO): { io: IO; finish: () =>
     out,
     err,
     interactive: ownStdin ? false : io.interactive,
+    tty: outTarget || outToErr ? false : io.tty,
   };
   const finish = () => {
     if (outTarget && outTarget.path !== '/dev/null') writeFile(ctx.sys.fs, outTarget.path, outBuf.join(''), actor(ctx), ctx.sys.now, true);
-    if (errTarget && errTarget.path !== '/dev/null') writeFile(ctx.sys.fs, errTarget.path, errBuf.join(''), actor(ctx), ctx.sys.now, true);
+    if (errTarget && errTarget.path !== '/dev/null' && errTarget !== outTarget) writeFile(ctx.sys.fs, errTarget.path, errBuf.join(''), actor(ctx), ctx.sys.now, true);
   };
   return { io: shared, finish };
 }
@@ -1666,7 +1680,7 @@ export function exec(ctx: Ctx, node: Node, io: IO): number {
       for (let k = 0; k < node.cmds.length; k++) {
         const last = k === node.cmds.length - 1;
         const buf: string[] = [];
-        const stageIo: IO = { stdin: input, out: last ? io.out : (s) => buf.push(s), err: io.err };
+        const stageIo: IO = { stdin: input, out: last ? io.out : (s) => buf.push(s), err: io.err, tty: last ? io.tty : false };
         const saveStatus = ctx.status;
         if (!last || node.negate) ctx.condDepth++;
         try {
@@ -1687,6 +1701,7 @@ export function exec(ctx: Ctx, node: Node, io: IO): number {
       return final;
     }
     case 'cond': {
+      if (ctx.xtrace) trace(ctx, io, ['[[', ...condWords(ctx, node.items), ']]']);
       const code = evalCond(ctx, node.items, io);
       ctx.status = code;
       if (code !== 0 && ctx.condDepth === 0) failure(ctx, code, io);
@@ -1886,6 +1901,11 @@ function regexOf(ctx: Ctx, w: Word): string {
 }
 
 /** Evaluates [[ ... ]]: 0 true, 1 false, 2 a syntax error. */
+/** The words of a [[ ]] test after expansion, for set -x. */
+function condWords(ctx: Ctx, items: Array<{ w: Word } | { op: string }>): string[] {
+  return items.map((it) => ('op' in it ? it.op : expandSingle(ctx, it.w)));
+}
+
 function evalCond(ctx: Ctx, items: Array<{ w: Word } | { op: string }>, io: IO): number {
   let i = 0;
   const isOp = (s: string) => {
@@ -2036,7 +2056,21 @@ function evalCond(ctx: Ctx, items: Array<{ w: Word } | { op: string }>, io: IO):
   }
 }
 
-const SHELL_BUILTINS = new Set(['cd', 'export', 'unset', 'set', 'shift', 'exit', 'return', 'break', 'continue', 'source', '.', 'read', 'local', 'declare', 'let', 'eval', 'exec', 'alias', 'unalias', 'type', 'command', 'builtin', 'umask', 'history', 'help', 'pushd', 'popd', 'dirs', 'logout', 'bash', 'sh', 'hash', 'getopts', 'trap', 'wait', 'jobs', 'fg', 'bg', 'readonly', 'typeset', 'mapfile', 'readarray']);
+const SHELL_BUILTINS = new Set([':', 'cd', 'export', 'unset', 'set', 'shift', 'exit', 'return', 'break', 'continue', 'source', '.', 'read', 'local', 'declare', 'let', 'eval', 'exec', 'alias', 'unalias', 'type', 'command', 'builtin', 'umask', 'history', 'help', 'pushd', 'popd', 'dirs', 'logout', 'bash', 'sh', 'hash', 'getopts', 'trap', 'wait', 'jobs', 'fg', 'bg', 'readonly', 'typeset', 'mapfile', 'readarray']);
+
+/** set -x: one trace line, prefixed with the expanded PS4 ("+ " by default), on standard error. */
+function trace(ctx: Ctx, io: IO, words: string[], assignment = false): void {
+  const q = (w: string) => (w === '[[' || w === ']]' ? w : w === '' ? "''" : /[\s'"$`\\|&;<>()*?[\]{}!#~]/.test(w) ? `'${w.replace(/'/g, "'\\''")}'` : w);
+  let ps4 = '+ ';
+  try {
+    ps4 = expandText(ctx, ctx.vars.PS4 ?? '+ ', true);
+  } catch {
+    /* keep the default */
+  }
+  // An assignment shows as name=value with only the value quoted.
+  const shown = assignment ? words.map((w) => w.slice(0, w.indexOf('=') + 1) + (w.slice(w.indexOf('=') + 1) === '' ? '' : q(w.slice(w.indexOf('=') + 1)))) : words.map(q);
+  io.err(ps4 + shown.join(' ') + '\n');
+}
 
 function execSimple(ctx: Ctx, node: Extract<Node, { t: 'simple' }>, io: IO): number {
   if (!ctx.inTrap) ctx.vars.LINENO = String(node.line);
@@ -2053,7 +2087,10 @@ function execSimple(ctx: Ctx, node: Extract<Node, { t: 'simple' }>, io: IO): num
     ctx.substStatus = undefined;
     let assignStatus = 0;
     try {
-      for (const a of node.assigns) doAssign(ctx, a);
+      for (const a of node.assigns) {
+        doAssign(ctx, a);
+        if (ctx.xtrace) trace(ctx, io, [`${a.name}=${ctx.vars[a.name] ?? ''}`], true);
+      }
       assignStatus = ctx.substStatus ?? 0;
     } catch (e) {
       if (!(e instanceof ShellError)) throw e;
@@ -2071,9 +2108,14 @@ function execSimple(ctx: Ctx, node: Extract<Node, { t: 'simple' }>, io: IO): num
   }
   // Temporary environment assignments (VAR=x cmd) just set the variables for us.
   const saved: Record<string, string | undefined> = {};
+  const tempExports: string[] = [];
   for (const a of node.assigns) {
     saved[a.name] = ctx.vars[a.name];
     doAssign(ctx, a);
+    if (!ctx.exported.has(a.name)) {
+      ctx.exported.add(a.name);
+      tempExports.push(a.name);
+    }
   }
   if (!ctx.inTrap) ctx.vars.BASH_COMMAND = words.join(' ');
   let r: ReturnType<typeof applyRedirs>;
@@ -2095,7 +2137,7 @@ function execSimple(ctx: Ctx, node: Extract<Node, { t: 'simple' }>, io: IO): num
   }
   let code: number;
   try {
-    if (ctx.xtrace) io.err(`+ ${words.join(' ')}\n`);
+    if (ctx.xtrace) trace(ctx, io, words);
     code = runCommand(ctx, words, r.io);
   } catch (e) {
     if (e instanceof ShellError) {
@@ -2110,6 +2152,10 @@ function execSimple(ctx: Ctx, node: Extract<Node, { t: 'simple' }>, io: IO): num
     for (const [k, v] of Object.entries(saved)) {
       if (v === undefined) delete ctx.vars[k];
       else ctx.vars[k] = v;
+    }
+    for (const k of tempExports) {
+      ctx.exported.delete(k);
+      if (ctx.sys.env[k] !== undefined && !(k in saved && saved[k] !== undefined)) delete ctx.sys.env[k];
     }
   }
   ctx.status = code;
@@ -2237,6 +2283,7 @@ function scriptCtx(ctx: Ctx, args: string[], name: string, xtrace: boolean): Ctx
   const vars: Record<string, string> = { ...ctx.sys.env };
   for (const k of ctx.exported) if (ctx.vars[k] !== undefined) vars[k] = ctx.vars[k];
   vars.OPTIND = '1';
+  vars.BASH_SOURCE = name;
   return { ...ctx, vars, exported: new Set(ctx.exported), funcs: {}, params: args, scriptName: name, errexit: false, nounset: false, xtrace, pipefail: false, condDepth: 0, loopDepth: 0, depth: ctx.depth + 1, locals: [], traps: {}, inTrap: false };
 }
 
@@ -2427,8 +2474,9 @@ function builtin(ctx: Ctx, name: string, args: string[], io: IO): number {
     case 'set': {
       for (let k = 0; k < args.length; k++) {
         const a = args[k];
-        if (/^[-+][euxoETBCHPfhkmnpvt]+$/.test(a)) {
+        if (/^[-+][aeuxoETBCHPfhkmnpvt]+$/.test(a)) {
           const on = a[0] === '-';
+          if (a.includes('a')) ctx.allexport = on;
           if (a.includes('e')) ctx.errexit = on;
           if (a.includes('u')) ctx.nounset = on;
           if (a.includes('x')) ctx.xtrace = on;
@@ -2442,6 +2490,7 @@ function builtin(ctx: Ctx, name: string, args: string[], io: IO): number {
             else if (name === 'nounset') ctx.nounset = on;
             else if (name === 'xtrace') ctx.xtrace = on;
             else if (name === 'pipefail') ctx.pipefail = on;
+            else if (name === 'allexport') ctx.allexport = on;
             else if (!['noclobber', 'noglob', 'posix', 'vi', 'emacs', 'history', 'monitor'].includes(name)) {
               io.err(`bash: set: ${name}: invalid option name\n`);
               return 1;
@@ -2628,6 +2677,8 @@ function builtin(ctx: Ctx, name: string, args: string[], io: IO): number {
     }
     case 'eval':
       return exec(ctx, parse(args.join(' ')), io);
+    case ':':
+      return 0;
     case 'exec':
       return args.length ? runCommand(ctx, args, io) : 0;
     case 'alias': {
@@ -2842,7 +2893,7 @@ export function runLine(sys: ShellSystem, line: string, session: Session): RunRe
   }
   const ctx = makeCtx(sys, session);
   const buf: string[] = [];
-  const io: IO = { stdin: '', out: (s) => buf.push(s), err: (s) => buf.push(s), interactive: true };
+  const io: IO = { stdin: '', out: (s) => buf.push(s), err: (s) => buf.push(s), interactive: true, tty: true };
   if (line.trim()) sys.history.push(line);
   let status = 0;
   try {

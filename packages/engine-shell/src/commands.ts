@@ -15,6 +15,8 @@ export type { IO } from './util.js';
 
 type Cmd = (args: string[], io: IO, ctx: Ctx) => number;
 
+const BINARY_OPS = ['=', '==', '!=', '-eq', '-ne', '-lt', '-le', '-gt', '-ge', '<', '>', '-nt', '-ot', '-ef', '=~'];
+
 /** Evaluates a test expression (the words between [ and ]). */
 export function evalTest(ctx: Ctx, args: string[], io: IO): number {
   let i = 0;
@@ -91,33 +93,44 @@ export function evalTest(ctx: Ctx, args: string[], io: IO): number {
     }
     // Binary operator?
     const op = peek();
-    if (op !== undefined && ['=', '==', '!=', '-eq', '-ne', '-lt', '-le', '-gt', '-ge', '<', '>', '-nt', '-ot', '-ef', '=~'].includes(op)) {
+    if (op !== undefined && BINARY_OPS.includes(op)) {
       next();
-      const b = next() ?? '';
-      switch (op) {
-        case '=': case '==': return t === b;
-        case '!=': return t !== b;
-        case '<': return t < b;
-        case '>': return t > b;
-        case '-eq': return num(t) === num(b);
-        case '-ne': return num(t) !== num(b);
-        case '-lt': return num(t) < num(b);
-        case '-le': return num(t) <= num(b);
-        case '-gt': return num(t) > num(b);
-        case '-ge': return num(t) >= num(b);
-        case '-nt': { const fa = fileOf(t); const fb = fileOf(b); return !!fa && (!fb || fa.node.mtime > fb.node.mtime); }
-        case '-ot': { const fa = fileOf(t); const fb = fileOf(b); return !!fb && (!fa || fa.node.mtime < fb.node.mtime); }
-        case '-ef': { const fa = fileOf(t); const fb = fileOf(b); return !!fa && !!fb && fa.node === fb.node; }
-        case '=~': {
-          const m = new RegExp(b).exec(t);
-          if (m) m.forEach((g, k) => (ctx.vars[`BASH_REMATCH_${k}`] = g ?? ''));
-          return !!m;
-        }
+      return binary(t, op, next() ?? '');
+    }
+    return t !== '';
+  }
+  function binary(t: string, op: string, b: string): boolean {
+    switch (op) {
+      case '=': case '==': return t === b;
+      case '!=': return t !== b;
+      case '<': return t < b;
+      case '>': return t > b;
+      case '-eq': return num(t) === num(b);
+      case '-ne': return num(t) !== num(b);
+      case '-lt': return num(t) < num(b);
+      case '-le': return num(t) <= num(b);
+      case '-gt': return num(t) > num(b);
+      case '-ge': return num(t) >= num(b);
+      case '-nt': { const fa = fileOf(t); const fb = fileOf(b); return !!fa && (!fb || fa.node.mtime > fb.node.mtime); }
+      case '-ot': { const fa = fileOf(t); const fb = fileOf(b); return !!fb && (!fa || fa.node.mtime < fb.node.mtime); }
+      case '-ef': { const fa = fileOf(t); const fb = fileOf(b); return !!fa && !!fb && fa.node === fb.node; }
+      case '=~': {
+        const m = new RegExp(b).exec(t);
+        if (m) m.forEach((g, k) => (ctx.vars[`BASH_REMATCH_${k}`] = g ?? ''));
+        return !!m;
       }
     }
     return t !== '';
   }
   try {
+    // POSIX: with three arguments whose middle one is a binary operator, it is a binary test
+    // ([ "$1" = -n ] compares even when $1 is -n). Likewise "! a op b".
+    const negated = args.length === 4 && args[0] === '!';
+    const three = negated ? args.slice(1) : args;
+    if (three.length === 3 && BINARY_OPS.includes(three[1])) {
+      const r = binary(three[0], three[1], three[2]);
+      return (negated ? !r : r) ? 0 : 1;
+    }
     const v = orExpr();
     if (i < args.length) {
       io.err(`bash: test: ${args[i]}: binary operator expected\n`);

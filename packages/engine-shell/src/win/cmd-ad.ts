@@ -98,8 +98,11 @@ const PROPS_EXTRA: Record<string, (u: AdUser, st: AdState) => Value> = {
   mail: (u) => `${u.sam}@${(u.upn ?? '').split('@')[1] ?? ''}`,
   lastlogondate: (u) => (u.lastLogon ? makeDate(parseDateText(u.lastLogon) ?? 0) : null),
   whencreated: (u) => makeDate(parseDateText(u.whenCreated ?? '2025-09-01T08:00:00') ?? 0),
+  // pwdLastSet 0 means "must change password at next logon".
+  pwdlastset: (u) => (u.changeAtLogon ? 0 : u.hasPassword ? 134058822000000000 : 0),
+  passwordlastset: (u) => (u.changeAtLogon || !u.hasPassword ? null : makeDate(Date.UTC(2026, 9, 1, 8, 0))),
 };
-const KEY_NAMES: Record<string, string> = { department: 'Department', title: 'Title', office: 'Office', description: 'Description', homedirectory: 'HomeDirectory', homedrive: 'HomeDrive', profilepath: 'ProfilePath', lockedout: 'LockedOut', passwordneverexpires: 'PasswordNeverExpires', memberof: 'MemberOf', manager: 'Manager', mail: 'mail', lastlogondate: 'LastLogonDate', whencreated: 'whenCreated' };
+const KEY_NAMES: Record<string, string> = { department: 'Department', title: 'Title', office: 'Office', description: 'Description', homedirectory: 'HomeDirectory', homedrive: 'HomeDrive', profilepath: 'ProfilePath', lockedout: 'LockedOut', passwordneverexpires: 'PasswordNeverExpires', memberof: 'MemberOf', manager: 'Manager', mail: 'mail', lastlogondate: 'LastLogonDate', whencreated: 'whenCreated', pwdlastset: 'pwdLastSet', passwordlastset: 'PasswordLastSet' };
 
 export function userView(u: AdUser, st: AdState, props: string[] = []): Obj {
   const o: Obj = { __type: 'ADUser', DistinguishedName: u.dn, Enabled: u.enabled, GivenName: u.given ?? '', Name: u.name, ObjectClass: 'user', SamAccountName: u.sam, SID: u.sid ?? '', Surname: u.surname ?? '', UserPrincipalName: u.upn ?? '' };

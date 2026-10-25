@@ -304,6 +304,9 @@ export interface Vm {
   state: 'Off' | 'Running';
   checkpoints: string[];
   vhd?: string;
+  notes?: string;
+  /** What each checkpoint saved: the VM's settings and state at that moment. */
+  saved?: Record<string, { memoryMb: number; cpus: number; state: 'Off' | 'Running'; notes?: string }>;
 }
 
 export interface Machine {
@@ -579,6 +582,11 @@ export function winSystemSpec(spec: WinLabSpec): Record<string, unknown> {
   };
   const toPath = (root: string, win: string) => root + '/' + win.replace(/^[A-Za-z]:\\?/, '').replace(/\\/g, '/');
   for (const [p, c] of Object.entries(spec.files ?? {})) {
+    // A path starting with / is a raw simulator path (for example the lab REST API's state file).
+    if (p.startsWith('/')) {
+      files[p] = c;
+      continue;
+    }
     const drive = /^([A-Za-z]):/.exec(p)?.[1] ?? 'C';
     files[toPath(driveRoot(est, first, drive), p)] = c;
   }

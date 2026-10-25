@@ -1519,11 +1519,13 @@ registerNative({
     if (sub === 'upgrade') {
       const all = args.includes('--all') || args.includes('-r') || args.includes('--recurse');
       const list = installed.filter((x) => findPkg(x.id)!.version !== x.version && !x.pinned);
-      if (!id && !all) return [...table(list.map((x) => [findPkg(x.id)!.name, x.id, x.version, findPkg(x.id)!.version, 'winget']), ['Name', 'Id', 'Version', 'Available', 'Source']), `${list.length} upgrades available.`];
+      const held = installed.filter((x) => findPkg(x.id)!.version !== x.version && x.pinned).length;
+      const pinNote = held ? [`${held} package(s) have pins that prevent upgrade. Use the 'winget pin' command to view and edit pins. Using the --include-pinned argument may show more results.`] : [];
+      if (!id && !all) return [...table(list.map((x) => [findPkg(x.id)!.name, x.id, x.version, findPkg(x.id)!.version, 'winget']), ['Name', 'Id', 'Version', 'Available', 'Source']), `${list.length} upgrades available.`, ...pinNote];
       const a = needAgreement();
       if (a) return a;
       const targets = all ? list : installed.filter((x) => x.id.toLowerCase() === findPkg(id!)?.id.toLowerCase());
-      if (!targets.length) return ['No installed package found matching input criteria.'];
+      if (!targets.length) return all ? ['No installed package found matching input criteria.', ...pinNote] : ['No installed package found matching input criteria.'];
       const out: string[] = [];
       for (const t of targets) {
         if (t.pinned) {
@@ -1591,7 +1593,15 @@ registerNative({
   choco: (args, cx) => {
     const m = machine(cx.env);
     const sub = (args[0] ?? '').toLowerCase();
-    const names = args.slice(1).filter((a) => !a.startsWith('-'));
+    // Options that take a value (--version 2.45.0, --source x, -n=git) are not package names.
+    const VALUED = /^(--version|--source|-s|--params|--package-parameters|--name|-n|--timeout|--execution-timeout)$/i;
+    const names = args.slice(1).filter((a, i, all) => !a.startsWith('-') && !VALUED.test(all[i] ?? '') && !VALUED.test(args.slice(1)[i - 1] ?? ''));
+    const versionArg = (() => {
+      const eq = args.find((a) => /^--version=/i.test(a));
+      if (eq) return eq.slice(10);
+      const i = args.findIndex((a) => /^--version$/i.test(a));
+      return i >= 0 ? args[i + 1] : undefined;
+    })();
     const yes = args.some((a) => /^(-y|--yes|--confirm|-confirm)$/i.test(a));
     const installed = apps(m);
     const prompt = () => {
@@ -1616,7 +1626,7 @@ registerNative({
           failed++;
           continue;
         }
-        const version = (args.find((a) => /^--version=/.test(a)) ?? '').slice(10) || p.version;
+        const version = versionArg ?? p.version;
         if (installed.some((x) => x.id === p.id)) {
           out.push(`${p.choco} v${installed.find((x) => x.id === p.id)!.version} already installed.`, ' Use --force to reinstall, specify a version to install, or try upgrade.');
           continue;

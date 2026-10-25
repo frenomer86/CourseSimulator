@@ -216,11 +216,44 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
     return 0;
   },
 
+  cmp: (args, io, ctx) => {
+    const o = parseOpts(args, [], { silent: 's', quiet: 's' });
+    const [a, b] = o.rest;
+    if (!a || !b) {
+      io.err('cmp: missing operand\n');
+      return 2;
+    }
+    let ta: string;
+    let tb: string;
+    try {
+      ta = a === '-' ? io.stdin : readFile(ctx.sys.fs, abs(ctx, a), actor(ctx));
+      tb = b === '-' ? io.stdin : readFile(ctx.sys.fs, abs(ctx, b), actor(ctx));
+    } catch (e) {
+      io.err(`cmp: ${errText(e, a)}\n`);
+      return 2;
+    }
+    if (ta === tb) return 0;
+    if (!o.flags.has('s')) {
+      let i = 0;
+      while (i < ta.length && i < tb.length && ta[i] === tb[i]) i++;
+      if (i === ta.length || i === tb.length) io.err(`cmp: EOF on ${i === ta.length ? a : b} after byte ${i}\n`);
+      else io.out(`${a} ${b} differ: byte ${i + 1}, line ${ta.slice(0, i).split('\n').length}\n`);
+    }
+    return 1;
+  },
   paste: (args, io, ctx) => {
-    const o = parseOpts(args, ['d']);
+    const o = parseOpts(args, ['d'], { serial: 's', delimiters: 'd' });
     const cols = readInputs(ctx, io, o.rest, 'paste').map((f) => lines(f.content));
+    // Delimiters are used in turn (paste -d ',;'); \t and \n escapes are understood.
+    const delims = (o.values.d ?? '\t').replace(/\\t/g, '\t').replace(/\\n/g, '\n');
+    const join = (cells: string[]) => cells.map((c, i) => (i === 0 ? c : (delims[(i - 1) % delims.length] ?? '') + c)).join('');
+    if (o.flags.has('s')) {
+      // -s: each file's lines become one line.
+      for (const c of cols) io.out(join(c) + '\n');
+      return 0;
+    }
     const n = Math.max(...cols.map((c) => c.length));
-    for (let i = 0; i < n; i++) io.out(cols.map((c) => c[i] ?? '').join(o.values.d ?? '\t') + '\n');
+    for (let i = 0; i < n; i++) io.out(join(cols.map((c) => c[i] ?? '')) + '\n');
     return 0;
   },
 
@@ -402,13 +435,25 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
   },
 
   sed: (args, io, ctx) => {
-    const o = parseOpts(args, ['e', 'i']);
+    // -i takes a backup suffix only when it is attached (-i.bak): "sed -i -E" is in-place plus -E.
+    let suffix: string | undefined;
+    let inPlaceArg = false;
+    const cleaned = args.filter((a) => {
+      if (a === '-i' || a === '--in-place') return !(inPlaceArg = true);
+      const m = /^-i(.+)$/.exec(a) ?? /^--in-place=(.*)$/.exec(a);
+      if (m) {
+        inPlaceArg = true;
+        suffix = m[1];
+        return false;
+      }
+      return true;
+    });
+    const o = parseOpts(cleaned, ['e'], { 'regexp-extended': 'E', quiet: 'n', silent: 'n' });
     const scripts: string[] = [];
     let rest = o.rest;
     // -e may appear several times; parseOpts keeps the last, so re-scan.
-    for (let k = 0; k < args.length; k++) if (args[k] === '-e') scripts.push(args[++k]);
-    const inPlace = o.flags.has('i') || 'i' in o.values;
-    if ('i' in o.values && o.values.i && !inPlaceSuffixLooksLikeFile(o.values.i)) rest = [o.values.i, ...rest];
+    for (let k = 0; k < cleaned.length; k++) if (cleaned[k] === '-e') scripts.push(cleaned[++k]);
+    const inPlace = inPlaceArg || o.flags.has('i');
     if (!scripts.length) {
       if (!rest.length) {
         io.err('sed: no script given\n');
@@ -521,7 +566,7 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
       for (const f of rest) {
         try {
           const content = readFile(ctx.sys.fs, abs(ctx, f), actor(ctx));
-          if (o.values.i && inPlaceSuffixLooksLikeFile(o.values.i)) writeFile(ctx.sys.fs, abs(ctx, f) + o.values.i, content, actor(ctx), ctx.sys.now);
+          if (suffix) writeFile(ctx.sys.fs, abs(ctx, f) + suffix, content, actor(ctx), ctx.sys.now);
           writeFile(ctx.sys.fs, abs(ctx, f), process(content), actor(ctx), ctx.sys.now);
         } catch (e) {
           io.err(`sed: can't read ${f}: ${errText(e, f).replace(/^.*?: /, '')}\n`);
@@ -538,9 +583,6 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
   gawk: (args, io, ctx) => awk(args, io, ctx),
 };
 
-function inPlaceSuffixLooksLikeFile(s: string): boolean {
-  return s.startsWith('.') || s.startsWith('~') || s.startsWith('-');
-}
 
 function splitSedScript(script: string): string[] {
   // Split on ';' outside of s/// delimiters and a/i/c text.
@@ -976,6 +1018,8 @@ function parseAwkProgram(src: string): Rule[] {
         p.expect(']');
         return { k: 'index', arr: t, key };
       }
+      // A bare `length` means length($0).
+      if (t === 'length') return { k: 'call', name: 'length', args: [] };
       return { k: 'var', name: t };
     }
     throw new Error(`awk: syntax error at "${t}"`);

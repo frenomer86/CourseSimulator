@@ -320,13 +320,16 @@ register({
 
   /* ------------------------------------------------------------ NTFS */
   'get-acl': (cx) => {
-    const m = machine(cx.env);
     const p = normWin(str(cx.P.path ?? cx.pos[0] ?? '.'));
     const vfs = toVfs(cx.env, p);
+    // The ACL lives on the machine the path is on (\\FS01\D$\... is FS01).
+    const m = machineFromVfs(cx.env, vfs);
     if (!lookup(cx.env.sys.fs, vfs, ROOT)) cx.fail(`Cannot find path '${p}' because it does not exist.`);
     const win = toWin(vfs);
     const acl = aclOf(m, win);
-    return [{ __type: 'acl', Path: win, Owner: m.ntfs[normWin(win)]?.owner ?? 'BUILTIN\\Administrators', Access: acl.map((a) => `${a.account} ${a.type} ${a.rights}${a.inherited ? ' (inherited)' : ''}`) }];
+    // Access holds FileSystemAccessRule-like objects; AccessToString is the text the default view shows.
+    const rules = acl.map((a) => ({ __type: 'select', __display: `${a.account} ${a.type}  ${a.rights}${a.inherited ? ' (inherited)' : ''}`, FileSystemRights: a.rights, AccessControlType: a.type, IdentityReference: a.account, IsInherited: !!a.inherited, InheritanceFlags: 'ContainerInherit, ObjectInherit', PropagationFlags: 'None' }));
+    return [{ __type: 'acl', Path: win, Owner: m.ntfs[normWin(win)]?.owner ?? 'BUILTIN\\Administrators', Access: rules, __extra: { AccessToString: acl.map((a) => `${a.account} ${a.type}  ${a.rights}`).join('\n') } }];
   },
   'copy-item': (cx) => copyOrMove(cx, false),
   'move-item': (cx) => copyOrMove(cx, true),
@@ -641,9 +644,33 @@ function copyOrMove(cx: Cx, move: boolean): Value[] {
   } else {
     const srcVfs = toVfs(env, srcArg);
     const srcMachine = machineFromVfs(env, srcVfs);
-    const l = lookup(env.sys.fs, srcVfs, ROOT);
-    if (!l) cx.fail(`Cannot find path '${srcArg}' because it does not exist.`);
-    if (l!.node.type === 'dir') {
+    const leaf = srcVfs.slice(srcVfs.lastIndexOf('/') + 1);
+    // C:\Data\* or C:\Data\*.csv: every match in the folder.
+    if (/[*?]/.test(leaf)) {
+      const dir = srcVfs.slice(0, srcVfs.lastIndexOf('/')) || '/';
+      const re = new RegExp('^' + leaf.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.') + '$', 'i');
+      let entries: ReturnType<typeof listDir> = [];
+      try {
+        entries = listDir(env.sys.fs, dir, ROOT);
+      } catch {
+        cx.fail(`Cannot find path '${toWin(dir)}' because it does not exist.`);
+      }
+      const walk = (p: string, rel: string) => {
+        for (const { name, node } of listDir(env.sys.fs, p, ROOT)) {
+          if (node.type === 'dir') walk(`${p}/${name}`, `${rel}/${name}`);
+          else if (node.type === 'file') files.push({ rel: `${rel}/${name}`, content: node.content, mb: sizeMb(srcMachine, toWin(`${p}/${name}`), node.content) });
+        }
+      };
+      for (const { name, node } of entries.filter((e) => re.test(e.name))) {
+        if (node.type === 'file') files.push({ rel: name, content: node.content, mb: sizeMb(srcMachine, toWin(`${dir}/${name}`), node.content) });
+        else if (node.type === 'dir' && cx.P.recurse) walk(`${dir}/${name}`, name);
+      }
+      if (move) for (const { name } of entries.filter((e) => re.test(e.name))) remove(env.sys.fs, `${dir}/${name}`, ROOT, true);
+      mkdir(env.sys.fs, dstVfs, ROOT, env.sys.now, true);
+    }
+    const l = /[*?]/.test(leaf) ? null : lookup(env.sys.fs, srcVfs, ROOT);
+    if (!l && !/[*?]/.test(leaf)) cx.fail(`Cannot find path '${srcArg}' because it does not exist.`);
+    if (l && l.node.type === 'dir') {
       if (!cx.P.recurse && !move) cx.fail(`'${srcArg}' is a folder: add -Recurse to copy what is inside it.`);
       const walk = (p: string, rel: string) => {
         for (const { name, node } of listDir(env.sys.fs, p, ROOT)) {
@@ -653,7 +680,7 @@ function copyOrMove(cx: Cx, move: boolean): Value[] {
       };
       const base = srcVfs.split('/').pop()!;
       walk(srcVfs, base);
-    } else if (l!.node.type === 'file') files.push({ rel: srcVfs.split('/').pop()!, content: l!.node.content, mb: sizeMb(srcMachine, toWin(srcVfs), l!.node.content) });
+    } else if (l && l.node.type === 'file') files.push({ rel: srcVfs.split('/').pop()!, content: l.node.content, mb: sizeMb(srcMachine, toWin(srcVfs), l.node.content) });
   }
   const dstIsDir = (() => {
     const d = lookup(env.sys.fs, dstVfs, ROOT);
@@ -666,7 +693,7 @@ function copyOrMove(cx: Cx, move: boolean): Value[] {
     writeFile(env.sys.fs, target, f.content, ROOT, env.sys.now);
     if (f.mb > 0.01) sizes(dstMachine)[normWin(toWin(target))] = f.mb;
   }
-  if (move && !/@GMT-/i.test(srcArg)) remove(env.sys.fs, toVfs(env, srcArg), ROOT, true);
+  if (move && !/@GMT-/i.test(srcArg) && !/[*?]/.test(srcArg.split('\\').pop() ?? '')) remove(env.sys.fs, toVfs(env, srcArg), ROOT, true);
   if (files.length) env.dirtyEst = true;
   // Copying ADMX templates into SYSVOL creates the central store.
   if (/\\\\[^\\]+\\sysvol\\[^\\]+\\policies\\policydefinitions/i.test(dstArg + '\\' + (files[0]?.rel.split('/')[0] ?? ''))) {

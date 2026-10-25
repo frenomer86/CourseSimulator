@@ -11,6 +11,8 @@ export interface IO {
   err(s: string): void;
   /** True for the terminal's own stdin (nothing piped or redirected), so `read` can explain itself. */
   interactive?: boolean;
+  /** Standard output is the terminal (not a pipe, file or command substitution). */
+  tty?: boolean;
 }
 
 export interface Opts {

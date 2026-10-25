@@ -16,6 +16,12 @@ export interface UserRec {
   password: 'set' | 'locked' | 'none';
   lastChanged?: number;
   maxDays?: number;
+  minDays?: number;
+  warnDays?: number;
+  /** Days after the password expires before the account is disabled. */
+  inactiveDays?: number;
+  /** When the account expires (ms since epoch); undefined means never. */
+  expireDate?: number;
 }
 export interface GroupRec {
   gid: number;
@@ -375,7 +381,7 @@ export function syncEtc(sys: ShellSystem): void {
     .join('\n');
   const shadow = Object.entries(sys.users)
     .sort((a, b) => a[1].uid - b[1].uid)
-    .map(([n, u]) => `${n}:${u.password === 'none' ? '' : u.password === 'locked' ? '!$6$locked' : '$6$rounds=5000$salt$hash'}:${Math.floor((u.lastChanged ?? sys.now) / 86400000)}:0:${u.maxDays ?? 99999}:7:::`)
+    .map(([n, u]) => `${n}:${u.password === 'none' ? '' : u.password === 'locked' ? '!$6$locked' : '$6$rounds=5000$salt$hash'}:${Math.floor((u.lastChanged ?? sys.now) / 86400000)}:${u.minDays ?? 0}:${u.maxDays ?? 99999}:${u.warnDays ?? 7}:${u.inactiveDays ?? ''}:${u.expireDate !== undefined ? Math.floor(u.expireDate / 86400000) : ''}:`)
     .join('\n');
   putFile(sys, '/etc/passwd', passwd + '\n', rootActor, 0o644);
   putFile(sys, '/etc/group', group + '\n', rootActor, 0o644);

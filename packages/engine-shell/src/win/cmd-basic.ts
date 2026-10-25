@@ -6,7 +6,7 @@
 import { FsError, listDir, lookup, mkdir, readFile, remove, writeFile } from '../fs.js';
 import { PsError, asList, bool, condition, isObj, isSecure, machine, machineByName, normWin, num, prop, register, registerNative, render, SECURE, show, str, toVfs, toWin, type Cx, type Obj, type Secure, type Value } from './core.js';
 import { driveRoot, type Machine, type Disk } from './model.js';
-import { errorRecord, formatDate, reportError } from './lang.js';
+import { errorRecord, formatDate, makeDate, parseDateText, reportError } from './lang.js';
 
 const ROOT = { user: 'root', groups: ['root'] };
 const NOW = '10/22/2026  9:30 AM';
@@ -511,12 +511,27 @@ ${block}
       const log = str(cx.P.logname ?? fh?.LogName ?? fh?.logname ?? cx.pos[0]);
       const ids = asList(fh?.Id ?? fh?.id ?? cx.P.id).map((x) => Number(str(x))).filter((x) => !Number.isNaN(x));
       const max = cx.P.maxevents !== undefined ? Number(str(cx.P.maxevents)) : undefined;
-      let evs = m.events.filter((e) => !log || e.log.toLowerCase() === log.toLowerCase());
-      if (ids.length) evs = evs.filter((e) => ids.includes(e.id));
-      if (fh?.Level !== undefined) evs = evs.filter((e) => ({ 1: 'Critical', 2: 'Error', 3: 'Warning', 4: 'Information' } as Record<string, string>)[str(fh.Level)] === e.level);
+      const fhv = (k: string) => (fh ? Object.entries(fh).find(([x]) => x.toLowerCase() === k)?.[1] : undefined);
+      const timeOf = (e: Machine['events'][number]) => parseDateText(e.time) ?? 0;
+      const msv = (x: Value) => (isObj(x) && (x as Obj).__type === 'datetime' ? Number((x as Obj).__ms) : parseDateText(str(x)) ?? 0);
+      let evs = m.events.map((e, idx) => ({ e, idx })).filter(({ e }) => !log || e.log.toLowerCase() === log.toLowerCase());
+      if (ids.length) evs = evs.filter(({ e }) => ids.includes(e.id));
+      if (fhv('level') !== undefined) evs = evs.filter(({ e }) => asList(fhv('level')).some((l) => ({ 1: 'Critical', 2: 'Error', 3: 'Warning', 4: 'Information', 0: 'Information' } as Record<string, string>)[str(l)] === e.level || (e.level.startsWith('Audit') && str(l) === '0')));
+      if (fhv('providername') !== undefined) evs = evs.filter(({ e }) => asList(fhv('providername')).some((p) => new RegExp('^' + str(p).replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*') + '$', 'i').test(e.source)));
+      if (fhv('starttime') !== undefined) evs = evs.filter(({ e }) => timeOf(e) >= msv(fhv('starttime')!));
+      if (fhv('endtime') !== undefined) evs = evs.filter(({ e }) => timeOf(e) <= msv(fhv('endtime')!));
+      if (fhv('data') !== undefined) evs = evs.filter(({ e }) => asList(fhv('data')).some((d) => Object.values(e.data ?? {}).some((x) => str(x).toLowerCase() === str(d).toLowerCase())));
       if (!evs.length) cx.fail('No events were found that match the specified selection criteria.');
-      const list = [...evs].reverse();
-      return (max ? list.slice(0, max) : list).map((e) => ({ __type: 'event', TimeCreated: e.time, Id: e.id, LevelDisplayName: e.level, Message: e.message, ...(e.data ?? {}) }));
+      // Newest first, as the real cmdlet returns them.
+      const list = [...evs].sort((a, b) => timeOf(b.e) - timeOf(a.e) || b.idx - a.idx);
+      const fqdn = `${m.name}.${cx.env.st.domain}`;
+      const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&apos;');
+      return (max ? list.slice(0, max) : list).map(({ e, idx }) => {
+        const t = timeOf(e);
+        const data = e.data ?? {};
+        const xml = `<Event xmlns='http://schemas.microsoft.com/win/2004/08/events/event'><System><Provider Name='${esc(e.source)}'/><EventID>${e.id}</EventID><Level>${({ Critical: 1, Error: 2, Warning: 3 } as Record<string, number>)[e.level] ?? (e.level.startsWith('Audit') ? 0 : 4)}</Level><TimeCreated SystemTime='${new Date(t).toISOString()}'/><EventRecordID>${idx + 1000}</EventRecordID><Channel>${e.log}</Channel><Computer>${fqdn}</Computer></System><EventData>${Object.entries(data).map(([k, v]) => `<Data Name='${k}'>${esc(str(v))}</Data>`).join('')}</EventData></Event>`;
+        return { __type: 'event', TimeCreated: makeDate(t), Id: e.id, LevelDisplayName: e.level, Message: e.message, __xml: xml, __extra: { ...data, ProviderName: e.source, LogName: e.log, MachineName: fqdn, RecordId: idx + 1000, Properties: Object.values(data).map((x) => ({ __type: 'select', Value: x })) } };
+      });
     },
     'get-counter': (cx) => {
       const m = machine(cx.env) as Machine & { counters?: Record<string, number> };
@@ -653,9 +668,16 @@ ${block}
       cx.env.dirtyEst = true;
       return [{ __type: 'vm', Name: name, State: 'Off', 'CPUUsage(%)': 0, 'MemoryAssigned(M)': 0, Uptime: '00:00:00', Status: 'Operating normally' }];
     },
-    'get-vm': (cx) => hyperv(cx).hyperv!.vms.filter((v) => !(cx.P.name ?? cx.pos[0]) || v.name.toLowerCase() === str(cx.P.name ?? cx.pos[0]).toLowerCase()).map((v) => ({ __type: 'vm', Name: v.name, State: v.state, Generation: v.generation, MemoryStartup: v.memoryMb * 1024 * 1024, ProcessorCount: v.cpus, SwitchName: v.switch ?? '', Checkpoints: v.checkpoints.length })),
+    'get-vm': (cx) => hyperv(cx).hyperv!.vms.filter((v) => !(cx.P.name ?? cx.pos[0]) || v.name.toLowerCase() === str(cx.P.name ?? cx.pos[0]).toLowerCase()).map((v) => ({ __type: 'vm', Name: v.name, State: v.state, Generation: v.generation, MemoryStartup: v.memoryMb * 1024 * 1024, ProcessorCount: v.cpus, SwitchName: v.switch ?? '', Checkpoints: v.checkpoints.length, __extra: { Notes: v.notes ?? '' } })),
     'start-vm': (cx) => vmState(cx, 'Running'),
     'stop-vm': (cx) => vmState(cx, 'Off'),
+    'set-vm': (cx) => {
+      const v = vmOf(cx);
+      if (cx.P.notes !== undefined) v.notes = str(cx.P.notes);
+      if (cx.P.processorcount !== undefined) v.cpus = Number(str(cx.P.processorcount));
+      cx.env.dirtyEst = true;
+      return [];
+    },
     'set-vmprocessor': (cx) => {
       const v = vmOf(cx);
       if (v.state === 'Running') cx.fail(`Cannot change the processor count of ${v.name} while it is running. Stop-VM first.`);
@@ -679,7 +701,18 @@ ${block}
     },
     'checkpoint-vm': (cx) => {
       const v = vmOf(cx);
-      v.checkpoints.push(str(cx.P.snapshotname ?? `${v.name} - (10/22/2026 - 9:30:00 AM)`));
+      const name = str(cx.P.snapshotname ?? `${v.name} - (10/22/2026 - 9:30:00 AM)`);
+      v.checkpoints.push(name);
+      (v.saved ??= {})[name] = { memoryMb: v.memoryMb, cpus: v.cpus, state: v.state, notes: v.notes };
+      cx.env.dirtyEst = true;
+      return cx.P.passthru ? [{ __type: 'select', VMName: v.name, Name: name, SnapshotType: 'Standard' }] : [];
+    },
+    'remove-vmsnapshot': (cx) => {
+      const v = vmOf(cx, str(cx.P.vmname));
+      const name = str(cx.P.name ?? cx.pos[0]);
+      if (!v.checkpoints.includes(name)) cx.fail(`No checkpoint called ${name} on ${v.name}.`);
+      v.checkpoints = v.checkpoints.filter((c) => c !== name);
+      if (v.saved) delete v.saved[name];
       cx.env.dirtyEst = true;
       return [];
     },
@@ -687,7 +720,14 @@ ${block}
     'restore-vmsnapshot': (cx) => {
       const v = vmOf(cx, str(cx.P.vmname));
       if (!v.checkpoints.includes(str(cx.P.name))) cx.fail(`No checkpoint called ${str(cx.P.name)} on ${v.name}.`);
-      v.state = 'Off';
+      // Going back to a checkpoint restores the settings and state it saved.
+      const was = v.saved?.[str(cx.P.name)];
+      if (was) {
+        v.memoryMb = was.memoryMb;
+        v.cpus = was.cpus;
+        v.notes = was.notes;
+        v.state = was.state;
+      } else v.state = 'Off';
       cx.env.dirtyEst = true;
       return [];
     },
@@ -705,7 +745,7 @@ ${block}
     'get-winevent': "Get-WinEvent -FilterHashtable @{ LogName = 'Security'; Id = 4625 } [-MaxEvents 10]",
     'new-vm': 'New-VM -Name <name> -MemoryStartupBytes 4GB -Generation 2 [-SwitchName <switch>] [-NewVHDPath <file> -NewVHDSizeBytes 60GB]',
   },
-  { dir: 'get-childitem', ls: 'get-childitem', gci: 'get-childitem', cd: 'set-location', sl: 'set-location', pwd: 'get-location', gl: 'get-location', cat: 'get-content', type: 'get-content', gc: 'get-content', echo: 'write-output', write: 'write-output', cls: 'clear-host', clear: 'clear-host', mkdir: 'new-item', md: 'new-item', del: 'remove-item', rm: 'remove-item', erase: 'remove-item', '%': 'foreach-object', foreach: 'foreach-object', '?': 'where-object', where: 'where-object', select: 'select-object', sort: 'sort-object', measure: 'measure-object', ft: 'format-table', fl: 'format-list', man: 'get-help', help: 'get-help', 'add-windowsfeature': 'install-windowsfeature', 'remove-windowsfeature': 'uninstall-windowsfeature', etsn: 'enter-pssession', exsn: 'exit-pssession', icm: 'invoke-command', gsv: 'get-service', ps: 'get-process', sls: 'select-string', findstr: 'select-string', group: 'group-object' },
+  { dir: 'get-childitem', ls: 'get-childitem', gci: 'get-childitem', cd: 'set-location', sl: 'set-location', pwd: 'get-location', gl: 'get-location', cat: 'get-content', type: 'get-content', gc: 'get-content', echo: 'write-output', write: 'write-output', cls: 'clear-host', clear: 'clear-host', mkdir: 'new-item', md: 'new-item', del: 'remove-item', rm: 'remove-item', erase: 'remove-item', '%': 'foreach-object', foreach: 'foreach-object', '?': 'where-object', where: 'where-object', select: 'select-object', sort: 'sort-object', measure: 'measure-object', ft: 'format-table', fl: 'format-list', man: 'get-help', help: 'get-help', 'add-windowsfeature': 'install-windowsfeature', 'remove-windowsfeature': 'uninstall-windowsfeature', etsn: 'enter-pssession', exsn: 'exit-pssession', icm: 'invoke-command', 'get-vmcheckpoint': 'get-vmsnapshot', 'restore-vmcheckpoint': 'restore-vmsnapshot', 'remove-vmcheckpoint': 'remove-vmsnapshot', gsv: 'get-service', ps: 'get-process', sls: 'select-string', findstr: 'select-string', group: 'group-object' },
 );
 
 function writeContent(cx: Cx, append: boolean): Value[] {

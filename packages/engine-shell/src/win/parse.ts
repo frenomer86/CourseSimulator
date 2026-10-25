@@ -530,7 +530,7 @@ export class Parser {
       if (this.peek() === '=') {
         this.i++;
         this.wsnl();
-        p.dflt = this.parseExpression();
+        p.dflt = this.parseExpressionNoComma();
       }
       params.push(p);
       this.wsnl();
@@ -615,10 +615,22 @@ export class Parser {
     // Statements usable as values: $x = if (...) {...}, $x = foreach (...) {...}
     if (this.peek() === '$' || this.peek() === '[') {
       try {
-        const target = this.parseUnaryHigh();
+        let target = this.parseUnaryHigh();
         this.ws();
+        // $first, $rest = ... assigns several variables at once.
+        if (this.peek() === ',' && isAssignable(target)) {
+          const items: Expr[] = [target];
+          while (this.peek() === ',') {
+            this.i++;
+            this.ws();
+            if (this.peek() !== '$') throw new ParseError('not a multiple assignment', this.i);
+            items.push(this.parseUnaryHigh());
+            this.ws();
+          }
+          target = { t: 'array', items } as Expr;
+        }
         const m = /^(=(?!=)|\+=|-=|\*=|\/=|%=|\?\?=)/.exec(this.src.slice(this.i));
-        if (m && isAssignable(target)) {
+        if (m && (isAssignable(target) || (target.t === 'array' && m[0] === '=' && (target as { items: Expr[] }).items.every(isAssignable)))) {
           this.i += m[0].length;
           this.wsnl();
           let value: Stmt;

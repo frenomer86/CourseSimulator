@@ -11,50 +11,13 @@ import { FsError, lookup, mkdir, readFile, remove, writeFile, type DirNode, type
 import { homeOf } from './system.js';
 import { actor, currentUser, type Ctx } from './shell.js';
 import { abs, parseOpts, type IO } from './util.js';
+import { STATE, hashHex, type GitState } from './git-state.js';
+
+export { seedRepo, type GitCommit, type GitState } from './git-state.js';
 
 type Cmd = (args: string[], io: IO, ctx: Ctx) => number;
 
-export interface GitCommit {
-  id: string;
-  seq: number;
-  parents: string[];
-  message: string;
-  author: string;
-  email: string;
-  time: number;
-  tree: Record<string, string>;
-}
-
-export interface GitState {
-  head: { branch?: string; detached?: string };
-  branches: Record<string, string | null>;
-  commits: Record<string, GitCommit>;
-  index: Record<string, string>;
-  config: { name?: string; email?: string };
-  tags: Record<string, string>;
-  merging?: { other: string; otherName: string };
-}
-
-const STATE = '.git/state.json';
-
 /* ----------------------------------------------------------------------------- helpers */
-
-function hashHex(text: string): string {
-  let out = '';
-  for (let round = 0; out.length < 40; round++) {
-    let h1 = 0xdeadbeef ^ round;
-    let h2 = 0x41c6ce57 ^ round;
-    for (let i = 0; i < text.length; i++) {
-      const ch = text.charCodeAt(i);
-      h1 = Math.imul(h1 ^ ch, 2654435761);
-      h2 = Math.imul(h2 ^ ch, 1597334677);
-    }
-    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-    out += (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0');
-  }
-  return out.slice(0, 40);
-}
 
 /** Finds the repository root at or above the current directory. */
 export function findRepo(ctx: Ctx, from = ctx.sys.cwd): string | null {
@@ -101,6 +64,17 @@ function workingTree(ctx: Ctx, repo: string): Record<string, string> {
     }
   };
   visit(start.node as DirNode, '');
+  // .gitignore: glob patterns (*.log, build/, /secret.txt); ignored files are invisible to add and status.
+  const ignore = (out['.gitignore'] ?? '').split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#'));
+  if (ignore.length) {
+    const res = ignore.map((pat) => {
+      const dir = pat.endsWith('/');
+      const anchored = pat.startsWith('/');
+      const body = pat.replace(/^\//, '').replace(/\/$/, '').replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*\*/g, '\u0000').replace(/\*/g, '[^/]*').replace(/\?/g, '[^/]').replace(/\u0000/g, '.*');
+      return new RegExp(`${anchored || body.includes('/') ? '^' : '(^|/)'}${body}${dir ? '/' : '(/|$)'}`);
+    });
+    for (const p of Object.keys(out)) if (p !== '.gitignore' && res.some((re) => re.test(p))) delete out[p];
+  }
   return out;
 }
 
@@ -330,6 +304,12 @@ const git: Cmd = (args, io, ctx) => {
   const ht = headTree(st);
 
   switch (sub) {
+    case 'ls-files': {
+      // Tracked files (the index), sorted, relative to the repository.
+      for (const p of Object.keys(st.index).sort()) io.out(p + '\n');
+      return 0;
+    }
+
     case 'status': {
       const wt = workingTree(ctx, repo);
       const staged = [...new Set([...Object.keys(ht), ...Object.keys(st.index)])].sort().filter((p) => ht[p] !== st.index[p]);
@@ -443,8 +423,8 @@ const git: Cmd = (args, io, ctx) => {
       for (const s of startIds) for (const c of ancestors(st, s)) set.add(c);
       const list = [...set].map((cid) => st.commits[cid]).sort((x, y) => y.seq - x.seq).slice(0, max);
       for (const c of list) {
-        if (oneline) io.out(`${short(c.id)}${decorations(st, c.id)} ${c.message}\n`);
-        else io.out(`commit ${c.id}${decorations(st, c.id)}\n${c.parents.length > 1 ? `Merge: ${c.parents.map(short).join(' ')}\n` : ''}Author: ${c.author} <${c.email}>\nDate:   ${new Date(c.time).toUTCString()}\n\n    ${c.message}\n\n`);
+        if (oneline) io.out(`${short(c.id)}${decorations(st, c.id)} ${c.message.split('\n')[0]}\n`);
+        else io.out(`commit ${c.id}${decorations(st, c.id)}\n${c.parents.length > 1 ? `Merge: ${c.parents.map(short).join(' ')}\n` : ''}Author: ${c.author} <${c.email}>\nDate:   ${new Date(c.time).toUTCString()}\n\n${c.message.split('\n').map((l) => (l ? '    ' + l : '')).join('\n')}\n\n`);
       }
       return 0;
     }
@@ -628,6 +608,42 @@ const git: Cmd = (args, io, ctx) => {
         }
       }
       saveGit(ctx, repo, st);
+      return 0;
+    }
+
+    case 'revert': {
+      // git revert [--no-edit] COMMIT: a new commit that undoes COMMIT's changes.
+      const ref = rest.find((x) => !x.startsWith('-')) ?? 'HEAD';
+      const cid = resolveRef(st, ref);
+      if (!cid) return fail(`fatal: bad revision '${ref}'`);
+      if (!rest.includes('--no-edit') && !rest.includes('-m')) return fail('error: this simulator has no editor for commit messages. Use git revert --no-edit COMMIT.', 1);
+      const c = st.commits[cid];
+      const before = c.parents[0] ? st.commits[c.parents[0]].tree : {};
+      const touched = [...new Set([...Object.keys(before), ...Object.keys(c.tree)])].filter((p) => before[p] !== c.tree[p]);
+      const clash = touched.filter((p) => ht[p] !== c.tree[p]);
+      if (clash.length) return fail(`error: could not revert ${short(cid)}... ${c.message}\nhint: after resolving the conflicts, mark the corrected paths\nCONFLICT (content): ${clash[0]} was changed again after ${short(cid)}`, 1);
+      if (Object.keys(st.index).some((p) => st.index[p] !== ht[p])) return fail('error: your local changes would be overwritten by revert.\nhint: commit your changes or stash them to proceed.', 1);
+      const restore: Record<string, string> = {};
+      const gone: string[] = [];
+      for (const p of touched) {
+        if (before[p] === undefined) {
+          delete st.index[p];
+          gone.push(p);
+        } else {
+          st.index[p] = before[p];
+          restore[p] = before[p];
+        }
+      }
+      writeWorking(ctx, repo, restore, gone);
+      const id = identity(ctx, st);
+      const message = `Revert "${c.message}"\n\nThis reverts commit ${cid}.`;
+      const seq = Object.keys(st.commits).length + 1;
+      const newId = hashHex(JSON.stringify([seq, [head], message, id, st.index]));
+      st.commits[newId] = { id: newId, seq, parents: head ? [head] : [], message, author: id.name ?? 'Unknown', email: id.email ?? '', time: ctx.sys.now + seq * 60000, tree: { ...st.index } };
+      if (st.head.branch !== undefined) st.branches[st.head.branch] = newId;
+      else st.head.detached = newId;
+      saveGit(ctx, repo, st);
+      io.out(`[${st.head.branch ?? 'detached HEAD'} ${short(newId)}] Revert "${c.message}"\n ${touched.length} file${touched.length === 1 ? '' : 's'} changed\n`);
       return 0;
     }
 

@@ -960,6 +960,10 @@ export const SCRIPTING_COMMANDS: Record<string, Cmd> = {
   },
 
   jq: (args, io, ctx) => {
+    if (args[0] === '--version' || args[0] === '-V') {
+      io.out('jq-1.7.1\n');
+      return 0;
+    }
     let raw = false;
     let compact = false;
     let nullInput = false;
