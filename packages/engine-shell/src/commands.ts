@@ -12,6 +12,9 @@ import { DOCKER_COMMANDS } from './commands-docker.js';
 import { SCRIPTING_COMMANDS } from './commands-scripting.js';
 import { FORGE_COMMANDS } from './forge.js';
 import { DEVOPS_COMMANDS } from './commands-devops.js';
+import { containerCommands } from './container-cmds.js';
+import { K8S_COMMANDS } from './commands-k8s.js';
+import { registerCommands } from './docker-engine.js';
 
 export type { IO } from './util.js';
 
@@ -163,4 +166,6 @@ const TEST_COMMANDS: Record<string, Cmd> = {
   },
 };
 
-export const COMMANDS: Record<string, Cmd> = { ...FILE_COMMANDS, ...TEXT_COMMANDS, ...ADMIN_COMMANDS, ...SYSADMIN_COMMANDS, ...GIT_COMMANDS, ...DOCKER_COMMANDS, ...SCRIPTING_COMMANDS, ...FORGE_COMMANDS, ...DEVOPS_COMMANDS, ...TEST_COMMANDS };
+const HOST_COMMANDS: Record<string, Cmd> = { ...FILE_COMMANDS, ...TEXT_COMMANDS, ...ADMIN_COMMANDS, ...SYSADMIN_COMMANDS, ...GIT_COMMANDS, ...DOCKER_COMMANDS, ...SCRIPTING_COMMANDS, ...FORGE_COMMANDS, ...DEVOPS_COMMANDS, ...K8S_COMMANDS, ...TEST_COMMANDS };
+export const COMMANDS: Record<string, Cmd> = { ...HOST_COMMANDS, ...containerCommands(HOST_COMMANDS) };
+registerCommands(COMMANDS);

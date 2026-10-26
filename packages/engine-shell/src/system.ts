@@ -85,6 +85,8 @@ export interface ShellSystem {
   umask: number;
   /** Lab-defined network view for ip/ping/ssh. */
   network?: { address: string; gateway?: string; hosts?: Record<string, string> };
+  /** Set when this system is a container's root file system (docker-engine.ts builds these). */
+  container?: { id: string; distro: string };
   /** 'windows' routes typed lines to the PowerShell subset (powershell.ts). */
   os?: 'linux' | 'windows';
   /** State of $RANDOM's generator. */
@@ -157,6 +159,7 @@ const CATALOGUE: Record<string, PackageRec> = {
   sudo: { version: '1.9', description: 'Execute commands as another user', installed: true, provides: ['sudo'] },
   make: { version: '4.4.1', description: 'GNU make: build automation', installed: false, provides: ['make'] },
   gh: { version: '2.62.0', description: 'Command-line client for the lab forge (GitHub CLI)', installed: false, provides: ['gh'] },
+  kubectl: { version: '1.31.1', description: 'Kubernetes command-line client', installed: false, provides: ['kubectl'] },
   act: { version: '0.2.69', description: 'Run GitHub Actions workflows locally', installed: false, provides: ['act'] },
   'pre-commit': { version: '3.8.0', description: 'Framework for managing git pre-commit hooks', installed: false, provides: ['pre-commit'] },
 };

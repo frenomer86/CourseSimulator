@@ -2185,10 +2185,11 @@ export function runCommand(ctx: Ctx, words: string[], io: IO): number {
   // /bin/sh, /usr/bin/find, /usr/sbin/useradd ...: the system's own programs are the built-in commands.
   const sysBin = /^\/(?:usr\/)?s?bin\/([^/]+)$/.exec(name ?? '');
   if (sysBin && !lookup(ctx.sys.fs, name, actor(ctx))) {
-    const prog = sysBin[1] === 'sh' || sysBin[1] === 'dash' ? 'bash' : sysBin[1];
+    if (sysBin[1] === 'sh' || sysBin[1] === 'dash') return builtin(ctx, 'bash', args, io);
+    const prog = sysBin[1];
     if (COMMANDS[prog] || SHELL_BUILTINS.has(prog)) return runCommand(ctx, [prog, ...args], io);
   }
-  if ((name === 'sh' || name === 'dash') && !COMMANDS[name]) return runCommand(ctx, ['bash', ...args], io);
+  if ((name === 'sh' || name === 'dash') && !COMMANDS[name]) return builtin(ctx, 'bash', args, io);
   // printf -v VAR FORMAT ARGS stores the result instead of printing it.
   if (name === 'printf' && args[0] === '-v' && args[1] && !ctx.funcs.printf) {
     const buf: string[] = [];
@@ -2221,9 +2222,12 @@ export function runCommand(ctx: Ctx, words: string[], io: IO): number {
       else ctx.vars.FUNCNAME = savedFunc;
     }
   }
+  // Inside a container, bash is a package the image may not have (alpine has only sh).
+  if (name === 'bash' && ctx.sys.container && !commandAvailable(ctx.sys, 'bash').ok) return containerNotFound(ctx, name, io);
   if (SHELL_BUILTINS.has(name)) return builtin(ctx, name, args, io);
   const avail = commandAvailable(ctx.sys, name);
   if (!avail.ok) {
+    if (ctx.sys.container) return containerNotFound(ctx, name, io);
     io.err(`bash: ${name}: command not found\n`);
     if (avail.package) io.err(`The program '${name}' can be found in the package '${avail.package}'. Try: sudo zypper install ${avail.package}\n`);
     return 127;
@@ -2259,9 +2263,24 @@ export function runCommand(ctx: Ctx, words: string[], io: IO): number {
       io.err(`bash: ${name}: Permission denied\n`);
       return 126;
     }
+    // A script whose interpreter the container lacks (#!/bin/bash on alpine) cannot start.
+    const shebang = ctx.sys.container ? /^#!\s*(\S+)(?:\s+(\S+))?/.exec(l.node.content) : null;
+    if (shebang) {
+      const interp = shebang[1].endsWith('/env') ? shebang[2] ?? '' : shebang[1].split('/').pop()!;
+      if (!commandAvailable(ctx.sys, interp).ok) return containerNotFound(ctx, name, io);
+    }
     return runScript(ctx, l.node.content, args, name, io);
   }
+  if (ctx.sys.container) return containerNotFound(ctx, name, io);
   io.err(`bash: ${name}: command not found\n`);
+  return 127;
+}
+
+/** "Not found" the way a container's /bin/sh says it: busybox ash on alpine, dash elsewhere. */
+function containerNotFound(ctx: Ctx, name: string, io: IO): number {
+  io.err(ctx.sys.container?.distro === 'alpine' ? `/bin/sh: ${name}: not found
+` : `/bin/sh: 1: ${name}: not found
+`);
   return 127;
 }
 

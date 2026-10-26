@@ -9,6 +9,8 @@ import { seedRepo, type SeedCommit, type SeedOptions } from './git-state.js';
 export const FORGE_HOST = 'git.lab';
 export const FORGE_DIR = '/srv/forge';
 export const FORGE_DB = `${FORGE_DIR}/forge.json`;
+/** A CI runner's system -> the host Ctx whose forge it belongs to (set by ci.ts). */
+export const FORGE_HOSTS = new WeakMap<object, unknown>();
 export const forgeRepoPath = (full: string) => `${FORGE_DIR}/repos/${full}.git`;
 
 export type Role = 'read' | 'triage' | 'write' | 'maintain' | 'admin';
@@ -217,6 +219,8 @@ export interface ForgeSeed {
   prs?: Array<Partial<ForgePr> & { repo: string; title: string; author: string; head: string; base?: string }>;
   issues?: Array<Partial<ForgeIssue> & { repo: string; title: string; author: string }>;
   releases?: Array<Partial<ForgeRelease> & { repo: string; tag: string }>;
+  /** Container images already in the registry: "owner/name" -> package (see docker-registry.ts registryPackage). */
+  packages?: Record<string, unknown>;
 }
 
 type FileOut = string | { content: string; mode?: string; owner?: string; group?: string };
@@ -292,6 +296,7 @@ export function forgeFiles(seed: ForgeSeed): Record<string, FileOut> {
     db.issues.push({ number: n, body: '', state: 'OPEN', labels: [], assignees: [], comments: [], createdAt: Date.UTC(2026, 9, 20, 9, 0), ...i });
   }
   for (const r of seed.releases ?? []) db.releases.push({ name: r.tag, notes: '', author: db.repos[r.repo]?.owner ?? '', draft: false, prerelease: false, assets: {}, createdAt: Date.UTC(2026, 9, 15, 12, 0), target: 'main', ...r });
+  if (seed.packages) (db as ForgeDb & { packages?: Record<string, unknown> }).packages = structuredClone(seed.packages);
   files[FORGE_DB] = { content: JSON.stringify(db), mode: '600', owner: 'root', group: 'root' };
   return files;
 }

@@ -22,6 +22,7 @@
  *                 tag?: { name, target?: branch }, member?: { user, role }, sshKeys?: { user, min? }, visibility? }
  *   sh.docker   { container, exists?, running?, image?, ports?: ["8080:80"], env?: ["K=V"], mountTarget?, restart? }
  *   sh.dockerImage { image, exists?, base?: regex, notRoot?, expose?: [n], maxSizeMb?, hasFile?: path }
+ *   sh.forge { package: { name: "owner/app", tag?, tags?, absentTag?, sameDigest?: [a, b], visibility?, hasFile?, lacksFile?, maxSizeMb?, notRoot?, label? } }
  *   win.ou      { dn, exists? }
  *   win.user    { sam | sams: [...], exists?, enabled?, ou?: DN, department?, groups?: [...], hasPassword? }
  *   win.group   { name, exists?, scope?, members?: [...], memberOf?: [...] }
@@ -33,9 +34,10 @@
 
 import { effectiveAccess, effectiveExtra, effectivePolicy, loadAd, loadEstate, makeEnv, psQuery } from './powershell.js';
 import { ancestors, findRepo, headCommit, loadGit } from './commands-git.js';
-import { loadDocker } from './commands-docker.js';
+import { dockerState as loadDocker } from './docker-engine.js';
 import { forgeExists, loadDb, protectionFor } from './forge.js';
 import { forgeRepoPath } from './forge-seed.js';
+import { packagesOf } from './docker-registry.js';
 import type { CiRun } from './ci.js';
 import { CheckRegistry, type CheckResult, type CheckSpec } from '@cslab/lab-runtime';
 import { lookup, modeString, type FsNode } from './fs.js';
@@ -382,6 +384,8 @@ function forgeCheck(system: ShellSystem, spec: CheckSpec): CheckResult {
   const ctx = makeCtx(system);
   if (!forgeExists(ctx)) return fail(spec, 'There is no forge on this machine.');
   const db = loadDb(ctx);
+  const pk = spec.package as Spec | undefined;
+  if (pk) return packageCheck(db, spec, pk);
   const key = String(spec.repo);
   const repo = db.repos[key];
   if (spec.exists === false) return repo ? fail(spec, String(spec.message ?? `${key} still exists on the forge.`)) : pass(spec, `${key} is gone.`);
@@ -498,4 +502,33 @@ function forgeCheck(system: ShellSystem, spec: CheckSpec): CheckResult {
   const k = spec.sshKeys as Spec | undefined;
   if (k && (db.users[String(k.user)]?.keys.length ?? 0) < Number(k.min ?? 1)) return fail(spec, msg(`${String(k.user)} has no SSH key on ${db.host}. Add the public key with gh ssh-key add.`));
   return pass(spec, String(spec.success ?? 'The forge is set up as required.'));
+}
+
+/** sh.forge with package: an image in the git.lab container registry. */
+function packageCheck(db: ReturnType<typeof loadDb>, spec: CheckSpec, pk: Spec): CheckResult {
+  const msg = (dflt: string) => String(spec.message ?? dflt);
+  const name = String(pk.name);
+  const p = packagesOf(db)[name];
+  if (pk.exists === false) return p ? fail(spec, msg(`The package ${name} still exists in the registry.`)) : pass(spec, `${name} is not in the registry.`);
+  if (!p) return fail(spec, msg(`There is no image ${db.host}/${name} in the registry yet. Tag it and docker push it.`));
+  const tags = [...(pk.tag ? [String(pk.tag)] : []), ...(((pk.tags as string[] | undefined) ?? []).map(String))];
+  for (const t of tags) if (!p.tags[t]) return fail(spec, msg(`${db.host}/${name} has no tag ${t} (it has ${Object.keys(p.tags).join(', ') || 'none'}).`));
+  if (pk.absentTag && p.tags[String(pk.absentTag)]) return fail(spec, msg(`${db.host}/${name} should not have the tag ${String(pk.absentTag)}.`));
+  if (pk.sameDigest) {
+    const [a, b] = (pk.sameDigest as string[]).map(String);
+    if (!p.tags[a] || p.tags[a] !== p.tags[b]) return fail(spec, msg(`${name}:${a} and ${name}:${b} should be the same image (the same digest).`));
+  }
+  if (pk.visibility && p.visibility !== pk.visibility) return fail(spec, msg(`${db.host}/${name} is ${p.visibility}; it should be ${String(pk.visibility)}.`));
+  const img = p.manifests[p.tags[tags[0] ?? Object.keys(p.tags)[0]] ?? ''];
+  if (img) {
+    if (pk.hasFile && img.files[String(pk.hasFile)] === undefined) return fail(spec, msg(`The pushed image has no ${String(pk.hasFile)}.`));
+    if (pk.lacksFile && img.files[String(pk.lacksFile)] !== undefined) return fail(spec, msg(`The pushed image still contains ${String(pk.lacksFile)}.`));
+    if (pk.maxSizeMb !== undefined && img.sizeMb > Number(pk.maxSizeMb)) return fail(spec, msg(`The pushed image is ${img.sizeMb} MB; it should be at most ${String(pk.maxSizeMb)} MB.`));
+    if (pk.notRoot && (!img.user || img.user === 'root' || img.user === '0')) return fail(spec, msg('The pushed image runs as root. Add a USER instruction.'));
+    if (pk.label) {
+      const [lk, lv] = String(pk.label).split('=');
+      if ((img.labels ?? {})[lk] !== lv) return fail(spec, msg(`The pushed image has no label ${String(pk.label)}.`));
+    }
+  }
+  return pass(spec, String(spec.success ?? `${db.host}/${name} is in the registry as required.`));
 }

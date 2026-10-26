@@ -24,6 +24,16 @@ export interface Repo {
   gitDir: string;
   bare: boolean;
   st: GitState;
+  /** A work tree outside the repository (--work-tree / GIT_WORK_TREE with a bare --git-dir). */
+  separate?: boolean;
+}
+
+/** GIT_DIR and GIT_WORK_TREE as the environment (or --git-dir / --work-tree) set them. */
+export function gitEnv(ctx: Ctx): { gitDir?: string; workTree?: string } {
+  const v = (k: string) => (ctx.exported.has(k) ? ctx.vars[k] : undefined) || undefined;
+  const gd = v('GIT_DIR');
+  const wt = v('GIT_WORK_TREE');
+  return { ...(gd ? { gitDir: abs(ctx, gd) } : {}), ...(wt ? { workTree: abs(ctx, wt) } : {}) };
 }
 
 /** Thrown to stop a git command with a message and exit status. */
@@ -49,6 +59,11 @@ export function isBareAt(ctx: Ctx, dir: string): boolean {
 
 /** Finds the repository at or above `from`: a working tree with .git, or a bare repository directory. */
 export function findRepo(ctx: Ctx, from = ctx.sys.cwd): string | null {
+  const env = gitEnv(ctx);
+  if (env.gitDir && from === ctx.sys.cwd) {
+    const gd = env.gitDir.replace(/\/\.git$/, '');
+    return lookup(ctx.sys.fs, join(gd, STATE), ROOT) || isBareAt(ctx, gd) ? gd : null;
+  }
   let dir = from;
   for (;;) {
     if (lookup(ctx.sys.fs, join(dir, STATE), ROOT) || isBareAt(ctx, dir)) return dir;
@@ -66,6 +81,13 @@ export function loadGit(ctx: Ctx, repo: string): GitState {
 
 export function openRepo(ctx: Ctx, io: IO, path: string): Repo {
   const bare = !lookup(ctx.sys.fs, join(path, STATE), ROOT);
+  const env = gitEnv(ctx);
+  // A bare repository checked out into a separate work tree (the classic deploy hook).
+  if (bare && env.workTree && env.gitDir && env.gitDir.replace(/\/\.git$/, '') === path) {
+    const st = loadGit(ctx, path);
+    delete st.bare;
+    return { ctx, io, root: env.workTree, gitDir: path, bare: false, st, separate: true };
+  }
   return { ctx, io, root: path, gitDir: bare ? path : join(path, '.git'), bare, st: loadGit(ctx, path) };
 }
 
@@ -131,7 +153,7 @@ export function reflogText(entries: ReflogEntry[] | undefined): string {
 /** Writes the state and the files a learner can inspect: HEAD, refs/, config, logs/HEAD. */
 export function saveRepo(r: Repo, who: Actor = actor(r.ctx)): void {
   const { ctx, st, gitDir } = r;
-  writeAs(ctx, join(r.root, r.bare ? BARE_STATE : STATE), JSON.stringify(st), who);
+  writeAs(ctx, r.separate ? join(gitDir, BARE_STATE) : join(r.root, r.bare ? BARE_STATE : STATE), JSON.stringify(r.separate ? { ...st, bare: true } : st), who);
   writeAs(ctx, join(gitDir, 'HEAD'), st.head.branch !== undefined ? `ref: refs/heads/${st.head.branch}\n` : `${st.head.detached}\n`, who);
   writeAs(ctx, join(gitDir, 'config'), localConfigText(st), who);
   try {

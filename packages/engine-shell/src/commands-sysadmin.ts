@@ -287,6 +287,8 @@ export function resolveHost(sys: ShellSystem, name: string): string | undefined 
   if (isIp(n)) return n;
   if (n === 'localhost') return '127.0.0.1';
   if (n === sys.hostname.toLowerCase()) return ownAddress(sys);
+  // Inside a container, Docker's embedded DNS answers for the containers on its networks.
+  if (sys.container && sys.network?.hosts?.[n]) return sys.network.hosts[n];
   const h = hostsMap(sys);
   if (h[n]) return h[n];
   const rc = resolvConf(sys);

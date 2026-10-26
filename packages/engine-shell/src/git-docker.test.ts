@@ -102,7 +102,8 @@ describe('docker', () => {
     expect(out).toMatch(/Welcome to nginx!/);
     expect(out).toMatch(/port is already allocated/);
     expect(out).toMatch(/0\.0\.0\.0:8080->80\/tcp\s+web/);
-    expect(loadDocker(makeCtx(sys)).containers.map((c) => c.name)).toEqual(['web']);
+    // As with real Docker, the second container is created but never starts.
+    expect(loadDocker(makeCtx(sys)).containers.map((c) => [c.name, c.status])).toEqual([['web', 'running'], ['web2', 'created']]);
   });
 
   it('builds an image from a Dockerfile and serves its files', () => {

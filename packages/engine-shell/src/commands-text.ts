@@ -464,7 +464,7 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
     }
     const quiet = o.flags.has('n');
     const ere = o.flags.has('E') || o.flags.has('r');
-    interface Rule { addr?: { from: number | RegExp; to?: number | RegExp | '$' }; cmd: string; re?: RegExp; rep?: string; global?: boolean; text?: string }
+    interface Rule { addr?: { from: number | RegExp; to?: number | RegExp | '$' }; cmd: string; re?: RegExp; rep?: string; global?: boolean; text?: string; print?: boolean }
     const rules: Rule[] = [];
     for (const script of scripts) {
       for (const partRaw of splitSedScript(script)) {
@@ -481,7 +481,7 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
         }
         if (s[0] === 's') {
           const delim = s[1];
-          const m = new RegExp(`^s\\${delim}((?:\\\\.|[^\\${delim}])*)\\${delim}((?:\\\\.|[^\\${delim}])*)\\${delim}([gIi0-9]*)$`).exec(s);
+          const m = new RegExp(`^s\\${delim}((?:\\\\.|[^\\${delim}])*)\\${delim}((?:\\\\.|[^\\${delim}])*)\\${delim}([gIip0-9]*)$`).exec(s);
           if (!m) {
             io.err(`sed: -e expression #1, char ${s.length}: unterminated \`s' command\n`);
             return 1;
@@ -504,6 +504,7 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
           }
           rule.rep = rep;
           rule.global = m[3].includes('g');
+          rule.print = m[3].includes('p');
         } else if (s === 'd' || s === 'p') rule.cmd = s;
         else if (/^[aic]\\?\s*/.test(s)) {
           rule.cmd = s[0];
@@ -544,7 +545,15 @@ export const TEXT_COMMANDS: Record<string, Cmd> = {
         for (const r of rules) {
           if (cur === null) break;
           if (!matchAddr(r, i + 1, line, ls.length, state)) continue;
-          if (r.cmd === 's') cur = cur.replace(r.re!, r.rep!);
+          if (r.cmd === 's') {
+            const hit = new RegExp(r.re!.source, r.re!.flags.replace('g', '')).test(cur);
+            cur = cur.replace(r.re!, r.rep!);
+            // s///p prints the line when the substitution happened (sed -n 's/x/y/p').
+            if (hit && r.print) {
+              out.push(cur);
+              printed = true;
+            }
+          }
           else if (r.cmd === 'd') cur = null;
           else if (r.cmd === 'p') {
             out.push(cur);

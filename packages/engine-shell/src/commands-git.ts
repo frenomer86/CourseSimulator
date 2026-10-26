@@ -1759,6 +1759,14 @@ function doSwitch(r: Repo, io: IO, name: string, o: { create?: string; force?: b
   }
   if (st.branches[target] !== undefined && !o.detach) {
     if (target === st.head.branch) {
+      // checkout -f on the current branch throws away local changes: the work tree becomes HEAD again.
+      if (o.force && st.branches[target]) {
+        const tip = st.branches[target]!;
+        const c = changes(r);
+        checkoutTree(r, { ...c.ht, ...st.index, ...c.w.files }, treeOf(r, tip), execOf(r, tip), []);
+        setIndexFromTree(r, treeOf(r, tip), execOf(r, tip));
+        saveRepo(r);
+      }
       io.err(`Already on '${target}'\n`);
       io.out(trackingLine(r));
       return 0;
@@ -3719,6 +3727,7 @@ const git: Cmd = (args, io, ctx) => {
   let i = 0;
   const cwd = ctx.sys.cwd;
   const params: string[] = [];
+  const envOverrides: Record<string, string> = {};
   while (i < args.length && args[i].startsWith('-')) {
     const a = args[i];
     if (a === '-C') {
@@ -3730,7 +3739,10 @@ const git: Cmd = (args, io, ctx) => {
       }
       ctx.sys.cwd = dir;
     } else if (a === '-c') params.push(args[++i] ?? '');
-    else if (a === '--version' || a === '-v') {
+    else if (a === '--git-dir' || a.startsWith('--git-dir=') || a === '--work-tree' || a.startsWith('--work-tree=')) {
+      const name = a.startsWith('--git-dir') ? 'GIT_DIR' : 'GIT_WORK_TREE';
+      envOverrides[name] = a.includes('=') ? a.slice(a.indexOf('=') + 1) : args[++i] ?? '';
+    } else if (a === '--version' || a === '-v') {
       io.out('git version 2.45.2\n');
       return 0;
     } else if (a === '--help' || a === '-h') {
@@ -3750,6 +3762,12 @@ const git: Cmd = (args, io, ctx) => {
   if (params.length) {
     ctx.vars.GIT_CONFIG_PARAMETERS = [...(savedParams ? [savedParams] : []), ...params].join('\u0001');
     ctx.exported.add('GIT_CONFIG_PARAMETERS');
+  }
+  // --git-dir and --work-tree act like GIT_DIR and GIT_WORK_TREE for this command.
+  const savedEnv = Object.keys(envOverrides).map((k) => ({ k, v: ctx.vars[k], exp: ctx.exported.has(k) }));
+  for (const [k, v] of Object.entries(envOverrides)) {
+    ctx.vars[k] = v;
+    ctx.exported.add(k);
   }
   try {
     if (!sub) {
@@ -3791,6 +3809,11 @@ const git: Cmd = (args, io, ctx) => {
     throw e;
   } finally {
     ctx.sys.cwd = cwd === ctx.sys.cwd ? ctx.sys.cwd : cwd;
+    for (const { k, v, exp } of savedEnv) {
+      if (v === undefined) delete ctx.vars[k];
+      else ctx.vars[k] = v;
+      if (!exp) ctx.exported.delete(k);
+    }
     if (params.length) {
       if (savedParams === undefined) delete ctx.vars.GIT_CONFIG_PARAMETERS;
       else ctx.vars.GIT_CONFIG_PARAMETERS = savedParams;
