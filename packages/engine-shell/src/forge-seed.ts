@@ -65,7 +65,9 @@ export interface ForgeRepo {
   allowRebaseMerge?: boolean;
   pushProtection?: boolean;
   labels?: string[];
-  pages?: { branch: string; path?: string };
+  /** Pages: published from a branch (and folder), or by a workflow's deploy-pages step. */
+  pages?: { branch?: string; path?: string; buildType?: 'legacy' | 'workflow' };
+
 }
 
 export interface ForgeReview {

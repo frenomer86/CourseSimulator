@@ -225,7 +225,7 @@ interface FetchResult {
   objects: number;
 }
 
-function fetchInto(r: Repo, remoteName: string, rm: Remote, o: { branches?: string[]; prune?: boolean; tags?: boolean; depth?: number; unshallow?: boolean; dryRun?: boolean }): FetchResult {
+function fetchInto(r: Repo, remoteName: string, rm: Remote, o: { branches?: string[]; prune?: boolean; tags?: boolean; depth?: number; deepen?: number; unshallow?: boolean; dryRun?: boolean }): FetchResult {
   const st = r.st;
   const src = remoteState(r.ctx, rm);
   const heads = remoteBranches(src);
@@ -240,19 +240,30 @@ function fetchInto(r: Repo, remoteName: string, rm: Remote, o: { branches?: stri
   const tips = Object.values(wanted);
   const depth = o.unshallow ? undefined : o.depth ?? (st.shallow?.length ? undefined : undefined);
   const { ids, boundary } = reachable(src, tips, depth);
+  if (o.deepen) {
+    if (!st.shallow?.length) die('fatal: --deepen on a complete repository does not make sense');
+    // Extend the history below each shallow boundary by that many more commits.
+    for (const c of [...ids]) if (st.commits[c]) for (const a of ancestors(src, c)) ids.delete(a);
+    const more = reachable(src, (st.shallow ?? []).flatMap((c) => src.commits[c]?.parents ?? []), o.deepen);
+    for (const c of more.ids) ids.add(c);
+    for (const c of more.boundary) boundary.add(c);
+  }
   if (o.unshallow) {
     if (!st.shallow?.length) die('fatal: --unshallow on a complete repository does not make sense');
     delete st.shallow;
-  } else if (st.shallow?.length && !o.depth) {
+  } else if (st.shallow?.length && !o.depth && !o.deepen) {
     // A shallow clone keeps its boundary: only fetch what is new above what we have.
     for (const c of [...ids]) if (st.commits[c]) for (const a of ancestors(src, c)) ids.delete(a);
   }
   const before = new Set(Object.keys(st.commits));
   const n = o.dryRun ? [...ids].filter((c) => !st.commits[c]).length : copyCommits(src, st, ids, st.partial ? { partialKeep: new Set(tips) } : {});
-  if (depth && !o.dryRun) {
+  if ((depth || o.deepen) && !o.dryRun) {
     const sh = new Set(st.shallow ?? []);
     for (const b of boundary) if (!before.has(b)) sh.add(b);
+    // A boundary whose parents have now arrived is no longer a boundary.
+    for (const c of [...sh]) if (st.commits[c]?.parents.every((p) => st.commits[p])) sh.delete(c);
     if (sh.size) st.shallow = [...sh];
+    else delete st.shallow;
   }
   st.remoteRefs ??= {};
   for (const [b, id] of Object.entries(wanted).sort()) {
@@ -347,7 +358,8 @@ function cmdFetch(args: string[], io: IO, ctx: Ctx): number {
     const rm = connect(ctx, url, 'fetch', r.root);
     if (args.includes('--all')) io.out(`Fetching ${name}\n`);
     const depth = opt(args, '--depth');
-    const res = fetchInto(r, rname ?? 'FETCH_HEAD', rm, { branches: pos.slice(1).map((b) => b.replace(/^refs\/heads\//, '').replace(/:.*$/, '')), prune: args.includes('--prune') || args.includes('-p'), tags: args.includes('--tags') || args.includes('-t'), depth: depth ? Number(depth) : undefined, unshallow: args.includes('--unshallow'), dryRun: args.includes('--dry-run') });
+    const deepen = opt(args, '--deepen');
+    const res = fetchInto(r, rname ?? 'FETCH_HEAD', rm, { branches: pos.slice(1).map((b) => b.replace(/^refs\/heads\//, '').replace(/:.*$/, '')), prune: args.includes('--prune') || args.includes('-p'), tags: args.includes('--tags') || args.includes('-t'), depth: depth ? Number(depth) : undefined, deepen: deepen ? Number(deepen) : undefined, unshallow: args.includes('--unshallow'), dryRun: args.includes('--dry-run') });
     if (!quiet) {
       io.err(progressLines(res.objects, true));
       if (res.lines.length) io.err(`From ${url}\n${res.lines.join('\n')}\n`);

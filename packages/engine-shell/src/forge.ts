@@ -20,6 +20,8 @@ import { commitId } from './git-state.js';
 import { ROOT, ancestors, configGet, findRepo, loadGit, mergeTrees, openRepo, readConfigFile, relative, saveRepo, short, subject, hunks, type Repo } from './git-core.js';
 import { ADMIN_COMMANDS } from './commands-admin.js';
 import { mark, readWorkflows, runLogText, runWorkflow, triggers, type CiInput, type CiRun } from './ci.js';
+import { NAMED_HOSTS } from './http-hosts.js';
+
 
 type Cmd = (args: string[], io: IO, ctx: Ctx) => number;
 
@@ -41,6 +43,9 @@ export function loadDb(ctx: Ctx): ForgeDb {
 }
 
 export function saveDb(ctx: Ctx, db: ForgeDb): void {
+  // The registry keeps its packages in the same file and saves them itself (a CI job may push while this copy is loaded).
+  const disk = lookup(ctx.sys.fs, FORGE_DB, ROOT) ? (loadDb(ctx) as ForgeDb & { packages?: unknown }).packages : undefined;
+  if (disk !== undefined) (db as ForgeDb & { packages?: unknown }).packages = disk;
   writeFile(ctx.sys.fs, FORGE_DB, JSON.stringify(db), ROOT, ctx.sys.now);
 }
 
@@ -1776,10 +1781,18 @@ function ghApi(g: Gh, args: string[]): number {
     endpoint = endpoint.replace('{owner}', owner).replace('{repo}', repo);
   }
   const fields: Record<string, unknown> = {};
-  for (const kv of flagVals(args, '-f', '--raw-field')) fields[kv.slice(0, kv.indexOf('='))] = kv.slice(kv.indexOf('=') + 1);
+  // key[]=v appends to an array and key[sub]=v builds an object, as gh api does.
+  const setField = (k: string, v: unknown) => {
+    const arr = /^(.+)\[\]$/.exec(k);
+    const nest = /^([\w-]+)\[([\w-]+)\]$/.exec(k);
+    if (arr) ((fields[arr[1]] ??= []) as unknown[]).push(v);
+    else if (nest) ((fields[nest[1]] ??= {}) as Record<string, unknown>)[nest[2]] = v;
+    else fields[k] = v;
+  };
+  for (const kv of flagVals(args, '-f', '--raw-field')) setField(kv.slice(0, kv.indexOf('=')), kv.slice(kv.indexOf('=') + 1));
   for (const kv of flagVals(args, '-F', '--field')) {
     const v = kv.slice(kv.indexOf('=') + 1);
-    fields[kv.slice(0, kv.indexOf('='))] = v === 'true' ? true : v === 'false' ? false : v === 'null' ? null : /^\d+$/.test(v) ? Number(v) : v;
+    setField(kv.slice(0, kv.indexOf('=')), v === 'true' ? true : v === 'false' ? false : v === 'null' ? null : /^\d+$/.test(v) ? Number(v) : v);
   }
   const inputArg = flagVal(args, '--input');
   let body: Record<string, unknown> = fields;
@@ -1799,6 +1812,11 @@ function ghApi(g: Gh, args: string[]): number {
   };
   const notFound = () => reply(404, { message: 'Not Found', documentation_url: 'https://docs.github.com/rest' });
   if (endpoint === 'user') return reply(200, { login: g.user, name: db.users[g.user].name, email: db.users[g.user].email, type: 'User' });
+  const um = /^users\/([\w.-]+)$/.exec(endpoint);
+  if (um) {
+    const login = Object.keys(db.users).find((u) => u.toLowerCase() === um[1].toLowerCase());
+    return login ? reply(200, { login, id: Object.keys(db.users).indexOf(login) + 1, name: db.users[login].name, type: 'User' }) : notFound();
+  }
   if (endpoint === 'user/keys') return reply(200, db.users[g.user].keys.map((k, i) => ({ id: 1000 + i, key: keyId(k), title: k.split(' ')[2] ?? '' })));
   const m = /^repos\/([\w.-]+)\/([\w.-]+)(?:\/(.*))?$/.exec(endpoint.replace(/\?.*$/, ''));
   if (!m) return notFound();
@@ -1944,6 +1962,31 @@ function ghApi(g: Gh, args: string[]): number {
     const c = st.commits[sha];
     return reply(200, { sha, commit: { message: c.message, author: { name: c.author, email: c.email, date: new Date(c.time).toISOString() } }, parents: c.parents.map((p) => ({ sha: p })) });
   }
+  if (rest === 'pages') {
+    const info = () => {
+      const p = repo.pages!;
+      return { url: `https://${db.host}/api/v3/repos/${key}/pages`, status: 'built', html_url: pagesUrl(key), build_type: p.buildType ?? 'legacy', source: p.buildType === 'workflow' ? null : { branch: p.branch ?? repo.defaultBranch, path: p.path ?? '/' }, public: true };
+    };
+    if (method === 'GET') return repo.pages ? reply(200, info()) : notFound();
+    if (!admin) return forbid();
+    if (method === 'DELETE') {
+      if (!repo.pages) return notFound();
+      delete repo.pages;
+      saveDb(g.ctx, db);
+      return reply(204, null);
+    }
+    if (method === 'POST' && repo.pages) return reply(409, { message: 'GitHub Pages is already enabled.' });
+    if (method === 'PUT' && !repo.pages) return notFound();
+    const src = (body.source && typeof body.source === 'object' ? body.source : {}) as Record<string, unknown>;
+    const branch = String(src.branch ?? body['source[branch]'] ?? repo.pages?.branch ?? repo.defaultBranch);
+    const path = String(src.path ?? body['source[path]'] ?? repo.pages?.path ?? '/');
+    const buildType = String(body.build_type ?? repo.pages?.buildType ?? 'legacy') as 'legacy' | 'workflow';
+    if (buildType === 'legacy' && st.branches[branch] === undefined) return reply(422, { message: `The ${branch} branch must exist before GitHub Pages can be built.` });
+    if (!['/', '/docs'].includes(path)) return reply(422, { message: 'Invalid request.\n\n"/' + path.replace(/^\//, '') + '" is not a member of ["/", "/docs"].' });
+    repo.pages = { buildType, ...(buildType === 'legacy' ? { branch, path } : {}) };
+    saveDb(g.ctx, db);
+    return reply(method === 'POST' ? 201 : 204, method === 'POST' ? info() : null);
+  }
   if ((mm = /^contents\/(.+)$/.exec(rest))) {
     const ref = /[?&]ref=([^&]+)/.exec(endpoint)?.[1] ?? repo.defaultBranch;
     const sha = st.branches[ref] ?? st.tags[ref];
@@ -1953,6 +1996,49 @@ function ghApi(g: Gh, args: string[]): number {
   }
   return notFound();
 }
+
+/* ----------------------------------------------------------------------------- Pages */
+
+export const PAGES_DOMAIN = 'pages.git.lab';
+export const pagesUrl = (key: string) => `http://${key.split('/')[0]}.${PAGES_DOMAIN}/${key.split('/')[1]}/`;
+
+/** The files a repository's Pages site serves, or null when Pages is off or nothing is deployed. */
+export function pagesFiles(ctx: Ctx, db: ForgeDb, key: string): Record<string, string> | null {
+  const repo = db.repos[key];
+  if (!repo?.pages) return null;
+  if (repo.pages.buildType === 'workflow') {
+    const runs = (db.runs as CiRun[]).filter((r) => r.repo === key && r.pages && r.conclusion === 'success').sort((a, b) => b.id - a.id);
+    return runs[0]?.pages ?? null;
+  }
+  const st = repoState(ctx, key);
+  const tip = st.branches[repo.pages.branch ?? repo.defaultBranch];
+  if (!tip) return null;
+  const prefix = (repo.pages.path ?? '/') === '/' ? '' : repo.pages.path!.replace(/^\//, '') + '/';
+  const out: Record<string, string> = {};
+  for (const [p, c] of Object.entries(st.commits[tip].tree)) if (p.startsWith(prefix)) out[p.slice(prefix.length)] = c;
+  return out;
+}
+
+NAMED_HOSTS.push((ctx, host, _port, path) => {
+  const m = new RegExp(`^([\\w-]+)\\.${PAGES_DOMAIN.replace(/\./g, '\\.')}$`, 'i').exec(host);
+  if (!m || !forgeExists(ctx)) return null;
+  const db = loadDb(ctx);
+  const parts = (path.split(/[?#]/)[0] || '/').split('/').filter(Boolean);
+  const notFoundPage = '<!DOCTYPE html>\n<html><head><title>Site not found</title></head><body><h1>404</h1><p>There isn\'t a Pages site here.</p></body></html>\n';
+  if (!parts.length) return { status: 404, body: notFoundPage, server: 'git.lab' };
+  const key = `${m[1].toLowerCase()}/${parts[0]}`;
+  const realKey = Object.keys(db.repos).find((k) => k.toLowerCase() === key) ?? key;
+  const files = pagesFiles(ctx, db, realKey);
+  if (!files) return { status: 404, body: notFoundPage, server: 'git.lab' };
+  let rel = parts.slice(1).join('/');
+  if (parts.length === 1 && !path.endsWith('/')) return { status: 301, body: '', server: 'git.lab', location: `http://${host}/${parts[0]}/` };
+  if (rel === '' || path.endsWith('/')) rel = rel ? `${rel}/index.html` : 'index.html';
+  if (files[rel] === undefined && files[`${rel}/index.html`] !== undefined) return { status: 301, body: '', server: 'git.lab', location: `http://${host}/${parts[0]}/${rel}/` };
+  if (files[rel] === undefined && files[`${rel}.html`] !== undefined) rel = `${rel}.html`;
+  if (files[rel] === undefined) return { status: 404, body: files['404.html'] ?? notFoundPage, server: 'git.lab' };
+  const type = rel.endsWith('.css') ? 'text/css' : rel.endsWith('.js') ? 'application/javascript' : rel.endsWith('.json') ? 'application/json' : rel.endsWith('.txt') ? 'text/plain' : 'text/html; charset=utf-8';
+  return { status: 200, body: files[rel], server: 'git.lab', type };
+});
 
 function btoaUtf8(s: string): string {
   const bytes = new TextEncoder().encode(s);

@@ -1082,7 +1082,7 @@ export const ADMIN_COMMANDS: Record<string, Cmd> = {
     return 1;
   },
   curl: (args, io, ctx) => {
-    const url = args.find((a) => !a.startsWith('-')) ?? '';
+    const url = parseOpts(args, ['H', 'u', 'o', 'X', 'd', 'w', 'm', 'A', 'e', 'max-time', 'connect-timeout', 'retry', 'retry-delay', 'output', 'write-out', 'header', 'user', 'request', 'data', 'user-agent']).rest[0] ?? '';
     const m = /^(?:https?:\/\/)?([^/:]+)(?::(\d+))?(\/.*)?$/.exec(url);
     const host = m?.[1] ?? '';
     const port = Number(m?.[2] ?? (url.startsWith('https') ? 443 : 80));

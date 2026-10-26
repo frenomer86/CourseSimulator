@@ -14,6 +14,9 @@ import { parseYaml, yList, yMap, yStr, type Yaml } from './yaml.js';
 import type { GitState } from './git-state.js';
 import { ancestors } from './git-core.js';
 import { pathMatch } from './git-core.js';
+import { FORGE_HOSTS } from './forge-seed.js';
+import { JOB_TOKENS } from './docker-registry.js';
+
 
 export interface CiStep {
   number: number;
@@ -60,6 +63,8 @@ export interface CiRun {
   jobs: CiJob[];
   annotations: CiAnnotation[];
   artifacts: Array<{ name: string; files: Record<string, string> }>;
+  /** What actions/deploy-pages published from this run. */
+  pages?: Record<string, string>;
   createdAt: number;
   attempt: number;
   pr?: number;
@@ -443,9 +448,20 @@ const RUNNER_PACKAGES: SystemSpec['packages'] = {
   make: { installed: true },
   docker: { installed: true },
   rsync: { installed: true },
+  gitleaks: { installed: true },
+  'pip-audit': { installed: true },
+  'osv-scanner': { installed: true },
+  trivy: { installed: true },
 };
 
 function runnerBox(input: CiInput, workspace: string): ReturnType<typeof buildSystem> {
+  const made = makeRunnerBox(input, workspace);
+  // The runner reaches the forge (and its registry) of the machine that triggered it.
+  FORGE_HOSTS.set(made, input.ctx);
+  return made;
+}
+
+function makeRunnerBox(input: CiInput, workspace: string): ReturnType<typeof buildSystem> {
   const box = buildSystem({
     hostname: 'runner',
     user: 'runner',
@@ -658,7 +674,12 @@ export function runWorkflow(input: CiInput, wf: WorkflowFile): CiRun {
       }
       const envSecrets = envName ? input.environments?.[envName]?.secrets ?? {} : {};
       for (const s of Object.values(envSecrets)) if (s.length > 2) masks.add(s);
-      const r = runJob(input, run, job, j, { ...env0, contexts: { ...env0.contexts, secrets: { ...input.secrets, ...envSecrets }, vars: { ...input.vars, ...(envName ? input.environments?.[envName]?.vars ?? {} : {}) } } }, workspace, wfEnv, mask);
+      // The job's GITHUB_TOKEN: may publish packages for the repository's owner only if the workflow grants packages: write.
+      const perms = (scope: Yaml | undefined) => (typeof scope === 'string' ? scope === 'write-all' : yStr(yMap(scope).packages) === 'write');
+      const jobToken = input.secrets.GITHUB_TOKEN ?? `ghs_${sha256(`${input.repo}${input.runId}${key}`).slice(0, 36)}`;
+      if (jobToken) JOB_TOKENS.set(jobToken, { owner: input.repo.split('/')[0], write: j.permissions !== undefined ? perms(j.permissions) : perms(doc.permissions) });
+      if (jobToken.length > 2) masks.add(jobToken);
+      const r = runJob(input, run, job, j, { ...env0, contexts: { ...env0.contexts, secrets: { GITHUB_TOKEN: jobToken, ...input.secrets, ...envSecrets }, vars: { ...input.vars, ...(envName ? input.environments?.[envName]?.vars ?? {} : {}) } } }, workspace, wfEnv, mask);
       if (!r) anyFailed = true;
       Object.assign(jobOutputs, job.outputs);
     }
@@ -1033,7 +1054,42 @@ function runAction(input: CiInput, run: CiRun, job: CiJob, box: ReturnType<typeo
       }
       return 0;
     }
+    case 'actions/configure-pages':
+      out('Pages site configured: build_type workflow');
+      return 0;
+    case 'actions/upload-pages-artifact': {
+      const dir = (w.path ?? '_site').replace(/\/$/, '');
+      const at = dir.startsWith('/') ? dir : `${workspace}/${dir.replace(/^\.\//, '')}`;
+      const files = boxFiles(box, at);
+      if (!Object.keys(files).length) {
+        out(`Error: No such directory or no files in it: ${dir}`);
+        return 1;
+      }
+      run.artifacts = run.artifacts.filter((a) => a.name !== 'github-pages');
+      run.artifacts.push({ name: 'github-pages', files });
+      out(`Archiving ${dir} into artifact.tar`);
+      out(`Artifact github-pages has been successfully uploaded! Final size is ${Object.values(files).reduce((s, c) => s + c.length, 0)} bytes.`);
+      return 0;
+    }
+    case 'actions/deploy-pages': {
+      const a = run.artifacts.find((x) => x.name === 'github-pages');
+      if (!a) {
+        out('Error: Fetching artifact metadata failed. Is githubpages artifact uploaded?');
+        out('Error: No uploaded artifact was found! Please check if there are any errors at build step, or uploaded artifact name is correct.');
+        return 1;
+      }
+      run.pages = { ...a.files };
+      const [o, r] = input.repo.split('/');
+      out(`Created deployment for ${input.sha}, ID: ${1000 + run.number}`);
+      out('Reported success!');
+      out(`page_url: http://${o}.pages.git.lab/${r}/`);
+      const outFile = '/home/runner/work/_temp/_runner_file_commands/set_output';
+      writeBoxFile(box, outFile, (readBox(box, outFile) ?? '') + `page_url=http://${o}.pages.git.lab/${r}/\n`);
+      return 0;
+
+    }
     case 'actions/github-script':
+
       out('Error: actions/github-script runs JavaScript, which this simulator does not run; use a run: step with gh or curl.');
       return 1;
   }

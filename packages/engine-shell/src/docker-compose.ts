@@ -418,7 +418,13 @@ function upService(ctx: Ctx, st: DockerState, p: Project, svc: string, opts: { f
     st.containers = st.containers.filter((c) => c !== existing);
     recreated = true;
   }
-  if (!img && s.image !== undefined) {
+  const policy = yStr(s.pull_policy) || 'missing';
+  if (!img && s.image !== undefined && policy === 'never') {
+    io.err(`Error response from daemon: No such image: ${imageOf(p, svc)}\n(pull_policy: never — load or build the image first.)\n`);
+    return 18;
+  }
+  if (s.image !== undefined && policy === 'always' && img) st.images = st.images.filter((x) => x !== img);
+  if ((!img || policy === 'always') && s.image !== undefined) {
     const pulled = pullImage(ctx, st, imageOf(p, svc), { stdin: '', out: () => {}, err: io.err }, true);
     if (!pulled) return 18;
     io.out(` ✔ ${svc} Pulled\n`);

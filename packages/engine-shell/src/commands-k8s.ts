@@ -15,9 +15,9 @@ import { homeOf } from './system.js';
 import { abs, type IO } from './util.js';
 import { dumpYaml, parseYamlAll, type Yaml } from './yaml.js';
 import { resolveImage } from './docker-registry.js';
+import { HTTP_PROVIDERS } from './http-hosts.js';
 import {
   BoxError,
-  HTTP_PROVIDERS,
   containerHttp,
   findImage,
   hex,

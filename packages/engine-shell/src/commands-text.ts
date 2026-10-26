@@ -846,6 +846,13 @@ function parseAwkProgram(src: string): Rule[] {
         else break;
       }
       if (paren) p.expect(')');
+      // print (cond) ? a : b — the parentheses were part of an expression, not the argument list.
+      if (paren && args.length === 1 && p.peek() === '?') {
+        p.next();
+        const a = parseTernary(true);
+        p.expect(':');
+        args[0] = { k: 'cond', c: args[0], a, b: parseTernary(true) };
+      }
       let file: Expr | undefined;
       let append = false;
       if (p.peek() === '>') {

@@ -509,7 +509,8 @@ function httpClient(kind: 'curl' | 'wget'): Cmd {
 /* ----------------------------------------------------------------------------- postgres and redis clients */
 
 interface PgDb {
-  tables: Record<string, { cols: string[]; rows: string[][] }>;
+  tables: Record<string, { cols: string[]; rows: string[][]; types?: Record<string, string> }>;
+
 }
 
 function pgTarget(ctx: Ctx, args: string[]): { link: BoxLink; t: Target | null; host: string; port: number; user: string; db: string; local: boolean } | null {
@@ -569,11 +570,12 @@ function pgSave(ctx: Ctx, link: BoxLink, c: DockerContainer, pgdata: string, db:
   }
 }
 
-function pgTable(cols: string[], rows: string[][]): string {
+function pgTable(cols: string[], rows: string[][], numeric?: boolean[]): string {
   const w = cols.map((c, i) => Math.max(c.length, ...rows.map((r) => (r[i] ?? '').length)));
   const head = ' ' + cols.map((c, i) => c.padStart(Math.floor((w[i] + c.length) / 2)).padEnd(w[i])).join(' | ') + ' ';
   const sep = cols.map((_, i) => '-'.repeat(w[i] + 2)).join('+');
-  const body = rows.map((r) => ' ' + r.map((v, i) => (/^-?\d+(\.\d+)?$/.test(v) ? v.padStart(w[i]) : v.padEnd(w[i]))).join(' | ') + ' ');
+  const body = rows.map((r) => ' ' + r.map((v, i) => ((numeric ? numeric[i] : /^-?\d+(\.\d+)?$/.test(v)) ? v.padStart(w[i]) : v.padEnd(w[i]))).join(' | ') + ' ');
+
   return [head.replace(/\s+$/, ''), sep, ...body.map((b) => b.replace(/\s+$/, '')), `(${rows.length} row${rows.length === 1 ? '' : 's'})`, ''].join('\n') + '\n';
 }
 
@@ -610,17 +612,115 @@ const psql: Cmd = (args, io, ctx) => {
     return 2;
   }
   const ci = args.findIndex((a) => a === '-c' || a === '--command' || /^-[a-zA-Z]+c$/.test(a));
-  const sqlText = ci >= 0 ? args[ci + 1] ?? '' : io.stdin;
+  const fi = args.findIndex((a) => a === '-f' || a === '--file');
+  const commands = args.flatMap((a, i) => (a === '-c' || a === '--command' || /^-[a-zA-Z]+c$/.test(a) ? [args[i + 1] ?? ''] : []));
+  let sqlText = ci >= 0 ? commands.join(';\n') : io.stdin;
+  if (fi >= 0) {
+    const fileText = read(ctx, joinPath(ctx.sys.cwd, args[fi + 1] ?? ''));
+    if (fileText === null) {
+      io.err(`psql: error: ${args[fi + 1] ?? ''}: No such file or directory\n`);
+      return 1;
+    }
+    sqlText = fileText;
+  }
+  const stopOnError = args.some((a, i) => /ON_ERROR_STOP=(1|on|true)/i.test(a) && (args[i - 1] === '-v' || a.startsWith('--set') || a.startsWith('-v')));
+  sqlText = sqlText.replace(/--[^\n]*/g, '');
   const tuplesOnly = args.some((a) => /^-\w*t/.test(a) && a !== '-c');
   const pgdata = env.PGDATA ?? '/var/lib/postgresql/data';
   const store = pgLoad(ctx, p.link, p.t.c, pgdata);
   let dirty = false;
   let code = 0;
-  for (const stmtRaw of sqlText.split(/;\s*(?:\n|$)|;\s+(?=\S)/)) {
-    const stmt = stmtRaw.trim().replace(/;$/, '');
+  for (const stmtRaw of sqlText.split(/;\s*(?:\n|$)|;\s+(?=\S)|\n(?=\\)/)) {
+    const stmt = stmtRaw.trim().replace(/;$/, '').replace(/\s+/g, ' ');
     if (!stmt) continue;
+    if (code && stopOnError) break;
     let m: RegExpExecArray | null;
-    if (/^\\dt$/.test(stmt)) {
+    if (/^(begin|start transaction)$/i.test(stmt)) io.out('BEGIN\n');
+    else if (/^(commit|end)$/i.test(stmt)) io.out('COMMIT\n');
+    else if ((m = /^\\d\s+(\w+)$/.exec(stmt))) {
+      const tbl = store.tables[m[1].toLowerCase()];
+      if (!tbl) {
+        io.err(`Did not find any relation named "${m[1]}".\n`);
+        code = 1;
+        continue;
+      }
+      io.out(`${' '.repeat(12)}Table "public.${m[1].toLowerCase()}"\n${pgTable(['Column', 'Type'], tbl.cols.map((c) => [c, tbl.types?.[c] ?? 'text'])).replace(/\(\d+ rows?\)\n/, '')}`);
+    } else if ((m = /^alter table (?:if exists )?(\w+) add (?:column )?(if not exists )?(\w+)(?: (\w+(?:\(\d+\))?))?(?:.*? default ('(?:[^']|'')*'|\S+))?/i.exec(stmt))) {
+      const tbl = store.tables[m[1].toLowerCase()];
+      if (!tbl) {
+        io.err(`ERROR:  relation "${m[1]}" does not exist\n`);
+        code = 1;
+        continue;
+      }
+      const col = m[3].toLowerCase();
+      if (tbl.cols.includes(col)) {
+        if (m[2]) io.err(`NOTICE:  column "${col}" of relation "${m[1].toLowerCase()}" already exists, skipping\n`);
+        else {
+          io.err(`ERROR:  column "${col}" of relation "${m[1].toLowerCase()}" already exists\n`);
+          code = 1;
+          continue;
+        }
+      } else {
+        tbl.cols.push(col);
+        (tbl.types ??= {})[col] = (m[4] ?? 'text').toLowerCase();
+        const dflt = m[5] ? m[5].replace(/^'(.*)'$/s, '$1').replace(/''/g, "'") : '';
+        for (const r of tbl.rows) r.push(dflt);
+        dirty = true;
+      }
+      io.out('ALTER TABLE\n');
+    } else if ((m = /^alter table (?:if exists )?(\w+) drop (?:column )?(?:if exists )?(\w+)/i.exec(stmt))) {
+      const tbl = store.tables[m[1].toLowerCase()];
+      const idx = tbl ? tbl.cols.indexOf(m[2].toLowerCase()) : -1;
+      if (!tbl || idx < 0) {
+        io.err(tbl ? `ERROR:  column "${m[2]}" of relation "${m[1]}" does not exist\n` : `ERROR:  relation "${m[1]}" does not exist\n`);
+        code = 1;
+        continue;
+      }
+      tbl.cols.splice(idx, 1);
+      for (const r of tbl.rows) r.splice(idx, 1);
+      dirty = true;
+      io.out('ALTER TABLE\n');
+    } else if ((m = /^update (\w+) set (.+?)(?: where (\w+) ?= ?('(?:[^']|'')*'|\S+))?$/i.exec(stmt))) {
+      const tbl = store.tables[m[1].toLowerCase()];
+      if (!tbl) {
+        io.err(`ERROR:  relation "${m[1]}" does not exist\n`);
+        code = 1;
+        continue;
+      }
+      const sets = (m[2].match(/(\w+) ?= ?('(?:[^']|'')*'|[^,]+)/g) ?? []).map((s) => {
+        const [k, ...v] = s.split('=');
+        return [k.trim().toLowerCase(), v.join('=').trim().replace(/^'(.*)'$/s, '$1').replace(/''/g, "'")] as const;
+      });
+      const bad = sets.find(([k]) => !tbl.cols.includes(k));
+      if (bad) {
+        io.err(`ERROR:  column "${bad[0]}" of relation "${m[1]}" does not exist\n`);
+        code = 1;
+        continue;
+      }
+      const wi = m[3] ? tbl.cols.indexOf(m[3].toLowerCase()) : -1;
+      const want = m[4]?.replace(/^'(.*)'$/s, '$1');
+      let n = 0;
+      for (const r of tbl.rows) {
+        if (m[3] && r[wi] !== want) continue;
+        for (const [k, v] of sets) r[tbl.cols.indexOf(k)] = v;
+        n++;
+      }
+      dirty = true;
+      io.out(`UPDATE ${n}\n`);
+    } else if ((m = /^delete from (\w+)(?: where (\w+) ?= ?('(?:[^']|'')*'|\S+))?$/i.exec(stmt))) {
+      const tbl = store.tables[m[1].toLowerCase()];
+      if (!tbl) {
+        io.err(`ERROR:  relation "${m[1]}" does not exist\n`);
+        code = 1;
+        continue;
+      }
+      const wi = m[2] ? tbl.cols.indexOf(m[2].toLowerCase()) : -1;
+      const want = m[3]?.replace(/^'(.*)'$/s, '$1');
+      const before = tbl.rows.length;
+      tbl.rows = m[2] ? tbl.rows.filter((r) => r[wi] !== want) : [];
+      dirty = true;
+      io.out(`DELETE ${before - tbl.rows.length}\n`);
+    } else if (/^\\dt$/.test(stmt)) {
       const names = Object.keys(store.tables).sort();
       io.out(names.length ? `${tuplesOnly ? '' : '          List of relations\n'}${pgTable(['Schema', 'Name', 'Type', 'Owner'], names.map((n) => ['public', n, 'table', owner]))}` : 'Did not find any relations.\n');
     } else if (/^\\l$/.test(stmt)) {
@@ -638,7 +738,8 @@ const psql: Cmd = (args, io, ctx) => {
         code = 1;
         continue;
       }
-      store.tables[name] ??= { cols: m[2].split(',').map((c) => c.trim().split(/\s+/)[0].toLowerCase()).filter((c) => !/^(primary|unique|foreign|constraint)$/i.test(c)), rows: [] };
+      const defs = m[2].split(',').map((c) => c.trim().split(/\s+/)).filter((w) => !/^(primary|unique|foreign|constraint)$/i.test(w[0]));
+      store.tables[name] ??= { cols: defs.map((w) => w[0].toLowerCase()), rows: [], types: Object.fromEntries(defs.map((w) => [w[0].toLowerCase(), (w[1] ?? 'text').toLowerCase()])) };
       dirty = true;
       io.out('CREATE TABLE\n');
     } else if ((m = /^insert\s+into\s+(\w+)\s*(?:\(([^)]*)\))?\s*values\s*([\s\S]+)$/i.exec(stmt))) {
@@ -674,19 +775,25 @@ const psql: Cmd = (args, io, ctx) => {
         continue;
       }
       const cols = m[1].trim() === '*' ? tbl.cols : m[1].split(',').map((c) => c.trim().toLowerCase());
+      const missing = cols.find((c) => !tbl.cols.includes(c));
+      if (missing) {
+        io.err(`ERROR:  column "${missing}" does not exist\nLINE 1: ${stmt}\n`);
+        code = 1;
+        continue;
+      }
       const out = rows.map((r) => cols.map((c) => r[tbl.cols.indexOf(c)] ?? ''));
-      io.out(tuplesOnly ? out.map((r) => ' ' + r.join(' | ')).join('\n') + '\n\n' : pgTable(cols, out));
+      io.out(tuplesOnly ? out.map((r) => ' ' + r.join(' | ')).join('\n') + '\n\n' : pgTable(cols, out, tbl.types ? cols.map((c) => /int|serial|numeric|decimal|real|double/.test(tbl.types?.[c] ?? '')) : undefined));
     } else if ((m = /^drop\s+table\s+(?:if\s+exists\s+)?(\w+)$/i.exec(stmt))) {
       delete store.tables[m[1].toLowerCase()];
       dirty = true;
       io.out('DROP TABLE\n');
     } else {
-      io.err(`ERROR:  this simulated PostgreSQL understands CREATE TABLE, INSERT, SELECT, DROP TABLE, \\dt and \\l\n`);
+      io.err(`ERROR:  syntax error at or near "${stmt.split(' ')[0]}"\n(This simulated PostgreSQL understands CREATE/DROP TABLE, ALTER TABLE ADD/DROP COLUMN, INSERT, SELECT, UPDATE, DELETE, BEGIN/COMMIT, \\d, \\dt and \\l.)\n`);
       code = 1;
     }
   }
   if (dirty) pgSave(ctx, p.link, p.t.c, pgdata, store);
-  return code ? 1 : 0;
+  return code ? (stopOnError ? 3 : 1) : 0;
 };
 
 const redisCli: Cmd = (args, io, ctx) => {

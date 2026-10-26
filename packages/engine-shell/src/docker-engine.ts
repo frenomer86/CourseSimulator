@@ -17,6 +17,7 @@ import { lookup, mkdir, readFile, remove, writeFile, type DirNode, type FsNode }
 import { makeCtx, newSession, runScript, type Ctx } from './shell.js';
 import { buildSystem, syncEtc, type ShellSystem } from './system.js';
 import type { IO } from './util.js';
+import { HTTP_PROVIDERS } from './http-hosts.js';
 import { NGINX_DEFAULT_CONF, matchLocation, nginxPage, parseNginx, pickUpstream, type NginxConf } from './nginx-conf.js';
 
 
@@ -217,6 +218,9 @@ export const CATALOGUE: Record<string, CatalogueEntry> = {
   'ubuntu:24.04': { sizeMb: 78, layers: 1, expose: [], cmd: '/bin/bash', oneShot: true, distro: 'ubuntu', tools: ['procps'], memMb: 2 },
   'debian:12-slim': { sizeMb: 74.8, layers: 1, expose: [], cmd: 'bash', oneShot: true, distro: 'debian', tools: [], memMb: 2 },
   'busybox:1.36': { sizeMb: 4.3, layers: 1, expose: [], cmd: 'sh', oneShot: true, distro: 'alpine', tools: [], memMb: 1 },
+  'python:3.9': { sizeMb: 997, layers: 8, expose: [], cmd: 'python3', distro: 'debian', tools: ['python3', 'curl', 'wget', 'git', 'make', 'procps'], memMb: 20, env: { PYTHON_VERSION: '3.9.19', LANG: 'C.UTF-8' } },
+  'node:16': { sizeMb: 910, layers: 8, expose: [], cmd: 'node', distro: 'debian', tools: ['node', 'curl', 'wget', 'git', 'make', 'procps', 'python3'], memMb: 40, env: { NODE_VERSION: '16.20.2' }, users: NODE_USER },
+  'alpine:3.14': { sizeMb: 5.6, layers: 1, expose: [], cmd: '/bin/sh', oneShot: true, distro: 'alpine', tools: [], memMb: 1 },
   'hello-world:latest': { sizeMb: 0.01, layers: 1, expose: [], cmd: '/hello', oneShot: true, distro: 'scratch', tools: [], daemon: 'hello', memMb: 1 },
 };
 
@@ -591,8 +595,7 @@ export function listening(st: DockerState, c: DockerContainer, port: number, now
   return 'open';
 }
 
-/** Other things that answer HTTP on a host port (kubectl port-forward registers here). */
-export const HTTP_PROVIDERS: Array<(ctx: Ctx, port: number, path: string) => { body: string; server: string; status?: number } | null> = [];
+export { HTTP_PROVIDERS };
 
 /** HTTP body for a request to a published host port, or null when no container listens there. */
 export function dockerHttp(ctx: Ctx, port: number, path: string): { body: string; server: string; status?: number } | null {
@@ -1037,8 +1040,9 @@ function startProblem(box: Box, line: string): { code: number; why: string } | n
 }
 
 const SHELL_WORDS = new Set(['sh', 'bash', 'exec', 'echo', 'printf', 'test', 'cd', 'set', 'export', 'true', 'false', 'sleep', 'env', 'exit']);
-let commandNames: Set<string> | null = null;
-let commandsRef: Record<string, unknown> | null = null;
+// var, not let: commands.ts registers while this module may still be initialising (a circular import in the browser).
+var commandNames: Set<string> | null | undefined;
+var commandsRef: Record<string, unknown> | undefined; // no initialiser, which would reset it after registration
 /** Registered by commands.ts so the runtime knows which programs exist without importing it. */
 export function registerCommands(cmds: Record<string, unknown>): void {
   commandsRef = cmds;

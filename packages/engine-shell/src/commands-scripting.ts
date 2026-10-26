@@ -13,6 +13,8 @@ import { md5, sha1, sha256, toBase64, fromBase64 } from './hash.js';
 import { compile, formatJ, JqError, parseJsonStream, runJq, type JqValue } from './jq.js';
 import { makeCert, makeKey, opensslDate, readCert } from './cert.js';
 import { apiAt, handleApi, type ApiResponse } from './labapi.js';
+import { STATUS_TEXT, namedHost, type HostReply } from './http-hosts.js';
+import { dockerHttp } from './docker-engine.js';
 
 type Cmd = (args: string[], io: IO, ctx: Ctx) => number;
 const ROOT = { user: 'root', groups: ['root'] };
@@ -464,6 +466,7 @@ interface CurlOpts {
   retry: number;
   user?: string;
   verbose: boolean;
+  location?: boolean;
   url?: string;
 }
 
@@ -485,6 +488,8 @@ function parseCurl(args: string[]): CurlOpts {
       case 'I': o.head = true; break;
       case 'f': o.fail = true; break;
       case 'v': o.verbose = true; break;
+      case 'L': o.location = true; break;
+
     }
   };
   for (let i = 0; i < args.length; i++) {
@@ -579,7 +584,7 @@ function apiCurl(o: CurlOpts, io: IO, ctx: Ctx, host: string, path: string): num
   const failed = res.status >= 400 && (o.fail || o.failWithBody);
   const head = `HTTP/1.1 ${res.status} ${res.reason}\n${Object.entries(res.headers).map(([k, v]) => `${k}: ${v}\n`).join('')}\n`;
   let text = method === 'HEAD' ? head : (o.include ? head : '') + (failed && !o.failWithBody ? '' : res.body);
-  if (o.output && o.output !== '-') {
+  if (o.output && o.output !== '-' && o.output !== '/dev/null') {
     try {
       writeFile(sys.fs, abs(ctx, o.output), res.body, actor(ctx), sys.now);
     } catch (e) {
@@ -587,7 +592,7 @@ function apiCurl(o: CurlOpts, io: IO, ctx: Ctx, host: string, path: string): num
       return 23;
     }
     text = method === 'HEAD' || o.include ? head : '';
-  }
+  } else if (o.output === '/dev/null') text = method === 'HEAD' || o.include ? head : '';
   io.out(text);
   if (o.writeOut) {
     const ct = res.headers['Content-Type'] ?? '';
@@ -595,6 +600,36 @@ function apiCurl(o: CurlOpts, io: IO, ctx: Ctx, host: string, path: string): num
   }
   if (failed) {
     if (!o.silent || o.showErr) io.err(`curl: (22) The requested URL returned error: ${res.status}\n`);
+    return 22;
+  }
+  return 0;
+}
+
+/** curl's output for a named lab host (a Pages site, say), with -s, -f, -I, -i, -o, -L and -w. */
+function namedCurl(o: CurlOpts, io: IO, ctx: Ctx, first: HostReply, follow: (location: string) => HostReply | null): number {
+  let r = first;
+  for (let hops = 0; r.location && o.location && hops < 5; hops++) {
+    const next = follow(r.location);
+    if (!next) break;
+    r = next;
+  }
+  const head = `HTTP/1.1 ${r.status} ${STATUS_TEXT[r.status] ?? ''}\nServer: ${r.server ?? 'lab'}\nContent-Type: ${r.type ?? 'text/html; charset=utf-8'}\nContent-Length: ${r.body.length}\n${r.location ? `Location: ${r.location}\n` : ''}\n`;
+  const failed = r.status >= 400 && (o.fail || o.failWithBody);
+  let text = o.head ? head : (o.include ? head : '') + (failed && !o.failWithBody ? '' : r.body);
+  if (o.output && o.output !== '-' && o.output !== '/dev/null') {
+    try {
+      writeFile(ctx.sys.fs, abs(ctx, o.output), r.body, actor(ctx), ctx.sys.now);
+    } catch (e) {
+      io.err(`curl: (23) Failure writing output to destination: ${errText(e, o.output)}\n`);
+      return 23;
+    }
+    text = o.head || o.include ? head : '';
+  } else if (o.output === '/dev/null') text = o.head || o.include ? head : '';
+
+  io.out(text);
+  if (o.writeOut) io.out(o.writeOut.replace(/\\n/g, '\n').replace(/\\t/g, '\t').replace(/%\{(\w+)\}/g, (_m, k: string) => ({ http_code: String(r.status), response_code: String(r.status), content_type: r.type ?? 'text/html', size_download: String(r.body.length), url_effective: o.url ?? '', redirect_url: r.location ?? '' })[k] ?? ''));
+  if (failed) {
+    if (!o.silent || o.showErr) io.err(`curl: (22) The requested URL returned error: ${r.status}\n`);
     return 22;
   }
   return 0;
@@ -1011,6 +1046,16 @@ export const SCRIPTING_COMMANDS: Record<string, Cmd> = {
           return 2;
         }
         i += 2;
+      } else if (a === '--slurpfile' || a === '--rawfile') {
+        const got = readInputs(ctx, io, [args[i + 2] ?? ''], 'jq');
+        if (!got.length) return 2;
+        try {
+          vars[args[i + 1]] = a === '--rawfile' ? got[0].content : parseJsonStream(got[0].content);
+        } catch (e) {
+          io.err(`jq: Bad JSON in --slurpfile ${args[i + 1]} ${args[i + 2]}: ${(e as Error).message}\n`);
+          return 2;
+        }
+        i += 2;
       } else if (a === '--tab') tab = true;
       else if (a === '--raw-output') raw = true;
       else if (a === '--compact-output') compact = true;
@@ -1422,13 +1467,43 @@ export const SCRIPTING_COMMANDS: Record<string, Cmd> = {
     if (m) {
       const port = Number(m[3] ?? (m[1] === 'https' ? 443 : 80));
       if (apiAt(ctx.sys, m[2], port)) return apiCurl(o, io, ctx, m[2], m[4] ?? '/');
+      // Containers publishing ports on this machine: the same -o, -f, -w and -I handling as any server.
+      if (['localhost', '127.0.0.1', '0.0.0.0', ctx.sys.hostname].includes(m[2])) {
+        const d = dockerHttp(ctx, port, m[4] ?? '/');
+        if (d && d.server === 'none') {
+          if (!o.silent || o.showErr) io.err('curl: (52) Empty reply from server\n');
+          return 52;
+        }
+        if (d) return namedCurl(o, io, ctx, { status: d.status ?? 200, body: d.body, server: d.server.split(':')[0] }, () => null);
+      }
+      const named = namedHost(ctx, m[2], port, m[4] ?? '/');
+      if (named) {
+        return namedCurl(o, io, ctx, named, (loc) => {
+          const n = /^(?:(https?):\/\/)?([^/:?#]+)(?::(\d+))?([/?][^\s#]*)?$/.exec(loc);
+          return n ? namedHost(ctx, n[2], Number(n[3] ?? (n[1] === 'https' ? 443 : 80)), n[4] ?? '/') : namedHost(ctx, m[2], port, loc);
+        });
+      }
     }
     return SYSADMIN_COMMANDS.curl(args, io, ctx);
   },
   wget: (args, io, ctx) => {
     const url = args.find((a) => /^(https?:\/\/|[\w.-]+:\d+)/.test(a));
     const m = url ? /^(?:(https?):\/\/)?([^/:?#]+)(?::(\d+))?([/?][^\s#]*)?$/.exec(url) : null;
+    const named = m && !apiAt(ctx.sys, m[2], Number(m[3] ?? 80)) ? namedHost(ctx, m[2], Number(m[3] ?? (m[1] === 'https' ? 443 : 80)), m[4] ?? '/') : null;
+    if (named) {
+      const quiet = args.some((a) => /^-\w*q/.test(a));
+      if (named.status >= 400) {
+        io.err(`${quiet ? '' : `Connecting to ${m![2]}\n`}wget: server returned error: HTTP/1.1 ${named.status} ${STATUS_TEXT[named.status] ?? ''}\n`);
+        return 8;
+      }
+      const oi = args.findIndex((a) => a === '-O' || /^-q?O/.test(a));
+      const target = oi >= 0 ? (args[oi].length > 2 && args[oi] !== '-qO' ? args[oi].replace(/^-q?O/, '') : args[oi + 1]) : (m![4] ?? '/').split('/').pop() || 'index.html';
+      if (target === '-') io.out(named.body);
+      else writeFile(ctx.sys.fs, abs(ctx, target), named.body, actor(ctx), ctx.sys.now);
+      return 0;
+    }
     if (m && apiAt(ctx.sys, m[2], Number(m[3] ?? 80))) {
+
       const oi = args.findIndex((a) => a === '-O' || /^-q?O/.test(a));
       const target = oi >= 0 ? (args[oi].length > 2 && args[oi] !== '-qO' ? args[oi].replace(/^-q?O/, '') : args[oi + 1]) : (m[4] ?? '/').split('/').pop() || 'index.html';
       const headers = args.flatMap((a, k) => (a === '--header' ? [args[k + 1]] : a.startsWith('--header=') ? [a.slice(9)] : []));

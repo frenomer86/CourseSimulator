@@ -14,6 +14,7 @@ const LOADERS: Record<string, () => Promise<{ TEMPLATES: TaskTemplate[] }>> = {
   'systems-administration-i': () => import('./sa1/index.js'),
   'systems-administration-ii': () => import('./sa2/index.js'),
   'scripting-and-it-automation': () => import('./sia/index.js'),
+  'version-control-and-devops': () => import('./vcd/index.js'),
 };
 
 export const TASK_COURSES = Object.keys(LOADERS);

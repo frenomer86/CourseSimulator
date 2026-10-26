@@ -12,6 +12,9 @@ import type { IO } from './util.js';
 import { CATALOGUE, findImage, hex, imageDigest, imageFromCatalogue, parseRef, type DockerImage, type DockerState } from './docker-engine.js';
 
 const ROOT = { user: 'root', groups: ['root'] };
+/** A file that makes this machine offline: no registry, no package mirror. */
+export const OFFLINE = '/etc/cslab/offline';
+
 
 export interface RegistryPackage {
   owner: string;
@@ -195,6 +198,12 @@ export function pullImage(ctx: Ctx, st: DockerState, ref: string, io: IO, quiet 
   const existing = findImage(st, ref);
   if (existing) return existing;
   const r = parseRef(ref);
+  // A machine without internet access (the lab marks it with /etc/cslab/offline) reaches no registry.
+  if (lookup(forgeCtx(ctx).sys.fs, OFFLINE, ROOT) || lookup(ctx.sys.fs, OFFLINE, ROOT)) {
+    const host = r.registry === 'docker.io' ? 'registry-1.docker.io' : r.registry;
+    io.err(`Error response from daemon: Get "https://${host}/v2/": dial tcp: lookup ${host} on 127.0.0.53:53: no such host\n`);
+    return null;
+  }
   if (r.registry === 'docker.io') {
     const img = imageFromCatalogue(ctx, `${r.repo}:${r.tag}`);
     if (!img || (r.digest && !(img.repoDigests ?? []).some((d) => d.endsWith('@' + r.digest)))) {

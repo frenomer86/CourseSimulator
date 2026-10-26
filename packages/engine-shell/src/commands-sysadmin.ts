@@ -1298,7 +1298,7 @@ export const SYSADMIN_COMMANDS: Record<string, Cmd> = {
   /* ---------------------------------------------------------- web */
   curl: (args, io, ctx) => {
     const sys = ctx.sys;
-    const o = parseOpts(args, ['H', 'u', 'o', 'X', 'd']);
+    const o = parseOpts(args, ['H', 'u', 'o', 'X', 'd', 'w', 'm', 'A', 'e', 'max-time', 'connect-timeout', 'retry', 'retry-delay', 'output', 'write-out', 'header', 'user', 'request', 'data', 'user-agent']);
     const url = o.rest[0] ?? '';
     const m = /^(?:(https?):\/\/)?([^/:]+)(?::(\d+))?(\/.*)?$/.exec(url);
     if (!m) return ADMIN_COMMANDS.curl(args, io, ctx);

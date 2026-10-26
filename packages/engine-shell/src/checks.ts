@@ -18,7 +18,7 @@
  *                 pr?: { head?, base?, state?, title?: regex, body?: regex, fromFork?, approvedBy?, reviewState?, merged?: 'merge'|'squash'|'rebase' },
  *                 issue?: { title: regex, state? }, protection?: { branch, reviews?, checks?: [...], forcePush?, deletions?, enforceAdmins?, linear? },
  *                 secret?: { name, env? }, variable?: { name, value?, env? }, environment?: { name, reviewers?: [...] },
- *                 run?: { workflow?, event?, branch?, conclusion?, jobs?: [...], artifact?, log?: regex, latest? }, release?: { tag, asset?, notes?: regex },
+ *                 run?: { workflow?, event?, branch?, conclusion?, jobs?: [...], jobStatus?: { job: success|failure|skipped|waiting }, artifact?, log?: regex, latest? }, release?: { tag, asset?, notes?: regex },
  *                 tag?: { name, target?: branch }, member?: { user, role }, sshKeys?: { user, min? }, visibility? }
  *   sh.docker   { container, exists?, running?, image?, ports?: ["8080:80"], env?: ["K=V"], mountTarget?, restart? }
  *   sh.dockerImage { image, exists?, base?: regex, notRoot?, expose?: [n], maxSizeMb?, hasFile?: path }
@@ -481,6 +481,11 @@ function forgeCheck(system: ShellSystem, spec: CheckSpec): CheckResult {
     if (run.log && !rx(run.log).test(r.jobs.flatMap((j) => j.steps.flatMap((s) => s.log)).join('\n'))) return fail(spec, msg(`The log of run #${r.id} does not show what was asked for.`));
     if (run.anyLog && !runs.some((x) => rx(run.anyLog).test(x.jobs.flatMap((j) => j.steps.flatMap((s) => s.log)).join('\n')))) return fail(spec, msg('No matching run shows what was asked for in its log.'));
     if (run.minJobs && r.jobs.length < Number(run.minJobs)) return fail(spec, msg(`Run #${r.id} has ${r.jobs.length} jobs; at least ${String(run.minJobs)} were expected.`));
+    for (const [jn, want] of Object.entries((run.jobStatus as Record<string, string> | undefined) ?? {})) {
+      const job = r.jobs.find((x) => x.name === jn || x.key === jn);
+      const have = job ? (job.status === 'completed' ? job.conclusion : job.status) : 'missing';
+      if (have !== want) return fail(spec, msg(`In run #${r.id} (${r.branch}), job ${jn} is ${have}; it should be ${want}.`));
+    }
   }
   const rel = spec.release as Spec | undefined;
   if (rel) {
