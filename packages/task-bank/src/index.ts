@@ -15,6 +15,7 @@ const LOADERS: Record<string, () => Promise<{ TEMPLATES: TaskTemplate[] }>> = {
   'systems-administration-ii': () => import('./sa2/index.js'),
   'scripting-and-it-automation': () => import('./sia/index.js'),
   'web-application-security': () => import('./was/index.js'),
+  'operating-systems': () => import('./os/index.js'),
   'version-control-and-devops': () => import('./vcd/index.js'),
 };
 
