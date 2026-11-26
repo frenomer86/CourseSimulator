@@ -483,7 +483,17 @@ export function registerCommunity(app: FastifyInstance, deps: Deps): void {
     let rows: ResourceRow[];
     if (groupId) {
       await requireGroupMember(db, groupId, userId);
-      rows = (await db.query<ResourceRow>(`select ${RESOURCE_SELECT} from resources r where r.group_id = $1 order by r.created_at desc limit 200`, [groupId])).rows;
+      rows = (
+        await db.query<ResourceRow>(
+          `select ${RESOURCE_SELECT} from resources r
+            where r.group_id = $1
+              and (r.kind <> 'solution' or r.owner_id = $2 or exists (
+                    select 1 from lab_results lr where lr.user_id = $2 and lr.lab_id = r.lab_id and lr.passed
+                  ))
+            order by r.created_at desc limit 200`,
+          [groupId, userId],
+        )
+      ).rows;
     } else if (labId) {
       // Solution shares for a lab (course library): the owner's own, and others' only once you have passed it.
       const passed = await passedLab(db, userId, labId);

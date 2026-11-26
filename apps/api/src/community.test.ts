@@ -295,6 +295,39 @@ describe('resources', () => {
     expect((await app.inject({ method: 'DELETE', url: `/api/resources/${rid}`, headers: auth(esi.token) })).statusCode).toBe(403);
     expect((await app.inject({ method: 'DELETE', url: `/api/resources/${rid}`, headers: auth(ama.token) })).statusCode).toBe(204);
   });
+
+  it('hides group solution shares from members who have not passed the lab', async () => {
+    const labId = 'digital-logic-design-i1-half-adder';
+    await app.inject({
+      method: 'POST',
+      url: '/api/me/progress/sync',
+      headers: auth(kofi.token),
+      payload: { items: [{ kind: 'lab_result', id: '55555555-5555-4555-8555-555555555555', at: new Date().toISOString(), labId, course: 'digital-logic-design', level: 'intermediate', passed: true, score: 1, hintsUsed: 0 }] },
+    });
+    const share = await app.inject({
+      method: 'POST',
+      url: '/api/resources',
+      headers: auth(kofi.token),
+      payload: { kind: 'solution', groupId, labId, title: 'Half adder solution', payload: { nodes: [], wires: [] } },
+    });
+    expect(share.statusCode).toBe(201);
+    const solutionId = json(share).resource.id as string;
+
+    const ownerView = json(await app.inject({ method: 'GET', url: `/api/resources?groupId=${groupId}`, headers: auth(kofi.token) })).resources as Array<{ id: string }>;
+    expect(ownerView.map((r) => r.id)).toContain(solutionId);
+
+    const beforePass = json(await app.inject({ method: 'GET', url: `/api/resources?groupId=${groupId}`, headers: auth(ama.token) })).resources as Array<{ id: string }>;
+    expect(beforePass.map((r) => r.id)).not.toContain(solutionId);
+
+    await app.inject({
+      method: 'POST',
+      url: '/api/me/progress/sync',
+      headers: auth(ama.token),
+      payload: { items: [{ kind: 'lab_result', id: '66666666-6666-4666-8666-666666666666', at: new Date().toISOString(), labId, course: 'digital-logic-design', level: 'intermediate', passed: true, score: 1, hintsUsed: 0 }] },
+    });
+    const afterPass = json(await app.inject({ method: 'GET', url: `/api/resources?groupId=${groupId}`, headers: auth(ama.token) })).resources as Array<{ id: string }>;
+    expect(afterPass.map((r) => r.id)).toContain(solutionId);
+  });
 });
 
 describe('facilitator tasks', () => {
