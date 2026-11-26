@@ -1,8 +1,9 @@
 /** End-to-end API tests against an in-memory Postgres (PGlite); no services needed. */
 
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import type { FastifyInstance } from 'fastify';
-import { buildApp } from './app.js';
+import { buildApp, DEFAULT_TRUST_PROXY, parseTrustProxy } from './app.js';
+import { makeRateLimiter } from './auth.js';
 import { openDb, type Db } from './db.js';
 import { migrate } from './migrate.js';
 
@@ -183,5 +184,82 @@ describe('progress sync', () => {
     expect((await app.inject({ method: 'GET', url: '/api/me', headers: auth(token) })).statusCode).toBe(401);
     const rows = await db.query('select count(*)::int as n from lab_results');
     expect((rows.rows[0] as { n: number }).n).toBe(0);
+  });
+});
+
+describe('rate limiting and proxy trust', () => {
+  it('evicts expired entries and keeps blocked keys instead of clearing the whole map', () => {
+    vi.useFakeTimers();
+    try {
+      const limit = makeRateLimiter(2, 10_000);
+      expect(limit('victim')).toBe(true);
+      expect(limit('victim')).toBe(true);
+      expect(limit('victim')).toBe(false);
+      // Flooding distinct keys must not clear the rate-limited key.
+      for (let i = 0; i < 10_005; i++) limit(`flood-${i}`);
+      expect(limit('victim')).toBe(false);
+
+      // Once the window expires, keys are evicted and allowed again.
+      vi.advanceTimersByTime(10_001);
+      expect(limit('victim')).toBe(true);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('ignores spoofed X-Forwarded-For from direct clients and behind a private proxy hop', async () => {
+    const isolated = await buildApp({ db });
+    try {
+      // Direct connection from a public IP trying to spoof X-Forwarded-For on every attempt.
+      for (let i = 0; i < 20; i++) {
+        const res = await isolated.inject({
+          method: 'POST',
+          url: '/api/auth/sign-in',
+          remoteAddress: '198.51.100.10',
+          headers: { 'x-forwarded-for': `203.0.113.${i + 1}` },
+          payload: { email: 'nobody@example.com', password: 'wrong' },
+        });
+        expect(res.statusCode).toBe(401);
+      }
+      const blockedDirect = await isolated.inject({
+        method: 'POST',
+        url: '/api/auth/sign-in',
+        remoteAddress: '198.51.100.10',
+        headers: { 'x-forwarded-for': '203.0.113.99' },
+        payload: { email: 'nobody@example.com', password: 'wrong' },
+      });
+      expect(blockedDirect.statusCode).toBe(429);
+
+      // Behind Caddy on a Docker bridge (private IP): spoofed leftmost IP is ignored, real client IP is rate-limited.
+      for (let i = 0; i < 20; i++) {
+        const res = await isolated.inject({
+          method: 'POST',
+          url: '/api/auth/sign-in',
+          remoteAddress: '172.18.0.2',
+          headers: { 'x-forwarded-for': `203.0.113.${i + 1}, 198.51.100.20` },
+          payload: { email: 'nobody@example.com', password: 'wrong' },
+        });
+        expect(res.statusCode).toBe(401);
+      }
+      const blockedProxied = await isolated.inject({
+        method: 'POST',
+        url: '/api/auth/sign-in',
+        remoteAddress: '172.18.0.2',
+        headers: { 'x-forwarded-for': '203.0.113.99, 198.51.100.20' },
+        payload: { email: 'nobody@example.com', password: 'wrong' },
+      });
+      expect(blockedProxied.statusCode).toBe(429);
+    } finally {
+      await isolated.close();
+    }
+  });
+
+  it('parses TRUST_PROXY settings safely', () => {
+    expect(parseTrustProxy(undefined)).toEqual(DEFAULT_TRUST_PROXY);
+    expect(parseTrustProxy('')).toEqual(DEFAULT_TRUST_PROXY);
+    expect(parseTrustProxy('false')).toBe(false);
+    expect(parseTrustProxy('0')).toBe(false);
+    expect(parseTrustProxy('loopback')).toBe('loopback');
+    expect(parseTrustProxy('loopback, 172.16.0.0/12')).toEqual(['loopback', '172.16.0.0/12']);
   });
 });

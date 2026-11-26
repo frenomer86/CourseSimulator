@@ -3,7 +3,7 @@
  * without opening a port. server.ts wires it to a database and the static web build.
  */
 
-import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from 'fastify';
+import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest, type FastifyServerOptions } from 'fastify';
 import cors from '@fastify/cors';
 import { z } from 'zod';
 import { iso, num, type Db, type Queryable } from './db.js';
@@ -25,6 +25,22 @@ declare module 'fastify' {
   }
 }
 
+export type TrustProxySetting = NonNullable<FastifyServerOptions['trustProxy']>;
+
+/** Default proxy trust: local dev (Vite on loopback) and Docker Compose (Caddy on a private bridge). */
+export const DEFAULT_TRUST_PROXY: TrustProxySetting = ['loopback', 'linklocal', 'uniquelocal'];
+
+/** Parses TRUST_PROXY env values: empty → loopback/private hop, "false"/"0" → false, or comma-separated CIDRs/names. */
+export function parseTrustProxy(raw?: string): TrustProxySetting {
+  const s = raw?.trim();
+  if (!s) return DEFAULT_TRUST_PROXY;
+  const lower = s.toLowerCase();
+  if (lower === 'false' || lower === '0' || lower === 'off') return false;
+  if (lower === 'true') return true;
+  const parts = s.split(',').map((p) => p.trim()).filter(Boolean);
+  return parts.length === 1 ? parts[0] : parts;
+}
+
 export interface AppOptions {
   db: Db;
   /** Allowed browser origin for cross-origin use. Omit when the API serves the web app itself. */
@@ -32,6 +48,8 @@ export interface AppOptions {
   logger?: boolean;
   /** Secret that derives research ids from user ids (learning analytics). Kept outside the database. */
   researchSalt?: string;
+  /** Fastify trustProxy setting. Defaults to loopback and private-network hops (Vite / Caddy in Docker). */
+  trustProxy?: TrustProxySetting;
 }
 
 export { HttpError };
@@ -270,7 +288,7 @@ export async function buildApp(opts: AppOptions): Promise<FastifyInstance> {
     // Operational logs: method, URL, status and timing per request; never bodies, and no auth headers.
     logger: opts.logger ? { redact: { paths: ['req.headers.authorization', 'req.headers.cookie'], censor: '[redacted]' } } : false,
     bodyLimit: 2 * 1024 * 1024,
-    trustProxy: true,
+    trustProxy: opts.trustProxy ?? DEFAULT_TRUST_PROXY,
   });
   if (opts.corsOrigin) await app.register(cors, { origin: opts.corsOrigin.split(',').map((s) => s.trim()) });
 
