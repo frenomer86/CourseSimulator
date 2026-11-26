@@ -57,6 +57,18 @@ describe('expressions', () => {
   });
 });
 
+describe('input that is not an expression', () => {
+  it('reports a lone dot as a syntax error, not a crash', () => {
+    expect(() => parseExpr('2 . x')).toThrow(/must be part of a number/);
+    expect(expressionsEquivalent('.', 'x')).not.toMatch(/Cannot read|TypeError/);
+  });
+  it('does not treat Object.prototype names as functions, constants or keywords', () => {
+    expect(parseExpr('toString(1)')).toMatchObject({ kind: 'bin', op: '*' });
+    expect(() => evaluate(parseExpr('constructor'), {})).toThrow(/Unknown variable "constructor"/);
+    expect(parseFormula('constructor')).toMatchObject({ kind: 'var', name: 'constructor' });
+  });
+});
+
 describe('logic', () => {
   it('parses many spellings and builds textbook-order truth tables', () => {
     const t = truthTable(parseFormula('p -> q'));
@@ -106,6 +118,9 @@ describe('structures', () => {
     expect(modInverse(7, 26)).toBe(15);
     expect(modInverse(4, 8)).toBeNull();
     expect(modPow(7, 128, 13)).toBe(3);
+    expect(modPow(5, 3, 1)).toBe(0); // everything is 0 mod 1
+    expect(modPow(2, 2 ** 31, 1000)).toBe(656); // exponent past 32-bit
+    expect(modPow(123456789, 2, 1_000_000_007)).toBe(643499475); // b*b past 2^53
     const r = bisection((x) => x ** 3 - x - 2, 1, 2, 1e-3);
     expect(r.root).toBeCloseTo(1.5214, 3);
     expect(r.steps.length).toBe(10);

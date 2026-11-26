@@ -141,16 +141,18 @@ export function modInverse(a: number, n: number): number | null {
   return gcd === 1 ? ((x % n) + n) % n : null;
 }
 
+/** base^exp mod m for integers, in BigInt so large exponents and products stay exact. */
 export function modPow(base: number, exp: number, mod: number): number {
-  let result = 1;
-  let b = ((base % mod) + mod) % mod;
-  let e = exp;
-  while (e > 0) {
-    if (e & 1) result = (result * b) % mod;
-    b = (b * b) % mod;
-    e >>= 1;
+  const m = BigInt(mod);
+  let result = 1n % m;
+  let b = ((BigInt(base) % m) + m) % m;
+  let e = BigInt(exp);
+  while (e > 0n) {
+    if (e & 1n) result = (result * b) % m;
+    b = (b * b) % m;
+    e >>= 1n;
   }
-  return result;
+  return Number(result);
 }
 
 /** Bisection on f over [lo, hi] until the interval is narrower than width; returns the midpoint and the steps taken. */
