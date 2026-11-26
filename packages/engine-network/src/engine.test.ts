@@ -93,6 +93,23 @@ describe('ping', () => {
     const bad = setIface(lan, 'pc1', 'eth0', { ip: '192.168.1.0' });
     expect(ping(bad, 'pc1', 'pc2').reason).toMatch(/network or broadcast address/);
   });
+  it('replies to the interface the request left by on a router with several interfaces', () => {
+    // R1 pings the server through g1; its first interface g0 is on another subnet that R2 cannot reach.
+    const routed = setDevice(setDevice(lan, 'r1', { routes: [{ network: '192.168.2.0/24', via: '10.0.0.2' }] }), 'r2', { routes: [] });
+    const r = ping(routed, 'r1', 'srv');
+    expect(r.ok).toBe(true);
+    expect(r.reply.at(-1)).toMatchObject({ device: 'r1', ip: '10.0.0.1' });
+  });
+  it('skips a route whose gateway is unreachable and uses a later matching route', () => {
+    const routes = [
+      { network: '192.168.2.0/24', via: '172.16.0.1' }, // no interface on 172.16.0.0
+      { network: '0.0.0.0/0', via: '10.0.0.2' },
+    ];
+    const both = setDevice(setDevice(lan, 'r1', { routes }), 'r2', { routes: [{ network: '0.0.0.0/0', via: '10.0.0.1' }] });
+    expect(ping(both, 'pc1', 'srv')).toMatchObject({ ok: true, pathDevices: ['pc1', 'r1', 'r2', 'srv'] });
+    const only = setDevice(lan, 'r1', { routes: [routes[0]] });
+    expect(ping(only, 'pc1', 'srv').reason).toMatch(/route to 192.168.2.0\/24 via 172.16.0.1, but no interface is on that gateway's subnet/);
+  });
 });
 
 describe('net.* checks', () => {

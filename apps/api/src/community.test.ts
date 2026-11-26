@@ -237,12 +237,83 @@ describe('group chat', () => {
     wsE.close();
     unauth.close();
   });
+
+  it('updates live WebSocket rooms immediately when blocking, removing or leaving a group', async () => {
+    const frames = (ws: WebSocket) => {
+      const queue: unknown[] = [];
+      const waiters: Array<(v: unknown) => void> = [];
+      ws.on('message', (raw) => {
+        const v = JSON.parse(String(raw));
+        const w = waiters.shift();
+        if (w) w(v);
+        else queue.push(v);
+      });
+      return () => (queue.length ? Promise.resolve(queue.shift()) : new Promise<unknown>((r) => waiters.push(r)));
+    };
+
+    const liveG = json(await app.inject({ method: 'POST', url: '/api/groups', headers: auth(ama.token), payload: { name: 'Live hub room', visibility: 'invite' } })).group as { id: string; joinCode: string };
+    await app.inject({ method: 'POST', url: '/api/groups/join', headers: auth(kofi.token), payload: { code: liveG.joinCode } });
+
+    const wsA = await app.injectWS('/api/ws');
+    const nextA = frames(wsA);
+    wsA.send(JSON.stringify({ type: 'auth', token: ama.token }));
+    await nextA();
+    wsA.send(JSON.stringify({ type: 'join', groupId: liveG.id }));
+    await nextA(); // presence: [Ama]
+
+    const wsK = await app.injectWS('/api/ws');
+    const nextK = frames(wsK);
+    wsK.send(JSON.stringify({ type: 'auth', token: kofi.token }));
+    await nextK();
+    wsK.send(JSON.stringify({ type: 'join', groupId: liveG.id }));
+    await nextK(); // presence: [Ama, Kofi]
+    await nextA(); // presence: [Ama, Kofi]
+
+    // Blocking Ama stops live delivery immediately; unblocking restores it.
+    await app.inject({ method: 'PUT', url: `/api/me/blocks/${ama.id}`, headers: auth(kofi.token) });
+    await app.inject({ method: 'POST', url: `/api/groups/${liveG.id}/messages`, headers: auth(ama.token), payload: { body: 'Should be hidden' } });
+    expect(await nextA()).toMatchObject({ type: 'message', message: { body: 'Should be hidden' } });
+    wsK.send(JSON.stringify({ type: 'ping' }));
+    expect(await nextK()).toEqual({ type: 'pong' });
+
+    await app.inject({ method: 'DELETE', url: `/api/me/blocks/${ama.id}`, headers: auth(kofi.token) });
+    await app.inject({ method: 'POST', url: `/api/groups/${liveG.id}/messages`, headers: auth(ama.token), payload: { body: 'Visible again' } });
+    expect(await nextA()).toMatchObject({ type: 'message', message: { body: 'Visible again' } });
+    expect(await nextK()).toMatchObject({ type: 'message', message: { body: 'Visible again' } });
+
+    // Removing Kofi evicts his open socket from the room immediately.
+    await app.inject({ method: 'DELETE', url: `/api/groups/${liveG.id}/members/${kofi.id}`, headers: auth(ama.token) });
+    expect(await nextA()).toEqual({ type: 'presence', groupId: liveG.id, online: [{ displayName: 'Ama', avatarUrl: null }] });
+    await app.inject({ method: 'POST', url: `/api/groups/${liveG.id}/messages`, headers: auth(ama.token), payload: { body: 'After removal' } });
+    expect(await nextA()).toMatchObject({ type: 'message', message: { body: 'After removal' } });
+    wsK.send(JSON.stringify({ type: 'ping' }));
+    expect(await nextK()).toEqual({ type: 'pong' });
+
+    // Rejoining and then leaving via REST also evicts the open socket immediately.
+    await app.inject({ method: 'POST', url: '/api/groups/join', headers: auth(kofi.token), payload: { code: liveG.joinCode } });
+    wsK.send(JSON.stringify({ type: 'join', groupId: liveG.id }));
+    await nextK();
+    await nextA();
+    await app.inject({ method: 'POST', url: `/api/groups/${liveG.id}/leave`, headers: auth(kofi.token) });
+    expect(await nextA()).toEqual({ type: 'presence', groupId: liveG.id, online: [{ displayName: 'Ama', avatarUrl: null }] });
+    await app.inject({ method: 'POST', url: `/api/groups/${liveG.id}/messages`, headers: auth(ama.token), payload: { body: 'After leave' } });
+    expect(await nextA()).toMatchObject({ type: 'message', message: { body: 'After leave' } });
+    wsK.send(JSON.stringify({ type: 'ping' }));
+    expect(await nextK()).toEqual({ type: 'pong' });
+
+    wsK.close();
+    wsA.close();
+  });
 });
 
 describe('resources', () => {
   it('group resources are for members; the course library is open; solution shares need a pass', async () => {
     const denied = await app.inject({ method: 'POST', url: '/api/resources', headers: auth(esi.token), payload: { kind: 'link', groupId, title: 'Notes', url: 'https://example.com/n' } });
     expect(denied.statusCode).toBe(403);
+    const badLink = await app.inject({ method: 'POST', url: '/api/resources', headers: auth(kofi.token), payload: { kind: 'link', groupId, title: 'XSS', url: 'javascript:alert(1)' } });
+    expect(badLink.statusCode).toBe(400);
+    const badData = await app.inject({ method: 'POST', url: '/api/resources', headers: auth(kofi.token), payload: { kind: 'link', groupId, title: 'Data', url: 'data:text/html,hi' } });
+    expect(badData.statusCode).toBe(400);
     const link = await app.inject({ method: 'POST', url: '/api/resources', headers: auth(kofi.token), payload: { kind: 'link', groupId, title: 'Karnaugh maps explained', url: 'https://example.com/kmap' } });
     expect(link.statusCode).toBe(201);
     const note = await app.inject({
@@ -290,6 +361,39 @@ describe('resources', () => {
     const rid = json(link).resource.id;
     expect((await app.inject({ method: 'DELETE', url: `/api/resources/${rid}`, headers: auth(esi.token) })).statusCode).toBe(403);
     expect((await app.inject({ method: 'DELETE', url: `/api/resources/${rid}`, headers: auth(ama.token) })).statusCode).toBe(204);
+  });
+
+  it('hides group solution shares from members who have not passed the lab', async () => {
+    const labId = 'digital-logic-design-i1-half-adder';
+    await app.inject({
+      method: 'POST',
+      url: '/api/me/progress/sync',
+      headers: auth(kofi.token),
+      payload: { items: [{ kind: 'lab_result', id: '55555555-5555-4555-8555-555555555555', at: new Date().toISOString(), labId, course: 'digital-logic-design', level: 'intermediate', passed: true, score: 1, hintsUsed: 0 }] },
+    });
+    const share = await app.inject({
+      method: 'POST',
+      url: '/api/resources',
+      headers: auth(kofi.token),
+      payload: { kind: 'solution', groupId, labId, title: 'Half adder solution', payload: { nodes: [], wires: [] } },
+    });
+    expect(share.statusCode).toBe(201);
+    const solutionId = json(share).resource.id as string;
+
+    const ownerView = json(await app.inject({ method: 'GET', url: `/api/resources?groupId=${groupId}`, headers: auth(kofi.token) })).resources as Array<{ id: string }>;
+    expect(ownerView.map((r) => r.id)).toContain(solutionId);
+
+    const beforePass = json(await app.inject({ method: 'GET', url: `/api/resources?groupId=${groupId}`, headers: auth(ama.token) })).resources as Array<{ id: string }>;
+    expect(beforePass.map((r) => r.id)).not.toContain(solutionId);
+
+    await app.inject({
+      method: 'POST',
+      url: '/api/me/progress/sync',
+      headers: auth(ama.token),
+      payload: { items: [{ kind: 'lab_result', id: '66666666-6666-4666-8666-666666666666', at: new Date().toISOString(), labId, course: 'digital-logic-design', level: 'intermediate', passed: true, score: 1, hintsUsed: 0 }] },
+    });
+    const afterPass = json(await app.inject({ method: 'GET', url: `/api/resources?groupId=${groupId}`, headers: auth(ama.token) })).resources as Array<{ id: string }>;
+    expect(afterPass.map((r) => r.id)).toContain(solutionId);
   });
 });
 

@@ -62,7 +62,7 @@ function tokenize(src: string): Tok[] {
       const m = /^[a-zA-Z][a-zA-Z0-9_]*/.exec(s.slice(i))!;
       const word = m[0];
       const lower = word.toLowerCase();
-      if (lower in WORDS) {
+      if (Object.hasOwn(WORDS, lower)) {
         const v = WORDS[lower];
         if (v === 'T' || v === 'F') out.push({ t: 'const', v: v === 'T' });
         else out.push({ t: 'op', v });
@@ -158,7 +158,7 @@ export function parseFormula(src: string): Formula {
 export function evalFormula(f: Formula, env: Record<string, boolean>): boolean {
   switch (f.kind) {
     case 'var':
-      if (!(f.name in env)) throw new Error(`Unknown variable "${f.name}".`);
+      if (!Object.hasOwn(env, f.name)) throw new Error(`Unknown variable "${f.name}".`);
       return env[f.name];
     case 'const':
       return f.value;

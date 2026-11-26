@@ -84,6 +84,9 @@ describe('general contest', () => {
     const publish = await app.inject({ method: 'PATCH', url: `/api/competitions/${compId}`, headers: auth(ama.token), payload: { status: 'scheduled' } });
     expect(publish.statusCode).toBe(200);
     expect(json(publish).competition.status).toBe('scheduled');
+    const inverted = await app.inject({ method: 'PATCH', url: `/api/competitions/${compId}`, headers: auth(ama.token), payload: { endsAt: minutes(1) } });
+    expect(inverted.statusCode).toBe(400);
+    expect(json(inverted).message).toMatch(/end after it starts/);
     const view = json(await app.inject({ method: 'GET', url: `/api/competitions/${compId}`, headers: auth(kofi.token) }));
     expect(view.competition.problemCount).toBe(3);
     expect(view.problems).toBeNull();
@@ -102,6 +105,9 @@ describe('general contest', () => {
     await db.query("update competitions set starts_at = now() - interval '10 minutes', ends_at = now() + interval '50 minutes' where id = $1", [compId]);
     const view = json(await app.inject({ method: 'GET', url: `/api/competitions/${compId}`, headers: auth(kofi.token) }));
     expect(view.competition.status).toBe('live');
+    const backToScheduled = await app.inject({ method: 'PATCH', url: `/api/competitions/${compId}`, headers: auth(ama.token), payload: { status: 'scheduled', startsAt: minutes(30), endsAt: minutes(90) } });
+    expect(backToScheduled.statusCode).toBe(409);
+    expect(json(backToScheduled).error).toBe('started');
     expect(view.problems.map((p: { contentId: string }) => p.contentId)).toEqual([LAB_B1, LAB_I1, CHECK]);
 
     const active = json(await app.inject({ method: 'GET', url: `/api/competitions/active?labId=${LAB_B1}`, headers: auth(kofi.token) })).active;
@@ -118,9 +124,11 @@ describe('general contest', () => {
     expect(k1.score.finishS).toBeGreaterThanOrEqual(300 + 600);
     const k2 = json(await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(kofi.token), payload: { ordinal: 2, passed: true, hintsUsed: 1 } }));
     expect(k2.score).toMatchObject({ points: 260, solved: 2 });
-    // Solving the same problem again adds nothing.
+    // Solving the same problem again adds nothing, and fewer hints must not erase an earlier hint penalty.
     const k1b = json(await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(kofi.token), payload: { ordinal: 1, passed: true } }));
     expect(k1b.score.points).toBe(260);
+    const k2b = json(await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(kofi.token), payload: { ordinal: 2, passed: true, hintsUsed: 0 } }));
+    expect(k2b.score.points).toBe(260);
 
     // Esi: the same 260 points but without the wrong run, so she finishes faster and ranks first.
     await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(esi.token), payload: { ordinal: 1, passed: true } });
@@ -213,6 +221,9 @@ describe('group contest and quest', () => {
     expect(y.statusCode).toBe(200);
 
     await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(kofi.token), payload: { ordinal: 1, passed: true } });
+    // Only one of Nand Lovers' two members has scored so far: no 10% all-scored bonus yet.
+    const midBoard = json(await app.inject({ method: 'GET', url: `/api/competitions/${compId}/board`, headers: auth(esi.token) }));
+    expect(midBoard.teams.find((t: { name: string }) => t.name === 'Nand Lovers')).toMatchObject({ basePoints: 100, points: 100, members: 2, scorers: 1 });
     await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(esi.token), payload: { ordinal: 2, passed: true } });
     await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(yaw.token), payload: { ordinal: 1, passed: true } });
     await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(yaw.token), payload: { ordinal: 3, passed: true } });

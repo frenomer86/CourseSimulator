@@ -45,7 +45,8 @@ function tokenize(src: string): Token[] {
       continue;
     }
     if (/[0-9.]/.test(c)) {
-      const m = /^(\d+\.?\d*|\.\d+)(e[+-]?\d+)?/i.exec(s.slice(i))!;
+      const m = /^(\d+\.?\d*|\.\d+)(e[+-]?\d+)?/i.exec(s.slice(i));
+      if (!m) throw new Error('A "." must be part of a number, such as 0.5.');
       out.push({ t: 'num', v: Number(m[0]) });
       i += m[0].length;
       continue;
@@ -68,7 +69,7 @@ function tokenize(src: string): Token[] {
   for (let k = 0; k < out.length; k++) {
     const cur = out[k];
     const prev = withMul[withMul.length - 1];
-    const prevIsValue = prev && (prev.t === 'num' || (prev.t === 'id' && !(prev.v in FUNCTIONS)) || (prev.t === 'op' && prev.v === ')'));
+    const prevIsValue = prev && (prev.t === 'num' || (prev.t === 'id' && !Object.hasOwn(FUNCTIONS, prev.v)) || (prev.t === 'op' && prev.v === ')'));
     const curStartsValue = cur.t === 'num' || cur.t === 'id' || (cur.t === 'op' && cur.v === '(');
     if (prevIsValue && curStartsValue) withMul.push({ t: 'op', v: '*' });
     withMul.push(cur);
@@ -132,7 +133,7 @@ export function parseExpr(src: string): Node {
     if (!t) throw new Error('The expression ends too early.');
     if (t.t === 'num') return { kind: 'num', value: t.v };
     if (t.t === 'id') {
-      if (t.v in FUNCTIONS) {
+      if (Object.hasOwn(FUNCTIONS, t.v)) {
         expectOp('(');
         const arg = parseAdd();
         expectOp(')');
@@ -159,8 +160,8 @@ export function evaluate(node: Node, env: Record<string, number>): number {
     case 'num':
       return node.value;
     case 'var':
-      if (node.name in env) return env[node.name];
-      if (node.name in CONSTANTS) return CONSTANTS[node.name];
+      if (Object.hasOwn(env, node.name)) return env[node.name];
+      if (Object.hasOwn(CONSTANTS, node.name)) return CONSTANTS[node.name];
       throw new Error(`Unknown variable "${node.name}".`);
     case 'neg':
       return -evaluate(node.arg, env);
@@ -188,7 +189,7 @@ export function evaluate(node: Node, env: Record<string, number>): number {
 export function variablesOf(node: Node, into: Set<string> = new Set()): Set<string> {
   switch (node.kind) {
     case 'var':
-      if (!(node.name in CONSTANTS)) into.add(node.name);
+      if (!Object.hasOwn(CONSTANTS, node.name)) into.add(node.name);
       break;
     case 'neg':
     case 'call':

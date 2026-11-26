@@ -38,18 +38,37 @@ export function usernameFromEmail(email: string): string {
 }
 
 /** A tiny in-memory rate limit for sign-in and sign-up: `limit` hits per `windowMs` per key. */
-export function makeRateLimiter(limit: number, windowMs: number) {
+export function makeRateLimiter(limit: number, windowMs: number, maxKeys = 10_000) {
   const hits = new Map<string, number[]>();
+  const prune = (now: number) => {
+    for (const [k, times] of hits) {
+      const active = times.filter((t) => now - t < windowMs);
+      if (active.length === 0) hits.delete(k);
+      else if (active.length !== times.length) hits.set(k, active);
+    }
+    if (hits.size < maxKeys) return;
+    // Still full with fresh keys: drop oldest non-blocked entries before touching blocked ones.
+    for (const [k, times] of hits) {
+      if (hits.size < maxKeys) break;
+      if (times.length < limit) hits.delete(k);
+    }
+    for (const k of hits.keys()) {
+      if (hits.size < maxKeys) break;
+      hits.delete(k);
+    }
+  };
   return (key: string): boolean => {
     const now = Date.now();
     const list = (hits.get(key) ?? []).filter((t) => now - t < windowMs);
     if (list.length >= limit) {
+      hits.delete(key);
       hits.set(key, list);
       return false;
     }
+    if (!hits.has(key) && hits.size >= maxKeys) prune(now);
     list.push(now);
+    hits.delete(key);
     hits.set(key, list);
-    if (hits.size > 10_000) hits.clear(); // keep memory bounded under abuse
     return true;
   };
 }

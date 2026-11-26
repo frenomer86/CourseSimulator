@@ -64,6 +64,11 @@ function indexedDbStorage(): QueueStorage {
         .then((v) => (Array.isArray(v) ? (v as LearningEvent[]) : []))
         .catch(() => []),
     save: (events) => run('readwrite', (s) => s.put(events, 'pending')).then(() => undefined),
+    loadOwner: () =>
+      run<unknown>('readonly', (s) => s.get('owner'))
+        .then((v) => (typeof v === 'string' ? v : null))
+        .catch(() => null),
+    saveOwner: (userId) => (userId ? run('readwrite', (s) => s.put(userId, 'owner')) : run('readwrite', (s) => s.delete('owner'))).then(() => undefined),
   };
 }
 
@@ -79,6 +84,7 @@ export const tracker = createTracker({
   appVersion: typeof __APP_VERSION__ === 'string' ? __APP_VERSION__ : '0.0.0',
   locale: (navigator.language || '').slice(0, 20) || undefined,
   enabled: () => useAuth.getState().status === 'signed-in',
+  userId: () => useAuth.getState().user?.id ?? null,
   send: async (events) => {
     await api('/events', { method: 'POST', body: { events }, timeoutMs: 20_000 });
   },
@@ -88,6 +94,11 @@ export const tracker = createTracker({
     if (import.meta.env.DEV) console.warn('[telemetry]', m);
   },
 });
+
+/** Discards any queued or persisted telemetry events (e.g. on sign-out on a shared device). */
+export function clearTelemetry(): Promise<void> {
+  return tracker.clear();
+}
 
 /** Records one learning event. Does nothing for guests. */
 export function track(verb: Verb, object: EventObject, result?: Record<string, unknown>, context?: Record<string, unknown>): void {

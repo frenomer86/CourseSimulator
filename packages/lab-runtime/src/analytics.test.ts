@@ -126,6 +126,62 @@ describe('createTracker', () => {
     await vi.advanceTimersByTimeAsync(1_100);
     expect(sent.length).toBe(1);
   });
+
+  it('clears queued and persisted events on clear()', async () => {
+    const storage = memoryStorage();
+    fail = true;
+    const first = make({ storage });
+    first.track('viewed', { type: 'course', id: 'c' });
+    await vi.advanceTimersByTimeAsync(1_100);
+    expect(first.pending()).toBe(1);
+    await first.clear();
+    expect(first.pending()).toBe(0);
+    fail = false;
+    const second = make({ storage });
+    await second.init();
+    expect(second.pending()).toBe(0);
+    await vi.advanceTimersByTimeAsync(2_000);
+    expect(sent.length).toBe(0);
+  });
+
+  it('refuses to flush events queued for a different user', async () => {
+    const storage = memoryStorage();
+    let currentUser: string | null = 'user-a';
+    fail = true;
+    const first = make({ storage, userId: () => currentUser });
+    first.track('viewed', { type: 'course', id: 'c' });
+    await vi.advanceTimersByTimeAsync(1_100);
+    expect(first.pending()).toBe(1);
+    expect(sent.length).toBe(0);
+
+    // Another user signs in on the same device while user-a's events are still queued.
+    currentUser = 'user-b';
+    fail = false;
+    await first.flush();
+    expect(sent.length).toBe(0);
+    expect(first.pending()).toBe(0);
+
+    // Same protection across page reloads from persisted storage.
+    currentUser = 'user-a';
+    fail = true;
+    first.track('viewed', { type: 'unit', id: 'u' });
+    await vi.advanceTimersByTimeAsync(1_100);
+    first.stop();
+
+    currentUser = 'user-b';
+    fail = false;
+    const second = make({ storage, userId: () => currentUser });
+    await second.init();
+    await second.flush();
+    expect(sent.length).toBe(0);
+    expect(second.pending()).toBe(0);
+
+    // User B's own new events still flush normally.
+    second.track('viewed', { type: 'course', id: 'c2' });
+    await second.flush();
+    expect(sent.length).toBe(1);
+    expect(sent[0].map((e) => e.objectId)).toEqual(['c2']);
+  });
 });
 
 describe('device and connection classes', () => {

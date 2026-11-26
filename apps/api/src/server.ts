@@ -7,6 +7,8 @@
  *   DATA_DIR      folder for the embedded database (development), default ./.data/pglite
  *   WEB_DIST      path to apps/web/dist to serve the app; absent in development (Vite serves it)
  *   CORS_ORIGIN   comma-separated origins allowed to call the API cross-origin (rarely needed)
+ *   TRUST_PROXY   Fastify trustProxy setting (false, or comma-separated CIDRs/names).
+ *                 Defaults to loopback,linklocal,uniquelocal (covers local Vite and Caddy in Docker Compose).
  *   RESEARCH_SALT secret that derives research ids from user ids for learning analytics.
  *                 Required in production (DATABASE_URL set); never change it once data exists.
  */
@@ -15,7 +17,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import fastifyStatic from '@fastify/static';
-import { buildApp } from './app.js';
+import { buildApp, parseTrustProxy } from './app.js';
 import { openDb } from './db.js';
 import { migrate } from './migrate.js';
 
@@ -31,7 +33,13 @@ if (process.env.DATABASE_URL && (!researchSalt || researchSalt.length < 32)) {
 
 const db = await openDb({ databaseUrl: process.env.DATABASE_URL, dataDir });
 const applied = await migrate(db);
-const app = await buildApp({ db, corsOrigin: process.env.CORS_ORIGIN, logger: true, researchSalt });
+const app = await buildApp({
+  db,
+  corsOrigin: process.env.CORS_ORIGIN,
+  logger: true,
+  researchSalt,
+  trustProxy: parseTrustProxy(process.env.TRUST_PROXY),
+});
 
 const webDist = process.env.WEB_DIST ? path.resolve(process.env.WEB_DIST) : undefined;
 if (webDist && existsSync(path.join(webDist, 'index.html'))) {

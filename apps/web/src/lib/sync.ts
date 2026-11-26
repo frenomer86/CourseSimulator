@@ -10,6 +10,7 @@
 
 import { create } from 'zustand';
 import { api, ApiError, type SyncResponse } from './api';
+import { clearTelemetry } from './telemetry';
 import { useProgress } from '../store/progress';
 import { useAuth } from '../store/auth';
 
@@ -147,6 +148,7 @@ export async function signOutAndClear(confirmUnsynced: (pending: number) => bool
   const left = pending();
   if (left > 0 && !confirmUnsynced(left)) return false;
   await useAuth.getState().signOut();
+  await clearTelemetry();
   useProgress.getState().reset();
   useSyncStatus.setState({ phase: 'idle', pending: 0, lastError: null });
   return true;
