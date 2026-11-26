@@ -134,6 +134,7 @@ function lookup(d: Device, dst: number): Lookup | string {
     if (sameSubnet(ifaceIp(i)!, dst, p) && (!best || p > best.prefix)) best = { prefix: p, egress: i, nextHop: dst, how: `${formatIp(dst)} is on the same subnet as ${i.id}` };
   }
   if (d.kind === 'router') {
+    let unusable: string | null = null;
     for (const r of d.routes ?? []) {
       const c = parseCidr(r.network);
       const via = parseIp(r.via);
@@ -141,10 +142,14 @@ function lookup(d: Device, dst: number): Lookup | string {
       if (!inSubnet(dst, c.network, c.prefix)) continue;
       if (best && c.prefix <= best.prefix) continue;
       const egress = ifaces.find((i) => sameSubnet(ifaceIp(i)!, via, ifacePrefix(i)!));
-      if (!egress) return `${d.name} has a route to ${r.network} via ${r.via}, but no interface is on that gateway's subnet.`;
+      if (!egress) {
+        // Keep looking: another route may still match. Report this one only if nothing else does.
+        unusable ??= `${d.name} has a route to ${r.network} via ${r.via}, but no interface is on that gateway's subnet.`;
+        continue;
+      }
       best = { prefix: c.prefix, egress, nextHop: via, how: `route ${r.network} via ${r.via}` };
     }
-    if (!best) return `${d.name} has no route to ${formatIp(dst)}: it is not a connected network and no static or default route matches.`;
+    if (!best) return unusable ?? `${d.name} has no route to ${formatIp(dst)}: it is not a connected network and no static or default route matches.`;
   } else if (!best) {
     if (!d.gateway) return `${d.name} cannot reach ${formatIp(dst)}: it is on another subnet and ${d.name} has no default gateway.`;
     const gw = parseIp(d.gateway);
@@ -222,7 +227,10 @@ export function ping(t: Topology, fromId: string, target: string): PingResult {
   if (!src) return { ok: false, reason: `No device "${fromId}".`, request: [], reply: [], pathDevices: [] };
   const dst = resolveTarget(t, target);
   if (dst === null) return { ok: false, reason: `"${target}" is not an IP address or a device with an address.`, request: [], reply: [], pathDevices: [] };
-  const srcIface = src.interfaces.find((i) => ifaceIp(i) !== null && !i.down);
+  // The source address is the interface the request leaves by, so the reply comes back to it.
+  const own = src.interfaces.find((i) => ifaceIp(i) === dst && !i.down);
+  const out = own ? null : lookup(src, dst);
+  const srcIface = own ?? (out && typeof out !== 'string' ? out.egress : src.interfaces.find((i) => ifaceIp(i) !== null && !i.down));
   if (!srcIface) return { ok: false, reason: `${src.name} has no IP address.`, request: [], reply: [], pathDevices: [] };
   const p = ifacePrefix(srcIface);
   if (p === null) return { ok: false, reason: `${src.name} has an invalid subnet mask "${srcIface.mask}".`, request: [], reply: [], pathDevices: [] };
