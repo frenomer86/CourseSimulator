@@ -51,6 +51,12 @@ export interface Hub {
   detach(client: Client): void;
   join(client: Client, groupId: string): void;
   leave(client: Client, groupId: string): void;
+  /** Removes every open tab of `userId` from `groupId` (when they leave or are removed). */
+  leaveUser(userId: string, groupId: string): void;
+  /** Empties a room when its group is deleted. */
+  dropGroup(groupId: string): void;
+  /** Keeps every open tab of `userId` in sync when they block or unblock someone. */
+  setBlocked(userId: string, targetUserId: string, blocked: boolean): void;
   /** For tests. */
   size(): number;
 }
@@ -108,6 +114,23 @@ export function createHub(): Hub {
       c.rooms.delete(groupId);
       if (room.size === 0) rooms.delete(groupId);
       else pushPresence(groupId);
+    },
+    leaveUser(userId, groupId) {
+      for (const c of byUser.get(userId) ?? []) {
+        if (c.rooms.has(groupId)) hub.leave(c, groupId);
+      }
+    },
+    dropGroup(groupId) {
+      const room = rooms.get(groupId);
+      if (!room) return;
+      for (const c of room) c.rooms.delete(groupId);
+      rooms.delete(groupId);
+    },
+    setBlocked(userId, targetUserId, blocked) {
+      for (const c of byUser.get(userId) ?? []) {
+        if (blocked) c.blocked.add(targetUserId);
+        else c.blocked.delete(targetUserId);
+      }
     },
     size() {
       let n = 0;

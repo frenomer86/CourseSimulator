@@ -367,6 +367,7 @@ export function registerCommunity(app: FastifyInstance, deps: Deps): void {
     const pr = await platformRole(db, req.userId!);
     if (role !== 'owner' && pr !== 'admin') throw new HttpError(403, 'not_owner', 'Only the group owner can delete it.');
     await db.query('delete from groups where id = $1', [id]);
+    hub.dropGroup(id);
     return reply.status(204).send();
   });
 
@@ -398,6 +399,7 @@ export function registerCommunity(app: FastifyInstance, deps: Deps): void {
         else await tx.query('delete from groups where id = $1', [id]);
       }
     });
+    hub.leaveUser(userId, id);
     return reply.status(204).send();
   });
 
@@ -430,6 +432,7 @@ export function registerCommunity(app: FastifyInstance, deps: Deps): void {
     const current = await groupRole(db, id, target);
     if (current === 'owner') throw new HttpError(403, 'is_owner', 'The owner cannot be removed.');
     await db.query('delete from group_members where group_id = $1 and user_id = $2', [id, target]);
+    hub.leaveUser(target, id);
     return reply.status(204).send();
   });
 
@@ -637,12 +640,14 @@ export function registerCommunity(app: FastifyInstance, deps: Deps): void {
     if (target === req.userId) throw new HttpError(400, 'invalid', 'You cannot block yourself.');
     if (!(await loadPerson(db, target))) throw new HttpError(404, 'not_found', 'No such person.');
     await db.query('insert into blocks (blocker_id, blocked_id) values ($1, $2) on conflict do nothing', [req.userId, target]);
+    hub.setBlocked(req.userId!, target, true);
     return { ok: true };
   });
 
   app.delete('/api/me/blocks/:userId', { preHandler: requireAuth }, async (req, reply) => {
     const { userId: target } = z.object({ userId: uuid }).parse(req.params);
     await db.query('delete from blocks where blocker_id = $1 and blocked_id = $2', [req.userId, target]);
+    hub.setBlocked(req.userId!, target, false);
     return reply.status(204).send();
   });
 

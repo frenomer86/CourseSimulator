@@ -237,6 +237,73 @@ describe('group chat', () => {
     wsE.close();
     unauth.close();
   });
+
+  it('updates live WebSocket rooms immediately when blocking, removing or leaving a group', async () => {
+    const frames = (ws: WebSocket) => {
+      const queue: unknown[] = [];
+      const waiters: Array<(v: unknown) => void> = [];
+      ws.on('message', (raw) => {
+        const v = JSON.parse(String(raw));
+        const w = waiters.shift();
+        if (w) w(v);
+        else queue.push(v);
+      });
+      return () => (queue.length ? Promise.resolve(queue.shift()) : new Promise<unknown>((r) => waiters.push(r)));
+    };
+
+    const liveG = json(await app.inject({ method: 'POST', url: '/api/groups', headers: auth(ama.token), payload: { name: 'Live hub room', visibility: 'invite' } })).group as { id: string; joinCode: string };
+    await app.inject({ method: 'POST', url: '/api/groups/join', headers: auth(kofi.token), payload: { code: liveG.joinCode } });
+
+    const wsA = await app.injectWS('/api/ws');
+    const nextA = frames(wsA);
+    wsA.send(JSON.stringify({ type: 'auth', token: ama.token }));
+    await nextA();
+    wsA.send(JSON.stringify({ type: 'join', groupId: liveG.id }));
+    await nextA(); // presence: [Ama]
+
+    const wsK = await app.injectWS('/api/ws');
+    const nextK = frames(wsK);
+    wsK.send(JSON.stringify({ type: 'auth', token: kofi.token }));
+    await nextK();
+    wsK.send(JSON.stringify({ type: 'join', groupId: liveG.id }));
+    await nextK(); // presence: [Ama, Kofi]
+    await nextA(); // presence: [Ama, Kofi]
+
+    // Blocking Ama stops live delivery immediately; unblocking restores it.
+    await app.inject({ method: 'PUT', url: `/api/me/blocks/${ama.id}`, headers: auth(kofi.token) });
+    await app.inject({ method: 'POST', url: `/api/groups/${liveG.id}/messages`, headers: auth(ama.token), payload: { body: 'Should be hidden' } });
+    expect(await nextA()).toMatchObject({ type: 'message', message: { body: 'Should be hidden' } });
+    wsK.send(JSON.stringify({ type: 'ping' }));
+    expect(await nextK()).toEqual({ type: 'pong' });
+
+    await app.inject({ method: 'DELETE', url: `/api/me/blocks/${ama.id}`, headers: auth(kofi.token) });
+    await app.inject({ method: 'POST', url: `/api/groups/${liveG.id}/messages`, headers: auth(ama.token), payload: { body: 'Visible again' } });
+    expect(await nextA()).toMatchObject({ type: 'message', message: { body: 'Visible again' } });
+    expect(await nextK()).toMatchObject({ type: 'message', message: { body: 'Visible again' } });
+
+    // Removing Kofi evicts his open socket from the room immediately.
+    await app.inject({ method: 'DELETE', url: `/api/groups/${liveG.id}/members/${kofi.id}`, headers: auth(ama.token) });
+    expect(await nextA()).toEqual({ type: 'presence', groupId: liveG.id, online: [{ displayName: 'Ama', avatarUrl: null }] });
+    await app.inject({ method: 'POST', url: `/api/groups/${liveG.id}/messages`, headers: auth(ama.token), payload: { body: 'After removal' } });
+    expect(await nextA()).toMatchObject({ type: 'message', message: { body: 'After removal' } });
+    wsK.send(JSON.stringify({ type: 'ping' }));
+    expect(await nextK()).toEqual({ type: 'pong' });
+
+    // Rejoining and then leaving via REST also evicts the open socket immediately.
+    await app.inject({ method: 'POST', url: '/api/groups/join', headers: auth(kofi.token), payload: { code: liveG.joinCode } });
+    wsK.send(JSON.stringify({ type: 'join', groupId: liveG.id }));
+    await nextK();
+    await nextA();
+    await app.inject({ method: 'POST', url: `/api/groups/${liveG.id}/leave`, headers: auth(kofi.token) });
+    expect(await nextA()).toEqual({ type: 'presence', groupId: liveG.id, online: [{ displayName: 'Ama', avatarUrl: null }] });
+    await app.inject({ method: 'POST', url: `/api/groups/${liveG.id}/messages`, headers: auth(ama.token), payload: { body: 'After leave' } });
+    expect(await nextA()).toMatchObject({ type: 'message', message: { body: 'After leave' } });
+    wsK.send(JSON.stringify({ type: 'ping' }));
+    expect(await nextK()).toEqual({ type: 'pong' });
+
+    wsK.close();
+    wsA.close();
+  });
 });
 
 describe('resources', () => {
