@@ -118,9 +118,11 @@ describe('general contest', () => {
     expect(k1.score.finishS).toBeGreaterThanOrEqual(300 + 600);
     const k2 = json(await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(kofi.token), payload: { ordinal: 2, passed: true, hintsUsed: 1 } }));
     expect(k2.score).toMatchObject({ points: 260, solved: 2 });
-    // Solving the same problem again adds nothing.
+    // Solving the same problem again adds nothing, and fewer hints must not erase an earlier hint penalty.
     const k1b = json(await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(kofi.token), payload: { ordinal: 1, passed: true } }));
     expect(k1b.score.points).toBe(260);
+    const k2b = json(await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(kofi.token), payload: { ordinal: 2, passed: true, hintsUsed: 0 } }));
+    expect(k2b.score.points).toBe(260);
 
     // Esi: the same 260 points but without the wrong run, so she finishes faster and ranks first.
     await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(esi.token), payload: { ordinal: 1, passed: true } });
@@ -213,6 +215,9 @@ describe('group contest and quest', () => {
     expect(y.statusCode).toBe(200);
 
     await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(kofi.token), payload: { ordinal: 1, passed: true } });
+    // Only one of Nand Lovers' two members has scored so far: no 10% all-scored bonus yet.
+    const midBoard = json(await app.inject({ method: 'GET', url: `/api/competitions/${compId}/board`, headers: auth(esi.token) }));
+    expect(midBoard.teams.find((t: { name: string }) => t.name === 'Nand Lovers')).toMatchObject({ basePoints: 100, points: 100, members: 2, scorers: 1 });
     await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(esi.token), payload: { ordinal: 2, passed: true } });
     await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(yaw.token), payload: { ordinal: 1, passed: true } });
     await app.inject({ method: 'POST', url: `/api/competitions/${compId}/submissions`, headers: auth(yaw.token), payload: { ordinal: 3, passed: true } });
