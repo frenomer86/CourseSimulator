@@ -26,6 +26,31 @@ const OBJECT_TYPES = [
   'group-message', 'resource', 'competition', 'problem', 'class', 'assignment', 'consent',
 ] as const;
 
+type Verb = (typeof VERBS)[number];
+type ObjectType = (typeof OBJECT_TYPES)[number];
+
+const ALLOWED: Record<ObjectType, readonly Verb[]> = {
+  app: ['launched', 'terminated'],
+  course: ['viewed'],
+  unit: ['viewed'],
+  topic: ['viewed'],
+  tutorial: ['viewed', 'progressed', 'completed', 'interacted'],
+  check: ['attempted', 'passed', 'failed', 'viewed'],
+  'check-item': ['answered'],
+  lab: ['viewed', 'launched', 'attempted', 'interacted', 'asked-for-hint', 'submitted', 'passed', 'failed', 'abandoned'],
+  'lab-artefact': ['saved'],
+  error: ['experienced'],
+  'forum-thread': ['viewed', 'asked', 'replied', 'voted'],
+  group: ['joined', 'left', 'created'],
+  'group-message': ['posted'],
+  resource: ['shared', 'viewed'],
+  competition: ['registered', 'scored', 'awarded', 'viewed'],
+  problem: ['submitted', 'passed', 'failed'],
+  class: ['created', 'joined'],
+  assignment: ['assigned', 'completed'],
+  consent: ['consented', 'withdrew'],
+};
+
 /** Matches the "Version N" line at the top of docs/governance/privacy-notice.md. */
 export const CURRENT_NOTICE_VERSION = '1';
 
@@ -69,7 +94,7 @@ const eventSchema = z.object({
   connectionClass: z.enum(['2g', '3g', '4g', 'wifi', 'unknown']),
   appVersion: z.string().min(1).max(40),
   locale: z.string().max(20).optional(),
-});
+}).refine((e) => ALLOWED[e.objectType].includes(e.verb), { message: 'That verb is not allowed for this object type.' });
 const eventsBody = z.object({ events: z.array(eventSchema).min(1).max(MAX_BATCH) });
 export type EventInput = z.infer<typeof eventSchema>;
 
@@ -115,21 +140,26 @@ export async function loadConsent(q: Queryable, userId: string): Promise<Consent
   return r.rows[0] ? toConsent(r.rows[0]) : null;
 }
 
-/** Effective research flags right now (withdrawn means nothing is consented). */
-function effective(c: Consent | null) {
-  const live = !!c && !c.withdrawnAt;
+/** Effective research flags right now (withdrawn, or under-18 without guardian agreement, means nothing is consented). */
+function effective(c: Consent | null, under18 = false) {
+  const live = !!c && !c.withdrawnAt && (!under18 || c.guardianConsent);
   return { events: live && c!.researchEvents, snapshots: live && c!.researchSnapshots };
 }
 
 /* ----------------------------------------------------------------------------- partitions */
 
-const ensured = new Set<string>();
+const ensuredByDb = new WeakMap<Db, Set<string>>();
 
-/** Creates the monthly partition that `at` falls into, once per process. */
+/** Creates the monthly partition that `at` falls into, once per database handle. */
 async function ensurePartition(db: Db, at: Date): Promise<void> {
   const y = at.getUTCFullYear();
   const m = at.getUTCMonth();
   const key = `${y}_${String(m + 1).padStart(2, '0')}`;
+  let ensured = ensuredByDb.get(db);
+  if (!ensured) {
+    ensured = new Set<string>();
+    ensuredByDb.set(db, ensured);
+  }
   if (ensured.has(key)) return;
   const from = new Date(Date.UTC(y, m, 1)).toISOString();
   const to = new Date(Date.UTC(y, m + 1, 1)).toISOString();
@@ -244,7 +274,8 @@ function toCsv(rows: EventRow[]): string {
 export async function purgeOnAccountDelete(q: Queryable, salt: string, userId: string): Promise<{ eventsDeleted: number; snapshotsDeleted: number }> {
   const rid = researchIdFor(salt, userId);
   const consent = await loadConsent(q, userId);
-  const eff = effective(consent);
+  const age = await q.query<{ age_band: string }>('select age_band from profiles where user_id = $1', [userId]);
+  const eff = effective(consent, age.rows[0]?.age_band === 'under_18');
   const ev = eff.events
     ? await q.query('delete from analytics.learning_events where research_id = $1 and not research_consented', [rid])
     : await q.query('delete from analytics.learning_events where research_id = $1', [rid]);
@@ -321,7 +352,8 @@ export function registerAnalytics(app: FastifyInstance, deps: AnalyticsDeps): vo
     if (!ingestLimit(`ev:${userId}`)) throw new HttpError(429, 'rate_limited', 'Too many event batches. Slow down.');
     const { events } = eventsBody.parse(req.body);
     const rid = researchIdFor(researchSalt, userId);
-    const consent = effective(await loadConsent(db, userId));
+    const age = await db.query<{ age_band: string }>('select age_band from profiles where user_id = $1', [userId]);
+    const consent = effective(await loadConsent(db, userId), age.rows[0]?.age_band === 'under_18');
     const now = new Date();
     const accepted: string[] = [];
     const rejected: Array<{ id: string; reason: string }> = [];
@@ -336,14 +368,12 @@ export function registerAnalytics(app: FastifyInstance, deps: AnalyticsDeps): vo
       await ensurePartition(db, at);
 
       let result = e.result ?? null;
+      let snapshot: { labId: string; reason: string; hash: string; artefact: unknown } | null = null;
       if (e.verb === 'saved' && e.objectType === 'lab-artefact' && e.result && 'artefact' in e.result) {
         const artefact = e.result.artefact;
         const hash = sha256(artefact);
         const reason = typeof e.context?.reason === 'string' ? e.context.reason : 'submit';
-        await db.query(
-          'insert into analytics.lab_snapshots (research_id, lab_id, taken_at, reason, sha256, artefact, research_consented) values ($1, $2, $3, $4, $5, $6::jsonb, $7)',
-          [rid, e.labId ?? e.objectId, at.toISOString(), reason, hash, JSON.stringify(artefact ?? null), consent.snapshots],
-        );
+        snapshot = { labId: e.labId ?? e.objectId, reason, hash, artefact };
         const { artefact: _dropped, ...rest } = e.result;
         void _dropped;
         result = { ...rest, sha256: hash, reason };
@@ -361,7 +391,12 @@ export function registerAnalytics(app: FastifyInstance, deps: AnalyticsDeps): vo
           e.deviceClass, e.connectionClass, e.appVersion, e.locale ?? null, consent.events,
         ],
       );
-      void r;
+      if (r.rowCount > 0 && snapshot) {
+        await db.query(
+          'insert into analytics.lab_snapshots (research_id, lab_id, taken_at, reason, sha256, artefact, research_consented) values ($1, $2, $3, $4, $5, $6::jsonb, $7)',
+          [rid, snapshot.labId, at.toISOString(), snapshot.reason, snapshot.hash, JSON.stringify(snapshot.artefact ?? null), consent.snapshots],
+        );
+      }
       accepted.push(e.id);
     }
     return { accepted, rejected };

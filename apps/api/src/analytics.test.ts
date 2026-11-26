@@ -119,6 +119,23 @@ describe('research consent', () => {
     });
     expect(yes.statusCode).toBe(200);
   });
+
+  it('excludes events from the research stream when an opted-in learner switches to under_18 without guardian consent', async () => {
+    const me = await signUp('kwame@example.com');
+    const optIn = await app.inject({
+      method: 'PUT',
+      url: '/api/me/consent',
+      headers: auth(me.token),
+      payload: { noticeVersion: '1.0', researchEvents: true, researchSnapshots: true, researchSocial: false, contactFollowup: false },
+    });
+    expect(optIn.statusCode).toBe(200);
+    await app.inject({ method: 'PATCH', url: '/api/me/profile', headers: auth(me.token), payload: { ageBand: 'under_18' } });
+    const ev = await app.inject({ method: 'POST', url: '/api/events', headers: auth(me.token), payload: { events: [event({ verb: 'passed' })] } });
+    expect(ev.statusCode).toBe(200);
+    const rid = researchIdFor(SALT, me.user.id);
+    const rows = await db.query<{ research_consented: boolean }>('select research_consented from analytics.learning_events where research_id = $1', [rid]);
+    expect(rows.rows).toEqual([{ research_consented: false }]);
+  });
 });
 
 describe('event ingestion and your data', () => {
@@ -136,6 +153,8 @@ describe('event ingestion and your data', () => {
     expect(anon.statusCode).toBe(401);
     const bad = await app.inject({ method: 'POST', url: '/api/events', headers: auth(token), payload: { events: [event({ verb: 'danced' })] } });
     expect(bad.statusCode).toBe(400);
+    const disallowedPair = await app.inject({ method: 'POST', url: '/api/events', headers: auth(token), payload: { events: [event({ verb: 'awarded', objectType: 'consent' })] } });
+    expect(disallowedPair.statusCode).toBe(400);
   });
 
   it('stores events under a research id, flags research consent at ingest time, and is idempotent', async () => {
@@ -168,22 +187,17 @@ describe('event ingestion and your data', () => {
   });
 
   it('stores a lab artefact as a snapshot and keeps only its hash in the event', async () => {
-    const res = await app.inject({
-      method: 'POST',
-      url: '/api/events',
-      headers: auth(token),
-      payload: {
-        events: [
-          event({
-            verb: 'saved',
-            objectType: 'lab-artefact',
-            result: { artefact: { nodes: [{ id: 'a', type: 'INPUT' }], wires: [] }, edits: 7 },
-            context: { reason: 'submit' },
-          }),
-        ],
-      },
+    const snapEvent = event({
+      verb: 'saved',
+      objectType: 'lab-artefact',
+      result: { artefact: { nodes: [{ id: 'a', type: 'INPUT' }], wires: [] }, edits: 7 },
+      context: { reason: 'submit' },
     });
+    const res = await app.inject({ method: 'POST', url: '/api/events', headers: auth(token), payload: { events: [snapEvent] } });
     expect(res.statusCode).toBe(200);
+    // Retrying the same event batch must not duplicate the stored snapshot.
+    const retry = await app.inject({ method: 'POST', url: '/api/events', headers: auth(token), payload: { events: [snapEvent] } });
+    expect(retry.statusCode).toBe(200);
     const rid = researchIdFor(SALT, userId);
     const snap = await db.query<{ sha256: string; reason: string; research_consented: boolean }>('select sha256, reason, research_consented from analytics.lab_snapshots where research_id = $1', [rid]);
     expect(snap.rows.length).toBe(1);
