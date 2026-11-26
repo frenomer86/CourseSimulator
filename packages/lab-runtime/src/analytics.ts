@@ -78,16 +78,26 @@ export function validateEvent(e: LearningEvent): string[] {
 export interface QueueStorage {
   load(): Promise<LearningEvent[]>;
   save(events: LearningEvent[]): Promise<void>;
+  /** Optional user id that owns the persisted queue, so a different account never flushes it. */
+  loadOwner?(): Promise<string | null>;
+  saveOwner?(userId: string | null): Promise<void>;
 }
 
 export function memoryStorage(): QueueStorage {
   let kept: LearningEvent[] = [];
+  let owner: string | null = null;
   return {
     async load() {
       return kept;
     },
     async save(events) {
       kept = events;
+    },
+    async loadOwner() {
+      return owner;
+    },
+    async saveOwner(userId) {
+      owner = userId;
     },
   };
 }
@@ -102,6 +112,8 @@ export interface TrackerOptions {
   send: (events: LearningEvent[]) => Promise<void>;
   /** False while there is nobody to attribute events to; such events are dropped. */
   enabled: () => boolean;
+  /** Current signed-in user id, used to guard against flushing another user's queued events on a shared device. */
+  userId?: () => string | null;
   storage?: QueueStorage;
   newId: () => string;
   now?: () => Date;
@@ -116,6 +128,8 @@ export interface Tracker {
   init(): Promise<void>;
   track(verb: Verb, object: EventObject, result?: Record<string, unknown>, context?: Record<string, unknown>): LearningEvent | null;
   flush(): Promise<void>;
+  /** Discards queued and persisted events (e.g. when signing out on a shared device). */
+  clear(): Promise<void>;
   pending(): number;
   /** Stops timers; queued events stay in storage for next time. */
   stop(): void;
@@ -128,13 +142,26 @@ export function createTracker(opts: TrackerOptions): Tracker {
   const flushIntervalMs = opts.flushIntervalMs ?? 10_000;
   const maxQueue = opts.maxQueue ?? 1000;
   let queue: LearningEvent[] = [];
+  let queueOwner: string | null = null;
   let timer: ReturnType<typeof setTimeout> | null = null;
   let retryTimer: ReturnType<typeof setTimeout> | null = null;
   let sending = false;
   let stopped = false;
   let backoffMs = 2_000;
 
-  const persist = () => storage.save(queue).catch(() => {});
+  const currentUser = () => (opts.userId ? opts.userId() : null);
+
+  const persist = () =>
+    Promise.all([storage.save(queue), storage.saveOwner?.(queue.length ? queueOwner : null)])
+      .then(() => undefined)
+      .catch(() => {});
+
+  const clearTimers = () => {
+    if (timer) clearTimeout(timer);
+    if (retryTimer) clearTimeout(retryTimer);
+    timer = null;
+    retryTimer = null;
+  };
 
   const scheduleFlush = (ms: number) => {
     if (timer || stopped) return;
@@ -153,15 +180,42 @@ export function createTracker(opts: TrackerOptions): Tracker {
     }, backoffMs);
   };
 
+  async function clear(): Promise<void> {
+    clearTimers();
+    queue = [];
+    queueOwner = null;
+    backoffMs = 2_000;
+    await persist();
+  }
+
   async function flush(): Promise<void> {
     if (sending || stopped || queue.length === 0 || !opts.enabled()) return;
+    if (opts.userId) {
+      const cur = currentUser();
+      if (queueOwner && !cur) return;
+      if (queueOwner && cur && queueOwner !== cur) {
+        await clear();
+        return;
+      }
+    }
     sending = true;
     try {
       while (queue.length > 0 && opts.enabled()) {
+        if (opts.userId) {
+          const cur = currentUser();
+          if (queueOwner && !cur) break;
+          if (queueOwner && cur && queueOwner !== cur) {
+            queue = [];
+            queueOwner = null;
+            await persist();
+            break;
+          }
+        }
         const batch = queue.slice(0, Math.max(batchSize, 1) * 5);
         await opts.send(batch);
         const sent = new Set(batch.map((e) => e.id));
         queue = queue.filter((e) => !sent.has(e.id));
+        if (queue.length === 0) queueOwner = null;
         await persist();
       }
       backoffMs = 2_000;
@@ -176,10 +230,16 @@ export function createTracker(opts: TrackerOptions): Tracker {
   return {
     async init() {
       try {
-        const kept = await storage.load();
+        const [kept, savedOwner] = await Promise.all([storage.load(), storage.loadOwner?.() ?? Promise.resolve(null)]);
         if (kept.length) {
+          const cur = currentUser();
+          if (opts.userId && savedOwner && cur && savedOwner !== cur) {
+            await persist();
+            return;
+          }
           const ids = new Set(queue.map((e) => e.id));
           queue = [...kept.filter((e) => !ids.has(e.id)), ...queue];
+          if (!queueOwner && savedOwner) queueOwner = savedOwner;
           scheduleFlush(1_000);
         }
       } catch {
@@ -213,6 +273,11 @@ export function createTracker(opts: TrackerOptions): Tracker {
         opts.onError?.(`dropped event ${verb} ${object.type}: ${problems.join('; ')}`);
         return null;
       }
+      if (opts.userId) {
+        const cur = currentUser();
+        if (queueOwner && cur && queueOwner !== cur) queue = [];
+        if (cur) queueOwner = cur;
+      }
       queue.push(event);
       if (queue.length > maxQueue) queue = queue.slice(queue.length - maxQueue);
       void persist();
@@ -222,6 +287,7 @@ export function createTracker(opts: TrackerOptions): Tracker {
     },
 
     flush,
+    clear,
 
     pending() {
       return queue.length;
@@ -229,10 +295,7 @@ export function createTracker(opts: TrackerOptions): Tracker {
 
     stop() {
       stopped = true;
-      if (timer) clearTimeout(timer);
-      if (retryTimer) clearTimeout(retryTimer);
-      timer = null;
-      retryTimer = null;
+      clearTimers();
     },
   };
 }
