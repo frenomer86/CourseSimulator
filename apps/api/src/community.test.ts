@@ -243,6 +243,10 @@ describe('resources', () => {
   it('group resources are for members; the course library is open; solution shares need a pass', async () => {
     const denied = await app.inject({ method: 'POST', url: '/api/resources', headers: auth(esi.token), payload: { kind: 'link', groupId, title: 'Notes', url: 'https://example.com/n' } });
     expect(denied.statusCode).toBe(403);
+    const badLink = await app.inject({ method: 'POST', url: '/api/resources', headers: auth(kofi.token), payload: { kind: 'link', groupId, title: 'XSS', url: 'javascript:alert(1)' } });
+    expect(badLink.statusCode).toBe(400);
+    const badData = await app.inject({ method: 'POST', url: '/api/resources', headers: auth(kofi.token), payload: { kind: 'link', groupId, title: 'Data', url: 'data:text/html,hi' } });
+    expect(badData.statusCode).toBe(400);
     const link = await app.inject({ method: 'POST', url: '/api/resources', headers: auth(kofi.token), payload: { kind: 'link', groupId, title: 'Karnaugh maps explained', url: 'https://example.com/kmap' } });
     expect(link.statusCode).toBe(201);
     const note = await app.inject({

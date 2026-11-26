@@ -78,6 +78,10 @@ describe('accounts', () => {
     expect(taken.statusCode).toBe(409);
     const badName = await app.inject({ method: 'PATCH', url: '/api/me/profile', headers: auth(token), payload: { username: 'Not Valid!' } });
     expect(badName.statusCode).toBe(400);
+    const badAvatarJs = await app.inject({ method: 'PATCH', url: '/api/me/profile', headers: auth(token), payload: { avatarUrl: 'javascript:alert(1)' } });
+    expect(badAvatarJs.statusCode).toBe(400);
+    const badAvatarData = await app.inject({ method: 'PATCH', url: '/api/me/profile', headers: auth(token), payload: { avatarUrl: 'data:text/html,<script>alert(1)</script>' } });
+    expect(badAvatarData.statusCode).toBe(400);
   });
 
   it('requires a valid token', async () => {

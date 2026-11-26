@@ -479,7 +479,7 @@ export function ResourceList({ items, onRemove, canRemove }: { items: Resource[]
               <div className="min-w-0">
                 <span className="text-[11px] uppercase tracking-wide text-ink-faint font-medium">{r.kind === 'link' ? 'Link' : r.kind === 'note' ? 'Note' : r.kind === 'solution' ? 'Solution share' : 'File'}</span>
                 <h3 className="font-medium leading-snug">
-                  {r.kind === 'link' && r.url ? (
+                  {r.kind === 'link' && r.url && /^https?:\/\//i.test(r.url) ? (
                     <a href={r.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-high break-words">
                       {r.title}
                     </a>

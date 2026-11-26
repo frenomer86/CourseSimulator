@@ -10,6 +10,7 @@ import { iso, num, type Db, type Queryable } from './db.js';
 import { hashPassword, hashToken, makeRateLimiter, newSessionToken, SESSION_DAYS, usernameFromEmail, verifyPassword } from './auth.js';
 import { levelFromXp, XP, type AgeBand, type Mastery, type PlatformRole, type Profile, type ProgressRecords, type User } from './types.js';
 import { HttpError } from './errors.js';
+import { httpUrl } from './common.js';
 import { purgeOnAccountDelete, registerAnalytics } from './analytics.js';
 import { registerCommunity } from './community.js';
 import { registerForum } from './forum.js';
@@ -50,7 +51,7 @@ const profilePatch = z
   .object({
     username: z.string().trim().toLowerCase().regex(/^[a-z0-9_]{3,24}$/, 'Usernames are 3 to 24 characters: lowercase letters, digits and underscores.'),
     displayName: z.string().trim().min(1).max(60),
-    avatarUrl: z.string().trim().url().max(500).nullable(),
+    avatarUrl: httpUrl(500).nullable(),
     ageBand: z.enum(['under_18', '18_plus', 'undisclosed']),
     showOnBoards: z.boolean(),
     bio: z.string().trim().max(500).nullable(),

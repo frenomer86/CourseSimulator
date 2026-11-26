@@ -169,3 +169,12 @@ export function pageQuery(q: unknown): { limit: number; before?: string } {
 
 /** A plain text field: trimmed, bounded, never empty. */
 export const text = (max: number, min = 1) => z.string().trim().min(min).max(max);
+
+/** An http or https web address, rejecting javascript:, data: and other schemes. */
+export const httpUrl = (max: number) =>
+  z
+    .string()
+    .trim()
+    .url()
+    .max(max)
+    .refine((u) => /^https?:\/\//i.test(u), 'Use an http or https web address.');

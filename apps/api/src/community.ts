@@ -22,6 +22,7 @@ import { levelFromXp } from './types.js';
 import {
   blockedBy,
   groupRole,
+  httpUrl,
   idParam,
   isFacilitatorRole,
   isGroupAdminRole,
@@ -173,7 +174,7 @@ const resourceBody = z
     labId: z.string().trim().min(1).max(200).optional(),
     title: text(160),
     body: z.string().trim().max(20000).optional(),
-    url: z.string().trim().url().max(2000).optional(),
+    url: httpUrl(2000).optional(),
     payload: z.unknown().optional(),
   })
   .refine((b) => b.groupId || b.courseSlug, { message: 'Share to a group or to a course library.' })
