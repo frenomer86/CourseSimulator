@@ -415,6 +415,12 @@ export function registerCompetitions(app: FastifyInstance, deps: Deps): void {
     const c = await loadComp(db, hub, id);
     if (!c || c.created_by !== userId) throw new HttpError(404, 'not_found', 'That contest does not exist, or you cannot manage it.');
     if (c.status === 'finished' || c.status === 'cancelled') throw new HttpError(409, 'closed', 'This contest is over and cannot be changed.');
+    if (Date.parse(body.endsAt ?? iso(c.ends_at)) <= Date.parse(body.startsAt ?? iso(c.starts_at))) {
+      throw new HttpError(400, 'invalid', 'The contest must end after it starts.');
+    }
+    if (body.status === 'scheduled' && c.status !== 'draft' && c.status !== 'scheduled') {
+      throw new HttpError(409, 'started', 'A contest that has started cannot go back to scheduled.');
+    }
     await db.transaction(async (tx) => {
       const sets: string[] = [];
       const params: unknown[] = [id];

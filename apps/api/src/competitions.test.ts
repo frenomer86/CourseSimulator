@@ -84,6 +84,9 @@ describe('general contest', () => {
     const publish = await app.inject({ method: 'PATCH', url: `/api/competitions/${compId}`, headers: auth(ama.token), payload: { status: 'scheduled' } });
     expect(publish.statusCode).toBe(200);
     expect(json(publish).competition.status).toBe('scheduled');
+    const inverted = await app.inject({ method: 'PATCH', url: `/api/competitions/${compId}`, headers: auth(ama.token), payload: { endsAt: minutes(1) } });
+    expect(inverted.statusCode).toBe(400);
+    expect(json(inverted).message).toMatch(/end after it starts/);
     const view = json(await app.inject({ method: 'GET', url: `/api/competitions/${compId}`, headers: auth(kofi.token) }));
     expect(view.competition.problemCount).toBe(3);
     expect(view.problems).toBeNull();
@@ -102,6 +105,9 @@ describe('general contest', () => {
     await db.query("update competitions set starts_at = now() - interval '10 minutes', ends_at = now() + interval '50 minutes' where id = $1", [compId]);
     const view = json(await app.inject({ method: 'GET', url: `/api/competitions/${compId}`, headers: auth(kofi.token) }));
     expect(view.competition.status).toBe('live');
+    const backToScheduled = await app.inject({ method: 'PATCH', url: `/api/competitions/${compId}`, headers: auth(ama.token), payload: { status: 'scheduled', startsAt: minutes(30), endsAt: minutes(90) } });
+    expect(backToScheduled.statusCode).toBe(409);
+    expect(json(backToScheduled).error).toBe('started');
     expect(view.problems.map((p: { contentId: string }) => p.contentId)).toEqual([LAB_B1, LAB_I1, CHECK]);
 
     const active = json(await app.inject({ method: 'GET', url: `/api/competitions/active?labId=${LAB_B1}`, headers: auth(kofi.token) })).active;
